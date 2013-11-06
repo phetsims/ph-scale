@@ -1,0 +1,2 @@
+Custom-screen-icon.jpg author=PhET
+Solutions-screen-icon.jpg author=PhET

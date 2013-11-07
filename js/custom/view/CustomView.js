@@ -10,9 +10,11 @@ define( function( require ) {
 
   // imports
   var inherit = require( 'PHET_CORE/inherit' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Node = require( 'SCENERY/nodes/Node' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
+  var Text = require( 'SCENERY/nodes/Text' );
 
   /**
    * @param {CustomModel} model
@@ -27,15 +29,20 @@ define( function( require ) {
     var rootNode = new Node();
     thisView.addChild( rootNode );
 
+    var underConstruction = new Text( 'Custom: Under Construction', new PhetFont( 30 ) );
+
     // Reset All button
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
     } );
 
     // Rendering order
+    rootNode.addChild( underConstruction );
     rootNode.addChild( resetAllButton );
 
     // Layout
+    underConstruction.centerX = this.layoutBounds.centerX;
+    underConstruction.centerY = this.layoutBounds.centerY
     resetAllButton.right = this.layoutBounds.right - 20;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }

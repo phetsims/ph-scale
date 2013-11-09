@@ -11,7 +11,7 @@ define( function( require ) {
   // imports
   var DerivedProperty = require( 'AXON/DerivedProperty' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var MathUtils = require( 'PH_SCALE/common/util/MathUtils' );
+  var log10 = require( 'DOT/Util' ).log10;
   var PropertySet = require( 'AXON/PropertySet' );
   var Range = require( 'DOT/Range' );
 
@@ -65,7 +65,7 @@ define( function( require ) {
     //----------------------------------------------------------------------------
 
     setConcentrationH3O: function( c ) {
-      this.solute.pH = -MathUtils.log10( c );
+      this.solute.pH = -log10( c );
     },
 
     getConcentrationH3O: function( pH ) {
@@ -74,7 +74,7 @@ define( function( require ) {
     },
 
     setConcentrationOH: function( c ) {
-      this.solute.pH = 14 - ( -MathUtils.log10( c ) );
+      this.solute.pH = 14 - ( -log10( c ) );
     },
 
     getConcentrationOH: function( pH ) {
@@ -107,7 +107,7 @@ define( function( require ) {
     //----------------------------------------------------------------------------
 
     setMolesH3O: function( m ) {
-      this.solute.pH = -MathUtils.log10( m / this.getVolume() );
+      this.solute.pH = -log10( m / this.getVolume() );
     },
 
     getMolesH3O: function() {
@@ -115,7 +115,7 @@ define( function( require ) {
     },
 
     setMolesOH: function( m ) {
-      this.solute.pH = 14 - ( -MathUtils.log10( m / this.getVolume() ) );
+      this.solute.pH = 14 - ( -log10( m / this.getVolume() ) );
     },
 
     getMolesOH: function() {
@@ -144,10 +144,10 @@ define( function( require ) {
         pH = null;
       }
       else if ( solutePH < 7 ) {
-        pH = -MathUtils.log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -solventPH ) * solventVolume ) / ( soluteVolume + solventVolume ) );
+        pH = -log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -solventPH ) * solventVolume ) / ( soluteVolume + solventVolume ) );
       }
       else {
-        pH = 14 + MathUtils.log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, solventPH - 14 ) * solventVolume ) / ( soluteVolume + solventVolume ) );
+        pH = 14 + log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, solventPH - 14 ) * solventVolume ) / ( soluteVolume + solventVolume ) );
       }
       return pH;
     },

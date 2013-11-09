@@ -11,6 +11,7 @@ define( function( require ) {
   // imports
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Screen = require( 'JOIST/Screen' );
   var SolutionsModel = require( 'PH_SCALE/solutions/model/SolutionsModel' );
   var SolutionsView = require( 'PH_SCALE/solutions/view/SolutionsView' );
@@ -27,7 +28,8 @@ define( function( require ) {
       screenTitle,
       new Image( screenIcon ),
       function() { return new SolutionsModel(); },
-      function( model ) { return new SolutionsView( model ); }
+      function( model ) { return new SolutionsView( model ); },
+      { backgroundColor: PHScaleColors.SCREEN_BACKGROUND }
     );
   }
 

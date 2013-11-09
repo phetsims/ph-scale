@@ -13,6 +13,7 @@ define( function( require ) {
   var CustomView = require( 'PH_SCALE/custom/view/CustomView' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Screen = require( 'JOIST/Screen' );
 
   // strings
@@ -27,7 +28,8 @@ define( function( require ) {
       screenTitle,
       new Image( screenIcon ),
       function() { return new CustomModel(); },
-      function( model ) { return new CustomView( model ); }
+      function( model ) { return new CustomView( model ); },
+      { backgroundColor: PHScaleColors.SCREEN_BACKGROUND }
     );
   }
 

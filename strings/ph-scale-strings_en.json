@@ -1,5 +1,17 @@
 {
   "ph-scale.name": "pH Scale",
   "custom": "Custom",
-  "solutions": "Solutions"
+  "solutions": "Solutions",
+  "choice.milk": "milk",
+  "choice.batteryAcid": "battery acid",
+  "choice.vomit": "vomit",
+  "choice.soda": "soda pop",
+  "choice.beer": "beer",
+  "choice.coffee": "coffee",
+  "choice.spit": "spit",
+  "choice.blood": "blood",
+  "choice.handSoap": "hand soap",
+  "choice.water": "water",
+  "choice.drainCleaner": "drain cleaner",
+  "choice.custom": "custom liquid"
 }

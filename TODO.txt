@@ -1,0 +1,11 @@
+TODO list for ph-scale (HTML5)
+
+HIGH
+- model: Faucet, Beaker, Dropper, Movable
+
+MEDIUM
+
+LOW
+- home screen and navbar icons
+
+MIGRATE TO COMMON

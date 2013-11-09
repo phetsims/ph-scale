@@ -12,8 +12,10 @@ define( function( require ) {
   var DerivedProperty = require( 'AXON/DerivedProperty' );
   var inherit = require( 'PHET_CORE/inherit' );
   var log10 = require( 'DOT/Util' ).log10;
+  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Range = require( 'DOT/Range' );
+  var toFixed = require( 'DOT/Util' ).toFixed;
 
   // constants
   var AVOGADROS_NUMBER = 6.023E23;
@@ -53,8 +55,18 @@ define( function( require ) {
     // Volume (Liters)
     //----------------------------------------------------------------------------
 
-    //TODO does this need to be constrained to 2 decimal places, as in Java sim?
-    getVolume: function() { return this.soluteVolume + this.solventVolume; },
+    /**
+     * Gets the volume of the liquid.
+     * <p>
+     * This is a clunky way to constrain the volume to a fixed number
+     * of decimal places, so that student calculations will match displayed values.
+     * The success of this approach relies on this method being called in all cases
+     * where volume is needed.  That includes public interfaces used by clients,
+     * and private methods within this class.
+     *
+     * @return
+     */
+    getVolume: function() { return toFixed( this.soluteVolume + this.solventVolume, PHScaleConstants.VOLUME_DECIMAL_PLACES ); },
 
     isEmpty: function() { return this.getVolume() === 0; },
 
@@ -149,7 +161,7 @@ define( function( require ) {
       else {
         pH = 14 + log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, solventPH - 14 ) * solventVolume ) / ( soluteVolume + solventVolume ) );
       }
-      return pH;
+      return pH; //TODO constrain to PHScaleConstants.PH_DECIMAL_PLACES, as in Java sim?
     },
 
     /**

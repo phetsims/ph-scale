@@ -161,21 +161,18 @@ define( function( require ) {
      * @returns {number|null} liters, null if the solution's volume is zero
      */
     computeColor: function( soluteColor, soluteVolume, solventColor, solventVolume ) {
-      var color = null;
+      var color;
       var solutionVolume = soluteVolume + solventVolume;
-      if ( solutionVolume > 0 ) {
-        if ( soluteVolume === 0 ) {
-          // all solvent
-          color = solventColor;
-        }
-        else if ( solventVolume === 0 ) {
-          // no solvent
-          color = soluteColor;
-        }
-        else {
-          // dilute solute with solvent
-          color = soluteColor.withAlpha( soluteColor.a * ( soluteVolume / solutionVolume ) );
-        }
+      if ( solutionVolume === 0 ) {
+        color = null;
+      }
+      else if ( soluteVolume === 0 ) {
+        // all solvent
+        color = solventColor;
+      }
+      else {
+        // dilute solute with solvent
+        color = soluteColor.withAlpha( soluteColor.a * ( soluteVolume / solutionVolume ) );
       }
       return color;
     },

@@ -42,7 +42,7 @@ define( function( require ) {
 
     // Layout
     underConstruction.centerX = this.layoutBounds.centerX;
-    underConstruction.centerY = this.layoutBounds.centerY
+    underConstruction.centerY = this.layoutBounds.centerY;
     resetAllButton.right = this.layoutBounds.right - 20;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }

@@ -162,8 +162,8 @@ define( function( require ) {
      */
     computeColor: function( soluteColor, soluteVolume, solventColor, solventVolume ) {
       var color = null;
-      var volume = soluteVolume + solventVolume;
-      if ( volume > 0 ) {
+      var solutionVolume = soluteVolume + solventVolume;
+      if ( solutionVolume > 0 ) {
         if ( soluteVolume === 0 ) {
           // all solvent
           color = solventColor;
@@ -174,7 +174,7 @@ define( function( require ) {
         }
         else {
           // dilute solute with solvent
-          color = soluteColor.withAlpha( soluteColor.a * ( soluteVolume / volume ) );
+          color = soluteColor.withAlpha( soluteColor.a * ( soluteVolume / solutionVolume ) );
         }
       }
       return color;

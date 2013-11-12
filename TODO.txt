@@ -1,7 +1,7 @@
 TODO list for ph-scale (HTML5)
 
 HIGH
-- model: Faucet, Beaker, Dropper, Movable
+- fix SolutionModel.drainSolution
 
 MEDIUM
 - limit dropperFluid.bottom to solution.top

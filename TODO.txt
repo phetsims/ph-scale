@@ -10,8 +10,6 @@ MEDIUM
 
 LOW
 - home screen and navbar icons
+- lots of stuff copied from beers-law-lab, much of it tweaked slightly
 
 MIGRATE TO COMMON
-- BeakerNode, copied from beers-law-lab
-- DropperNode, copied from beers-law-lab, modified
-- SoluteComboBox, copied from beers-law-lab, modified

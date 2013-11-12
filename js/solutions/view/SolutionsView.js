@@ -11,6 +11,7 @@ define( function( require ) {
   // imports
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
+  var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -40,6 +41,7 @@ define( function( require ) {
 
     // dropper
     var dropperNode = new DropperNode( model.dropper, mvt );
+    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, dropperNode.getTipWidth(), mvt );
 
     // faucets
     var solventFaucetNode = new PHFaucetNode( model.solventFaucet, mvt );
@@ -58,12 +60,13 @@ define( function( require ) {
     } );
 
     // Rendering order
-    rootNode.addChild( beakerNode );
-    rootNode.addChild( dropperNode );
-    rootNode.addChild( solventFaucetNode );
-    rootNode.addChild( drainFaucetNode );
     rootNode.addChild( solventFluidNode );
+    rootNode.addChild( solventFaucetNode );
     rootNode.addChild( drainFluidNode );
+    rootNode.addChild( drainFaucetNode );
+    rootNode.addChild( dropperFluidNode );
+    rootNode.addChild( dropperNode );
+    rootNode.addChild( beakerNode );
     rootNode.addChild( resetAllButton );
     rootNode.addChild( soluteComboBox );
     rootNode.addChild( soluteListParent ); // last, so that combo box list is on top

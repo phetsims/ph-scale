@@ -45,17 +45,12 @@ define( function( require ) {
        Solute.BATTERY_ACID
     ];
 
-    thisModel.beaker = new Beaker( new Vector2( 300, 600 ), new Dimension2( 400, 400 ), BEAKER_VOLUME );
-    thisModel.soluteProperty = new Property( thisModel.solutes[0] );
-    thisModel.solution = new Solution( thisModel.soluteProperty.get(), 0, Solvent.WATER, 0, thisModel.beaker.volume );
-    thisModel.dropper = new Dropper( new Vector2( thisModel.beaker.location.x, 225 ), new Bounds2( 250, 225, 570, 225 ), DROPPER_FLOW_RATE, true );
+    thisModel.beaker = new Beaker( new Vector2( 300, 600 ), new Dimension2( 400, 350 ), BEAKER_VOLUME );
+    thisModel.dropper = new Dropper( thisModel.solutes[0], new Vector2( thisModel.beaker.location.x, 225 ), new Bounds2( 250, 225, 460, 225 ), DROPPER_FLOW_RATE, true );
+    thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, Solvent.WATER, 0, thisModel.beaker.volume );
     thisModel.solventFaucet = new Faucet( new Vector2( 165, 190 ), -400, 45, MAX_SOLVENT_FLOW_RATE ); //TODO constants are wrong
     thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.getRight() + 100, 665 ), thisModel.beaker.getRight(), 45, MAX_DRAIN_FLOW_RATE ); //TODO constants are wrong
     thisModel.pHMeter = new PHMeter( new Vector2( 785, 210 ), new Bounds2( 10, 150, 835, 680 ), new Vector2( 750, 370 ), new Bounds2( 30, 150, 966, 680 ) );
-
-    this.soluteProperty.link( function( solute ) {
-      thisModel.solution.solute = solute;
-    });
   }
 
   SolutionsModel.prototype = {

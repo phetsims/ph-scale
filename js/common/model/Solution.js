@@ -24,19 +24,19 @@ define( function( require ) {
   var AVOGADROS_NUMBER = 6.023E23;
 
   /**
-   * @param {Solute} solute the default solute
+   * @param {Property<Solute>} soluteProperty
    * @param {number} soluteVolume liters
    * @param {Solvent} solvent
    * @param {number} solventVolume liters
    * @param {number} maxVolume liters
    */
-  function Solution( solute, soluteVolume, solvent, solventVolume, maxVolume ) {
+  function Solution( soluteProperty, soluteVolume, solvent, solventVolume, maxVolume ) {
     assert && assert( soluteVolume + solventVolume <= maxVolume );
 
     var thisSolution = this;
     Fluid.call( thisSolution, new Color( 255, 255, 255 ) ); // use a bogus initial color, it will be derived below
 
-    thisSolution.soluteProperty = new Property( solute );
+    thisSolution.soluteProperty = soluteProperty;
     thisSolution.soluteVolumeProperty = new Property( soluteVolume );
     thisSolution.solvent = solvent;
     thisSolution.solventVolumeProperty = new Property( solventVolume );
@@ -51,7 +51,7 @@ define( function( require ) {
 
     // color
     var updateColor = function() {
-      thisSolution.colorProperty.set( Solution.computeColor( solute.colorProperty.get(), soluteVolume, thisSolution.solvent.colorProperty.get(), solventVolume ) );
+      thisSolution.colorProperty.set( Solution.computeColor( thisSolution.soluteProperty.get().colorProperty.get(), soluteVolume, thisSolution.solvent.colorProperty.get(), solventVolume ) );
     };
     thisSolution.soluteProperty.link( updateColor );
     thisSolution.soluteVolumeProperty.link( updateColor );

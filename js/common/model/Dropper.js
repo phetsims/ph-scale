@@ -14,17 +14,19 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
 
   /**
+   * @param {Solute} default solute
    * @param {Vector2} location
    * @param {Bounds2} dragBounds
    * @param {Number} maxFlowRate
    * @param {Boolean} visible
    * @constructor
    */
-  function Dropper( location, dragBounds, maxFlowRate, visible ) {
+  function Dropper( solute, location, dragBounds, maxFlowRate, visible ) {
 
     var thisDropper = this;
     Movable.call( thisDropper, location, dragBounds );
 
+    thisDropper.soluteProperty = new Property( solute );
     thisDropper.visibleProperty = new Property( visible );
     thisDropper.onProperty = new Property( false ); // true if the dropper is dispensing solution
     thisDropper.enabledProperty = new Property( true );
@@ -54,6 +56,7 @@ define( function( require ) {
   return inherit( Movable, Dropper, {
     reset: function() {
       Movable.prototype.reset.call( this );
+      this.soluteProperty.reset();
       this.visibleProperty.reset();
       this.onProperty.reset();
       this.enabledProperty.reset();

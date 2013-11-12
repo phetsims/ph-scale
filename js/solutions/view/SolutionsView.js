@@ -38,7 +38,7 @@ define( function( require ) {
     var beakerNode = new BeakerNode( model.beaker, mvt );
 
     // dropper
-    var dropperNode = new DropperNode( model.dropper, model.soluteProperty, mvt );
+    var dropperNode = new DropperNode( model.dropper, mvt );
 
     // faucets
     var solventFaucetNode = new PHFaucetNode( model.solventFaucet, mvt );

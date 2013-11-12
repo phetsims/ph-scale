@@ -42,11 +42,10 @@ define( function( require ) {
 
   /**
    * @param {Dropper} dropper
-   * @param {Property<Solute>} soluteProperty
    * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function DropperNode( dropper, soluteProperty, mvt ) {
+  function DropperNode( dropper, mvt ) {
 
     var thisNode = this;
 
@@ -72,7 +71,7 @@ define( function( require ) {
     var background = new Image( dropperBackgroundImage );
 
     // label
-    var label = new HTMLText( soluteProperty.get().name, { font: new PhetFont( { size: 18, weight: 'bold' } ), fill: 'black' } );
+    var label = new HTMLText( dropper.soluteProperty.get().name, { font: new PhetFont( { size: 18, weight: 'bold' } ), fill: 'black' } );
 
     // label background, so the label shows up on various fluid colors
     var labelBackground = new Path( null, { fill: 'rgba( 240, 240, 240, 0.6 )', lineWidth: 0 } );
@@ -108,7 +107,6 @@ define( function( require ) {
 
     // Update location
     dropper.locationProperty.link( function( location ) {
-      console.log( "dropper moved to " + location.toString() );//XXXX
       thisNode.translation = mvt.modelToViewPosition( location );
     } );
 
@@ -127,7 +125,7 @@ define( function( require ) {
     } );
 
     // Change the label and color when the soluteProperty changes.
-    soluteProperty.link( function( solute ) {
+    dropper.soluteProperty.link( function( solute ) {
 
       // label, centered in the dropper's glass
       label.setText( solute.name );

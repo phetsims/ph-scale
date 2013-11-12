@@ -19,6 +19,7 @@ define( function( require ) {
   var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
+  var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
 
   /**
    * @param {SolutionsModel} model
@@ -48,6 +49,10 @@ define( function( require ) {
     var solventFluidNode = new FaucetFluidNode( model.solventFaucet, model.solution.solvent, SOLVENT_FLUID_HEIGHT, mvt );
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
+    // solutes combo box
+    var soluteListParent = new Node();
+    var soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent );
+
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
     } );
@@ -60,8 +65,12 @@ define( function( require ) {
     rootNode.addChild( solventFluidNode );
     rootNode.addChild( drainFluidNode );
     rootNode.addChild( resetAllButton );
+    rootNode.addChild( soluteComboBox );
+    rootNode.addChild( soluteListParent ); // last, so that combo box list is on top
 
     // Layout
+    soluteComboBox.left = mvt.modelToViewX( model.beaker.getRight() ) + 20;
+    soluteComboBox.top = this.layoutBounds.top + 20;
     resetAllButton.right = this.layoutBounds.right - 20;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }

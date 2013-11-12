@@ -11,4 +11,5 @@ LOW
 
 MIGRATE TO COMMON
 - BeakerNode, copied from beers-law-lab
-- DropperNode, copied from beers-law-lab and modified
+- DropperNode, copied from beers-law-lab, modified
+- SoluteComboBox, copied from beers-law-lab, modified

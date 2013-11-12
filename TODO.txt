@@ -1,6 +1,7 @@
 TODO list for ph-scale (HTML5)
 
 HIGH
+- PHMeterNode
 - fix SolutionModel.drainSolution
 
 MEDIUM

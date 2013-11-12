@@ -25,7 +25,7 @@ define( function( require ) {
    * @constructor
    */
   function PHMeter( bodyLocation, bodyDragBounds, probeLocation, probeDragBounds ) {
-    this.value = new Property( NaN ); // NaN if the meter is not reading a value
+    this.value = new Property( null ); // null if the meter is not reading a value
     this.body = new Movable( bodyLocation, bodyDragBounds );
     this.probe = new Movable( probeLocation, probeDragBounds );
   }

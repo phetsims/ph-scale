@@ -10,11 +10,13 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var Color = require( 'SCENERY/util/Color' );
   var DerivedProperty = require( 'AXON/DerivedProperty' );
+  var Fluid = require( 'PH_SCALE/common/model/Fluid' );
   var inherit = require( 'PHET_CORE/inherit' );
   var log10 = require( 'DOT/Util' ).log10;
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var PropertySet = require( 'AXON/PropertySet' );
+  var Property = require( 'AXON/Property' );
   var Range = require( 'DOT/Range' );
   var toFixed = require( 'DOT/Util' ).toFixed;
 
@@ -32,26 +34,39 @@ define( function( require ) {
     assert && assert( soluteVolume + solventVolume <= maxVolume );
 
     var thisSolution = this;
+    Fluid.call( thisSolution, new Color( 255, 255, 255 ) ); // use a bogus initial color, it will be derived below
 
+    thisSolution.soluteProperty = new Property( solute );
+    thisSolution.soluteVolumeProperty = new Property( soluteVolume );
     thisSolution.solvent = solvent;
+    thisSolution.solventVolumeProperty = new Property( solventVolume );
     thisSolution.maxVolume = maxVolume;
 
-    PropertySet.call( thisSolution, { solute: solute, soluteVolume: soluteVolume, solventVolume: solventVolume } );
-
-    thisSolution.addDerivedProperty( 'pH', [ 'solute', 'soluteVolume', 'solventVolume' ],
+    // pH, null if no value
+    thisSolution.pHProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.solventVolumeProperty ],
       function( solute, soluteVolume, solventVolume ) {
         return Solution.computePH( solute.pH, soluteVolume, thisSolution.solvent.pH, solventVolume );
       }
     );
 
-    thisSolution.addDerivedProperty( 'color', [ 'solute', 'soluteVolume', 'solventVolume' ],
-      function( solute, soluteVolume, solventVolume ) {
-        return Solution.computeColor( solute.color, soluteVolume, thisSolution.solvent.color, solventVolume );
-      }
-    );
+    // color
+    var updateColor = function() {
+      thisSolution.colorProperty.set( Solution.computeColor( solute.colorProperty.get(), soluteVolume, thisSolution.solvent.colorProperty.get(), solventVolume ) );
+    };
+    thisSolution.soluteProperty.link( updateColor );
+    thisSolution.soluteVolumeProperty.link( updateColor );
+    thisSolution.solventVolumeProperty.link( updateColor );
   }
 
-  return inherit( PropertySet, Solution, {
+  return inherit( Fluid, Solution, {
+
+    // @override
+    reset: function() {
+      Fluid.prototype.reset.call( this );
+      this.soluteProperty.reset();
+      this.soluteVolumeProperty.reset();
+      this.solventVolumeProperty.reset();
+    },
 
     //----------------------------------------------------------------------------
     // Volume (Liters)
@@ -172,16 +187,12 @@ define( function( require ) {
      * @param soluteVolume
      * @param solventColor
      * @param solventVolume
-     * @returns {number|null} liters, null if the solution's volume is zero
+     * @returns {color} solventColor if the solution's volume is zero
      */
     computeColor: function( soluteColor, soluteVolume, solventColor, solventVolume ) {
       var color;
       var solutionVolume = soluteVolume + solventVolume;
-      if ( solutionVolume === 0 ) {
-        color = null;
-      }
-      else if ( soluteVolume === 0 ) {
-        // all solvent
+      if ( solutionVolume === 0 || soluteVolume === 0 ) {
         color = solventColor;
       }
       else {

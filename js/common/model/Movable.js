@@ -24,7 +24,7 @@ define( function( require ) {
 
   Movable.prototype = {
     reset: function() {
-      this.location.reset();
+      this.locationProperty.reset();
     }
   };
 

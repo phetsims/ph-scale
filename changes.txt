@@ -1,3 +1,5 @@
+11/12/13 add faucets to view
+11/12/13 remove PropertySet from model, more trouble than it was worth
 11/12/13 add beaker to view
 11/12/13 common.model types
 11/8/13 move log10 to dot.Util

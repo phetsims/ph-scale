@@ -10,4 +10,5 @@ LOW
 - home screen and navbar icons
 
 MIGRATE TO COMMON
-- BeakerNode, copied from beers-law-lab, move to scenery-phet
+- BeakerNode, copied from beers-law-lab
+- DropperNode, copied from beers-law-lab and modified

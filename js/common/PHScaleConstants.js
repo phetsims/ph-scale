@@ -8,7 +8,7 @@ define( function( require ) {
 
   return {
     PH_RANGE: new Range( -1, 15, 7 ),
-    MAX_SOLUTION_VOLUME: 1.2, // L
+    BEAKER_VOLUME: 1.2, // L
     VOLUME_DECIMAL_PLACES: 2,
     PH_DECIMAL_PLACES: 2
   };

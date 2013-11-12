@@ -1,5 +1,6 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
+//TODO move some of this into a CustomSolution subtype
 /**
  * Solution model. Solvent is constant, solute is variable.
  *
@@ -46,7 +47,8 @@ define( function( require ) {
     thisSolution.addDerivedProperty( 'color', [ 'solute', 'soluteVolume', 'solventVolume' ],
       function( solute, soluteVolume, solventVolume ) {
         return Solution.computeColor( solute.color, soluteVolume, thisSolution.solvent.color, solventVolume );
-      } );
+      }
+    );
   }
 
   return inherit( PropertySet, Solution, {
@@ -135,7 +137,7 @@ define( function( require ) {
     },
 
     getMolesH2O: function() {
-      return Solution.computeMoles( this.getVolume(),  this.getConcentrationH2O() );
+      return Solution.computeMoles( this.getVolume(), this.getConcentrationH2O() );
     }
   }, {
     // static properties

@@ -10,9 +10,8 @@ define( function( require ) {
 
   // imports
   var Color = require( 'SCENERY/util/Color' );
-  var inherit = require( 'PHET_CORE/inherit' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var PropertySet = require( 'AXON/PropertySet' );
+  var Property = require( 'AXON/Property' );
 
   // strings
   var drainCleanerString = require( 'string!PH_SCALE/choice.drainCleaner' );
@@ -35,9 +34,8 @@ define( function( require ) {
    */
   function Solute( name, pH, color ) {
 
-    PropertySet.call( this, { pH: pH } );
-
     this.name = name;
+    this.pHProperty = new Property( pH );
     this.color = color;
 
     this.pHProperty.link( function( pH ) {
@@ -45,8 +43,6 @@ define( function( require ) {
       assert && assert( PHScaleConstants.PH_RANGE.contains( pH ) ); // pH is in range
     } );
   }
-
-  inherit( PropertySet, Solute );
 
   Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, new Color( 255, 255, 0, 150 / 255 ) );
   Solute.HAND_SOAP = new Solute( handSoapString, 10, new Color( 204, 0, 204, 90 / 255 ) );

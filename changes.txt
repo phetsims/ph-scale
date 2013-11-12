@@ -1,3 +1,4 @@
+11/12/13 common.model types
 11/8/13 move log10 to dot.Util
 11/8/13 Solute, Solvent, Solution model elements
 11/6/13 set up basic framework for 'Solutions' and 'Custom' screens

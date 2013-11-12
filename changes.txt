@@ -1,3 +1,4 @@
+11/12/13 add fluid animation to model
 11/12/13 add dropper fluid to view
 11/12/13 solute combo box
 11/12/13 make Dropper the owner of the 'solute' property

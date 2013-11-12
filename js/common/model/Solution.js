@@ -42,6 +42,13 @@ define( function( require ) {
     thisSolution.solventVolumeProperty = new Property( solventVolume );
     thisSolution.maxVolume = maxVolume;
 
+    // volume
+    thisSolution.volumeProperty = new DerivedProperty( [ thisSolution.soluteVolumeProperty, thisSolution.solventVolumeProperty ],
+      function( soluteVolume, solventVolume ) {
+         return Math.min( maxVolume, soluteVolume + solventVolume );
+      }
+    );
+
     // pH, null if no value
     thisSolution.pHProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.solventVolumeProperty ],
       function( solute, soluteVolume, solventVolume ) {
@@ -51,7 +58,9 @@ define( function( require ) {
 
     // color
     var updateColor = function() {
-      thisSolution.colorProperty.set( Solution.computeColor( thisSolution.soluteProperty.get().colorProperty.get(), soluteVolume, thisSolution.solvent.colorProperty.get(), solventVolume ) );
+      thisSolution.colorProperty.set( Solution.computeColor(
+        thisSolution.soluteProperty.get().colorProperty.get(), thisSolution.soluteVolumeProperty.get(),
+        thisSolution.solvent.colorProperty.get(), thisSolution.solventVolumeProperty.get() ) );
     };
     thisSolution.soluteProperty.link( updateColor );
     thisSolution.soluteVolumeProperty.link( updateColor );

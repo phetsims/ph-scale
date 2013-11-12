@@ -51,13 +51,16 @@ define( function( require ) {
     thisModel.solventFaucet = new Faucet( new Vector2( 165, 190 ), -400, 45, MAX_SOLVENT_FLOW_RATE ); //TODO constants are wrong
     thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.getRight() + 100, 665 ), thisModel.beaker.getRight(), 45, MAX_DRAIN_FLOW_RATE ); //TODO constants are wrong
     thisModel.pHMeter = new PHMeter( new Vector2( 785, 210 ), new Bounds2( 10, 150, 835, 680 ), new Vector2( 750, 370 ), new Bounds2( 30, 150, 966, 680 ) );
+
+    // Enable faucets and dropper based on amount of solution in the beaker.
+    thisModel.solution.volumeProperty.link( function( volume ) {
+      thisModel.solventFaucet.enabledProperty.set( volume < thisModel.beaker.volume );
+      thisModel.drainFaucet.enabledProperty.set( volume > 0 );
+      thisModel.dropper.enabledProperty.set( !thisModel.dropper.emptyProperty.get() && ( volume < thisModel.beaker.volume ) );
+    } );
   }
 
   SolutionsModel.prototype = {
-
-    step: function() {
-      //TODO
-    },
 
     reset: function() {
       this.soluteProperty.reset();
@@ -67,6 +70,42 @@ define( function( require ) {
       this.solventFaucet.reset();
       this.drainFaucet.reset();
       this.pHMeter.reset();
+    },
+
+    /*
+     * Moves time forward by the specified amount.
+     * @param deltaSeconds clock time change, in seconds.
+     */
+    step: function( deltaSeconds ) {
+      this.addSolute( deltaSeconds );
+      this.addSolvent( deltaSeconds );
+      this.drainSolution( deltaSeconds );
+    },
+
+    // private: Add solute from the dropper
+    addSolute: function( deltaSeconds ) {
+      var deltaVolume = this.dropper.flowRateProperty.get() * deltaSeconds;
+      if ( deltaVolume > 0 ) {
+        this.solution.soluteVolumeProperty.set( this.solution.soluteVolumeProperty.get() + deltaVolume );
+      }
+    },
+
+    // private: Add solvent from the input faucet
+    addSolvent: function( deltaSeconds ) {
+      var deltaVolume = this.solventFaucet.flowRateProperty.get() * deltaSeconds;
+      if ( deltaVolume > 0 ) {
+        this.solution.solventVolumeProperty.set( this.solution.solventVolumeProperty.get() + deltaVolume );
+      }
+    },
+
+    // private: Drain solution from the output faucet
+    drainSolution: function( deltaSeconds ) {
+      var deltaVolume = this.drainFaucet.flowRateProperty.get() * deltaSeconds;
+      if ( deltaVolume > 0 ) {
+        //TODO this is wrong!
+        this.solution.soluteVolumeProperty.set( Math.max( 0, this.solution.soluteVolumeProperty.get() - deltaVolume/2 ) );
+        this.solution.solventVolumeProperty.set( Math.max( 0, this.solution.solventVolumeProperty.get() - deltaVolume/2 ) );
+      }
     }
   };
 

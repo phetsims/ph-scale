@@ -52,7 +52,7 @@ define( function( require ) {
     // pH, null if no value
     thisSolution.pHProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.solventVolumeProperty ],
       function( solute, soluteVolume, solventVolume ) {
-        return Solution.computePH( solute.pH, soluteVolume, thisSolution.solvent.pH, solventVolume );
+        return Solution.computePH( solute.pHProperty.get(), soluteVolume, thisSolution.solvent.pH, solventVolume );
       }
     );
 
@@ -176,15 +176,16 @@ define( function( require ) {
      * @returns {number|null} null if the solution's volume is zero
      */
     computePH: function( solutePH, soluteVolume, solventPH, solventVolume ) {
-      assert && assert( solutePH <= 7 && solventPH <= 7 ) || ( solutePH >= 7 && solventPH >= 7 ); // combining acids and bases is not supported
       var pH;
       if ( soluteVolume + solventVolume === 0 ) {
         pH = null;
       }
       else if ( solutePH < 7 ) {
+        assert && assert( solventPH <= 7 ); // combining acids and bases is not supported
         pH = -log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -solventPH ) * solventVolume ) / ( soluteVolume + solventVolume ) );
       }
       else {
+        assert && assert( solventPH >= 7 ); // combining acids and bases is not supported
         pH = 14 + log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, solventPH - 14 ) * solventVolume ) / ( soluteVolume + solventVolume ) );
       }
       return pH; //TODO constrain to PHScaleConstants.PH_DECIMAL_PLACES, as in Java sim?

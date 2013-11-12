@@ -11,6 +11,7 @@ define( function( require ) {
   // imports
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Screen = require( 'JOIST/Screen' );
   var SolutionsModel = require( 'PH_SCALE/solutions/model/SolutionsModel' );
@@ -24,11 +25,13 @@ define( function( require ) {
 
   function SolutionsScreen() {
 
+    var mvt = ModelViewTransform2.createIdentity();
+
     Screen.call( this,
       screenTitle,
       new Image( screenIcon ),
       function() { return new SolutionsModel(); },
-      function( model ) { return new SolutionsView( model ); },
+      function( model ) { return new SolutionsView( model, mvt ); },
       { backgroundColor: PHScaleColors.SCREEN_BACKGROUND }
     );
   }

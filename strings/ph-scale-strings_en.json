@@ -13,5 +13,9 @@
   "choice.handSoap": "hand soap",
   "choice.water": "water",
   "choice.drainCleaner": "drain cleaner",
-  "choice.custom": "custom liquid"
+  "choice.custom": "custom liquid",
+  "units.liters": "L",
+  "units.moles": "mol",
+  "units.molesPerLiter": "mol/L",
+  "pattern.0value.1units": "{0} {1}"
 }

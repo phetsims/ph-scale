@@ -45,7 +45,7 @@ define( function( require ) {
        Solute.BATTERY_ACID
     ];
 
-    thisModel.beaker = new Beaker( new Vector2( 400, 550 ), new Dimension2( 600, 300 ), BEAKER_VOLUME );
+    thisModel.beaker = new Beaker( new Vector2( 300, 600 ), new Dimension2( 400, 400 ), BEAKER_VOLUME );
     thisModel.soluteProperty = new Property( thisModel.solutes[0] );
     thisModel.solution = new Solution( thisModel.soluteProperty.get(), 0, Solvent.WATER, 0, thisModel.beaker.volume );
     thisModel.dropper = new Dropper( new Vector2( thisModel.beaker.location.x, 225 ), new Bounds2( 250, 225, 570, 225 ), DROPPER_FLOW_RATE, false );

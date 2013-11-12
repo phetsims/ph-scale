@@ -9,18 +9,20 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
+  var Bounds2 = require( 'DOT/Bounds2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
-  var Text = require( 'SCENERY/nodes/Text' );
 
   /**
    * @param {SolutionsModel} model
+   * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function SolutionsView( model ) {
+  function SolutionsView( model, mvt ) {
 
     var thisView = this;
     ScreenView.call( thisView, { renderer: 'svg' } );
@@ -29,23 +31,20 @@ define( function( require ) {
     var rootNode = new Node();
     thisView.addChild( rootNode );
 
-    var underConstruction = new Text( 'Solutions: Under Construction', new PhetFont( 30 ) );
-
-    // Reset All button
+    // nodes
+    var beakerNode = new BeakerNode( model.beaker, mvt );
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
     } );
 
     // Rendering order
-    rootNode.addChild( underConstruction );
+    rootNode.addChild( beakerNode );
     rootNode.addChild( resetAllButton );
 
     // Layout
-    underConstruction.centerX = this.layoutBounds.centerX;
-    underConstruction.centerY = this.layoutBounds.centerY;
     resetAllButton.right = this.layoutBounds.right - 20;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
 
-  return inherit( ScreenView, SolutionsView );
+  return inherit( ScreenView, SolutionsView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );
 } );

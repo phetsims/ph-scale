@@ -35,16 +35,9 @@ define( function( require ) {
    * @constructor
    */
   function Solute( name, pH, color ) {
-
     Fluid.call( this, color );
-
     this.name = name;
     this.pHProperty = new Property( pH );
-
-    this.pHProperty.link( function( pH ) {
-      assert && assert( this.name === customString ); // pH property should be modified only for 'custom' solution!
-      assert && assert( PHScaleConstants.PH_RANGE.contains( pH ) ); // pH is in range
-    } );
   }
 
   Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, new Color( 255, 255, 0, 150 / 255 ) );

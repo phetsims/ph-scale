@@ -1,3 +1,4 @@
+11/12/13 make dropper fluid stop at the top of the solution in the beaker
 11/12/13 fix algorithm for draining solution
 11/12/13 fix 'Reset All'
 11/12/13 add fluid animation to model

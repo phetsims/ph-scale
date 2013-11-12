@@ -11,16 +11,19 @@ define( function( require ) {
   // imports
   var inherit = require( 'PHET_CORE/inherit' );
   var Path = require( 'SCENERY/nodes/Path' );
+  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Util = require( 'DOT/Util' );
 
   /**
    * @param {Dropper} dropper
    * @param {Beaker} beaker
+   * @param {Solution} solution solution that's in the beaker
    * @param {Number} tipWidth
    * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function DropperFluidNode( dropper, beaker, tipWidth, mvt ) {
+  function DropperFluidNode( dropper, beaker, solution, tipWidth, mvt ) {
 
     var thisNode = this;
 
@@ -30,7 +33,21 @@ define( function( require ) {
     var updateShapeAndLocation = function() {
       // path
       if ( dropper.onProperty.get() && !dropper.emptyProperty.get() ) {
-        thisNode.setRect( -tipWidth / 2, 0, tipWidth, beaker.location.y - dropper.locationProperty.get().y );
+
+        // min non-zero volume, so that the solution is visible to the user and detectable by the concentration probe
+        var solutionVolume = solution.volumeProperty.get();
+        if ( solutionVolume > 0 && solutionVolume < PHScaleConstants.MIN_SOLUTION_VOLUME ) {
+          solutionVolume = PHScaleConstants.MIN_SOLUTION_VOLUME;
+        }
+
+        // solution height in model coordinates
+        var solutionHeight = Util.linear( 0, beaker.volume, 0, beaker.size.height, solutionVolume ); // volume -> height
+
+        // top of solution in view coordinates
+        var topOfSolution = mvt.modelToViewDeltaY( beaker.location.y - solutionHeight );
+
+        // shape
+        thisNode.setRect( -tipWidth / 2, 0, tipWidth, topOfSolution - dropper.locationProperty.get().y );
       }
       else {
         thisNode.setRect( 0, 0, 0, 0 );
@@ -41,6 +58,7 @@ define( function( require ) {
     dropper.locationProperty.link( updateShapeAndLocation );
     dropper.onProperty.link( updateShapeAndLocation );
     dropper.emptyProperty.link( updateShapeAndLocation );
+    solution.volumeProperty.link( updateShapeAndLocation );
 
     // set color to match solute
     dropper.soluteProperty.link( function( solute ) {

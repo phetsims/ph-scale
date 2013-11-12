@@ -4,7 +4,6 @@ HIGH
 - PHMeterNode
 
 MEDIUM
-- limit dropperFluid.bottom to solution.top
 - constrain pH and volume so that student computations match displayed values, as in Java sim
 
 LOW

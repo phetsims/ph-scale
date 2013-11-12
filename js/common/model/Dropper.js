@@ -25,28 +25,28 @@ define( function( require ) {
     var thisDropper = this;
     Movable.call( thisDropper, location, dragBounds );
 
-    thisDropper.visible = new Property( visible );
-    thisDropper.on = new Property( false ); // true if the dropper is dispensing solution
-    thisDropper.enabled = new Property( true );
-    thisDropper.empty = new Property( false );
-    thisDropper.flowRate = new Property( 0 ); // L/sec
+    thisDropper.visibleProperty = new Property( visible );
+    thisDropper.onProperty = new Property( false ); // true if the dropper is dispensing solution
+    thisDropper.enabledProperty = new Property( true );
+    thisDropper.emptyProperty = new Property( false );
+    thisDropper.flowRateProperty = new Property( 0 ); // L/sec
 
     // Turn off the dropper when it's disabled.
-    thisDropper.enabled.link( function( enabled ) {
+    thisDropper.enabledProperty.link( function( enabled ) {
       if ( !enabled ) {
-        thisDropper.on.set( false );
+        thisDropper.onProperty.set( false );
       }
     } );
 
     // Toggle the flow rate when the dropper is turned on/off.
-    thisDropper.on.link( function( on ) {
-      thisDropper.flowRate.set( on ? maxFlowRate : 0 );
+    thisDropper.onProperty.link( function( on ) {
+      thisDropper.flowRateProperty.set( on ? maxFlowRate : 0 );
     } );
 
     // When the dropper becomes empty, disable it.
-    thisDropper.empty.link( function( empty ) {
+    thisDropper.emptyProperty.link( function( empty ) {
       if ( empty ) {
-        thisDropper.enabled.set( false );
+        thisDropper.enabledProperty.set( false );
       }
     } );
   }
@@ -54,11 +54,11 @@ define( function( require ) {
   return inherit( Movable, Dropper, {
     reset: function() {
       Movable.prototype.reset.call( this );
-      this.visible.reset();
-      this.on.reset();
-      this.enabled.reset();
-      this.empty.reset();
-      this.flowRate.reset();
+      this.visibleProperty.reset();
+      this.onProperty.reset();
+      this.enabledProperty.reset();
+      this.emptyProperty.reset();
+      this.flowRateProperty.reset();
     }
   } );
 } );

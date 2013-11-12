@@ -1,3 +1,4 @@
+11/12/13 add dropper to view
 11/12/13 add faucets to view
 11/12/13 remove PropertySet from model, more trouble than it was worth
 11/12/13 add beaker to view

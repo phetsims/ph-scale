@@ -11,6 +11,7 @@ define( function( require ) {
   // imports
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
+  var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -33,8 +34,11 @@ define( function( require ) {
     var rootNode = new Node();
     thisView.addChild( rootNode );
 
-    // baker
+    // beaker
     var beakerNode = new BeakerNode( model.beaker, mvt );
+
+    // dropper
+    var dropperNode = new DropperNode( model.dropper, model.soluteProperty, mvt );
 
     // faucets
     var solventFaucetNode = new PHFaucetNode( model.solventFaucet, mvt );
@@ -50,6 +54,7 @@ define( function( require ) {
 
     // Rendering order
     rootNode.addChild( beakerNode );
+    rootNode.addChild( dropperNode );
     rootNode.addChild( solventFaucetNode );
     rootNode.addChild( drainFaucetNode );
     rootNode.addChild( solventFluidNode );

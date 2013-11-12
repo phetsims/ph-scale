@@ -1,2 +1,8 @@
 Custom-screen-icon.jpg author=PhET
 Solutions-screen-icon.jpg author=PhET
+dropper-icon.png author=PhET notes=copied from beers-law-lab
+dropper_background.png author=PhET notes=copied from beers-law-lab
+dropper_foreground.png author=PhET notes=copied from beers-law-lab
+red_button_disabled.png author=PhET notes=copied from beers-law-lab
+red_button_pressed.png author=PhET notes=copied from beers-law-lab
+red_button_unpressed.png author=PhET notes=copied from beers-law-lab

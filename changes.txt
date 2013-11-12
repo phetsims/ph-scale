@@ -1,3 +1,4 @@
+11/12/13 fix 'Reset All'
 11/12/13 add fluid animation to model
 11/12/13 add dropper fluid to view
 11/12/13 solute combo box

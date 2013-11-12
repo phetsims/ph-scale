@@ -63,10 +63,9 @@ define( function( require ) {
   SolutionsModel.prototype = {
 
     reset: function() {
-      this.soluteProperty.reset();
-      this.solution.reset();
       this.beaker.reset();
       this.dropper.reset();
+      this.solution.reset();
       this.solventFaucet.reset();
       this.drainFaucet.reset();
       this.pHMeter.reset();

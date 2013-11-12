@@ -1,6 +1,7 @@
 TODO list for ph-scale (HTML5)
 
 HIGH
+- add color range for each solute
 - PHMeterNode
 
 MEDIUM

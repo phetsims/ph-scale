@@ -43,7 +43,7 @@ define( function( require ) {
 
     // dropper
     var dropperNode = new DropperNode( model.dropper, mvt );
-    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, model.solution, dropperNode.getTipWidth(), mvt );
+    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, dropperNode.getTipWidth(), mvt );
 
     // faucets
     var solventFaucetNode = new PHFaucetNode( model.solventFaucet, mvt );

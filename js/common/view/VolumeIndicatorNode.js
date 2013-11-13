@@ -26,32 +26,33 @@ define( function( require ) {
   var litersString = require( 'string!PH_SCALE/units.liters' );
 
   // constants
-  var ARROW_SIZE = new Dimension2( 10, 15 );
+  var ARROW_SIZE = new Dimension2( 12, 18 );
 
   function VolumeIndicatorNode( volumeProperty, beaker, mvt ) {
 
     var thisNode = this;
     Node.call( thisNode );
 
-    var valueNode = new Text( '0', { font: new PhetFont( 20 ) } );
     var arrowHead = new Path( new Shape()
       .moveTo( 0, 0 )
       .lineTo( -ARROW_SIZE.width, ARROW_SIZE.height / 2 )
       .lineTo( -ARROW_SIZE.width, -ARROW_SIZE.height / 2 )
       .close(),
       { fill: 'black' } );
+    var valueNode = new Text( '0', {
+      font: new PhetFont( 20 ),
+      centerY: arrowHead.centerY
+    } );
 
     thisNode.addChild( valueNode );
     thisNode.addChild( arrowHead );
-
-    valueNode.centerY = arrowHead.centerY;
-    thisNode.right = mvt.modelToViewX( beaker.left );
 
     volumeProperty.link( function( volume ) {
 
       // value
       valueNode.text = StringUtils.format( pattern_0value_1units, Util.toFixed( volume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), litersString );
       valueNode.right = arrowHead.left - 5;
+      thisNode.right = mvt.modelToViewX( beaker.left ) - 3;
 
       // location
       var solutionHeight = Util.linear( 0, beaker.volume, 0, beaker.size.height, volume ); // volume -> height, model coordinates

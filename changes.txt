@@ -1,3 +1,4 @@
+11/13/13 first stab at pH meter for 'Basics' (incomplete)
 11/13/13 capitalize all strings, as shown in design doc
 11/13/13 create 'Basics' screen, move stuff to there
 11/13/13 adjust layout to match mockups of 'Basics' screen

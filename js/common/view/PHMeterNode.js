@@ -20,14 +20,19 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var Dimension2 = require( 'DOT/Dimension2' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Line = require( 'SCENERY/nodes/Line' );
+  var LinearGradient = require( 'SCENERY/util/LinearGradient' );
   var MeterBodyNode = require( 'SCENERY_PHET/MeterBodyNode' );
   var MovableDragHandler = require( 'PH_SCALE/common/view/MovableDragHandler' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -35,6 +40,9 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
 
   // strings
+  var acidicString = require( 'string!PH_SCALE/acidic' );
+  var basicString = require( 'string!PH_SCALE/basic' );
+  var neutralString = require( 'string!PH_SCALE/neutral' );
   var pHString = require( 'string!PH_SCALE/pH' );
 
   // images
@@ -44,12 +52,124 @@ define( function( require ) {
   var probeImage = require( 'image!PH_SCALE/concentration-meter-probe.png' );
 
   // constants
+  var SCALE_SIZE = new Dimension2( 75, 450 );
+  var TICK_LENGTH = 15;
+  var NEUTRAL_TICK_LENGTH = 45;
+  var TICK_LABEL_X_SPACING = 5;
   var BODY_IS_DRAGGABLE = true;
   var NO_VALUE = '-';
   var TITLE_TOP = 15; // specific to bodyCenterImage
   var TEXT_X_MARGIN = 35;  // specific to bodyCenterImage
   var VALUE_X_MARGIN = 30; // specific to bodyCenterImage
   var VALUE_CENTER_Y = 84; // specific to bodyCenterImage
+
+  /**
+   * The Acidic-Basic vertical scale.
+   * @param meter
+   * @param mvt
+   * @constructor
+   */
+  function ScaleNode( meter, mvt ) {
+
+    var thisNode = this;
+    Node.call( this );
+
+    // gradient background
+    var backgroundNode = new Rectangle( 0, 0, SCALE_SIZE.width, SCALE_SIZE.height, {
+      fill: new LinearGradient( 0, 0, 0, SCALE_SIZE.height )
+            .addColorStop( 0, PHScaleColors.OH )
+            .addColorStop( 1, PHScaleColors.H3O ),
+      stroke: 'black',
+      lineWidth: 2
+    } );
+    thisNode.addChild( backgroundNode );
+
+    // 'Acidic' label
+    var textOptions = { fill: 'white', font: new PhetFont( 40 ) };
+    var acidicNode = new Text( acidicString, textOptions );
+    acidicNode.rotation = -Math.PI / 2;
+    acidicNode.centerX = backgroundNode.centerX;
+    acidicNode.centerY = 0.75 * backgroundNode.height;
+    thisNode.addChild( acidicNode );
+
+    // 'Basic' label
+    var basicNode = new Text( basicString, textOptions );
+    basicNode.rotation = -Math.PI / 2;
+    basicNode.centerX = backgroundNode.centerX;
+    basicNode.centerY = 0.25 * backgroundNode.height;
+    thisNode.addChild( basicNode );
+
+    // tick marks, labeled at 'even' values, skip 7 (neutral)
+    var y = SCALE_SIZE.height;
+    var dy = -SCALE_SIZE.height / PHScaleConstants.PH_RANGE.getLength();
+    var tickFont = new PhetFont( 28 );
+    for ( var pH = PHScaleConstants.PH_RANGE.min; pH <= PHScaleConstants.PH_RANGE.max; pH++ ) {
+      if ( pH !== 7 ) {
+        // tick mark
+        var lineNode = new Line( 0, 0, TICK_LENGTH, 0, { stroke: 'black', lineWidth: 1 } );
+        lineNode.left = backgroundNode.right;
+        lineNode.centerY = y;
+        thisNode.addChild( lineNode );
+
+        // tick label
+        if ( pH % 2 === 0 ) {
+          var tickLabelNode = new Text( pH, { font: tickFont } );
+          tickLabelNode.left = lineNode.right + TICK_LABEL_X_SPACING;
+          tickLabelNode.centerY = lineNode.centerY;
+          thisNode.addChild( tickLabelNode );
+        }
+      }
+      y += dy;
+    }
+
+    // 'Neutral' line
+    var neutralLineNode = new Line( 0, 0, NEUTRAL_TICK_LENGTH, 0, { stroke: 'black', lineWidth: 3 } );
+    neutralLineNode.left = backgroundNode.right;
+    neutralLineNode.centerY = backgroundNode.height / 2;
+    thisNode.addChild( neutralLineNode );
+    var neutralLabelNode = new Text( neutralString, { font: new PhetFont( { size: 28, weight: 'bold' } ) } );
+    neutralLabelNode.left = neutralLineNode.right + TICK_LABEL_X_SPACING;
+    neutralLabelNode.centerY = neutralLineNode.centerY;
+    thisNode.addChild( neutralLabelNode );
+
+    // location
+    meter.body.locationProperty.link( function( location ) {
+      thisNode.translation = mvt.modelToViewPosition( location );
+    } );
+  }
+
+  inherit( Node, ScaleNode );
+
+  function IndicatorNode( meter, scaleNode, mvt ) {
+
+    var thisNode = this;
+    Node.call( thisNode );
+
+    var backgroundNode = new Path( new Shape()
+      .moveTo( 0, 0 )
+      .lineTo( -10, -10 )
+      .lineTo( -10, 10 )
+      .close(), {
+        fill: 'black'
+    } );
+    thisNode.addChild( backgroundNode );
+
+    var pHValueNode = new Text( '0', { font: new PhetFont( 30 ) } );
+    thisNode.addChild( pHValueNode );
+
+    meter.valueProperty.link( function( value ) {
+      // text
+      pHValueNode.text = ( !value ? "" : Util.toFixed( value, PHScaleConstants.PH_METER_DECIMAL_PLACES ) );
+      pHValueNode.right = backgroundNode.left - 3;
+      pHValueNode.centerY = backgroundNode.centerY;
+      pHValueNode.centerY = backgroundNode.centerY;
+      // location
+      thisNode.right = scaleNode.left - 3;
+      thisNode.centerY = Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
+    } );
+  }
+
+  inherit( Node, IndicatorNode );
 
   /**
    * Meter body, origin at upper left.
@@ -227,13 +347,15 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
-    var bodyNode = new BodyNode( meter, mvt );
+    var scaleNode = new ScaleNode( meter, mvt );
+    var indicatorNode = new IndicatorNode( meter, scaleNode, mvt );
     var probeNode = new ProbeNode( meter.probe, mvt, solutionNode, dropperFluidNode, solventFluidNode, drainFluidNode );
-    var wireNode = new WireNode( meter.body, meter.probe, bodyNode, probeNode );
+    var wireNode = new WireNode( meter.body, meter.probe, scaleNode, probeNode );
 
     // rendering order
     thisNode.addChild( wireNode );
-    thisNode.addChild( bodyNode );
+    thisNode.addChild( scaleNode );
+    thisNode.addChild( indicatorNode );
     thisNode.addChild( probeNode );
 
     var updateValue = function() {

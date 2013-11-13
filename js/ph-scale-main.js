@@ -9,6 +9,7 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var BasicsScreen = require( 'PH_SCALE/basics/BasicsScreen' );
   var CustomScreen = require( 'PH_SCALE/custom/CustomScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
@@ -36,8 +37,9 @@ define( function( require ) {
     }, simOptions );
   }
 
+  //TODO add BasicsScreen only when in 'dev' mode
   SimLauncher.launch( function() {
-    var sim = new Sim( simTitle, [ new SolutionsScreen(), new CustomScreen() ], simOptions );
+    var sim = new Sim( simTitle, [ new BasicsScreen(), new SolutionsScreen(), new CustomScreen() ], simOptions );
     sim.start();
   } );
 } );

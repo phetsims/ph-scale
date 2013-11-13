@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Model for the 'Solutions' screen.
+ * Model for the 'Custom' screen.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

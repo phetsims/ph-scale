@@ -1,3 +1,4 @@
+11/13/13 create 'Basics' screen, move stuff to there
 11/13/13 adjust layout to match mockups of 'Basics' screen
 11/13/13 label the solvent faucet with 'water'
 11/13/13 use dot.Util.toFixedNumber where appropriate, see dot#10

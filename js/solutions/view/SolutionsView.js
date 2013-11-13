@@ -9,29 +9,19 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
-  var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
-  var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
-  var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
-  var PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
+  var Node = require( 'SCENERY/nodes/Node' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
-  var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
-  var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
   /**
-   * @param {SolutionsModel} model
-   * @param {ModelViewTransform2} mvt
+   * @param {CustomModel} model
    * @constructor
    */
-  function SolutionsView( model, mvt ) {
+  function SolutionsView( model ) {
 
     var thisView = this;
     ScreenView.call( thisView, { renderer: 'svg' } );
@@ -40,56 +30,20 @@ define( function( require ) {
     var rootNode = new Node();
     thisView.addChild( rootNode );
 
-    // beaker
-    var beakerNode = new BeakerNode( model.beaker, mvt );
-    var solutionNode = new SolutionNode( model.solution, model.beaker, mvt );
-    var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, mvt );
+    var underConstruction = new Text( 'Solutions: Under Construction', new PhetFont( 30 ) );
 
-    // dropper
-    var dropperScale = 0.85;
-    var dropperNode = new DropperNode( model.dropper, mvt );
-    dropperNode.setScaleMagnitude( dropperScale );
-    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, dropperScale * dropperNode.getTipWidth(), mvt );
-
-    // faucets
-    var solventLabelNode = new Text( model.solvent.name, { font: new PhetFont( { size: 32, weight: 'bold' } ) } );
-    var solventFaucetNode = new PHFaucetNode( model.solventFaucet, mvt, solventLabelNode );
-    var drainFaucetNode = new PHFaucetNode( model.drainFaucet, mvt );
-    var SOLVENT_FLUID_HEIGHT = model.beaker.location.y - model.solventFaucet.location.y;
-    var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
-    var solventFluidNode = new FaucetFluidNode( model.solventFaucet, model.solution.solvent, SOLVENT_FLUID_HEIGHT, mvt );
-    var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
-
-    // pH meter
-    var pHMeterNode = new PHMeterNode(  model.pHMeter, model.solution, model.solvent, model.dropper,
-          solutionNode, dropperFluidNode, solventFluidNode, drainFluidNode, mvt );
-
-    // solutes combo box
-    var soluteListParent = new Node();
-    var soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent );
-
+    // Reset All button
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
     } );
 
     // Rendering order
-    rootNode.addChild( solventFluidNode );
-    rootNode.addChild( solventFaucetNode );
-    rootNode.addChild( drainFluidNode );
-    rootNode.addChild( drainFaucetNode );
-    rootNode.addChild( dropperFluidNode );
-    rootNode.addChild( dropperNode );
-    rootNode.addChild( solutionNode );
-    rootNode.addChild( beakerNode );
-    rootNode.addChild( volumeIndicatorNode );
-    rootNode.addChild( pHMeterNode );
+    rootNode.addChild( underConstruction );
     rootNode.addChild( resetAllButton );
-    rootNode.addChild( soluteComboBox );
-    rootNode.addChild( soluteListParent ); // last, so that combo box list is on top
 
     // Layout
-    soluteComboBox.left = mvt.modelToViewX( model.beaker.location.x );
-    soluteComboBox.top = this.layoutBounds.top + 20;
+    underConstruction.centerX = this.layoutBounds.centerX;
+    underConstruction.centerY = this.layoutBounds.centerY;
     resetAllButton.right = this.layoutBounds.right - 20;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }

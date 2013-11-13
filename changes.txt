@@ -1,3 +1,4 @@
+11/12/13 change background to 'rgb(245,245,245)' because milk doesn't show up on 'white'
 11/12/13 fix NaN error when fully draining beaker
 11/12/13 replace Beaker.getLeft and getRight with properties
 11/12/13 use Util.toFixed throughout

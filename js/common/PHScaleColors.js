@@ -8,7 +8,7 @@ define( function( require ) {
 
   return {
 
-    SCREEN_BACKGROUND: 'white',
+    SCREEN_BACKGROUND: new Color( 245, 245, 245 ),
 
     // H3O, OH, H2O colors (used for pH slider track & bars)
     H3O: new Color( 242, 102, 101 ),

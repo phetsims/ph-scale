@@ -1,3 +1,4 @@
+11/12/13 temporary pH meter (concentration meter)
 11/12/13 fix computation of pH, fix assertions
 11/12/13 revert dropper fluid change, we need to use opaque colors
 11/12/13 make dropper fluid stop at the top of the solution in the beaker

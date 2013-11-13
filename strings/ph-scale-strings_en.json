@@ -17,5 +17,6 @@
   "units.liters": "L",
   "units.moles": "mol",
   "units.molesPerLiter": "mol/L",
-  "pattern.0value.1units": "{0} {1}"
+  "pattern.0value.1units": "{0} {1}",
+  "pH": "pH"
 }

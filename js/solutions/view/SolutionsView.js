@@ -18,6 +18,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
+  var PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
@@ -53,6 +54,10 @@ define( function( require ) {
     var solventFluidNode = new FaucetFluidNode( model.solventFaucet, model.solution.solvent, SOLVENT_FLUID_HEIGHT, mvt );
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
+    // pH meter
+    var pHMeterNode = new PHMeterNode(  model.pHMeter, model.solution, model.solvent, model.dropper,
+          solutionNode, dropperFluidNode, solventFluidNode, drainFluidNode, mvt );
+
     // solutes combo box
     var soluteListParent = new Node();
     var soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent );
@@ -70,6 +75,7 @@ define( function( require ) {
     rootNode.addChild( dropperNode );
     rootNode.addChild( solutionNode );
     rootNode.addChild( beakerNode );
+    rootNode.addChild( pHMeterNode );
     rootNode.addChild( resetAllButton );
     rootNode.addChild( soluteComboBox );
     rootNode.addChild( soluteListParent ); // last, so that combo box list is on top

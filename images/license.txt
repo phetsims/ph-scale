@@ -1,9 +1,6 @@
 Custom-screen-icon.jpg author=PhET
 Solutions-screen-icon.jpg author=PhET
-concentration-meter-body-center.png author=PhET notes=copied from beers-law-lab
-concentration-meter-body-left.png author=PhET notes=copied from beers-law-lab
-concentration-meter-body-right.png author=PhET notes=copied from beers-law-lab
-concentration-meter-probe.png author=PhET notes=copied from beers-law-lab
+pH-meter-probe.png author=PhET notes=copied from beers-law-lab
 dropper-icon.png author=PhET notes=copied from beers-law-lab
 dropper_background.png author=PhET notes=copied from beers-law-lab
 dropper_foreground.png author=PhET notes=copied from beers-law-lab

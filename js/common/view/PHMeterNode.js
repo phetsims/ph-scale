@@ -43,25 +43,16 @@ define( function( require ) {
   var acidicString = require( 'string!PH_SCALE/acidic' );
   var basicString = require( 'string!PH_SCALE/basic' );
   var neutralString = require( 'string!PH_SCALE/neutral' );
-  var pHString = require( 'string!PH_SCALE/pH' );
+  var pHString = require( 'string!PH_SCALE/pH' ); //TODO used?
 
   // images
-  var bodyLeftImage = require( 'image!PH_SCALE/concentration-meter-body-left.png' );
-  var bodyCenterImage = require( 'image!PH_SCALE/concentration-meter-body-center.png' );
-  var bodyRightImage = require( 'image!PH_SCALE/concentration-meter-body-right.png' );
-  var probeImage = require( 'image!PH_SCALE/concentration-meter-probe.png' );
+  var probeImage = require( 'image!PH_SCALE/pH-meter-probe.png' );
 
   // constants
   var SCALE_SIZE = new Dimension2( 75, 450 );
   var TICK_LENGTH = 15;
   var NEUTRAL_TICK_LENGTH = 45;
   var TICK_LABEL_X_SPACING = 5;
-  var BODY_IS_DRAGGABLE = true;
-  var NO_VALUE = '-';
-  var TITLE_TOP = 15; // specific to bodyCenterImage
-  var TEXT_X_MARGIN = 35;  // specific to bodyCenterImage
-  var VALUE_X_MARGIN = 30; // specific to bodyCenterImage
-  var VALUE_CENTER_Y = 84; // specific to bodyCenterImage
 
   /**
    * The Acidic-Basic vertical scale.
@@ -140,7 +131,15 @@ define( function( require ) {
 
   inherit( Node, ScaleNode );
 
-  function IndicatorNode( meter, scaleNode, mvt ) {
+  /**
+   * pH indicator that slides vertically along scale.
+   * When there is no pH value, it points to 'neutral' but does not display a value.
+   * @param meter
+   * @param scaleNode
+   * @param mvt
+   * @constructor
+   */
+  function IndicatorNode( meter, scaleNode ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -170,64 +169,6 @@ define( function( require ) {
   }
 
   inherit( Node, IndicatorNode );
-
-  /**
-   * Meter body, origin at upper left.
-   * Note that while the body is a Movable, we have currently decided not to allow it to be moved,
-   * so it has no drag handler
-   * @param {ConcentrationMeter} meter
-   * @param {ModelViewTransform2} mvt
-   * @constructor
-   */
-  function BodyNode( meter, mvt ) {
-
-    var thisNode = this;
-    Node.call( thisNode, {
-      cursor: 'pointer'
-    } );
-
-    // text nodes
-    var titleNode = new Text( pHString, { font: new PhetFont( 18 ), fill: 'white' } );
-    var valueNode = new Text( Util.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_DECIMAL_PLACES ), { font: new PhetFont( 24 ), fill: 'black' } );
-
-    // create a background that fits the text
-    var bodyWidth = Math.max( titleNode.width, valueNode.width ) + ( 2 * TEXT_X_MARGIN );
-    var backgroundNode = new MeterBodyNode( bodyWidth, bodyLeftImage, bodyCenterImage, bodyRightImage );
-
-    // rendering order
-    thisNode.addChild( backgroundNode );
-    thisNode.addChild( titleNode );
-    thisNode.addChild( valueNode );
-
-    // layout
-    titleNode.centerX = backgroundNode.centerX;
-    titleNode.top = TITLE_TOP;
-    valueNode.right = backgroundNode.right - VALUE_X_MARGIN; // right justified
-    valueNode.centerY = VALUE_CENTER_Y;
-
-    if ( BODY_IS_DRAGGABLE ) {
-      thisNode.addInputListener( new MovableDragHandler( meter.body, mvt ) );
-    }
-
-    // body location
-    meter.body.locationProperty.link( function( location ) {
-      thisNode.translation = mvt.modelToViewPosition( location );
-    } );
-
-    // displayed value
-    meter.valueProperty.link( function( value ) {
-      if ( !value ) {
-        valueNode.setText( NO_VALUE );
-        valueNode.centerX = backgroundNode.centerX; // center justified
-      }
-      else {
-        valueNode.setText( value.toFixed( PHScaleConstants.PH_METER_DECIMAL_PLACES ) );
-        valueNode.right = backgroundNode.right - VALUE_X_MARGIN; // right justified
-      }
-    } );
-  }
-
-  inherit( Node, BodyNode );
 
   /**
    * Meter probe, origin at center of crosshairs.
@@ -348,7 +289,7 @@ define( function( require ) {
     Node.call( thisNode );
 
     var scaleNode = new ScaleNode( meter, mvt );
-    var indicatorNode = new IndicatorNode( meter, scaleNode, mvt );
+    var indicatorNode = new IndicatorNode( meter, scaleNode );
     var probeNode = new ProbeNode( meter.probe, mvt, solutionNode, dropperFluidNode, solventFluidNode, drainFluidNode );
     var wireNode = new WireNode( meter.body, meter.probe, scaleNode, probeNode );
 

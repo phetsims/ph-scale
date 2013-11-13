@@ -96,7 +96,7 @@ define( function( require ) {
 
     // displayed value
     meter.valueProperty.link( function( value ) {
-      if ( !value || value === NaN ) {
+      if ( !value ) {
         valueNode.setText( NO_VALUE );
         valueNode.centerX = backgroundNode.centerX; // center justified
       }

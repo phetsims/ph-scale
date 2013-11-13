@@ -1,3 +1,4 @@
+11/13/13 label the solvent faucet with 'water'
 11/13/13 use dot.Util.toFixedNumber where appropriate, see dot#10
 11/12/13 when changing solutes, set full volume to solute, zero solvent (this is potentially problematic)
 11/12/13 change background to 'rgb(245,245,245)' because milk doesn't show up on 'white'

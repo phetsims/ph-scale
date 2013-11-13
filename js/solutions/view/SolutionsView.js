@@ -23,6 +23,7 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
+  var Text = require( 'SCENERY/nodes/Text' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
   /**
@@ -49,7 +50,8 @@ define( function( require ) {
     var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, dropperNode.getTipWidth(), mvt );
 
     // faucets
-    var solventFaucetNode = new PHFaucetNode( model.solventFaucet, mvt );
+    var solventLabelNode = new Text( model.solvent.name, { font: new PhetFont( { size: 32, weight: 'bold' } ) } );
+    var solventFaucetNode = new PHFaucetNode( model.solventFaucet, mvt, solventLabelNode );
     var drainFaucetNode = new PHFaucetNode( model.drainFaucet, mvt );
     var SOLVENT_FLUID_HEIGHT = model.beaker.location.y - model.solventFaucet.location.y;
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid

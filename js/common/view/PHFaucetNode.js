@@ -12,16 +12,23 @@ define( function( require ) {
   // imports
   var inherit = require( 'PHET_CORE/inherit' );
   var FaucetNode = require( 'SCENERY_PHET/FaucetNode' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Text = require( 'SCENERY/nodes/Text' );
 
   /**
    * @param {Faucet} faucet
    * @param {ModelViewTransform2} mvt
+   * @param {string} label optional label
    * @constructor
    */
-  function PHFaucetNode( faucet, mvt ) {
+  function PHFaucetNode( faucet, mvt, decoration ) {
     var scale = 0.6;
     var horizontalPipeLength = mvt.modelToViewX( faucet.location.x - faucet.pipeMinX ) / scale;
-    FaucetNode.call( this, faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, { horizontalPipeLength: horizontalPipeLength, scale: scale } );
+    FaucetNode.call( this, faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
+      decoration: decoration,
+      horizontalPipeLength: horizontalPipeLength,
+      scale: scale
+    } );
     this.translation = mvt.modelToViewPosition( faucet.location );
   }
 

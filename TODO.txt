@@ -4,7 +4,8 @@ DESIGN
 - when changing solute, setting full volume to solute has potential problems
 
 HIGH
-- pH meter
+- attach wire to correct location on pH meter
+- indicator is pointing to wrong value on pH meter
 - constrain pH and volume so that student computations match displayed values, as in Java sim
 - graph
 

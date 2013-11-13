@@ -101,7 +101,7 @@ define( function( require ) {
         valueNode.centerX = backgroundNode.centerX; // center justified
       }
       else {
-        valueNode.setText( value.toFixed( PHScaleConstants.PH_DECIMAL_PLACES ) );
+        valueNode.setText( value.toFixed( PHScaleConstants.PH_METER_DECIMAL_PLACES ) );
         valueNode.right = backgroundNode.right - VALUE_X_MARGIN; // right justified
       }
     } );

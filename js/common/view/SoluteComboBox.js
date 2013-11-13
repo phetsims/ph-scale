@@ -13,9 +13,14 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
+  var Util = require( 'DOT/Util' );
+
+  // strings
+  var pattern_0name_1pH = require( 'string!PH_SCALE/pattern.0name.1pH' );
 
   /**
    * @param {Array<Solute>} solutes
@@ -48,9 +53,16 @@ define( function( require ) {
    */
   var createItem = function( solute ) {
     var node = new Node();
+
+    // color chip
     var soluteColor = solute.colorProperty.get();
     var colorNode = new Rectangle( 0, 0, 20, 20, { fill: soluteColor, stroke: soluteColor.darkerColor() } );
-    var textNode = new Text( solute.name, { font: new PhetFont( 20 ) } );
+
+    // label
+    var textNode = new Text(
+      StringUtils.format( pattern_0name_1pH, solute.name, solute.pHProperty.get().toFixed( PHScaleConstants.PH_COMBOBOX_DECIMAL_PLACES ) ),
+      { font: new PhetFont( 22 ) } );
+
     node.addChild( colorNode );
     node.addChild( textNode );
     textNode.left = colorNode.right + 5;

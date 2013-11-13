@@ -8,6 +8,7 @@ HIGH
 MEDIUM
 - replace temporary PHMeterNode, delete associated images
 - add color range for each solute, use opaque colors
+- what should happen when solute is changed? should solventVolume and soluteVolume be preserved?
 
 LOW
 - multi-touch issues?

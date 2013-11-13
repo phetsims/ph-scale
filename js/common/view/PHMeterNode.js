@@ -136,7 +136,6 @@ define( function( require ) {
    * When there is no pH value, it points to 'neutral' but does not display a value.
    * @param meter
    * @param scaleNode
-   * @param mvt
    * @constructor
    */
   function IndicatorNode( meter, scaleNode ) {

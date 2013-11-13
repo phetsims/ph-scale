@@ -68,7 +68,7 @@ define( function( require ) {
 
     // text nodes
     var titleNode = new Text( pHString, { font: new PhetFont( 18 ), fill: 'white' } );
-    var valueNode = new Text( ( 10 ).toFixed( PHScaleConstants.PH_DECIMAL_PLACES ), { font: new PhetFont( 24 ), fill: 'black' } );
+    var valueNode = new Text( Util.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_DECIMAL_PLACES ), { font: new PhetFont( 24 ), fill: 'black' } );
 
     // create a background that fits the text
     var bodyWidth = Math.max( titleNode.width, valueNode.width ) + ( 2 * TEXT_X_MARGIN );

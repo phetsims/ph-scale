@@ -1,3 +1,5 @@
+11/12/13 use Util.toFixed throughout
+11/12/13 add volume indicator
 11/12/13 show pH value in combo box items
 11/12/13 temporary pH meter (concentration meter)
 11/12/13 fix computation of pH, fix assertions

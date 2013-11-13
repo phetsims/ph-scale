@@ -23,6 +23,7 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
+  var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
   /**
    * @param {SolutionsModel} model
@@ -41,6 +42,7 @@ define( function( require ) {
     // beaker
     var beakerNode = new BeakerNode( model.beaker, mvt );
     var solutionNode = new SolutionNode( model.solution, model.beaker, mvt );
+    var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, mvt );
 
     // dropper
     var dropperNode = new DropperNode( model.dropper, mvt );
@@ -75,6 +77,7 @@ define( function( require ) {
     rootNode.addChild( dropperNode );
     rootNode.addChild( solutionNode );
     rootNode.addChild( beakerNode );
+    rootNode.addChild( volumeIndicatorNode );
     rootNode.addChild( pHMeterNode );
     rootNode.addChild( resetAllButton );
     rootNode.addChild( soluteComboBox );

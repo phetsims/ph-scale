@@ -18,7 +18,7 @@ define( function( require ) {
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Range = require( 'DOT/Range' );
-  var toFixed = require( 'DOT/Util' ).toFixed;
+  var Util = require( 'DOT/Util' );
 
   // constants
   var AVOGADROS_NUMBER = 6.023E23;
@@ -92,7 +92,7 @@ define( function( require ) {
      *
      * @return
      */
-    getVolume: function() { return toFixed( this.soluteVolume + this.solventVolume, PHScaleConstants.VOLUME_DECIMAL_PLACES ); },
+    getVolume: function() { return Util.toFixed( this.soluteVolume + this.solventVolume, PHScaleConstants.VOLUME_DECIMAL_PLACES ); },
 
     isEmpty: function() { return this.getVolume() === 0; },
 

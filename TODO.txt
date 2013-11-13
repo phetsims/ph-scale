@@ -2,6 +2,7 @@ TODO list for ph-scale (HTML5)
 
 DESIGN
 - when changing solute, setting full volume to solute has potential problems
+- the only way to remove solute from the solution is to empty the beaker
 
 HIGH
 - attach wire to correct location on pH meter

@@ -1,7 +1,6 @@
 TODO list for ph-scale (HTML5)
 
 HIGH
-- fully draining beaker sometimes causes NaN error in scenery.Rectangle
 - pH meter
 - constrain pH and volume so that student computations match displayed values, as in Java sim
 - graph

@@ -45,6 +45,7 @@ define( function( require ) {
     // volume
     thisSolution.volumeProperty = new DerivedProperty( [ thisSolution.soluteVolumeProperty, thisSolution.solventVolumeProperty ],
       function( soluteVolume, solventVolume ) {
+        console.log( "soluteVolume=" + soluteVolume + " solventVolume=" + solventVolume + " maxVolume=" + maxVolume );//XXX
          return Math.min( maxVolume, soluteVolume + solventVolume );
       }
     );

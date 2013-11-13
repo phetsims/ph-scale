@@ -1,3 +1,4 @@
+11/12/13 fix NaN error when fully draining beaker
 11/12/13 replace Beaker.getLeft and getRight with properties
 11/12/13 use Util.toFixed throughout
 11/12/13 add volume indicator

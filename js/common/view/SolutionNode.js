@@ -56,6 +56,7 @@ define( function( require ) {
 
       // convert to view coordinates and create shape
       var viewHeight = mvt.modelToViewDeltaY( solutionHeight );
+      console.log( "volume=" + volume + " solutionHeight=" + solutionHeight + " viewHeight=" + viewHeight );//XXX
 
       // shape
       thisNode.setRect( viewLocation.x - (viewWidth / 2), viewLocation.y - viewHeight, viewWidth, viewHeight );

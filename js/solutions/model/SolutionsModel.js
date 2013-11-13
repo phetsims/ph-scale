@@ -101,15 +101,22 @@ define( function( require ) {
     // private: Drain solution from the output faucet. Equal percentages of solvent and solute are drained.
     drainSolution: function( deltaSeconds ) {
       if ( this.solution.volumeProperty.get() > 0 ) {
-        var deltaVolume = Math.min( this.drainFaucet.flowRateProperty.get() * deltaSeconds, this.solution.volumeProperty.get() );
-        this.drainPercentage( deltaVolume, this.solution.solventVolumeProperty, this.solution.volumeProperty );
-        this.drainPercentage( deltaVolume, this.solution.soluteVolumeProperty, this.solution.volumeProperty );
+        var deltaVolume = this.drainFaucet.flowRateProperty.get() * deltaSeconds;
+        if ( deltaVolume >= this.solution.volumeProperty.get() ) {
+          // drain the remaining solution
+          this.solution.solventVolumeProperty.set( 0 );
+          this.solution.soluteVolumeProperty.set( 0 );
+        }
+        else {
+          this.drainPercentage( deltaVolume, this.solution.solventVolumeProperty );
+          this.drainPercentage( deltaVolume, this.solution.soluteVolumeProperty );
+        }
       }
     },
 
     // private: Drains a percentage of some component of that makes up the total volume.
-    drainPercentage: function( deltaVolume, componentVolumeProperty, totalVolumeProperty ) {
-      componentVolumeProperty.set( Math.max( 0, componentVolumeProperty.get() - ( deltaVolume * componentVolumeProperty.get() / totalVolumeProperty.get() ) ) );
+    drainPercentage: function( deltaVolume, componentVolumeProperty ) {
+      componentVolumeProperty.set( Math.max( 0, componentVolumeProperty.get() - ( deltaVolume * componentVolumeProperty.get() / this.solution.volumeProperty.get() ) ) );
     }
   };
 

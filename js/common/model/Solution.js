@@ -45,7 +45,6 @@ define( function( require ) {
     // volume
     thisSolution.volumeProperty = new DerivedProperty( [ thisSolution.soluteVolumeProperty, thisSolution.solventVolumeProperty ],
       function( soluteVolume, solventVolume ) {
-        console.log( "soluteVolume=" + soluteVolume + " solventVolume=" + solventVolume + " maxVolume=" + maxVolume );//XXX
          return Math.min( maxVolume, soluteVolume + solventVolume );
       }
     );
@@ -89,6 +88,7 @@ define( function( require ) {
     // Volume (Liters)
     //----------------------------------------------------------------------------
 
+    //TODO is this necessary? Can it be replaced with this.volumeProperty.get()? Or visa versa?
     /**
      * Gets the volume of the liquid.
      * <p>
@@ -100,7 +100,9 @@ define( function( require ) {
      *
      * @return
      */
-    getVolume: function() { return Util.toFixed( this.soluteVolume + this.solventVolume, PHScaleConstants.VOLUME_DECIMAL_PLACES ); },
+    getVolume: function() {
+      return Util.toFixed( this.soluteVolumeProperty.get() + this.solventVolumeProperty.get(), PHScaleConstants.VOLUME_DECIMAL_PLACES );
+    },
 
     isEmpty: function() { return this.getVolume() === 0; },
 

@@ -36,11 +36,10 @@ define( function( require ) {
     var valueNode = new Text( '0', { font: new PhetFont( 20 ) } );
     var arrowHead = new Path( new Shape()
       .moveTo( 0, 0 )
-      .lineTo( -ARROW_SIZE.width, -ARROW_SIZE.height / 2 )
       .lineTo( -ARROW_SIZE.width, ARROW_SIZE.height / 2 )
-      .close(), {
-         fill: 'black'
-    } );
+      .lineTo( -ARROW_SIZE.width, -ARROW_SIZE.height / 2 )
+      .close(),
+      { fill: 'black' } );
 
     thisNode.addChild( valueNode );
     thisNode.addChild( arrowHead );

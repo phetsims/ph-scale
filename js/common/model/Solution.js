@@ -101,7 +101,7 @@ define( function( require ) {
      * @return
      */
     getVolume: function() {
-      return Util.toFixed( this.soluteVolumeProperty.get() + this.solventVolumeProperty.get(), PHScaleConstants.VOLUME_DECIMAL_PLACES );
+      return Util.toFixedNumber( this.soluteVolumeProperty.get() + this.solventVolumeProperty.get(), PHScaleConstants.VOLUME_DECIMAL_PLACES );
     },
 
     isEmpty: function() { return this.getVolume() === 0; },

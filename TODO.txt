@@ -21,5 +21,6 @@ LOW
 - combo box list doesn't show up great on a white background
 - home screen and navbar icons
 - lots of stuff copied from beers-law-lab, much of it tweaked slightly
+- English strings have been capitalized, translations have not
 
 MIGRATE TO COMMON

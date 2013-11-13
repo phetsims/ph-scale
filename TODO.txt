@@ -6,6 +6,7 @@ HIGH
 
 MEDIUM
 - constrain pH and volume so that student computations match displayed values, as in Java sim
+- replace temporary PHMeterNode, delete associated images
 
 LOW
 - home screen and navbar icons

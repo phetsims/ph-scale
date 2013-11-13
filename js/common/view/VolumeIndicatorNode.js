@@ -46,7 +46,7 @@ define( function( require ) {
     thisNode.addChild( arrowHead );
 
     valueNode.centerY = arrowHead.centerY;
-    thisNode.right = mvt.modelToViewX( beaker.getLeft() );
+    thisNode.right = mvt.modelToViewX( beaker.left );
 
     volumeProperty.link( function( volume ) {
 

@@ -1,3 +1,4 @@
+11/12/13 replace Beaker.getLeft and getRight with properties
 11/12/13 use Util.toFixed throughout
 11/12/13 add volume indicator
 11/12/13 show pH value in combo box items

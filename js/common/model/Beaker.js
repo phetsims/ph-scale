@@ -16,26 +16,18 @@ define( function() {
    * @constructor
    */
   function Beaker( location, size, volume ) {
+
     this.location = location;
     this.size = size;
     this.volume = volume;
+
+    // convenience properties
+    this.left = location.x - ( size.width / 2 );
+    this.right = location.x + ( size.width / 2 );
   }
 
   Beaker.prototype = {
-
-    reset: function() {
-      // currently nothing to reset
-    },
-
-    // Gets the x-coordinate of the left wall.
-    getLeft: function() {
-      return this.location.x - ( this.size.width / 2 );
-    },
-
-    // Gets the x-coordinate of the right wall.
-    getRight: function() {
-      return this.location.x + ( this.size.width / 2 );
-    }
+    reset: function() { /* currently nothing to reset */ }
   };
 
   return Beaker;

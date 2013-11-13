@@ -1,5 +1,8 @@
 TODO list for ph-scale (HTML5)
 
+DESIGN
+- when changing solute, setting full volume to solute has potential problems
+
 HIGH
 - pH meter
 - constrain pH and volume so that student computations match displayed values, as in Java sim
@@ -10,7 +13,6 @@ MEDIUM
 - 'H3O+/OH- ratio' feature
 - replace temporary PHMeterNode, delete associated images
 - add color range for each solute, use opaque colors
-- what should happen when solute is changed? should solventVolume and soluteVolume be preserved?
 
 LOW
 - multi-touch issues?

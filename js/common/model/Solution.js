@@ -57,6 +57,13 @@ define( function( require ) {
       }
     );
 
+    // solute
+    thisSolution.soluteProperty.link( function() {
+      var soluteVolume = thisSolution.volumeProperty.get();
+      thisSolution.solventVolumeProperty.set( 0 );
+      thisSolution.soluteVolumeProperty.set( soluteVolume );
+    } );
+
     // color
     var updateColor = function() {
       thisSolution.colorProperty.set( Solution.computeColor(

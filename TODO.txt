@@ -1,12 +1,13 @@
 TODO list for ph-scale (HTML5)
 
 HIGH
-- add color range for each solute
-- PHMeterNode
+- pH meter
+- constrain pH and volume so that student computations match displayed values, as in Java sim
+- graph
 
 MEDIUM
-- constrain pH and volume so that student computations match displayed values, as in Java sim
 - replace temporary PHMeterNode, delete associated images
+- add color range for each solute
 
 LOW
 - home screen and navbar icons

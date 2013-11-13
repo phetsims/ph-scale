@@ -10,6 +10,7 @@ MEDIUM
 - add color range for each solute, use opaque colors
 
 LOW
+- milk doesn't show up on white background
 - home screen and navbar icons
 - lots of stuff copied from beers-law-lab, much of it tweaked slightly
 

@@ -7,7 +7,7 @@ HIGH
 
 MEDIUM
 - replace temporary PHMeterNode, delete associated images
-- add color range for each solute
+- add color range for each solute, use opaque colors
 
 LOW
 - home screen and navbar icons

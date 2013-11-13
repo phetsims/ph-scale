@@ -43,9 +43,10 @@ define( function( require ) {
   /**
    * @param {Dropper} dropper
    * @param {ModelViewTransform2} mvt
+   * @param {boolean} showLabel
    * @constructor
    */
-  function DropperNode( dropper, mvt ) {
+  function DropperNode( dropper, mvt, showLabel ) {
 
     var thisNode = this;
 
@@ -85,8 +86,10 @@ define( function( require ) {
     thisNode.addChild( fluid );
     thisNode.addChild( background );
     thisNode.addChild( foreground );
-    thisNode.addChild( labelBackground );
-    thisNode.addChild( label );
+    if ( showLabel ) {
+      thisNode.addChild( labelBackground );
+      thisNode.addChild( label );
+    }
     thisNode.addChild( button );
     if ( DEBUG_ORIGIN ) {
       thisNode.addChild( new Circle( { radius: 3, fill: 'red' } ) );

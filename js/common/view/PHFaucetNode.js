@@ -27,6 +27,7 @@ define( function( require ) {
     FaucetNode.call( this, faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
       decoration: decoration,
       horizontalPipeLength: horizontalPipeLength,
+      verticalPipeLength: 20,
       scale: scale
     } );
     this.translation = mvt.modelToViewPosition( faucet.location );

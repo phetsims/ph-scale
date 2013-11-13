@@ -46,8 +46,10 @@ define( function( require ) {
     var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, mvt );
 
     // dropper
+    var dropperScale = 0.85;
     var dropperNode = new DropperNode( model.dropper, mvt );
-    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, dropperNode.getTipWidth(), mvt );
+    dropperNode.setScaleMagnitude( dropperScale );
+    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, dropperScale * dropperNode.getTipWidth(), mvt );
 
     // faucets
     var solventLabelNode = new Text( model.solvent.name, { font: new PhetFont( { size: 32, weight: 'bold' } ) } );
@@ -86,7 +88,7 @@ define( function( require ) {
     rootNode.addChild( soluteListParent ); // last, so that combo box list is on top
 
     // Layout
-    soluteComboBox.left = mvt.modelToViewX( model.beaker.right ) + 20;
+    soluteComboBox.left = mvt.modelToViewX( model.beaker.location.x );
     soluteComboBox.top = this.layoutBounds.top + 20;
     resetAllButton.right = this.layoutBounds.right - 20;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;

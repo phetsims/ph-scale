@@ -45,12 +45,12 @@ define( function( require ) {
        Solute.BATTERY_ACID
     ];
 
-    thisModel.beaker = new Beaker( new Vector2( 300, 600 ), new Dimension2( 400, 350 ), BEAKER_VOLUME );
+    thisModel.beaker = new Beaker( new Vector2( 300, 600 ), new Dimension2( 400, 325 ), BEAKER_VOLUME );
     thisModel.solvent = Solvent.WATER;
-    thisModel.dropper = new Dropper( thisModel.solutes[0], new Vector2( thisModel.beaker.location.x, 225 ), new Bounds2( 250, 225, 460, 225 ), DROPPER_FLOW_RATE, true );
+    thisModel.dropper = new Dropper( thisModel.solutes[0], new Vector2( thisModel.beaker.location.x + 40, 260 ), new Bounds2( 250, 260, 460, 260 ), DROPPER_FLOW_RATE, true );
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.solvent, 0, thisModel.beaker.volume );
     thisModel.solventFaucet = new Faucet( new Vector2( 165, 190 ), -400, 45, MAX_SOLVENT_FLOW_RATE ); //TODO constants are wrong
-    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 100, 665 ), thisModel.beaker.right, 45, MAX_DRAIN_FLOW_RATE ); //TODO constants are wrong
+    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 100, 652 ), thisModel.beaker.right, 45, MAX_DRAIN_FLOW_RATE ); //TODO constants are wrong
     thisModel.pHMeter = new PHMeter( new Vector2( 785, 210 ), new Bounds2( 10, 150, 835, 680 ), new Vector2( 750, 370 ), new Bounds2( 30, 150, 966, 680 ) );
 
     // Enable faucets and dropper based on amount of solution in the beaker.

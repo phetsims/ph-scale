@@ -20,7 +20,7 @@
   "units.molesPerLiter": "mol/L",
   "pattern.0value.1units": "{0} {1}",
   "pattern.0name.1pH": "{0} (pH {1})",
-  "pattern.ph.0value": "pH: {0}",
+  "pattern.ph.0value": "pH {0}",
   "pH": "pH",
   "acidic": "Acidic",
   "basic": "Basic",

@@ -55,12 +55,13 @@ define( function( require ) {
   var TICK_LABEL_X_SPACING = 5;
 
   /**
-   * The Acidic-Basic vertical scale.
+   * The body of the meter includes the Acidic-Basic vertical scale,
+   * and the indicator that points to a value on the scale.
    * @param meter
    * @param mvt
    * @constructor
    */
-  function ScaleNode( meter, mvt ) {
+  function BodyNode( meter, mvt ) {
 
     var thisNode = this;
     Node.call( this );
@@ -139,7 +140,7 @@ define( function( require ) {
     });
   }
 
-  inherit( Node, ScaleNode );
+  inherit( Node, BodyNode );
 
   /**
    * pH indicator that slides vertically along scale.
@@ -305,14 +306,14 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
-    var scaleNode = new ScaleNode( meter, mvt );
-    var indicatorNode = new IndicatorNode( meter, scaleNode );
+    var bodyNode = new BodyNode( meter, mvt );
+    var indicatorNode = new IndicatorNode( meter, bodyNode );
     var probeNode = new ProbeNode( meter.probe, mvt, solutionNode, dropperFluidNode, solventFluidNode, drainFluidNode );
-    var wireNode = new WireNode( meter.body, meter.probe, scaleNode, probeNode );
+    var wireNode = new WireNode( meter.body, meter.probe, bodyNode, probeNode );
 
     // rendering order
     thisNode.addChild( wireNode );
-    thisNode.addChild( scaleNode );
+    thisNode.addChild( bodyNode );
     thisNode.addChild( indicatorNode );
     thisNode.addChild( probeNode );
 

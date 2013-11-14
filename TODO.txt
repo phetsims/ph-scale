@@ -1,6 +1,7 @@
 TODO list for ph-scale (HTML5)
 
 DESIGN
+- white background doesn't work very well, colors are washed out (milk), solute combo box doesn't 'pop'
 - when changing solute, setting full volume to solute has potential problems
 - the only way to remove solute from the solution is to empty the beaker
 - using alpha modulation for concentration is problematic, need a 'color scheme' ala 'Concentration' sim
@@ -19,8 +20,6 @@ MEDIUM
 
 LOW
 - multi-touch issues?
-- milk doesn't show up on white background
-- combo box list doesn't show up great on a white background
 - home screen and navbar icons
 - lots of stuff copied from beers-law-lab, much of it tweaked slightly
 - English strings have been capitalized, translations have not

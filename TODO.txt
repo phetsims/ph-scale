@@ -4,6 +4,7 @@ DESIGN
 - when changing solute, setting full volume to solute has potential problems
 - the only way to remove solute from the solution is to empty the beaker
 - using alpha modulation for concentration is problematic, need a 'color scheme' ala 'Concentration' sim
+- use similar readouts for volume and pH?
 - pH Scale indicator jumping to '7' when not reading a value is confusing, better to hide it
 - why is volume indicator value so small in design doc, isn't it as important as pH value?
 

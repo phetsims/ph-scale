@@ -4,6 +4,7 @@ DESIGN
 - when changing solute, setting full volume to solute has potential problems
 - the only way to remove solute from the solution is to empty the beaker
 - using alpha modulation for concentration is problematic, need a 'color scheme' ala 'Concentration' sim
+- pH Scale indicator jumping to '7' when not reading a value is confusing, better to hide it
 
 HIGH
 - constrain pH and volume so that student computations match displayed values, as in Java sim

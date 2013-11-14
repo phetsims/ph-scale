@@ -43,7 +43,7 @@ define( function( require ) {
   var acidicString = require( 'string!PH_SCALE/acidic' );
   var basicString = require( 'string!PH_SCALE/basic' );
   var neutralString = require( 'string!PH_SCALE/neutral' );
-  var pHString = require( 'string!PH_SCALE/pH' ); //TODO used?
+  var pattern_pH_0value = require( 'string!PH_SCALE/pattern.ph.0value' );
 
   // images
   var probeImage = require( 'image!PH_SCALE/pH-meter-probe.png' );
@@ -114,19 +114,29 @@ define( function( require ) {
     }
 
     // 'Neutral' line
-    var neutralLineNode = new Line( 0, 0, NEUTRAL_TICK_LENGTH, 0, { stroke: 'black', lineWidth: 3 } );
+    var neutralLineNode = new Line( 0, 0, NEUTRAL_TICK_LENGTH, 0, { stroke: 'black', lineWidth: 1 } );
     neutralLineNode.left = backgroundNode.right;
-    neutralLineNode.centerY = backgroundNode.height / 2;
+    neutralLineNode.centerY = SCALE_SIZE.height / 2;
     thisNode.addChild( neutralLineNode );
-    var neutralLabelNode = new Text( neutralString, { font: new PhetFont( { size: 28, weight: 'bold' } ) } );
+    var neutralLabelNode = new Text( neutralString, { font: new PhetFont( 28 ) } );
     neutralLabelNode.left = neutralLineNode.right + TICK_LABEL_X_SPACING;
     neutralLabelNode.centerY = neutralLineNode.centerY;
     thisNode.addChild( neutralLabelNode );
 
-    // location
+    // indicator
+    var indicatorNode = new IndicatorNode( meter );
+    indicatorNode.right = backgroundNode.right;
+    thisNode.addChild( indicatorNode );
+
+    // location of the scale
     meter.body.locationProperty.link( function( location ) {
       thisNode.translation = mvt.modelToViewPosition( location );
     } );
+
+    // move the indicator to point to the proper value on the scale
+    meter.valueProperty.link( function( value ) {
+      indicatorNode.centerY = Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
+    });
   }
 
   inherit( Node, ScaleNode );
@@ -135,35 +145,43 @@ define( function( require ) {
    * pH indicator that slides vertically along scale.
    * When there is no pH value, it points to 'neutral' but does not display a value.
    * @param meter
-   * @param scaleNode
    * @constructor
    */
-  function IndicatorNode( meter, scaleNode ) {
+  function IndicatorNode( meter ) {
 
     var thisNode = this;
     Node.call( thisNode );
 
-    var backgroundNode = new Path( new Shape()
+    var lineNode = new Line( 0, 0, SCALE_SIZE.width, 0, {
+      stroke: 'black',
+      lineDash: [ 5, 5 ],
+      lineWidth: 2
+    } );
+    thisNode.addChild( lineNode );
+
+    var arrowNode = new Path( new Shape()
       .moveTo( 0, 0 )
-      .lineTo( -10, -10 )
-      .lineTo( -10, 10 )
+      .lineTo( -21, -14 )
+      .lineTo( -21, 14 )
       .close(), {
         fill: 'black'
     } );
-    thisNode.addChild( backgroundNode );
+    arrowNode.right = lineNode.left - 5;
+    thisNode.addChild( arrowNode );
 
-    var pHValueNode = new Text( '0', { font: new PhetFont( 30 ) } );
+    var pHValueNode = new Text( '0', { font: new PhetFont( 28 ) } );
     thisNode.addChild( pHValueNode );
 
     meter.valueProperty.link( function( value ) {
-      // text
-      pHValueNode.text = ( !value ? "" : Util.toFixed( value, PHScaleConstants.PH_METER_DECIMAL_PLACES ) );
-      pHValueNode.right = backgroundNode.left - 3;
-      pHValueNode.centerY = backgroundNode.centerY;
-      pHValueNode.centerY = backgroundNode.centerY;
-      // location
-      thisNode.right = scaleNode.left - 3;
-      thisNode.centerY = Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
+      // value
+      pHValueNode.text = value ? StringUtils.format( pattern_pH_0value, ( Util.toFixed( value, PHScaleConstants.PH_METER_DECIMAL_PLACES ) ) ) : "";
+      pHValueNode.right = arrowNode.left - 3;
+      pHValueNode.centerY = arrowNode.centerY;
+      pHValueNode.centerY = arrowNode.centerY;
+      // gray out the arrow?
+      arrowNode.fill = ( value ? 'black' : 'rgba(0,0,0,0.3)' );
+      // hide the line?
+      lineNode.visible = ( value ? true : false );
     } );
   }
 

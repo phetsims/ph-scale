@@ -268,13 +268,15 @@ define( function( require ) {
 
     var updateCurve = function() {
 
+      var scaleCenterX = bodyNode.x + ( SCALE_SIZE.width / 2 );
+
       // Connect bottom-center of body to right-center of probe.
-      var bodyConnectionPoint = new Vector2( bodyNode.centerX, bodyNode.bottom - 10 );
+      var bodyConnectionPoint = new Vector2( scaleCenterX, bodyNode.bottom - 10 );
       var probeConnectionPoint = new Vector2( probeNode.right, probeNode.centerY );
 
       // control points
       // The y coordinate of the body's control point varies with the x distance between the body and probe.
-      var c1Offset = new Vector2( 0, Util.linear( 0, 800, 0, 200, bodyNode.centerX - probeNode.left ) ); // x distance -> y coordinate
+      var c1Offset = new Vector2( 0, Util.linear( 0, 800, 0, 200, scaleCenterX - probeNode.left ) ); // x distance -> y coordinate
       var c2Offset = new Vector2( 50, 0 );
       var c1 = new Vector2( bodyConnectionPoint.x + c1Offset.x, bodyConnectionPoint.y + c1Offset.y );
       var c2 = new Vector2( probeConnectionPoint.x + c2Offset.x, probeConnectionPoint.y + c2Offset.y );

@@ -1,3 +1,4 @@
+11/13/13 attach wire to correct location on pH meter
 11/13/13 fix indicator on pH meter
 11/13/13 cleanup and delete unused stuff in pH meter
 11/13/13 first stab at pH meter for 'Basics' (incomplete)

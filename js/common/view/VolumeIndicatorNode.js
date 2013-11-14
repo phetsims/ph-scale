@@ -26,7 +26,7 @@ define( function( require ) {
   var litersString = require( 'string!PH_SCALE/units.liters' );
 
   // constants
-  var ARROW_SIZE = new Dimension2( 21, 14 );
+  var ARROW_SIZE = new Dimension2( 21, 28 );
   var VALUE_FONT = new PhetFont( 28 );
 
   function VolumeIndicatorNode( volumeProperty, beaker, mvt ) {

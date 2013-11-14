@@ -55,7 +55,7 @@ define( function( require ) {
   var TICK_FONT = new PhetFont( 22 );
   var NEUTRAL_TICK_LENGTH = 40;
   var TICK_LABEL_X_SPACING = 5;
-  var INDICATOR_ARROW_SIZE = new Dimension2( 21, 14 );
+  var INDICATOR_ARROW_SIZE = new Dimension2( 21, 28 );
 
   /**
    * The body of the meter includes the Acidic-Basic vertical scale,
@@ -164,8 +164,8 @@ define( function( require ) {
 
     var arrowNode = new Path( new Shape()
       .moveTo( 0, 0 )
-      .lineTo( -INDICATOR_ARROW_SIZE.width, -INDICATOR_ARROW_SIZE.height )
-      .lineTo( -INDICATOR_ARROW_SIZE.width, INDICATOR_ARROW_SIZE.height )
+      .lineTo( -INDICATOR_ARROW_SIZE.width, -INDICATOR_ARROW_SIZE.height / 2 )
+      .lineTo( -INDICATOR_ARROW_SIZE.width, INDICATOR_ARROW_SIZE.height / 2 )
       .close(), {
         fill: 'black'
     } );
@@ -311,14 +311,12 @@ define( function( require ) {
     Node.call( thisNode );
 
     var bodyNode = new BodyNode( meter, mvt );
-    var indicatorNode = new IndicatorNode( meter, bodyNode );
     var probeNode = new ProbeNode( meter.probe, mvt, solutionNode, dropperFluidNode, solventFluidNode, drainFluidNode );
     var wireNode = new WireNode( meter.body, meter.probe, bodyNode, probeNode );
 
     // rendering order
     thisNode.addChild( wireNode );
     thisNode.addChild( bodyNode );
-    thisNode.addChild( indicatorNode );
     thisNode.addChild( probeNode );
 
     var updateValue = function() {

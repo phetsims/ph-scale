@@ -1,3 +1,5 @@
+11/13/13 move initial location of pH probe to be more similar to design doc
+11/13/13 adjust control point for connection of wire to pH meter body
 11/13/13 **** 'pH Scale: Basics' feature complete ****
 11/13/13 tweak layout
 11/13/13 fix arrow shape for volume indicator

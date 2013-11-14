@@ -55,6 +55,7 @@ define( function( require ) {
   var TICK_FONT = new PhetFont( 22 );
   var NEUTRAL_TICK_LENGTH = 40;
   var TICK_LABEL_X_SPACING = 5;
+  var INDICATOR_ARROW_SIZE = new Dimension2( 21, 14 );
 
   /**
    * The body of the meter includes the Acidic-Basic vertical scale,
@@ -163,8 +164,8 @@ define( function( require ) {
 
     var arrowNode = new Path( new Shape()
       .moveTo( 0, 0 )
-      .lineTo( -21, -14 )
-      .lineTo( -21, 14 )
+      .lineTo( -INDICATOR_ARROW_SIZE.width, -INDICATOR_ARROW_SIZE.height )
+      .lineTo( -INDICATOR_ARROW_SIZE.width, INDICATOR_ARROW_SIZE.height )
       .close(), {
         fill: 'black'
     } );

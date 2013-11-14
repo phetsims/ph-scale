@@ -19,7 +19,6 @@ MEDIUM
 
 LOW
 - multi-touch issues?
-- labels on dropper are too big, and will be an i18n problem
 - milk doesn't show up on white background
 - combo box list doesn't show up great on a white background
 - home screen and navbar icons

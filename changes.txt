@@ -1,3 +1,4 @@
+11/13/13 revert screen background to 'white' to demonstrate problems with this color
 11/13/13 tweak initial position of water faucet
 11/13/13 move initial location of pH probe to be more similar to design doc
 11/13/13 adjust control point for connection of wire to pH meter body

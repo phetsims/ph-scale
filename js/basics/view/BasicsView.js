@@ -18,7 +18,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
-  var PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
+  var PHMeterNode = require( 'PH_SCALE/basics/view/PHMeterNode' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );

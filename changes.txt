@@ -1,3 +1,4 @@
+11/13/13 tweak font sizes to make things look more balanced
 11/13/13 attach wire to correct location on pH meter
 11/13/13 fix indicator on pH meter
 11/13/13 cleanup and delete unused stuff in pH meter

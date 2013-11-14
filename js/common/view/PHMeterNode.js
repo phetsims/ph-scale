@@ -50,8 +50,10 @@ define( function( require ) {
 
   // constants
   var SCALE_SIZE = new Dimension2( 75, 450 );
+  var SCALE_LABEL_FONT = new PhetFont( 30 );
   var TICK_LENGTH = 15;
-  var NEUTRAL_TICK_LENGTH = 45;
+  var TICK_FONT = new PhetFont( 22 );
+  var NEUTRAL_TICK_LENGTH = 40;
   var TICK_LABEL_X_SPACING = 5;
 
   /**
@@ -77,7 +79,7 @@ define( function( require ) {
     thisNode.addChild( backgroundNode );
 
     // 'Acidic' label
-    var textOptions = { fill: 'white', font: new PhetFont( 40 ) };
+    var textOptions = { fill: 'white', font: SCALE_LABEL_FONT };
     var acidicNode = new Text( acidicString, textOptions );
     acidicNode.rotation = -Math.PI / 2;
     acidicNode.centerX = backgroundNode.centerX;
@@ -94,7 +96,6 @@ define( function( require ) {
     // tick marks, labeled at 'even' values, skip 7 (neutral)
     var y = SCALE_SIZE.height;
     var dy = -SCALE_SIZE.height / PHScaleConstants.PH_RANGE.getLength();
-    var tickFont = new PhetFont( 28 );
     for ( var pH = PHScaleConstants.PH_RANGE.min; pH <= PHScaleConstants.PH_RANGE.max; pH++ ) {
       if ( pH !== 7 ) {
         // tick mark
@@ -105,7 +106,7 @@ define( function( require ) {
 
         // tick label
         if ( pH % 2 === 0 ) {
-          var tickLabelNode = new Text( pH, { font: tickFont } );
+          var tickLabelNode = new Text( pH, { font: TICK_FONT } );
           tickLabelNode.left = lineNode.right + TICK_LABEL_X_SPACING;
           tickLabelNode.centerY = lineNode.centerY;
           thisNode.addChild( tickLabelNode );
@@ -119,7 +120,7 @@ define( function( require ) {
     neutralLineNode.left = backgroundNode.right;
     neutralLineNode.centerY = SCALE_SIZE.height / 2;
     thisNode.addChild( neutralLineNode );
-    var neutralLabelNode = new Text( neutralString, { font: new PhetFont( 28 ) } );
+    var neutralLabelNode = new Text( neutralString, { font: TICK_FONT } );
     neutralLabelNode.left = neutralLineNode.right + TICK_LABEL_X_SPACING;
     neutralLabelNode.centerY = neutralLineNode.centerY;
     thisNode.addChild( neutralLabelNode );

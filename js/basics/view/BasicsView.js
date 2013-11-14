@@ -52,7 +52,7 @@ define( function( require ) {
     var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, dropperScale * dropperNode.getTipWidth(), mvt );
 
     // faucets
-    var solventLabelNode = new Text( model.solvent.name, { font: new PhetFont( { size: 32, weight: 'bold' } ) } );
+    var solventLabelNode = new Text( model.solvent.name, { font: new PhetFont( 40 ) } );
     var solventFaucetNode = new PHFaucetNode( model.solventFaucet, mvt, solventLabelNode );
     var drainFaucetNode = new PHFaucetNode( model.drainFaucet, mvt );
     var SOLVENT_FLUID_HEIGHT = model.beaker.location.y - model.solventFaucet.location.y;

@@ -1,7 +1,6 @@
 TODO list for ph-scale (HTML5)
 
 DESIGN
-- White background doesn't work very well, colors are washed out (milk), solute combo box doesn't 'pop'.
 - When changing solute, setting the volume to 100% solute has potential problems. The worst case is where we have 100% water,
   select a solute, then suddenly have 100% solute, that seems odd.  And cases where we have a diluted a solute are also problematic,
   we don't keep the dilution ratio, so we can't switch between solutes to compare dilutions.  And in general, I don't think it's

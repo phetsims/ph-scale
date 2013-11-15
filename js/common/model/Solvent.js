@@ -24,7 +24,7 @@ define( function( require ) {
     Fluid.call( this, color );
   }
 
-  Solvent.WATER = new Solvent( waterString, 7, PHScaleColors.H2O.withAlpha( 127 / 255 ) );
+  Solvent.WATER = new Solvent( waterString, 7, PHScaleColors.H2O );
 
   return inherit( Fluid, Solvent );
 } );

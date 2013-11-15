@@ -18,13 +18,15 @@ DESIGN
 - pH meter wire interferes with drain faucet
 
 HIGH
-- constrain pH and volume so that student computations match displayed values, as in Java sim
-- graph
-
-MEDIUM
+- pH meter for 'Solutions' screen
+- pH meter for 'Custom' screen
+- read-only graph for 'Solutions' screen
+- interactive graph for 'Custom' screen
 - 'Molecule count' feature
 - 'H3O+/OH- ratio' feature
-- add color range for each solute, use opaque colors
+
+MEDIUM
+- constrain pH and volume so that student computations match displayed values, as in Java sim
 
 LOW
 - multi-touch issues?

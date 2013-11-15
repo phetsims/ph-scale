@@ -8,9 +8,6 @@ DESIGN
   at all obvious (unit you use the pH meter) what is happening when you switch solutes with a non-zero volume in the beaker.
 - The only way to remove solute from the solution is to empty the beaker. Do we need a 'Remove Solute' button?
   If so, do we need to label the combo box as "Solute"?
-- Using alpha (transparency) modulation to represent concentration isn't working. The colors are totally washed out
-  for heavily-diluted solutes. (The white background doesn't help.) I think we need to use opaque colors, and use a
-  'color scheme' approach similar to what we did in 'Concentration'.  I can provide more details when we discuss.
 - The 'volume' and 'pH' values are both important to the learning goals of this sim. Why is the volume indicator
   so tiny in the design doc? Why is the pH indicator so heavy-handed? In this version of the sim, I tried using a
   similar indicator for both values. Let's discuss.

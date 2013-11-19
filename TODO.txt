@@ -18,6 +18,8 @@ DESIGN
 - Why are +/- zoom buttons on opposite ends of scale? Is this a workaround to keep the indicators from covering the controls?
 - What are we going to do about 'ratio' representation? In addition to the color issue, there's no way we're going to draw 3000 dots interactively in JavaScript.
 - I can't use sun.AccordionBox, is there any good reason why accordion boxes need to be different in this sim?
+- No 'Neutral' label on '7' tick of pH meter in 'Solutions' screen?
+- Tick labels on beaker: 1 & 1/2, or 1.0 and 0.5 ?
 
 HIGH
 - pH meter for 'Solutions' screen

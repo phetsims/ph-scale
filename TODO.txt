@@ -7,7 +7,6 @@ DESIGN
 11/19/13 DESIGN DECISIONS
 * - all: use color range scheme (like in Concentration)
 * - all: change 'Drain Cleaner' color to toilet-bowl-cleaner blue
-* - Basics: put 'body' around pH value on meter
 * - Basics: gray out meter but leave it at most recent pH value
 - create my own accordion box for this sim
 - Solutions: no label on '7' in pH meter

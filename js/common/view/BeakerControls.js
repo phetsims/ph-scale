@@ -37,8 +37,17 @@ define( function( require ) {
     var ratioLabel = new HTMLText( ratioString, { font: FONT } );
     var ratioCheckBox = new CheckBox( ratioLabel, ratioVisibleProperty );
 
-    Panel.call( this, new VBox( { children: [ moleculeCountCheckBox, ratioCheckBox ], align: 'left', spacing: 10 } ),
-      { xMargin: 15, yMargin: 10 });
+    var content = new VBox( {
+      children: [ moleculeCountCheckBox, ratioCheckBox ],
+      align: 'left',
+      spacing: 10
+    } );
+
+    Panel.call( this, content, {
+      xMargin: 15,
+      yMargin: 10,
+      fill: 'rgb(240,240,240)'
+    } );
   }
 
   return inherit( Panel, BeakerControls );

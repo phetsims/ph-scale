@@ -305,7 +305,7 @@ define( function( require ) {
    * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function PHMeterNode( meter, solution, solvent, dropper, solutionNode, dropperFluidNode, solventFluidNode, drainFluidNode, mvt ) {
+  function BasicsPHMeterNode( meter, solution, solvent, dropper, solutionNode, dropperFluidNode, solventFluidNode, drainFluidNode, mvt ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -344,5 +344,5 @@ define( function( require ) {
     drainFluidNode.addEventListener( 'bounds', updateValue );
   }
 
-  return inherit( Node, PHMeterNode );
+  return inherit( Node, BasicsPHMeterNode );
 } );

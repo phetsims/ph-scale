@@ -9,6 +9,7 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var CustomPHMeterNode = require( 'PH_SCALE/custom/view/CustomPHMeterNode' );
@@ -19,6 +20,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
+  var Property = require( 'AXON/Property' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
@@ -58,8 +60,21 @@ define( function( require ) {
     // pH meter
     var pHMeterNode = new CustomPHMeterNode( model.pHMeter, model.solution, mvt );
 
+    // 'molecule count' representation
+    var moleculeCountVisibleProperty = new Property( false );
+    //TODO node goes here, visibility linked to moleculeCountProperty
+
+    // 'H3O+/OH- ratio' representation
+    var ratioVisibleProperty = new Property( false );
+    //TODO node goes here, visibility linked to ratioVisibleProperty
+
+    // beaker controls
+    var beakerControls = new BeakerControls( moleculeCountVisibleProperty, ratioVisibleProperty );
+
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
+      moleculeCountVisibleProperty.reset();
+      ratioVisibleProperty.reset();
     } );
 
     // Rendering order
@@ -71,9 +86,12 @@ define( function( require ) {
     rootNode.addChild( beakerNode );
     rootNode.addChild( volumeIndicatorNode );
     rootNode.addChild( pHMeterNode );
+    rootNode.addChild( beakerControls );
     rootNode.addChild( resetAllButton );
 
     // Layout
+    beakerControls.centerX = beakerNode.centerX;
+    beakerControls.top = beakerNode.bottom + 30;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }

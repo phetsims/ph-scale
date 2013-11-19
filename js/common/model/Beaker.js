@@ -12,14 +12,18 @@ define( function() {
    * Constructor
    * @param {Vector2} location bottom center
    * @param {Dimension2} size
-   * @param {Number} volume in liters (L)
+   * @param {*} options
    * @constructor
    */
-  function Beaker( location, size, volume ) {
+  function Beaker( location, size, options ) {
+
+    options = _.extend( {
+      volume: 1.2 // L
+    }, options );
 
     this.location = location;
     this.size = size;
-    this.volume = volume;
+    this.volume = options.volume;
 
     // convenience properties
     this.left = location.x - ( size.width / 2 );

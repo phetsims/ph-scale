@@ -15,11 +15,17 @@ define( function( require ) {
   /**
    * @param {Vector2} location center of output pipe
    * @param {Number} pipeMinX x-coordinate of where the pipe starts
-   * @param {Number} spoutWidth
-   * @param {Number} maxFlowRate L/sec
+   * @param {*} options
    * @constructor
    */
-  function Faucet( location, pipeMinX, spoutWidth, maxFlowRate ) {
+  function Faucet( location, pipeMinX, options ) {
+
+    options = _.extend( {
+      spoutWidth: 45, // pixels
+      maxFlowRate: 0.25, // L/sec
+      flowRate: 0,
+      enabled: true
+    }, options );
 
     assert && assert( pipeMinX < location.x ); // pipe enters the faucet from the left
 
@@ -27,10 +33,10 @@ define( function( require ) {
 
     thisFaucet.location = location;
     thisFaucet.pipeMinX = pipeMinX;
-    thisFaucet.spoutWidth = spoutWidth;
-    thisFaucet.maxFlowRate = maxFlowRate;
-    thisFaucet.flowRateProperty = new Property( 0 );
-    thisFaucet.enabledProperty = new Property( true );
+    thisFaucet.spoutWidth = options.spoutWidth;
+    thisFaucet.maxFlowRate = options.maxFlowRate;
+    thisFaucet.flowRateProperty = new Property( options.flowRate );
+    thisFaucet.enabledProperty = new Property( options.enabled );
 
     // when disabled, turn off the faucet.
     thisFaucet.enabledProperty.link( function( enabled ) {

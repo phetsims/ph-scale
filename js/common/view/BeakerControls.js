@@ -1,0 +1,45 @@
+// Copyright 2002-2013, University of Colorado Boulder
+
+/**
+ * Controls for the beaker.
+ *
+ * @author Chris Malley (PixelZoom, Inc.)
+ */
+define( function( require ) {
+  'use strict';
+
+  // imports
+  var CheckBox = require( 'SUN/CheckBox' );
+  var HTMLText = require( 'SCENERY/nodes/HTMLText' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Panel = require( 'SUN/Panel' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var VBox = require( 'SCENERY/nodes/VBox' );
+
+  // strings
+  var moleculeCountString = 'Molecule count'; //TODO i18n
+  var ratioString = 'H<sub>3</sub>O<sup>+</sup>/OH<sup>-</sup> ratio';
+
+  // constants
+  var FONT = new PhetFont( 24 );
+
+  /**
+   * @param {Property<Boolean>} moleculeCountVisibleProperty
+   * @param {Property<Boolean>} ratioVisibleProperty
+   * @constructor
+   */
+  function BeakerControls( moleculeCountVisibleProperty, ratioVisibleProperty ) {
+
+    var moleculeCountLabel = new Text( moleculeCountString, { font: FONT } );
+    var moleculeCountCheckBox = new CheckBox( moleculeCountLabel, moleculeCountVisibleProperty );
+
+    var ratioLabel = new HTMLText( ratioString, { font: FONT } );
+    var ratioCheckBox = new CheckBox( ratioLabel, ratioVisibleProperty );
+
+    Panel.call( this, new VBox( { children: [ moleculeCountCheckBox, ratioCheckBox ], align: 'left', spacing: 10 } ),
+      { xMargin: 15, yMargin: 10 });
+  }
+
+  return inherit( Panel, BeakerControls );
+} );

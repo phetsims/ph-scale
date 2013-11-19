@@ -17,21 +17,29 @@ define( function( require ) {
    * @param {Solute} default solute
    * @param {Vector2} location
    * @param {Bounds2} dragBounds
-   * @param {Number} maxFlowRate
-   * @param {Boolean} visible
+   * @param {*} options
    * @constructor
    */
-  function Dropper( solute, location, dragBounds, maxFlowRate, visible ) {
+  function Dropper( solute, location, dragBounds, options ) {
+
+    options = _.extend( {
+      maxFlowRate: 0.05, // L/sec
+      flowRate: 0, // L/sec
+      on: false,
+      enabled: true,
+      empty: false,
+      visible: true
+    }, options );
 
     var thisDropper = this;
     Movable.call( thisDropper, location, dragBounds );
 
     thisDropper.soluteProperty = new Property( solute );
-    thisDropper.visibleProperty = new Property( visible );
-    thisDropper.onProperty = new Property( false ); // true if the dropper is dispensing solution
-    thisDropper.enabledProperty = new Property( true );
-    thisDropper.emptyProperty = new Property( false );
-    thisDropper.flowRateProperty = new Property( 0 ); // L/sec
+    thisDropper.visibleProperty = new Property( options.visible );
+    thisDropper.onProperty = new Property( options.on ); // true if the dropper is dispensing solution
+    thisDropper.enabledProperty = new Property( options.enabled );
+    thisDropper.emptyProperty = new Property( options.empty );
+    thisDropper.flowRateProperty = new Property( options.flowRate ); // L/sec
 
     // Turn off the dropper when it's disabled.
     thisDropper.enabledProperty.link( function( enabled ) {
@@ -42,7 +50,7 @@ define( function( require ) {
 
     // Toggle the flow rate when the dropper is turned on/off.
     thisDropper.onProperty.link( function( on ) {
-      thisDropper.flowRateProperty.set( on ? maxFlowRate : 0 );
+      thisDropper.flowRateProperty.set( on ? options.maxFlowRate : 0 );
     } );
 
     // When the dropper becomes empty, disable it.

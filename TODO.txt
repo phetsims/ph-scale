@@ -5,7 +5,6 @@ DESIGN
 - What are we going to do about 'ratio' representation? In addition to the color issue, there's no way we're going to draw 3000 dots interactively in JavaScript.
 
 11/19/13 DESIGN DECISIONS
-* - all: use color range scheme (like in Concentration)
 * - all: change 'Drain Cleaner' color to toilet-bowl-cleaner blue
 * - Basics: gray out meter but leave it at most recent pH value
 - create my own accordion box for this sim

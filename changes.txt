@@ -1,3 +1,4 @@
+11/19/13 switch to a color range for solutes
 11/19/13 make 'color' static for solvent and solute, it's dynamic only for solution
 11/19/13 add bulky background to pH value display in 'Basics'
 11/19/13 factor out PHValueNode, to be reused in all pH meters

@@ -28,26 +28,28 @@ define( function( require ) {
   /**
    * @param {String} name
    * @param {Number} pH
-   * @param {Color} color
+   * @param {Color} color color of the solute when it's in stock solution
+   * @param {Color} dilutedColor color of the solute when it's barely present in solution
    * @constructor
    */
-  function Solute( name, pH, color ) {
+  function Solute( name, pH, color, dilutedColor ) {
     this.name = name;
     this.pHProperty = new Property( pH );
     this.color = color;
+    this.dilutedColor = dilutedColor;
   }
 
-  Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, new Color( 255, 255, 0 ) );
-  Solute.HAND_SOAP = new Solute( handSoapString, 10, new Color( 204, 0, 204 ) );
-  Solute.BLOOD = new Solute( bloodString, 7.4, new Color( 185, 12, 0 ) );
-  Solute.SPIT = new Solute( spitString, 7.4, new Color( 204, 204, 198 ) );
-  Solute.MILK = new Solute( milkString, 6.5, new Color( 255, 255, 255 ) );
-  Solute.COFFEE = new Solute( coffeeString, 5.0, new Color( 164, 99, 7 ) );
-  Solute.BEER = new Solute( beerString, 4.5, new Color( 255, 200, 0 ) );
-  Solute.LIME_SODA = new Solute( sodaString, 2.5, new Color( 204, 255, 102 ) );
-  Solute.VOMIT = new Solute( vomitString, 2, new Color( 255, 171, 120 ) );
-  Solute.BATTERY_ACID = new Solute( batteryAcidString, 1, new Color( 255, 255, 0 ) );
-  Solute.CUSTOM = new Solute( customString, 7, new Color( 251, 236, 150 ) );
+  Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, new Color( 255, 255, 0 ), new Color( 255, 255, 230 ) );
+  Solute.HAND_SOAP = new Solute( handSoapString, 10, new Color( 204, 0, 204 ), new Color( 251, 239, 252 ) );
+  Solute.BLOOD = new Solute( bloodString, 7.4, new Color( 185, 12, 0 ), new Color( 250, 237, 236 ) );
+  Solute.SPIT = new Solute( spitString, 7.4, new Color( 204, 204, 198 ), new Color( 245, 245, 245 ) );
+  Solute.MILK = new Solute( milkString, 6.5, new Color( 255, 255, 255 ), new Color( 241, 247, 249) );
+  Solute.COFFEE = new Solute( coffeeString, 5.0, new Color( 164, 99, 7 ), new Color( 247, 244, 235 ) );
+  Solute.BEER = new Solute( beerString, 4.5, new Color( 255, 200, 0 ), new Color( 255, 251, 232 ) );
+  Solute.LIME_SODA = new Solute( sodaString, 2.5, new Color( 204, 255, 102 ), new Color( 250, 255, 238 ) );
+  Solute.VOMIT = new Solute( vomitString, 2, new Color( 255, 171, 120 ), new Color( 255, 245, 238 ) );
+  Solute.BATTERY_ACID = new Solute( batteryAcidString, 1, new Color( 255, 255, 0 ), new Color( 255, 255, 230 ) );
+  Solute.CUSTOM = new Solute( customString, 7, new Color( 251, 236, 150 ), new Color( 251, 236, 150 ) );
 
   return Solute;
 } );

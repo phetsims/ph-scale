@@ -11,7 +11,6 @@ define( function( require ) {
 
   // imports
   var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Util = require( 'DOT/Util' );
@@ -25,27 +24,18 @@ define( function( require ) {
   function SolutionNode( solvent, solution, beaker, mvt ) {
 
     var thisNode = this;
-    Node.call( thisNode );
+    Rectangle.call( thisNode, 0, 0, 1, 1, { lineWidth: 1 } ); // size and color set dynamically
 
     thisNode.solution = solution;
     thisNode.beaker = beaker;
-
-    /*
-     * Solution color uses alpha modulation to represent concentration.
-     * Overlay this on top of the solvent color.
-     */
-    var solventNode = new Rectangle( 0, 0, 1, 1, { fill: solvent.color } ); // size set dynamically
-    var solutionNode = new Rectangle( 0, 0, 1, 1, { lineWidth: 1 } );  // size and fill set dynamically
-    thisNode.addChild( solventNode );
-    thisNode.addChild( solutionNode );
 
     /*
      * Updates the color of the solution, accounting for saturation.
      * @param {Color} color
      */
     solution.colorProperty.link( function( color ) {
-      solutionNode.fill = color;
-      solutionNode.stroke = color.darkerColor();
+      thisNode.fill = color;
+      thisNode.stroke = color.darkerColor();
     } );
 
     /*
@@ -68,12 +58,11 @@ define( function( require ) {
       var viewHeight = mvt.modelToViewDeltaY( solutionHeight );
 
       // shape
-      solventNode.setRect( viewLocation.x - (viewWidth / 2), viewLocation.y - viewHeight, viewWidth, viewHeight );
-      solutionNode.setRect( viewLocation.x - (viewWidth / 2), viewLocation.y - viewHeight, viewWidth, viewHeight );
+      thisNode.setRect( viewLocation.x - (viewWidth / 2), viewLocation.y - viewHeight, viewWidth, viewHeight );
     } );
   }
 
-  inherit( Node, SolutionNode );
+  inherit( Rectangle, SolutionNode );
 
   return SolutionNode;
 

@@ -57,7 +57,7 @@ define( function( require ) {
     thisSolution.colorProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.solventVolumeProperty ],
       function() {
         return Solution.computeColor(
-          thisSolution.soluteProperty.get().color, thisSolution.soluteVolumeProperty.get(),
+          thisSolution.soluteProperty.get().color, thisSolution.soluteProperty.get().dilutedColor, thisSolution.soluteVolumeProperty.get(),
           thisSolution.solvent.color, thisSolution.solventVolumeProperty.get() )
       }
     );
@@ -198,21 +198,21 @@ define( function( require ) {
 
   /**
    * Computes the color of a solution.
-   * @param soluteColor
-   * @param soluteVolume
-   * @param solventColor
-   * @param solventVolume
-   * @returns {color} solventColor if the solution's volume is zero
+   * @param {Color} soluteColor
+   * @param {Color} soluteDilutedColor
+   * @param {Number} soluteVolume
+   * @param {Color} solventColor
+   * @param {Number} solventVolume
+   * @returns {Color} solventColor if the solution's volume is zero
    */
-  Solution.computeColor = function( soluteColor, soluteVolume, solventColor, solventVolume ) {
+  Solution.computeColor = function( soluteColor, soluteDilutedColor, soluteVolume, solventColor, solventVolume ) {
     var color;
     var solutionVolume = soluteVolume + solventVolume;
     if ( solutionVolume === 0 || soluteVolume === 0 ) {
       color = solventColor;
     }
     else {
-      // dilute solute with solvent
-      color = soluteColor.withAlpha( soluteColor.a * ( soluteVolume / solutionVolume ) );
+      color = Color.interpolateRBGA( soluteDilutedColor, soluteColor, soluteVolume / solutionVolume );
     }
     return color;
   };

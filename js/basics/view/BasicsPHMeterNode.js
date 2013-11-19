@@ -60,11 +60,10 @@ define( function( require ) {
   /**
    * The body of the meter includes the Acidic-Basic vertical scale,
    * and the indicator that points to a value on the scale.
-   * @param {PHMeter} meter
-   * @param {ModelViewTransform2} mvt
+   * @param {Property<Number>} pHProperty
    * @constructor
    */
-  function BodyNode( meter, mvt ) {
+  function PHScaleNode( pHProperty ) {
 
     var thisNode = this;
     Node.call( this );
@@ -127,30 +126,25 @@ define( function( require ) {
     thisNode.addChild( neutralLabelNode );
 
     // indicator
-    var indicatorNode = new IndicatorNode( meter );
+    var indicatorNode = new IndicatorNode( pHProperty );
     indicatorNode.right = backgroundNode.right;
     thisNode.addChild( indicatorNode );
 
-    // location of the scale
-    meter.body.locationProperty.link( function( location ) {
-      thisNode.translation = mvt.modelToViewPosition( location );
-    } );
-
     // move the indicator to point to the proper value on the scale
-    meter.valueProperty.link( function( value ) {
+    pHProperty.link( function( value ) {
       indicatorNode.centerY = Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
-    });
+    } );
   }
 
-  inherit( Node, BodyNode );
+  inherit( Node, PHScaleNode );
 
   /**
    * pH indicator that slides vertically along scale.
    * When there is no pH value, it points to 'neutral' but does not display a value.
-   * @param {PHMeter} meter
+   * @param {Property<Number>} pHProperty
    * @constructor
    */
-  function IndicatorNode( meter ) {
+  function IndicatorNode( pHProperty ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -175,7 +169,7 @@ define( function( require ) {
     var pHValueNode = new Text( '0', { font: new PhetFont( 28 ) } );
     thisNode.addChild( pHValueNode );
 
-    meter.valueProperty.link( function( value ) {
+    pHProperty.link( function( value ) {
       // value
       pHValueNode.text = value ? StringUtils.format( pattern_pH_0value, ( Util.toFixed( value, PHScaleConstants.PH_METER_DECIMAL_PLACES ) ) ) : "";
       pHValueNode.right = arrowNode.left - 3;
@@ -310,13 +304,18 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
-    var bodyNode = new BodyNode( meter, mvt );
+    // pH scale, positioned at meter 'body' location
+    var scaleNode = new PHScaleNode( meter.valueProperty );
+    meter.body.locationProperty.link( function( location ) {
+      scaleNode.translation = mvt.modelToViewPosition( location );
+    } );
+
     var probeNode = new ProbeNode( meter.probe, mvt, solutionNode, dropperFluidNode, solventFluidNode, drainFluidNode );
-    var wireNode = new WireNode( meter.body, meter.probe, bodyNode, probeNode );
+    var wireNode = new WireNode( meter.body, meter.probe, scaleNode, probeNode );
 
     // rendering order
     thisNode.addChild( wireNode );
-    thisNode.addChild( bodyNode );
+    thisNode.addChild( scaleNode );
     thisNode.addChild( probeNode );
 
     var updateValue = function() {

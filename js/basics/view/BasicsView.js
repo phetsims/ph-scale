@@ -9,6 +9,7 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var BasicPHMeterNode = require( 'PH_SCALE/basics/view/BasicPHMeterNode' );
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
@@ -18,7 +19,6 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
-  var PHMeterNode = require( 'PH_SCALE/basics/view/PHMeterNode' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
@@ -61,7 +61,7 @@ define( function( require ) {
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
     // pH meter
-    var pHMeterNode = new PHMeterNode(  model.pHMeter, model.solution, model.solvent, model.dropper,
+    var pHMeterNode = new BasicPHMeterNode(  model.pHMeter, model.solution, model.solvent, model.dropper,
           solutionNode, dropperFluidNode, solventFluidNode, drainFluidNode, mvt );
 
     // solutes combo box

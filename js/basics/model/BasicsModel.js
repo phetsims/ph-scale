@@ -15,17 +15,12 @@ define( function( require ) {
   var Dropper = require( 'PH_SCALE/common/model/Dropper' );
   var Faucet = require( 'PH_SCALE/common/model/Faucet' );
   var PHMeter = require( 'PH_SCALE/common/model/PHMeter' );
+  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Solute = require( 'PH_SCALE/common/model/Solute' );
   var Solution = require( 'PH_SCALE/common/model/Solution' );
   var Solvent = require( 'PH_SCALE/common/model/Solvent' );
   var Vector2 = require( 'DOT/Vector2' );
-
-  // constants
-  var BEAKER_VOLUME = 1.2; // L
-  var MAX_SOLVENT_FLOW_RATE = 0.25; // L/sec
-  var MAX_DRAIN_FLOW_RATE = MAX_SOLVENT_FLOW_RATE;
-  var DROPPER_FLOW_RATE = 0.05; // L/sec
 
   function BasicsModel() {
 
@@ -45,12 +40,12 @@ define( function( require ) {
        Solute.BATTERY_ACID
     ];
 
-    thisModel.beaker = new Beaker( new Vector2( 330, 600 ), new Dimension2( 400, 325 ), BEAKER_VOLUME );
+    thisModel.beaker = new Beaker( new Vector2( 330, 600 ), new Dimension2( 400, 325 ), PHScaleConstants.BEAKER_VOLUME );
     thisModel.solvent = Solvent.WATER;
-    thisModel.dropper = new Dropper( thisModel.solutes[0], new Vector2( thisModel.beaker.location.x + 40, 260 ), new Bounds2( 250, 260, 460, 260 ), DROPPER_FLOW_RATE, true );
+    thisModel.dropper = new Dropper( thisModel.solutes[0], new Vector2( thisModel.beaker.location.x + 40, 260 ), new Bounds2( 250, 260, 460, 260 ), PHScaleConstants.DROPPER_FLOW_RATE, true );
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.solvent, 0, thisModel.beaker.volume );
-    thisModel.solventFaucet = new Faucet( new Vector2( 185, 190 ), -400, 45, MAX_SOLVENT_FLOW_RATE ); //TODO constants are wrong
-    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 100, 652 ), thisModel.beaker.right, 45, MAX_DRAIN_FLOW_RATE ); //TODO constants are wrong
+    thisModel.solventFaucet = new Faucet( new Vector2( 185, 190 ), -400, PHScaleConstants.SPOUT_WIDTH, PHScaleConstants.MAX_SOLVENT_FLOW_RATE );
+    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 100, 652 ), thisModel.beaker.right, PHScaleConstants.SPOUT_WIDTH, PHScaleConstants.MAX_DRAIN_FLOW_RATE );
     thisModel.pHMeter = new PHMeter( new Vector2( 810, 20 ), new Bounds2( 10, 150, 835, 680 ), new Vector2( 605, 405 ), new Bounds2( 30, 150, 966, 680 ) );
 
     // Enable faucets and dropper based on amount of solution in the beaker.

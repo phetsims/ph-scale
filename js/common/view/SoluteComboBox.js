@@ -60,7 +60,7 @@ define( function( require ) {
 
     // label
     var textNode = new Text(
-      StringUtils.format( pattern_0name_1pH, solute.name, Util.toFixed( solute.pHProperty.get(), PHScaleConstants.PH_COMBOBOX_DECIMAL_PLACES ) ),
+      StringUtils.format( pattern_0name_1pH, solute.name, Util.toFixed( solute.pHProperty.get(), PHScaleConstants.PH_COMBO_BOX_DECIMAL_PLACES ) ),
       { font: new PhetFont( 22 ) } );
 
     node.addChild( colorNode );

@@ -40,17 +40,17 @@ define( function( require ) {
     this.pHProperty = new Property( pH );
   }
 
-  Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, new Color( 255, 255, 0, 150 / 255 ) );
-  Solute.HAND_SOAP = new Solute( handSoapString, 10, new Color( 204, 0, 204, 90 / 255 ) );
-  Solute.BLOOD = new Solute( bloodString, 7.4, new Color( 185, 12, 0, 150 / 255 ) );
-  Solute.SPIT = new Solute( spitString, 7.4, new Color( 204, 204, 198, 73 / 255 ) );
-  Solute.MILK = new Solute( milkString, 6.5, new Color( 255, 255, 255, 156 / 255 ) );
-  Solute.COFFEE = new Solute( coffeeString, 5.0, new Color( 164, 99, 7, 127 / 255 ) );
-  Solute.BEER = new Solute( beerString, 4.5, new Color( 255, 200, 0, 127 / 255 ) );
-  Solute.LIME_SODA = new Solute( sodaString, 2.5, new Color( 204, 255, 102, 162 / 255 ) );
-  Solute.VOMIT = new Solute( vomitString, 2, new Color( 255, 171, 120, 183 / 255 ) );
-  Solute.BATTERY_ACID = new Solute( batteryAcidString, 1, new Color( 255, 255, 0, 127 / 255 ) );
-  Solute.CUSTOM = new Solute( customString, 7, new Color( 255, 255, 156, 127 / 255 ) );
+  Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, new Color( 255, 255, 0 ) );
+  Solute.HAND_SOAP = new Solute( handSoapString, 10, new Color( 204, 0, 204 ) );
+  Solute.BLOOD = new Solute( bloodString, 7.4, new Color( 185, 12, 0 ) );
+  Solute.SPIT = new Solute( spitString, 7.4, new Color( 204, 204, 198 ) );
+  Solute.MILK = new Solute( milkString, 6.5, new Color( 255, 255, 255 ) );
+  Solute.COFFEE = new Solute( coffeeString, 5.0, new Color( 164, 99, 7 ) );
+  Solute.BEER = new Solute( beerString, 4.5, new Color( 255, 200, 0 ) );
+  Solute.LIME_SODA = new Solute( sodaString, 2.5, new Color( 204, 255, 102 ) );
+  Solute.VOMIT = new Solute( vomitString, 2, new Color( 255, 171, 120 ) );
+  Solute.BATTERY_ACID = new Solute( batteryAcidString, 1, new Color( 255, 255, 0 ) );
+  Solute.CUSTOM = new Solute( customString, 7, new Color( 251, 236, 150 ) );
 
   return inherit( Fluid, Solute );
 } );

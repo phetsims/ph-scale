@@ -1,3 +1,4 @@
+11/18/13 use opaque colors for solutes, so that color of solution matches dropper when solution is 100% solute
 11/18/13 optionally show pH value of solute on dropper ('pH 11.00')
 11/18/13 pH meter for 'Custom' screen
 11/18/13 rename PHMeterNode to BasicsPHMeterNode, since each screen has a different meter

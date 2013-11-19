@@ -60,8 +60,8 @@ define( function( require ) {
   /**
    * The body of the meter includes the Acidic-Basic vertical scale,
    * and the indicator that points to a value on the scale.
-   * @param meter
-   * @param mvt
+   * @param {PHMeter} meter
+   * @param {ModelViewTransform2} mvt
    * @constructor
    */
   function BodyNode( meter, mvt ) {

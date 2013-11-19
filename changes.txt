@@ -1,3 +1,4 @@
+11/19/13 make 'color' static for solvent and solute, it's dynamic only for solution
 11/19/13 add bulky background to pH value display in 'Basics'
 11/19/13 factor out PHValueNode, to be reused in all pH meters
 11/19/13 move pH indicator (arrow) to BasicPHMeterNode, since the indicator is different in all 3 meters

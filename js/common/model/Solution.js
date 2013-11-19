@@ -1,6 +1,5 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
-//TODO move some of this into a CustomSolution subtype
 /**
  * Solution model. Solvent is constant, solute is variable.
  *
@@ -12,7 +11,6 @@ define( function( require ) {
   // imports
   var Color = require( 'SCENERY/util/Color' );
   var DerivedProperty = require( 'AXON/DerivedProperty' );
-  var Fluid = require( 'PH_SCALE/common/model/Fluid' );
   var inherit = require( 'PHET_CORE/inherit' );
   var log10 = require( 'DOT/Util' ).log10;
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
@@ -34,7 +32,6 @@ define( function( require ) {
     assert && assert( soluteVolume + solventVolume <= maxVolume );
 
     var thisSolution = this;
-    Fluid.call( thisSolution, new Color( 255, 255, 255 ) ); // use a bogus initial color, it will be derived below
 
     thisSolution.soluteProperty = soluteProperty;
     thisSolution.soluteVolumeProperty = new Property( soluteVolume );
@@ -45,7 +42,7 @@ define( function( require ) {
     // volume
     thisSolution.volumeProperty = new DerivedProperty( [ thisSolution.soluteVolumeProperty, thisSolution.solventVolumeProperty ],
       function( soluteVolume, solventVolume ) {
-         return Math.min( maxVolume, soluteVolume + solventVolume );
+        return Math.min( maxVolume, soluteVolume + solventVolume );
       }
     );
 
@@ -56,25 +53,24 @@ define( function( require ) {
       }
     );
 
+    // color
+    thisSolution.colorProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.solventVolumeProperty ],
+      function() {
+        return Solution.computeColor(
+          thisSolution.soluteProperty.get().color, thisSolution.soluteVolumeProperty.get(),
+          thisSolution.solvent.color, thisSolution.solventVolumeProperty.get() )
+      }
+    );
+
     // solute
     thisSolution.soluteProperty.link( function() {
       var soluteVolume = thisSolution.volumeProperty.get();
       thisSolution.solventVolumeProperty.set( 0 );
       thisSolution.soluteVolumeProperty.set( 0 );
     } );
-
-    // color
-    var updateColor = function() {
-      thisSolution.colorProperty.set( Solution.computeColor(
-        thisSolution.soluteProperty.get().colorProperty.get(), thisSolution.soluteVolumeProperty.get(),
-        thisSolution.solvent.colorProperty.get(), thisSolution.solventVolumeProperty.get() ) );
-    };
-    thisSolution.soluteProperty.link( updateColor );
-    thisSolution.soluteVolumeProperty.link( updateColor );
-    thisSolution.solventVolumeProperty.link( updateColor );
   }
 
-  return inherit( Fluid, Solution, {
+  Solution.prototype = {
 
     // @override
     reset: function() {
@@ -173,73 +169,73 @@ define( function( require ) {
     getMolesH2O: function() {
       return Solution.computeMoles( this.getVolume(), this.getConcentrationH2O() );
     }
-  }, {
-    // statics
+  };
 
-    /**
-     * Computes the pH of a solution.
-     * Combining acids and bases is not supported by this model.
-     * @param solutePH
-     * @param soluteVolume
-     * @param solventPH
-     * @param solventVolume
-     * @returns {number|null} null if the solution's volume is zero
-     */
-    computePH: function( solutePH, soluteVolume, solventPH, solventVolume ) {
-      var pH;
-      if ( soluteVolume + solventVolume === 0 ) {
-        pH = null;
-      }
-      else if ( solutePH < 7 ) {
-        assert && assert( solventPH <= 7 ); // combining acids and bases is not supported
-        pH = -log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -solventPH ) * solventVolume ) / ( soluteVolume + solventVolume ) );
-      }
-      else {
-        assert && assert( solventPH >= 7 ); // combining acids and bases is not supported
-        pH = 14 + log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, solventPH - 14 ) * solventVolume ) / ( soluteVolume + solventVolume ) );
-      }
-      return pH; //TODO constrain to PHScaleConstants.PH_DECIMAL_PLACES, as in Java sim?
-    },
-
-    /**
-     * Computes the color of a solution.
-     * @param soluteColor
-     * @param soluteVolume
-     * @param solventColor
-     * @param solventVolume
-     * @returns {color} solventColor if the solution's volume is zero
-     */
-    computeColor: function( soluteColor, soluteVolume, solventColor, solventVolume ) {
-      var color;
-      var solutionVolume = soluteVolume + solventVolume;
-      if ( solutionVolume === 0 || soluteVolume === 0 ) {
-        color = solventColor;
-      }
-      else {
-        // dilute solute with solvent
-        color = soluteColor.withAlpha( soluteColor.a * ( soluteVolume / solutionVolume ) );
-      }
-      return color;
-    },
-
-    /**
-     * Computes the number of molecules in solution.
-     * @param {number} concentration moles/L
-     * @param {number} volume L
-     * @returns {number} moles
-     */
-    computeMolecules: function( concentration, volume ) {
-      return concentration * AVOGADROS_NUMBER * volume;
-    },
-
-    /**
-     * Computes moles in solution.
-     * @param {number} volume L
-     * @param {number} concentration moles/L
-     * @returns {number} moles
-     */
-    computeMoles: function( volume, concentration ) {
-      return volume * concentration;
+  /**
+   * Computes the pH of a solution.
+   * Combining acids and bases is not supported by this model.
+   * @param solutePH
+   * @param soluteVolume
+   * @param solventPH
+   * @param solventVolume
+   * @returns {number|null} null if the solution's volume is zero
+   */
+  Solution.computePH = function( solutePH, soluteVolume, solventPH, solventVolume ) {
+    var pH;
+    if ( soluteVolume + solventVolume === 0 ) {
+      pH = null;
     }
-  } );
+    else if ( solutePH < 7 ) {
+      assert && assert( solventPH <= 7 ); // combining acids and bases is not supported
+      pH = -log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -solventPH ) * solventVolume ) / ( soluteVolume + solventVolume ) );
+    }
+    else {
+      assert && assert( solventPH >= 7 ); // combining acids and bases is not supported
+      pH = 14 + log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, solventPH - 14 ) * solventVolume ) / ( soluteVolume + solventVolume ) );
+    }
+    return pH; //TODO constrain to PHScaleConstants.PH_DECIMAL_PLACES, as in Java sim?
+  };
+
+  /**
+   * Computes the color of a solution.
+   * @param soluteColor
+   * @param soluteVolume
+   * @param solventColor
+   * @param solventVolume
+   * @returns {color} solventColor if the solution's volume is zero
+   */
+  Solution.computeColor = function( soluteColor, soluteVolume, solventColor, solventVolume ) {
+    var color;
+    var solutionVolume = soluteVolume + solventVolume;
+    if ( solutionVolume === 0 || soluteVolume === 0 ) {
+      color = solventColor;
+    }
+    else {
+      // dilute solute with solvent
+      color = soluteColor.withAlpha( soluteColor.a * ( soluteVolume / solutionVolume ) );
+    }
+    return color;
+  };
+
+  /**
+   * Computes the number of molecules in solution.
+   * @param {number} concentration moles/L
+   * @param {number} volume L
+   * @returns {number} moles
+   */
+  Solution.computeMolecules = function( concentration, volume ) {
+    return concentration * AVOGADROS_NUMBER * volume;
+  };
+
+  /**
+   * Computes moles in solution.
+   * @param {number} volume L
+   * @param {number} concentration moles/L
+   * @returns {number} moles
+   */
+  Solution.computeMoles = function( volume, concentration ) {
+    return volume * concentration;
+  };
+
+  return Solution;
 } );

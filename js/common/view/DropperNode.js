@@ -154,7 +154,7 @@ define( function( require ) {
       solute.pHProperty.link( pHObserver );
 
       // fluid color
-      fluidNode.fill = solute.colorProperty.get();
+      fluidNode.fill = solute.color;
     } );
 
     // touch area

@@ -9,8 +9,6 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var Fluid = require( 'PH_SCALE/common/model/Fluid' );
-  var inherit = require( 'PHET_CORE/inherit' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
 
@@ -21,10 +19,10 @@ define( function( require ) {
     assert && assert( PHScaleConstants.PH_RANGE.contains( pH ) ); // pH is in range
     this.name = name;
     this.pH = pH;
-    Fluid.call( this, color );
+    this.color = color;
   }
 
   Solvent.WATER = new Solvent( waterString, 7, PHScaleColors.H2O );
 
-  return inherit( Fluid, Solvent );
+  return Solvent;
 } );

@@ -10,9 +10,6 @@ define( function( require ) {
 
   // imports
   var Color = require( 'SCENERY/util/Color' );
-  var Fluid = require( 'PH_SCALE/common/model/Fluid' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
 
   // strings
@@ -35,9 +32,9 @@ define( function( require ) {
    * @constructor
    */
   function Solute( name, pH, color ) {
-    Fluid.call( this, color );
     this.name = name;
     this.pHProperty = new Property( pH );
+    this.color = color;
   }
 
   Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, new Color( 255, 255, 0 ) );
@@ -52,5 +49,5 @@ define( function( require ) {
   Solute.BATTERY_ACID = new Solute( batteryAcidString, 1, new Color( 255, 255, 0 ) );
   Solute.CUSTOM = new Solute( customString, 7, new Color( 251, 236, 150 ) );
 
-  return inherit( Fluid, Solute );
+  return Solute;
 } );

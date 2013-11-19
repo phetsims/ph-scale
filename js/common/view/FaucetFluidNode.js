@@ -15,7 +15,7 @@ define( function( require ) {
 
   /**
    * @param {Faucet} faucet
-   * @param {Fluid} fluid
+   * @param {Fluid} fluid anything that has a 'color' or 'colorProperty'
    * @param {Number} height in model coordinates
    * @param {ModelViewTransform2} mvt
    * @constructor
@@ -25,14 +25,18 @@ define( function( require ) {
     var thisNode = this;
     Rectangle.call( thisNode, 0, 0, 0, 0, { lineWidth: 1, pickable: false } );
 
-    /*
-     * Set the color of the fluid coming out of the spout.
-     * @param {Color} color
-     */
-    fluid.colorProperty.link( function( color ) {
-      thisNode.fill = color;
-      thisNode.stroke = color.darkerColor();
-    } );
+    // Set the color of the fluid coming out of the spout, dynamically if supported
+    if ( fluid.colorProperty ) {
+      // @param {Color} color
+      fluid.colorProperty.link( function( color ) {
+        thisNode.fill = color;
+        thisNode.stroke = color.darkerColor();
+      } );
+    }
+    else {
+      thisNode.fill = fluid.color;
+      thisNode.stroke = fluid.color.darkerColor();
+    }
 
     /*
      * Set the width of the shape to match the flow rate.

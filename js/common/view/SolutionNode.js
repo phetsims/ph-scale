@@ -34,7 +34,7 @@ define( function( require ) {
      * Solution color uses alpha modulation to represent concentration.
      * Overlay this on top of the solvent color.
      */
-    var solventNode = new Rectangle( 0, 0, 1, 1, { fill: solvent.colorProperty.get() } ); // size set dynamically
+    var solventNode = new Rectangle( 0, 0, 1, 1, { fill: solvent.color } ); // size set dynamically
     var solutionNode = new Rectangle( 0, 0, 1, 1, { lineWidth: 1 } );  // size and fill set dynamically
     thisNode.addChild( solventNode );
     thisNode.addChild( solutionNode );

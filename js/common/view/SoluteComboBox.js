@@ -55,7 +55,7 @@ define( function( require ) {
     var node = new Node();
 
     // color chip
-    var soluteColor = solute.colorProperty.get();
+    var soluteColor = solute.color;
     var colorNode = new Rectangle( 0, 0, 20, 20, { fill: soluteColor, stroke: soluteColor.darkerColor() } );
 
     // label

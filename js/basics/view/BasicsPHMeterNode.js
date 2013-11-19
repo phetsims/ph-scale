@@ -147,7 +147,7 @@ define( function( require ) {
   /**
    * pH indicator that slides vertically along scale.
    * When there is no pH value, it points to 'neutral' but does not display a value.
-   * @param meter
+   * @param {PHMeter} meter
    * @constructor
    */
   function IndicatorNode( meter ) {

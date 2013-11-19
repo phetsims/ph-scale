@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * pH scale used in meters, with sliding vertical indicator.
+ * pH scale used in meters.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -28,7 +28,6 @@ define( function( require ) {
   var acidicString = require( 'string!PH_SCALE/acidic' );
   var basicString = require( 'string!PH_SCALE/basic' );
   var neutralString = require( 'string!PH_SCALE/neutral' );
-  var pattern_pH_0value = require( 'string!PH_SCALE/pattern.ph.0value' );
 
   // constants
   var SCALE_LABEL_FONT = new PhetFont( 30 );
@@ -36,57 +35,8 @@ define( function( require ) {
   var TICK_FONT = new PhetFont( 22 );
   var NEUTRAL_TICK_LENGTH = 40;
   var TICK_LABEL_X_SPACING = 5;
-  var INDICATOR_ARROW_SIZE = new Dimension2( 21, 28 );
 
   /**
-   * pH indicator that slides vertically along scale.
-   * When there is no pH value, it points to 'neutral' but does not display a value.
-   * @param {Property<Number>} pHProperty
-   * @constructor
-   */
-  function IndicatorNode( pHProperty, scaleWidth ) {
-
-    var thisNode = this;
-    Node.call( thisNode );
-
-    var lineNode = new Line( 0, 0, scaleWidth, 0, {
-      stroke: 'black',
-      lineDash: [ 5, 5 ],
-      lineWidth: 2
-    } );
-    thisNode.addChild( lineNode );
-
-    var arrowNode = new Path( new Shape()
-      .moveTo( 0, 0 )
-      .lineTo( -INDICATOR_ARROW_SIZE.width, -INDICATOR_ARROW_SIZE.height / 2 )
-      .lineTo( -INDICATOR_ARROW_SIZE.width, INDICATOR_ARROW_SIZE.height / 2 )
-      .close(), {
-      fill: 'black'
-    } );
-    arrowNode.right = lineNode.left - 5;
-    thisNode.addChild( arrowNode );
-
-    var pHValueNode = new Text( '0', { font: new PhetFont( 28 ) } );
-    thisNode.addChild( pHValueNode );
-
-    pHProperty.link( function( value ) {
-      // value
-      pHValueNode.text = value ? StringUtils.format( pattern_pH_0value, ( Util.toFixed( value, PHScaleConstants.PH_METER_DECIMAL_PLACES ) ) ) : "";
-      pHValueNode.right = arrowNode.left - 3;
-      pHValueNode.centerY = arrowNode.centerY;
-      pHValueNode.centerY = arrowNode.centerY;
-      // gray out the arrow?
-      arrowNode.fill = ( value ? 'black' : 'rgba(0,0,0,0.3)' );
-      // hide the line?
-      lineNode.visible = ( value ? true : false );
-    } );
-  }
-
-  inherit( Node, IndicatorNode );
-
-  /**
-   * The body of the meter includes the Acidic-Basic vertical scale,
-   * and the indicator that points to a value on the scale.
    * @param {Property<Number>} pHProperty
    * @param {Dimension2} size
    * @constructor
@@ -152,16 +102,6 @@ define( function( require ) {
     neutralLabelNode.left = neutralLineNode.right + TICK_LABEL_X_SPACING;
     neutralLabelNode.centerY = neutralLineNode.centerY;
     thisNode.addChild( neutralLabelNode );
-
-    // indicator
-    var indicatorNode = new IndicatorNode( pHProperty, size.width );
-    indicatorNode.right = backgroundNode.right;
-    thisNode.addChild( indicatorNode );
-
-    // move the indicator to point to the proper value on the scale
-    pHProperty.link( function( value ) {
-      indicatorNode.centerY = Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, size.height, 0, value || 7 );
-    } );
   }
 
   return inherit( Node, PHScaleNode );

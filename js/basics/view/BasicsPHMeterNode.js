@@ -23,14 +23,22 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Line = require( 'SCENERY/nodes/Line' );
   var MeterBodyNode = require( 'SCENERY_PHET/MeterBodyNode' );
   var MovableDragHandler = require( 'PH_SCALE/common/view/MovableDragHandler' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PHScaleNode = require( 'PH_SCALE/common/view/PHScaleNode' );
   var Shape = require( 'KITE/Shape' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
+
+  // strings
+  var pattern_pH_0value = require( 'string!PH_SCALE/pattern.ph.0value' );
 
   // images
   var probeImage = require( 'image!PH_SCALE/pH-meter-probe.png' );
@@ -142,6 +150,53 @@ define( function( require ) {
   inherit( Path, WireNode );
 
   /**
+   * pH indicator that slides vertically along scale.
+   * When there is no pH value, it points to 'neutral' but does not display a value.
+   * @param {Property<Number>} pHProperty
+   * @constructor
+   */
+  function IndicatorNode( pHProperty, scaleWidth ) {
+
+    var thisNode = this;
+    Node.call( thisNode );
+
+    var lineNode = new Line( 0, 0, scaleWidth, 0, {
+      stroke: 'black',
+      lineDash: [ 5, 5 ],
+      lineWidth: 2
+    } );
+    thisNode.addChild( lineNode );
+
+    var arrowSize = new Dimension2( 21, 28 );
+    var arrowNode = new Path( new Shape()
+      .moveTo( 0, 0 )
+      .lineTo( -arrowSize.width, -arrowSize.height / 2 )
+      .lineTo( -arrowSize.width, arrowSize.height / 2 )
+      .close(), {
+      fill: 'black'
+    } );
+    arrowNode.right = lineNode.left - 5;
+    thisNode.addChild( arrowNode );
+
+    var pHValueNode = new Text( '0', { font: new PhetFont( 28 ) } );
+    thisNode.addChild( pHValueNode );
+
+    pHProperty.link( function( value ) {
+      // value
+      pHValueNode.text = value ? StringUtils.format( pattern_pH_0value, ( Util.toFixed( value, PHScaleConstants.PH_METER_DECIMAL_PLACES ) ) ) : "";
+      pHValueNode.right = arrowNode.left - 3;
+      pHValueNode.centerY = arrowNode.centerY;
+      pHValueNode.centerY = arrowNode.centerY;
+      // gray out the arrow?
+      arrowNode.fill = ( value ? 'black' : 'rgba(0,0,0,0.3)' );
+      // hide the line?
+      lineNode.visible = ( value ? true : false );
+    } );
+  }
+
+  inherit( Node, IndicatorNode );
+
+  /**
    * @param {PHMeter} meter
    * @param {Solution} solution
    * @param {Solvent} solvent
@@ -162,6 +217,13 @@ define( function( require ) {
     var scaleNode = new PHScaleNode( meter.valueProperty, SCALE_SIZE );
     meter.body.locationProperty.link( function( location ) {
       scaleNode.translation = mvt.modelToViewPosition( location );
+    } );
+
+    // indicator that slides vertically along scale
+    var indicatorNode = new IndicatorNode( meter.valueProperty, SCALE_SIZE.width );
+    scaleNode.addChild( indicatorNode );
+    meter.valueProperty.link( function( value ) {
+      indicatorNode.centerY = Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
     } );
 
     var probeNode = new ProbeNode( meter.probe, mvt, solutionNode, dropperFluidNode, solventFluidNode, drainFluidNode );

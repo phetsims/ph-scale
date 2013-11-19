@@ -12,6 +12,7 @@ define( function( require ) {
   var CheckBox = require( 'SUN/CheckBox' );
   var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Line = require( 'SCENERY/nodes/Line' );
   var Panel = require( 'SUN/Panel' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -37,8 +38,10 @@ define( function( require ) {
     var ratioLabel = new HTMLText( ratioString, { font: FONT } );
     var ratioCheckBox = new CheckBox( ratioLabel, ratioVisibleProperty );
 
+    var separator = new Line( 0, 0, Math.max( moleculeCountCheckBox.width, ratioCheckBox.width ), 0, { stroke: 'gray' } );
+
     var content = new VBox( {
-      children: [ moleculeCountCheckBox, ratioCheckBox ],
+      children: [ moleculeCountCheckBox, separator, ratioCheckBox ],
       align: 'left',
       spacing: 10
     } );

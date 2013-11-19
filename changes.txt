@@ -1,3 +1,4 @@
+11/18/13 add separator in beaker control panel
 11/18/13 extract PHScaleNode, to be used in both 'Basics' and 'Solutions' pH meters
 11/18/13 prepare 'pH scale' portion of Basics pH meter for reuse in 'Solutions' screen
 11/18/13 adjust drag bounds of dropper

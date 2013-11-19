@@ -15,21 +15,21 @@ DESIGN
 - The wire connecting the pH probe to pH readout interferes with the drain faucet. I tried a few different schemes
   for wire behavior (control points), what's shown in this version was the lesser of evils. Live with it? Other ideas?
 - pH meter wire interferes with drain faucet
-- 'Water' doesn't look very good on faucet.
+- 'Water' doesn't look very good on faucet, should we put a translucent background behind it?
 - Why are +/- zoom buttons on opposite ends of scale? Is this a workaround to keep the indicators from covering the controls?
-- What are we going to do about 'ratio' representation? In addition to the color issue, there's no way we're going to draw 3000 dots interactively in JavaScript.
 - I can't use sun.AccordionBox, is there any good reason why accordion boxes need to be different in this sim?
 - No 'Neutral' label on '7' tick of pH meter in 'Solutions' screen?
 - Tick labels on beaker: 1 & 1/2, or 1.0 and 0.5 ?
 - Show '-' for 'no value' in pH meter, ala 'Concentration' and BLL sims?
 - How many zoom levels for graph? For linear vs log? For concentration vs quantity?
 - Is pH meter draggable in 'Custom' screen?
-- Why are indicators points at positions on graph when they have no values?
-- First experience with indicators is in 'Solutions' screen, where not interactive. Is handle enough of a cue to indicate they are interactive in 'Custom'?
-- Does center bar in graph really need to be so different between 'Solutions' and 'Custom' screens? (shape, shading, numbering,...)
+- Why are indicators pointing at positions on graph when they have no values? Will this be confusing?
+- Does center bar in graph need to be so different between 'Solutions' and 'Custom' screens? (shape, shading, numbering,...)
 - Why does range of 'Custom' graph go below zero?
 - Hide indicator on 'Solutions' pH meter when no value?
 - Should expand/collapse button on 'Solutions' pH meter hide the pH value, too?
+- First experience with indicators is in 'Solutions' screen, where not interactive. Is handle enough of a cue to indicate they are interactive in 'Custom'?
+- What are we going to do about 'ratio' representation? In addition to the color issue, there's no way we're going to draw 3000 dots interactively in JavaScript.
 
 HIGH
 - pH meter for 'Solutions' screen

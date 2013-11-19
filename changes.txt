@@ -1,3 +1,4 @@
+11/19/13 when changing solute, drop solution volume to zero
 11/18/13 add separator in beaker control panel
 11/18/13 extract PHScaleNode, to be used in both 'Basics' and 'Solutions' pH meters
 11/18/13 prepare 'pH scale' portion of Basics pH meter for reuse in 'Solutions' screen

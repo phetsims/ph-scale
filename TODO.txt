@@ -1,35 +1,23 @@
 TODO list for ph-scale (HTML5)
 
 DESIGN
-- When changing solute, setting the volume to 100% solute has potential problems. The worst case is where we have 100% water,
-  select a solute, then suddenly have 100% solute, that seems odd.  And cases where we have a diluted a solute are also problematic,
-  we don't keep the dilution ratio, so we can't switch between solutes to compare dilutions.  And in general, I don't think it's
-  at all obvious (unit you use the pH meter) what is happening when you switch solutes with a non-zero volume in the beaker.
-- The only way to remove solute from the solution is to empty the beaker. Do we need a 'Remove Solute' button?
-  If so, do we need to label the combo box as "Solute"?
-- The 'volume' and 'pH' values are both important to the learning goals of this sim. Why is the volume indicator
-  so tiny in the design doc? Why is the pH indicator so heavy-handed? In this version of the sim, I tried using a
-  similar indicator for both values. Let's discuss.
-- When the pH probe is not in a solution, the pH indicator jumps to '7' and grays out. I find this to be distracting,
-  and I think it's also confusing. Perhaps it would be better if the indicator were simply hidden when the probe is not in solution?
-- The wire connecting the pH probe to pH readout interferes with the drain faucet. I tried a few different schemes
-  for wire behavior (control points), what's shown in this version was the lesser of evils. Live with it? Other ideas?
-- pH meter wire interferes with drain faucet
-- 'Water' doesn't look very good on faucet, should we put a translucent background behind it?
-- Why are +/- zoom buttons on opposite ends of scale? Is this a workaround to keep the indicators from covering the controls?
-- I can't use sun.AccordionBox, is there any good reason why accordion boxes need to be different in this sim?
-- No 'Neutral' label on '7' tick of pH meter in 'Solutions' screen?
-- Tick labels on beaker: 1 & 1/2, or 1.0 and 0.5 ?
-- Show '-' for 'no value' in pH meter, ala 'Concentration' and BLL sims?
-- How many zoom levels for graph? For linear vs log? For concentration vs quantity?
-- Is pH meter draggable in 'Custom' screen?
-- Why are indicators pointing at positions on graph when they have no values? Will this be confusing?
-- Does center bar in graph need to be so different between 'Solutions' and 'Custom' screens? (shape, shading, numbering,...)
-- Why does range of 'Custom' graph go below zero?
-- Hide indicator on 'Solutions' pH meter when no value?
 - Should expand/collapse button on 'Solutions' pH meter hide the pH value, too?
-- First experience with indicators is in 'Solutions' screen, where not interactive. Is handle enough of a cue to indicate they are interactive in 'Custom'?
 - What are we going to do about 'ratio' representation? In addition to the color issue, there's no way we're going to draw 3000 dots interactively in JavaScript.
+
+11/19/13 DESIGN DECISIONS
+* - all: use color range scheme (like in Concentration)
+* - all: change 'Drain Cleaner' color to toilet-bowl-cleaner blue
+* - Basics: put 'body' around pH value on meter
+* - Basics: gray out meter but leave it at most recent pH value
+- create my own accordion box for this sim
+- Solutions: no label on '7' in pH meter
+- Custom: use same zoom levels as Java sim for Linear scale
+- Will need to implement 2 totally separate graphs for log and linear. No shading on linear, and linear is wider.
+- make linear scale go below zero so that we can fit '0' tick on the scale
+- Hide indicator on 'Solutions' pH meter when no value
+- drop shadow on interactive indicators on graph
+- put both zoom buttons at top of scale
+- when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 
 HIGH
 - pH meter for 'Solutions' screen

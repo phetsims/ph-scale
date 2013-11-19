@@ -60,7 +60,7 @@ define( function( require ) {
     thisSolution.soluteProperty.link( function() {
       var soluteVolume = thisSolution.volumeProperty.get();
       thisSolution.solventVolumeProperty.set( 0 );
-      thisSolution.soluteVolumeProperty.set( soluteVolume );
+      thisSolution.soluteVolumeProperty.set( 0 );
     } );
 
     // color

@@ -1,3 +1,4 @@
+11/18/13 adjust drag bounds of dropper
 11/18/13 light gray background for control panel
 11/18/13 add 'Molecule count' and 'ratio' check boxes (no view components yet)
 11/18/13 add options to various model elements, simplify usage of constructors, fix 'Reset All'

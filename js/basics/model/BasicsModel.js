@@ -42,7 +42,7 @@ define( function( require ) {
 
     thisModel.solvent = Solvent.WATER;
     thisModel.beaker = new Beaker( new Vector2( 330, 600 ), new Dimension2( 400, 325 ) );
-    thisModel.dropper = new Dropper( thisModel.solutes[0], new Vector2( thisModel.beaker.location.x + 40, 260 ), new Bounds2( 250, 260, 460, 260 ) );
+    thisModel.dropper = new Dropper( thisModel.solutes[0], new Vector2( thisModel.beaker.location.x + 40, 260 ), new Bounds2( 250, 260, 510, 260 ) );
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.solvent, 0, thisModel.beaker.volume );
     thisModel.solventFaucet = new Faucet( new Vector2( 185, 190 ), -400,
       { enabled: thisModel.solution.volumeProperty.get() < thisModel.beaker.volume } );

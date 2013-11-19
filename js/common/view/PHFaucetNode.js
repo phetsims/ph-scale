@@ -18,7 +18,7 @@ define( function( require ) {
   /**
    * @param {Faucet} faucet
    * @param {ModelViewTransform2} mvt
-   * @param {string} label optional label
+   * @param {Node} decoration
    * @constructor
    */
   function PHFaucetNode( faucet, mvt, decoration ) {

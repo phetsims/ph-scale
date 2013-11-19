@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * pH meter, with probe.
+ * pH meter for the 'Basics' screen.
  * <p/>
  * The probe registers the concentration of all possible fluids that it may contact, including:
  * <ul>

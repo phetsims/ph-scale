@@ -29,7 +29,7 @@ DESIGN
 - Does center bar in graph really need to be so different between 'Solutions' and 'Custom' screens? (shape, shading, numbering,...)
 - Why does range of 'Custom' graph go below zero?
 - Hide indicator on 'Solutions' pH meter when no value?
-- Should expand/collapse button in for 'Solutions' pH meter hide the pH value, too?
+- Should expand/collapse button on 'Solutions' pH meter hide the pH value, too?
 
 HIGH
 - pH meter for 'Solutions' screen

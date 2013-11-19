@@ -74,7 +74,6 @@ define( function( require ) {
 
     // @override
     reset: function() {
-      Fluid.prototype.reset.call( this );
       this.soluteProperty.reset();
       this.soluteVolumeProperty.reset();
       this.solventVolumeProperty.reset();

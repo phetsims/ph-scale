@@ -1,3 +1,5 @@
+11/19/13 add bulky background to pH value display in 'Basics'
+11/19/13 factor out PHValueNode, to be reused in all pH meters
 11/19/13 move pH indicator (arrow) to BasicPHMeterNode, since the indicator is different in all 3 meters
 11/19/13 when changing solute, drop solution volume to zero
 11/18/13 add separator in beaker control panel

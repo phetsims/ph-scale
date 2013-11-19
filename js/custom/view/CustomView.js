@@ -58,7 +58,7 @@ define( function( require ) {
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
     // pH meter
-    var pHMeterNode = new CustomPHMeterNode( model.pHMeter, model.solution, mvt );
+    var pHMeterNode = new CustomPHMeterNode( model.pHMeter, mvt );
 
     // 'molecule count' representation
     var moleculeCountVisibleProperty = new Property( false );

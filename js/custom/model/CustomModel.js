@@ -40,6 +40,10 @@ define( function( require ) {
       thisModel.drainFaucet.enabledProperty.set( volume > 0 );
       thisModel.dropper.enabledProperty.set( !thisModel.dropper.emptyProperty.get() && ( volume < thisModel.beaker.volume ) );
     } );
+
+    thisModel.solution.pHProperty.link( function( pH ) {
+      thisModel.pHMeter.valueProperty.set( pH );
+    } );
   }
 
   CustomModel.prototype = {

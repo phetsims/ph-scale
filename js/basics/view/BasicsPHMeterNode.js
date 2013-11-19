@@ -31,6 +31,8 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PHScaleNode = require( 'PH_SCALE/common/view/PHScaleNode' );
+  var PHValueNode = require( 'PH_SCALE/common/view/PHValueNode' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -38,13 +40,15 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
 
   // strings
-  var pattern_pH_0value = require( 'string!PH_SCALE/pattern.ph.0value' );
+  var pHString = require( 'string!PH_SCALE/pH' );
 
   // images
   var probeImage = require( 'image!PH_SCALE/pH-meter-probe.png' );
 
   // constants
   var SCALE_SIZE = new Dimension2( 75, 450 );
+  var INDICATOR_ENABLED_COLOR = 'rgb(114,9,56)';
+  var INDICATOR_DISABLED_COLOR = 'rgba(0,0,0,0.3)';
 
   /**
    * Meter probe, origin at center of crosshairs.
@@ -160,36 +164,42 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
+    // dashed line that extends across the scale
     var lineNode = new Line( 0, 0, scaleWidth, 0, {
       stroke: 'black',
       lineDash: [ 5, 5 ],
       lineWidth: 2
     } );
-    thisNode.addChild( lineNode );
 
+    // bulky background behind the value
+    var valueNode = new PHValueNode( pHProperty );
+
+    // arrow head pointing at the scale
     var arrowSize = new Dimension2( 21, 28 );
     var arrowNode = new Path( new Shape()
       .moveTo( 0, 0 )
       .lineTo( -arrowSize.width, -arrowSize.height / 2 )
       .lineTo( -arrowSize.width, arrowSize.height / 2 )
-      .close(), {
-      fill: 'black'
-    } );
-    arrowNode.right = lineNode.left - 5;
-    thisNode.addChild( arrowNode );
+      .close() );
 
-    var pHValueNode = new Text( '0', { font: new PhetFont( 28 ) } );
-    thisNode.addChild( pHValueNode );
+    // rendering order
+    thisNode.addChild( arrowNode );
+    thisNode.addChild( valueNode );
+    thisNode.addChild( lineNode );
+
+    // layout, origin at arrow tip
+    lineNode.left = 0;
+    lineNode.centerY = 0;
+    arrowNode.right = lineNode.left;
+    arrowNode.centerY = lineNode.centerY;
+    valueNode.right = arrowNode.left + 1;
+    valueNode.centerY = arrowNode.centerY;
 
     pHProperty.link( function( value ) {
-      // value
-      pHValueNode.text = value ? StringUtils.format( pattern_pH_0value, ( Util.toFixed( value, PHScaleConstants.PH_METER_DECIMAL_PLACES ) ) ) : "";
-      pHValueNode.right = arrowNode.left - 3;
-      pHValueNode.centerY = arrowNode.centerY;
-      pHValueNode.centerY = arrowNode.centerY;
-      // gray out the arrow?
-      arrowNode.fill = ( value ? 'black' : 'rgba(0,0,0,0.3)' );
-      // hide the line?
+      // gray out the background?
+      arrowNode.fill = ( value ? 'black' : INDICATOR_DISABLED_COLOR );
+      valueNode.setBackgroundFill(  ( value ? INDICATOR_ENABLED_COLOR : INDICATOR_DISABLED_COLOR ) );
+      // hide the line and arrow?
       lineNode.visible = ( value ? true : false );
     } );
   }

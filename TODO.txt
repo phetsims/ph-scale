@@ -23,6 +23,7 @@ DESIGN
 - Tick labels on beaker: 1 & 1/2, or 1.0 and 0.5 ?
 - Show '-' for 'no value' in pH meter, ala 'Concentration' and BLL sims?
 - How many zoom levels for graph? For linear vs log? For concentration vs quantity?
+- Is pH meter draggable in 'Custom' screen?
 
 HIGH
 - pH meter for 'Solutions' screen

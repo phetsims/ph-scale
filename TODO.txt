@@ -15,6 +15,9 @@ DESIGN
 - The wire connecting the pH probe to pH readout interferes with the drain faucet. I tried a few different schemes
   for wire behavior (control points), what's shown in this version was the lesser of evils. Live with it? Other ideas?
 - pH meter wire interferes with drain faucet
+- Why are +/- zoom buttons on opposite ends of scale? Is this a workaround to keep the indicators from covering the controls?
+- What are we going to do about 'ratio' representation? In addition to the color issue, there's no way we're going to draw 3000 dots interactively in JavaScript.
+- I can't use sun.AccordionBox, is there any good reason why accordion boxes need to be different in this sim?
 
 HIGH
 - pH meter for 'Solutions' screen

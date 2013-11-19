@@ -1,3 +1,4 @@
+11/18/13 optionally show pH value of solute on dropper ('pH 11.00')
 11/18/13 pH meter for 'Custom' screen
 11/18/13 rename PHMeterNode to BasicsPHMeterNode, since each screen has a different meter
 11/18/13 start fleshing out model and view for 'Custom' screen

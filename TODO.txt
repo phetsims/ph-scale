@@ -18,7 +18,6 @@ DESIGN
 
 HIGH
 - pH meter for 'Solutions' screen
-- show pH value of custom solute on dropper ('pH 11.00')
 - read-only graph for 'Solutions' screen
 - interactive graph for 'Custom' screen
 - 'Molecule count' feature

@@ -46,7 +46,7 @@ define( function( require ) {
 
     // dropper
     var dropperScale = 0.85;
-    var dropperNode = new DropperNode( model.dropper, mvt );
+    var dropperNode = new DropperNode( model.dropper, mvt, { showPH: true } );
     dropperNode.setScaleMagnitude( dropperScale );
     var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, dropperScale * dropperNode.getTipWidth(), mvt );
 

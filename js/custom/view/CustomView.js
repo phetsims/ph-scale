@@ -11,6 +11,7 @@ define( function( require ) {
   // imports
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
+  var CustomPHMeterNode = require( 'PH_SCALE/custom/view/CustomPHMeterNode' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
@@ -54,6 +55,9 @@ define( function( require ) {
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
+    // pH meter
+    var pHMeterNode = new CustomPHMeterNode( model.pHMeter, model.solution, mvt );
+
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
     } );
@@ -66,6 +70,7 @@ define( function( require ) {
     rootNode.addChild( solutionNode );
     rootNode.addChild( beakerNode );
     rootNode.addChild( volumeIndicatorNode );
+    rootNode.addChild( pHMeterNode );
     rootNode.addChild( resetAllButton );
 
     // Layout

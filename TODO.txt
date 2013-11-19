@@ -17,8 +17,9 @@ DESIGN
 - pH meter wire interferes with drain faucet
 
 HIGH
-- pH meter for 'Solutions' screen
 - pH meter for 'Custom' screen
+- pH meter for 'Solutions' screen
+- show pH value of custom solute on dropper ('pH 11.00')
 - read-only graph for 'Solutions' screen
 - interactive graph for 'Custom' screen
 - 'Molecule count' feature
@@ -28,6 +29,7 @@ MEDIUM
 - constrain pH and volume so that student computations match displayed values, as in Java sim
 
 LOW
+- factor out duplicate code/patterns in model & view for 3 screens
 - multi-touch issues?
 - home screen and navbar icons
 - lots of stuff copied from beers-law-lab, much of it tweaked slightly

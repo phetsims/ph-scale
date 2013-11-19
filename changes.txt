@@ -1,3 +1,4 @@
+11/18/13 start fleshing out model and view for 'Custom' screen
 11/18/13 move model constants to PHScaleConstants
 11/15/13 add solvent color behind solution color in beaker, make solvent (water) color opaque
 11/14/13 move PHMeterNode to basics.view package, since it's specific to 'Basics' screen

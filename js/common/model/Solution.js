@@ -113,7 +113,7 @@ define( function( require ) {
     //----------------------------------------------------------------------------
 
     setConcentrationH3O: function( c ) {
-      this.solute.pH = -log10( c );
+      this.soluteProperty.get().pHProperty.set( -log10( c ) );
     },
 
     getConcentrationH3O: function( pH ) {
@@ -122,7 +122,7 @@ define( function( require ) {
     },
 
     setConcentrationOH: function( c ) {
-      this.solute.pH = 14 - ( -log10( c ) );
+      this.soluteProperty.get().pHProperty.set( 14 - ( -log10( c ) ) );
     },
 
     getConcentrationOH: function( pH ) {
@@ -155,7 +155,7 @@ define( function( require ) {
     //----------------------------------------------------------------------------
 
     setMolesH3O: function( m ) {
-      this.solute.pH = -log10( m / this.getVolume() );
+      this.soluteProperty.get().pHProperty.set( -log10( m / this.getVolume() ) );
     },
 
     getMolesH3O: function() {
@@ -163,7 +163,7 @@ define( function( require ) {
     },
 
     setMolesOH: function( m ) {
-      this.solute.pH = 14 - ( -log10( m / this.getVolume() ) );
+      this.soluteProperty.get().pHProperty.set( 14 - ( -log10( m / this.getVolume() ) ) );
     },
 
     getMolesOH: function() {
@@ -174,7 +174,7 @@ define( function( require ) {
       return Solution.computeMoles( this.getVolume(), this.getConcentrationH2O() );
     }
   }, {
-    // static properties
+    // statics
 
     /**
      * Computes the pH of a solution.

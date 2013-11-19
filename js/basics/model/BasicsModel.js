@@ -40,8 +40,8 @@ define( function( require ) {
        Solute.BATTERY_ACID
     ];
 
-    thisModel.beaker = new Beaker( new Vector2( 330, 600 ), new Dimension2( 400, 325 ), PHScaleConstants.BEAKER_VOLUME );
     thisModel.solvent = Solvent.WATER;
+    thisModel.beaker = new Beaker( new Vector2( 330, 600 ), new Dimension2( 400, 325 ), PHScaleConstants.BEAKER_VOLUME );
     thisModel.dropper = new Dropper( thisModel.solutes[0], new Vector2( thisModel.beaker.location.x + 40, 260 ), new Bounds2( 250, 260, 460, 260 ), PHScaleConstants.DROPPER_FLOW_RATE, true );
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.solvent, 0, thisModel.beaker.volume );
     thisModel.solventFaucet = new Faucet( new Vector2( 185, 190 ), -400, PHScaleConstants.SPOUT_WIDTH, PHScaleConstants.MAX_SOLVENT_FLOW_RATE );

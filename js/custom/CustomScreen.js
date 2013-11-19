@@ -13,6 +13,7 @@ define( function( require ) {
   var CustomView = require( 'PH_SCALE/custom/view/CustomView' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Screen = require( 'JOIST/Screen' );
 
@@ -24,11 +25,13 @@ define( function( require ) {
 
   function CustomScreen() {
 
+    var mvt = ModelViewTransform2.createIdentity();
+
     Screen.call( this,
       screenTitle,
       new Image( screenIcon ),
       function() { return new CustomModel(); },
-      function( model ) { return new CustomView( model ); },
+      function( model ) { return new CustomView( model, mvt ); },
       { backgroundColor: PHScaleColors.SCREEN_BACKGROUND }
     );
   }

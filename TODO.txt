@@ -17,7 +17,6 @@ DESIGN
 - pH meter wire interferes with drain faucet
 
 HIGH
-- pH meter for 'Custom' screen
 - pH meter for 'Solutions' screen
 - show pH value of custom solute on dropper ('pH 11.00')
 - read-only graph for 'Solutions' screen

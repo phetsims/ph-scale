@@ -33,7 +33,7 @@
 11/13/13 tweak layout
 11/13/13 fix arrow shape for volume indicator
 11/13/13 remove vestigial pH indicator showing up in upper-left corner of screen
-11/13/13 use same font and arrow size for volme and pH indicators
+11/13/13 use same font and arrow size for volume and pH indicators
 11/13/13 tweak font sizes to make things look more balanced
 11/13/13 attach wire to correct location on pH meter
 11/13/13 fix indicator on pH meter

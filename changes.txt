@@ -1,3 +1,4 @@
+11/20/13 prevent total volume from exceeding max
 11/20/13 tweak all 'diluted' solute colors
 11/20/13 change 'Drain Cleaner' color to toilet-bowl-cleaner blue
 11/19/13 fix 'reset all' for 'Basics' screen

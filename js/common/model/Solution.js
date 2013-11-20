@@ -42,7 +42,7 @@ define( function( require ) {
     // volume
     thisSolution.volumeProperty = new DerivedProperty( [ thisSolution.soluteVolumeProperty, thisSolution.solventVolumeProperty ],
       function( soluteVolume, solventVolume ) {
-        return Math.min( maxVolume, soluteVolume + solventVolume );
+        return soluteVolume + solventVolume;
       }
     );
 
@@ -82,25 +82,12 @@ define( function( require ) {
     // Volume (Liters)
     //----------------------------------------------------------------------------
 
-    //TODO is this necessary? Can it be replaced with this.volumeProperty.get()? Or visa versa?
-    /**
-     * Gets the volume of the liquid.
-     * <p>
-     * This is a clunky way to constrain the volume to a fixed number
-     * of decimal places, so that student calculations will match displayed values.
-     * The success of this approach relies on this method being called in all cases
-     * where volume is needed.  That includes public interfaces used by clients,
-     * and private methods within this class.
-     *
-     * @return
-     */
-    getVolume: function() {
-      return Util.toFixedNumber( this.soluteVolumeProperty.get() + this.solventVolumeProperty.get(), PHScaleConstants.VOLUME_DECIMAL_PLACES );
-    },
+    isEmpty: function() { return this.volumeProperty.get() === 0; },
 
-    isEmpty: function() { return this.getVolume() === 0; },
+    isFull: function() { return this.volumeProperty.get() === this.maxVolume; },
 
-    isFull: function() { return this.getVolume() === this.maxVolume; },
+    // Returns the amount of volume that is available to fill.
+    getFreeVolume: function() { return this.maxVolume - this.volumeProperty.get(); },
 
     //----------------------------------------------------------------------------
     // Concentration (moles/L)
@@ -133,15 +120,15 @@ define( function( require ) {
     //----------------------------------------------------------------------------
 
     getMoleculesH3O: function() {
-      return Solution.computeMolecules( this.getConcentrationH3O(), this.getVolume() );
+      return Solution.computeMolecules( this.getConcentrationH3O(), this.volumeProperty.get() );
     },
 
     getMoleculesOH: function() {
-      return Solution.computeMolecules( this.getConcentrationOH(), this.getVolume() );
+      return Solution.computeMolecules( this.getConcentrationOH(), this.volumeProperty.get() );
     },
 
     getMoleculesH2O: function() {
-      return Solution.computeMolecules( this.getConcentrationH2O(), this.getVolume() );
+      return Solution.computeMolecules( this.getConcentrationH2O(), this.volumeProperty.get() );
     },
 
     //----------------------------------------------------------------------------
@@ -149,23 +136,23 @@ define( function( require ) {
     //----------------------------------------------------------------------------
 
     setMolesH3O: function( m ) {
-      this.soluteProperty.get().pHProperty.set( -log10( m / this.getVolume() ) );
+      this.soluteProperty.get().pHProperty.set( -log10( m / this.volumeProperty.get() ) );
     },
 
     getMolesH3O: function() {
-      return Solution.computeMoles( this.getVolume(), this.getConcentrationH3O() );
+      return Solution.computeMoles( this.volumeProperty.get(), this.getConcentrationH3O() );
     },
 
     setMolesOH: function( m ) {
-      this.soluteProperty.get().pHProperty.set( 14 - ( -log10( m / this.getVolume() ) ) );
+      this.soluteProperty.get().pHProperty.set( 14 - ( -log10( m / this.volumeProperty.get() ) ) );
     },
 
     getMolesOH: function() {
-      return Solution.computeMoles( this.getVolume(), this.getConcentrationOH() );
+      return Solution.computeMoles( this.volumeProperty.get(), this.getConcentrationOH() );
     },
 
     getMolesH2O: function() {
-      return Solution.computeMoles( this.getVolume(), this.getConcentrationH2O() );
+      return Solution.computeMoles( this.volumeProperty.get(), this.getConcentrationH2O() );
     }
   };
 
@@ -191,7 +178,7 @@ define( function( require ) {
       assert && assert( solventPH >= 7 ); // combining acids and bases is not supported
       pH = 14 + log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, solventPH - 14 ) * solventVolume ) / ( soluteVolume + solventVolume ) );
     }
-    return pH; //TODO constrain to PHScaleConstants.PH_DECIMAL_PLACES, as in Java sim?
+    return pH;
   };
 
   /**

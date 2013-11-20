@@ -67,7 +67,7 @@ define( function( require ) {
 
     // private: Add solute from the dropper
     addSolute: function( deltaSeconds ) {
-      var deltaVolume = this.dropper.flowRateProperty.get() * deltaSeconds;
+      var deltaVolume = Math.min( this.dropper.flowRateProperty.get() * deltaSeconds, this.solution.getFreeVolume() );
       if ( deltaVolume > 0 ) {
         this.solution.soluteVolumeProperty.set( this.solution.soluteVolumeProperty.get() + deltaVolume );
       }

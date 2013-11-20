@@ -168,7 +168,7 @@ define( function( require ) {
       lineWidth: 2
     } );
 
-    // bulky background behind the value
+    // value
     var valueNode = new PHValueNode( pHProperty );
 
     // arrow head pointing at the scale

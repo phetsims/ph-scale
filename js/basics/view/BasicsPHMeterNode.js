@@ -39,9 +39,6 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
 
-  // strings
-  var pHString = require( 'string!PH_SCALE/pH' );
-
   // images
   var probeImage = require( 'image!PH_SCALE/pH-meter-probe.png' );
 

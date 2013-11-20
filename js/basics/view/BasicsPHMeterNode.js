@@ -118,7 +118,7 @@ define( function( require ) {
 
     var thisNode = this;
     Path.call( thisNode, new Shape(), {
-      stroke: 'gray',
+      stroke: 'rgb(80,80,80)',
       lineWidth: 8,
       lineCap: 'square',
       lineJoin: 'round',

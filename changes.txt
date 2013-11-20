@@ -1,3 +1,4 @@
+11/20/13 use a darker gray for pH meter wire, since it overlaps the gray faucet so frequently
 11/20/13 prevent total volume from exceeding max
 11/20/13 tweak all 'diluted' solute colors
 11/20/13 change 'Drain Cleaner' color to toilet-bowl-cleaner blue

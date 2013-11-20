@@ -39,17 +39,17 @@ define( function( require ) {
     this.dilutedColor = dilutedColor;
   }
 
-  Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, new Color( 255, 255, 0 ), new Color( 255, 255, 230 ) );
-  Solute.HAND_SOAP = new Solute( handSoapString, 10, new Color( 204, 0, 204 ), new Color( 251, 239, 252 ) );
-  Solute.BLOOD = new Solute( bloodString, 7.4, new Color( 185, 12, 0 ), new Color( 250, 237, 236 ) );
+  Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, new Color( 34, 227, 255 ), new Color( 223, 245, 255 ) );
+  Solute.HAND_SOAP = new Solute( handSoapString, 10, new Color( 204, 0, 204 ), new Color( 255, 245, 255 ) );
+  Solute.BLOOD = new Solute( bloodString, 7.4, new Color( 185, 12, 0 ), new Color( 255, 240, 250 ) );
   Solute.SPIT = new Solute( spitString, 7.4, new Color( 204, 204, 198 ), new Color( 245, 245, 245 ) );
-  Solute.MILK = new Solute( milkString, 6.5, new Color( 255, 255, 255 ), new Color( 241, 247, 249) );
-  Solute.COFFEE = new Solute( coffeeString, 5.0, new Color( 164, 99, 7 ), new Color( 247, 244, 235 ) );
-  Solute.BEER = new Solute( beerString, 4.5, new Color( 255, 200, 0 ), new Color( 255, 251, 232 ) );
-  Solute.LIME_SODA = new Solute( sodaString, 2.5, new Color( 204, 255, 102 ), new Color( 250, 255, 238 ) );
-  Solute.VOMIT = new Solute( vomitString, 2, new Color( 255, 171, 120 ), new Color( 255, 245, 238 ) );
+  Solute.MILK = new Solute( milkString, 6.5, new Color( 255, 255, 255 ), new Color( 235, 255, 255 ) );
+  Solute.COFFEE = new Solute( coffeeString, 5.0, new Color( 164, 99, 7 ), new Color( 255, 252, 243 ) );
+  Solute.BEER = new Solute( beerString, 4.5, new Color( 255, 200, 0 ), new Color( 255, 255, 248 ) );
+  Solute.LIME_SODA = new Solute( sodaString, 2.5, new Color( 204, 255, 102 ), new Color( 236, 255, 246 ) );
+  Solute.VOMIT = new Solute( vomitString, 2, new Color( 255, 171, 120 ), new Color( 255, 250, 242 ) );
   Solute.BATTERY_ACID = new Solute( batteryAcidString, 1, new Color( 255, 255, 0 ), new Color( 255, 255, 230 ) );
-  Solute.CUSTOM = new Solute( customString, 7, new Color( 251, 236, 150 ), new Color( 251, 236, 150 ) );
+  Solute.CUSTOM = new Solute( customString, 7, new Color( 251, 236, 150 ), new Color( 255, 255, 245 ) );
 
   return Solute;
 } );

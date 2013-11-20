@@ -64,7 +64,6 @@ define( function( require ) {
 
     // solute
     thisSolution.soluteProperty.link( function() {
-      var soluteVolume = thisSolution.volumeProperty.get();
       thisSolution.solventVolumeProperty.set( 0 );
       thisSolution.soluteVolumeProperty.set( 0 );
     } );

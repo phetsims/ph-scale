@@ -192,12 +192,12 @@ define( function( require ) {
     valueNode.right = arrowNode.left + 1;
     valueNode.centerY = arrowNode.centerY;
 
-    pHProperty.link( function( value ) {
-      // gray out the background?
-      arrowNode.fill = ( value ? 'black' : INDICATOR_DISABLED_COLOR );
-      valueNode.setBackgroundFill(  ( value ? INDICATOR_ENABLED_COLOR : INDICATOR_DISABLED_COLOR ) );
-      // hide the line and arrow?
-      lineNode.visible = ( value ? true : false );
+    pHProperty.link( function( pH ) {
+      // make the indicator look enabled or disabled
+      var enabled = ( pH !== null );
+      arrowNode.fill = ( enabled ? 'black' : INDICATOR_DISABLED_COLOR );
+      valueNode.setBackgroundFill(  ( enabled ? INDICATOR_ENABLED_COLOR : INDICATOR_DISABLED_COLOR ) );
+      lineNode.visible = ( enabled ? true : false );
     } );
   }
 

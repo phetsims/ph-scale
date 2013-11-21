@@ -1,3 +1,4 @@
+11/21/13 change request: make 'milk' more 'off white', try RGB=250,250,250
 11/21/13 change request: bold font for 'Acidic', 'Basic', 'pH' and '7 (Neutral)'
 11/21/13 change request: increase y-margin on pH value display
 11/20/13 use a darker gray for pH meter wire, since it overlaps the gray faucet so frequently

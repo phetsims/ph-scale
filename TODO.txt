@@ -24,12 +24,10 @@ HIGH
 - 'H3O+/OH- ratio' feature
 
 MEDIUM
-- color coming out of drain faucet doesn't match solution color
 - constrain pH and volume so that student computations match displayed values, as in Java sim
 
 LOW
 - factor out duplicate code/patterns in model & view for 3 screens
-- multi-touch issues?
 - home screen and navbar icons
 - lots of stuff copied from beers-law-lab, much of it tweaked slightly
 - English strings have been capitalized, translations have not

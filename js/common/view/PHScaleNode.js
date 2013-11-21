@@ -30,9 +30,10 @@ define( function( require ) {
   var neutralString = require( 'string!PH_SCALE/neutral' );
 
   // constants
-  var SCALE_LABEL_FONT = new PhetFont( 30 );
+  var SCALE_LABEL_FONT = new PhetFont( { size: 30, weight: 'bold' } );
   var TICK_LENGTH = 15;
   var TICK_FONT = new PhetFont( 22 );
+  var NEUTRAL_FONT = new PhetFont( { size: 22, weight: 'bold' } );
   var NEUTRAL_TICK_LENGTH = 40;
   var TICK_LABEL_X_SPACING = 5;
 
@@ -98,7 +99,7 @@ define( function( require ) {
     neutralLineNode.left = backgroundNode.right;
     neutralLineNode.centerY = size.height / 2;
     thisNode.addChild( neutralLineNode );
-    var neutralLabelNode = new Text( neutralString, { font: TICK_FONT } );
+    var neutralLabelNode = new Text( neutralString, { font: NEUTRAL_FONT } );
     neutralLabelNode.left = neutralLineNode.right + TICK_LABEL_X_SPACING;
     neutralLabelNode.centerY = neutralLineNode.centerY;
     thisNode.addChild( neutralLabelNode );

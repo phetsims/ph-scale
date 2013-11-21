@@ -30,7 +30,7 @@ define( function( require ) {
     Node.call( thisNode );
 
     var labelNode = new Text( pHString,
-      { fill: 'white', font: new PhetFont( 28 ) } );
+      { fill: 'white', font: new PhetFont( { size: 28, weight: 'bold' } ) } );
 
     var valueNode = new Text( Util.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
       { fill: 'black', font: new PhetFont( 28 ) } );

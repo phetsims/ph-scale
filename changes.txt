@@ -1,3 +1,4 @@
+11/21/13 increase y-margin on pH value display
 11/20/13 use a darker gray for pH meter wire, since it overlaps the gray faucet so frequently
 11/20/13 prevent total volume from exceeding max
 11/20/13 tweak all 'diluted' solute colors

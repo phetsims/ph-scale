@@ -42,8 +42,8 @@ define( function( require ) {
       { fill: 'white' } );
 
     var backgroundXMargin = 14;
-    var backgroundYMargin = 7;
-    var backgroundYSpacing = 4;
+    var backgroundYMargin = 10;
+    var backgroundYSpacing = 6;
     var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * backgroundXMargin );
     var backgroundHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * backgroundYMargin );
     this.backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,

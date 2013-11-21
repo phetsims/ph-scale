@@ -42,7 +42,7 @@ define( function( require ) {
   Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, new Color( 92, 111, 255 ), new Color( 223, 245, 255 ) );
   Solute.HAND_SOAP = new Solute( handSoapString, 10, new Color( 204, 0, 204 ), new Color( 255, 245, 255 ) );
   Solute.BLOOD = new Solute( bloodString, 7.4, new Color( 185, 12, 0 ), new Color( 255, 240, 250 ) );
-  Solute.SPIT = new Solute( spitString, 7.4, new Color( 204, 204, 198 ), new Color( 245, 245, 245 ) );
+  Solute.SPIT = new Solute( spitString, 7.4, new Color( 200, 230, 230 ), new Color( 215, 245, 245 ) );
   Solute.MILK = new Solute( milkString, 6.5, new Color( 250, 250, 250 ), new Color( 235, 255, 240 ) );
   Solute.COFFEE = new Solute( coffeeString, 5.0, new Color( 164, 99, 7 ), new Color( 255, 252, 243 ) );
   Solute.BEER = new Solute( beerString, 4.5, new Color( 255, 200, 0 ), new Color( 255, 255, 248 ) );

@@ -17,7 +17,6 @@ DESIGN
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 
 HIGH
-- Spit should be closer in color to water rather than gray:
 - pH meter for 'Solutions' screen
 - read-only graph for 'Solutions' screen
 - interactive graph for 'Custom' screen

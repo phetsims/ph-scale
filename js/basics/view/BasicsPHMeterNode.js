@@ -221,7 +221,7 @@ define( function( require ) {
     Node.call( thisNode );
 
     // pH scale, positioned at meter 'body' location
-    var scaleNode = new PHScaleNode( meter.valueProperty, SCALE_SIZE );
+    var scaleNode = new PHScaleNode( { labelNeutral: true } );
     meter.body.locationProperty.link( function( location ) {
       scaleNode.translation = mvt.modelToViewPosition( location );
     } );

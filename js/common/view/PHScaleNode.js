@@ -38,18 +38,22 @@ define( function( require ) {
   var TICK_LABEL_X_SPACING = 5;
 
   /**
-   * @param {Property<Number>} pHProperty
-   * @param {Dimension2} size
+   * @param {*} options
    * @constructor
    */
-  function PHScaleNode( pHProperty, size ) {
+  function PHScaleNode( options ) {
+
+    options = _.extend( {
+      size: new Dimension2( 75, 450 ),
+      labelNeutral: false  // show a '(Neutral)' at tick for pH 7 ?
+    }, options );
 
     var thisNode = this;
     Node.call( this );
 
     // gradient background
-    var backgroundNode = new Rectangle( 0, 0, size.width, size.height, {
-      fill: new LinearGradient( 0, 0, 0, size.height )
+    var backgroundNode = new Rectangle( 0, 0, options.size.width, options.size.height, {
+      fill: new LinearGradient( 0, 0, 0, options.size.height )
         .addColorStop( 0, PHScaleColors.OH )
         .addColorStop( 1, PHScaleColors.H3O ),
       stroke: 'black',
@@ -73,8 +77,8 @@ define( function( require ) {
     thisNode.addChild( basicNode );
 
     // tick marks, labeled at 'even' values, skip 7 (neutral)
-    var y = size.height;
-    var dy = -size.height / PHScaleConstants.PH_RANGE.getLength();
+    var y = options.size.height;
+    var dy = -options.size.height / PHScaleConstants.PH_RANGE.getLength();
     for ( var pH = PHScaleConstants.PH_RANGE.min; pH <= PHScaleConstants.PH_RANGE.max; pH++ ) {
       if ( pH !== 7 ) {
         // tick mark
@@ -97,9 +101,9 @@ define( function( require ) {
     // 'Neutral' line
     var neutralLineNode = new Line( 0, 0, NEUTRAL_TICK_LENGTH, 0, { stroke: 'black', lineWidth: 1 } );
     neutralLineNode.left = backgroundNode.right;
-    neutralLineNode.centerY = size.height / 2;
+    neutralLineNode.centerY = options.size.height / 2;
     thisNode.addChild( neutralLineNode );
-    var neutralLabelNode = new Text( neutralString, { font: NEUTRAL_FONT } );
+    var neutralLabelNode = new Text( options.labelNeutral ? neutralString : '7', { font: NEUTRAL_FONT } );
     neutralLabelNode.left = neutralLineNode.right + TICK_LABEL_X_SPACING;
     neutralLabelNode.centerY = neutralLineNode.centerY;
     thisNode.addChild( neutralLabelNode );

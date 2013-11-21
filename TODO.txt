@@ -4,7 +4,6 @@ DESIGN
 - What are we going to do about 'ratio' representation? In addition to the color issue, there's no way we're going to draw 3000 dots interactively in JavaScript.
 
 11/19/13 DESIGN DECISIONS
-* - Basics: gray out meter but leave it at most recent pH value
 - Solutions: hide pH value when collapsing pH meter
 - create my own accordion box for this sim
 - Solutions: no label on '7' in pH meter

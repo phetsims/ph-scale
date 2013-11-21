@@ -1,11 +1,11 @@
 TODO list for ph-scale (HTML5)
 
 DESIGN
-- Should expand/collapse button on 'Solutions' pH meter hide the pH value, too?
 - What are we going to do about 'ratio' representation? In addition to the color issue, there's no way we're going to draw 3000 dots interactively in JavaScript.
 
 11/19/13 DESIGN DECISIONS
 * - Basics: gray out meter but leave it at most recent pH value
+- Solutions: hide pH value when collapsing pH meter
 - create my own accordion box for this sim
 - Solutions: no label on '7' in pH meter
 - Custom: use same zoom levels as Java sim for Linear scale
@@ -17,6 +17,7 @@ DESIGN
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 
 HIGH
+- Spit should be closer in color to water rather than gray:
 - pH meter for 'Solutions' screen
 - read-only graph for 'Solutions' screen
 - interactive graph for 'Custom' screen

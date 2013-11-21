@@ -21,6 +21,7 @@ HIGH
 - interactive graph for 'Custom' screen
 - 'Molecule count' feature
 - 'H3O+/OH- ratio' feature
+- color-coding on 'H3O+/OH- ratio' check box label
 
 MEDIUM
 - constrain pH and volume so that student computations match displayed values, as in Java sim

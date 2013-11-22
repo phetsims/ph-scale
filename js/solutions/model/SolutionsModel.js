@@ -41,14 +41,15 @@ define( function( require ) {
     ];
 
     thisModel.solvent = Solvent.WATER;
-    thisModel.beaker = new Beaker( new Vector2( 330, 600 ), new Dimension2( 400, 325 ) );
-    thisModel.dropper = new Dropper( thisModel.solutes[0], new Vector2( thisModel.beaker.location.x + 40, 260 ), new Bounds2( 250, 260, 510, 260 ) );
+    thisModel.beaker = new Beaker( new Vector2( 270, 600 ), new Dimension2( 300, 325 ) );
+    var yDropper = 260;
+    thisModel.dropper = new Dropper( thisModel.solutes[0], new Vector2( thisModel.beaker.location.x + 60, yDropper ), new Bounds2( 300, yDropper, 410, yDropper ) );
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.solvent, 0, thisModel.beaker.volume );
-    thisModel.solventFaucet = new Faucet( new Vector2( 185, 190 ), -400,
+    thisModel.solventFaucet = new Faucet( new Vector2( 185, 230 ), -400,
       { enabled: thisModel.solution.volumeProperty.get() < thisModel.beaker.volume } );
-    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 100, 652 ), thisModel.beaker.right,
+    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 70, 652 ), thisModel.beaker.right,
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );
-    thisModel.pHMeter = new PHMeter( new Vector2( 810, 80 ), new Bounds2( 10, 150, 835, 680 ), new Vector2( 605, 405 ), new Bounds2( 30, 150, 966, 680 ) );
+    thisModel.pHMeter = new PHMeter( new Vector2( 575, 80 ), new Bounds2( 10, 150, 835, 680 ), new Vector2( 605, 405 ), new Bounds2( 30, 150, 966, 680 ) );
 
     // Enable faucets and dropper based on amount of solution in the beaker.
     thisModel.solution.volumeProperty.link( function( volume ) {

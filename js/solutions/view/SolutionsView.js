@@ -76,7 +76,7 @@ define( function( require ) {
     // pH meter
     var pHMeterNode = new SolutionsPHMeterNode( model.pHMeter, mvt );
     var phMeterExpandCollapseBar = new ExpandCollapseBar( pHString, pHMeterVisibleProperty, {
-      size: new Dimension2( 1.25 * pHMeterNode.width, 40 )
+      size: new Dimension2( 1.1 * pHMeterNode.width, 40 )
     } );
     pHMeterVisibleProperty.link( function( visible ) {
       pHMeterNode.visible = visible;
@@ -120,16 +120,16 @@ define( function( require ) {
     rootNode.addChild( soluteListParent ); // last, so that combo box list is on top
 
     // Layout
-    soluteComboBox.left = mvt.modelToViewX( model.beaker.location.x ) - 40;
+    soluteComboBox.centerX = mvt.modelToViewX( model.beaker.location.x );
     soluteComboBox.top = this.layoutBounds.top + 15;
     phMeterExpandCollapseBar.centerX = pHMeterNode.centerX;
     phMeterExpandCollapseBar.bottom = pHMeterNode.top - 15;
-    graphExpandCollapseBar.left = phMeterExpandCollapseBar.right + 40;
+    graphExpandCollapseBar.left = phMeterExpandCollapseBar.right + 20;
     graphExpandCollapseBar.top = phMeterExpandCollapseBar.top;
     graphNode.centerX = graphExpandCollapseBar.centerX;
     graphNode.top = pHMeterNode.top;
     resetAllButton.right = this.layoutBounds.right - 40;
-    resetAllButton.bottom = this.layoutBounds.bottom - 20;
+    resetAllButton.bottom = this.layoutBounds.bottom - 15;
   }
 
   return inherit( ScreenView, SolutionsView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );

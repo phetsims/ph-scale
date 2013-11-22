@@ -1,3 +1,5 @@
+11/22/13 Solutions: adjust layout and sizes of match design doc
+11/22/13 add 'rightTitle' option to ExpandCollapseBar
 11/21/13 Solutions: add expand/collapse bar for graph
 11/21/13 add optional 'rightTitle' to ExpandCollapseBar, to support graphs
 11/21/13 Solutions: add placeholder (rectangle) for graph, in order to work on general layout

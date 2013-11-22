@@ -33,7 +33,7 @@ define( function( require ) {
       barFill: 'rgb(114,9,56)',
       barStroke: null,
       textFill: 'white',
-      rightTitle: null // optional second title that appear on the right end of the bar
+      rightTitle: null // {String} optional second title that appears on the right end of the bar
     }, options );
 
     var thisNode = this;

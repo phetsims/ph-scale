@@ -41,6 +41,7 @@ define( function( require ) {
       thisModel.dropper.enabledProperty.set( !thisModel.dropper.emptyProperty.get() && ( volume < thisModel.beaker.volume ) );
     } );
 
+    // wire the pH meter directly to the solution
     thisModel.solution.pHProperty.link( function( pH ) {
       thisModel.pHMeter.valueProperty.set( pH );
     } );

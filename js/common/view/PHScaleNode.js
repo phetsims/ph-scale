@@ -52,12 +52,13 @@ define( function( require ) {
     Node.call( this );
 
     // gradient background
+    this.backgroundStrokeWidth = 2;
     var backgroundNode = new Rectangle( 0, 0, options.size.width, options.size.height, {
       fill: new LinearGradient( 0, 0, 0, options.size.height )
         .addColorStop( 0, PHScaleColors.OH )
         .addColorStop( 1, PHScaleColors.H3O ),
       stroke: 'black',
-      lineWidth: 2
+      lineWidth: this.backgroundStrokeWidth
     } );
     thisNode.addChild( backgroundNode );
 
@@ -109,5 +110,11 @@ define( function( require ) {
     thisNode.addChild( neutralLabelNode );
   }
 
-  return inherit( Node, PHScaleNode );
+  return inherit( Node, PHScaleNode, {
+
+    // needed for precise positioning of things that point to values on the scale
+    getBackgroundStrokeWidth: function() {
+      return this.backgroundStrokeWidth;
+    }
+  } );
 } );

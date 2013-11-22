@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * View for the 'Solutions' screen.
+ * View for the 'Basics' screen.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -9,19 +9,29 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
+  var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
+  var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
+  var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
+  var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
+  var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
+  var SolutionsPHMeterNode = require( 'PH_SCALE/solutions/view/SolutionsPHMeterNode' );
   var Text = require( 'SCENERY/nodes/Text' );
+  var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
   /**
-   * @param {CustomModel} model
+   * @param {BasicsModel} model
+   * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function SolutionsView( model ) {
+  function SolutionsView( model, mvt ) {
 
     var thisView = this;
     ScreenView.call( thisView, { renderer: 'svg' } );
@@ -30,21 +40,56 @@ define( function( require ) {
     var rootNode = new Node();
     thisView.addChild( rootNode );
 
-    var underConstruction = new Text( 'Solutions: Under Construction', new PhetFont( 30 ) );
+    // beaker
+    var beakerNode = new BeakerNode( model.beaker, mvt );
+    var solutionNode = new SolutionNode( model.solvent, model.solution, model.beaker, mvt );
+    var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, mvt );
 
-    // Reset All button
+    // dropper
+    var dropperScale = 0.85;
+    var dropperNode = new DropperNode( model.dropper, mvt );
+    dropperNode.setScaleMagnitude( dropperScale );
+    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, dropperScale * dropperNode.getTipWidth(), mvt );
+
+    // faucets
+    var solventLabelNode = new Text( model.solvent.name, { font: new PhetFont( 40 ) } );
+    var solventFaucetNode = new PHFaucetNode( model.solventFaucet, mvt, solventLabelNode );
+    var drainFaucetNode = new PHFaucetNode( model.drainFaucet, mvt );
+    var SOLVENT_FLUID_HEIGHT = model.beaker.location.y - model.solventFaucet.location.y;
+    var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
+    var solventFluidNode = new FaucetFluidNode( model.solventFaucet, model.solution.solvent, SOLVENT_FLUID_HEIGHT, mvt );
+    var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
+
+    // pH meter
+    var pHMeterNode = new SolutionsPHMeterNode(  model.pHMeter, mvt );
+
+    // solutes combo box
+    var soluteListParent = new Node();
+    var soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent );
+
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
     } );
 
     // Rendering order
-    rootNode.addChild( underConstruction );
+    rootNode.addChild( solventFluidNode );
+    rootNode.addChild( solventFaucetNode );
+    rootNode.addChild( drainFluidNode );
+    rootNode.addChild( drainFaucetNode );
+    rootNode.addChild( dropperFluidNode );
+    rootNode.addChild( dropperNode );
+    rootNode.addChild( solutionNode );
+    rootNode.addChild( beakerNode );
+    rootNode.addChild( volumeIndicatorNode );
+    rootNode.addChild( pHMeterNode );
     rootNode.addChild( resetAllButton );
+    rootNode.addChild( soluteComboBox );
+    rootNode.addChild( soluteListParent ); // last, so that combo box list is on top
 
     // Layout
-    underConstruction.centerX = this.layoutBounds.centerX;
-    underConstruction.centerY = this.layoutBounds.centerY;
-    resetAllButton.right = this.layoutBounds.right - 20;
+    soluteComboBox.left = mvt.modelToViewX( model.beaker.location.x ) - 40;
+    soluteComboBox.top = this.layoutBounds.top + 15;
+    resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
 

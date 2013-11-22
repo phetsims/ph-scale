@@ -6,7 +6,6 @@ DESIGN
 11/19/13 DESIGN DECISIONS
 - Solutions: hide pH value when collapsing pH meter
 - create my own accordion box for this sim
-- Solutions: no label on '7' in pH meter
 - Custom: use same zoom levels as Java sim for Linear scale
 - Will need to implement 2 totally separate graphs for log and linear. No shading on linear, and linear is wider.
 - make linear scale go below zero so that we can fit '0' tick on the scale
@@ -16,12 +15,13 @@ DESIGN
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 
 HIGH
-- pH meter for 'Solutions' screen
-- read-only graph for 'Solutions' screen
-- interactive graph for 'Custom' screen
+- Solutions: expand/collapse for pH meter (hide value)
+- Solutions: log graph, not interactive
+- Custom: interactive log graph
+- Custom: interactive linear graph, zoom feature
 - 'Molecule count' feature
 - 'H3O+/OH- ratio' feature
-- color-coding on 'H3O+/OH- ratio' check box label
+- color-coding on 'H3O+/OH- ratio' check box label (use CSS?)
 
 MEDIUM
 - constrain pH and volume so that student computations match displayed values, as in Java sim

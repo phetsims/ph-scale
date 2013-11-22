@@ -11,13 +11,16 @@ define( function( require ) {
   // imports
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
+  var Dimension2 = require( 'DOT/Dimension2' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
+  var ExpandCollapseBar = require( 'PH_SCALE/solutions/view/ExpandCollapseBar' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
+  var Property = require( 'AXON/Property' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
@@ -25,6 +28,9 @@ define( function( require ) {
   var SolutionsPHMeterNode = require( 'PH_SCALE/solutions/view/SolutionsPHMeterNode' );
   var Text = require( 'SCENERY/nodes/Text' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
+
+  // strings
+  var pHString = require( 'string!PH_SCALE/pH' );
 
   /**
    * @param {BasicsModel} model
@@ -35,6 +41,10 @@ define( function( require ) {
 
     var thisView = this;
     ScreenView.call( thisView, { renderer: 'svg' } );
+
+    // view-specific properties
+    var pHMeterVisibleProperty = new Property( true );
+    var graphVisibleProperty = new Property( true );
 
     // Parent for all nodes added to this screen
     var rootNode = new Node();
@@ -61,7 +71,13 @@ define( function( require ) {
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
     // pH meter
-    var pHMeterNode = new SolutionsPHMeterNode(  model.pHMeter, mvt );
+    var pHMeterNode = new SolutionsPHMeterNode( model.pHMeter, mvt );
+    var phMeterExpandCollapseBar = new ExpandCollapseBar( pHString, pHMeterVisibleProperty, {
+      size: new Dimension2( 1.25 * pHMeterNode.width, 40 )
+    } );
+    pHMeterVisibleProperty.link( function( visible ) {
+      pHMeterNode.visible = visible;
+    } );
 
     // solutes combo box
     var soluteListParent = new Node();
@@ -69,6 +85,8 @@ define( function( require ) {
 
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
+      pHMeterVisibleProperty.reset();
+      graphVisibleProperty.reset();
     } );
 
     // Rendering order
@@ -82,6 +100,7 @@ define( function( require ) {
     rootNode.addChild( beakerNode );
     rootNode.addChild( volumeIndicatorNode );
     rootNode.addChild( pHMeterNode );
+    rootNode.addChild( phMeterExpandCollapseBar );
     rootNode.addChild( resetAllButton );
     rootNode.addChild( soluteComboBox );
     rootNode.addChild( soluteListParent ); // last, so that combo box list is on top
@@ -89,6 +108,8 @@ define( function( require ) {
     // Layout
     soluteComboBox.left = mvt.modelToViewX( model.beaker.location.x ) - 40;
     soluteComboBox.top = this.layoutBounds.top + 15;
+    phMeterExpandCollapseBar.centerX = pHMeterNode.centerX;
+    phMeterExpandCollapseBar.bottom = pHMeterNode.top - 15;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }

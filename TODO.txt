@@ -4,7 +4,6 @@ DESIGN
 - What are we going to do about 'ratio' representation? In addition to the color issue, there's no way we're going to draw 3000 dots interactively in JavaScript.
 
 11/19/13 DESIGN DECISIONS
-- Solutions: hide pH value when collapsing pH meter
 - create my own accordion box for this sim
 - Custom: use same zoom levels as Java sim for Linear scale
 - Will need to implement 2 totally separate graphs for log and linear. No shading on linear, and linear is wider.

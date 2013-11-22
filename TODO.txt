@@ -15,7 +15,6 @@ DESIGN
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 
 HIGH
-- Solutions: expand/collapse for pH meter (hide value)
 - Solutions: log graph, not interactive
 - Custom: interactive log graph
 - Custom: interactive linear graph, zoom feature

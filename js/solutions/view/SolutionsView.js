@@ -25,6 +25,7 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
+  var SolutionsGraphNode = require( 'PH_SCALE/solutions/view/SolutionsGraphNode' );
   var SolutionsPHMeterNode = require( 'PH_SCALE/solutions/view/SolutionsPHMeterNode' );
   var Text = require( 'SCENERY/nodes/Text' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
@@ -78,6 +79,12 @@ define( function( require ) {
     pHMeterVisibleProperty.link( function( visible ) {
       pHMeterNode.visible = visible;
     } );
+    // graph
+    var graphNode = new SolutionsGraphNode(); //TODO args
+    //TODO add expand-collapse bar
+    graphVisibleProperty.link( function( visible ) {
+      graphNode.visible = visible;
+    } );
 
     // solutes combo box
     var soluteListParent = new Node();
@@ -101,6 +108,7 @@ define( function( require ) {
     rootNode.addChild( volumeIndicatorNode );
     rootNode.addChild( pHMeterNode );
     rootNode.addChild( phMeterExpandCollapseBar );
+    rootNode.addChild( graphNode );
     rootNode.addChild( resetAllButton );
     rootNode.addChild( soluteComboBox );
     rootNode.addChild( soluteListParent ); // last, so that combo box list is on top
@@ -110,6 +118,8 @@ define( function( require ) {
     soluteComboBox.top = this.layoutBounds.top + 15;
     phMeterExpandCollapseBar.centerX = pHMeterNode.centerX;
     phMeterExpandCollapseBar.bottom = pHMeterNode.top - 15;
+    graphNode.left = phMeterExpandCollapseBar.right + 60;
+    graphNode.top = pHMeterNode.top;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }

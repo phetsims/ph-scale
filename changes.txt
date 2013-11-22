@@ -1,3 +1,4 @@
+11/21/13 Solutions: add placeholder (rectangle) for graph, in order to work on general layout
 11/21/13 Solutions: expand/collapse bar for pH meter
 11/21/13 implement pH meter for 'Solutions' screen
 11/21/13 set up model and view for 'Solutions' screen

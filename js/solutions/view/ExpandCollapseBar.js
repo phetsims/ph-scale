@@ -2,7 +2,7 @@
 
 /**
  * Horizontal bar placed above UI components that can be shown/hidden.
- * (It would have been nice to be able to use sun.AccordionBox, but sim's design specified a very different look.)
+ * (It would have been nice to use sun.AccordionBox, but this sim's design specified a very different look.)
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

@@ -24,5 +24,7 @@
   "pH": "pH",
   "acidic": "Acidic",
   "basic": "Basic",
-  "neutral": "7 (Neutral)"
+  "neutral": "7 (Neutral)",
+  "concentration": "Concentration",
+  "quantity": "Quantity"
 }

@@ -14,7 +14,7 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
-  var ExpandCollapseBar = require( 'PH_SCALE/solutions/view/ExpandCollapseBar' );
+  var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -31,7 +31,9 @@ define( function( require ) {
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
   // strings
+  var concentrationString = require( 'string!PH_SCALE/concentration' );
   var pHString = require( 'string!PH_SCALE/pH' );
+  var quantityString = require( 'string!PH_SCALE/quantity' );
 
   /**
    * @param {BasicsModel} model
@@ -81,7 +83,10 @@ define( function( require ) {
     } );
     // graph
     var graphNode = new SolutionsGraphNode(); //TODO args
-    //TODO add expand-collapse bar
+    var graphExpandCollapseBar = new ExpandCollapseBar( concentrationString, graphVisibleProperty, {
+      rightTitleNode: quantityString,
+      size: new Dimension2( 1.1 * graphNode.width, 40 )
+    } );
     graphVisibleProperty.link( function( visible ) {
       graphNode.visible = visible;
     } );
@@ -109,6 +114,7 @@ define( function( require ) {
     rootNode.addChild( pHMeterNode );
     rootNode.addChild( phMeterExpandCollapseBar );
     rootNode.addChild( graphNode );
+    rootNode.addChild( graphExpandCollapseBar );
     rootNode.addChild( resetAllButton );
     rootNode.addChild( soluteComboBox );
     rootNode.addChild( soluteListParent ); // last, so that combo box list is on top
@@ -118,7 +124,9 @@ define( function( require ) {
     soluteComboBox.top = this.layoutBounds.top + 15;
     phMeterExpandCollapseBar.centerX = pHMeterNode.centerX;
     phMeterExpandCollapseBar.bottom = pHMeterNode.top - 15;
-    graphNode.left = phMeterExpandCollapseBar.right + 60;
+    graphExpandCollapseBar.left = phMeterExpandCollapseBar.right + 40;
+    graphExpandCollapseBar.top = phMeterExpandCollapseBar.top;
+    graphNode.centerX = graphExpandCollapseBar.centerX;
     graphNode.top = pHMeterNode.top;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;

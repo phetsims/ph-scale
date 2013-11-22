@@ -30,31 +30,42 @@ define( function( require ) {
       size: new Dimension2( 220, 40 ),
       cornerRadius: 6,
       xMargin: 10,
-      backgroundFill: 'rgb(114,9,56)',
-      backgroundStroke: null,
-      textFill: 'white'
+      barFill: 'rgb(114,9,56)',
+      barStroke: null,
+      textFill: 'white',
+      rightTitle: null // optional second title that appear on the right end of the bar
     }, options );
 
     var thisNode = this;
     Node.call( thisNode );
 
-    var backgroundNode = new Rectangle( 0, 0, options.size.width, options.size.height, options.cornerRadius, options.cornerRadius, {
-      fill: options.backgroundFill,
-      stroke: options.backgroundStroke
+    // bar
+    var barNode = new Rectangle( 0, 0, options.size.width, options.size.height, options.cornerRadius, options.cornerRadius, {
+      fill: options.barFill,
+      stroke: options.barStroke
     } );
-    var titleNode = new Text( title, { font: new PhetFont( { size: 28, weight: 'bold' } ), fill: options.textFill } );
-    var button = new ExpandCollapseButton( 0.7 * options.size.height, visibleProperty );
+    thisNode.addChild( barNode );
 
-    // rendering order
-    thisNode.addChild( backgroundNode );
+    // title on left end of bar
+    var titleOptions = { font: new PhetFont( { size: 28, weight: 'bold' } ), fill: options.textFill };
+    var titleNode = new Text( title, titleOptions );
     thisNode.addChild( titleNode );
+    titleNode.left = barNode.left + options.xMargin;
+    titleNode.centerY = barNode.centerY;
+    
+    // expand/collapse button
+    var button = new ExpandCollapseButton( 0.7 * options.size.height, visibleProperty );
     thisNode.addChild( button );
+    button.right = barNode.right - options.xMargin;
+    button.centerY = barNode.centerY;
 
-    // layout
-    titleNode.left = backgroundNode.left + options.xMargin;
-    titleNode.centerY = backgroundNode.centerY;
-    button.right = backgroundNode.right - options.xMargin;
-    button.centerY = backgroundNode.centerY;
+    // optional title on right end of bar
+    if ( options.rightTitle !== null ) {
+      var rightTitleNode = new Text( options.rightTitle, titleOptions );
+      thisNode.addChild( rightTitleNode );
+      rightTitleNode.right = button.left - 10;
+      rightTitleNode.centerY = button.centerY;
+    }
   }
 
   return inherit( Node, ExpandCollapseBar );

@@ -84,7 +84,7 @@ define( function( require ) {
     // graph
     var graphNode = new SolutionsGraphNode(); //TODO args
     var graphExpandCollapseBar = new ExpandCollapseBar( concentrationString, graphVisibleProperty, {
-      rightTitleNode: quantityString,
+      rightTitle: quantityString,
       size: new Dimension2( 1.1 * graphNode.width, 40 )
     } );
     graphVisibleProperty.link( function( visible ) {

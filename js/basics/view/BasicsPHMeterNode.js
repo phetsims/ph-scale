@@ -154,6 +154,7 @@ define( function( require ) {
    * pH indicator that slides vertically along scale.
    * When there is no pH value, it points to 'neutral' but does not display a value.
    * @param {Property<Number>} pHProperty
+   * @param {Number} scaleWidth
    * @constructor
    */
   function IndicatorNode( pHProperty, scaleWidth ) {
@@ -228,7 +229,7 @@ define( function( require ) {
 
     // indicator that slides vertically along scale
     var indicatorNode = new IndicatorNode( meter.valueProperty, SCALE_SIZE.width );
-    scaleNode.addChild( indicatorNode );
+    scaleNode.addChild( indicatorNode ); // child of scaleNode, so that it's in the proper coordinate frame
     meter.valueProperty.link( function( value ) {
       indicatorNode.centerY = Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
     } );

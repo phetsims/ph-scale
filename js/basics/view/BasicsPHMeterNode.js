@@ -178,7 +178,8 @@ define( function( require ) {
       .moveTo( 0, 0 )
       .lineTo( -arrowSize.width, -arrowSize.height / 2 )
       .lineTo( -arrowSize.width, arrowSize.height / 2 )
-      .close() );
+      .close(),
+      { fill: 'black' } );
 
     // rendering order
     thisNode.addChild( arrowNode );
@@ -196,9 +197,8 @@ define( function( require ) {
     pHProperty.link( function( pH ) {
       // make the indicator look enabled or disabled
       var enabled = ( pH !== null );
-      arrowNode.fill = ( enabled ? 'black' : INDICATOR_DISABLED_COLOR );
       valueNode.setBackgroundFill(  ( enabled ? INDICATOR_ENABLED_COLOR : INDICATOR_DISABLED_COLOR ) );
-      lineNode.visible = ( enabled ? true : false );
+      arrowNode.visible = lineNode.visible = enabled;
     } );
   }
 

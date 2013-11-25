@@ -1,3 +1,4 @@
+11/25/13 Basics: move water faucet down a bit
 11/25/13 move 'Water' label on faucet
 11/25/13 remove 'decoration' option from scenery-phet.FaucetNode
 11/22/13 Solutions: adjust layout and sizes of match design doc

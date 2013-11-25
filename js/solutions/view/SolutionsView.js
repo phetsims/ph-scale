@@ -18,7 +18,6 @@ define( function( require ) {
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
   var Property = require( 'AXON/Property' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
@@ -27,7 +26,7 @@ define( function( require ) {
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
   var SolutionsGraphNode = require( 'PH_SCALE/solutions/view/SolutionsGraphNode' );
   var SolutionsPHMeterNode = require( 'PH_SCALE/solutions/view/SolutionsPHMeterNode' );
-  var Text = require( 'SCENERY/nodes/Text' );
+  var SolventFaucetNode = require( 'PH_SCALE/common/view/SolventFaucetNode' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
   // strings
@@ -65,8 +64,7 @@ define( function( require ) {
     var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, dropperScale * dropperNode.getTipWidth(), mvt );
 
     // faucets
-    var solventLabelNode = new Text( model.solvent.name, { font: new PhetFont( 40 ) } );
-    var solventFaucetNode = new PHFaucetNode( model.solventFaucet, mvt, solventLabelNode );
+    var solventFaucetNode = new SolventFaucetNode( model.solvent, model.solventFaucet, mvt );
     var drainFaucetNode = new PHFaucetNode( model.drainFaucet, mvt );
     var SOLVENT_FLUID_HEIGHT = model.beaker.location.y - model.solventFaucet.location.y;
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid

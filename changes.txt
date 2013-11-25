@@ -1,3 +1,5 @@
+11/25/13 move 'Water' label on faucet
+11/25/13 remove 'decoration' option from scenery-phet.FaucetNode
 11/22/13 Solutions: adjust layout and sizes of match design doc
 11/22/13 add 'rightTitle' option to ExpandCollapseBar
 11/21/13 Solutions: add expand/collapse bar for graph

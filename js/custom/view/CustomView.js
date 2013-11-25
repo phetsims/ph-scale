@@ -18,13 +18,11 @@ define( function( require ) {
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
   var Property = require( 'AXON/Property' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
-  var Text = require( 'SCENERY/nodes/Text' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
   /**

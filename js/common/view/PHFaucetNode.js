@@ -18,14 +18,12 @@ define( function( require ) {
   /**
    * @param {Faucet} faucet
    * @param {ModelViewTransform2} mvt
-   * @param {Node} decoration
    * @constructor
    */
-  function PHFaucetNode( faucet, mvt, decoration ) {
+  function PHFaucetNode( faucet, mvt ) {
     var scale = 0.6;
     var horizontalPipeLength = mvt.modelToViewX( faucet.location.x - faucet.pipeMinX ) / scale;
     FaucetNode.call( this, faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
-      decoration: decoration,
       horizontalPipeLength: horizontalPipeLength,
       verticalPipeLength: 20,
       scale: scale

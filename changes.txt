@@ -1,3 +1,4 @@
+11/25/13 Basics: make 'milk' the initial solute
 11/25/13 use smaller default font for title(s) on ExpandCollapseBar
 11/25/13 Basics: hide pointer on pH meter when it's not displaying a value
 11/25/13 Basics: move water faucet down a bit

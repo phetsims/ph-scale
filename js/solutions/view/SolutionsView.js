@@ -133,7 +133,7 @@ define( function( require ) {
 
     // Layout
     beakerControls.centerX = beakerNode.centerX;
-    beakerControls.top = beakerNode.bottom + 10;
+    beakerControls.top = beakerNode.bottom + 15;
     soluteComboBox.centerX = mvt.modelToViewX( model.beaker.location.x );
     soluteComboBox.top = this.layoutBounds.top + 15;
     phMeterExpandCollapseBar.centerX = pHMeterNode.centerX;

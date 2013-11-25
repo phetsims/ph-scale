@@ -39,7 +39,7 @@ define( function( require ) {
     this.dilutedColor = dilutedColor;
   }
 
-  Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, new Color( 92, 111, 255 ), new Color( 223, 245, 255 ) );
+  Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, new Color( 255, 255, 0 ), new Color( 255, 255, 230 ) );
   Solute.HAND_SOAP = new Solute( handSoapString, 10, new Color( 204, 0, 204 ), new Color( 255, 245, 255 ) );
   Solute.BLOOD = new Solute( bloodString, 7.4, new Color( 185, 12, 0 ), new Color( 255, 240, 250 ) );
   Solute.SPIT = new Solute( spitString, 7.4, new Color( 200, 230, 230 ), new Color( 215, 245, 245 ) );

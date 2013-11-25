@@ -4,11 +4,9 @@ DESIGN
 - What are we going to do about 'ratio' representation? In addition to the color issue, there's no way we're going to draw 3000 dots interactively in JavaScript.
 
 11/19/13 DESIGN DECISIONS
-- create my own accordion box for this sim
 - Custom: use same zoom levels as Java sim for Linear scale
 - Will need to implement 2 totally separate graphs for log and linear. No shading on linear, and linear is wider.
 - make linear scale go below zero so that we can fit '0' tick on the scale
-- Hide indicator on 'Solutions' pH meter when no value
 - drop shadow on interactive indicators on graph
 - put both zoom buttons at top of scale
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)

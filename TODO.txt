@@ -14,7 +14,6 @@ DESIGN
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 
 HIGH
-- use same color for battery acid and drain cleaner
 - milk: try vary pale gray or direct to faint blue
 - when something is diluted enough to be ph=7, it should be water color (really?)
 - Solutions: log graph, not interactive

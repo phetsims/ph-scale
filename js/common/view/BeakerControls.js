@@ -23,7 +23,7 @@ define( function( require ) {
   var ratioString = 'H<sub>3</sub>O<sup>+</sup>/OH<sup>-</sup> ratio';
 
   // constants
-  var FONT = new PhetFont( 24 );
+  var FONT = new PhetFont( 20 );
 
   /**
    * @param {Property<Boolean>} moleculeCountVisibleProperty

@@ -43,6 +43,8 @@ define( function( require ) {
     ScreenView.call( thisView, { renderer: 'svg' } );
 
     // view-specific properties
+    var moleculeCountVisibleProperty = new Property( false );
+    var ratioVisibleProperty = new Property( false );
     var graphVisibleProperty = new Property( true );
 
     // Parent for all nodes added to this screen
@@ -65,19 +67,17 @@ define( function( require ) {
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
-    // pH meter
-    var pHMeterNode = new CustomPHMeterNode( model.pHMeter, mvt );
-
     // 'molecule count' representation
-    var moleculeCountVisibleProperty = new Property( false );
     //TODO node goes here, visibility linked to moleculeCountProperty
 
     // 'H3O+/OH- ratio' representation
-    var ratioVisibleProperty = new Property( false );
     //TODO node goes here, visibility linked to ratioVisibleProperty
 
     // beaker controls
     var beakerControls = new BeakerControls( moleculeCountVisibleProperty, ratioVisibleProperty );
+
+    // pH meter
+    var pHMeterNode = new CustomPHMeterNode( model.pHMeter, mvt );
 
     // graph
     var graphNode = new CustomGraphNode(); //TODO args
@@ -104,8 +104,8 @@ define( function( require ) {
     rootNode.addChild( solutionNode );
     rootNode.addChild( beakerNode );
     rootNode.addChild( volumeIndicatorNode );
-    rootNode.addChild( pHMeterNode );
     rootNode.addChild( beakerControls );
+    rootNode.addChild( pHMeterNode );
     rootNode.addChild( graphNode );
     rootNode.addChild( graphExpandCollapseBar );
     rootNode.addChild( resetAllButton );

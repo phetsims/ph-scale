@@ -9,6 +9,7 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var Dimension2 = require( 'DOT/Dimension2' );
@@ -45,6 +46,8 @@ define( function( require ) {
     ScreenView.call( thisView, { renderer: 'svg' } );
 
     // view-specific properties
+    var moleculeCountVisibleProperty = new Property( false );
+    var ratioVisibleProperty = new Property( false );
     var pHMeterVisibleProperty = new Property( true );
     var graphVisibleProperty = new Property( true );
 
@@ -70,6 +73,15 @@ define( function( require ) {
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
     var solventFluidNode = new FaucetFluidNode( model.solventFaucet, model.solution.solvent, SOLVENT_FLUID_HEIGHT, mvt );
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
+
+    // 'molecule count' representation
+    //TODO node goes here, visibility linked to moleculeCountProperty
+
+    // 'H3O+/OH- ratio' representation
+    //TODO node goes here, visibility linked to ratioVisibleProperty
+
+    // beaker controls
+    var beakerControls = new BeakerControls( moleculeCountVisibleProperty, ratioVisibleProperty );
 
     // pH meter
     var pHMeterNode = new SolutionsPHMeterNode( model.pHMeter, mvt );
@@ -110,6 +122,7 @@ define( function( require ) {
     rootNode.addChild( solutionNode );
     rootNode.addChild( beakerNode );
     rootNode.addChild( volumeIndicatorNode );
+    rootNode.addChild( beakerControls );
     rootNode.addChild( pHMeterNode );
     rootNode.addChild( phMeterExpandCollapseBar );
     rootNode.addChild( graphNode );
@@ -119,6 +132,8 @@ define( function( require ) {
     rootNode.addChild( soluteListParent ); // last, so that combo box list is on top
 
     // Layout
+    beakerControls.centerX = beakerNode.centerX;
+    beakerControls.top = beakerNode.bottom + 10;
     soluteComboBox.centerX = mvt.modelToViewX( model.beaker.location.x );
     soluteComboBox.top = this.layoutBounds.top + 15;
     phMeterExpandCollapseBar.centerX = pHMeterNode.centerX;

@@ -18,7 +18,6 @@ HIGH
 - use same color for battery acid and drain cleaner
 - milk: try vary pale gray or direct to faint blue
 - when something is diluted enough to be ph=7, it should be water color (really?)
-- Solutions: add 'font' option to ExpandCollapseBar, so that left & right titles don't overlap in graph
 - Solutions: log graph, not interactive
 - Custom: interactive log graph
 - Custom: interactive linear graph, zoom feature

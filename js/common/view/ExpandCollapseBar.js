@@ -32,7 +32,8 @@ define( function( require ) {
       xMargin: 10,
       barFill: 'rgb(114,9,56)',
       barStroke: null,
-      textFill: 'white',
+      titleFont: new PhetFont( { size: 18, weight: 'bold' } ),
+      titleFill: 'white',
       rightTitle: null // {String} optional second title that appears on the right end of the bar
     }, options );
 
@@ -47,7 +48,7 @@ define( function( require ) {
     thisNode.addChild( barNode );
 
     // title on left end of bar
-    var titleOptions = { font: new PhetFont( { size: 28, weight: 'bold' } ), fill: options.textFill };
+    var titleOptions = { font: options.titleFont, fill: options.titleFill };
     var titleNode = new Text( title, titleOptions );
     thisNode.addChild( titleNode );
     titleNode.left = barNode.left + options.xMargin;

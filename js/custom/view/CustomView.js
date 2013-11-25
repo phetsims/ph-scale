@@ -12,9 +12,12 @@ define( function( require ) {
   var BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
+  var CustomGraphNode = require( 'PH_SCALE/custom/view/CustomGraphNode' );
   var CustomPHMeterNode = require( 'PH_SCALE/custom/view/CustomPHMeterNode' );
+  var Dimension2 = require( 'DOT/Dimension2' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
+  var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -25,6 +28,10 @@ define( function( require ) {
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
+  // strings
+  var concentrationString = require( 'string!PH_SCALE/concentration' );
+  var quantityString = require( 'string!PH_SCALE/quantity' );
+
   /**
    * @param {BasicsModel} model
    * @param {ModelViewTransform2} mvt
@@ -34,6 +41,9 @@ define( function( require ) {
 
     var thisView = this;
     ScreenView.call( thisView, { renderer: 'svg' } );
+
+    // view-specific properties
+    var graphVisibleProperty = new Property( true );
 
     // Parent for all nodes added to this screen
     var rootNode = new Node();
@@ -69,10 +79,21 @@ define( function( require ) {
     // beaker controls
     var beakerControls = new BeakerControls( moleculeCountVisibleProperty, ratioVisibleProperty );
 
+    // graph
+    var graphNode = new CustomGraphNode(); //TODO args
+    var graphExpandCollapseBar = new ExpandCollapseBar( concentrationString, graphVisibleProperty, {
+      rightTitle: quantityString,
+      size: new Dimension2( 1.1 * graphNode.width, 40 )
+    } );
+    graphVisibleProperty.link( function( visible ) {
+      graphNode.visible = visible;
+    } );
+
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
       moleculeCountVisibleProperty.reset();
       ratioVisibleProperty.reset();
+      graphVisibleProperty.reset();
     } );
 
     // Rendering order
@@ -85,11 +106,18 @@ define( function( require ) {
     rootNode.addChild( volumeIndicatorNode );
     rootNode.addChild( pHMeterNode );
     rootNode.addChild( beakerControls );
+    rootNode.addChild( graphNode );
+    rootNode.addChild( graphExpandCollapseBar );
     rootNode.addChild( resetAllButton );
 
     // Layout
     beakerControls.centerX = beakerNode.centerX;
     beakerControls.top = beakerNode.bottom + 30;
+    graphExpandCollapseBar.left = drainFaucetNode.right + 30;
+    graphExpandCollapseBar.top = 20;
+    graphNode.centerX = graphExpandCollapseBar.centerX;
+    graphNode.top = graphExpandCollapseBar.bottom + 10;
+
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }

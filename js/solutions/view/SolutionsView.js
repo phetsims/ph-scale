@@ -79,6 +79,7 @@ define( function( require ) {
     pHMeterVisibleProperty.link( function( visible ) {
       pHMeterNode.visible = visible;
     } );
+
     // graph
     var graphNode = new SolutionsGraphNode(); //TODO args
     var graphExpandCollapseBar = new ExpandCollapseBar( concentrationString, graphVisibleProperty, {

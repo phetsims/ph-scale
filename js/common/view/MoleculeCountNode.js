@@ -74,12 +74,13 @@ define( function( require ) {
     var backgroundWidth = maxCountWidth + xSpacing + maxMoleculeWidth + ( 2 * xMargin );
     var backgroundHeight = Math.max( maxCountHeight, maxMoleculeHeight ) + ( 2 * yMargin );
     var cornerRadius = 5;
+    var backgroundStroke = 'rgb(200,200,200)';
     var backgroundH3O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-      { fill: PHScaleColors.ACIDIC, stroke: PHScaleColors.ACIDIC.darkerColor() } );
+      { fill: PHScaleColors.ACIDIC, stroke: backgroundStroke } );
     var backgroundOH = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-      { fill: PHScaleColors.BASIC, stroke: PHScaleColors.BASIC.darkerColor() } );
+      { fill: PHScaleColors.BASIC, stroke: backgroundStroke } );
     var backgroundH2O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-      { fill: PHScaleColors.WATER, stroke: PHScaleColors.WATER.darkerColor() } );
+      { fill: PHScaleColors.WATER, stroke: backgroundStroke } );
 
     // rendering order
     thisNode.addChild( backgroundH3O );

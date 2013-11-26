@@ -10,6 +10,10 @@ define( function( require ) {
 
     SCREEN_BACKGROUND: 'white',
 
+    // atom colors
+    OXYGEN: new Color( 255, 0, 0 ),
+    HYDROGEN: new Color( 255, 255, 255 ),
+
     // H3O, OH, H2O colors (used for pH slider track & bars)
     H3O: new Color( 242, 102, 101 ),
     OH: new Color( 102, 132, 242 ),

@@ -30,7 +30,7 @@ define( function( require ) {
       size: new Dimension2( 220, 40 ),
       cornerRadius: 6,
       xMargin: 10,
-      barFill: 'rgb(114,9,56)',
+      barFill: 'rgb(135,25,75)',
       barStroke: null,
       titleFont: new PhetFont( { size: 18, weight: 'bold' } ),
       titleFill: 'white',

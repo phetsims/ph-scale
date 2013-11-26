@@ -16,8 +16,8 @@ define( function( require ) {
     SCREEN_BACKGROUND: 'white',
 
     // pH range
-    ACIDIC: new Color( 242, 102, 101 ),
-    BASIC: new Color( 102, 132, 242 ),
+    ACIDIC: new Color( 249, 106, 102 ),
+    BASIC: new Color( 106, 126, 195 ),
 
     // atom colors
     OXYGEN: new Color( 255, 85, 0 ), // colorblind-friendly red

@@ -26,5 +26,7 @@
   "basic": "Basic",
   "neutral": "7 (Neutral)",
   "concentration": "Concentration",
-  "quantity": "Quantity"
+  "quantity": "Quantity",
+  "moleculeCount": "Molecule count",
+  "ratio": "ratio"
 }

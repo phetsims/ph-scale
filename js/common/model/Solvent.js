@@ -9,7 +9,7 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var Color = require( 'SCENERY/util/Color' );
+  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
 
   // strings
@@ -22,7 +22,7 @@ define( function( require ) {
     this.color = color;
   }
 
-  Solvent.WATER = new Solvent( waterString, 7, new Color( 224, 255, 255 ) );
+  Solvent.WATER = new Solvent( waterString, 7, PHScaleColors.WATER );
 
   return Solvent;
 } );

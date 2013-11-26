@@ -17,12 +17,13 @@ HIGH
 - Solutions: log graph, not interactive
 - Custom: interactive log graph
 - Custom: interactive linear graph, zoom feature
-- 'Molecule count' feature
 - 'H3O+/OH- ratio' feature
 - color-coding on 'H3O+/OH- ratio' check box label (use CSS?)
 
 MEDIUM
+- molecule count for H2O should have a fixed exponent of 25
 - constrain pH and volume so that student computations match displayed values, as in Java sim
+- ditch 'solvent' in model and view, use 'water'
 
 LOW
 - factor out duplicate code/patterns in model & view for 3 screens

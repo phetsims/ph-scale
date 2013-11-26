@@ -20,6 +20,7 @@ define( function( require ) {
   var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
   var Property = require( 'AXON/Property' );
@@ -68,7 +69,10 @@ define( function( require ) {
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
     // 'molecule count' representation
-    //TODO node goes here, visibility linked to moleculeCountProperty
+    var moleculeCountNode = new MoleculeCountNode( model.solution );
+    moleculeCountVisibleProperty.link( function( visible ) {
+      moleculeCountNode.visible = visible;
+    } );
 
     // 'H3O+/OH- ratio' representation
     //TODO node goes here, visibility linked to ratioVisibleProperty
@@ -103,6 +107,7 @@ define( function( require ) {
     rootNode.addChild( dropperNode );
     rootNode.addChild( solutionNode );
     rootNode.addChild( beakerNode );
+    rootNode.addChild( moleculeCountNode );
     rootNode.addChild( volumeIndicatorNode );
     rootNode.addChild( beakerControls );
     rootNode.addChild( pHMeterNode );
@@ -111,6 +116,8 @@ define( function( require ) {
     rootNode.addChild( resetAllButton );
 
     // Layout
+    moleculeCountNode.right = mvt.modelToViewX( model.beaker.right ) - 20;
+    moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.centerX = beakerNode.centerX;
     beakerControls.top = beakerNode.bottom + 30;
     graphExpandCollapseBar.left = drainFaucetNode.right + 30;

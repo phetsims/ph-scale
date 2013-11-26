@@ -23,6 +23,9 @@ define( function( require ) {
     OXYGEN: new Color( 255, 85, 0 ), // colorblind-friendly red
     HYDROGEN: new Color( 255, 255, 255 ),
 
+    // water
+    WATER: new Color( 224, 255, 255 ),
+
     // particles in 'ratio' view
     H3O_PARTICLES: new Color( 204, 0, 0 ),
     OH_PARTICLES: new Color( 0, 0, 255 )

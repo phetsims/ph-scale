@@ -31,7 +31,5 @@ LOW
 - home screen and navbar icons
 - lots of stuff copied from beers-law-lab, much of it tweaked slightly
 - English strings have been capitalized, translations have not
-- localize ordering of 'H3O+/OH- ratio' label
-- align baselines in 'H3O+/OH- ratio' label
 
 MIGRATE TO COMMON

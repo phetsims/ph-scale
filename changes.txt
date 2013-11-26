@@ -1,3 +1,4 @@
+11/26/13 adjust colors of atoms
 11/26/13 nodes for atoms and molecules
 11/26/13 change order of beaker controls
 11/25/13 Solutions: make beaker slightly shorter to accommodate control panel below beaker

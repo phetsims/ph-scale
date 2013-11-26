@@ -144,6 +144,13 @@ define( function( require ) {
     graphNode.top = pHMeterNode.top;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 15;
+
+    var OHMoleculeNode = require( 'PH_SCALE/common/view/OHMoleculeNode' );
+    var H2OMoleculeNode = require( 'PH_SCALE/common/view/H2OMoleculeNode' );
+    var H3OMoleculeNode = require( 'PH_SCALE/common/view/H3OMoleculeNode' );
+    rootNode.addChild( new OHMoleculeNode( {x: 200, y: 200 }) );
+    rootNode.addChild( new H2OMoleculeNode( {x: 200, y: 400 }) );
+    rootNode.addChild( new H3OMoleculeNode( {x: 200, y: 600 }) );
   }
 
   return inherit( ScreenView, SolutionsView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );

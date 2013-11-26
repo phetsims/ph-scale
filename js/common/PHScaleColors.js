@@ -10,16 +10,15 @@ define( function( require ) {
 
     SCREEN_BACKGROUND: 'white',
 
+    // pH range
+    ACIDIC: new Color( 242, 102, 101 ),
+    BASIC: new Color( 102, 132, 242 ),
+
     // atom colors
-    OXYGEN: new Color( 255, 0, 0 ),
+    OXYGEN: new Color( 255, 85, 0 ), // colorblind-friendly red
     HYDROGEN: new Color( 255, 255, 255 ),
 
-    // H3O, OH, H2O colors (used for pH slider track & bars)
-    H3O: new Color( 242, 102, 101 ),
-    OH: new Color( 102, 132, 242 ),
-    H2O: new Color( 224, 255, 255 ),
-
-    // H3O and OH particle colors
+    // particles in 'ratio' view
     H3O_PARTICLES: new Color( 204, 0, 0 ),
     OH_PARTICLES: new Color( 0, 0, 255 )
   };

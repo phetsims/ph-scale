@@ -24,6 +24,7 @@ MEDIUM
 - molecule count for H2O should have a fixed exponent of 25
 - constrain pH and volume so that student computations match displayed values, as in Java sim
 - ditch 'solvent' in model and view, use 'water'
+- adjust touchArea for check boxes
 
 LOW
 - exponents look lousy, rewrite using scenery.Text?

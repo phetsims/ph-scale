@@ -18,6 +18,7 @@ HIGH
 - Custom: interactive log graph
 - Custom: interactive linear graph, zoom feature
 - 'H3O+/OH- ratio' feature
+- gray out left or right title in graph's expand/collapse bar
 
 MEDIUM
 - molecule count for H2O should have a fixed exponent of 25

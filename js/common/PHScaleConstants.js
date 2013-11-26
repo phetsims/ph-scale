@@ -1,5 +1,10 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
+/**
+ * Constants used throughout this sim.
+ *
+ * @author Chris Malley (PixelZoom, Inc.)
+ */
 define( function( require ) {
   'use strict';
 

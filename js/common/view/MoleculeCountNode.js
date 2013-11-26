@@ -70,7 +70,7 @@ define( function( require ) {
     // backgrounds
     var xMargin = 10;
     var yMargin = 5;
-    var xSpacing = 5;
+    var xSpacing = 10;
     var backgroundWidth = maxCountWidth + xSpacing + maxMoleculeWidth + ( 2 * xMargin );
     var backgroundHeight = Math.max( maxCountHeight, maxMoleculeHeight ) + ( 2 * yMargin );
     var cornerRadius = 5;
@@ -99,11 +99,11 @@ define( function( require ) {
     backgroundOH.top = backgroundH3O.bottom + ySpacing;
     backgroundH2O.left = backgroundOH.left;
     backgroundH2O.top = backgroundOH.bottom + ySpacing;
-    nodeH3O.right = backgroundH3O.right - xMargin;
+    nodeH3O.centerX = backgroundH3O.right - xMargin - ( maxMoleculeWidth / 2 );
     nodeH3O.centerY = backgroundH3O.centerY;
-    nodeOH.right = backgroundOH.right - xMargin;
+    nodeOH.centerX = backgroundOH.right - xMargin - ( maxMoleculeWidth / 2 );
     nodeOH.centerY = backgroundOH.centerY;
-    nodeH2O.right = backgroundH2O.right - xMargin;
+    nodeH2O.centerX = backgroundH2O.right - xMargin - ( maxMoleculeWidth / 2 );
     nodeH2O.centerY = backgroundH2O.centerY;
     countH3O.centerY = backgroundH3O.centerY;
     countOH.centerY = backgroundOH.centerY;

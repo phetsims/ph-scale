@@ -36,7 +36,7 @@ define( function( require ) {
         return tokens[0]; // no exponent, return the mantissa
       }
       else {
-        return tokens[0] + ' x 10<sup>' + tokens[1] + '</sup>'; // mantissa x 10^exponent
+        return tokens[0] + ' x 10<span style="font-size:85%"><sup>' + tokens[1] + '</sup></span>'; // mantissa x 10^exponent
       }
     }
   };

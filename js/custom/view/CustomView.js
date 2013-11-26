@@ -24,6 +24,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
   var Property = require( 'AXON/Property' );
+  var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
@@ -68,14 +69,17 @@ define( function( require ) {
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
+    // 'H3O+/OH- ratio' representation
+    var ratioNode = new RatioNode( model.solution );
+    ratioVisibleProperty.link( function( visible ) {
+      ratioNode.visible = visible;
+    } );
+
     // 'molecule count' representation
     var moleculeCountNode = new MoleculeCountNode( model.solution );
     moleculeCountVisibleProperty.link( function( visible ) {
       moleculeCountNode.visible = visible;
     } );
-
-    // 'H3O+/OH- ratio' representation
-    //TODO node goes here, visibility linked to ratioVisibleProperty
 
     // beaker controls
     var beakerControls = new BeakerControls( ratioVisibleProperty, moleculeCountVisibleProperty );
@@ -106,6 +110,7 @@ define( function( require ) {
     rootNode.addChild( dropperFluidNode );
     rootNode.addChild( dropperNode );
     rootNode.addChild( solutionNode );
+    rootNode.addChild( ratioNode );
     rootNode.addChild( beakerNode );
     rootNode.addChild( moleculeCountNode );
     rootNode.addChild( volumeIndicatorNode );
@@ -116,6 +121,8 @@ define( function( require ) {
     rootNode.addChild( resetAllButton );
 
     // Layout
+    ratioNode.centerX = beakerNode.centerX; //TODO delete
+    ratioNode.centerY = beakerNode.top + ( 0.3 * beakerNode.height ); //TODO delete
     moleculeCountNode.right = mvt.modelToViewX( model.beaker.right ) - 20;
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.centerX = beakerNode.centerX;

@@ -26,22 +26,22 @@ define( function( require ) {
   var FONT = new PhetFont( 20 );
 
   /**
-   * @param {Property<Boolean>} moleculeCountVisibleProperty
    * @param {Property<Boolean>} ratioVisibleProperty
+   * @param {Property<Boolean>} moleculeCountVisibleProperty
    * @constructor
    */
-  function BeakerControls( moleculeCountVisibleProperty, ratioVisibleProperty ) {
-
-    var moleculeCountLabel = new Text( moleculeCountString, { font: FONT } );
-    var moleculeCountCheckBox = new CheckBox( moleculeCountLabel, moleculeCountVisibleProperty );
+  function BeakerControls( ratioVisibleProperty, moleculeCountVisibleProperty ) {
 
     var ratioLabel = new HTMLText( ratioString, { font: FONT } );
     var ratioCheckBox = new CheckBox( ratioLabel, ratioVisibleProperty );
 
+    var moleculeCountLabel = new Text( moleculeCountString, { font: FONT } );
+    var moleculeCountCheckBox = new CheckBox( moleculeCountLabel, moleculeCountVisibleProperty );
+
     var separator = new Line( 0, 0, Math.max( moleculeCountCheckBox.width, ratioCheckBox.width ), 0, { stroke: 'gray' } );
 
     var content = new VBox( {
-      children: [ moleculeCountCheckBox, separator, ratioCheckBox ],
+      children: [ ratioCheckBox, separator, moleculeCountCheckBox ],
       align: 'left',
       spacing: 10
     } );

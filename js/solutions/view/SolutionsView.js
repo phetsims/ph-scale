@@ -46,8 +46,8 @@ define( function( require ) {
     ScreenView.call( thisView, { renderer: 'svg' } );
 
     // view-specific properties
-    var moleculeCountVisibleProperty = new Property( false );
     var ratioVisibleProperty = new Property( false );
+    var moleculeCountVisibleProperty = new Property( false );
     var pHMeterVisibleProperty = new Property( true );
     var graphVisibleProperty = new Property( true );
 
@@ -81,7 +81,7 @@ define( function( require ) {
     //TODO node goes here, visibility linked to ratioVisibleProperty
 
     // beaker controls
-    var beakerControls = new BeakerControls( moleculeCountVisibleProperty, ratioVisibleProperty );
+    var beakerControls = new BeakerControls( ratioVisibleProperty, moleculeCountVisibleProperty );
 
     // pH meter
     var pHMeterNode = new SolutionsPHMeterNode( model.pHMeter, mvt );

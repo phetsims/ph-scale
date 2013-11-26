@@ -19,9 +19,6 @@ define( function( require ) {
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
-  // constants
-  var FONT = new PhetFont( 22 );
-
   /*
    * Converts a number to a format like 1.23 x 10^25
    * @param {Number} value the number to be formatted
@@ -34,7 +31,7 @@ define( function( require ) {
     }
     else {
       var precisionString = value.toPrecision( precision ); // eg, 12345 -> 1.23e+4
-      var tokens = precisionString.split( 'e+' );
+      var tokens = precisionString.toLowerCase().split( 'e+' ); //TODO will this work in all browsers?
       if ( tokens.length === 1 ) {
         return tokens[0]; // no exponent, return the mantissa
       }
@@ -53,6 +50,12 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
+    // margins and spacing
+    var xMargin = 10;
+    var yMargin = 5;
+    var xSpacing = 10;
+    var ySpacing = 6;
+
     // molecule icons
     var nodeH3O = new H3OMoleculeNode();
     var nodeOH = new OHMoleculeNode();
@@ -61,16 +64,14 @@ define( function( require ) {
     var maxMoleculeHeight = Math.max( nodeH3O.height, Math.max( nodeOH.height, nodeH2O.height ) );
 
     // count values
-    var countH3O = new HTMLText( '0.00 x 10<sup>00</sup>', { font: FONT, fill: 'white' } );
-    var countOH = new HTMLText( '0.00 x 10<sup>00</sup>', { font: FONT, fill: 'white' } );
-    var countH2O = new HTMLText( '0.00 x 10<sup>00</sup>', { font: FONT, fill: 'black' } );
+    var font = new PhetFont( 22 );
+    var countH3O = new HTMLText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'white' } );
+    var countOH = new HTMLText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'white' } );
+    var countH2O = new HTMLText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'black' } );
     var maxCountWidth = countH3O.width;
     var maxCountHeight = countH3O.height;
 
     // backgrounds
-    var xMargin = 10;
-    var yMargin = 5;
-    var xSpacing = 10;
     var backgroundWidth = maxCountWidth + xSpacing + maxMoleculeWidth + ( 2 * xMargin );
     var backgroundHeight = Math.max( maxCountHeight, maxMoleculeHeight ) + ( 2 * yMargin );
     var cornerRadius = 5;
@@ -94,20 +95,25 @@ define( function( require ) {
     thisNode.addChild( nodeH2O );
 
     // layout
-    var ySpacing = 6;
-    backgroundOH.left = backgroundH3O.left;
-    backgroundOH.top = backgroundH3O.bottom + ySpacing;
-    backgroundH2O.left = backgroundOH.left;
-    backgroundH2O.top = backgroundOH.bottom + ySpacing;
-    nodeH3O.centerX = backgroundH3O.right - xMargin - ( maxMoleculeWidth / 2 );
-    nodeH3O.centerY = backgroundH3O.centerY;
-    nodeOH.centerX = backgroundOH.right - xMargin - ( maxMoleculeWidth / 2 );
-    nodeOH.centerY = backgroundOH.centerY;
-    nodeH2O.centerX = backgroundH2O.right - xMargin - ( maxMoleculeWidth / 2 );
-    nodeH2O.centerY = backgroundH2O.centerY;
-    countH3O.centerY = backgroundH3O.centerY;
-    countOH.centerY = backgroundOH.centerY;
-    countH2O.centerY = backgroundH2O.centerY;
+    {
+      // backgrounds are vertically stacked
+      backgroundOH.left = backgroundH3O.left;
+      backgroundOH.top = backgroundH3O.bottom + ySpacing;
+      backgroundH2O.left = backgroundOH.left;
+      backgroundH2O.top = backgroundOH.bottom + ySpacing;
+      // molecule icons are vertically centered in the backgrounds, horizontally centered above each other
+      nodeH3O.centerX = backgroundH3O.right - xMargin - ( maxMoleculeWidth / 2 );
+      nodeH3O.centerY = backgroundH3O.centerY;
+      nodeOH.centerX = backgroundOH.right - xMargin - ( maxMoleculeWidth / 2 );
+      nodeOH.centerY = backgroundOH.centerY;
+      nodeH2O.centerX = backgroundH2O.right - xMargin - ( maxMoleculeWidth / 2 );
+      nodeH2O.centerY = backgroundH2O.centerY;
+      // counts are vertically centered in the backgrounds
+      countH3O.centerY = backgroundH3O.centerY;
+      countOH.centerY = backgroundOH.centerY;
+      countH2O.centerY = backgroundH2O.centerY;
+      // counts will be dynamically right-justified
+    }
 
     // update counts when the solution changes
     var moleculesLeft = Math.min( nodeH3O.left, Math.min( nodeOH.left, nodeH2O.left ) ); // for right justifying counts

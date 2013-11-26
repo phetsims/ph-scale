@@ -28,5 +28,5 @@
   "concentration": "Concentration",
   "quantity": "Quantity",
   "moleculeCount": "Molecule count",
-  "ratio": "ratio"
+  "ratio": "{0}/{1} ratio"
 }

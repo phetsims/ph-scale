@@ -17,6 +17,7 @@ define( function( require ) {
   var Panel = require( 'SUN/Panel' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
   var VBox = require( 'SCENERY/nodes/VBox' );
 
@@ -34,24 +35,10 @@ define( function( require ) {
    */
   function BeakerControls( ratioVisibleProperty, moleculeCountVisibleProperty ) {
 
-    //TODO the ordering of this label is not localized
-    // Label with color-coded formulas
-    var textH3O = new HTMLText( 'H<sub>3</sub>O<sup>+</sup>', { font: FONT, fill: PHScaleColors.ACIDIC } );
-    var textSlash = new HTMLText( '/', { font: FONT } );
-    var textOH = new HTMLText( 'OH<sup>-</sup>', { font: FONT, fill: PHScaleColors.BASIC } );
-    var textRatio = new HTMLText( ratioString, { font: FONT } );
-    var ratioLabel = new Node();
-    ratioLabel.addChild( textH3O );
-    ratioLabel.addChild( textSlash );
-    ratioLabel.addChild( textOH );
-    ratioLabel.addChild( textRatio );
-    textSlash.left = textH3O.right + 1;
-    textOH.left = textSlash.right + 1;
-    textRatio.left = textOH.right + 6;
-    //TODO how to align baselines of Text and HTMLText?
-    textH3O.y = textH3O.y - 4;
-    textOH.y = textOH.y - 4;
-
+    // label is color-coded
+    var stringH3O = '<span style="color:' + PHScaleColors.ACIDIC.toCSS() + '">H<sub>3</sub>O<sup>+</sup></span>';
+    var stringOH = '<span style="color:' + PHScaleColors.BASIC.toCSS() + '">OH<sup>-</sup></span>';
+    var ratioLabel = new HTMLText( StringUtils.format( ratioString, stringH3O, stringOH ), { font: FONT } );
     var ratioCheckBox = new CheckBox( ratioLabel, ratioVisibleProperty );
 
     var moleculeCountLabel = new Text( moleculeCountString, { font: FONT } );

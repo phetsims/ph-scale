@@ -26,6 +26,7 @@ MEDIUM
 - ditch 'solvent' in model and view, use 'water'
 
 LOW
+- HTML exponents look lousy in 'Molecule counts', rewrite using scenery.Text?
 - factor out duplicate code/patterns in model & view for 3 screens
 - home screen and navbar icons
 - lots of stuff copied from beers-law-lab, much of it tweaked slightly

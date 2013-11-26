@@ -58,7 +58,7 @@ define( function( require ) {
       function() {
         return Solution.computeColor(
           thisSolution.soluteProperty.get().color, thisSolution.soluteProperty.get().dilutedColor, thisSolution.soluteVolumeProperty.get(),
-          thisSolution.solvent.color, thisSolution.solventVolumeProperty.get() )
+          thisSolution.solvent.color, thisSolution.solventVolumeProperty.get() );
       }
     );
 

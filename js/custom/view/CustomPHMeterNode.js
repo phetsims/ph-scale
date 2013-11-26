@@ -11,7 +11,7 @@ define( function( require ) {
 
   // imports
   var inherit = require( 'PHET_CORE/inherit' );
-  var PHValueNode = new require( 'PH_SCALE/common/view/PHValueNode' );
+  var PHValueNode = require( 'PH_SCALE/common/view/PHValueNode' );
 
   /**
    * @param {PHMeter} meter

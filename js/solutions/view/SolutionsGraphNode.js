@@ -32,7 +32,7 @@ define( function( require ) {
     } ) );
 
     thisNode.addChild( new ChoiceSwitch( new Property( 'mol/L' ), 'mol/L', 'mol', {
-      font: new PhetFont( 20 ), size: new Dimension2( 40, 20 ), centerX: GRAPH_SIZE.width/2, y: 20 } ) );
+      font: new PhetFont( 20 ), size: new Dimension2( 40, 20 ), centerX: GRAPH_SIZE.width/2, y: 10 } ) );
   }
 
   return inherit( Node, SolutionsGraphNode );

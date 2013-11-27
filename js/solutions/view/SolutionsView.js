@@ -158,6 +158,10 @@ define( function( require ) {
     graphNode.top = pHMeterNode.top;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 15;
+
+    //XXX test
+    var Switch = require( 'PH_SCALE/common/view/Switch' );
+    rootNode.addChild( new Switch( new Property( 'foo' ), 'foo', 'bar', { x: 300, y: 200 } ) );
   }
 
   return inherit( ScreenView, SolutionsView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );

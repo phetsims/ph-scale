@@ -1,3 +1,4 @@
+11/27/13 implement the iOS-like switch for the graph options
 11/26/13 add placeholder for 'ratio' feature
 11/26/13 use CSS to color-code the 'H3O+/OH- ratio' label
 11/26/13 make exponents smaller using CSS in 'Molecule count' view

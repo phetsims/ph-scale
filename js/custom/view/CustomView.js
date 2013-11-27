@@ -13,7 +13,6 @@ define( function( require ) {
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var CustomGraphNode = require( 'PH_SCALE/custom/view/CustomGraphNode' );
-  var CustomPHMeterNode = require( 'PH_SCALE/custom/view/CustomPHMeterNode' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
@@ -23,6 +22,7 @@ define( function( require ) {
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
+  var PHValueNode = require( 'PH_SCALE/common/view/PHValueNode' );
   var Property = require( 'AXON/Property' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
@@ -85,7 +85,7 @@ define( function( require ) {
     var beakerControls = new BeakerControls( ratioVisibleProperty, moleculeCountVisibleProperty );
 
     // pH meter
-    var pHMeterNode = new CustomPHMeterNode( model.pHMeter, mvt );
+    var pHMeterNode = new PHValueNode( model.solution.pHProperty );
 
     // graph
     var graphNode = new CustomGraphNode(); //TODO args
@@ -121,6 +121,8 @@ define( function( require ) {
     rootNode.addChild( resetAllButton );
 
     // Layout
+    pHMeterNode.centerX = beakerNode.left;
+    pHMeterNode.bottom = beakerNode.top - 30;
     ratioNode.centerX = beakerNode.centerX; //TODO delete
     ratioNode.centerY = beakerNode.top + ( 0.3 * beakerNode.height ); //TODO delete
     moleculeCountNode.right = mvt.modelToViewX( model.beaker.right ) - 20;

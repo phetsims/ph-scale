@@ -63,12 +63,12 @@ define( function( require ) {
 
   inherit( Node, PointerNode );
 
-  function SolutionsPHMeterNode( meter, mvt ) {
+  function SolutionsPHMeterNode( pHProperty ) {
 
     var thisNode = this;
     Node.call( thisNode );
 
-    var valueNode = new PHValueNode( meter.valueProperty );
+    var valueNode = new PHValueNode( pHProperty );
     var verticalLineNode = new Line( 0, 0, 0, 25, { stroke: 'black', lineWidth: 5 } );
     var scaleNode = new PHScaleNode( { size: SCALE_SIZE } );
     var pointerNode = new PointerNode( SCALE_SIZE.width );
@@ -89,13 +89,8 @@ define( function( require ) {
     pointerNode.x = scaleNode.left;
     // pointerNode.centerY is set dynamically
 
-    // location
-    meter.body.locationProperty.link( function( location ) {
-      thisNode.translation = mvt.modelToViewPosition( location );
-    } );
-
     // move the pointer to the pH value
-    meter.valueProperty.link( function( value ) {
+    pHProperty.link( function( value ) {
       pointerNode.visible = ( value !== null );
       pointerNode.centerY = scaleNode.top + ( scaleNode.getBackgroundStrokeWidth() / 2 ) +
                             Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );

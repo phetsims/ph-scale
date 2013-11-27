@@ -15,7 +15,6 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var Dropper = require( 'PH_SCALE/common/model/Dropper' );
   var Faucet = require( 'PH_SCALE/common/model/Faucet' );
-  var PHMeter = require( 'PH_SCALE/common/model/PHMeter' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Solute = require( 'PH_SCALE/common/model/Solute' );
@@ -29,21 +28,16 @@ define( function( require ) {
 
     thisModel.solvent = Solvent.WATER;
     thisModel.beaker = new Beaker( new Vector2( 330, 550 ), new Dimension2( 400, 325 ) );
-    thisModel.dropper = new Dropper( Solute.CUSTOM, new Vector2( thisModel.beaker.location.x + 40, 210 ), new Bounds2( 250, 210, 510, 210 ) );
+    var yDropper = 210;
+    thisModel.dropper = new Dropper( Solute.CUSTOM, new Vector2( thisModel.beaker.location.x + 40, yDropper ), new Bounds2( 225, yDropper, 500, yDropper ) );
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.solvent, 0, thisModel.beaker.volume );
     thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 100, 602 ), thisModel.beaker.right,
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );
-    thisModel.pHMeter = new PHMeter( new Vector2( 85, 60 ), new Bounds2( 10, 150, 835, 680 ), new Vector2( 605, 405 ), new Bounds2( 30, 150, 966, 680 ) );
 
     // Enable faucets and dropper based on amount of solution in the beaker.
     thisModel.solution.volumeProperty.link( function( volume ) {
       thisModel.drainFaucet.enabledProperty.set( volume > 0 );
       thisModel.dropper.enabledProperty.set( !thisModel.dropper.emptyProperty.get() && ( volume < thisModel.beaker.volume ) );
-    } );
-
-    // wire the pH meter directly to the solution
-    thisModel.solution.pHProperty.link( function( pH ) {
-      thisModel.pHMeter.valueProperty.set( pH );
     } );
   }
 

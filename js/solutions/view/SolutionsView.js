@@ -92,8 +92,8 @@ define( function( require ) {
     var beakerControls = new BeakerControls( ratioVisibleProperty, moleculeCountVisibleProperty );
 
     // pH meter
-    var pHMeterNode = new SolutionsPHMeterNode( model.pHMeter, mvt );
-    var phMeterExpandCollapseBar = new ExpandCollapseBar( pHString, pHMeterVisibleProperty, {
+    var pHMeterNode = new SolutionsPHMeterNode( model.solution.pHProperty );
+    var pHMeterExpandCollapseBar = new ExpandCollapseBar( pHString, pHMeterVisibleProperty, {
       size: new Dimension2( 1.1 * pHMeterNode.width, 40 )
     } );
     pHMeterVisibleProperty.link( function( visible ) {
@@ -134,7 +134,7 @@ define( function( require ) {
     rootNode.addChild( volumeIndicatorNode );
     rootNode.addChild( beakerControls );
     rootNode.addChild( pHMeterNode );
-    rootNode.addChild( phMeterExpandCollapseBar );
+    rootNode.addChild( pHMeterExpandCollapseBar );
     rootNode.addChild( graphNode );
     rootNode.addChild( graphExpandCollapseBar );
     rootNode.addChild( resetAllButton );
@@ -150,10 +150,12 @@ define( function( require ) {
     beakerControls.top = beakerNode.bottom + 15;
     soluteComboBox.centerX = mvt.modelToViewX( model.beaker.location.x );
     soluteComboBox.top = this.layoutBounds.top + 15;
-    phMeterExpandCollapseBar.centerX = pHMeterNode.centerX;
-    phMeterExpandCollapseBar.bottom = pHMeterNode.top - 15;
-    graphExpandCollapseBar.left = phMeterExpandCollapseBar.right + 20;
-    graphExpandCollapseBar.top = phMeterExpandCollapseBar.top;
+    pHMeterExpandCollapseBar.left = drainFaucetNode.right + 30;
+    pHMeterExpandCollapseBar.top = 20;
+    pHMeterNode.top = pHMeterExpandCollapseBar.bottom + 10;
+    pHMeterNode.centerX = pHMeterExpandCollapseBar.centerX;
+    graphExpandCollapseBar.left = pHMeterExpandCollapseBar.right + 20;
+    graphExpandCollapseBar.top = pHMeterExpandCollapseBar.top;
     graphNode.centerX = graphExpandCollapseBar.centerX;
     graphNode.top = pHMeterNode.top;
     resetAllButton.right = this.layoutBounds.right - 40;

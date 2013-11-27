@@ -25,7 +25,7 @@ define( function( require ) {
   function OnOffSwitch( onProperty, options ) {
 
     options = _.extend( {
-      size: new Dimension2( 60, 30 ),
+      size: new Dimension2( 60, 30 ), // if you want slider to be a circle, use width that is 2x height
       cursor: 'pointer',
       backgroundFill: 'white',
       sliderOnFill: 'rgb(0,255,0)',

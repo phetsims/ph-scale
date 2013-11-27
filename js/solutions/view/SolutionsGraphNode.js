@@ -17,19 +17,22 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
+  // constants
+  var GRAPH_SIZE = new Dimension2( 275, 530 );
+
   function SolutionsGraphNode() {
 
     var thisNode = this;
     Node.call( thisNode );
 
     //TODO placeholder for approximate size of graph
-    thisNode.addChild( new Rectangle( 0, 0, 275, 530, {
-      stroke: 'black',
+    thisNode.addChild( new Rectangle( 0, 0, GRAPH_SIZE.width, GRAPH_SIZE.height, {
+      stroke: 'rgb(200,200,200)',
       lineWidth: 2
     } ) );
 
     thisNode.addChild( new ChoiceSwitch( new Property( 'mol/L' ), 'mol/L', 'mol', {
-      font: new PhetFont( 20 ), size: new Dimension2( 40, 20 ), centerX: 275/2, y: 20 } ) );
+      font: new PhetFont( 20 ), size: new Dimension2( 40, 20 ), centerX: GRAPH_SIZE.width/2, y: 20 } ) );
   }
 
   return inherit( Node, SolutionsGraphNode );

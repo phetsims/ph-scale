@@ -19,6 +19,7 @@ define( function( require ) {
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
+  //TODO run this by other developers, is there a better way?
   /*
    * Converts a number to a format like 1.23 x 10^25
    * @param {Number} value the number to be formatted

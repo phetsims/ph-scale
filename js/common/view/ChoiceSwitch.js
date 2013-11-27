@@ -39,7 +39,7 @@ define( function( require ) {
     }, options );
 
     // default gradients
-    options.backgroundFill = options.backgroundFill || new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'rgb(40,40,40)' ).addColorStop( 1, 'rgb(200,200,200)' );
+    options.trackFill = options.trackFill || new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'rgb(40,40,40)' ).addColorStop( 1, 'rgb(200,200,200)' );
     options.thumbOnFill = options.thumbOnFill || new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'white' ).addColorStop( 1, 'rgb(200,200,200)' );
     options.thumbOffFill = options.thumbOffFill || options.thumbOnFill;
 
@@ -51,7 +51,7 @@ define( function( require ) {
     var onOffSwitch = new OnOffSwitch( onProperty, {
       size: options.size,
       cursor: options.cursor,
-      backgroundFill: options.backgroundFill,
+      trackFill: options.trackFill,
       thumbOnFill: options.thumbOnFill,
       thumbOffFill: options.thumbOffFill
     } );

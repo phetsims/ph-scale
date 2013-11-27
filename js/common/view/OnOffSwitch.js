@@ -28,7 +28,7 @@ define( function( require ) {
     options = _.extend( {
       size: new Dimension2( 60, 30 ), // if you want the thumb to be a circle, use width that is 2x height
       cursor: 'pointer',
-      backgroundFill: 'white',
+      trackFill: 'white',
       thumbOnFill: 'rgb(0,255,0)', // thumb fill when onProperty is true
       thumbOffFill: 'white' // thumb fill when onProperty is false
     }, options );
@@ -38,11 +38,11 @@ define( function( require ) {
 
     // track that the thumb slides in
     var cornerRadius = options.size.height / 2;
-    var backgroundNode = new Rectangle( 0, 0, options.size.width, options.size.height, cornerRadius, cornerRadius, {
-      fill: options.backgroundFill,
+    var trackNode = new Rectangle( 0, 0, options.size.width, options.size.height, cornerRadius, cornerRadius, {
+      fill: options.trackFill,
       stroke: 'black'
     } );
-    thisNode.addChild( backgroundNode );
+    thisNode.addChild( trackNode );
 
     // thumb (aka knob)
     var thumbNode = new Rectangle( 0, 0, 0.5 * options.size.width, options.size.height, cornerRadius, cornerRadius, {
@@ -88,13 +88,13 @@ define( function( require ) {
 
       end: function() {
         // snap to whichever end the thumb is closest to
-        onProperty.set( thumbNode.centerX > backgroundNode.centerX );
+        onProperty.set( thumbNode.centerX > trackNode.centerX );
         updateSlider( onProperty.get() );
       }
     } ) );
 
-    // toggle when background is clicked
-    backgroundNode.addInputListener( new ButtonListener( {
+    // toggle when track is clicked
+    trackNode.addInputListener( new ButtonListener( {
       fire: function() { onProperty.set( !onProperty.get() ); }
     } ) );
 

@@ -1,3 +1,4 @@
+11/27/13 add enums for graph type and units
 11/27/13 move PHMeter to basics.model
 11/27/13 don't use PHMeter model element in 'Solutions' and 'Custom' screens
 11/27/13 generalize OnOffSwitch and ChoiceSwitch

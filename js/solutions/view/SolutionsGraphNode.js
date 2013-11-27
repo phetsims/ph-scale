@@ -11,6 +11,7 @@ define( function( require ) {
   // imports
   var ChoiceSwitch = require( 'PH_SCALE/common/view/ChoiceSwitch' );
   var Dimension2 = require( 'DOT/Dimension2' );
+  var GraphUnits = require( 'PH_SCALE/common/view/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -35,7 +36,7 @@ define( function( require ) {
       lineWidth: 2
     } ) );
 
-    thisNode.addChild( new ChoiceSwitch( new Property( 'mol/L' ), 'mol/L', molesPerLiterString, 'mol', molesString, {
+    thisNode.addChild( new ChoiceSwitch( new Property( GraphUnits.MOLES_PER_LITER ), GraphUnits.MOLES_PER_LITER, molesPerLiterString, GraphUnits.MOLES, molesString, {
       font: new PhetFont( 18 ), size: new Dimension2( 40, 20 ), centerX: GRAPH_SIZE.width/2, y: 10 } ) );
   }
 

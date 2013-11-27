@@ -14,7 +14,7 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var Dropper = require( 'PH_SCALE/common/model/Dropper' );
   var Faucet = require( 'PH_SCALE/common/model/Faucet' );
-  var PHMeter = require( 'PH_SCALE/common/model/PHMeter' );
+  var PHMeter = require( 'PH_SCALE/basics/model/PHMeter' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Solute = require( 'PH_SCALE/common/model/Solute' );

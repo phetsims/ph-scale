@@ -22,7 +22,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // constants
-  var SCALE_SIZE = new Dimension2( 50, 450 );
+  var SCALE_SIZE = new Dimension2( 55, 450 );
 
   /**
    * Arrow and dashed line that points to a value on the pH scale.

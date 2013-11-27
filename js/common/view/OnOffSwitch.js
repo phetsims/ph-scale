@@ -29,8 +29,10 @@ define( function( require ) {
       size: new Dimension2( 60, 30 ), // if you want the thumb to be a circle, use width that is 2x height
       cursor: 'pointer',
       trackFill: 'white',
+      trackStroke: 'black',
       thumbOnFill: 'rgb(0,255,0)', // thumb fill when onProperty is true
-      thumbOffFill: 'white' // thumb fill when onProperty is false
+      thumbOffFill: 'white', // thumb fill when onProperty is false
+      thumbStroke: 'black'
     }, options );
 
     var thisNode = this;
@@ -40,21 +42,21 @@ define( function( require ) {
     var cornerRadius = options.size.height / 2;
     var trackNode = new Rectangle( 0, 0, options.size.width, options.size.height, cornerRadius, cornerRadius, {
       fill: options.trackFill,
-      stroke: 'black'
+      stroke: options.trackStroke
     } );
     thisNode.addChild( trackNode );
 
     // thumb (aka knob)
     var thumbNode = new Rectangle( 0, 0, 0.5 * options.size.width, options.size.height, cornerRadius, cornerRadius, {
       fill: options.thumbOffFill,
-      stroke: 'black'
+      stroke: options.thumbStroke
     } );
     thisNode.addChild( thumbNode );
     var touchDelta = 0.25 * options.size.height;
     thumbNode.touchArea = Shape.roundRect( -touchDelta, -touchDelta, (0.5 * options.size.width) + (2 * touchDelta), options.size.height + (2 * touchDelta), cornerRadius, cornerRadius );
 
     // move thumb to on or off position
-    var updateSlider = function( on ) {
+    var updateThumb = function( on ) {
       if ( on ) {
         thumbNode.right = options.size.width;
         thumbNode.fill = options.thumbOnFill;
@@ -66,7 +68,7 @@ define( function( require ) {
     };
 
     // sync with onProperty
-    onProperty.link( updateSlider.bind( thisNode ) );
+    onProperty.link( updateThumb.bind( thisNode ) );
 
     // thumb interactivity
     thumbNode.addInputListener( new SimpleDragHandler( {
@@ -89,11 +91,11 @@ define( function( require ) {
       end: function() {
         // snap to whichever end the thumb is closest to
         onProperty.set( thumbNode.centerX > trackNode.centerX );
-        updateSlider( onProperty.get() );
+        updateThumb( onProperty.get() );
       }
     } ) );
 
-    // toggle when track is clicked
+    // click in the track to toggle on/off
     trackNode.addInputListener( new ButtonListener( {
       fire: function() { onProperty.set( !onProperty.get() ); }
     } ) );

@@ -32,9 +32,9 @@ define( function( require ) {
     options = _.extend( {
       size: new Dimension2( 60, 30 ),
       textFill: 'black',
-      textDisabledFill: 'gray',
+      textDisabledFill: 'rgb(160,160,160)',
       font: new PhetFont( 28 ),
-      xSpacing: 6,
+      xSpacing: 8,
       cursor: 'pointer'
     }, options );
 
@@ -80,7 +80,9 @@ define( function( require ) {
       onProperty.set( choice === rightChoice );
     } );
     onProperty.link( function( on ) {
-       choiceProperty.set( on ? rightChoice : leftChoice );
+      choiceProperty.set( on ? rightChoice : leftChoice );
+      leftChoiceNode.fill = on ? options.textDisabledFill : options.textFill;
+      rightChoiceNode.fill = on ? options.textFill : options.textDisabledFill;
     } );
 
     // click on labels to select choices

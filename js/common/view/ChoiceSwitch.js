@@ -40,8 +40,8 @@ define( function( require ) {
 
     // default gradients
     options.backgroundFill = options.backgroundFill || new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'rgb(40,40,40)' ).addColorStop( 1, 'rgb(200,200,200)' );
-    options.sliderOnFill = options.sliderOnFill || new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'white' ).addColorStop( 1, 'rgb(200,200,200)' );
-    options.sliderOffFill = options.sliderOffFill || options.sliderOnFill;
+    options.thumbOnFill = options.thumbOnFill || new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'white' ).addColorStop( 1, 'rgb(200,200,200)' );
+    options.thumbOffFill = options.thumbOffFill || options.thumbOnFill;
 
     var thisNode = this;
     Node.call( thisNode );
@@ -52,8 +52,8 @@ define( function( require ) {
       size: options.size,
       cursor: options.cursor,
       backgroundFill: options.backgroundFill,
-      sliderOnFill: options.sliderOnFill,
-      sliderOffFill: options.sliderOffFill
+      thumbOnFill: options.thumbOnFill,
+      thumbOffFill: options.thumbOffFill
     } );
     var leftChoiceNode = new Text( leftChoice, {
       fill: options.textFill,

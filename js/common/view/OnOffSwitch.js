@@ -15,6 +15,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Shape = require( 'KITE/Shape' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
   /**
@@ -25,17 +26,17 @@ define( function( require ) {
   function OnOffSwitch( onProperty, options ) {
 
     options = _.extend( {
-      size: new Dimension2( 60, 30 ), // if you want slider to be a circle, use width that is 2x height
+      size: new Dimension2( 60, 30 ), // if you want the thumb to be a circle, use width that is 2x height
       cursor: 'pointer',
       backgroundFill: 'white',
-      sliderOnFill: 'rgb(0,255,0)',
-      sliderOffFill: 'white'
+      thumbOnFill: 'rgb(0,255,0)', // thumb fill when onProperty is true
+      thumbOffFill: 'white' // thumb fill when onProperty is false
     }, options );
 
     var thisNode = this;
     Node.call( thisNode );
 
-    // nodes
+    // track that the thumb slides in
     var cornerRadius = options.size.height / 2;
     var backgroundNode = new Rectangle( 0, 0, options.size.width, options.size.height, cornerRadius, cornerRadius, {
       fill: options.backgroundFill,
@@ -43,48 +44,51 @@ define( function( require ) {
     } );
     thisNode.addChild( backgroundNode );
 
-    var sliderNode = new Rectangle( 0, 0, 0.5 * options.size.width, options.size.height, cornerRadius, cornerRadius, {
-      fill: options.sliderOffFill,
+    // thumb (aka knob)
+    var thumbNode = new Rectangle( 0, 0, 0.5 * options.size.width, options.size.height, cornerRadius, cornerRadius, {
+      fill: options.thumbOffFill,
       stroke: 'black'
     } );
-    thisNode.addChild( sliderNode );
+    thisNode.addChild( thumbNode );
+    var touchDelta = 0.25 * options.size.height;
+    thumbNode.touchArea = Shape.roundRect( -touchDelta, -touchDelta, (0.5 * options.size.width) + (2 * touchDelta), options.size.height + (2 * touchDelta), cornerRadius, cornerRadius );
 
-    // move slider to on or off position
+    // move thumb to on or off position
     var updateSlider = function( on ) {
       if ( on ) {
-        sliderNode.right = options.size.width;
-        sliderNode.fill = options.sliderOnFill;
+        thumbNode.right = options.size.width;
+        thumbNode.fill = options.thumbOnFill;
       }
       else {
-        sliderNode.left = 0;
-        sliderNode.fill = options.sliderOffFill;
+        thumbNode.left = 0;
+        thumbNode.fill = options.thumbOffFill;
       }
     };
 
     // sync with onProperty
     onProperty.link( updateSlider.bind( thisNode ) );
 
-    // slide the slider
-    sliderNode.addInputListener( new SimpleDragHandler( {
+    // thumb interactivity
+    thumbNode.addInputListener( new SimpleDragHandler( {
 
       allowTouchSnag: true,
 
       translate: function( params ) {
-        // move the slider while it's being dragged, but don't change the onProperty value
-        if ( sliderNode.left + params.delta.x < 0 ) {
-          sliderNode.left = 0;
+        // move the thumb while it's being dragged, but don't change the onProperty value
+        if ( thumbNode.left + params.delta.x < 0 ) {
+          thumbNode.left = 0;
         }
-        else if ( sliderNode.right + params.delta.x > options.size.width ) {
-          sliderNode.right = options.size.width;
+        else if ( thumbNode.right + params.delta.x > options.size.width ) {
+          thumbNode.right = options.size.width;
         }
         else {
-          sliderNode.x = sliderNode.x + params.delta.x;
+          thumbNode.x = thumbNode.x + params.delta.x;
         }
       },
 
       end: function() {
-        // snap to whichever end the slider is closest to
-        onProperty.set( sliderNode.centerX > backgroundNode.centerX );
+        // snap to whichever end the thumb is closest to
+        onProperty.set( thumbNode.centerX > backgroundNode.centerX );
         updateSlider( onProperty.get() );
       }
     } ) );

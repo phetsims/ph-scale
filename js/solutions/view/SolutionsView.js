@@ -160,8 +160,8 @@ define( function( require ) {
     resetAllButton.bottom = this.layoutBounds.bottom - 15;
 
     //XXX test
-    var Switch = require( 'PH_SCALE/common/view/Switch' );
-    rootNode.addChild( new Switch( new Property( 'foo' ), 'foo', 'bar', { x: 300, y: 200 } ) );
+    var ChoiceSwitch = require( 'PH_SCALE/common/view/ChoiceSwitch' );
+    rootNode.addChild( new ChoiceSwitch( new Property( 'foo' ), 'foo', 'bar', { x: 300, y: 200 } ) );
   }
 
   return inherit( ScreenView, SolutionsView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );

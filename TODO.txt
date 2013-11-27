@@ -34,3 +34,5 @@ LOW
 - English strings have been capitalized, translations have not
 
 MIGRATE TO COMMON
+- OnOffSwitch
+- ChoiceSwitch

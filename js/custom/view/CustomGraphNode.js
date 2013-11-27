@@ -17,6 +17,10 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
+  // strings
+  var molesString = require( 'string!PH_SCALE/units.moles' );
+  var molesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
+
   // constants
   var GRAPH_SIZE = new Dimension2( 325, 530 );
 
@@ -31,7 +35,7 @@ define( function( require ) {
       lineWidth: 2
     } ) );
 
-    thisNode.addChild( new ChoiceSwitch( new Property( 'mol/L' ), 'mol/L', 'mol', {
+    thisNode.addChild( new ChoiceSwitch( new Property( 'mol/L' ), 'mol/L', molesPerLiterString, 'mol', molesString, {
       font: new PhetFont( 18 ), size: new Dimension2( 40, 20 ), centerX: GRAPH_SIZE.width / 2, y: 10 } ) );
   }
 

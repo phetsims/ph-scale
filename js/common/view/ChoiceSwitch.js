@@ -21,13 +21,15 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
 
   /**
-   * @param {Property<String>} choiceProperty
-   * @param {String} leftChoice
-   * @param {String} rightChoice
+   * @param {Property<*>} choiceProperty
+   * @param {*} leftChoice
+   * @param {String} leftLabel
+   * @param {*} rightChoice
+   * @param {String} rightLabel
    * @param {*} options
    * @constructor
    */
-  function ChoiceSwitch( choiceProperty, leftChoice, rightChoice, options ) {
+  function ChoiceSwitch( choiceProperty, leftChoice, leftLabel, rightChoice, rightLabel, options ) {
 
     options = _.extend( {
       size: new Dimension2( 60, 30 ),
@@ -55,11 +57,11 @@ define( function( require ) {
       thumbOnFill: options.thumbOnFill,
       thumbOffFill: options.thumbOffFill
     } );
-    var leftChoiceNode = new Text( leftChoice, {
+    var leftChoiceNode = new Text( leftLabel, {
       fill: options.textFill,
       font: options.font
     } );
-    var rightChoiceNode = new Text( rightChoice, {
+    var rightChoiceNode = new Text( rightLabel, {
       fill: options.textFill,
       font: options.font
     } );

@@ -161,7 +161,7 @@ define( function( require ) {
 
     //XXX test
     var ChoiceSwitch = require( 'PH_SCALE/common/view/ChoiceSwitch' );
-    rootNode.addChild( new ChoiceSwitch( new Property( 'foo' ), 'foo', 'bar', { x: 300, y: 200 } ) );
+    rootNode.addChild( new ChoiceSwitch( new Property( 'foo' ), 'foo', 'bar', { x: 250, y: 400 } ) );
   }
 
   return inherit( ScreenView, SolutionsView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );

@@ -9,8 +9,12 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var ChoiceSwitch = require( 'PH_SCALE/common/view/ChoiceSwitch' );
+  var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
   function SolutionsGraphNode() {
@@ -23,6 +27,9 @@ define( function( require ) {
       stroke: 'black',
       lineWidth: 2
     } ) );
+
+    thisNode.addChild( new ChoiceSwitch( new Property( 'mol/L' ), 'mol/L', 'mol', {
+      font: new PhetFont( 20 ), size: new Dimension2( 40, 20 ), centerX: 275/2, y: 20 } ) );
   }
 
   return inherit( Node, SolutionsGraphNode );

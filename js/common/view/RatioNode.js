@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Visual representation of H3O/OH ratio.
+ * Visual representation of H3O+/OH- ratio.
  */
 define( function( require ) {
   'use strict';

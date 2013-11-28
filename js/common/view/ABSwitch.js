@@ -21,15 +21,15 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
 
   /**
-   * @param {Property<*>} choiceProperty
-   * @param {*} leftChoice
-   * @param {String} leftLabel
-   * @param {*} rightChoice
-   * @param {String} rightLabel
+   * @param {Property<*>} property
+   * @param {*} objectA
+   * @param {String} labelA
+   * @param {*} objectB
+   * @param {String} labelB
    * @param {*} options
    * @constructor
    */
-  function ABSwitch( choiceProperty, leftChoice, leftLabel, rightChoice, rightLabel, options ) {
+  function ABSwitch( property, objectA, labelA, objectB, labelB, options ) {
 
     options = _.extend( {
       size: new Dimension2( 60, 30 ),
@@ -47,7 +47,8 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
-    var onProperty = new Property( choiceProperty.get() === rightChoice );
+    // property for adapting to OnOffSwitch. 'true' is 'B', the object on the 'on' end of the OnOffSwitch.
+    var onProperty = new Property( objectB === property.get() );
 
     var onOffSwitch = new OnOffSwitch( onProperty, {
       size: options.size,
@@ -56,41 +57,41 @@ define( function( require ) {
       trackOnFill: options.trackFill,
       trackOffFill: options.trackFill
     } );
-    var leftChoiceNode = new Text( leftLabel, {
+    var labelANode = new Text( labelA, {
       fill: options.textFill,
       font: options.font
     } );
-    var rightChoiceNode = new Text( rightLabel, {
+    var labelBNode = new Text( labelB, {
       fill: options.textFill,
       font: options.font
     } );
 
     // rendering order
     thisNode.addChild( onOffSwitch );
-    thisNode.addChild( leftChoiceNode );
-    thisNode.addChild( rightChoiceNode );
+    thisNode.addChild( labelANode );
+    thisNode.addChild( labelBNode );
 
-    // layout
-    leftChoiceNode.right = onOffSwitch.left - options.xSpacing;
-    leftChoiceNode.centerY = onOffSwitch.centerY;
-    rightChoiceNode.left = onOffSwitch.right + options.xSpacing;
-    rightChoiceNode.centerY = onOffSwitch.centerY;
+    // layout: 'A' on the left, 'B' on the right
+    labelANode.right = onOffSwitch.left - options.xSpacing;
+    labelANode.centerY = onOffSwitch.centerY;
+    labelBNode.left = onOffSwitch.right + options.xSpacing;
+    labelBNode.centerY = onOffSwitch.centerY;
 
     // sync properties
-    choiceProperty.link( function( choice ) {
-      onProperty.set( choice === rightChoice );
+    property.link( function( object ) {
+      onProperty.set( objectB === object );
     } );
     onProperty.link( function( on ) {
-      choiceProperty.set( on ? rightChoice : leftChoice );
-      leftChoiceNode.fill = on ? options.textDisabledFill : options.textFill;
-      rightChoiceNode.fill = on ? options.textFill : options.textDisabledFill;
+      property.set( on ? objectB : objectA );
+      labelANode.fill = on ? options.textDisabledFill : options.textFill;
+      labelBNode.fill = on ? options.textFill : options.textDisabledFill;
     } );
 
-    // click on labels to select choices
-    leftChoiceNode.addInputListener( new ButtonListener( {
+    // click on labels to select
+    labelANode.addInputListener( new ButtonListener( {
       fire: function() { onProperty.set( false ); }
     } ) );
-    rightChoiceNode.addInputListener( new ButtonListener( {
+    labelBNode.addInputListener( new ButtonListener( {
       fire: function() { onProperty.set( true ); }
     } ) );
 

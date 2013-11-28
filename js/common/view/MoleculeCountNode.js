@@ -18,15 +18,17 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Util = require( 'DOT/Util' );
 
   //TODO run this by other developers, is there a better way?
   /*
    * Converts a number to a format like 1.23 x 10^25
    * @param {Number} value the number to be formatted
    * @param {Number} precision how many digits in the mantissa
+   * @parma {Number} constantExponent optional constant exponent
    * @return {String} HTML fragment
    */
-  var toTimesTenString = function( value, precision ) {
+  var toTimesTenString = function( value, precision, constantExponent ) {
     if ( value === 0 ) {
       return '0';
     }
@@ -37,7 +39,13 @@ define( function( require ) {
         return tokens[0]; // no exponent, return the mantissa
       }
       else {
-        return tokens[0] + ' x 10<span style="font-size:85%"><sup>' + tokens[1] + '</sup></span>'; // mantissa x 10^exponent
+        var mantissaString = tokens[0];
+        var exponentString = tokens[1];
+        if ( constantExponent !== undefined ) {
+          mantissaString = Util.toFixed( parseFloat( mantissaString ) * Math.pow( 10, parseInt( exponentString ) - constantExponent ), precision - 1 );
+          exponentString = constantExponent.toString();
+        }
+        return mantissaString + ' x 10<span style="font-size:85%"><sup>' + exponentString + '</sup></span>'; // mantissa x 10^exponent
       }
     }
   };
@@ -122,7 +130,7 @@ define( function( require ) {
       // format and set values
       countH3O.text = toTimesTenString( solution.getMoleculesH3O(), 3 );
       countOH.text = toTimesTenString( solution.getMoleculesOH(), 3 );
-      countH2O.text = toTimesTenString( solution.getMoleculesH2O(), 2 );
+      countH2O.text = toTimesTenString( solution.getMoleculesH2O(), 3, 25 );
       // right justify
       countH3O.right = moleculesLeft - xSpacing;
       countOH.right = moleculesLeft - xSpacing;

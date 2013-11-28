@@ -1,3 +1,4 @@
+11/27/13 use fixed exponent of 25 for H2O molecule count, use 2 decimal places instead of 1
 11/27/13 rename ChoiceSwitch to ABSwitch
 11/27/13 make OnOffSwitch behave identically to iOS UISwitch
 11/27/13 add enums for graph type and units

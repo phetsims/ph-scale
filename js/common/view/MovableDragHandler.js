@@ -25,7 +25,7 @@ define( function( require ) {
       endDrag: function() { /* do nothing */ }  // use this to do things at the end of dragging, like 'snapping'
     }, options );
 
-    var startOffset; // where the drag started, relative to the movable's origin, in parent view coordinates
+    var startOffset; // where the drag started, relative to the Movable's origin, in parent view coordinates
 
     SimpleDragHandler.call( this, {
 

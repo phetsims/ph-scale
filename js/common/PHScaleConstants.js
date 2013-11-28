@@ -12,6 +12,7 @@ define( function( require ) {
   var Range = require( 'DOT/Range' );
 
   return {
+
     // pH
     PH_RANGE: new Range( -1, 15, 7 ),
     PH_METER_DECIMAL_PLACES: 2,

@@ -35,7 +35,7 @@ define( function( require ) {
   var quantityString = require( 'string!PH_SCALE/quantity' );
 
   /**
-   * @param {BasicsModel} model
+   * @param {CustomModel} model
    * @param {ModelViewTransform2} mvt
    * @constructor
    */

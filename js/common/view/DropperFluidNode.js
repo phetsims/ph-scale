@@ -23,7 +23,6 @@ define( function( require ) {
   function DropperFluidNode( dropper, beaker, tipWidth, mvt ) {
 
     var thisNode = this;
-
     Rectangle.call( thisNode, 0, 0, 0, 0, { lineWidth: 1 } );
 
     // shape and location

@@ -1,3 +1,4 @@
+11/27/13 review and cleanup of all code
 11/27/13 move toTimesTenString to PHUtils
 11/27/13 use fixed exponent of 25 for H2O molecule count, use 2 decimal places instead of 1
 11/27/13 rename ChoiceSwitch to ABSwitch

@@ -23,9 +23,9 @@ define( function( require ) {
   /**
    * @param {Property<*>} property
    * @param {*} objectA
-   * @param {String} labelA
+   * @param {String} labelA label for 'A', to the left of the switch
    * @param {*} objectB
-   * @param {String} labelB
+   * @param {String} labelB label for 'B', to the right of the switch
    * @param {*} options
    * @constructor
    */

@@ -160,6 +160,15 @@ define( function( require ) {
     graphNode.top = pHMeterNode.top;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 15;
+
+    //XXX
+    var OnOffSwitch = require( 'PH_SCALE/common/view/OnOffSwitch' );
+    var p1 = new Property( true );
+    var p2 = new Property( false );
+    rootNode.addChild( new OnOffSwitch( p1, { x: 865, y: 130 } ) );
+    rootNode.addChild( new OnOffSwitch( p2, { x: 865, y: 180 } ) );
+    p1.link( function( value ) { console.log( 'p1=' + value ); });
+    p2.link( function( value ) { console.log( 'p2=' + value ); });
   }
 
   return inherit( ScreenView, SolutionsView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );

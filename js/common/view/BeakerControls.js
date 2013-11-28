@@ -17,6 +17,7 @@ define( function( require ) {
   var Panel = require( 'SUN/Panel' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  var Shape = require( 'KITE/Shape' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
   var VBox = require( 'SCENERY/nodes/VBox' );
@@ -40,10 +41,12 @@ define( function( require ) {
     var stringOH = '<span style="color:' + PHScaleColors.BASIC.toCSS() + '">OH<sup>-</sup></span>';
     var ratioLabel = new HTMLText( StringUtils.format( ratioString, stringH3O, stringOH ), { font: FONT } );
     var ratioCheckBox = new CheckBox( ratioLabel, ratioVisibleProperty );
+    ratioCheckBox.touchArea = Shape.bounds( ratioCheckBox.bounds.dilatedXY( 10, 8 ) );
 
     // 'Molecule count' check box
     var moleculeCountLabel = new Text( moleculeCountString, { font: FONT } );
     var moleculeCountCheckBox = new CheckBox( moleculeCountLabel, moleculeCountVisibleProperty );
+    moleculeCountCheckBox.touchArea = Shape.bounds( ratioCheckBox.bounds.dilatedXY( 10, 8 ) );
 
     var separator = new Line( 0, 0, Math.max( moleculeCountCheckBox.width, ratioCheckBox.width ), 0, { stroke: 'gray' } );
 

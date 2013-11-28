@@ -1,8 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Faucet node for this sim.
- * Handles scaling, and adapters our Faucet model to scenery-phet.FaucetNode.
+ * Faucet node for this sim, a specialization of scenery-phet.FaucetNode.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

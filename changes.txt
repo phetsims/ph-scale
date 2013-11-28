@@ -1,3 +1,4 @@
+11/27/13 expand touchArea for expand/collapse buttons
 11/27/13 expand touchArea for check boxes
 11/27/13 review and cleanup of all code
 11/27/13 move toTimesTenString to PHUtils

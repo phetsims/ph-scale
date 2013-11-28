@@ -16,6 +16,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
 
   /**
@@ -59,6 +60,7 @@ define( function( require ) {
     thisNode.addChild( button );
     button.right = barNode.right - options.xMargin;
     button.centerY = barNode.centerY;
+    button.touchArea = Shape.bounds( button.localBounds.dilatedXY( 10, 10 ) );
 
     // optional title on right end of bar
     if ( options.rightTitle !== null ) {

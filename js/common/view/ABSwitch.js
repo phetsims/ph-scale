@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Control for switching between 2 choices.
+ * Control for switching between 2 choices (A & B).
  * This is an adapter for OnOffProperty, the iOS-like on/off switch.
  *
  * @author Chris Malley (PixelZoom, Inc.)
@@ -29,7 +29,7 @@ define( function( require ) {
    * @param {*} options
    * @constructor
    */
-  function ChoiceSwitch( choiceProperty, leftChoice, leftLabel, rightChoice, rightLabel, options ) {
+  function ABSwitch( choiceProperty, leftChoice, leftLabel, rightChoice, rightLabel, options ) {
 
     options = _.extend( {
       size: new Dimension2( 60, 30 ),
@@ -97,5 +97,5 @@ define( function( require ) {
     thisNode.mutate( options );
   }
 
-  return inherit( Node, ChoiceSwitch );
+  return inherit( Node, ABSwitch );
 } );

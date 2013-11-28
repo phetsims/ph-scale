@@ -9,7 +9,7 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var ChoiceSwitch = require( 'PH_SCALE/common/view/ChoiceSwitch' );
+  var ABSwitch = require( 'PH_SCALE/common/view/ABSwitch' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var GraphUnits = require( 'PH_SCALE/common/view/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -36,7 +36,7 @@ define( function( require ) {
       lineWidth: 2
     } ) );
 
-    thisNode.addChild( new ChoiceSwitch( new Property( GraphUnits.MOLES_PER_LITER ), GraphUnits.MOLES_PER_LITER, molesPerLiterString, GraphUnits.MOLES, molesString, {
+    thisNode.addChild( new ABSwitch( new Property( GraphUnits.MOLES_PER_LITER ), GraphUnits.MOLES_PER_LITER, molesPerLiterString, GraphUnits.MOLES, molesString, {
       font: new PhetFont( 18 ), size: new Dimension2( 40, 20 ), centerX: GRAPH_SIZE.width/2, y: 10 } ) );
   }
 

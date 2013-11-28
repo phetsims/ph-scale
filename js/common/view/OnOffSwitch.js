@@ -2,6 +2,7 @@
 
 /**
  * On/off switch, similar to iOS' UISwitch, used in 'Settings' app.
+ * Drag the thumb to change the value, or click anywhere to toggle the value.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -32,7 +33,8 @@ define( function( require ) {
       thumbStroke: 'black',
       trackOffFill: 'white', // track fill when onProperty is false
       trackOnFill: 'rgb(0,200,0)', // track fill when onProperty is true
-      trackStroke: 'black'
+      trackStroke: 'black',
+      toggleWhileDragging: false // set this to true if you want the property to toggle while you're dragging the thumb
     }, options );
 
     var thisNode = this;
@@ -69,14 +71,20 @@ define( function( require ) {
 
     // sync with onProperty
     onProperty.link( updateThumb.bind( thisNode ) );
+    
+    // converts the thumb position to a boolean on/off value
+    var thumbPositionToValue = function() { return thumbNode.centerX > trackNode.centerX; }; 
 
     // thumb interactivity
+    var dragging = false;
     thumbNode.addInputListener( new SimpleDragHandler( {
 
       allowTouchSnag: true,
 
+      drag: function() { dragging = true; },
+
       translate: function( params ) {
-        // move the thumb while it's being dragged, but don't change the onProperty value
+        // move the thumb while it's being dragged
         if ( thumbNode.left + params.delta.x < 0 ) {
           thumbNode.left = 0;
         }
@@ -86,19 +94,31 @@ define( function( require ) {
         else {
           thumbNode.x = thumbNode.x + params.delta.x;
         }
-        trackNode.fill = ( thumbNode.centerX > trackNode.centerX ) ? options.trackOnFill : options.trackOffFill;
+        // track fill changes based on the thumb positions
+        trackNode.fill = thumbPositionToValue() ? options.trackOnFill : options.trackOffFill;
+        // optionally toggle the property value
+        if ( options.toggleWhileDragging ) {
+          onProperty.set( thumbPositionToValue() );
+        }
       },
 
       end: function() {
         // snap to whichever end the thumb is closest to
-        onProperty.set( thumbNode.centerX > trackNode.centerX );
+        onProperty.set( thumbPositionToValue() );
         updateThumb( onProperty.get() );
       }
     } ) );
 
-    // click in the track to toggle on/off
-    trackNode.addInputListener( new ButtonListener( {
-      fire: function() { onProperty.set( !onProperty.get() ); }
+    // clicking anywhere toggles on/off, if we aren't dragging the thumb
+    thisNode.addInputListener( new ButtonListener( {
+      fire: function() {
+        if ( !dragging ) {
+          onProperty.set( !onProperty.get() );
+        }
+        else {
+          dragging = false;
+        }
+      }
     } ) );
 
     thisNode.mutate( options );

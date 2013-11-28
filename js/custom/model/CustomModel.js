@@ -48,7 +48,6 @@ define( function( require ) {
       this.dropper.reset();
       this.solution.reset();
       this.drainFaucet.reset();
-      this.pHMeter.reset();
     },
 
     /*

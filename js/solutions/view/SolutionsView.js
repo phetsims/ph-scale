@@ -29,8 +29,8 @@ define( function( require ) {
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
   var SolutionsGraphNode = require( 'PH_SCALE/solutions/view/SolutionsGraphNode' );
   var SolutionsPHMeterNode = require( 'PH_SCALE/solutions/view/SolutionsPHMeterNode' );
-  var SolventFaucetNode = require( 'PH_SCALE/common/view/SolventFaucetNode' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
+  var WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
 
   // strings
   var concentrationString = require( 'string!PH_SCALE/concentration' );
@@ -69,11 +69,11 @@ define( function( require ) {
     var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, dropperScale * dropperNode.getTipWidth(), mvt );
 
     // faucets
-    var solventFaucetNode = new SolventFaucetNode( model.solvent, model.solventFaucet, mvt );
+    var waterFaucetNode = new WaterFaucetNode( model.water, model.waterFaucet, mvt );
     var drainFaucetNode = new PHFaucetNode( model.drainFaucet, mvt );
-    var SOLVENT_FLUID_HEIGHT = model.beaker.location.y - model.solventFaucet.location.y;
+    var SOLVENT_FLUID_HEIGHT = model.beaker.location.y - model.waterFaucet.location.y;
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
-    var solventFluidNode = new FaucetFluidNode( model.solventFaucet, model.solution.solvent, SOLVENT_FLUID_HEIGHT, mvt );
+    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, model.solution.water, SOLVENT_FLUID_HEIGHT, mvt );
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
     // 'H3O+/OH- ratio' representation
@@ -121,8 +121,8 @@ define( function( require ) {
     } );
 
     // Rendering order
-    rootNode.addChild( solventFluidNode );
-    rootNode.addChild( solventFaucetNode );
+    rootNode.addChild( waterFluidNode );
+    rootNode.addChild( waterFaucetNode );
     rootNode.addChild( drainFluidNode );
     rootNode.addChild( drainFaucetNode );
     rootNode.addChild( dropperFluidNode );

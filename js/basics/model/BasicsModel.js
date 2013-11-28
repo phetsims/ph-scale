@@ -19,8 +19,8 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Solute = require( 'PH_SCALE/common/model/Solute' );
   var Solution = require( 'PH_SCALE/common/model/Solution' );
-  var Solvent = require( 'PH_SCALE/common/model/Solvent' );
   var Vector2 = require( 'DOT/Vector2' );
+  var Water = require( 'PH_SCALE/common/model/Water' );
 
   function BasicsModel() {
 
@@ -40,12 +40,12 @@ define( function( require ) {
        Solute.BATTERY_ACID
     ];
 
-    thisModel.solvent = Solvent.WATER;
+    thisModel.water = Water;
     thisModel.beaker = new Beaker( new Vector2( 330, 600 ), new Dimension2( 400, 325 ) );
     var yDropper = 260;
     thisModel.dropper = new Dropper( thisModel.solutes[4], new Vector2( thisModel.beaker.location.x + 40, yDropper ), new Bounds2( 250, yDropper, 510, yDropper ) );
-    thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.solvent, 0, thisModel.beaker.volume );
-    thisModel.solventFaucet = new Faucet( new Vector2( 185, 230 ), -400,
+    thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume );
+    thisModel.waterFaucet = new Faucet( new Vector2( 185, 230 ), -400,
       { enabled: thisModel.solution.volumeProperty.get() < thisModel.beaker.volume } );
     thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 100, 652 ), thisModel.beaker.right,
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );
@@ -53,7 +53,7 @@ define( function( require ) {
 
     // Enable faucets and dropper based on amount of solution in the beaker.
     thisModel.solution.volumeProperty.link( function( volume ) {
-      thisModel.solventFaucet.enabledProperty.set( volume < thisModel.beaker.volume );
+      thisModel.waterFaucet.enabledProperty.set( volume < thisModel.beaker.volume );
       thisModel.drainFaucet.enabledProperty.set( volume > 0 );
       thisModel.dropper.enabledProperty.set( !thisModel.dropper.emptyProperty.get() && ( volume < thisModel.beaker.volume ) );
     } );
@@ -65,7 +65,7 @@ define( function( require ) {
       this.beaker.reset();
       this.dropper.reset();
       this.solution.reset();
-      this.solventFaucet.reset();
+      this.waterFaucet.reset();
       this.drainFaucet.reset();
       this.pHMeter.reset();
     },
@@ -76,7 +76,7 @@ define( function( require ) {
      */
     step: function( deltaSeconds ) {
       this.addSolute( deltaSeconds );
-      this.addSolvent( deltaSeconds );
+      this.addWater( deltaSeconds );
       this.drainSolution( deltaSeconds );
     },
 
@@ -88,25 +88,25 @@ define( function( require ) {
       }
     },
 
-    // private: Add solvent from the input faucet
-    addSolvent: function( deltaSeconds ) {
-      var deltaVolume = Math.min( this.solventFaucet.flowRateProperty.get() * deltaSeconds, this.solution.getFreeVolume() );
+    // private: Add water from the water faucet
+    addWater: function( deltaSeconds ) {
+      var deltaVolume = Math.min( this.waterFaucet.flowRateProperty.get() * deltaSeconds, this.solution.getFreeVolume() );
       if ( deltaVolume > 0 ) {
-        this.solution.solventVolumeProperty.set( this.solution.solventVolumeProperty.get() + deltaVolume );
+        this.solution.waterVolumeProperty.set( this.solution.waterVolumeProperty.get() + deltaVolume );
       }
     },
 
-    // private: Drain solution from the output faucet. Equal percentages of solvent and solute are drained.
+    // private: Drain solution from the output faucet. Equal percentages of water and solute are drained.
     drainSolution: function( deltaSeconds ) {
       if ( this.solution.volumeProperty.get() > 0 ) {
         var deltaVolume = this.drainFaucet.flowRateProperty.get() * deltaSeconds;
         if ( deltaVolume >= this.solution.volumeProperty.get() ) {
           // drain the remaining solution
-          this.solution.solventVolumeProperty.set( 0 );
+          this.solution.waterVolumeProperty.set( 0 );
           this.solution.soluteVolumeProperty.set( 0 );
         }
         else {
-          this.drainPercentage( deltaVolume, this.solution.solventVolumeProperty );
+          this.drainPercentage( deltaVolume, this.solution.waterVolumeProperty );
           this.drainPercentage( deltaVolume, this.solution.soluteVolumeProperty );
         }
       }

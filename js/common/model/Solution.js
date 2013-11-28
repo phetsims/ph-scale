@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Solution model. Solvent is constant, solute is variable.
+ * Solution model. Solvent (water) is constant, solute (in stock solution form) is variable.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -24,47 +24,47 @@ define( function( require ) {
   /**
    * @param {Property<Solute>} soluteProperty
    * @param {number} soluteVolume liters
-   * @param {Solvent} solvent
-   * @param {number} solventVolume liters
+   * @param {Water} water
+   * @param {number} waterVolume liters
    * @param {number} maxVolume liters
    */
-  function Solution( soluteProperty, soluteVolume, solvent, solventVolume, maxVolume ) {
-    assert && assert( soluteVolume + solventVolume <= maxVolume );
+  function Solution( soluteProperty, soluteVolume, water, waterVolume, maxVolume ) {
+    assert && assert( soluteVolume + waterVolume <= maxVolume );
 
     var thisSolution = this;
 
     thisSolution.soluteProperty = soluteProperty;
     thisSolution.soluteVolumeProperty = new Property( soluteVolume );
-    thisSolution.solvent = solvent;
-    thisSolution.solventVolumeProperty = new Property( solventVolume );
+    thisSolution.water = water;
+    thisSolution.waterVolumeProperty = new Property( waterVolume );
     thisSolution.maxVolume = maxVolume;
 
     // volume
-    thisSolution.volumeProperty = new DerivedProperty( [ thisSolution.soluteVolumeProperty, thisSolution.solventVolumeProperty ],
-      function( soluteVolume, solventVolume ) {
-        return soluteVolume + solventVolume;
+    thisSolution.volumeProperty = new DerivedProperty( [ thisSolution.soluteVolumeProperty, thisSolution.waterVolumeProperty ],
+      function( soluteVolume, waterVolume ) {
+        return soluteVolume + waterVolume;
       }
     );
 
     // pH, null if no value
-    thisSolution.pHProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.solventVolumeProperty ],
-      function( solute, soluteVolume, solventVolume ) {
-        return Solution.computePH( solute.pHProperty.get(), soluteVolume, thisSolution.solvent.pH, solventVolume );
+    thisSolution.pHProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.waterVolumeProperty ],
+      function( solute, soluteVolume, waterVolume ) {
+        return Solution.computePH( solute.pHProperty.get(), soluteVolume, thisSolution.water.pH, waterVolume );
       }
     );
 
     // color
-    thisSolution.colorProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.solventVolumeProperty ],
+    thisSolution.colorProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.waterVolumeProperty ],
       function() {
         return Solution.computeColor(
           thisSolution.soluteProperty.get().color, thisSolution.soluteProperty.get().dilutedColor, thisSolution.soluteVolumeProperty.get(),
-          thisSolution.solvent.color, thisSolution.solventVolumeProperty.get() );
+          thisSolution.water.color, thisSolution.waterVolumeProperty.get() );
       }
     );
 
     // solute
     thisSolution.soluteProperty.link( function() {
-      thisSolution.solventVolumeProperty.set( 0 );
+      thisSolution.waterVolumeProperty.set( 0 );
       thisSolution.soluteVolumeProperty.set( 0 );
     } );
   }
@@ -75,7 +75,7 @@ define( function( require ) {
     reset: function() {
       this.soluteProperty.reset();
       this.soluteVolumeProperty.reset();
-      this.solventVolumeProperty.reset();
+      this.waterVolumeProperty.reset();
     },
 
     //----------------------------------------------------------------------------
@@ -161,22 +161,22 @@ define( function( require ) {
    * Combining acids and bases is not supported by this model.
    * @param solutePH
    * @param soluteVolume
-   * @param solventPH
-   * @param solventVolume
+   * @param waterPH
+   * @param waterVolume
    * @returns {number|null} null if the solution's volume is zero
    */
-  Solution.computePH = function( solutePH, soluteVolume, solventPH, solventVolume ) {
+  Solution.computePH = function( solutePH, soluteVolume, waterPH, waterVolume ) {
     var pH;
-    if ( soluteVolume + solventVolume === 0 ) {
+    if ( soluteVolume + waterVolume === 0 ) {
       pH = null;
     }
     else if ( solutePH < 7 ) {
-      assert && assert( solventPH <= 7 ); // combining acids and bases is not supported
-      pH = -log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -solventPH ) * solventVolume ) / ( soluteVolume + solventVolume ) );
+      assert && assert( waterPH <= 7 ); // combining acids and bases is not supported
+      pH = -log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -waterPH ) * waterVolume ) / ( soluteVolume + waterVolume ) );
     }
     else {
-      assert && assert( solventPH >= 7 ); // combining acids and bases is not supported
-      pH = 14 + log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, solventPH - 14 ) * solventVolume ) / ( soluteVolume + solventVolume ) );
+      assert && assert( waterPH >= 7 ); // combining acids and bases is not supported
+      pH = 14 + log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, waterPH - 14 ) * waterVolume ) / ( soluteVolume + waterVolume ) );
     }
     return pH;
   };
@@ -186,15 +186,15 @@ define( function( require ) {
    * @param {Color} soluteColor
    * @param {Color} soluteDilutedColor
    * @param {Number} soluteVolume
-   * @param {Color} solventColor
-   * @param {Number} solventVolume
-   * @returns {Color} solventColor if the solution's volume is zero
+   * @param {Color} waterColor
+   * @param {Number} waterVolume
+   * @returns {Color} waterColor if the solution's volume is zero
    */
-  Solution.computeColor = function( soluteColor, soluteDilutedColor, soluteVolume, solventColor, solventVolume ) {
+  Solution.computeColor = function( soluteColor, soluteDilutedColor, soluteVolume, waterColor, waterVolume ) {
     var color;
-    var solutionVolume = soluteVolume + solventVolume;
+    var solutionVolume = soluteVolume + waterVolume;
     if ( solutionVolume === 0 || soluteVolume === 0 ) {
-      color = solventColor;
+      color = waterColor;
     }
     else {
       color = Color.interpolateRBGA( soluteDilutedColor, soluteColor, soluteVolume / solutionVolume );

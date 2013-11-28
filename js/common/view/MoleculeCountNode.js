@@ -107,7 +107,7 @@ define( function( require ) {
       countH2O.right = moleculesLeft - xSpacing;
     };
     solution.pHProperty.link( updateCounts );
-    solution.solventVolumeProperty.link( updateCounts );
+    solution.waterVolumeProperty.link( updateCounts );
     solution.soluteVolumeProperty.link( updateCounts );
   }
 

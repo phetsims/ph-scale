@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Faucet that dispenses the solvent (water).
+ * Faucet that dispenses water (the solvent).
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -15,21 +15,21 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
 
   /**
-   * @param {Solvent} solvent
+   * @param {Water} water
    * @param {Faucet} faucet
    * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function SolventFaucetNode( solvent, faucet, mvt ) {
+  function WaterFaucetNode( water, faucet, mvt ) {
 
     PHFaucetNode.call( this, faucet, mvt );
 
-    // decorate the faucet with the name of the solvent
-    var solventLabelNode = new Text( solvent.name, { font: new PhetFont( 40 ) } );
-    this.addChild( solventLabelNode );
-    solventLabelNode.right = -130;
-    solventLabelNode.bottom = -170;
+    // decorate the faucet with the name of the water
+    var labelNode = new Text( water.name, { font: new PhetFont( 40 ) } );
+    this.addChild( labelNode );
+    labelNode.right = -130;
+    labelNode.bottom = -170;
   }
 
-  return inherit( PHFaucetNode, SolventFaucetNode );
+  return inherit( PHFaucetNode, WaterFaucetNode );
 } );

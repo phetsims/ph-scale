@@ -22,7 +22,7 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
-  var SolventFaucetNode = require( 'PH_SCALE/common/view/SolventFaucetNode' );
+  var WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
   /**
@@ -51,16 +51,16 @@ define( function( require ) {
     var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, dropperScale * dropperNode.getTipWidth(), mvt );
 
     // faucets
-    var solventFaucetNode = new SolventFaucetNode( model.solvent, model.solventFaucet, mvt );
+    var waterFaucetNode = new WaterFaucetNode( model.water, model.waterFaucet, mvt );
     var drainFaucetNode = new PHFaucetNode( model.drainFaucet, mvt );
-    var SOLVENT_FLUID_HEIGHT = model.beaker.location.y - model.solventFaucet.location.y;
+    var WATER_FLUID_HEIGHT = model.beaker.location.y - model.waterFaucet.location.y;
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
-    var solventFluidNode = new FaucetFluidNode( model.solventFaucet, model.solution.solvent, SOLVENT_FLUID_HEIGHT, mvt );
+    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, model.solution.water, WATER_FLUID_HEIGHT, mvt );
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
     // pH meter
-    var pHMeterNode = new BasicsPHMeterNode(  model.pHMeter, model.solution, model.solvent, model.dropper,
-          solutionNode, dropperFluidNode, solventFluidNode, drainFluidNode, mvt );
+    var pHMeterNode = new BasicsPHMeterNode(  model.pHMeter, model.solution, model.water, model.dropper,
+          solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, mvt );
 
     // solutes combo box
     var soluteListParent = new Node();
@@ -71,8 +71,8 @@ define( function( require ) {
     } );
 
     // Rendering order
-    rootNode.addChild( solventFluidNode );
-    rootNode.addChild( solventFaucetNode );
+    rootNode.addChild( waterFluidNode );
+    rootNode.addChild( waterFaucetNode );
     rootNode.addChild( drainFluidNode );
     rootNode.addChild( drainFaucetNode );
     rootNode.addChild( dropperFluidNode );

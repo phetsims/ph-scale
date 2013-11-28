@@ -6,7 +6,7 @@
  * The probe registers the concentration of all possible fluids that it may contact, including:
  * <ul>
  * <li>solution in the beaker
- * <li>output of the solvent faucet
+ * <li>output of the water faucet
  * <li>output of the drain faucet
  * <li>output of the dropper
  * </ul>
@@ -53,11 +53,11 @@ define( function( require ) {
    * @param {ModelViewTransform2} mvt
    * @param {Node} solutionNode
    * @param {Node} dropperFluidNode
-   * @param {Node} solventFluidNode
+   * @param {Node} waterFluidNode
    * @param {Node} drainFluidNode
    * @constructor
    */
-  function ProbeNode( probe, mvt, solutionNode, dropperFluidNode, solventFluidNode, drainFluidNode ) {
+  function ProbeNode( probe, mvt, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode ) {
 
     var thisNode = this;
     Node.call( thisNode, {
@@ -92,8 +92,8 @@ define( function( require ) {
       return isInNode( solutionNode );
     };
 
-    thisNode.isInSolvent = function() {
-      return isInNode( solventFluidNode );
+    thisNode.isInWater = function() {
+      return isInNode( waterFluidNode );
     };
 
     thisNode.isInDrainFluid = function() {
@@ -208,16 +208,16 @@ define( function( require ) {
   /**
    * @param {PHMeter} meter
    * @param {Solution} solution
-   * @param {Solvent} solvent
+   * @param {Water} water
    * @param {Dropper} dropper
    * @param {Node} solutionNode
    * @param {Node} dropperFluidNode
-   * @param {Node} solventFluidNode
+   * @param {Node} waterFluidNode
    * @param {Node} drainFluidNode
    * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function BasicsPHMeterNode( meter, solution, solvent, dropper, solutionNode, dropperFluidNode, solventFluidNode, drainFluidNode, mvt ) {
+  function BasicsPHMeterNode( meter, solution, water, dropper, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, mvt ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -235,7 +235,7 @@ define( function( require ) {
       indicatorNode.centerY = Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
     } );
 
-    var probeNode = new ProbeNode( meter.probe, mvt, solutionNode, dropperFluidNode, solventFluidNode, drainFluidNode );
+    var probeNode = new ProbeNode( meter.probe, mvt, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode );
     var wireNode = new WireNode( meter.body, meter.probe, scaleNode, probeNode );
 
     // rendering order
@@ -248,8 +248,8 @@ define( function( require ) {
       if ( probeNode.isInSolution() || probeNode.isInDrainFluid() ) {
         value = solution.pHProperty.get();
       }
-      else if ( probeNode.isInSolvent() ) {
-        value = solvent.pH;
+      else if ( probeNode.isInWater() ) {
+        value = water.pH;
       }
       else if ( probeNode.isInDropperSolution() ) {
         value = dropper.soluteProperty.get().pHProperty.get();
@@ -264,7 +264,7 @@ define( function( require ) {
     solution.pHProperty.link( updateValue );
     solutionNode.addEventListener( 'bounds', updateValue );
     dropperFluidNode.addEventListener( 'bounds', updateValue );
-    solventFluidNode.addEventListener( 'bounds', updateValue );
+    waterFluidNode.addEventListener( 'bounds', updateValue );
     drainFluidNode.addEventListener( 'bounds', updateValue );
   }
 

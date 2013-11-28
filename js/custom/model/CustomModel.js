@@ -19,18 +19,18 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Solute = require( 'PH_SCALE/common/model/Solute' );
   var Solution = require( 'PH_SCALE/common/model/Solution' );
-  var Solvent = require( 'PH_SCALE/common/model/Solvent' );
   var Vector2 = require( 'DOT/Vector2' );
+  var Water = require( 'PH_SCALE/common/model/Water' );
 
   function CustomModel() {
 
     var thisModel = this;
 
-    thisModel.solvent = Solvent.WATER;
+    thisModel.water = Water;
     thisModel.beaker = new Beaker( new Vector2( 330, 550 ), new Dimension2( 400, 325 ) );
     var yDropper = 210;
     thisModel.dropper = new Dropper( Solute.CUSTOM, new Vector2( thisModel.beaker.location.x + 40, yDropper ), new Bounds2( 225, yDropper, 500, yDropper ) );
-    thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.solvent, 0, thisModel.beaker.volume );
+    thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume );
     thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 100, 602 ), thisModel.beaker.right,
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );
 
@@ -70,7 +70,7 @@ define( function( require ) {
     // private: Drain solution from the output faucet.
     drainSolution: function( deltaSeconds ) {
       if ( this.solution.volumeProperty.get() > 0 ) {
-        assert && assert( this.solution.solventVolumeProperty.get() === 0 ); // custom solution is 100% solute
+        assert && assert( this.solution.waterVolumeProperty.get() === 0 ); // custom solution is 100% solute
         var deltaVolume = this.drainFaucet.flowRateProperty.get() * deltaSeconds;
         this.solution.soluteVolumeProperty.set( Math.max( 0, this.solution.soluteVolumeProperty.get() - deltaVolume ) );
       }

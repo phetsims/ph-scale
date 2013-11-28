@@ -23,7 +23,6 @@ HIGH
 
 MEDIUM
 - constrain pH and volume so that student computations match displayed values, as in Java sim
-- ditch 'solvent' in model and view, use 'water'
 
 LOW
 - flow rate of dropper is slower than faucets, is that OK?

@@ -46,7 +46,7 @@ define( function( require ) {
     // 'Molecule count' check box
     var moleculeCountLabel = new Text( moleculeCountString, { font: FONT } );
     var moleculeCountCheckBox = new CheckBox( moleculeCountLabel, moleculeCountVisibleProperty );
-    moleculeCountCheckBox.touchArea = Shape.bounds( ratioCheckBox.bounds.dilatedXY( 10, 8 ) );
+    moleculeCountCheckBox.touchArea = Shape.bounds( ratioCheckBox.localBounds.dilatedXY( 10, 8 ) );
 
     var separator = new Line( 0, 0, Math.max( moleculeCountCheckBox.width, ratioCheckBox.width ), 0, { stroke: 'gray' } );
 

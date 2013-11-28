@@ -1,5 +1,10 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
+/**
+ * Faucet that dispenses the solvent (water).
+ *
+ * @author Chris Malley (PixelZoom, Inc.)
+ */
 define( function( require ) {
   'use strict';
 
@@ -16,7 +21,10 @@ define( function( require ) {
    * @constructor
    */
   function SolventFaucetNode( solvent, faucet, mvt ) {
+
     PHFaucetNode.call( this, faucet, mvt );
+
+    // decorate the faucet with the name of the solvent
     var solventLabelNode = new Text( solvent.name, { font: new PhetFont( 40 ) } );
     this.addChild( solventLabelNode );
     solventLabelNode.right = -130;

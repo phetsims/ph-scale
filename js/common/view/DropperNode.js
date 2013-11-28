@@ -159,7 +159,7 @@ define( function( require ) {
 
     // touch area
     var dx = 0.25 * foreground.width;
-    var dy = 0.1 * foreground.height;
+    var dy = 0;
     thisNode.touchArea = Shape.rectangle( -( ( foreground.width / 2 ) + dx ), -( foreground.height + dy ), foreground.width + dx + dx, foreground.height + dy + dy );
 
     // drag handler

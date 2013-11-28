@@ -14,7 +14,7 @@ DESIGN
 HIGH
 - make ExpandCollapseBar a component of each *GraphNode
 - milk: try vary pale gray or direct to faint blue
-- when something is diluted enough to be ph=7, it should be water color (really?)
+- when something is diluted enough to be ph=7, it should be water color (does this mean '7.00'?)
 - Solutions: log graph, not interactive
 - Custom: interactive log graph
 - Custom: interactive linear graph, zoom feature

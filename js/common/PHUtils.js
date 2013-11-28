@@ -12,7 +12,7 @@ define( function( require ) {
      * Converts a number to a format like 1.23 x 10^25
      * @param {Number} value the number to be formatted
      * @param {Number} precision how many digits in the mantissa
-     * @parma {Number} constantExponent optional constant exponent
+     * @parma {Number} constantExponent optional constant exponent, may affect precision of mantissa
      * @return {String} HTML fragment
      */
     toTimesTenString: function( value, precision, constantExponent ) {

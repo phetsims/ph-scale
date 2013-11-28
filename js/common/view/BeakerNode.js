@@ -97,9 +97,7 @@ define( function( require ) {
       }
     }
 
-    var location = mvt.modelToViewPosition( beaker.location );
-    thisNode.x = location.x;
-    thisNode.y = location.y;
+    thisNode.translation = mvt.modelToViewPosition( beaker.location );
   }
 
   inherit( Node, BeakerNode );

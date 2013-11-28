@@ -25,7 +25,11 @@ define( function( require ) {
   // constants
   var GRAPH_SIZE = new Dimension2( 275, 530 );
 
-  function SolutionsGraphNode() {
+  /**
+   * @param {Solution} solution
+   * @constructor
+   */
+  function SolutionsGraphNode( solution ) {
 
     var thisNode = this;
     Node.call( thisNode );

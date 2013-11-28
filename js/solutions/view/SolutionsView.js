@@ -101,7 +101,7 @@ define( function( require ) {
     } );
 
     // graph
-    var graphNode = new SolutionsGraphNode(); //TODO args
+    var graphNode = new SolutionsGraphNode( model.solution );
     var graphExpandCollapseBar = new ExpandCollapseBar( concentrationString, graphVisibleProperty, {
       rightTitle: quantityString,
       size: new Dimension2( 1.1 * graphNode.width, 40 )

@@ -88,7 +88,7 @@ define( function( require ) {
     var pHMeterNode = new PHValueNode( model.solution.pHProperty );
 
     // graph
-    var graphNode = new CustomGraphNode(); //TODO args
+    var graphNode = new CustomGraphNode( model.solution );
     var graphExpandCollapseBar = new ExpandCollapseBar( concentrationString, graphVisibleProperty, {
       rightTitle: quantityString,
       size: new Dimension2( 1.1 * graphNode.width, 40 )

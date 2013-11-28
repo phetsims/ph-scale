@@ -34,6 +34,7 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
+    // nodes
     var arrowHead = new Path( new Shape()
       .moveTo( 0, 0 )
       .lineTo( -ARROW_SIZE.width, ARROW_SIZE.height / 2 )
@@ -45,9 +46,11 @@ define( function( require ) {
       centerY: arrowHead.centerY
     } );
 
+    // rendering order
     thisNode.addChild( valueNode );
     thisNode.addChild( arrowHead );
 
+    // update when the volume changes
     volumeProperty.link( function( volume ) {
 
       // value

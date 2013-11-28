@@ -28,11 +28,11 @@ define( function( require ) {
     options = _.extend( {
       size: new Dimension2( 60, 30 ), // if you want the thumb to be a circle, use width that is 2x height
       cursor: 'pointer',
-      trackFill: 'white',
-      trackStroke: 'black',
-      thumbOnFill: 'rgb(0,255,0)', // thumb fill when onProperty is true
-      thumbOffFill: 'white', // thumb fill when onProperty is false
-      thumbStroke: 'black'
+      thumbFill: 'white',
+      thumbStroke: 'black',
+      trackOffFill: 'white', // track fill when onProperty is false
+      trackOnFill: 'rgb(0,200,0)', // track fill when onProperty is true
+      trackStroke: 'black'
     }, options );
 
     var thisNode = this;
@@ -41,14 +41,14 @@ define( function( require ) {
     // track that the thumb slides in
     var cornerRadius = options.size.height / 2;
     var trackNode = new Rectangle( 0, 0, options.size.width, options.size.height, cornerRadius, cornerRadius, {
-      fill: options.trackFill,
+      fill: options.trackOffFill,
       stroke: options.trackStroke
     } );
     thisNode.addChild( trackNode );
 
     // thumb (aka knob)
     var thumbNode = new Rectangle( 0, 0, 0.5 * options.size.width, options.size.height, cornerRadius, cornerRadius, {
-      fill: options.thumbOffFill,
+      fill: options.thumbFill,
       stroke: options.thumbStroke
     } );
     thisNode.addChild( thumbNode );
@@ -59,11 +59,11 @@ define( function( require ) {
     var updateThumb = function( on ) {
       if ( on ) {
         thumbNode.right = options.size.width;
-        thumbNode.fill = options.thumbOnFill;
+        trackNode.fill = options.trackOnFill;
       }
       else {
         thumbNode.left = 0;
-        thumbNode.fill = options.thumbOffFill;
+        trackNode.fill = options.trackOffFill;
       }
     };
 
@@ -86,6 +86,7 @@ define( function( require ) {
         else {
           thumbNode.x = thumbNode.x + params.delta.x;
         }
+        trackNode.fill = ( thumbNode.centerX > trackNode.centerX ) ? options.trackOnFill : options.trackOffFill;
       },
 
       end: function() {

@@ -42,8 +42,7 @@ define( function( require ) {
 
     // default gradients
     options.trackFill = options.trackFill || new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'rgb(40,40,40)' ).addColorStop( 1, 'rgb(200,200,200)' );
-    options.thumbOnFill = options.thumbOnFill || new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'white' ).addColorStop( 1, 'rgb(200,200,200)' );
-    options.thumbOffFill = options.thumbOffFill || options.thumbOnFill;
+    options.thumbFill = options.thumbFill || new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'white' ).addColorStop( 1, 'rgb(200,200,200)' );
 
     var thisNode = this;
     Node.call( thisNode );
@@ -53,9 +52,9 @@ define( function( require ) {
     var onOffSwitch = new OnOffSwitch( onProperty, {
       size: options.size,
       cursor: options.cursor,
-      trackFill: options.trackFill,
-      thumbOnFill: options.thumbOnFill,
-      thumbOffFill: options.thumbOffFill
+      thumbFill: options.thumbFill,
+      trackOnFill: options.trackFill,
+      trackOffFill: options.trackFill
     } );
     var leftChoiceNode = new Text( leftLabel, {
       fill: options.textFill,

@@ -17,38 +17,8 @@ define( function( require ) {
   var OHMoleculeNode = require( 'PH_SCALE/common/view/OHMoleculeNode' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  var PHUtils = require( 'PH_SCALE/common/PHUtils' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Util = require( 'DOT/Util' );
-
-  //TODO run this by other developers, is there a better way?
-  /*
-   * Converts a number to a format like 1.23 x 10^25
-   * @param {Number} value the number to be formatted
-   * @param {Number} precision how many digits in the mantissa
-   * @parma {Number} constantExponent optional constant exponent
-   * @return {String} HTML fragment
-   */
-  var toTimesTenString = function( value, precision, constantExponent ) {
-    if ( value === 0 ) {
-      return '0';
-    }
-    else {
-      var precisionString = value.toPrecision( precision ); // eg, 12345 -> 1.23e+4
-      var tokens = precisionString.toLowerCase().split( 'e+' ); //TODO will this work in all browsers?
-      if ( tokens.length === 1 ) {
-        return tokens[0]; // no exponent, return the mantissa
-      }
-      else {
-        var mantissaString = tokens[0];
-        var exponentString = tokens[1];
-        if ( constantExponent !== undefined ) {
-          mantissaString = Util.toFixed( parseFloat( mantissaString ) * Math.pow( 10, parseInt( exponentString ) - constantExponent ), precision - 1 );
-          exponentString = constantExponent.toString();
-        }
-        return mantissaString + ' x 10<span style="font-size:85%"><sup>' + exponentString + '</sup></span>'; // mantissa x 10^exponent
-      }
-    }
-  };
 
   /**
    * @param {Solution} solution
@@ -128,9 +98,9 @@ define( function( require ) {
     var moleculesLeft = Math.min( nodeH3O.left, Math.min( nodeOH.left, nodeH2O.left ) ); // for right justifying counts
     var updateCounts = function() {
       // format and set values
-      countH3O.text = toTimesTenString( solution.getMoleculesH3O(), 3 );
-      countOH.text = toTimesTenString( solution.getMoleculesOH(), 3 );
-      countH2O.text = toTimesTenString( solution.getMoleculesH2O(), 3, 25 );
+      countH3O.text = PHUtils.toTimesTenString( solution.getMoleculesH3O(), 3 );
+      countOH.text = PHUtils.toTimesTenString( solution.getMoleculesOH(), 3 );
+      countH2O.text = PHUtils.toTimesTenString( solution.getMoleculesH2O(), 3, 25 );
       // right justify
       countH3O.right = moleculesLeft - xSpacing;
       countOH.right = moleculesLeft - xSpacing;

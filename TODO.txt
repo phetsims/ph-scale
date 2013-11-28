@@ -34,5 +34,6 @@ LOW
 - 'H3O+/OH- ratio' label is a few pixels low on check box
 
 MIGRATE TO COMMON
+- ExpandCollapseBar
 - OnOffSwitch
 - ChoiceSwitch

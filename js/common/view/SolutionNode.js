@@ -21,7 +21,7 @@ define( function( require ) {
    * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function SolutionNode( solvent, solution, beaker, mvt ) {
+  function SolutionNode( solution, beaker, mvt ) {
 
     var thisNode = this;
     Rectangle.call( thisNode, 0, 0, 1, 1, { lineWidth: 1 } ); // size and color set dynamically

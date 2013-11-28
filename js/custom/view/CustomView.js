@@ -55,7 +55,7 @@ define( function( require ) {
 
     // beaker
     var beakerNode = new BeakerNode( model.beaker, mvt );
-    var solutionNode = new SolutionNode( model.solvent, model.solution, model.beaker, mvt );
+    var solutionNode = new SolutionNode( model.solution, model.beaker, mvt );
     var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, mvt );
 
     // dropper

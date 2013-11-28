@@ -35,7 +35,7 @@ define( function( require ) {
    */
   function BeakerControls( ratioVisibleProperty, moleculeCountVisibleProperty ) {
 
-    // label is color-coded
+    // label for ratio check box is color-coded
     var stringH3O = '<span style="color:' + PHScaleColors.ACIDIC.toCSS() + '">H<sub>3</sub>O<sup>+</sup></span>';
     var stringOH = '<span style="color:' + PHScaleColors.BASIC.toCSS() + '">OH<sup>-</sup></span>';
     var ratioLabel = new HTMLText( StringUtils.format( ratioString, stringH3O, stringOH ), { font: FONT } );

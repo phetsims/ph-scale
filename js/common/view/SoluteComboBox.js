@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Combo box for choosing a solute.
+ * Combo box for choosing a solute (stock solution).
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

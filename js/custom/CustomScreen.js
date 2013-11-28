@@ -24,14 +24,11 @@ define( function( require ) {
   var screenIcon = require( 'image!PH_SCALE/Custom-screen-icon.jpg' );
 
   function CustomScreen() {
-
-    var mvt = ModelViewTransform2.createIdentity();
-
     Screen.call( this,
       screenTitle,
       new Image( screenIcon ),
       function() { return new CustomModel(); },
-      function( model ) { return new CustomView( model, mvt ); },
+      function( model ) { return new CustomView( model, ModelViewTransform2.createIdentity() ); },
       { backgroundColor: PHScaleColors.SCREEN_BACKGROUND }
     );
   }

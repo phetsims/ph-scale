@@ -22,14 +22,11 @@ define( function( require ) {
   var screenTitle = require( 'string!PH_SCALE/ph-scale-basics.name' );
 
   function BasicsScreen() {
-
-    var mvt = ModelViewTransform2.createIdentity();
-
     Screen.call( this,
       screenTitle,
       new Rectangle( 0, 0, 548, 373, { fill: 'green', stroke: 'black' } ), // placeholder
       function() { return new BasicsModel(); },
-      function( model ) { return new BasicsView( model, mvt ); },
+      function( model ) { return new BasicsView( model, ModelViewTransform2.createIdentity() ); },
       { backgroundColor: PHScaleColors.SCREEN_BACKGROUND }
     );
   }

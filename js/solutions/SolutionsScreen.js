@@ -24,14 +24,11 @@ define( function( require ) {
   var screenIcon = require( 'image!PH_SCALE/Solutions-screen-icon.jpg' );
 
   function SolutionsScreen() {
-
-    var mvt = ModelViewTransform2.createIdentity();
-
     Screen.call( this,
       screenTitle,
       new Image( screenIcon ),
       function() { return new SolutionsModel(); },
-      function( model ) { return new SolutionsView( model, mvt ); },
+      function( model ) { return new SolutionsView( model, ModelViewTransform2.createIdentity() ); },
       { backgroundColor: PHScaleColors.SCREEN_BACKGROUND }
     );
   }

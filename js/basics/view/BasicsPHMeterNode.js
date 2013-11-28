@@ -64,6 +64,7 @@ define( function( require ) {
       cursor: 'pointer'
     } );
 
+    // probe image file
     var imageNode = new Image( probeImage );
     thisNode.addChild( imageNode );
     var radius = imageNode.height / 2; // assumes that image height defines the radius

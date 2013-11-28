@@ -120,7 +120,7 @@ define( function( require ) {
     rootNode.addChild( graphExpandCollapseBar );
     rootNode.addChild( resetAllButton );
 
-    // Layout
+    // Layout of nodes that don't have a location specified in the model
     pHMeterNode.centerX = beakerNode.left;
     pHMeterNode.bottom = beakerNode.top - 30;
     ratioNode.centerX = beakerNode.centerX; //TODO delete
@@ -133,7 +133,6 @@ define( function( require ) {
     graphExpandCollapseBar.top = 20;
     graphNode.centerX = graphExpandCollapseBar.centerX;
     graphNode.top = graphExpandCollapseBar.bottom + 10;
-
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }

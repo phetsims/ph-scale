@@ -31,6 +31,7 @@ define( function( require ) {
    */
   function ABSwitch( property, objectA, labelA, objectB, labelB, options ) {
 
+    // default option values
     options = _.extend( {
       size: new Dimension2( 60, 30 ),
       textFill: 'black',
@@ -39,10 +40,10 @@ define( function( require ) {
       xSpacing: 8,
       cursor: 'pointer'
     }, options );
-
-    // default gradients
-    options.trackFill = options.trackFill || new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'rgb(40,40,40)' ).addColorStop( 1, 'rgb(200,200,200)' );
-    options.thumbFill = options.thumbFill || new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'white' ).addColorStop( 1, 'rgb(200,200,200)' );
+    options.trackFill = options.trackFill ||
+                        new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'rgb(40,40,40)' ).addColorStop( 1, 'rgb(200,200,200)' );
+    options.thumbFill = options.thumbFill ||
+                        new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'white' ).addColorStop( 1, 'rgb(200,200,200)' );
 
     var thisNode = this;
     Node.call( thisNode );

@@ -41,7 +41,7 @@ define( function( require ) {
     var stringOH = '<span style="color:' + PHScaleColors.BASIC.toCSS() + '">OH<sup>-</sup></span>';
     var ratioLabel = new HTMLText( StringUtils.format( ratioString, stringH3O, stringOH ), { font: FONT } );
     var ratioCheckBox = new CheckBox( ratioLabel, ratioVisibleProperty );
-    ratioCheckBox.touchArea = Shape.bounds( ratioCheckBox.bounds.dilatedXY( 10, 8 ) );
+    ratioCheckBox.touchArea = Shape.bounds( ratioCheckBox.localBounds.dilatedXY( 10, 8 ) );
 
     // 'Molecule count' check box
     var moleculeCountLabel = new Text( moleculeCountString, { font: FONT } );

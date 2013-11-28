@@ -24,6 +24,7 @@ define( function( require ) {
   // constants
   var SCALE_SIZE = new Dimension2( 55, 450 );
 
+  //TODO this could be used by BasicsPHMeterNode.IndicatorNode
   /**
    * Arrow and dashed line that points to a value on the pH scale.
    * @param {Property<Number>} scaleWidth
@@ -63,11 +64,16 @@ define( function( require ) {
 
   inherit( Node, PointerNode );
 
+  /**
+   * @param {Property<Number>} pHProperty
+   * @constructor
+   */
   function SolutionsPHMeterNode( pHProperty ) {
 
     var thisNode = this;
     Node.call( thisNode );
 
+    // nodes
     var valueNode = new PHValueNode( pHProperty );
     var verticalLineNode = new Line( 0, 0, 0, 25, { stroke: 'black', lineWidth: 5 } );
     var scaleNode = new PHScaleNode( { size: SCALE_SIZE } );

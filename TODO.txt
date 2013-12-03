@@ -27,6 +27,7 @@ HIGH
 
 MEDIUM
 - constrain pH and volume so that student computations match displayed values, as in Java sim
+- don't update things that aren't visible (Molecule counts, Ratio, collapsed pH meter, collapsed graph)
 
 LOW
 - flow rate of dropper is slower than faucets, is that OK?

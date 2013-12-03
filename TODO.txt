@@ -2,6 +2,7 @@ TODO list for ph-scale (HTML5)
 
 DESIGN
 - What are we going to do about 'ratio' representation? In addition to the color issue, there's no way we're going to draw 3000 dots interactively in JavaScript.
+- Can we ditch the 'Linear' graph feature?
 
 11/19/13 DESIGN DECISIONS
 - Custom: use same zoom levels as Java sim for Linear scale
@@ -11,15 +12,22 @@ DESIGN
 - put both zoom buttons at top of scale
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 
+HIGHEST
+- when something is diluted enough to be ph='7.00', it should be water color
+- milk: change color range, see design doc
+- change font on volume indicator to be same size as volume markers (1L, 1/2 L) on the beaker
+
 HIGH
+- use more saturated blue (RGB=40,216,255) for 'H2O' background in 'Molecule count' and graph indicator (as in design doc)
 - make ExpandCollapseBar a component of each *GraphNode
-- milk: try vary pale gray or direct to faint blue
-- when something is diluted enough to be ph=7, it should be water color (does this mean '7.00'?)
 - Solutions: log graph, not interactive
 - Custom: interactive log graph
 - Custom: interactive linear graph, zoom feature
 - 'H3O+/OH- ratio' feature
 - gray out left or right title in graph's expand/collapse bar
+- Solutions: make pH meter look more like design doc (discuss what this means)
+- Solutions: maximize width of beaker
+- shrink the 'Molecule counts' feature
 
 MEDIUM
 - constrain pH and volume so that student computations match displayed values, as in Java sim

@@ -13,7 +13,6 @@ DESIGN
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 
 HIGHEST
-- milk: change color range, see design doc
 
 HIGH
 - use more saturated blue (RGB=40,216,255) for 'H2O' background in 'Molecule count' and graph indicator (as in design doc)

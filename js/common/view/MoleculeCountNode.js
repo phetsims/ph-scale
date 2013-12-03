@@ -46,7 +46,7 @@ define( function( require ) {
     var font = new PhetFont( 22 );
     var countH3O = new HTMLText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'white' } );
     var countOH = new HTMLText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'white' } );
-    var countH2O = new HTMLText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'black' } );
+    var countH2O = new HTMLText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'white' } );
     var maxCountWidth = countH3O.width;
     var maxCountHeight = countH3O.height;
 
@@ -60,7 +60,7 @@ define( function( require ) {
     var backgroundOH = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
       { fill: PHScaleColors.BASIC, stroke: backgroundStroke } );
     var backgroundH2O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-      { fill: PHScaleColors.WATER, stroke: backgroundStroke } );
+      { fill: PHScaleColors.H2O_BACKGROUND, stroke: backgroundStroke } );
 
     // rendering order
     thisNode.addChild( backgroundH3O );

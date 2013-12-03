@@ -15,7 +15,6 @@ DESIGN
 HIGHEST
 
 HIGH
-- use more saturated blue (RGB=40,216,255) for 'H2O' background in 'Molecule count' and graph indicator (as in design doc)
 - make ExpandCollapseBar a component of each *GraphNode
 - Solutions: log graph, not interactive
 - Custom: interactive log graph

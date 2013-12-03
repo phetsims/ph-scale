@@ -26,6 +26,9 @@ define( function( require ) {
     // water
     WATER: new Color( 224, 255, 255 ),
 
+    // background on various features
+    H2O_BACKGROUND: new Color( 20, 184, 238 ),
+
     // particles in 'ratio' view
     H3O_PARTICLES: new Color( 204, 0, 0 ),
     OH_PARTICLES: new Color( 0, 0, 255 )

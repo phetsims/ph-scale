@@ -30,6 +30,7 @@ define( function( require ) {
   var MINOR_TICK_LENGTH = 15;
   var TICK_LABEL_X_SPACING = 8;
   var MAJOR_TICK_LABELS = new Array( '\u00bd', '1' ); // 1/2, 1
+  var MAJOR_TICK_FONT = new PhetFont( 24 );
 
   /**
    * Constructor
@@ -88,7 +89,7 @@ define( function( require ) {
         if ( labelIndex < MAJOR_TICK_LABELS.length ) {
           var label = StringUtils.format( pattern_0value_1units, MAJOR_TICK_LABELS[labelIndex], units_litersString );
           ticksParent.addChild( new Text( label, {
-            font: new PhetFont( 24 ),
+            font: MAJOR_TICK_FONT,
             fill: 'black',
             x: rightX + TICK_LABEL_X_SPACING,
             centerY: tickPath.centerY

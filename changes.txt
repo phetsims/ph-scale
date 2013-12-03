@@ -1,3 +1,4 @@
+12/3/13 change font on volume indicator to be same size as tick labels on the beaker
 11/27/13 use 'water' instead of 'solvent' throughout, since our model only makes sense for water and we don't need to support other solvents
 11/27/13 adjust touchArea of dropper so that it doesn't interfere with solute combo box
 11/27/13 expand touchArea for expand/collapse buttons

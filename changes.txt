@@ -1,3 +1,5 @@
+12/3/13 when a diluted solution reads '7.00' on the pH meter, use water color
+12/3/13 internal refactoring of Solution model, moved some functions to prototype, made color derived from solute and pH
 12/3/13 change font on volume indicator to be same size as tick labels on the beaker
 11/27/13 use 'water' instead of 'solvent' throughout, since our model only makes sense for water and we don't need to support other solvents
 11/27/13 adjust touchArea of dropper so that it doesn't interfere with solute combo box

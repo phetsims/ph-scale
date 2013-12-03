@@ -48,19 +48,11 @@ define( function( require ) {
 
     // pH, null if no value
     thisSolution.pHProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.waterVolumeProperty ],
-      function( solute, soluteVolume, waterVolume ) {
-        return Solution.computePH( solute.pHProperty.get(), soluteVolume, thisSolution.water.pH, waterVolume );
-      }
-    );
+      this.computePH.bind( this ) );
 
     // color
-    thisSolution.colorProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.waterVolumeProperty ],
-      function() {
-        return Solution.computeColor(
-          thisSolution.soluteProperty.get().color, thisSolution.soluteProperty.get().dilutedColor, thisSolution.soluteVolumeProperty.get(),
-          thisSolution.water.color, thisSolution.waterVolumeProperty.get() );
-      }
-    );
+    thisSolution.colorProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.pHProperty ],
+      thisSolution.computeColor.bind( this ) );
 
     // solute
     thisSolution.soluteProperty.link( function() {
@@ -153,53 +145,54 @@ define( function( require ) {
 
     getMolesH2O: function() {
       return Solution.computeMoles( this.volumeProperty.get(), this.getConcentrationH2O() );
-    }
-  };
+    },
 
-  /**
-   * Computes the pH of a solution.
-   * Combining acids and bases is not supported by this model.
-   * @param solutePH
-   * @param soluteVolume
-   * @param waterPH
-   * @param waterVolume
-   * @returns {number|null} null if the solution's volume is zero
-   */
-  Solution.computePH = function( solutePH, soluteVolume, waterPH, waterVolume ) {
-    var pH;
-    if ( soluteVolume + waterVolume === 0 ) {
-      pH = null;
-    }
-    else if ( solutePH < 7 ) {
-      assert && assert( waterPH <= 7 ); // combining acids and bases is not supported
-      pH = -log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -waterPH ) * waterVolume ) / ( soluteVolume + waterVolume ) );
-    }
-    else {
-      assert && assert( waterPH >= 7 ); // combining acids and bases is not supported
-      pH = 14 + log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, waterPH - 14 ) * waterVolume ) / ( soluteVolume + waterVolume ) );
-    }
-    return pH;
-  };
+    //----------------------------------------------------------------------------
+    // private
+    //----------------------------------------------------------------------------
 
-  /**
-   * Computes the color of a solution.
-   * @param {Color} soluteColor
-   * @param {Color} soluteDilutedColor
-   * @param {Number} soluteVolume
-   * @param {Color} waterColor
-   * @param {Number} waterVolume
-   * @returns {Color} waterColor if the solution's volume is zero
-   */
-  Solution.computeColor = function( soluteColor, soluteDilutedColor, soluteVolume, waterColor, waterVolume ) {
-    var color;
-    var solutionVolume = soluteVolume + waterVolume;
-    if ( solutionVolume === 0 || soluteVolume === 0 ) {
-      color = waterColor;
+    // Computes the solution's pH.
+    computePH: function() {
+
+      var solutePH = this.soluteProperty.get().pHProperty.get();
+      var soluteVolume = this.soluteVolumeProperty.get();
+      var waterPH = this.water.pH;
+      var waterVolume = this.waterVolumeProperty.get();
+
+      var pH;
+      if ( soluteVolume + waterVolume === 0 ) {
+        pH = null;
+      }
+      else if ( solutePH < 7 ) {
+        pH = -log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -waterPH ) * waterVolume ) / ( soluteVolume + waterVolume ) );
+      }
+      else {
+        pH = 14 + log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, waterPH - 14 ) * waterVolume ) / ( soluteVolume + waterVolume ) );
+      }
+      return pH;
+    },
+
+    // Computes the solution's color.
+    computeColor: function() {
+      var color;
+      if ( this.volumeProperty.get() === 0 || this.soluteVolumeProperty.get() === 0 || this.isEquivalentToWater() ) {
+        color = this.water.color;
+      }
+      else {
+        color = Color.interpolateRBGA( this.soluteProperty.get().dilutedColor, this.soluteProperty.get().color,
+          this.soluteVolumeProperty.get() / this.volumeProperty.get() );
+      }
+      return color;
+    },
+
+    /*
+     * True if the value displayed by the pH meter has precision that makes it equivalent to the pH of water.
+     * Eg, the value displayed to the user is '7.00'.
+     */
+    isEquivalentToWater: function() {
+      var pHString = Util.toFixed( this.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      return parseFloat( pHString ) === this.water.pH;
     }
-    else {
-      color = Color.interpolateRBGA( soluteDilutedColor, soluteColor, soluteVolume / solutionVolume );
-    }
-    return color;
   };
 
   /**

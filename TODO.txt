@@ -5,6 +5,7 @@ DESIGN
 - Can we ditch the 'Linear' graph feature?
 - flow rate of dropper (0.05 L/sec) is slower than faucets (0.25 L/sec), is that OK?
 - grayscale test indicates colorblind problems
+- graph expand/collapse labels are a bad idea, separates title from units, complicated implementation,...
 
 11/19/13 DESIGN DECISIONS
 - Custom: use same zoom levels as Java sim for Linear scale

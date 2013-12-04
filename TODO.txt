@@ -37,6 +37,7 @@ LOW
 - home screen and navbar icons
 - lots of stuff copied from beers-law-lab, much of it tweaked slightly
 - English strings have been capitalized, translations have not
+- port strings from Java
 - 'H3O+/OH- ratio' label is a few pixels low on check box
 - TODO items in code
 

@@ -18,6 +18,8 @@ define( function( require ) {
   // strings
   var simTitle = require( 'string!PH_SCALE/ph-scale.name' );
 
+  var screens = [ new SolutionsScreen(), new CustomScreen() ];
+
   var simOptions = {
     credits: {
       leadDesign: 'Yuen-ying Carpenter',
@@ -30,16 +32,19 @@ define( function( require ) {
 
   // Appending '?dev' to the URL will enable developer-only features.
   if ( window.phetcommon.getQueryParameter( 'dev' ) ) {
+
+    // add the 'Basics' screen, to simplify testing
+    screens.push( new BasicsScreen() );
+
+    // add dev-specific options here
     simOptions = _.extend( {
-      // add dev-specific options here
       showHomeScreen: false,
-      screenIndex: 1
+      screenIndex: 0
     }, simOptions );
   }
 
-  //TODO add BasicsScreen only when in 'dev' mode
   SimLauncher.launch( function() {
-    var sim = new Sim( simTitle, [ new BasicsScreen(), new SolutionsScreen(), new CustomScreen() ], simOptions );
+    var sim = new Sim( simTitle, screens, simOptions );
     sim.start();
   } );
 } );

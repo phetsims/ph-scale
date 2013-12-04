@@ -3,7 +3,7 @@ TODO list for ph-scale (HTML5)
 DESIGN
 - What are we going to do about 'ratio' representation? In addition to the color issue, there's no way we're going to draw 3000 dots interactively in JavaScript.
 - Can we ditch the 'Linear' graph feature?
-- flow rate of dropper is slower than faucets, is that OK?
+- flow rate of dropper (0.05 L/sec) is slower than faucets (0.25 L/sec), is that OK?
 - grayscale test indicates colorblind problems
 
 11/19/13 DESIGN DECISIONS

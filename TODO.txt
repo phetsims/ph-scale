@@ -17,7 +17,6 @@ DESIGN
 HIGHEST
 
 HIGH
-- make ExpandCollapseBar a component of each *GraphNode
 - Solutions: log graph, not interactive
 - Custom: interactive log graph
 - Custom: interactive linear graph, zoom feature

@@ -1,3 +1,4 @@
+12/4/13 Solutions: partial implementation of linear concentration graph
 12/4/13 add 'Basics' screen to 'pH Scale' sim only in dev mode
 12/3/13 use saturated blue (as shown in design doc) for 'H2O' background in 'Molecule count' and graph indicator
 12/3/13 use water color as the 'diluted' color for all solutions, as shown in the design doc

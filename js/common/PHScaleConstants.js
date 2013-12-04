@@ -20,6 +20,9 @@ define( function( require ) {
 
     // volume
     VOLUME_DECIMAL_PLACES: 2,
-    MIN_SOLUTION_VOLUME: 0.015  // L, minimum non-zero volume for solution, so it's visible and measurable
+    MIN_SOLUTION_VOLUME: 0.015,  // L, minimum non-zero volume for solution, so it's visible and measurable
+
+    // concentration
+    CONCENTRATION_EXPONENT_RANGE: new Range( -16, 2 )
   };
 } );

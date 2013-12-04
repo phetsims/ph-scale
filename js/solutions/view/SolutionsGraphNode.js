@@ -13,6 +13,7 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var GraphUnits = require( 'PH_SCALE/common/view/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var LinearConcentrationGraph = require( 'PH_SCALE/common/view/LinearConcentrationGraph' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Property = require( 'AXON/Property' );
@@ -34,14 +35,19 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
-    //TODO placeholder for approximate size of graph
-    thisNode.addChild( new Rectangle( 0, 0, GRAPH_SIZE.width, GRAPH_SIZE.height, {
-      stroke: 'rgb(200,200,200)',
-      lineWidth: 2
-    } ) );
+    var concentrationGraph = new LinearConcentrationGraph( solution );
 
-    thisNode.addChild( new ABSwitch( new Property( GraphUnits.MOLES_PER_LITER ), GraphUnits.MOLES_PER_LITER, molesPerLiterString, GraphUnits.MOLES, molesString, {
-      font: new PhetFont( 18 ), size: new Dimension2( 40, 20 ), centerX: GRAPH_SIZE.width/2, y: 10 } ) );
+    var unitsSwitch = new ABSwitch( new Property( GraphUnits.MOLES_PER_LITER ), GraphUnits.MOLES_PER_LITER, molesPerLiterString, GraphUnits.MOLES, molesString, {
+      font: new PhetFont( 18 ),
+      size: new Dimension2( 40, 20 ) } );
+
+    // rendering order
+    thisNode.addChild( concentrationGraph );
+    thisNode.addChild( unitsSwitch );
+
+    // layout
+    concentrationGraph.centerX = unitsSwitch.centerX; //TODO center under on/off switch
+    concentrationGraph.top = unitsSwitch.bottom + 10;
   }
 
   return inherit( Node, SolutionsGraphNode );

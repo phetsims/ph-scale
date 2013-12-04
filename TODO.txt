@@ -31,6 +31,7 @@ MEDIUM
 - don't update things that aren't visible (Molecule counts, Ratio, collapsed pH meter, collapsed graph)
 
 LOW
+- rename 'solute' to 'stock solution' throughout?
 - exponents look lousy, rewrite using scenery.Text?
 - factor out duplicate code/patterns in model & view for 3 screens
 - home screen and navbar icons

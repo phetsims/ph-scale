@@ -3,8 +3,6 @@ TODO list for ph-scale (HTML5)
 DESIGN
 - What are we going to do about 'ratio' representation? In addition to the color issue, there's no way we're going to draw 3000 dots interactively in JavaScript.
 - Can we ditch the 'Linear' graph feature?
-- flow rate of dropper (0.05 L/sec) is slower than faucets (0.25 L/sec), is that OK?
-- grayscale test indicates colorblind problems
 - graph expand/collapse labels are a bad idea, separates title from units, complicated implementation,...
 - left-align '10' or center-align entire tick label in graph?
 
@@ -19,6 +17,10 @@ DESIGN
 HIGHEST
 
 HIGH
+- Solute combo box: round corners, thicker lineWidth, vertical divider to left of arrow, color behind arrow
+- add 'Tea', make it the default (get colors and pH from YY)
+- flip everything LTR in all screens
+- add more color points to solution color interpolation
 - Solutions: log graph, not interactive
 - Custom: interactive log graph
 - Custom: interactive linear graph, zoom feature

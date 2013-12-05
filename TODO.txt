@@ -17,7 +17,7 @@ DESIGN
 HIGHEST
 
 HIGH
-- Solute combo box: round corners, thicker lineWidth, vertical divider to left of arrow, color behind arrow
+- ComboBox: add background color behind arrow button (sun#43)
 - add 'Tea', make it the default (get colors and pH from YY)
 - flip everything LTR in all screens
 - add more color points to solution color interpolation

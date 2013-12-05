@@ -13,6 +13,7 @@ DESIGN
 - drop shadow on interactive indicators on graph
 - put both zoom buttons at top of scale
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
+- vertically align pH and graph scales
 
 HIGHEST
 

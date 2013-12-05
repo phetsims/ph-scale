@@ -41,7 +41,7 @@ define( function( require ) {
       listPosition: 'below',
       itemYMargin: 12,
       itemHighlightFill: 'rgb(218,255,255)',
-      buttonLineWidth: 2,
+      buttonLineWidth: 3,
       buttonCornerRadius: 10
     } );
   }

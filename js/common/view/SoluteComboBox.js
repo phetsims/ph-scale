@@ -40,7 +40,9 @@ define( function( require ) {
     ComboBox.call( this, items, selectedSolute, soluteListParent, {
       listPosition: 'below',
       itemYMargin: 12,
-      itemHighlightFill: 'rgb(218,255,255)'
+      itemHighlightFill: 'rgb(218,255,255)',
+      buttonLineWidth: 2,
+      buttonCornerRadius: 10
     } );
   }
 

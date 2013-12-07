@@ -13,7 +13,6 @@ DESIGN
 - drop shadow on interactive indicators on graph
 - put both zoom buttons at top of scale
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
-- vertically align pH and graph scales
 
 HIGHEST
 
@@ -31,6 +30,7 @@ HIGH
 - Solutions: make pH meter look more like design doc (discuss what this means)
 - Solutions: maximize width of beaker
 - shrink the 'Molecule counts' feature
+- vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)
 
 MEDIUM
 - constrain pH and volume so that student computations match displayed values, as in Java sim

@@ -4,25 +4,16 @@ DESIGN
 - What are we going to do about 'ratio' representation? In addition to the color issue, there's no way we're going to draw 3000 dots interactively in JavaScript.
 - Can we ditch the 'Linear' graph feature?
 - graph expand/collapse labels are a bad idea, separates title from units, complicated implementation,...
-- left-align '10' or center-align entire tick label in graph?
-
-11/19/13 DESIGN DECISIONS
-- Custom: use same zoom levels as Java sim for Linear scale
-- Will need to implement 2 totally separate graphs for log and linear. No shading on linear, and linear is wider.
-- make linear scale go below zero so that we can fit '0' tick on the scale
-- drop shadow on interactive indicators on graph
-- put both zoom buttons at top of scale
-- when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 
 HIGHEST
-
-HIGH
 - ComboBox: add background color behind arrow button (sun#43)
-- add 'Tea', make it the default (get colors and pH from YY)
 - flip everything LTR in all screens
 - add more color points to solution color interpolation
 - revise solution colors (sRGB)
+
+HIGH
 - Solutions: log graph, not interactive
+- when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 - Custom: interactive log graph
 - Custom: interactive linear graph, zoom feature
 - 'H3O+/OH- ratio' feature
@@ -33,6 +24,8 @@ HIGH
 - vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)
 
 MEDIUM
+- drop shadow on interactive indicators on graph
+- put both zoom buttons at top of linear scale
 - constrain pH and volume so that student computations match displayed values, as in Java sim
 - don't update things that aren't visible (Molecule counts, Ratio, collapsed pH meter, collapsed graph)
 

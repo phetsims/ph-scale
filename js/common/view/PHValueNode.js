@@ -54,7 +54,7 @@ define( function( require ) {
     this.backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
       { fill: 'rgb(135,25,75)' } );
 
-    // highlight around the background, effectively stroked inside the background shape
+    // highlight around the background
     var highlightLineWidth = 3;
     var outerHighlight = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
       { stroke: 'black', lineWidth: highlightLineWidth } );

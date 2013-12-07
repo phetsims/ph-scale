@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Faucet node for this sim, a specialization of scenery-phet.FaucetNode.
+ * Faucet that drains solution from the beaker.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -19,16 +19,18 @@ define( function( require ) {
    * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function PHFaucetNode( faucet, mvt ) {
+  function DrainFaucetNode( faucet, mvt ) {
+
     var scale = 0.6;
+
     var horizontalPipeLength = mvt.modelToViewX( faucet.location.x - faucet.pipeMinX ) / scale;
     FaucetNode.call( this, faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
       horizontalPipeLength: horizontalPipeLength,
-      verticalPipeLength: 20,
-      scale: scale
+      verticalPipeLength: 20
     } );
     this.translation = mvt.modelToViewPosition( faucet.location );
+    this.setScaleMagnitude( scale );
   }
 
-  return inherit( FaucetNode, PHFaucetNode );
+  return inherit( FaucetNode, DrainFaucetNode );
 } );

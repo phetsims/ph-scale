@@ -14,6 +14,7 @@ define( function( require ) {
   var Bounds2 = require( 'DOT/Bounds2' );
   var CustomGraphNode = require( 'PH_SCALE/custom/view/CustomGraphNode' );
   var Dimension2 = require( 'DOT/Dimension2' );
+  var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
   var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
@@ -21,7 +22,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
   var PHValueNode = require( 'PH_SCALE/common/view/PHValueNode' );
   var Property = require( 'AXON/Property' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
@@ -65,7 +65,7 @@ define( function( require ) {
     var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, dropperScale * dropperNode.getTipWidth(), mvt );
 
     // drain faucet
-    var drainFaucetNode = new PHFaucetNode( model.drainFaucet, mvt );
+    var drainFaucetNode = new DrainFaucetNode( model.drainFaucet, mvt );
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 

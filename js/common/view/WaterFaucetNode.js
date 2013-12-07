@@ -10,8 +10,8 @@ define( function( require ) {
 
   // imports
   var inherit = require( 'PHET_CORE/inherit' );
+  var FaucetNode = require( 'SCENERY_PHET/FaucetNode' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
   var Text = require( 'SCENERY/nodes/Text' );
 
   /**
@@ -22,7 +22,15 @@ define( function( require ) {
    */
   function WaterFaucetNode( water, faucet, mvt ) {
 
-    PHFaucetNode.call( this, faucet, mvt );
+    var scale = 0.6;
+
+    var horizontalPipeLength = mvt.modelToViewX( faucet.location.x - faucet.pipeMinX ) / scale;
+    FaucetNode.call( this, faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
+      horizontalPipeLength: horizontalPipeLength,
+      verticalPipeLength: 20
+    } );
+    this.translation = mvt.modelToViewPosition( faucet.location );
+    this.setScaleMagnitude( scale );
 
     // decorate the faucet with the name of the water
     var labelNode = new Text( water.name, { font: new PhetFont( 40 ) } );
@@ -31,5 +39,5 @@ define( function( require ) {
     labelNode.bottom = -170;
   }
 
-  return inherit( PHFaucetNode, WaterFaucetNode );
+  return inherit( FaucetNode, WaterFaucetNode );
 } );

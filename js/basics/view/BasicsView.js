@@ -12,12 +12,12 @@ define( function( require ) {
   var BasicsPHMeterNode = require( 'PH_SCALE/basics/view/BasicsPHMeterNode' );
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
+  var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var PHFaucetNode = require( 'PH_SCALE/common/view/PHFaucetNode' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
@@ -52,7 +52,7 @@ define( function( require ) {
 
     // faucets
     var waterFaucetNode = new WaterFaucetNode( model.water, model.waterFaucet, mvt );
-    var drainFaucetNode = new PHFaucetNode( model.drainFaucet, mvt );
+    var drainFaucetNode = new DrainFaucetNode( model.drainFaucet, mvt );
     var WATER_FLUID_HEIGHT = model.beaker.location.y - model.waterFaucet.location.y;
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
     var waterFluidNode = new FaucetFluidNode( model.waterFaucet, model.solution.water, WATER_FLUID_HEIGHT, mvt );

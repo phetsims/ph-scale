@@ -22,6 +22,7 @@ HIGH
 - add 'Tea', make it the default (get colors and pH from YY)
 - flip everything LTR in all screens
 - add more color points to solution color interpolation
+- revise solution colors (sRGB)
 - Solutions: log graph, not interactive
 - Custom: interactive log graph
 - Custom: interactive linear graph, zoom feature

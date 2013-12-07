@@ -33,6 +33,7 @@ define( function( require ) {
        Solute.BLOOD,
        Solute.SPIT,
        Solute.MILK,
+       Solute.CHICKEN_SOUP,
        Solute.COFFEE,
        Solute.BEER,
        Solute.LIME_SODA,
@@ -43,7 +44,7 @@ define( function( require ) {
     thisModel.water = Water;
     thisModel.beaker = new Beaker( new Vector2( 330, 600 ), new Dimension2( 400, 325 ) );
     var yDropper = 260;
-    thisModel.dropper = new Dropper( thisModel.solutes[4], new Vector2( thisModel.beaker.location.x + 40, yDropper ), new Bounds2( 250, yDropper, 510, yDropper ) );
+    thisModel.dropper = new Dropper( Solute.CHICKEN_SOUP, new Vector2( thisModel.beaker.location.x + 40, yDropper ), new Bounds2( 250, yDropper, 510, yDropper ) );
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume );
     thisModel.waterFaucet = new Faucet( new Vector2( 185, 230 ), -400,
       { enabled: thisModel.solution.volumeProperty.get() < thisModel.beaker.volume } );

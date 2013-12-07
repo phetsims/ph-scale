@@ -1,3 +1,4 @@
+12/7/13 change request: add 'Chicken Soup', make it the default
 12/6/13 feature request: add highlight around pH value display when the displayed value is '7.00'
 12/5/13 add options for SoluteComboBox: increase lineWidth and cornerRadius
 12/4/13 Solutions: partial implementation of linear concentration graph

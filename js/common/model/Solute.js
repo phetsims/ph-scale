@@ -19,6 +19,7 @@ define( function( require ) {
   var bloodString = require( 'string!PH_SCALE/choice.blood' );
   var spitString = require( 'string!PH_SCALE/choice.spit' );
   var milkString = require( 'string!PH_SCALE/choice.milk' );
+  var chickenSoupString = require( 'string!PH_SCALE/choice.chickenSoup' );
   var coffeeString = require( 'string!PH_SCALE/choice.coffee' );
   var beerString = require( 'string!PH_SCALE/choice.beer' );
   var sodaString = require( 'string!PH_SCALE/choice.soda' );
@@ -45,6 +46,7 @@ define( function( require ) {
   Solute.BLOOD = new Solute( bloodString, 7.4, new Color( 185, 12, 0 ), Water.color );
   Solute.SPIT = new Solute( spitString, 7.4, new Color( 202, 240, 239 ), Water.color );
   Solute.MILK = new Solute( milkString, 6.5, new Color( 250, 250, 250 ), Water.color );
+  Solute.CHICKEN_SOUP = new Solute( chickenSoupString, 5.8, new Color( 250, 225, 18 ), Water.color );
   Solute.COFFEE = new Solute( coffeeString, 5.0, new Color( 164, 99, 7 ), Water.color );
   Solute.BEER = new Solute( beerString, 4.5, new Color( 255, 200, 0 ), Water.color );
   Solute.LIME_SODA = new Solute( sodaString, 2.5, new Color( 204, 255, 102 ), Water.color );

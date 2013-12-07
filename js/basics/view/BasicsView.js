@@ -90,6 +90,11 @@ define( function( require ) {
     soluteComboBox.top = this.layoutBounds.top + 15;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
+
+    //XXX remove this
+    var Vector2 = require( 'DOT/Vector2' );
+    rootNode.translation = new Vector2( this.layoutBounds.width, 0 );
+    rootNode.setScaleMagnitude( -1, 1 );
   }
 
   return inherit( ScreenView, BasicsView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );

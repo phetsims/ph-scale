@@ -55,10 +55,10 @@ define( function( require ) {
       { fill: 'rgb(135,25,75)' } );
 
     // highlight around the background, effectively stroked inside the background shape
-    var highlightLineWidth = 4;
-    var outerHighlight = new Rectangle( highlightLineWidth / 2, highlightLineWidth / 2, backgroundWidth - highlightLineWidth, backgroundHeight - highlightLineWidth, cornerRadius, cornerRadius,
+    var highlightLineWidth = 3;
+    var outerHighlight = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
       { stroke: 'black', lineWidth: highlightLineWidth } );
-    var innerHighlight = new Rectangle( highlightLineWidth, highlightLineWidth, backgroundWidth - (2 * highlightLineWidth), backgroundHeight - (2 * highlightLineWidth), cornerRadius, cornerRadius,
+    var innerHighlight = new Rectangle( highlightLineWidth, highlightLineWidth, backgroundWidth - ( 2 * highlightLineWidth ), backgroundHeight - ( 2 * highlightLineWidth ), cornerRadius, cornerRadius,
       { stroke: 'white', lineWidth: highlightLineWidth } );
     var highlight = new Node( { children: [ innerHighlight, outerHighlight ], visible: false } );
 

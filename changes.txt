@@ -1,3 +1,4 @@
+12/9/13 add a colorstop for 'neutral' to pH scale gradient (RGB=164,58,149)
 12/9/13 use specified color for 'Chicken Soup'
 12/9/13 rename Solute.LIME_SODA to Solute.SODA
 12/7/13 flatten faucet type hierarchy, in preparation for reflecting water faucet

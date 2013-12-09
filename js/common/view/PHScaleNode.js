@@ -56,6 +56,7 @@ define( function( require ) {
     var backgroundNode = new Rectangle( 0, 0, options.size.width, options.size.height, {
       fill: new LinearGradient( 0, 0, 0, options.size.height )
         .addColorStop( 0, PHScaleColors.BASIC )
+        .addColorStop( 0.5, PHScaleColors.NEUTRAL )
         .addColorStop( 1, PHScaleColors.ACIDIC ),
       stroke: 'black',
       lineWidth: this.backgroundStrokeWidth

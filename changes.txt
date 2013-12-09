@@ -1,3 +1,4 @@
+12/9/13 Basics: change pH tick label to '(Neutral) 7'
 12/9/13 Basics: adjust location of combo box
 12/9/13 Basics: adjust drag bounds for dropper, so that it's above new beaker location and doesn't overlap water faucet touchArea
 12/9/13 reflect water faucet so that it points left, adjust location of 'Water' label

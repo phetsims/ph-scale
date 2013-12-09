@@ -35,7 +35,7 @@ define( function( require ) {
        Solute.CHICKEN_SOUP,
        Solute.COFFEE,
        Solute.BEER,
-       Solute.LIME_SODA,
+       Solute.SODA,
        Solute.VOMIT,
        Solute.BATTERY_ACID
     ];

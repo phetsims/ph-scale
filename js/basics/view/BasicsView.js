@@ -88,7 +88,7 @@ define( function( require ) {
     // Layout of nodes that don't have a location specified in the model
     soluteComboBox.left = mvt.modelToViewX( model.beaker.location.x ) - 40;
     soluteComboBox.top = this.layoutBounds.top + 15;
-    resetAllButton.right = this.layoutBounds.right - 40;
+    resetAllButton.right = mvt.modelToViewX( model.drainFaucet.location.x ) - 100;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
 

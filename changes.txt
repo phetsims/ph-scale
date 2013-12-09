@@ -1,3 +1,4 @@
+12/9/13 Basics: move beaker to right side of screen, move pH meter to left side of screen
 12/9/13 make volume value bold
 12/9/13 horizontally flip pH probe, connect wire to left side (control points for wire are wrong)
 12/9/13 Basics: move pH indicator to right side of pH scale

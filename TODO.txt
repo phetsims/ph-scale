@@ -10,6 +10,7 @@ HIGHEST
 - flip everything LTR in all screens
 - add more color points to solution color interpolation
 - revise solution colors (sRGB)
+- Basics: add bulky background around '(Neutral) 7' tick
 
 HIGH
 - Solutions: log graph, not interactive

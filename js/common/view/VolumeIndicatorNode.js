@@ -27,7 +27,7 @@ define( function( require ) {
 
   // constants
   var ARROW_SIZE = new Dimension2( 21, 28 );
-  var VALUE_FONT = new PhetFont( 24 );
+  var VALUE_FONT = new PhetFont( { size: 24, weight: 'bold' } );
 
   function VolumeIndicatorNode( volumeProperty, beaker, mvt ) {
 

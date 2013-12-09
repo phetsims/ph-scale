@@ -44,9 +44,11 @@ define( function( require ) {
     thisModel.water = Water;
     thisModel.beaker = new Beaker( new Vector2( 705, 600 ), new Dimension2( 400, 325 ) );
     var yDropper = 260;
-    thisModel.dropper = new Dropper( Solute.CHICKEN_SOUP, new Vector2( thisModel.beaker.location.x + 40, yDropper ), new Bounds2( 250, yDropper, 510, yDropper ) );
+    thisModel.dropper = new Dropper( Solute.CHICKEN_SOUP,
+      new Vector2( thisModel.beaker.location.x - 50, yDropper ),
+      new Bounds2( thisModel.beaker.left + 40, yDropper, thisModel.beaker.right - 200, yDropper ) );
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume );
-    thisModel.waterFaucet = new Faucet( new Vector2( 560, 230 ), 400,
+    thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, 230 ), 400,
       { enabled: thisModel.solution.volumeProperty.get() < thisModel.beaker.volume } );
     thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 100, 652 ), thisModel.beaker.right,
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );

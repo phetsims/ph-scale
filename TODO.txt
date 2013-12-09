@@ -7,14 +7,14 @@ DESIGN
 
 HIGHEST
 - ComboBox: add background color behind arrow button (sun#43)
-- flip everything LTR in all screens
 - add more color points to solution color interpolation
 - revise solution colors (sRGB)
 - Basics: add bulky background around '(Neutral) 7' tick
+- Basics: fix wire control points on pH meter
 
 HIGH
-- Basics: fix wire control points on pH meter
-- Solutions: fix all of the problems that flipping 'Basics' caused
+- Solutions, flip everything LTR, fix problems that flipping 'Basics' caused
+- Custom, flip everything LTR
 - Solutions: log graph, not interactive
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 - Custom: interactive log graph

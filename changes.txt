@@ -1,3 +1,6 @@
+12/9/13 Basics: adjust location of combo box
+12/9/13 Basics: adjust drag bounds for dropper, so that it's above new beaker location and doesn't overlap water faucet touchArea
+12/9/13 reflect water faucet so that it points left, adjust location of 'Water' label
 12/9/13 Basics: move beaker to right side of screen, move pH meter to left side of screen
 12/9/13 make volume value bold
 12/9/13 horizontally flip pH probe, connect wire to left side (control points for wire are wrong)

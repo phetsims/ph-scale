@@ -132,7 +132,7 @@ define( function( require ) {
 
       // Connect bottom-center of body to right-center of probe.
       var bodyConnectionPoint = new Vector2( scaleCenterX, bodyNode.bottom - 10 );
-      var probeConnectionPoint = new Vector2( probeNode.right, probeNode.centerY );
+      var probeConnectionPoint = new Vector2( probeNode.left, probeNode.centerY );
 
       // control points
       // The y coordinate of the body's control point varies with the x distance between the body and probe.

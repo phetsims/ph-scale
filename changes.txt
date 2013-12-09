@@ -1,3 +1,5 @@
+12/9/13 Basics: move pH indicator to right side of pH scale
+12/9/13 move ticks to right side of pH scale
 12/9/13 add a color-stop for 'neutral' to pH scale gradient (RGB=164,58,149)
 12/9/13 use specified color for 'Chicken Soup'
 12/9/13 rename Solute.LIME_SODA to Solute.SODA

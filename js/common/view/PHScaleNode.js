@@ -85,14 +85,14 @@ define( function( require ) {
       if ( pH !== 7 ) {
         // tick mark
         var lineNode = new Line( 0, 0, TICK_LENGTH, 0, { stroke: 'black', lineWidth: 1 } );
-        lineNode.left = backgroundNode.right;
+        lineNode.right = backgroundNode.left;
         lineNode.centerY = y;
         thisNode.addChild( lineNode );
 
         // tick label
         if ( pH % 2 === 0 ) {
           var tickLabelNode = new Text( pH, { font: TICK_FONT } );
-          tickLabelNode.left = lineNode.right + TICK_LABEL_X_SPACING;
+          tickLabelNode.right = lineNode.left - TICK_LABEL_X_SPACING;
           tickLabelNode.centerY = lineNode.centerY;
           thisNode.addChild( tickLabelNode );
         }
@@ -102,11 +102,11 @@ define( function( require ) {
 
     // 'Neutral' line
     var neutralLineNode = new Line( 0, 0, NEUTRAL_TICK_LENGTH, 0, { stroke: 'black', lineWidth: 1 } );
-    neutralLineNode.left = backgroundNode.right;
+    neutralLineNode.right = backgroundNode.left;
     neutralLineNode.centerY = options.size.height / 2;
     thisNode.addChild( neutralLineNode );
     var neutralLabelNode = new Text( options.labelNeutral ? neutralString : '7', { font: NEUTRAL_FONT } );
-    neutralLabelNode.left = neutralLineNode.right + TICK_LABEL_X_SPACING;
+    neutralLabelNode.right = neutralLineNode.left - TICK_LABEL_X_SPACING;
     neutralLabelNode.centerY = neutralLineNode.centerY;
     thisNode.addChild( neutralLabelNode );
   }

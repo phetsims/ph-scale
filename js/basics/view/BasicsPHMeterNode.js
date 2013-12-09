@@ -177,8 +177,8 @@ define( function( require ) {
     var arrowSize = new Dimension2( 21, 28 );
     var arrowNode = new Path( new Shape()
       .moveTo( 0, 0 )
-      .lineTo( -arrowSize.width, -arrowSize.height / 2 )
-      .lineTo( -arrowSize.width, arrowSize.height / 2 )
+      .lineTo( arrowSize.width, -arrowSize.height / 2 )
+      .lineTo( arrowSize.width, arrowSize.height / 2 )
       .close(),
       { fill: 'black' } );
 
@@ -190,9 +190,9 @@ define( function( require ) {
     // layout, origin at arrow tip
     lineNode.left = 0;
     lineNode.centerY = 0;
-    arrowNode.right = lineNode.left;
+    arrowNode.left = lineNode.right;
     arrowNode.centerY = lineNode.centerY;
-    valueNode.right = arrowNode.left + 1;
+    valueNode.left = arrowNode.right - 1; // overlap to hide seam
     valueNode.centerY = arrowNode.centerY;
 
     pHProperty.link( function( pH ) {

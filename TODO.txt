@@ -10,7 +10,6 @@ HIGHEST
 - add more color points to solution color interpolation
 - revise solution colors (sRGB)
 - Basics: add bulky background around '(Neutral) 7' tick
-- Basics: fix wire control points on pH meter
 
 HIGH
 - Solutions, flip everything LTR, fix problems that flipping 'Basics' caused

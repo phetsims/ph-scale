@@ -45,7 +45,7 @@ define( function( require ) {
   // constants
   var SCALE_SIZE = new Dimension2( 55, 450 );
   var INDICATOR_ENABLED_COLOR = 'rgb(114,9,56)';
-  var INDICATOR_DISABLED_COLOR = 'rgba(0,0,0,0.3)';
+  var INDICATOR_DISABLED_COLOR = 'rgb(178,178,178)';
 
   /**
    * Meter probe, origin at center of crosshairs.

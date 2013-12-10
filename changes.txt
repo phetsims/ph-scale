@@ -1,3 +1,4 @@
+12/9/13 Basics: use opaque gray for disabled PHValueNode, so that wire behind it doesn't show through
 12/9/13 add optional midpoint color for some solutions, rewrite algorithm for computing solution color
 12/9/13 Basics: decrease length of drain pipe, move beaker slightly to the right
 12/9/13 Basics: adjust pH meter wire control points so that the wire looks good when measuring the drain

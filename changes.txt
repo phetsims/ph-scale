@@ -1,3 +1,4 @@
+12/9/13 Basics: add rounded rectangle around '(Neutral) 7' tick label, fill with 'neutral' color
 12/9/13 Basics: fix wire control points on pH meter
 12/9/13 Basics: change pH tick label to '(Neutral) 7'
 12/9/13 Basics: adjust location of combo box

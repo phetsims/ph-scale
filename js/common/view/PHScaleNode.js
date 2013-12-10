@@ -101,7 +101,7 @@ define( function( require ) {
     }
 
     // 'Neutral' line
-    var neutralLineNode = new Line( 0, 0, NEUTRAL_TICK_LENGTH, 0, { stroke: 'black', lineWidth: 1 } );
+    var neutralLineNode = new Line( 0, 0, NEUTRAL_TICK_LENGTH, 0, { stroke: 'black', lineWidth: 3 } );
     neutralLineNode.right = backgroundNode.left;
     neutralLineNode.centerY = options.size.height / 2;
     thisNode.addChild( neutralLineNode );
@@ -118,7 +118,7 @@ define( function( require ) {
       var backgroundHeight = textNode.height + ( 2 * backgroundYMargin );
       var cornerRadius = 10;
       var backgroundNode = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-        { fill: PHScaleColors.NEUTRAL, stroke: 'black', lineWidth: 2 } );
+        { fill: PHScaleColors.NEUTRAL, stroke: 'black', lineWidth: 3 } );
 
       neutralLabelNode = new Node( { children: [ backgroundNode, textNode ]} );
       thisNode.addChild( neutralLabelNode );

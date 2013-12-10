@@ -109,13 +109,13 @@ define( function( require ) {
 
   /**
    * Wire that connects the body and probe.
-   * @param {Movable} body
+   * @param {Vector2} bodyLocation
    * @param {Movable} probe
    * @param {Node} bodyNode
    * @param {Node} probeNode
    * @constructor
    */
-  function WireNode( body, probe, bodyNode, probeNode ) {
+  function WireNode( bodyLocation, probe, bodyNode, probeNode ) {
 
     var thisNode = this;
     Path.call( thisNode, new Shape(), {
@@ -145,7 +145,6 @@ define( function( require ) {
         .moveTo( bodyConnectionPoint.x, bodyConnectionPoint.y )
         .cubicCurveTo( c1.x, c1.y, c2.x, c2.y, probeConnectionPoint.x, probeConnectionPoint.y );
     };
-    body.locationProperty.link( updateCurve );
     probe.locationProperty.link( updateCurve );
   }
 
@@ -224,9 +223,7 @@ define( function( require ) {
 
     // pH scale, positioned at meter 'body' location
     var scaleNode = new PHScaleNode( { labelNeutral: true } );
-    meter.body.locationProperty.link( function( location ) {
-      scaleNode.translation = mvt.modelToViewPosition( location );
-    } );
+    scaleNode.translation = mvt.modelToViewPosition( meter.bodyLocation );
 
     // indicator that slides vertically along scale
     var indicatorNode = new IndicatorNode( meter.valueProperty, SCALE_SIZE.width );
@@ -236,7 +233,7 @@ define( function( require ) {
     } );
 
     var probeNode = new ProbeNode( meter.probe, mvt, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode );
-    var wireNode = new WireNode( meter.body, meter.probe, scaleNode, probeNode );
+    var wireNode = new WireNode( meter.bodyLocation, meter.probe, scaleNode, probeNode );
 
     // rendering order
     thisNode.addChild( wireNode );

@@ -19,21 +19,19 @@ define( function( require ) {
 
   /**
    * @param {Vector2} bodyLocation
-   * @param {Bounds2} bodyDragBounds
    * @param {Vector2} probeLocation
    * @param {Bounds2} probeDragBounds
    * @constructor
    */
-  function PHMeter( bodyLocation, bodyDragBounds, probeLocation, probeDragBounds ) {
+  function PHMeter( bodyLocation, probeLocation, probeDragBounds ) {
     this.valueProperty = new Property( null ); // null if the meter is not reading a value
-    this.body = new Movable( bodyLocation, bodyDragBounds );
+    this.bodyLocation = bodyLocation;
     this.probe = new Movable( probeLocation, probeDragBounds );
   }
 
   PHMeter.prototype = {
     reset: function() {
       this.valueProperty.reset();
-      this.body.reset();
       this.probe.reset();
     }
   };

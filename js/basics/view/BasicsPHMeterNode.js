@@ -68,8 +68,8 @@ define( function( require ) {
     var imageNode = new Image( probeImage );
     thisNode.addChild( imageNode );
     var radius = imageNode.height / 2; // assumes that image height defines the radius
-    imageNode.x = -radius;
-    imageNode.y = -radius;
+    imageNode.x = -imageNode.width + radius; // assumes the image is oriented with probe 'handle' on left
+    imageNode.y = -radius; // assumes the image is oriented horizontally
 
     // probe location
     probe.locationProperty.link( function( location ) {

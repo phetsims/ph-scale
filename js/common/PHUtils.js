@@ -8,6 +8,7 @@ define( function( require ) {
 
   return {
     //TODO run this by other developers, is there a better way?
+    //TODO consider http://blog.coolmuse.com/2012/06/21/getting-the-exponent-and-mantissa-from-a-javascript-number/
     /*
      * Converts a number to a format like 1.23 x 10^25
      * @param {Number} value the number to be formatted

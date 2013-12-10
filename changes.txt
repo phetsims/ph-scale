@@ -1,3 +1,4 @@
+12/9/13 Basics: make beaker slightly narrower so that drain faucet plunger isn't being dragged right up to edge of screen
 12/9/13 Basics: move pH meter slightly right to so that we have some room to accommodate i18n of 'Neutral (7)'
 12/9/13 Basics: make pH scale narrower so that we have some room to accommodate i18n of 'Neutral (7)'
 12/9/13 Basics: right-justify combo box relative to faucet, so it has room to grow left for i18n

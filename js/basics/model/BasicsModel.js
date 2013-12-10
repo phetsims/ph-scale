@@ -44,7 +44,7 @@ define( function( require ) {
     thisModel.water = Water;
 
     // Beaker and the stuff that is positioned relative to it.
-    thisModel.beaker = new Beaker( new Vector2( 705, 575 ), new Dimension2( 400, 300 ) );
+    thisModel.beaker = new Beaker( new Vector2( 705, 575 ), new Dimension2( 350, 300 ) );
     var yDropper = thisModel.beaker.location.y - thisModel.beaker.size.height - 15;
     thisModel.dropper = new Dropper( Solute.CHICKEN_SOUP,
       new Vector2( thisModel.beaker.location.x - 50, yDropper ),

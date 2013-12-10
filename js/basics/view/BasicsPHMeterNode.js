@@ -43,7 +43,7 @@ define( function( require ) {
   var probeImage = require( 'image!PH_SCALE/pH-meter-probe.png' );
 
   // constants
-  var SCALE_SIZE = new Dimension2( 75, 450 );
+  var SCALE_SIZE = new Dimension2( 55, 450 );
   var INDICATOR_ENABLED_COLOR = 'rgb(114,9,56)';
   var INDICATOR_DISABLED_COLOR = 'rgba(0,0,0,0.3)';
 
@@ -222,7 +222,7 @@ define( function( require ) {
     Node.call( thisNode );
 
     // pH scale, positioned at meter 'body' location
-    var scaleNode = new PHScaleNode( { labelNeutral: true } );
+    var scaleNode = new PHScaleNode( { labelNeutral: true, size: SCALE_SIZE } );
     scaleNode.translation = mvt.modelToViewPosition( meter.bodyLocation );
 
     // indicator that slides vertically along scale

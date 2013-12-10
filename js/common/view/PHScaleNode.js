@@ -33,7 +33,6 @@ define( function( require ) {
   var SCALE_LABEL_FONT = new PhetFont( { size: 30, weight: 'bold' } );
   var TICK_LENGTH = 15;
   var TICK_FONT = new PhetFont( 22 );
-  var NEUTRAL_FONT = new PhetFont( { size: 22 } );
   var NEUTRAL_TICK_LENGTH = 40;
   var TICK_LABEL_X_SPACING = 5;
 

@@ -43,7 +43,7 @@ define( function( require ) {
 
     thisModel.water = Water;
 
-    // All locations are computed relative to the beaker location and size
+    // Beaker and the stuff that is positioned relative to it.
     thisModel.beaker = new Beaker( new Vector2( 705, 575 ), new Dimension2( 400, 300 ) );
     var yDropper = thisModel.beaker.location.y - thisModel.beaker.size.height - 15;
     thisModel.dropper = new Dropper( Solute.CHICKEN_SOUP,
@@ -54,7 +54,11 @@ define( function( require ) {
       { enabled: thisModel.solution.volumeProperty.get() < thisModel.beaker.volume } );
     thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 100, thisModel.beaker.location.y + 52 ), thisModel.beaker.right,
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );
-    thisModel.pHMeter = new PHMeter( new Vector2( 175, 20 ), new Vector2( 295, 600 ), new Bounds2( 50, 150, 1000, 680 ) );
+
+    // pH meter
+    var pHMeterLocation = new Vector2( 200, 20 );
+    thisModel.pHMeter = new PHMeter( pHMeterLocation, new Vector2( pHMeterLocation.x + 110, pHMeterLocation.y + 580 ),
+      new Bounds2( 50, 150, 1000, 680 ) );
 
     // Enable faucets and dropper based on amount of solution in the beaker.
     thisModel.solution.volumeProperty.link( function( volume ) {

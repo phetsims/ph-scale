@@ -1,3 +1,4 @@
+12/9/13 Basics: adjust drag bounds of pH probe
 12/9/13 Basics: pH meter body is not draggable, so don't make the body a 'Movable'
 12/9/13 use same line width for button border and vertical separator in combo box, sun#42
 12/9/13 Basics: add rounded rectangle around '(Neutral) 7' tick label, fill with 'neutral' color

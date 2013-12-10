@@ -109,13 +109,12 @@ define( function( require ) {
 
   /**
    * Wire that connects the body and probe.
-   * @param {Vector2} bodyLocation
    * @param {Movable} probe
    * @param {Node} bodyNode
    * @param {Node} probeNode
    * @constructor
    */
-  function WireNode( bodyLocation, probe, bodyNode, probeNode ) {
+  function WireNode( probe, bodyNode, probeNode ) {
 
     var thisNode = this;
     Path.call( thisNode, new Shape(), {
@@ -230,7 +229,7 @@ define( function( require ) {
     indicatorNode.left = scaleNode.x;
 
     var probeNode = new ProbeNode( meter.probe, mvt, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode );
-    var wireNode = new WireNode( meter.bodyLocation, meter.probe, scaleNode, probeNode );
+    var wireNode = new WireNode( meter.probe, scaleNode, probeNode );
 
     // rendering order
     thisNode.addChild( indicatorNode );

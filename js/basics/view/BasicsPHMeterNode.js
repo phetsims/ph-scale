@@ -232,10 +232,10 @@ define( function( require ) {
     var wireNode = new WireNode( meter.probe, scaleNode, probeNode );
 
     // rendering order
-    thisNode.addChild( indicatorNode );
     thisNode.addChild( wireNode );
     thisNode.addChild( probeNode );
     thisNode.addChild( scaleNode );
+    thisNode.addChild( indicatorNode );
 
     // vertical position of the indicator
     meter.valueProperty.link( function( value ) {

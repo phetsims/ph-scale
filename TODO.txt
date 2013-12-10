@@ -7,7 +7,6 @@ DESIGN
 
 HIGHEST
 - ComboBox: add background color behind arrow button (sun#43)
-- add more color points to solution color interpolation
 - revise solution colors (sRGB)
 
 HIGH

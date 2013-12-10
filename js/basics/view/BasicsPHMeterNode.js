@@ -227,18 +227,21 @@ define( function( require ) {
 
     // indicator that slides vertically along scale
     var indicatorNode = new IndicatorNode( meter.valueProperty, SCALE_SIZE.width );
-    scaleNode.addChild( indicatorNode ); // child of scaleNode, so that it's in the proper coordinate frame
-    meter.valueProperty.link( function( value ) {
-      indicatorNode.centerY = Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
-    } );
+    indicatorNode.left = scaleNode.x;
 
     var probeNode = new ProbeNode( meter.probe, mvt, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode );
     var wireNode = new WireNode( meter.bodyLocation, meter.probe, scaleNode, probeNode );
 
     // rendering order
+    thisNode.addChild( indicatorNode );
     thisNode.addChild( wireNode );
-    thisNode.addChild( scaleNode );
     thisNode.addChild( probeNode );
+    thisNode.addChild( scaleNode );
+
+    // vertical position of the indicator
+    meter.valueProperty.link( function( value ) {
+      indicatorNode.centerY = scaleNode.y + Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
+    } );
 
     var updateValue = function() {
       var value;

@@ -1,3 +1,4 @@
+12/9/13 Basics: put pH indicator in a different coordinate frame, move PHValueNode behind probe and wire in rendering order
 12/9/13 Basics: use opaque gray for disabled PHValueNode, so that wire behind it doesn't show through
 12/9/13 add optional midpoint color for some solutions, rewrite algorithm for computing solution color
 12/9/13 Basics: decrease length of drain pipe, move beaker slightly to the right

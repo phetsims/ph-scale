@@ -116,13 +116,13 @@ define( function( require ) {
       var backgroundWidth = textNode.width + ( 2 * backgroundXMargin );
       var backgroundHeight = textNode.height + ( 2 * backgroundYMargin );
       var cornerRadius = 10;
-      var backgroundNode = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
+      var labelBackgroundNode = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
         { fill: PHScaleColors.NEUTRAL, stroke: 'black', lineWidth: 3 } );
 
-      neutralLabelNode = new Node( { children: [ backgroundNode, textNode ]} );
+      neutralLabelNode = new Node( { children: [ labelBackgroundNode, textNode ]} );
       thisNode.addChild( neutralLabelNode );
-      textNode.centerX = backgroundNode.centerX;
-      textNode.centerY = backgroundNode.centerY;
+      textNode.centerX = labelBackgroundNode.centerX;
+      textNode.centerY = labelBackgroundNode.centerY;
 
       neutralLabelNode.right = neutralLineNode.left;
       neutralLabelNode.centerY = neutralLineNode.centerY;

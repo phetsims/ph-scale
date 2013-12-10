@@ -42,7 +42,7 @@ define( function( require ) {
     ];
 
     thisModel.water = Water;
-    thisModel.beaker = new Beaker( new Vector2( 705, 600 ), new Dimension2( 400, 325 ) );
+    thisModel.beaker = new Beaker( new Vector2( 705, 575 ), new Dimension2( 400, 300 ) );
     var yDropper = 260;
     thisModel.dropper = new Dropper( Solute.CHICKEN_SOUP,
       new Vector2( thisModel.beaker.location.x - 50, yDropper ),
@@ -50,7 +50,7 @@ define( function( require ) {
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume );
     thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, 230 ), 400,
       { enabled: thisModel.solution.volumeProperty.get() < thisModel.beaker.volume } );
-    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 100, 652 ), thisModel.beaker.right,
+    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 100, 627 ), thisModel.beaker.right,
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );
     thisModel.pHMeter = new PHMeter( new Vector2( 175, 20 ), new Vector2( 295, 600 ), new Bounds2( 50, 150, 1000, 680 ) );
 

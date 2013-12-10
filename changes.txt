@@ -1,3 +1,5 @@
+12/9/13 Basics: move 'Reset All' button to lower-right, so that it's not in the way when using pH probe to measure drain
+12/9/13 Basics: reduce height of beaker and move it up, so that pH probe fits under the drain faucet
 12/9/13 Basics: adjust drag bounds of pH probe
 12/9/13 Basics: pH meter body is not draggable, so don't make the body a 'Movable'
 12/9/13 use same line width for button border and vertical separator in combo box, sun#42

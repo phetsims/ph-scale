@@ -1,3 +1,4 @@
+12/9/13 use same line width for button border and vertical separator in combo box, sun#42
 12/9/13 Basics: add rounded rectangle around '(Neutral) 7' tick label, fill with 'neutral' color
 12/9/13 Basics: fix wire control points on pH meter
 12/9/13 Basics: change pH tick label to '(Neutral) 7'
@@ -17,7 +18,7 @@
 12/6/13 feature request: add highlight around pH value display when the displayed value is '7.00'
 12/5/13 add options for SoluteComboBox: increase lineWidth and cornerRadius
 12/4/13 Solutions: partial implementation of linear concentration graph
-12/4/13 add 'Basics' screen to 'pH Scale' sim only in dev mode
+12/4/13 add 'Basics' screen to 'pH Scale' sim only in dev mode                                                                                                                   42
 12/3/13 use saturated blue (as shown in design doc) for 'H2O' background in 'Molecule count' and graph indicator
 12/3/13 use water color as the 'diluted' color for all solutions, as shown in the design doc
 12/3/13 change colors of milk and spit, as shown in the design doc

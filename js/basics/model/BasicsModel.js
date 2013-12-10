@@ -42,15 +42,17 @@ define( function( require ) {
     ];
 
     thisModel.water = Water;
+
+    // All locations are computed relative to the beaker location and size
     thisModel.beaker = new Beaker( new Vector2( 705, 575 ), new Dimension2( 400, 300 ) );
-    var yDropper = 260;
+    var yDropper = thisModel.beaker.location.y - thisModel.beaker.size.height - 15;
     thisModel.dropper = new Dropper( Solute.CHICKEN_SOUP,
       new Vector2( thisModel.beaker.location.x - 50, yDropper ),
       new Bounds2( thisModel.beaker.left + 40, yDropper, thisModel.beaker.right - 200, yDropper ) );
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume );
-    thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, 230 ), 400,
+    thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, thisModel.beaker.location.y - thisModel.beaker.size.height - 45 ), 400,
       { enabled: thisModel.solution.volumeProperty.get() < thisModel.beaker.volume } );
-    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 100, 627 ), thisModel.beaker.right,
+    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 100, thisModel.beaker.location.y + 52 ), thisModel.beaker.right,
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );
     thisModel.pHMeter = new PHMeter( new Vector2( 175, 20 ), new Vector2( 295, 600 ), new Bounds2( 50, 150, 1000, 680 ) );
 

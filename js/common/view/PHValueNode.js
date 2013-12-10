@@ -52,7 +52,7 @@ define( function( require ) {
     var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * backgroundXMargin );
     var backgroundHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * backgroundYMargin );
     this.backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-      { fill: 'rgb(135,25,75)' } );
+      { fill: 'rgb(135,19,70)' } );
 
     // highlight around the background
     var highlightLineWidth = 3;

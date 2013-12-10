@@ -31,7 +31,7 @@ define( function( require ) {
       size: new Dimension2( 220, 40 ),
       cornerRadius: 6,
       xMargin: 10,
-      barFill: 'rgb(135,25,75)',
+      barFill: 'rgb(135,19,70)',
       barStroke: null,
       titleFont: new PhetFont( { size: 18, weight: 'bold' } ),
       titleFill: 'white',

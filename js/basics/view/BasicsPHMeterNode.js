@@ -44,7 +44,7 @@ define( function( require ) {
 
   // constants
   var SCALE_SIZE = new Dimension2( 55, 450 );
-  var INDICATOR_ENABLED_COLOR = 'rgb(114,9,56)';
+  var INDICATOR_ENABLED_COLOR = 'rgb(135,19,70)';
   var INDICATOR_DISABLED_COLOR = 'rgb(178,178,178)';
 
   /**

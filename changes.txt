@@ -1,3 +1,4 @@
+12/9/13 Basics: right-justify combo box relative to faucet, so it has room to grow left for i18n
 12/9/13 Basics: compute all locations using the beaker location and size
 12/9/13 Basics: move 'Reset All' button to lower-right, so that it's not in the way when using pH probe to measure drain
 12/9/13 Basics: reduce height of beaker and move it up, so that pH probe fits under the drain faucet

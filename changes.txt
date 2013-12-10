@@ -1,3 +1,4 @@
+12/9/13 shorten vertical pipe on drain faucet, so that pH probe fits below it
 12/9/13 Basics: fix positioning of probe to account for it being reflected horizontally
 12/9/13 Basics: delete unused param from BasicsPHMeterNode.WireNode constructor
 12/9/13 Basics: put pH indicator in a different coordinate frame, move PHValueNode behind probe and wire in rendering order

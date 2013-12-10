@@ -26,7 +26,7 @@ define( function( require ) {
     var horizontalPipeLength = mvt.modelToViewX( faucet.location.x - faucet.pipeMinX ) / scale;
     FaucetNode.call( this, faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
       horizontalPipeLength: horizontalPipeLength,
-      verticalPipeLength: 20
+      verticalPipeLength: 5
     } );
     this.translation = mvt.modelToViewPosition( faucet.location );
     this.setScaleMagnitude( scale );

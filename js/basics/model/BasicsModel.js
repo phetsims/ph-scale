@@ -52,12 +52,12 @@ define( function( require ) {
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume );
     thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, thisModel.beaker.location.y - thisModel.beaker.size.height - 45 ), 400,
       { enabled: thisModel.solution.volumeProperty.get() < thisModel.beaker.volume } );
-    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 75, thisModel.beaker.location.y + 52 ), thisModel.beaker.right,
+    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 75, thisModel.beaker.location.y + 43 ), thisModel.beaker.right,
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );
 
     // pH meter
     var pHMeterLocation = new Vector2( 200, 20 );
-    thisModel.pHMeter = new PHMeter( pHMeterLocation, new Vector2( pHMeterLocation.x + 110, pHMeterLocation.y + 580 ),
+    thisModel.pHMeter = new PHMeter( pHMeterLocation, new Vector2( pHMeterLocation.x + 150, thisModel.beaker.location.y ),
       new Bounds2( 50, 150, 1000, 680 ) );
 
     // Enable faucets and dropper based on amount of solution in the beaker.

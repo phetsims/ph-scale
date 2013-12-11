@@ -4,6 +4,7 @@ DESIGN
 - What are we going to do about 'ratio' representation? In addition to the color issue, there's no way we're going to draw 3000 dots interactively in JavaScript.
 - Can we ditch the 'Linear' graph feature?
 - graph expand/collapse labels are a bad idea, separates title from units, complicated implementation,...
+- Solutions screen is cluttered and crowded
 
 HIGHEST
 - ComboBox: add background color behind arrow button (sun#43)

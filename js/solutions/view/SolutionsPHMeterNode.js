@@ -46,8 +46,8 @@ define( function( require ) {
     var arrowSize = new Dimension2( 21, 28 );
     var arrowNode = new Path( new Shape()
       .moveTo( 0, 0 )
-      .lineTo( -arrowSize.width, -arrowSize.height / 2 )
-      .lineTo( -arrowSize.width, arrowSize.height / 2 )
+      .lineTo( arrowSize.width, -arrowSize.height / 2 )
+      .lineTo( arrowSize.width, arrowSize.height / 2 )
       .close(),
       { fill: 'black' } );
 
@@ -58,7 +58,7 @@ define( function( require ) {
     // layout, origin at arrow tip
     lineNode.left = 0;
     lineNode.centerY = 0;
-    arrowNode.right = lineNode.left;
+    arrowNode.left = lineNode.right;
     arrowNode.centerY = lineNode.centerY;
   }
 
@@ -92,7 +92,7 @@ define( function( require ) {
     verticalLineNode.top = valueNode.bottom - 1;
     scaleNode.left = valueNode.centerX - ( SCALE_SIZE.width / 2 );
     scaleNode.top = verticalLineNode.bottom - 1;
-    pointerNode.x = scaleNode.left;
+    pointerNode.x = scaleNode.right - SCALE_SIZE.width;
     // pointerNode.centerY is set dynamically
 
     // move the pointer to the pH value

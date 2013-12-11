@@ -24,8 +24,8 @@ define( function( require ) {
   var molesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
 
   // constants
-  var GRAPH_SIZE = new Dimension2( 325, 610 );
-  var Y_SPACING = 15;
+  var GRAPH_SIZE = new Dimension2( 325, 600 );
+  var Y_SPACING = 20;
 
   /**
    * @param {Solution} solution
@@ -45,9 +45,10 @@ define( function( require ) {
 
     var unitsSwitch = new ABSwitch( graphUnitsProperty, GraphUnits.MOLES_PER_LITER, molesPerLiterString, GraphUnits.MOLES, molesString, {
       font: new PhetFont( 18 ),
-      size: new Dimension2( 40, 20 ) } );
+      size: new Dimension2( 50, 25 ) } );
 
-    var concentrationGraph = new LinearConcentrationGraph( solution, GRAPH_SIZE.height - unitsSwitch.height - Y_SPACING );
+    var scaleHeight = GRAPH_SIZE.height - unitsSwitch.height - Y_SPACING;
+    var concentrationGraph = new LinearConcentrationGraph( solution, scaleHeight );
 
     // rendering order
     thisNode.addChild( guideNode );

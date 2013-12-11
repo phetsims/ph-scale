@@ -137,7 +137,7 @@ define( function( require ) {
     graphExpandCollapseBar.right = volumeIndicatorNode.left - 20;
     graphExpandCollapseBar.top = 20;
     graphNode.centerX = graphExpandCollapseBar.centerX;
-    graphNode.top = graphExpandCollapseBar.bottom + 10;
+    graphNode.top = graphExpandCollapseBar.bottom + 20;
     resetAllButton.right = beakerControls.left - 30;
     resetAllButton.centerY = beakerControls.centerY;
   }

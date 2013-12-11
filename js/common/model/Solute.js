@@ -43,6 +43,7 @@ define( function( require ) {
     this.midpointColor = midpointColor;
   }
 
+  // 'real world' immutable solutions
   Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, new Color( 255, 255, 0 ), Water.color, new Color( 255, 255, 204 ) );
   Solute.HAND_SOAP = new Solute( handSoapString, 10, new Color( 204, 0, 204 ), Water.color, new Color( 232, 204, 255 ) );
   Solute.BLOOD = new Solute( bloodString, 7.4, new Color( 185, 12, 0 ), Water.color, new Color( 255, 207, 204 ) );
@@ -54,7 +55,9 @@ define( function( require ) {
   Solute.SODA = new Solute( sodaString, 2.5, new Color( 204, 255, 102 ), Water.color, new Color( 238, 255, 204 ) );
   Solute.VOMIT = new Solute( vomitString, 2, new Color( 255, 171, 120 ), Water.color, new Color( 255, 224, 204 ) );
   Solute.BATTERY_ACID = new Solute( batteryAcidString, 1, new Color( 255, 255, 0 ), Water.color, new Color( 255, 224, 204 ) );
-  Solute.CUSTOM = new Solute( customString, 7, new Color( 251, 236, 150 ), Water.color, new Color( 255, 255, 204 ) );
+
+  // 'magical' mutable solution
+  Solute.CUSTOM = new Solute( customString, 7, new Color( 251, 236, 150 ), Water.color );
 
   return Solute;
 } );

@@ -6,6 +6,7 @@ DESIGN
 - graph expand/collapse labels are a bad idea, separates title from units, complicated implementation,...
 
 HIGHEST
+- Custom: solution color in beaker is wrong, looks like water
 - ComboBox: add background color behind arrow button (sun#43)
 
 HIGH

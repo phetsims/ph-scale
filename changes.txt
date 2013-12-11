@@ -1,3 +1,7 @@
+12/10/13 adjust 'guide' size for graphs
+12/10/13 Solutions, Custom: move 'Reset All' button to left of beaker controls
+12/10/13 anchor beaker controls to right edge of beaker, so it grows left for i18n
+12/10/13 make drain faucet appear is same location for 'Solutions' and 'Custom' screens
 12/10/13 adds outline 'guides' for graphs, for use during design/development
 12/10/13 Solutions: flip everything LTR, fix (most) problems that flipping 'Basics' caused
 12/10/13 Custom: don't display water color when pH='7.00', since there's no water in this screen

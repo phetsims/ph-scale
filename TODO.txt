@@ -6,7 +6,6 @@ DESIGN
 - graph expand/collapse labels are a bad idea, separates title from units, complicated implementation,...
 
 HIGHEST
-- make drain faucet appear in same location in all screens
 - ComboBox: add background color behind arrow button (sun#43)
 
 HIGH

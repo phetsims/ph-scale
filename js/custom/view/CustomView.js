@@ -127,14 +127,14 @@ define( function( require ) {
     ratioNode.centerY = beakerNode.top + ( 0.3 * beakerNode.height ); //TODO delete
     moleculeCountNode.right = mvt.modelToViewX( model.beaker.right ) - 20;
     moleculeCountNode.bottom = beakerNode.bottom - 25;
-    beakerControls.centerX = beakerNode.centerX;
-    beakerControls.top = beakerNode.bottom + 30;
+    beakerControls.right = mvt.modelToViewX( model.beaker.right );
+    beakerControls.top = beakerNode.bottom + 15;
     graphExpandCollapseBar.right = volumeIndicatorNode.left - 20;
     graphExpandCollapseBar.top = 20;
     graphNode.centerX = graphExpandCollapseBar.centerX;
     graphNode.top = graphExpandCollapseBar.bottom + 10;
-    resetAllButton.left = 40;
-    resetAllButton.bottom = this.layoutBounds.bottom - 20;
+    resetAllButton.right = beakerControls.left - 30;
+    resetAllButton.centerY = beakerControls.centerY;
   }
 
   return inherit( ScreenView, BasicsView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );

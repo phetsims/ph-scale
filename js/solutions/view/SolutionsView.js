@@ -146,7 +146,7 @@ define( function( require ) {
     ratioNode.centerY = beakerNode.top + ( 0.3 * beakerNode.height ); //TODO delete
     moleculeCountNode.right = mvt.modelToViewX( model.beaker.right ) - 20;
     moleculeCountNode.bottom = beakerNode.bottom - 25;
-    beakerControls.centerX = beakerNode.centerX;
+    beakerControls.right = mvt.modelToViewX( model.beaker.right );
     beakerControls.top = beakerNode.bottom + 15;
     soluteComboBox.left = mvt.modelToViewX( model.beaker.left ) - 50; // anchor on left so it grows to the right during i18n
     soluteComboBox.top = this.layoutBounds.top + 15;
@@ -158,8 +158,8 @@ define( function( require ) {
     graphExpandCollapseBar.top = pHMeterExpandCollapseBar.top;
     graphNode.centerX = graphExpandCollapseBar.centerX;
     graphNode.top = pHMeterNode.top;
-    resetAllButton.left = 40;
-    resetAllButton.bottom = this.layoutBounds.bottom - 20;
+    resetAllButton.right = beakerControls.left - 30;
+    resetAllButton.centerY = beakerControls.centerY;
 
     //TODO delete this test
 //    {

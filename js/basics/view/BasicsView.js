@@ -86,7 +86,7 @@ define( function( require ) {
     rootNode.addChild( soluteListParent ); // last, so that combo box list is on top
 
     // Layout of nodes that don't have a location specified in the model
-    soluteComboBox.left = mvt.modelToViewX( model.beaker.left ) - 50;
+    soluteComboBox.left = mvt.modelToViewX( model.beaker.left ) - 50; // anchor on left so it grows to the right during i18n
     soluteComboBox.top = this.layoutBounds.top + 15;
     resetAllButton.left = 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;

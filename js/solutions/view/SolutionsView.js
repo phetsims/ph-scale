@@ -148,26 +148,26 @@ define( function( require ) {
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.centerX = beakerNode.centerX;
     beakerControls.top = beakerNode.bottom + 15;
-    soluteComboBox.centerX = mvt.modelToViewX( model.beaker.location.x );
+    soluteComboBox.left = mvt.modelToViewX( model.beaker.left ) - 50; // anchor on left so it grows to the right during i18n
     soluteComboBox.top = this.layoutBounds.top + 15;
-    pHMeterExpandCollapseBar.left = drainFaucetNode.right + 30;
+    pHMeterExpandCollapseBar.right = volumeIndicatorNode.left - 20;
     pHMeterExpandCollapseBar.top = 20;
     pHMeterNode.top = pHMeterExpandCollapseBar.bottom + 10;
     pHMeterNode.centerX = pHMeterExpandCollapseBar.centerX;
-    graphExpandCollapseBar.left = pHMeterExpandCollapseBar.right + 20;
+    graphExpandCollapseBar.right = pHMeterExpandCollapseBar.left - 20;
     graphExpandCollapseBar.top = pHMeterExpandCollapseBar.top;
     graphNode.centerX = graphExpandCollapseBar.centerX;
     graphNode.top = pHMeterNode.top;
-    resetAllButton.right = this.layoutBounds.right - 40;
-    resetAllButton.bottom = this.layoutBounds.bottom - 15;
+    resetAllButton.left = 40;
+    resetAllButton.bottom = this.layoutBounds.bottom - 20;
 
     //TODO delete this test
 //    {
 //      var OnOffSwitch = require( 'PH_SCALE/common/view/OnOffSwitch' );
 //      var p1 = new Property( true );
 //      var p2 = new Property( false );
-//      rootNode.addChild( new OnOffSwitch( p1, { x: 865, y: 130 } ) );
-//      rootNode.addChild( new OnOffSwitch( p2, { x: 865, y: 180 } ) );
+//      rootNode.addChild( new OnOffSwitch( p1, { x: 725, y: 400 } ) );
+//      rootNode.addChild( new OnOffSwitch( p2, { x: 725, y: 450 } ) );
 //      p1.link( function( value ) { console.log( 'p1=' + value ); } );
 //      p2.link( function( value ) { console.log( 'p2=' + value ); } );
 //    }

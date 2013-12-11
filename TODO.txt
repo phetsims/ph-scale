@@ -6,10 +6,11 @@ DESIGN
 - graph expand/collapse labels are a bad idea, separates title from units, complicated implementation,...
 
 HIGHEST
+- make drain faucet appear in same location in all screens
 - ComboBox: add background color behind arrow button (sun#43)
 
 HIGH
-- Solutions: flip everything LTR, fix problems that flipping 'Basics' caused
+- Solutions: fix problems with pH meter caused by flipping
 - Solutions: log graph, not interactive
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 - Custom: interactive log graph

@@ -1,3 +1,4 @@
+12/10/13 Solutions: flip everything LTR, fix (most) problems that flipping 'Basics' caused
 12/10/13 Custom: don't display water color when pH='7.00', since there's no water in this screen
 12/10/13 Custom: flip everything LTR
 12/9/13 Basics: anchor combo box on it's left edge, for i18n

@@ -39,7 +39,7 @@ define( function( require ) {
     // add dev-specific options here
     simOptions = _.extend( {
       showHomeScreen: false,
-      screenIndex: 2
+      screenIndex: 0
     }, simOptions );
   }
 

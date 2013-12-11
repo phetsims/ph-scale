@@ -1,3 +1,4 @@
+12/10/13 Solutions: fix layout problems with pH meter that were caused by flipping
 12/10/13 Solutions: flip indicator on pH meter
 12/10/13 adjust 'guide' size for graphs
 12/10/13 Solutions, Custom: move 'Reset All' button to left of beaker controls

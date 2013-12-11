@@ -9,7 +9,6 @@ HIGHEST
 - ComboBox: add background color behind arrow button (sun#43)
 
 HIGH
-- Solutions: fix problems with pH meter caused by flipping
 - Solutions: log graph, not interactive
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 - Custom: interactive log graph

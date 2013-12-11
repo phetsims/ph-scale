@@ -86,12 +86,10 @@ define( function( require ) {
     thisNode.addChild( pointerNode );
 
     // layout
-    valueNode.left = 0;
-    valueNode.top = 0;
-    verticalLineNode.centerX = valueNode.centerX;
-    verticalLineNode.top = valueNode.bottom - 1;
-    scaleNode.left = valueNode.centerX - ( SCALE_SIZE.width / 2 );
-    scaleNode.top = verticalLineNode.bottom - 1;
+    verticalLineNode.centerX = scaleNode.right - ( SCALE_SIZE.width / 2 );
+    verticalLineNode.bottom = scaleNode.top + 1;
+    valueNode.centerX = verticalLineNode.centerX;
+    valueNode.bottom = verticalLineNode.top + 1;
     pointerNode.x = scaleNode.right - SCALE_SIZE.width;
     // pointerNode.centerY is set dynamically
 

@@ -57,7 +57,7 @@ define( function( require ) {
     // layout
     unitsSwitch.centerX = guideNode.centerX;
     unitsSwitch.top = guideNode.top;
-    concentrationGraph.centerX = unitsSwitch.centerX; //TODO center under on/off switch
+    concentrationGraph.centerX = unitsSwitch.centerX;
     concentrationGraph.top = unitsSwitch.bottom + Y_SPACING;
   }
 

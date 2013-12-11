@@ -1,3 +1,4 @@
+12/10/13 add option to ABSwitch that makes it easier to horizontally center on its button
 # 1.0.0-dev.2 12/10/13
 12/10/13 implement view-specific properties using axon.PropertySet
 12/10/13 add view properties for graph switches, add to 'Reset All'

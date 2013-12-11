@@ -13,6 +13,7 @@ define( function( require ) {
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Line = require( 'SCENERY/nodes/Line' );
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
   var Node = require( 'SCENERY/nodes/Node' );
   var OnOffSwitch = require( 'PH_SCALE/common/view/OnOffSwitch' );
@@ -38,7 +39,8 @@ define( function( require ) {
       textDisabledFill: 'rgb(160,160,160)',
       font: new PhetFont( 28 ),
       xSpacing: 8,
-      cursor: 'pointer'
+      cursor: 'pointer',
+      centerOnButton: true
     }, options );
     options.trackFill = options.trackFill ||
                         new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'rgb(40,40,40)' ).addColorStop( 1, 'rgb(200,200,200)' );
@@ -77,6 +79,20 @@ define( function( require ) {
     labelANode.centerY = onOffSwitch.centerY;
     labelBNode.left = onOffSwitch.right + options.xSpacing;
     labelBNode.centerY = onOffSwitch.centerY;
+
+    // add a horizontal strut that will cause the 'centerX' of this node to be at the center of the button
+    if ( options.centerOnButton ) {
+      var additionalWidth = Math.abs( labelANode.width - labelBNode.width );
+      var strut = new Line( 0, 0, thisNode.width + additionalWidth, 0 );
+      thisNode.addChild( strut );
+      strut.moveToBack();
+      if ( labelANode.width < labelANode.width ) {
+        strut.left = labelANode.left - ( additionalWidth / 2 );
+      }
+      else {
+        strut.left = labelANode.left;
+      }
+    }
 
     // sync properties
     property.link( function( object ) {

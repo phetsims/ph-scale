@@ -99,8 +99,8 @@ define( function( require ) {
 
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
-      moleculeCountVisibleProperty.reset();
       ratioVisibleProperty.reset();
+      moleculeCountVisibleProperty.reset();
       graphVisibleProperty.reset();
     } );
 
@@ -121,7 +121,7 @@ define( function( require ) {
     rootNode.addChild( resetAllButton );
 
     // Layout of nodes that don't have a location specified in the model
-    pHMeterNode.centerX = beakerNode.left;
+    pHMeterNode.left = beakerNode.right - 20;
     pHMeterNode.bottom = beakerNode.top - 30;
     ratioNode.centerX = beakerNode.centerX; //TODO delete
     ratioNode.centerY = beakerNode.top + ( 0.3 * beakerNode.height ); //TODO delete
@@ -129,11 +129,11 @@ define( function( require ) {
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.centerX = beakerNode.centerX;
     beakerControls.top = beakerNode.bottom + 30;
-    graphExpandCollapseBar.left = drainFaucetNode.right + 30;
+    graphExpandCollapseBar.right = volumeIndicatorNode.left - 20;
     graphExpandCollapseBar.top = 20;
     graphNode.centerX = graphExpandCollapseBar.centerX;
     graphNode.top = graphExpandCollapseBar.bottom + 10;
-    resetAllButton.right = this.layoutBounds.right - 40;
+    resetAllButton.left = 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
 

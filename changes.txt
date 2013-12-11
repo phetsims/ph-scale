@@ -1,7 +1,7 @@
+# 1.0.0-dev.2 12/10/13
 12/10/13 make AB buttons 25% larger
 12/10/13 Custom:  add placeholders for zoom buttons in graph
 12/10/13 add option to ABSwitch that makes it easier to horizontally center on its button
-# 1.0.0-dev.2 12/10/13
 12/10/13 implement view-specific properties using axon.PropertySet
 12/10/13 add view properties for graph switches, add to 'Reset All'
 12/10/13 compute scale height and layout of graphs

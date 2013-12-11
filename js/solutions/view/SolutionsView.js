@@ -116,6 +116,8 @@ define( function( require ) {
 
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
+      ratioVisibleProperty.reset();
+      moleculeCountVisibleProperty.reset();
       pHMeterVisibleProperty.reset();
       graphVisibleProperty.reset();
     } );

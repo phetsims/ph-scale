@@ -94,7 +94,7 @@ define( function( require ) {
     // pH meter
     var pHMeterNode = new SolutionsPHMeterNode( model.solution.pHProperty );
     var pHMeterExpandCollapseBar = new ExpandCollapseBar( pHString, pHMeterVisibleProperty, {
-      size: new Dimension2( 1.1 * pHMeterNode.width, 40 )
+      size: new Dimension2( pHMeterNode.width, 40 )
     } );
     pHMeterVisibleProperty.link( function( visible ) {
       pHMeterNode.visible = visible;
@@ -104,7 +104,7 @@ define( function( require ) {
     var graphNode = new SolutionsGraphNode( model.solution );
     var graphExpandCollapseBar = new ExpandCollapseBar( concentrationString, graphVisibleProperty, {
       rightTitle: quantityString,
-      size: new Dimension2( 1.1 * graphNode.width, 40 )
+      size: new Dimension2( graphNode.width, 40 )
     } );
     graphVisibleProperty.link( function( visible ) {
       graphNode.visible = visible;

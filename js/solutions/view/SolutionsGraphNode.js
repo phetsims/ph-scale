@@ -24,7 +24,7 @@ define( function( require ) {
   var molesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
 
   // constants
-  var GRAPH_SIZE = new Dimension2( 275, 530 );
+  var GRAPH_SIZE = new Dimension2( 275, 560 );
 
   /**
    * @param {Solution} solution
@@ -35,6 +35,12 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
+    // guide for approximate size of graph
+    var guideNode = new Rectangle( 0, 0, GRAPH_SIZE.width, GRAPH_SIZE.height, {
+      stroke: 'rgb(200,200,200)', //TODO remove this later so that the guide is invisible
+      lineWidth: 2
+    } );
+
     var concentrationGraph = new LinearConcentrationGraph( solution );
 
     var unitsSwitch = new ABSwitch( new Property( GraphUnits.MOLES_PER_LITER ), GraphUnits.MOLES_PER_LITER, molesPerLiterString, GraphUnits.MOLES, molesString, {
@@ -44,8 +50,11 @@ define( function( require ) {
     // rendering order
     thisNode.addChild( concentrationGraph );
     thisNode.addChild( unitsSwitch );
+    thisNode.addChild( guideNode );
 
     // layout
+    unitsSwitch.centerX = guideNode.centerX;
+    unitsSwitch.top = guideNode.top + 5;
     concentrationGraph.centerX = unitsSwitch.centerX; //TODO center under on/off switch
     concentrationGraph.top = unitsSwitch.bottom + 10;
   }

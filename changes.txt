@@ -1,3 +1,5 @@
+12/10/13 compute scale height and layout of graphs
+12/10/13 Custom: add log/linear switch to graph
 12/10/13 Solutions: fix reset of beaker controls
 12/10/13 Solutions: fix layout problems with pH meter that were caused by flipping
 12/10/13 Solutions: flip indicator on pH meter

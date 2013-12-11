@@ -17,8 +17,11 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var ScaleType = require( 'PH_SCALE/common/view/ScaleType' );
 
   // strings
+  var linearString = require( 'string!PH_SCALE/linear' );
+  var logarithmicString = require( 'string!PH_SCALE/logarithmic' );
   var molesString = require( 'string!PH_SCALE/units.moles' );
   var molesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
 
@@ -36,7 +39,7 @@ define( function( require ) {
 
     // guide for approximate size of graph
     var guideNode = new Rectangle( 0, 0, GRAPH_SIZE.width, GRAPH_SIZE.height, {
-      stroke: 'rgb(200,200,200)', //TODO remove this later so that the guide is invisible
+      stroke: 'rgb(240,240,240)', //TODO remove this later so that the guide is invisible
       lineWidth: 2
     } );
 
@@ -44,13 +47,20 @@ define( function( require ) {
       font: new PhetFont( 18 ),
       size: new Dimension2( 40, 20 ) } );
 
+    var scaleSwitch = new ABSwitch( new Property( ScaleType.LOG ), ScaleType.LOG, logarithmicString, ScaleType.LINEAR, linearString, {
+      font: new PhetFont( 18 ),
+      size: new Dimension2( 40, 20 ) } );
+
     // rendering order
-    thisNode.addChild( unitsSwitch );
     thisNode.addChild( guideNode );
+    thisNode.addChild( unitsSwitch );
+    thisNode.addChild( scaleSwitch );
 
     // layout
     unitsSwitch.centerX = guideNode.centerX;
-    unitsSwitch.top = guideNode.top + 5;
+    unitsSwitch.top = guideNode.top;
+    scaleSwitch.centerX = guideNode.centerX;
+    scaleSwitch.bottom = guideNode.bottom;
   }
 
   return inherit( Node, CustomGraphNode );

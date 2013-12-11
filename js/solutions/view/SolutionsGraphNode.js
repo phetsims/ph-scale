@@ -25,6 +25,7 @@ define( function( require ) {
 
   // constants
   var GRAPH_SIZE = new Dimension2( 325, 610 );
+  var Y_SPACING = 15;
 
   /**
    * @param {Solution} solution
@@ -37,26 +38,26 @@ define( function( require ) {
 
     // guide for approximate size of graph
     var guideNode = new Rectangle( 0, 0, GRAPH_SIZE.width, GRAPH_SIZE.height, {
-      stroke: 'rgb(200,200,200)', //TODO remove this later so that the guide is invisible
+      stroke: 'rgb(240,240,240)', //TODO remove this later so that the guide is invisible
       lineWidth: 2
     } );
-
-    var concentrationGraph = new LinearConcentrationGraph( solution );
 
     var unitsSwitch = new ABSwitch( new Property( GraphUnits.MOLES_PER_LITER ), GraphUnits.MOLES_PER_LITER, molesPerLiterString, GraphUnits.MOLES, molesString, {
       font: new PhetFont( 18 ),
       size: new Dimension2( 40, 20 ) } );
 
+    var concentrationGraph = new LinearConcentrationGraph( solution, GRAPH_SIZE.height - unitsSwitch.height - Y_SPACING );
+
     // rendering order
+    thisNode.addChild( guideNode );
     thisNode.addChild( concentrationGraph );
     thisNode.addChild( unitsSwitch );
-    thisNode.addChild( guideNode );
 
     // layout
     unitsSwitch.centerX = guideNode.centerX;
-    unitsSwitch.top = guideNode.top + 5;
+    unitsSwitch.top = guideNode.top;
     concentrationGraph.centerX = unitsSwitch.centerX; //TODO center under on/off switch
-    concentrationGraph.top = unitsSwitch.bottom + 10;
+    concentrationGraph.top = unitsSwitch.bottom + Y_SPACING;
   }
 
   return inherit( Node, SolutionsGraphNode );

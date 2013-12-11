@@ -203,7 +203,7 @@ define( function( require ) {
      */
     isEquivalentToWater: function() {
       var pHString = Util.toFixed( this.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
-      return parseFloat( pHString ) === this.water.pH;
+      return ( parseFloat( pHString ) === this.water.pH ) && ( this.waterVolumeProperty.get() > 0 );
     }
   };
 

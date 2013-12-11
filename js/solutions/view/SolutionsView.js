@@ -22,7 +22,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var Property = require( 'AXON/Property' );
+  var PropertySet = require( 'AXON/PropertySet' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
@@ -49,11 +49,13 @@ define( function( require ) {
     ScreenView.call( thisView, { renderer: 'svg' } );
 
     // view-specific properties
-    var ratioVisibleProperty = new Property( false );
-    var moleculeCountVisibleProperty = new Property( false );
-    var pHMeterVisibleProperty = new Property( true );
-    var graphVisibleProperty = new Property( true );
-    var graphUnitsProperty = new Property( GraphUnits.MOLES_PER_LITER );
+    var viewProperties = new PropertySet( {
+      ratioVisible: false,
+      moleculeCountVisible: false,
+      pHMeterVisible: true,
+      graphVisible: true,
+      graphUnits: GraphUnits.MOLES_PER_LITER
+    } );
 
     // Parent for all nodes added to this screen
     var rootNode = new Node();
@@ -80,35 +82,35 @@ define( function( require ) {
 
     // 'H3O+/OH- ratio' representation
     var ratioNode = new RatioNode( model.solution );
-    ratioVisibleProperty.link( function( visible ) {
+    viewProperties.ratioVisibleProperty.link( function( visible ) {
       ratioNode.visible = visible;
     } );
 
     // 'molecule count' representation
     var moleculeCountNode = new MoleculeCountNode( model.solution );
-    moleculeCountVisibleProperty.link( function( visible ) {
+    viewProperties.moleculeCountVisibleProperty.link( function( visible ) {
       moleculeCountNode.visible = visible;
     } );
 
     // beaker controls
-    var beakerControls = new BeakerControls( ratioVisibleProperty, moleculeCountVisibleProperty );
+    var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );
 
     // pH meter
     var pHMeterNode = new SolutionsPHMeterNode( model.solution.pHProperty );
-    var pHMeterExpandCollapseBar = new ExpandCollapseBar( pHString, pHMeterVisibleProperty, {
+    var pHMeterExpandCollapseBar = new ExpandCollapseBar( pHString, viewProperties.pHMeterVisibleProperty, {
       size: new Dimension2( pHMeterNode.width, 40 )
     } );
-    pHMeterVisibleProperty.link( function( visible ) {
+    viewProperties.pHMeterVisibleProperty.link( function( visible ) {
       pHMeterNode.visible = visible;
     } );
 
     // graph
-    var graphNode = new SolutionsGraphNode( model.solution, graphUnitsProperty );
-    var graphExpandCollapseBar = new ExpandCollapseBar( concentrationString, graphVisibleProperty, {
+    var graphNode = new SolutionsGraphNode( model.solution, viewProperties.graphUnitsProperty );
+    var graphExpandCollapseBar = new ExpandCollapseBar( concentrationString, viewProperties.graphVisibleProperty, {
       rightTitle: quantityString,
       size: new Dimension2( graphNode.width, 40 )
     } );
-    graphVisibleProperty.link( function( visible ) {
+    viewProperties.graphVisibleProperty.link( function( visible ) {
       graphNode.visible = visible;
     } );
 
@@ -118,11 +120,7 @@ define( function( require ) {
 
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
-      ratioVisibleProperty.reset();
-      moleculeCountVisibleProperty.reset();
-      pHMeterVisibleProperty.reset();
-      graphVisibleProperty.reset();
-      graphUnitsProperty.reset();
+      viewProperties.reset();
     } );
 
     // Rendering order

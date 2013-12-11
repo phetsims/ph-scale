@@ -18,6 +18,7 @@ define( function( require ) {
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
   var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
+  var GraphUnits = require( 'PH_SCALE/common/view/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -52,6 +53,7 @@ define( function( require ) {
     var moleculeCountVisibleProperty = new Property( false );
     var pHMeterVisibleProperty = new Property( true );
     var graphVisibleProperty = new Property( true );
+    var graphUnitsProperty = new Property( GraphUnits.MOLES_PER_LITER );
 
     // Parent for all nodes added to this screen
     var rootNode = new Node();
@@ -101,7 +103,7 @@ define( function( require ) {
     } );
 
     // graph
-    var graphNode = new SolutionsGraphNode( model.solution );
+    var graphNode = new SolutionsGraphNode( model.solution, graphUnitsProperty );
     var graphExpandCollapseBar = new ExpandCollapseBar( concentrationString, graphVisibleProperty, {
       rightTitle: quantityString,
       size: new Dimension2( graphNode.width, 40 )
@@ -120,6 +122,7 @@ define( function( require ) {
       moleculeCountVisibleProperty.reset();
       pHMeterVisibleProperty.reset();
       graphVisibleProperty.reset();
+      graphUnitsProperty.reset();
     } );
 
     // Rendering order

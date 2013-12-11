@@ -11,13 +11,13 @@ define( function( require ) {
   // imports
   var ABSwitch = require( 'PH_SCALE/common/view/ABSwitch' );
   var Dimension2 = require( 'DOT/Dimension2' );
+  var GraphScale = require( 'PH_SCALE/common/view/GraphScale' );
   var GraphUnits = require( 'PH_SCALE/common/view/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var ScaleType = require( 'PH_SCALE/common/view/ScaleType' );
 
   // strings
   var linearString = require( 'string!PH_SCALE/linear' );
@@ -30,9 +30,11 @@ define( function( require ) {
 
   /**
    * @param {Solution} solution
+   * @param {Property<GraphUnits>} graphUnitsProperty
+   * @param {Property<GraphScale>} graphScaleProperty
    * @constructor
    */
-  function CustomGraphNode( solution ) {
+  function CustomGraphNode( solution, graphUnitsProperty, graphScaleProperty ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -43,11 +45,11 @@ define( function( require ) {
       lineWidth: 2
     } );
 
-    var unitsSwitch = new ABSwitch( new Property( GraphUnits.MOLES_PER_LITER ), GraphUnits.MOLES_PER_LITER, molesPerLiterString, GraphUnits.MOLES, molesString, {
+    var unitsSwitch = new ABSwitch( graphUnitsProperty, GraphUnits.MOLES_PER_LITER, molesPerLiterString, GraphUnits.MOLES, molesString, {
       font: new PhetFont( 18 ),
       size: new Dimension2( 40, 20 ) } );
 
-    var scaleSwitch = new ABSwitch( new Property( ScaleType.LOG ), ScaleType.LOG, logarithmicString, ScaleType.LINEAR, linearString, {
+    var scaleSwitch = new ABSwitch( graphScaleProperty, GraphScale.LOGARITHMIC, logarithmicString, GraphScale.LINEAR, linearString, {
       font: new PhetFont( 18 ),
       size: new Dimension2( 40, 20 ) } );
 

@@ -29,9 +29,10 @@ define( function( require ) {
 
   /**
    * @param {Solution} solution
+   * @param {Property<GraphUnits>} graphUnitsProperty
    * @constructor
    */
-  function SolutionsGraphNode( solution ) {
+  function SolutionsGraphNode( solution, graphUnitsProperty ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -42,7 +43,7 @@ define( function( require ) {
       lineWidth: 2
     } );
 
-    var unitsSwitch = new ABSwitch( new Property( GraphUnits.MOLES_PER_LITER ), GraphUnits.MOLES_PER_LITER, molesPerLiterString, GraphUnits.MOLES, molesString, {
+    var unitsSwitch = new ABSwitch( graphUnitsProperty, GraphUnits.MOLES_PER_LITER, molesPerLiterString, GraphUnits.MOLES, molesString, {
       font: new PhetFont( 18 ),
       size: new Dimension2( 40, 20 ) } );
 

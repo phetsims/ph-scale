@@ -10,7 +10,7 @@ define( function() {
 
   // NOTE: enum pattern recommends using {} for each value, but strings are more convenient for debugging
   return Object.freeze( {
-    LOG: 'log',
+    LOGARITHMIC: 'logarithmic',
     LINEAR: 'linear'
   } );
 } );

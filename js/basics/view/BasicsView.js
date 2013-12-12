@@ -95,7 +95,7 @@ define( function( require ) {
     soluteComboBox.top = this.layoutBounds.top + 15;
     neutralIndicator.centerX = beakerNode.centerX;
     neutralIndicator.bottom = beakerNode.bottom - 30;
-    resetAllButton.left = 40;
+    resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
 

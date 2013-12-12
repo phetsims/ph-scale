@@ -11,7 +11,6 @@ DESIGN
 
 HIGHEST
 - Basics: ticks on both sides of beaker, labels on right, volume indicator on right, drain on left
-- Basics: move 'Reset All' button to lower right
 - new colors for pH probe and display (get from YY)
 - ComboBox: add background color behind arrow button (sun#43)
 

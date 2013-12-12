@@ -10,7 +10,6 @@ DESIGN
 - Solutions, Custom: nonstandard position of 'Reset All' button in all screens
 
 HIGHEST
-- new colors for pH probe and display (get from YY)
 - ComboBox: add background color behind arrow button (sun#43)
 
 HIGH

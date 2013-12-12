@@ -1,3 +1,4 @@
+12/12/13 change color of pH probe image to green, adjust color of pH display to match
 12/12/13 change color of pH display to green, change implementation to include optional 'enabled' property
 12/12/13 Basics: move pH meter down a bit, so that pH value doesn't go off-screen when pH=15
 12/12/13 Basics: tweak layout

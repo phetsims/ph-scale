@@ -35,6 +35,6 @@ define( function( require ) {
     OH_PARTICLES: new Color( 0, 0, 255 ),
 
     // pH display
-    PH_DISPLAY: new Color( 2, 118, 47 )
+    PH_DISPLAY: new Color( 31, 113, 2 )
   };
 } );

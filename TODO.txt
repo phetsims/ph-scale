@@ -8,9 +8,12 @@ DESIGN
 - Solutions: interference between pH and volume indicators
 - Solutions: difficult to align scales and inefficient use of vertical space with pH value display
 - nonstandard position of 'Reset All' button in all screens
-- color of pH probe/display conflicts with other colors that have meaning
 
 HIGHEST
+- show 'Neutral!' in solution when pH='7.00'
+- Basics: ticks on both sides of beaker, labels on right, volume indicator on right, drain on left
+- Basics: move 'Reset All' button to lower right
+- new colors for pH probe and display (get from YY)
 - ComboBox: add background color behind arrow button (sun#43)
 
 HIGH

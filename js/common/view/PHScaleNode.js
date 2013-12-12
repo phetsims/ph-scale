@@ -27,7 +27,6 @@ define( function( require ) {
   // strings
   var acidicString = require( 'string!PH_SCALE/acidic' );
   var basicString = require( 'string!PH_SCALE/basic' );
-  var neutralString = require( 'string!PH_SCALE/neutral' );
 
   // constants
   var SCALE_LABEL_FONT = new PhetFont( { size: 30, weight: 'bold' } );
@@ -99,40 +98,15 @@ define( function( require ) {
       y += dy;
     }
 
-    // 'Neutral' line
+    // 'Neutral' tick mark
     var neutralLineNode = new Line( 0, 0, NEUTRAL_TICK_LENGTH, 0, { stroke: 'black', lineWidth: 3 } );
     neutralLineNode.right = backgroundNode.left;
     neutralLineNode.centerY = options.size.height / 2;
     thisNode.addChild( neutralLineNode );
-    var neutralLabelNode;
-    if ( options.labelNeutral ) {
-
-      // text
-      var textNode = new Text( neutralString, { font: new PhetFont( 22 ), fill: 'white' } );
-
-      // background
-      var backgroundXMargin = 8;
-      var backgroundYMargin = 8;
-      var backgroundWidth = textNode.width + ( 2 * backgroundXMargin );
-      var backgroundHeight = textNode.height + ( 2 * backgroundYMargin );
-      var cornerRadius = 10;
-      var labelBackgroundNode = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-        { fill: PHScaleColors.NEUTRAL, stroke: 'black', lineWidth: 3 } );
-
-      neutralLabelNode = new Node( { children: [ labelBackgroundNode, textNode ]} );
-      thisNode.addChild( neutralLabelNode );
-      textNode.centerX = labelBackgroundNode.centerX;
-      textNode.centerY = labelBackgroundNode.centerY;
-
-      neutralLabelNode.right = neutralLineNode.left;
-      neutralLabelNode.centerY = neutralLineNode.centerY;
-    }
-    else {
-      neutralLabelNode = new Text( '7', { font: new PhetFont( { size: 22, weight: 'bold' } ) } );
-      thisNode.addChild( neutralLabelNode );
-      neutralLabelNode.right = neutralLineNode.left - TICK_LABEL_X_SPACING;
-      neutralLabelNode.centerY = neutralLineNode.centerY;
-    }
+    var neutralLabelNode = new Text( '7', { fill: PHScaleColors.NEUTRAL, font: new PhetFont( { size: 28, weight: 'bold' } ) } );
+    thisNode.addChild( neutralLabelNode );
+    neutralLabelNode.right = neutralLineNode.left - TICK_LABEL_X_SPACING;
+    neutralLabelNode.centerY = neutralLineNode.centerY;
   }
 
   return inherit( Node, PHScaleNode, {

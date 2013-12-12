@@ -57,7 +57,7 @@ define( function( require ) {
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );
 
     // pH meter
-    var pHMeterLocation = new Vector2( 110, 75 );
+    var pHMeterLocation = new Vector2( 120, 75 );
     thisModel.pHMeter = new PHMeter( pHMeterLocation, new Vector2( pHMeterLocation.x + 150, thisModel.beaker.location.y ),
       new Bounds2( 50, 150, 1000, 680 ) );
 

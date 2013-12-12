@@ -44,15 +44,15 @@ define( function( require ) {
     Node.call( thisNode );
 
     // outline of the beaker, starting from upper left
-    var width = mvt.modelToViewDeltaX( beaker.size.width );
-    var height = mvt.modelToViewDeltaY( beaker.size.height );
+    var beakerWidth = mvt.modelToViewDeltaX( beaker.size.width );
+    var beakerHeight = mvt.modelToViewDeltaY( beaker.size.height );
     var outlineShape = new Shape()
-      .moveTo( -(width / 2 ) - RIM_OFFSET, -height - RIM_OFFSET )
-      .lineTo( -(width / 2), -height )
-      .lineTo( -(width / 2), 0 )
-      .lineTo( width / 2, 0 )
-      .lineTo( width / 2, -height )
-      .lineTo( (width / 2) + RIM_OFFSET, -height - RIM_OFFSET );
+      .moveTo( -(beakerWidth / 2 ) - RIM_OFFSET, -beakerHeight - RIM_OFFSET )
+      .lineTo( -(beakerWidth / 2), -beakerHeight )
+      .lineTo( -(beakerWidth / 2), 0 )
+      .lineTo( beakerWidth / 2, 0 )
+      .lineTo( beakerWidth / 2, -beakerHeight )
+      .lineTo( (beakerWidth / 2) + RIM_OFFSET, -beakerHeight - RIM_OFFSET );
     thisNode.addChild( new Path( outlineShape,
       {
         stroke: 'black',
@@ -61,29 +61,30 @@ define( function( require ) {
         lineJoin: 'round'
       } ) );
 
-    // horizontal tick marks, left edge, from bottom up
+    // horizontal tick marks on left and right edges, labels on right ticks, from bottom up
     var ticksParent = new Node();
     thisNode.addChild( ticksParent );
     var numberOfTicks = Math.round( beaker.volume / MINOR_TICK_SPACING );
-    var deltaY = height / numberOfTicks;
+    var deltaY = beakerHeight / numberOfTicks;
+    var beakerLeft = -beakerWidth / 2;
+    var beakerRight = beakerWidth / 2;
     for ( var i = 1; i <= numberOfTicks; i++ ) {
 
-      // tick
       var isMajorTick = ( i % MINOR_TICKS_PER_MAJOR_TICK === 0 );
+      var tickLength = ( isMajorTick ? MAJOR_TICK_LENGTH : MINOR_TICK_LENGTH );
       var y = -( i * deltaY );
-      var leftX = -width / 2;
-      var rightX = leftX + ( isMajorTick ? MAJOR_TICK_LENGTH : MINOR_TICK_LENGTH );
-      var tickShape = new Shape().moveTo( leftX, y ).lineTo( rightX, y );
-      var tickPath = new Path( tickShape,
-        {
-          stroke: 'black',
-          lineWidth: 2,
-          lineCap: 'butt',
-          lineJoin: 'bevel'
-        } );
-      ticksParent.addChild( tickPath );
 
-      // major tick label
+      // left tick
+      ticksParent.addChild( new Path(
+        new Shape().moveTo( beakerLeft, y ).lineTo( beakerLeft + tickLength, y ),
+        { stroke: 'black', lineWidth: 2, lineCap: 'butt', lineJoin: 'bevel' } ) );
+
+      // right tick
+      ticksParent.addChild( new Path(
+        new Shape().moveTo( beakerRight, y ).lineTo( beakerRight - tickLength, y ),
+        { stroke: 'black', lineWidth: 2, lineCap: 'butt', lineJoin: 'bevel' } ) );
+
+      // label on right 'major' tick
       if ( isMajorTick ) {
         var labelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
         if ( labelIndex < MAJOR_TICK_LABELS.length ) {
@@ -91,8 +92,8 @@ define( function( require ) {
           ticksParent.addChild( new Text( label, {
             font: MAJOR_TICK_FONT,
             fill: 'black',
-            x: rightX + TICK_LABEL_X_SPACING,
-            centerY: tickPath.centerY
+            right: beakerRight - tickLength - TICK_LABEL_X_SPACING,
+            centerY: y
           } ) );
         }
       }

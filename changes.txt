@@ -1,3 +1,4 @@
+12/12/13 ticks on both sides of beaker, tick labels on right
 12/12/13 flip volume indicator and move it to right side of beaker
 12/12/13 Basics: move 'Reset All' button to lower-right
 12/12/13 Basics: show 'Neutral' label in solution when displayed pH='7.00'

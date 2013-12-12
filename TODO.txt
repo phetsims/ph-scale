@@ -10,7 +10,6 @@ DESIGN
 - nonstandard position of 'Reset All' button in all screens
 
 HIGHEST
-- show 'Neutral!' in solution when pH='7.00'
 - Basics: ticks on both sides of beaker, labels on right, volume indicator on right, drain on left
 - Basics: move 'Reset All' button to lower right
 - new colors for pH probe and display (get from YY)

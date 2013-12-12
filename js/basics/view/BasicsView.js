@@ -17,6 +17,7 @@ define( function( require ) {
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var NeutralIndicator = require( 'PH_SCALE/basics/view/NeutralIndicator' );
   var Node = require( 'SCENERY/nodes/Node' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
@@ -43,6 +44,9 @@ define( function( require ) {
     var beakerNode = new BeakerNode( model.beaker, mvt );
     var solutionNode = new SolutionNode( model.solution, model.beaker, mvt );
     var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, mvt );
+
+    // neutral indicator that appears in the bottom of the beaker
+    var neutralIndicator = new NeutralIndicator( model.solution );
 
     // dropper
     var dropperScale = 0.85;
@@ -79,6 +83,7 @@ define( function( require ) {
     rootNode.addChild( dropperNode );
     rootNode.addChild( solutionNode );
     rootNode.addChild( beakerNode );
+    rootNode.addChild( neutralIndicator );
     rootNode.addChild( volumeIndicatorNode );
     rootNode.addChild( pHMeterNode );
     rootNode.addChild( resetAllButton );
@@ -88,6 +93,8 @@ define( function( require ) {
     // Layout of nodes that don't have a location specified in the model
     soluteComboBox.left = mvt.modelToViewX( model.beaker.left ) - 50; // anchor on left so it grows to the right during i18n
     soluteComboBox.top = this.layoutBounds.top + 15;
+    neutralIndicator.centerX = beakerNode.centerX;
+    neutralIndicator.bottom = beakerNode.bottom - 30;
     resetAllButton.left = 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }

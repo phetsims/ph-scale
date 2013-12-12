@@ -1,3 +1,4 @@
+12/12/13 show 'Neutral' label in solution when displayed pH='7.00'
 12/12/13 replace button-like '(Neutral) 7' tick with '7', use larger font, use 'neutral' color
 # 1.0.0-dev.2 12/11/13
 12/11/13 make AB buttons 25% larger

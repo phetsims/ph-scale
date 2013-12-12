@@ -1,22 +1,22 @@
-# 1.0.0-dev.2 12/10/13
-12/10/13 make AB buttons 25% larger
-12/10/13 Custom:  add placeholders for zoom buttons in graph
-12/10/13 add option to ABSwitch that makes it easier to horizontally center on its button
-12/10/13 implement view-specific properties using axon.PropertySet
-12/10/13 add view properties for graph switches, add to 'Reset All'
-12/10/13 compute scale height and layout of graphs
-12/10/13 Custom: add log/linear switch to graph
-12/10/13 Solutions: fix reset of beaker controls
-12/10/13 Solutions: fix layout problems with pH meter that were caused by flipping
-12/10/13 Solutions: flip indicator on pH meter
-12/10/13 adjust 'guide' size for graphs
-12/10/13 Solutions, Custom: move 'Reset All' button to left of beaker controls
-12/10/13 anchor beaker controls to right edge of beaker, so it grows left for i18n
-12/10/13 make drain faucet appear is same location for 'Solutions' and 'Custom' screens
-12/10/13 adds outline 'guides' for graphs, for use during design/development
-12/10/13 Solutions: flip everything LTR, fix (most) problems that flipping 'Basics' caused
-12/10/13 Custom: don't display water color when pH='7.00', since there's no water in this screen
-12/10/13 Custom: flip everything LTR
+# 1.0.0-dev.2 12/11/13
+12/11/13 make AB buttons 25% larger
+12/11/13 Custom:  add placeholders for zoom buttons in graph
+12/11/13 add option to ABSwitch that makes it easier to horizontally center on its button
+12/11/13 implement view-specific properties using axon.PropertySet
+12/11/13 add view properties for graph switches, add to 'Reset All'
+12/11/13 compute scale height and layout of graphs
+12/11/13 Custom: add log/linear switch to graph
+12/11/13 Solutions: fix reset of beaker controls
+12/11/13 Solutions: fix layout problems with pH meter that were caused by flipping
+12/11/13 Solutions: flip indicator on pH meter
+12/11/13 adjust 'guide' size for graphs
+12/11/13 Solutions, Custom: move 'Reset All' button to left of beaker controls
+12/11/13 anchor beaker controls to right edge of beaker, so it grows left for i18n
+12/11/13 make drain faucet appear is same location for 'Solutions' and 'Custom' screens
+12/11/13 adds outline 'guides' for graphs, for use during design/development
+12/11/13 Solutions: flip everything LTR, fix (most) problems that flipping 'Basics' caused
+12/11/13 Custom: don't display water color when pH='7.00', since there's no water in this screen
+12/11/13 Custom: flip everything LTR
 12/9/13 Basics: anchor combo box on it's left edge, for i18n
 12/9/13 fix color of PHValueNode and ExpandCollapseBar, use sRGB
 12/9/13 shorten vertical pipe on drain faucet, so that pH probe fits below it

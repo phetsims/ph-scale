@@ -1,3 +1,5 @@
+12/12/13 compute water faucet pipe length based on beaker's right edge
+12/12/13 reflect drain faucet, move to left of beaker
 12/12/13 ticks on both sides of beaker, tick labels on right
 12/12/13 flip volume indicator and move it to right side of beaker
 12/12/13 Basics: move 'Reset All' button to lower-right

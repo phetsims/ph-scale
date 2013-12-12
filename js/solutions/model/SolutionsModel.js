@@ -49,7 +49,8 @@ define( function( require ) {
       new Vector2( thisModel.beaker.left + 100, yDropper ),
       new Bounds2( thisModel.beaker.left + 40, yDropper, thisModel.beaker.right - 170, yDropper ) );
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume );
-    thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, thisModel.beaker.location.y - thisModel.beaker.size.height - 45 ), -400,
+    thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, thisModel.beaker.location.y - thisModel.beaker.size.height - 45 ),
+      thisModel.beaker.right + 400,
       { enabled: thisModel.solution.volumeProperty.get() < thisModel.beaker.volume } );
     thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 75, thisModel.beaker.location.y + 43 ), thisModel.beaker.right,
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );

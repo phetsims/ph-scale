@@ -23,13 +23,13 @@ define( function( require ) {
 
     var scale = 0.6;
 
-    var horizontalPipeLength = mvt.modelToViewX( faucet.location.x - faucet.pipeMinX ) / scale;
+    var horizontalPipeLength = Math.abs( mvt.modelToViewX( faucet.location.x - faucet.pipeMinX ) ) / scale;
     FaucetNode.call( this, faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
       horizontalPipeLength: horizontalPipeLength,
       verticalPipeLength: 5
     } );
     this.translation = mvt.modelToViewPosition( faucet.location );
-    this.setScaleMagnitude( scale );
+    this.setScaleMagnitude( -scale, scale ); // reflect
   }
 
   return inherit( FaucetNode, DrainFaucetNode );

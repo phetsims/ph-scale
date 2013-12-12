@@ -44,7 +44,7 @@ define( function( require ) {
     thisModel.water = Water;
 
     // Beaker and the stuff that is positioned relative to it.
-    thisModel.beaker = new Beaker( new Vector2( 720, 575 ), new Dimension2( 350, 300 ) );
+    thisModel.beaker = new Beaker( new Vector2( 720, 575 ), new Dimension2( 450, 300 ) );
     var yDropper = thisModel.beaker.location.y - thisModel.beaker.size.height - 15;
     thisModel.dropper = new Dropper( Solute.CHICKEN_SOUP,
       new Vector2( thisModel.beaker.location.x - 50, yDropper ),
@@ -57,7 +57,7 @@ define( function( require ) {
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );
 
     // pH meter
-    var pHMeterLocation = new Vector2( 200, 20 );
+    var pHMeterLocation = new Vector2( 110, 75 );
     thisModel.pHMeter = new PHMeter( pHMeterLocation, new Vector2( pHMeterLocation.x + 150, thisModel.beaker.location.y ),
       new Bounds2( 50, 150, 1000, 680 ) );
 

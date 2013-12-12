@@ -134,7 +134,7 @@ define( function( require ) {
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.right = mvt.modelToViewX( model.beaker.right );
     beakerControls.top = beakerNode.bottom + 15;
-    graphExpandCollapseBar.right = volumeIndicatorNode.left - 20;
+    graphExpandCollapseBar.right = beakerNode.left - 20;
     graphExpandCollapseBar.top = 20;
     graphNode.centerX = graphExpandCollapseBar.centerX;
     graphNode.top = graphExpandCollapseBar.bottom + 20;

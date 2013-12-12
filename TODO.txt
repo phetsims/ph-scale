@@ -11,7 +11,7 @@ DESIGN
 
 HIGHEST
 - Basics: make beaker wider
-- Basics: ticks on both sides of beaker, labels on right, volume indicator on right, drain on left
+- Basics: ticks on both sides of beaker, labels on right, drain on left
 - new colors for pH probe and display (get from YY)
 - ComboBox: add background color behind arrow button (sun#43)
 

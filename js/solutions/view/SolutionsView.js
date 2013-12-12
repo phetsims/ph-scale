@@ -153,7 +153,7 @@ define( function( require ) {
     beakerControls.top = beakerNode.bottom + 15;
     soluteComboBox.left = mvt.modelToViewX( model.beaker.left ) - 50; // anchor on left so it grows to the right during i18n
     soluteComboBox.top = this.layoutBounds.top + 15;
-    pHMeterExpandCollapseBar.right = volumeIndicatorNode.left - 20;
+    pHMeterExpandCollapseBar.right = beakerNode.left - 20;
     pHMeterExpandCollapseBar.top = 20;
     pHMeterNode.top = pHMeterExpandCollapseBar.bottom + 20;
     pHMeterNode.centerX = pHMeterExpandCollapseBar.centerX;

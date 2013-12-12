@@ -10,6 +10,7 @@ DESIGN
 - Solutions, Custom: nonstandard position of 'Reset All' button in all screens
 
 HIGHEST
+- fix layout of 'Solutions' and 'Custom' screens
 - ComboBox: add background color behind arrow button (sun#43)
 
 HIGH

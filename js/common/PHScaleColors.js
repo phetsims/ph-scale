@@ -32,6 +32,9 @@ define( function( require ) {
 
     // particles in 'ratio' view
     H3O_PARTICLES: new Color( 204, 0, 0 ),
-    OH_PARTICLES: new Color( 0, 0, 255 )
+    OH_PARTICLES: new Color( 0, 0, 255 ),
+
+    // pH display
+    PH_DISPLAY: new Color( 2, 118, 47 )
   };
 } );

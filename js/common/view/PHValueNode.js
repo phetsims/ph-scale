@@ -12,6 +12,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -23,9 +24,10 @@ define( function( require ) {
 
   /**
    * @param {Property<Number>} pHProperty
+   * @param {Property<Boolean>} enabledProperty optional
    * @constructor
    */
-  function PHValueNode( pHProperty ) {
+  function PHValueNode( pHProperty, enabledProperty ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -51,8 +53,8 @@ define( function( require ) {
     var backgroundYSpacing = 6;
     var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * backgroundXMargin );
     var backgroundHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * backgroundYMargin );
-    this.backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-      { fill: 'rgb(135,19,70)' } );
+    var backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
+      { fill: PHScaleColors.PH_DISPLAY } );
 
     // highlight around the background
     var highlightLineWidth = 3;
@@ -63,16 +65,16 @@ define( function( require ) {
     var highlight = new Node( { children: [ innerHighlight, outerHighlight ], visible: false } );
 
     // rendering order
-    thisNode.addChild( this.backgroundRectangle );
+    thisNode.addChild( backgroundRectangle );
     thisNode.addChild( highlight );
     thisNode.addChild( valueRectangle );
     thisNode.addChild( labelNode );
     thisNode.addChild( valueNode );
 
     // layout
-    labelNode.centerX = this.backgroundRectangle.centerX;
-    labelNode.top = this.backgroundRectangle.top + backgroundYMargin;
-    valueRectangle.centerX = this.backgroundRectangle.centerX;
+    labelNode.centerX = backgroundRectangle.centerX;
+    labelNode.top = backgroundRectangle.top + backgroundYMargin;
+    valueRectangle.centerX = backgroundRectangle.centerX;
     valueRectangle.top = labelNode.bottom + backgroundYSpacing;
     valueNode.right = valueRectangle.right - valueXMargin; // right justified
     valueNode.centerY = valueRectangle.centerY;
@@ -90,11 +92,13 @@ define( function( require ) {
         highlight.visible = ( parseFloat( valueNode.text ) === 7 );
       }
     } );
+
+    if ( enabledProperty ) {
+      enabledProperty.link( function( enabled ) {
+        backgroundRectangle.fill = enabled ? PHScaleColors.PH_DISPLAY : 'rgb(178,178,178)';
+      } )
+    }
   }
 
-  return inherit( Node, PHValueNode, {
-    setBackgroundFill: function( fill ) {
-      this.backgroundRectangle.fill = fill;
-    }
-  } );
+  return inherit( Node, PHValueNode );
 } );

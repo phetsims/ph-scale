@@ -32,6 +32,7 @@ define( function( require ) {
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PHScaleNode = require( 'PH_SCALE/common/view/PHScaleNode' );
   var PHValueNode = require( 'PH_SCALE/common/view/PHValueNode' );
+  var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -44,8 +45,6 @@ define( function( require ) {
 
   // constants
   var SCALE_SIZE = new Dimension2( 55, 450 );
-  var INDICATOR_ENABLED_COLOR = 'rgb(135,19,70)';
-  var INDICATOR_DISABLED_COLOR = 'rgb(178,178,178)';
 
   /**
    * Meter probe, origin at center of crosshairs.
@@ -169,7 +168,8 @@ define( function( require ) {
     } );
 
     // value
-    var valueNode = new PHValueNode( pHProperty );
+    var valueEnabled = new Property( true );
+    var valueNode = new PHValueNode( pHProperty, valueEnabled );
 
     // arrow head pointing at the scale
     var arrowSize = new Dimension2( 21, 28 );
@@ -196,7 +196,7 @@ define( function( require ) {
     pHProperty.link( function( pH ) {
       // make the indicator look enabled or disabled
       var enabled = ( pH !== null );
-      valueNode.setBackgroundFill(  ( enabled ? INDICATOR_ENABLED_COLOR : INDICATOR_DISABLED_COLOR ) );
+      valueEnabled.set( enabled );
       arrowNode.visible = lineNode.visible = enabled;
     } );
   }

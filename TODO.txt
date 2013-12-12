@@ -7,7 +7,7 @@ DESIGN
 - Solutions: screen is cluttered and crowded
 - Solutions: interference between pH and volume indicators
 - Solutions: difficult to align scales and inefficient use of vertical space with pH value display
-- nonstandard position of 'Reset All' button in all screens
+- Solutions, Custom: nonstandard position of 'Reset All' button in all screens
 
 HIGHEST
 - new colors for pH probe and display (get from YY)

@@ -1,3 +1,4 @@
+12/17/13 Solutions: fix layout problems that were introduced by changes to Basics
 12/17/13 Custom: fix layout problems that were introduced by changes to Basics
 12/17/13 lint fix
 12/17/13 delete vestigial option.labelNeutral from PHScaleNode

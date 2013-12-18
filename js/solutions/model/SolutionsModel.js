@@ -43,7 +43,7 @@ define( function( require ) {
     thisModel.water = Water;
 
     // Beaker and the stuff that is positioned relative to it.
-    thisModel.beaker = new Beaker( new Vector2( 770, 580 ), new Dimension2( 300, 305 ) );
+    thisModel.beaker = new Beaker( new Vector2( 835, 580 ), new Dimension2( 300, 305 ) );
     var yDropper = 260;
     thisModel.dropper = new Dropper( Solute.CHICKEN_SOUP,
       new Vector2( thisModel.beaker.left + 100, yDropper ),
@@ -52,7 +52,7 @@ define( function( require ) {
     thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, thisModel.beaker.location.y - thisModel.beaker.size.height - 45 ),
       thisModel.beaker.right + 400,
       { enabled: thisModel.solution.volumeProperty.get() < thisModel.beaker.volume } );
-    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 75, thisModel.beaker.location.y + 43 ), thisModel.beaker.right,
+    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.left - 75, thisModel.beaker.location.y + 43 ), thisModel.beaker.left,
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );
 
     // Enable faucets and dropper based on amount of solution in the beaker.

@@ -9,6 +9,9 @@ define( function( require ) {
   return {
     //TODO run this by other developers, is there a better way?
     //TODO consider http://blog.coolmuse.com/2012/06/21/getting-the-exponent-and-mantissa-from-a-javascript-number/
+    //TODO consider using toExponential instead of toPrecision:
+    //TODO http://stackoverflow.com/questions/11124451/how-can-i-convert-numbers-into-scientific-notation
+    //TODO https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toExponential
     /*
      * Converts a number to a format like 1.23 x 10^25
      * @param {Number} value the number to be formatted

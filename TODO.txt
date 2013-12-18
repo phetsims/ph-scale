@@ -4,13 +4,12 @@ DESIGN
 - 'ratio' feature: performance and color-coding
 - 'Linear' graph feature: can it be dropped?
 - graph expand/collapse labels are problematic, separates title from units, complicated implementation,...
+- Solutions: what should pH meter look more like?
 - Solutions: screen is cluttered and crowded
 - Solutions: interference between pH and volume indicators
 - Solutions: difficult to align scales and inefficient use of vertical space with pH value display
-- Solutions, Custom: nonstandard position of 'Reset All' button in all screens
 
 HIGHEST
-- fix layout of 'Solutions' and 'Custom' screens
 - ComboBox: add background color behind arrow button (sun#43)
 
 HIGH
@@ -20,7 +19,6 @@ HIGH
 - Custom: interactive linear graph, zoom feature
 - 'H3O+/OH- ratio' feature
 - gray out left or right title in graph's expand/collapse bar
-- Solutions: make pH meter look more like design doc (discuss what this means)
 - Solutions: maximize width of beaker
 - shrink the 'Molecule counts' feature
 - vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)

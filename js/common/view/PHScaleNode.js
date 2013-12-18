@@ -42,8 +42,7 @@ define( function( require ) {
   function PHScaleNode( options ) {
 
     options = _.extend( {
-      size: new Dimension2( 75, 450 ),
-      labelNeutral: false  // show a '(Neutral)' at tick for pH 7 ?
+      size: new Dimension2( 75, 450 )
     }, options );
 
     var thisNode = this;

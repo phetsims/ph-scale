@@ -1,5 +1,6 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
+//TODO merge into sun.ToggleButton, see https://github.com/phetsims/sun/issues/32
 /**
  * A toggle button changes it's on/off state when pressed.
  * Can optionally be configured as a 'momentary' button, which is on while pressed, off when released.

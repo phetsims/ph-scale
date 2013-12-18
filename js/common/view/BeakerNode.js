@@ -29,7 +29,7 @@ define( function( require ) {
   var MAJOR_TICK_LENGTH = 30;
   var MINOR_TICK_LENGTH = 15;
   var TICK_LABEL_X_SPACING = 8;
-  var MAJOR_TICK_LABELS = new Array( '\u00bd', '1' ); // 1/2, 1
+  var MAJOR_TICK_LABELS = [ '\u00bd', '1' ]; // 1/2, 1
   var MAJOR_TICK_FONT = new PhetFont( 24 );
 
   /**

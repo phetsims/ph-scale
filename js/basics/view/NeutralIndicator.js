@@ -48,7 +48,5 @@ define( function( require ) {
     } );
   }
 
-  inherit( Node, NeutralIndicator );
-
-  return NeutralIndicator;
+  return inherit( Node, NeutralIndicator );
 } );

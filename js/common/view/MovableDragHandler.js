@@ -51,8 +51,6 @@ define( function( require ) {
     } );
   }
 
-  inherit( SimpleDragHandler, MovableDragHandler );
-
   /**
    * Constrains a point to some bounds.
    * @param {Vector2} point
@@ -69,5 +67,5 @@ define( function( require ) {
     }
   };
 
-  return MovableDragHandler;
+  return inherit( SimpleDragHandler, MovableDragHandler );
 } );

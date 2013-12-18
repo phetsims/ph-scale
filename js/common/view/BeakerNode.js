@@ -102,7 +102,5 @@ define( function( require ) {
     thisNode.translation = mvt.modelToViewPosition( beaker.location );
   }
 
-  inherit( Node, BeakerNode );
-
-  return BeakerNode;
+  return inherit( Node, BeakerNode );
 } );

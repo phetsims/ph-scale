@@ -46,8 +46,6 @@ define( function( require ) {
     } );
   }
 
-  inherit( ComboBox, SoluteComboBox );
-
   /**
    * Creates an item for the combo box.
    * @param solute
@@ -72,5 +70,5 @@ define( function( require ) {
     return ComboBox.createItem( node, solute );
   };
 
-  return SoluteComboBox;
+  return inherit( ComboBox, SoluteComboBox );
 } );

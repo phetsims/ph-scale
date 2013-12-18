@@ -171,11 +171,9 @@ define( function( require ) {
     return StringUtils.format( pattern_ph_0value, Util.toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) );
   };
 
-  inherit( Node, DropperNode, {
+  return inherit( Node, DropperNode, {
     getTipWidth: function() {
       return TIP_WIDTH;
     }
   } );
-
-  return DropperNode;
 } );

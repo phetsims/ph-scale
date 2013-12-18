@@ -1,4 +1,5 @@
-12/17/13 delete vestigial option.labelNeutral from PHScaleNode
+2/17/13 lint fix
+2/17/13 delete vestigial option.labelNeutral from PHScaleNode
 12/17/13 emphasize the '7' tick mark more on the pH scale by using 'Arial black' font family
 12/12/13 change color of pH probe image to green, adjust color of pH display to match
 12/12/13 change color of pH display to green, change implementation to include optional 'enabled' property

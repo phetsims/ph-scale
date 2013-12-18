@@ -96,7 +96,7 @@ define( function( require ) {
     if ( enabledProperty ) {
       enabledProperty.link( function( enabled ) {
         backgroundRectangle.fill = enabled ? PHScaleColors.PH_DISPLAY : 'rgb(178,178,178)';
-      } )
+      } );
     }
   }
 

@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Controls the affect what you see in the beaker.
+ * Controls what you see in the beaker.
  * This includes the ''H3O+/OH- ratio' and 'Molecule count' representations.
  *
  * @author Chris Malley (PixelZoom, Inc.)

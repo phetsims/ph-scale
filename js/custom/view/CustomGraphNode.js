@@ -57,7 +57,7 @@ define( function( require ) {
     var zoomInButton = new Rectangle( 0, 0, zoomButtonLength, zoomButtonLength, zoomButtonCornerRadius, zoomButtonCornerRadius, { stroke: 'black' } );
     var zoomOutButton = new Rectangle( 0, 0, zoomButtonLength, zoomButtonLength, zoomButtonCornerRadius, zoomButtonCornerRadius, { stroke: 'black' } );
     var zoomParent = new Node( { children: [ zoomInButton, zoomOutButton ]} );
-    zoomOutButton.left = zoomInButton.right + 15;
+    zoomOutButton.left = zoomInButton.right + 10;
     zoomOutButton.centerY = zoomInButton.centerY;
 
     var scaleSwitch = new ABSwitch( graphScaleProperty, GraphScale.LOGARITHMIC, logarithmicString, GraphScale.LINEAR, linearString, {
@@ -77,12 +77,13 @@ define( function( require ) {
     // layout
     unitsSwitch.centerX = guideNode.centerX;
     unitsSwitch.top = guideNode.top;
+    concentrationGraph.centerX = guideNode.centerX;
+    concentrationGraph.top = unitsSwitch.bottom + Y_SPACING;
     zoomParent.centerX = guideNode.centerX;
-    zoomParent.top = unitsSwitch.bottom + Y_SPACING;
+    zoomParent.top = concentrationGraph.bottom + Y_SPACING;
     scaleSwitch.centerX = guideNode.centerX;
     scaleSwitch.bottom = guideNode.bottom;
-    concentrationGraph.centerX = zoomParent.centerX;
-    concentrationGraph.top = zoomParent.bottom + Y_SPACING;
+
   }
 
   return inherit( Node, CustomGraphNode );

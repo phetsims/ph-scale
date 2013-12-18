@@ -2,7 +2,7 @@
 
 /**
  * Visual representation of a beaker that is filled to the top with a solution.
- * Ticks on the left edge of the beaker. Origin is at the bottom center.
+ * Origin is at the bottom center.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

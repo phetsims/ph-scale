@@ -34,7 +34,7 @@ define( function( require ) {
       new Vector2( thisModel.beaker.location.x, yDropper ),
       new Bounds2( thisModel.beaker.left + 40, yDropper, thisModel.beaker.right - 40, yDropper ) );
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume );
-    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.right + 75, thisModel.beaker.location.y + 43 ), thisModel.beaker.right,
+    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.left - 75, thisModel.beaker.location.y + 43 ), thisModel.beaker.left,
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );
 
     // Enable faucets and dropper based on amount of solution in the beaker.

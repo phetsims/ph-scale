@@ -130,15 +130,15 @@ define( function( require ) {
     pHMeterNode.bottom = beakerNode.top - 30;
     ratioNode.centerX = beakerNode.centerX; //TODO delete
     ratioNode.centerY = beakerNode.top + ( 0.3 * beakerNode.height ); //TODO delete
-    moleculeCountNode.right = mvt.modelToViewX( model.beaker.right ) - 20;
+    moleculeCountNode.centerX = mvt.modelToViewX( model.beaker.location.x );
     moleculeCountNode.bottom = beakerNode.bottom - 25;
-    beakerControls.right = mvt.modelToViewX( model.beaker.right );
+    beakerControls.centerX = mvt.modelToViewX( model.beaker.location.x );
     beakerControls.top = beakerNode.bottom + 15;
-    graphExpandCollapseBar.right = beakerNode.left - 20;
+    graphExpandCollapseBar.right = drainFaucetNode.left - 50;
     graphExpandCollapseBar.top = 20;
     graphNode.centerX = graphExpandCollapseBar.centerX;
     graphNode.top = graphExpandCollapseBar.bottom + 20;
-    resetAllButton.right = beakerControls.left - 30;
+    resetAllButton.left = beakerControls.right + 30;
     resetAllButton.centerY = beakerControls.centerY;
   }
 

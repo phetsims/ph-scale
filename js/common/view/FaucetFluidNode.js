@@ -15,7 +15,7 @@ define( function( require ) {
 
   /**
    * @param {Faucet} faucet
-   * @param {Fluid} fluid anything that has a 'color' or 'colorProperty'
+   * @param {*} fluid anything that has a 'color' or 'colorProperty'
    * @param {Number} height in model coordinates
    * @param {ModelViewTransform2} mvt
    * @constructor

@@ -1,7 +1,9 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Displays pH value on a big bulky background.
+ * Displays pH value inside of a rounded rectangle, which is then placed inside of yet-another rounded rectangle.
+ * This is the thing that you see sliding up and down the pH Scale in 'Basics', and attached to the top of the
+ * pH meter in 'Solutions'.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

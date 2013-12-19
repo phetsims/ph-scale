@@ -14,7 +14,7 @@ define( function( require ) {
 
   /**
    * @param {Vector2} location
-   * @param {Bounds2} dragBounds
+   * @param {Bounds2} dragBounds optional, undefined if not provided
    * @constructor
    */
   function Movable( location, dragBounds ) {

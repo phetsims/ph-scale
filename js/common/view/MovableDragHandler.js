@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * A drag handler for something that is movable and constrained to some (optional) bounds.
+ * A drag handler for something that is Movable and constrained to some (optional) bounds.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

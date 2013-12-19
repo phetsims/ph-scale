@@ -1,3 +1,4 @@
+12/19/13 change test for minimum-volume threshold in SolutionNode
 12/18/13 misc doc changes requested during code review
 12/18/13 added verbose documentation about where things are positioned in the models, as requested in review
 12/18/13 put pH meter on top of rendering order, allow it to be dragged anywhere in the ScreenView's layoutBounds

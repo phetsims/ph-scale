@@ -45,9 +45,10 @@ define( function( require ) {
     var viewLocation = mvt.modelToViewPosition( beaker.location );
     var viewWidth = mvt.modelToViewDeltaX( beaker.size.width );
     solution.volumeProperty.link( function( volume ) {
+      assert && assert (volume > 0);
 
       // min non-zero volume, so that the solution is visible to the user and detectable by the concentration probe
-      if ( volume > 0 && volume < PHScaleConstants.MIN_SOLUTION_VOLUME ) {
+      if ( volume !== 0 && volume < PHScaleConstants.MIN_SOLUTION_VOLUME ) {
         volume = PHScaleConstants.MIN_SOLUTION_VOLUME;
       }
 

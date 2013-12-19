@@ -12,9 +12,9 @@ DESIGN
 HIGHEST
 - pH value changes when draining at low volume (ph-scale-basics#19)
 - derive solution color from concentration instead of pH (ph-scale-basics#34)
+- change Solute constructor (ph-scale-basics#14)
 
 HIGH
-- change Solute constructor (ph-scale-basics#14)
 - Solutions: log graph, not interactive
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 - Custom: interactive log graph

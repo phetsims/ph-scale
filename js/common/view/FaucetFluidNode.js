@@ -46,7 +46,7 @@ define( function( require ) {
     var viewHeight = mvt.modelToViewDeltaY( height );
     faucet.flowRateProperty.link( function( flowRate ) {
       if ( flowRate === 0 ) {
-        thisNode.setRect( 0, 0, 0, 0 );
+        thisNode.setRect( 0, 0, 0, 0 ); // empty rectangle
       }
       else {
         var viewWidth = mvt.modelToViewDeltaX( faucet.spoutWidth * flowRate / faucet.maxFlowRate );

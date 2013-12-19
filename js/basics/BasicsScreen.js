@@ -11,7 +11,6 @@ define( function( require ) {
   // imports
   var BasicsModel = require( 'PH_SCALE/basics/model/BasicsModel' );
   var BasicsView = require( 'PH_SCALE/basics/view/BasicsView' );
-  var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );

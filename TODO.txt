@@ -10,10 +10,11 @@ DESIGN
 - Solutions: difficult to align scales and inefficient use of vertical space with pH value display
 
 HIGHEST
-- ComboBox: add background color behind arrow button (sun#43)
+- pH value changes when draining at low volume (ph-scale-basics#19)
+- derive solution color from concentration instead of pH (ph-scale-basics#34)
 
 HIGH
-- change Solute constructor, see https://github.com/phetsims/ph-scale-basics/issues/14
+- change Solute constructor (ph-scale-basics#14)
 - Solutions: log graph, not interactive
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 - Custom: interactive log graph
@@ -25,6 +26,7 @@ HIGH
 - vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)
 
 MEDIUM
+- ComboBox: add background color behind arrow button (sun#43)
 - drop shadow on interactive indicators on graph
 - put both zoom buttons at top of linear scale
 - constrain pH and volume so that student computations match displayed values, as in Java sim
@@ -45,5 +47,5 @@ MIGRATE TO COMMON
 - ExpandCollapseBar
 - OnOffSwitch
 - ChoiceSwitch
-- Movable, MovableDragHandler
-- ToggleButton
+- MovableDragHandler (ph-scale-basics#26)
+- ToggleButton (sun#32)

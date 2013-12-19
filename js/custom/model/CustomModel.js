@@ -26,14 +26,21 @@ define( function( require ) {
 
     var thisModel = this;
 
-    // Beaker and the stuff that is positioned relative to it.
     thisModel.water = Water;
+
+    // Beaker and the stuff that is positioned relative to it.
     thisModel.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 400, 325 ) );
+
+    // Dropper above the beaker
     var yDropper = 210;
     thisModel.dropper = new Dropper( Solute.CUSTOM,
       new Vector2( thisModel.beaker.location.x, yDropper ),
       new Bounds2( thisModel.beaker.left + 40, yDropper, thisModel.beaker.right - 40, yDropper ) );
+
+    // Solution in the beaker
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume );
+
+    // Drain faucet at the beaker's bottom-left.
     thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.left - 75, thisModel.beaker.location.y + 43 ), thisModel.beaker.left,
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );
 

@@ -44,14 +44,22 @@ define( function( require ) {
 
     // Beaker and the stuff that is positioned relative to it.
     thisModel.beaker = new Beaker( new Vector2( 835, 580 ), new Dimension2( 300, 305 ) );
+
+    // Dropper above the beaker
     var yDropper = 260;
     thisModel.dropper = new Dropper( Solute.CHICKEN_SOUP,
       new Vector2( thisModel.beaker.left + 100, yDropper ),
       new Bounds2( thisModel.beaker.left + 40, yDropper, thisModel.beaker.right - 170, yDropper ) );
+
+    // Solution in the beaker
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume );
+
+    // Water faucet at the beaker's top-right
     thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, thisModel.beaker.location.y - thisModel.beaker.size.height - 45 ),
       thisModel.beaker.right + 400,
       { enabled: thisModel.solution.volumeProperty.get() < thisModel.beaker.volume } );
+
+    // Drain faucet at the beaker's bottom-left.
     thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.left - 75, thisModel.beaker.location.y + 43 ), thisModel.beaker.left,
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );
 

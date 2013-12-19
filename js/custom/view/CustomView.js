@@ -24,6 +24,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PHValueNode = require( 'PH_SCALE/common/view/PHValueNode' );
   var PropertySet = require( 'AXON/PropertySet' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
@@ -142,5 +143,5 @@ define( function( require ) {
     resetAllButton.centerY = beakerControls.centerY;
   }
 
-  return inherit( ScreenView, BasicsView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );
+  return inherit( ScreenView, BasicsView, { layoutBounds: PHScaleConstants.LAYOUT_BOUNDS } );
 } );

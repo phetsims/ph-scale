@@ -19,6 +19,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var NeutralIndicator = require( 'PH_SCALE/basics/view/NeutralIndicator' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
@@ -85,9 +86,9 @@ define( function( require ) {
     rootNode.addChild( beakerNode );
     rootNode.addChild( neutralIndicator );
     rootNode.addChild( volumeIndicatorNode );
-    rootNode.addChild( pHMeterNode );
-    rootNode.addChild( resetAllButton );
     rootNode.addChild( soluteComboBox );
+    rootNode.addChild( resetAllButton );
+    rootNode.addChild( pHMeterNode ); // next to last so that probe doesn't get lost behind anything
     rootNode.addChild( soluteListParent ); // last, so that combo box list is on top
 
     // Layout of nodes that don't have a location specified in the model
@@ -99,5 +100,5 @@ define( function( require ) {
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
 
-  return inherit( ScreenView, BasicsView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );
+  return inherit( ScreenView, BasicsView, { layoutBounds: PHScaleConstants.LAYOUT_BOUNDS } );
 } );

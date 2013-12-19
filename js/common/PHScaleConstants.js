@@ -9,9 +9,13 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var Bounds2 = require( 'DOT/Bounds2' );
   var Range = require( 'DOT/Range' );
 
   return {
+
+    // ScreenView
+    LAYOUT_BOUNDS: new Bounds2( 0, 0, 1100, 700 ),
 
     // pH
     PH_RANGE: new Range( -1, 15, 7 ),

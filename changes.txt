@@ -1,3 +1,6 @@
+12/18/13 put pH meter on top of rendering order, allow it to be dragged anywhere in the ScreenView's layoutBounds
+12/18/13 add PHScaleConstants.LAYOUT_BOUNDS, use in all ScreenView constructors
+12/18/13 put probe in foreground in BasicsPHMeterNode, so it can't get lost behind pH display
 12/18/13 use 'return inherit(....)' consistently
 12/17/13 Custom: move zoom buttons to bottom of graph, near the control that makes them visible/invisible
 12/17/13 Solutions: fix layout problems that were introduced by changes to Basics

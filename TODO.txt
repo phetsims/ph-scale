@@ -45,3 +45,5 @@ MIGRATE TO COMMON
 - ExpandCollapseBar
 - OnOffSwitch
 - ChoiceSwitch
+- Movable, MovableDragHandler
+- ToggleButton

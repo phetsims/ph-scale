@@ -59,7 +59,7 @@ define( function( require ) {
     // pH meter
     var pHMeterLocation = new Vector2( 120, 75 );
     thisModel.pHMeter = new PHMeter( pHMeterLocation, new Vector2( pHMeterLocation.x + 150, thisModel.beaker.location.y ),
-      new Bounds2( 50, 150, 1000, 680 ) );
+      PHScaleConstants.LAYOUT_BOUNDS );
 
     // Enable faucets and dropper based on amount of solution in the beaker.
     thisModel.solution.volumeProperty.link( function( volume ) {

@@ -43,8 +43,8 @@ define( function( require ) {
 
     // set color to match solute
     dropper.soluteProperty.link( function( solute ) {
-      thisNode.fill = solute.color;
-      thisNode.stroke = solute.color.darkerColor();
+      thisNode.fill = solute.stockColor;
+      thisNode.stroke = solute.stockColor.darkerColor();
     } );
 
     // hide this node when the dropper is invisible

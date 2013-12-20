@@ -184,14 +184,14 @@ define( function( require ) {
         if ( solute.midpointColor ) {
           // solute has an optional midpoint color
           if ( ratio > 0.5 ) {
-            color = Color.interpolateRBGA( solute.midpointColor, solute.color, ( 2 * ratio ) - 1 );
+            color = Color.interpolateRBGA( solute.midpointColor, solute.stockColor, ( 2 * ratio ) - 1 );
           }
           else {
             color = Color.interpolateRBGA( solute.dilutedColor, solute.midpointColor, ( 2 * ratio ) );
           }
         }
         else {
-          color = Color.interpolateRBGA( solute.dilutedColor, solute.color, ratio );
+          color = Color.interpolateRBGA( solute.dilutedColor, solute.stockColor, ratio );
         }
       }
       return color;

@@ -30,34 +30,39 @@ define( function( require ) {
   /**
    * @param {String} name
    * @param {Number} pH
-   * @param {Color} color color of the solute when it's in stock solution
-   * @param {Color} dilutedColor color of the solute when it's barely present in solution
-   * @param {Color} optional midpointColor color, 50/50 mix of solute and solvent, used to smooth out some color transitions
-   * @constructor
+   * @param {*} colors
+   *
+   * colors is an object literal with these properties:
+   * {Color} stockColor: color of the solute in stock solution (no dilution)
+   * {Color} dilutedColor: color when the solute is barely present in solution (fully diluted), optional, defaults to Water.color
+   * {Color} midpointColor: color when we have a 50/50 mix of solute and solvent, used to smooth out some color transitions if provided, optional
    */
-  function Solute( name, pH, color, dilutedColor, midpointColor ) {
+  function Solute( name, pH, colors ) {
+
     this.name = name;
     this.pHProperty = new Property( pH );
-    this.color = color;
-    this.dilutedColor = dilutedColor;
-    this.midpointColor = midpointColor;
+
+    // unpack the colors to make accessing them more convenient in client code
+    this.stockColor = colors.stockColor;
+    this.dilutedColor = colors.dilutedColor || Water.color;
+    this.midpointColor = colors.midpointColor; // optional, so may be undefined, no default necessary
   }
 
   // 'real world' immutable solutions
-  Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, new Color( 255, 255, 0 ), Water.color, new Color( 255, 255, 204 ) );
-  Solute.HAND_SOAP = new Solute( handSoapString, 10, new Color( 204, 0, 204 ), Water.color, new Color( 232, 204, 255 ) );
-  Solute.BLOOD = new Solute( bloodString, 7.4, new Color( 185, 12, 0 ), Water.color, new Color( 255, 207, 204 ) );
-  Solute.SPIT = new Solute( spitString, 7.4, new Color( 202, 240, 239 ), Water.color );
-  Solute.MILK = new Solute( milkString, 6.5, new Color( 250, 250, 250 ), Water.color );
-  Solute.CHICKEN_SOUP = new Solute( chickenSoupString, 5.8, new Color( 255, 240, 104 ), Water.color, new Color( 255, 250, 204 ) );
-  Solute.COFFEE = new Solute( coffeeString, 5.0, new Color( 164, 99, 7 ), Water.color, new Color( 255, 240, 204 ) );
-  Solute.BEER = new Solute( beerString, 4.5, new Color( 255, 200, 0 ), Water.color, new Color( 255, 242, 204 ) );
-  Solute.SODA = new Solute( sodaString, 2.5, new Color( 204, 255, 102 ), Water.color, new Color( 238, 255, 204 ) );
-  Solute.VOMIT = new Solute( vomitString, 2, new Color( 255, 171, 120 ), Water.color, new Color( 255, 224, 204 ) );
-  Solute.BATTERY_ACID = new Solute( batteryAcidString, 1, new Color( 255, 255, 0 ), Water.color, new Color( 255, 224, 204 ) );
+  Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, { stockColor: new Color( 255, 255, 0 ), midpointColor: new Color( 255, 255, 204 ) } );
+  Solute.HAND_SOAP = new Solute( handSoapString, 10, { stockColor: new Color( 204, 0, 204 ), midpointColor: new Color( 232, 204, 255 ) } );
+  Solute.BLOOD = new Solute( bloodString, 7.4, { stockColor: new Color( 185, 12, 0 ), midpointColor: new Color( 255, 207, 204 ) } );
+  Solute.SPIT = new Solute( spitString, 7.4, { stockColor: new Color( 202, 240, 239 ) } );
+  Solute.MILK = new Solute( milkString, 6.5, { stockColor: new Color( 250, 250, 250 ) } );
+  Solute.CHICKEN_SOUP = new Solute( chickenSoupString, 5.8, { stockColor: new Color( 255, 240, 104 ), midpointColor: new Color( 255, 250, 204 ) } );
+  Solute.COFFEE = new Solute( coffeeString, 5.0, { stockColor: new Color( 164, 99, 7 ), midpointColor: new Color( 255, 240, 204 ) } );
+  Solute.BEER = new Solute( beerString, 4.5, { stockColor: new Color( 255, 200, 0 ), midpointColor: new Color( 255, 242, 204 ) } );
+  Solute.SODA = new Solute( sodaString, 2.5, { stockColor: new Color( 204, 255, 102 ), midpointColor: new Color( 238, 255, 204 ) } );
+  Solute.VOMIT = new Solute( vomitString, 2, { stockColor: new Color( 255, 171, 120 ), midpointColor: new Color( 255, 224, 204 ) } );
+  Solute.BATTERY_ACID = new Solute( batteryAcidString, 1, { stockColor: new Color( 255, 255, 0 ), midpointColor: new Color( 255, 224, 204 ) } );
 
   // 'magical' mutable solution
-  Solute.CUSTOM = new Solute( customString, 7, new Color( 251, 236, 150 ), Water.color );
+  Solute.CUSTOM = new Solute( customString, 7, { stockColor: new Color( 251, 236, 150 ) } );
 
   return Solute;
 } );

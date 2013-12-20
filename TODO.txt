@@ -12,7 +12,6 @@ DESIGN
 HIGHEST
 - pH value changes when draining at low volume (ph-scale-basics#19)
 - derive solution color from concentration instead of pH (ph-scale-basics#34)
-- change Solute constructor (ph-scale-basics#14)
 
 HIGH
 - Solutions: log graph, not interactive

@@ -86,42 +86,9 @@ define( function( require ) {
      * @param deltaSeconds clock time change, in seconds.
      */
     step: function( deltaSeconds ) {
-      this.addSolute( deltaSeconds );
-      this.addWater( deltaSeconds );
-      this.drainSolution( deltaSeconds );
-    },
-
-    // private: Add solute from the dropper
-    addSolute: function( deltaSeconds ) {
-      var deltaVolume = Math.min( this.dropper.flowRateProperty.get() * deltaSeconds, this.solution.getFreeVolume() );
-      if ( deltaVolume > 0 ) {
-        this.solution.soluteVolumeProperty.set( this.solution.soluteVolumeProperty.get() + deltaVolume );
-      }
-    },
-
-    // private: Add water from the water faucet
-    addWater: function( deltaSeconds ) {
-      var deltaVolume = Math.min( this.waterFaucet.flowRateProperty.get() * deltaSeconds, this.solution.getFreeVolume() );
-      if ( deltaVolume > 0 ) {
-        this.solution.waterVolumeProperty.set( this.solution.waterVolumeProperty.get() + deltaVolume );
-      }
-    },
-
-    // private: Drain solution from the output faucet. Equal percentages of water and solute are drained.
-    drainSolution: function( deltaSeconds ) {
-      if ( this.solution.volumeProperty.get() > 0 ) {
-        var deltaVolume = this.drainFaucet.flowRateProperty.get() * deltaSeconds;
-        if ( deltaVolume >= this.solution.volumeProperty.get() ) {
-          // drain the remaining solution
-          this.solution.waterVolumeProperty.set( 0 );
-          this.solution.soluteVolumeProperty.set( 0 );
-        }
-        else {
-          var totalVolume = this.solution.volumeProperty.get();
-          this.solution.waterVolumeProperty.set( Math.max( 0, this.solution.waterVolumeProperty.get() - ( deltaVolume * this.solution.waterVolumeProperty.get() / totalVolume ) ) );
-          this.solution.soluteVolumeProperty.set( Math.max( 0, this.solution.soluteVolumeProperty.get() - ( deltaVolume * this.solution.soluteVolumeProperty.get() / totalVolume ) ) );
-        }
-      }
+      this.solution.addSolute( this.dropper.flowRateProperty.get() * deltaSeconds );
+      this.solution.addWater( this.waterFaucet.flowRateProperty.get() * deltaSeconds );
+      this.solution.drain( this.drainFaucet.flowRateProperty.get() * deltaSeconds );
     }
   };
 

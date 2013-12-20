@@ -65,25 +65,8 @@ define( function( require ) {
      * @param deltaSeconds clock time change, in seconds.
      */
     step: function( deltaSeconds ) {
-      this.addSolute( deltaSeconds );
-      this.drainSolution( deltaSeconds );
-    },
-
-    // private: Add solute from the dropper
-    addSolute: function( deltaSeconds ) {
-      var deltaVolume = Math.min( this.dropper.flowRateProperty.get() * deltaSeconds, this.solution.getFreeVolume() );
-      if ( deltaVolume > 0 ) {
-        this.solution.soluteVolumeProperty.set( this.solution.soluteVolumeProperty.get() + deltaVolume );
-      }
-    },
-
-    // private: Drain solution from the output faucet.
-    drainSolution: function( deltaSeconds ) {
-      if ( this.solution.volumeProperty.get() > 0 ) {
-        assert && assert( this.solution.waterVolumeProperty.get() === 0 ); // custom solution is 100% solute
-        var deltaVolume = this.drainFaucet.flowRateProperty.get() * deltaSeconds;
-        this.solution.soluteVolumeProperty.set( Math.max( 0, this.solution.soluteVolumeProperty.get() - deltaVolume ) );
-      }
+      this.solution.addSolute( this.dropper.flowRateProperty.get() * deltaSeconds );
+      this.solution.drain( this.drainFaucet.flowRateProperty.get() * deltaSeconds );
     }
   };
 

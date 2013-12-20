@@ -80,6 +80,38 @@ define( function( require ) {
     // Returns the amount of volume that is available to fill.
     getFreeVolume: function() { return this.maxVolume - this.volumeProperty.get(); },
 
+    // Convenience function for adding solute
+    addSolute: function( deltaVolume ) {
+      this.soluteVolumeProperty.set( this.soluteVolumeProperty.get() + Math.min( deltaVolume, this.getFreeVolume() ) );
+    },
+
+    // Convenience function for adding water
+    addWater: function( deltaVolume ) {
+      this.waterVolumeProperty.set( this.waterVolumeProperty.get() + Math.min( deltaVolume, this.getFreeVolume() ) );
+    },
+
+    /**
+     * Drains a specified amount of solution.
+     * @param {Number} deltaVolume amount of solution to drain, in liters
+     */
+    drain: function( deltaVolume ) {
+      var totalVolume = this.volumeProperty.get();
+      if ( totalVolume > 0 ) {
+        if ( deltaVolume >= totalVolume ) {
+          // drain the remaining solution
+          this.waterVolumeProperty.set( 0 );
+          this.soluteVolumeProperty.set( 0 );
+        }
+        else {
+          // drain equal percentages of water and solute
+          var waterVolume = this.waterVolumeProperty.get();
+          var soluteVolume = this.soluteVolumeProperty.get();
+          this.waterVolumeProperty.set( waterVolume - ( deltaVolume * waterVolume / totalVolume ) );
+          this.soluteVolumeProperty.set( soluteVolume - ( deltaVolume * soluteVolume / totalVolume ) );
+        }
+      }
+    },
+
     //----------------------------------------------------------------------------
     // Concentration (moles/L)
     //----------------------------------------------------------------------------

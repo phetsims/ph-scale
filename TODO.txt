@@ -48,3 +48,5 @@ MIGRATE TO COMMON
 - ChoiceSwitch
 - MovableDragHandler (ph-scale-basics#26)
 - ToggleButton (sun#32)
+- DropperNode, Dropper
+- BeakerNode

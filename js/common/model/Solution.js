@@ -12,7 +12,6 @@ define( function( require ) {
   var Color = require( 'SCENERY/util/Color' );
   var DerivedProperty = require( 'AXON/DerivedProperty' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var log10 = require( 'DOT/Util' ).log10;
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Range = require( 'DOT/Range' );
@@ -86,7 +85,7 @@ define( function( require ) {
     //----------------------------------------------------------------------------
 
     setConcentrationH3O: function( c ) {
-      this.soluteProperty.get().pHProperty.set( -log10( c ) );
+      this.soluteProperty.get().pHProperty.set( -Util.log10( c ) );
     },
 
     getConcentrationH3O: function( pH ) {
@@ -95,7 +94,7 @@ define( function( require ) {
     },
 
     setConcentrationOH: function( c ) {
-      this.soluteProperty.get().pHProperty.set( 14 - ( -log10( c ) ) );
+      this.soluteProperty.get().pHProperty.set( 14 - ( -Util.log10( c ) ) );
     },
 
     getConcentrationOH: function( pH ) {
@@ -128,7 +127,7 @@ define( function( require ) {
     //----------------------------------------------------------------------------
 
     setMolesH3O: function( m ) {
-      this.soluteProperty.get().pHProperty.set( -log10( m / this.volumeProperty.get() ) );
+      this.soluteProperty.get().pHProperty.set( -Util.log10( m / this.volumeProperty.get() ) );
     },
 
     getMolesH3O: function() {
@@ -136,7 +135,7 @@ define( function( require ) {
     },
 
     setMolesOH: function( m ) {
-      this.soluteProperty.get().pHProperty.set( 14 - ( -log10( m / this.volumeProperty.get() ) ) );
+      this.soluteProperty.get().pHProperty.set( 14 - ( -Util.log10( m / this.volumeProperty.get() ) ) );
     },
 
     getMolesOH: function() {
@@ -164,10 +163,10 @@ define( function( require ) {
         pH = null;
       }
       else if ( solutePH < 7 ) {
-        pH = -log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -waterPH ) * waterVolume ) / ( soluteVolume + waterVolume ) );
+        pH = -Util.log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -waterPH ) * waterVolume ) / ( soluteVolume + waterVolume ) );
       }
       else {
-        pH = 14 + log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, waterPH - 14 ) * waterVolume ) / ( soluteVolume + waterVolume ) );
+        pH = 14 + Util.log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, waterPH - 14 ) * waterVolume ) / ( soluteVolume + waterVolume ) );
       }
       return pH;
     },

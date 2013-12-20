@@ -1,3 +1,4 @@
+12/20/13 migrate MovableDragHandler to scenery-phet, ph-scale-basics#26
 12/20/13 change Solute constructor, ph-scale-basics#14
 12/19/13 change test for minimum-volume threshold in SolutionNode
 12/18/13 misc doc changes requested during code review

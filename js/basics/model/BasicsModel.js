@@ -124,15 +124,11 @@ define( function( require ) {
           this.solution.soluteVolumeProperty.set( 0 );
         }
         else {
-          this.drainPercentage( deltaVolume, this.solution.waterVolumeProperty );
-          this.drainPercentage( deltaVolume, this.solution.soluteVolumeProperty );
+          var totalVolume = this.solution.volumeProperty.get();
+          this.solution.waterVolumeProperty.set( Math.max( 0, this.solution.waterVolumeProperty.get() - ( deltaVolume * this.solution.waterVolumeProperty.get() / totalVolume ) ) );
+          this.solution.soluteVolumeProperty.set( Math.max( 0, this.solution.soluteVolumeProperty.get() - ( deltaVolume * this.solution.soluteVolumeProperty.get() / totalVolume ) ) );
         }
       }
-    },
-
-    // private: Drains a percentage of some component of that makes up the total volume.
-    drainPercentage: function( deltaVolume, componentVolumeProperty ) {
-      componentVolumeProperty.set( Math.max( 0, componentVolumeProperty.get() - ( deltaVolume * componentVolumeProperty.get() / this.solution.volumeProperty.get() ) ) );
     }
   };
 

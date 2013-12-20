@@ -1,3 +1,4 @@
+12/20/13 fix: pH value changes when draining at low volume, ph-scale-basics#19
 12/20/13 change import pattern for dot.Util.log10
 12/20/13 add implementation-notes.txt and model.txt
 12/20/13 migrate MovableDragHandler to scenery-phet, ph-scale-basics#26

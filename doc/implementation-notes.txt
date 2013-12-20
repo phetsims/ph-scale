@@ -1,0 +1,20 @@
+'ph Scale' implementation notes
+
+Since the 'ph Scale: Basics' gets most of its implementation from 'pH Scale', we chose to treat the 'Basics' sim
+as a joist.Screen in the 'pH Scale' sim. The 'Basics' screen is visible if you run in development mode (add the '?dev'
+query parameter to the URL.) This streamlined development somewhat, and we'll see how it affects testing and future
+maintenance. Just know that all code in js/basics/ is specific to the 'Basics' screen.
+
+I find that I frequently need to change the rendering order and layout of nodes.
+To make that easier, node constructors typically have this structure:
+
+    function MyNode(...) {
+
+        // instantiate nodes
+
+        // set rendering order (addChild)
+
+        // do layout
+
+        // register observers
+    }

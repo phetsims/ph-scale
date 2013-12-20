@@ -10,7 +10,6 @@ DESIGN
 - Solutions: difficult to align scales and inefficient use of vertical space with pH value display
 
 HIGHEST
-- derive solution color from concentration instead of pH (ph-scale-basics#34)
 
 HIGH
 - Solutions: log graph, not interactive

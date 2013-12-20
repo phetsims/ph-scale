@@ -205,27 +205,12 @@ define( function( require ) {
 
     // Computes the solution's color.
     computeColor: function() {
-      var color;
       if ( this.volumeProperty.get() === 0 || this.soluteVolumeProperty.get() === 0 || this.isEquivalentToWater() ) {
-        color = this.water.color;
+        return this.water.color;
       }
       else {
-        var solute = this.soluteProperty.get();
-        var ratio = this.soluteVolumeProperty.get() / this.volumeProperty.get();
-        if ( solute.midpointColor ) {
-          // solute has an optional midpoint color
-          if ( ratio > 0.5 ) {
-            color = Color.interpolateRBGA( solute.midpointColor, solute.stockColor, ( 2 * ratio ) - 1 );
-          }
-          else {
-            color = Color.interpolateRBGA( solute.dilutedColor, solute.midpointColor, ( 2 * ratio ) );
-          }
-        }
-        else {
-          color = Color.interpolateRBGA( solute.dilutedColor, solute.stockColor, ratio );
-        }
+        return this.soluteProperty.get().computeColor( this.soluteVolumeProperty.get() / this.volumeProperty.get() );
       }
-      return color;
     },
 
     /*

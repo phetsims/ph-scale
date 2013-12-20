@@ -1,3 +1,5 @@
+12/20/13 move computation of color into Solute, since it knows about the color scheme
+12/20/13 make solution color change more slowly by moving optional color-stop from 0.5 to 0.25, and making the color-stop ratio configurable per solute, ph-scale-basics#34
 12/20/13 move duplicate code related to filling/draining into Solution model element
 12/20/13 fix: pH value changes when draining at low volume, ph-scale-basics#19
 12/20/13 change import pattern for dot.Util.log10

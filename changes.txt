@@ -1,3 +1,4 @@
+12/23/13 Basics: revert pH probe and wire to back, so that dashed indicator line is visible
 12/23/13 add 'in part' to RSC funding notice
 12/20/13 cleanup of color-stop in Solute
 12/20/13 move computation of color into Solute, since it knows about the color scheme

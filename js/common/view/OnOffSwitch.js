@@ -12,7 +12,6 @@ define( function( require ) {
   // imports
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var Dimension2 = require( 'DOT/Dimension2' );
-  var HighlightListener = require( 'SCENERY_PHET/input/HighlightListener' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );

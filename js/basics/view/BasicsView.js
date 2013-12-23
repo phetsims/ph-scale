@@ -11,7 +11,6 @@ define( function( require ) {
   // imports
   var BasicsPHMeterNode = require( 'PH_SCALE/basics/view/BasicsPHMeterNode' );
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
-  var Bounds2 = require( 'DOT/Bounds2' );
   var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );

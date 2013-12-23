@@ -9,12 +9,9 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var Color = require( 'SCENERY/util/Color' );
   var DerivedProperty = require( 'AXON/DerivedProperty' );
-  var inherit = require( 'PHET_CORE/inherit' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
-  var Range = require( 'DOT/Range' );
   var Util = require( 'DOT/Util' );
 
   // constants

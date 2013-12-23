@@ -16,7 +16,6 @@ define( function( require ) {
   var Faucet = require( 'PH_SCALE/common/model/Faucet' );
   var PHMeter = require( 'PH_SCALE/basics/model/PHMeter' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Property = require( 'AXON/Property' );
   var Solute = require( 'PH_SCALE/common/model/Solute' );
   var Solution = require( 'PH_SCALE/common/model/Solution' );
   var Vector2 = require( 'DOT/Vector2' );

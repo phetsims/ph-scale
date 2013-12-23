@@ -11,8 +11,6 @@ define( function( require ) {
   // imports
   var inherit = require( 'PHET_CORE/inherit' );
   var FaucetNode = require( 'SCENERY_PHET/FaucetNode' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var Text = require( 'SCENERY/nodes/Text' );
 
   /**
    * @param {Faucet} faucet

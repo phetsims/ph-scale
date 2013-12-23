@@ -16,7 +16,6 @@ define( function( require ) {
   var LinearConcentrationGraph = require( 'PH_SCALE/common/view/LinearConcentrationGraph' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
   // strings

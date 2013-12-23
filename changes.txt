@@ -1,3 +1,4 @@
+12/23/13 add 'in part' to RSC funding notice
 12/20/13 cleanup of color-stop in Solute
 12/20/13 move computation of color into Solute, since it knows about the color scheme
 12/20/13 make solution color change more slowly by moving optional color-stop from 0.5 to 0.25, and making the color-stop ratio configurable per solute, ph-scale-basics#34

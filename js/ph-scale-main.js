@@ -26,7 +26,7 @@ define( function( require ) {
       softwareDevelopment: 'Chris Malley',
       designTeam: 'Emily B. Moore, Ariel Paul, Julia Chamberlain, Katherine Perkins, Trish Loeblein',
       graphicArts: 'Sharon Siman-Tov',
-      thanks: 'Conversion of this simulation to HTML5 was funded by the Royal Society of Chemistry.'
+      thanks: 'Conversion of this simulation to HTML5 was funded in part by the Royal Society of Chemistry.'
     }
   };
 

@@ -16,7 +16,7 @@ define( function( require ) {
      * Converts a number to a format like 1.23 x 10^25
      * @param {Number} value the number to be formatted
      * @param {Number} precision how many digits in the mantissa
-     * @param {Number} constantExponent optional constant exponent, may affect precision of mantissa
+     * @param {Number} constantExponent optional constant exponent, may affect precision of mantissa, optional
      * @return {String} HTML fragment
      */
     toTimesTenString: function( value, precision, constantExponent ) {
@@ -25,7 +25,7 @@ define( function( require ) {
       }
       else {
         var precisionString = value.toPrecision( precision ); // eg, 12345 -> 1.23e+4
-        var tokens = precisionString.toLowerCase().split( 'e+' ); //TODO will this work in all browsers?
+        var tokens = precisionString.toLowerCase().split( 'e' ); //TODO will this work in all browsers?
         if ( tokens.length === 1 ) {
           return tokens[0]; // no exponent, return the mantissa
         }
@@ -36,7 +36,7 @@ define( function( require ) {
             mantissaString = Util.toFixed( parseFloat( mantissaString ) * Math.pow( 10, parseInt( exponentString, 10 ) - constantExponent ), precision - 1 );
             exponentString = constantExponent.toString();
           }
-          return mantissaString + ' x 10<span style="font-size:85%"><sup>' + exponentString + '</sup></span>'; // mantissa x 10^exponent
+          return mantissaString + ' x 10<span style="font-size:85%"><sup>' + parseInt( exponentString ) + '</sup></span>'; // mantissa x 10^exponent
         }
       }
     }

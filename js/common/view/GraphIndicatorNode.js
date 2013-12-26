@@ -9,33 +9,42 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var PHUtils = require( 'PH_SCALE/common/PHUtils' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
-  var Text = require( 'SCENERY/nodes/Text' );
 
   // constants
-  var POINTER_X_PERCENTAGE = 0.25;
-  var POINTER_Y_PERCENTAGE = 0.3;
+  var POINTER_WIDTH_PERCENTAGE = 0.25;
+  var POINTER_HEIGHT_PERCENTAGE = 0.5;
 
-  //TODO pass in model element
-  function GraphIndicatorNode( options ) {
+  /**
+   * @param {Property<Number>} valueProperty
+   * @param {Node} moleculeNode
+   * @param {Node} formulaNode
+   * @param {*} options
+   * @constructor
+   */
+  function GraphIndicatorNode( valueProperty, moleculeNode, formulaNode, options ) {
 
     options = _.extend( {
-      backgroundWidth: 150,
-      backgroundHeight: 75,
+      backgroundWidth: 160,
+      backgroundHeight: 80,
       backgroundCornerRadius: 10,
-      backgroundFill: 'yellow',
+      backgroundFill: 'darkGray',
       backgroundStroke: 'black',
       backgroundLineWidth: 1,
       backgroundXMargin: 10,
       backgroundYMargin: 8,
       valueXMargin: 5,
-      valueYMargin: 2,
-      ySpacing: 2
+      valueYMargin: 3,
+      xSpacing: 8,
+      ySpacing: 4,
+      precision: 2
     }, options );
 
     var thisNode = this;
@@ -44,8 +53,8 @@ define( function( require ) {
     // Shape for the pointer at top-level. Proceed clockwise from the tip of the pointer.
     var backgroundShape = new Shape()
       .moveTo( 0, 0 )
-      .lineTo( -POINTER_X_PERCENTAGE * options.backgroundWidth, POINTER_Y_PERCENTAGE * options.backgroundHeight - options.backgroundCornerRadius )
-      .arc( ( -POINTER_X_PERCENTAGE * options.backgroundWidth ) - options.backgroundCornerRadius, options.backgroundHeight - options.backgroundCornerRadius, options.backgroundCornerRadius, 0, Math.PI / 2, false )
+      .lineTo( -POINTER_WIDTH_PERCENTAGE * options.backgroundWidth, ( POINTER_HEIGHT_PERCENTAGE * options.backgroundHeight ) - options.backgroundCornerRadius )
+      .arc( ( -POINTER_WIDTH_PERCENTAGE * options.backgroundWidth ) - options.backgroundCornerRadius, options.backgroundHeight - options.backgroundCornerRadius, options.backgroundCornerRadius, 0, Math.PI / 2, false )
       .lineTo( -options.backgroundWidth + options.backgroundCornerRadius, options.backgroundHeight )
       .arc( -options.backgroundWidth + options.backgroundCornerRadius, options.backgroundHeight - options.backgroundCornerRadius, options.backgroundCornerRadius, Math.PI / 2, Math.PI, false )
       .lineTo( -options.backgroundWidth, options.backgroundCornerRadius )
@@ -58,30 +67,43 @@ define( function( require ) {
 
     // Cutout where the value is displayed.
     var valueBackgroundNode = new Rectangle( 0, 0,
-      ( ( 1 - POINTER_X_PERCENTAGE ) * options.backgroundWidth ) - ( 2 * options.backgroundXMargin ),
+      ( ( 1 - POINTER_WIDTH_PERCENTAGE ) * options.backgroundWidth ) - ( 2 * options.backgroundXMargin ),
       0.5 * options.backgroundHeight - options.backgroundYMargin - ( options.ySpacing / 2 ),
       0.5 * options.backgroundCornerRadius, 0.5 * options.backgroundCornerRadius, {
-      fill: 'white',
-      stroke: 'gray'
-    } );
+        fill: 'white',
+        stroke: 'gray'
+      } );
 
-    // Value
-    var valueNode = new Text( '12345', { font: new PhetFont( 26 ), fill: 'black' } );
-    //TODO scale valueNode to fit in valueBackgroundNode.
+    // Value, scaled to fit background height
+    var valueNode = new HTMLText( '?', { font: new PhetFont( 28 ), fill: 'black' } );
+    valueNode.setScaleMagnitude( 0.7 ); //TODO compute scale
 
-    //TODO add molecule
-    //TODO add formula
+    // molecule and formula, scaled to fit available height
+    var moleculeAndFormula = new Node();
+    moleculeAndFormula.addChild( moleculeNode );
+    moleculeAndFormula.addChild( formulaNode );
+    formulaNode.left = moleculeNode.right + options.xSpacing;
+    formulaNode.centerY = moleculeNode.centerY;
+    moleculeAndFormula.setScaleMagnitude( 0.7 ); //TODO compute scale
 
     // rendering order
     thisNode.addChild( backgroundNode );
     thisNode.addChild( valueBackgroundNode );
     thisNode.addChild( valueNode );
+    thisNode.addChild( moleculeAndFormula );
 
     // layout
     valueBackgroundNode.left = backgroundNode.left + options.backgroundXMargin;
     valueBackgroundNode.top = backgroundNode.top + options.backgroundYMargin;
-    valueNode.right = valueBackgroundNode.right - options.valueXMargin;
-    valueNode.top = valueBackgroundNode.top + options.valueYMargin;
+    moleculeAndFormula.centerX = valueBackgroundNode.centerX;
+    moleculeAndFormula.centerY = 0.75 * backgroundNode.height;
+
+    // sync with value
+    valueProperty.link( function( value ) {
+      valueNode.text = PHUtils.toTimesTenString( value, options.precision );
+      valueNode.centerX = valueBackgroundNode.centerX;
+      valueNode.centerY = valueBackgroundNode.centerY;
+    });
   }
 
   return inherit( Node, GraphIndicatorNode );

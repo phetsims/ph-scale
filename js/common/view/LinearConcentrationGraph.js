@@ -5,6 +5,7 @@ define( function( require ) {
 
   // imports
   var GraphIndicatorNode = require( 'PH_SCALE/common/view/GraphIndicatorNode' );
+  var H3OMoleculeNode = require( 'PH_SCALE/common/view/H3OMoleculeNode' );
   var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
@@ -12,6 +13,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
   // constants
@@ -58,7 +60,7 @@ define( function( require ) {
     }
 
     //XXX
-    thisNode.addChild( new GraphIndicatorNode() );
+    thisNode.addChild( new GraphIndicatorNode( new Property( 0.000000000000012 ), new H3OMoleculeNode(), new HTMLText( 'H<sub>3</sub>O<sup>+</sup>', { font: new PhetFont( 28 ), fill: 'white' } ) ) );
   }
 
   var createTickLabel = function( exponent ) {

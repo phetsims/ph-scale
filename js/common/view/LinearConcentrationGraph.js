@@ -4,6 +4,7 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var GraphIndicatorNode = require( 'PH_SCALE/common/view/GraphIndicatorNode' );
   var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
@@ -55,6 +56,9 @@ define( function( require ) {
       tickLabel.left = leftLine.right + TICK_X_SPACING;
       tickLabel.centerY = leftLine.centerY;
     }
+
+    //XXX
+    thisNode.addChild( new GraphIndicatorNode() );
   }
 
   var createTickLabel = function( exponent ) {

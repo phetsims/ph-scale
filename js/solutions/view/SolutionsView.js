@@ -17,7 +17,7 @@ define( function( require ) {
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
   var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
-  var GraphUnits = require( 'PH_SCALE/common/view/GraphUnits' );
+  var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );

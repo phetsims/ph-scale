@@ -11,9 +11,9 @@ define( function( require ) {
   // imports
   var ABSwitch = require( 'PH_SCALE/common/view/ABSwitch' );
   var Dimension2 = require( 'DOT/Dimension2' );
-  var GraphUnits = require( 'PH_SCALE/common/view/GraphUnits' );
+  var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var LogConcentrationGraph = require( 'PH_SCALE/common/view/LogConcentrationGraph' );
+  var LogConcentrationGraph = require( 'PH_SCALE/common/view/graph/LogConcentrationGraph' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );

@@ -60,9 +60,9 @@ define( function( require ) {
 
     //XXX this is a test, to be deleted
     {
-      var H2OIndicatorNode = require( 'PH_SCALE/common/view/H2OIndicatorNode' );
-      var H3OIndicatorNode = require( 'PH_SCALE/common/view/H3OIndicatorNode' );
-      var OHIndicatorNode = require( 'PH_SCALE/common/view/OHIndicatorNode' );
+      var H2OIndicatorNode = require( 'PH_SCALE/common/view/graph/H2OIndicatorNode' );
+      var H3OIndicatorNode = require( 'PH_SCALE/common/view/graph/H3OIndicatorNode' );
+      var OHIndicatorNode = require( 'PH_SCALE/common/view/graph/OHIndicatorNode' );
 
       thisNode.addChild( new H3OIndicatorNode( solution, { x: 5, y: 300 } ) );
       thisNode.addChild( new OHIndicatorNode( solution, { x: 75, y: 400 } ) );

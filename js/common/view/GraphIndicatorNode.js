@@ -19,7 +19,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
 
   // constants
-  var POINTER_WIDTH_PERCENTAGE = 0.25;
+  var POINTER_WIDTH_PERCENTAGE = 0.2;
   var POINTER_HEIGHT_PERCENTAGE = 0.5;
 
   /**
@@ -46,13 +46,14 @@ define( function( require ) {
       ySpacing: 4,
       precision: 2,
       showShadow: true,
-      shadowFill: 'rgba(220,220,220,0.6)',
+      shadowFill: 'rgba(220,220,220,0.7)',
       shadowXOffset: 3,
       shadowYOffset: 5
     }, options );
 
     var thisNode = this;
     Node.call( thisNode );
+    thisNode.setScaleMagnitude( 0.75 ); //TODO eliminate this?
 
     // Shape for the pointer at top-level. Proceed clockwise from the tip of the pointer.
     var backgroundShape = new Shape()

@@ -12,6 +12,8 @@ DESIGN
 HIGHEST
 
 HIGH
+- add optional handle to GraphIndicatorNode
+- support different orientations of GraphIndicatorNode
 - Solutions: log graph, not interactive
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 - Custom: interactive log graph

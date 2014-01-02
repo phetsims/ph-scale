@@ -4,8 +4,7 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var GraphIndicatorNode = require( 'PH_SCALE/common/view/GraphIndicatorNode' );
-  var H3OMoleculeNode = require( 'PH_SCALE/common/view/H3OMoleculeNode' );
+
   var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
@@ -60,12 +59,31 @@ define( function( require ) {
     }
 
     //XXX this is a test, to be deleted
-    var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-    thisNode.addChild( new GraphIndicatorNode( new Property( 0.000000000000012 ),
-      new H3OMoleculeNode(),
-      new HTMLText( 'H<sub>3</sub>O<sup>+</sup>', { font: new PhetFont( 28 ), fill: 'white' } ),
-      PHScaleColors.ACIDIC,
-      { x: 5, y: 50 }) );
+    {
+      var GraphIndicatorNode = require( 'PH_SCALE/common/view/GraphIndicatorNode' );
+      var H2OMoleculeNode = require( 'PH_SCALE/common/view/H2OMoleculeNode' );
+      var H3OMoleculeNode = require( 'PH_SCALE/common/view/H3OMoleculeNode' );
+      var OHMoleculeNode = require( 'PH_SCALE/common/view/OHMoleculeNode' );
+      var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+
+      thisNode.addChild( new GraphIndicatorNode( new Property( 0.000000000000012 ),
+        new H3OMoleculeNode(),
+        new HTMLText( 'H<sub>3</sub>O<sup>+</sup>', { font: new PhetFont( 28 ), fill: 'white' } ),
+        PHScaleColors.ACIDIC,
+        { pointerLocation: 'topRight', x: 5, y: 300 } ) );
+
+      thisNode.addChild( new GraphIndicatorNode( new Property( 0.000000000000012 ),
+        new OHMoleculeNode(),
+        new HTMLText( 'OH<sup>-</sup>', { font: new PhetFont( 28 ), fill: 'white' } ),
+        PHScaleColors.BASIC,
+        { pointerLocation: 'topLeft', x: 75, y: 400 } ) );
+
+      thisNode.addChild( new GraphIndicatorNode( new Property( 55 ),
+        new H2OMoleculeNode(),
+        new HTMLText( 'H<sub>2</sub>O', { font: new PhetFont( 28 ), fill: 'white' } ),
+        PHScaleColors.H2O_BACKGROUND,
+        { pointerLocation: 'bottomLeft', x: 75, y: 60 } ) );
+    }
   }
 
   var createTickLabel = function( exponent ) {

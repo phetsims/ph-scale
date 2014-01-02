@@ -28,17 +28,17 @@ define( function( require ) {
    * @param {Property<Number>} valueProperty
    * @param {Node} moleculeNode
    * @param {Node} formulaNode
+   * @param {String|Color} backgroundFill
    * @param {*} options
    * @constructor
    */
-  function GraphIndicatorNode( valueProperty, moleculeNode, formulaNode, options ) {
+  function GraphIndicatorNode( valueProperty, moleculeNode, formulaNode, backgroundFill, options ) {
 
     options = _.extend( {
       pointerLocation: 'topRight', // values: topLeft, topRight, bottomLeft, bottomRight
       backgroundWidth: 160,
       backgroundHeight: 80,
       backgroundCornerRadius: 10,
-      backgroundFill: 'darkGray',
       backgroundStroke: 'black',
       backgroundLineWidth: 1,
       backgroundXMargin: 10,
@@ -48,7 +48,7 @@ define( function( require ) {
       xSpacing: 8,
       ySpacing: 4,
       precision: 2,
-      shadowVisible: true,
+      shadowVisible: true, //TODO this should be false by default
       shadowFill: 'rgba(220,220,220,0.7)',
       shadowXOffset: 3,
       shadowYOffset: 5
@@ -76,7 +76,7 @@ define( function( require ) {
       throw new Error( 'unsupported options.pointerLocation: ' + options.pointerLocation );
     }
 
-    // Shape for the pointer at top-right. Proceed clockwise from the tip of the pointer.
+    // Background with the pointer at top-right. Proceed clockwise from the tip of the pointer.
     var backgroundShape = new Shape()
       .moveTo( 0, 0 )
       .lineTo( -POINTER_WIDTH_PERCENTAGE * options.backgroundWidth, ( POINTER_HEIGHT_PERCENTAGE * options.backgroundHeight ) - options.backgroundCornerRadius )
@@ -90,9 +90,10 @@ define( function( require ) {
     var backgroundNode = new Path( backgroundShape, {
       lineWidth: options.backgroundLineWidth,
       stroke: options.backgroundStroke,
-      fill: options.backgroundFill } );
+      fill: backgroundFill } );
 
-    var shadowNode = new Path( backgroundShape, {
+    // Background shadow
+    var backgroundShadowNode = new Path( backgroundShape, {
       fill: options.shadowFill
     });
 
@@ -119,7 +120,7 @@ define( function( require ) {
 
     // rendering order
     if ( options.shadowVisible ) {
-      thisNode.addChild( shadowNode );
+      thisNode.addChild( backgroundShadowNode );
     }
     thisNode.addChild( backgroundNode );
     thisNode.addChild( valueBackgroundNode );
@@ -127,8 +128,8 @@ define( function( require ) {
     thisNode.addChild( moleculeAndFormula );
 
     // layout
-    shadowNode.x = backgroundNode.x + options.shadowXOffset;
-    shadowNode.y = backgroundNode.y + options.shadowYOffset;
+    backgroundShadowNode.x = backgroundNode.x + options.shadowXOffset;
+    backgroundShadowNode.y = backgroundNode.y + options.shadowYOffset;
     if ( options.pointerLocation === 'topRight' || options.pointerLocation === 'bottomRight' ) {
       valueBackgroundNode.left = backgroundNode.left + options.backgroundXMargin;
     }

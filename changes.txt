@@ -1,3 +1,4 @@
+1/2/14 support various locations of pointer on graph indicator
 1/2/14 add optional drop-shadow to graph indicator
 12/26/13 more work on graph indicator
 12/26/13 partial implementation of graph indicator

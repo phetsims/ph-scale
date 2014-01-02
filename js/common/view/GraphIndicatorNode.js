@@ -2,6 +2,7 @@
 
 /**
  * The indicator that points to a value on a graph's vertical scale.
+ * Origin is at the indicator's pointer, and the pointer can be attached to any corner of the indicator (see options.pointerLocation).
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -11,6 +12,7 @@ define( function( require ) {
   // imports
   var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Matrix3 = require( 'DOT/Matrix3' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -32,6 +34,7 @@ define( function( require ) {
   function GraphIndicatorNode( valueProperty, moleculeNode, formulaNode, options ) {
 
     options = _.extend( {
+      pointerLocation: 'topRight', // values: topLeft, topRight, bottomLeft, bottomRight
       backgroundWidth: 160,
       backgroundHeight: 80,
       backgroundCornerRadius: 10,
@@ -45,7 +48,7 @@ define( function( require ) {
       xSpacing: 8,
       ySpacing: 4,
       precision: 2,
-      showShadow: true,
+      shadowVisible: true,
       shadowFill: 'rgba(220,220,220,0.7)',
       shadowXOffset: 3,
       shadowYOffset: 5
@@ -55,7 +58,25 @@ define( function( require ) {
     Node.call( thisNode );
     thisNode.setScaleMagnitude( 0.75 ); //TODO eliminate this?
 
-    // Shape for the pointer at top-level. Proceed clockwise from the tip of the pointer.
+    // Transform shapes to support various orientations of pointer.
+    var backgroundShapeMatrix;
+    if ( options.pointerLocation === 'topRight' ) {
+      backgroundShapeMatrix = Matrix3.identity(); // background and handle shapes will be drawn with pointer at top-right
+    }
+    else if ( options.pointerLocation === 'topLeft' ) {
+      backgroundShapeMatrix = Matrix3.scaling( -1, 1 );
+    }
+    else if ( options.pointerLocation === 'bottomRight' ) {
+      backgroundShapeMatrix = Matrix3.scaling( 1, -1 );
+    }
+    else if ( options.pointerLocation === 'bottomLeft' ) {
+      backgroundShapeMatrix = Matrix3.scaling( -1, -1 );
+    }
+    else {
+      throw new Error( 'unsupported options.pointerLocation: ' + options.pointerLocation );
+    }
+
+    // Shape for the pointer at top-right. Proceed clockwise from the tip of the pointer.
     var backgroundShape = new Shape()
       .moveTo( 0, 0 )
       .lineTo( -POINTER_WIDTH_PERCENTAGE * options.backgroundWidth, ( POINTER_HEIGHT_PERCENTAGE * options.backgroundHeight ) - options.backgroundCornerRadius )
@@ -64,7 +85,8 @@ define( function( require ) {
       .arc( -options.backgroundWidth + options.backgroundCornerRadius, options.backgroundHeight - options.backgroundCornerRadius, options.backgroundCornerRadius, Math.PI / 2, Math.PI, false )
       .lineTo( -options.backgroundWidth, options.backgroundCornerRadius )
       .arc( -options.backgroundWidth + options.backgroundCornerRadius, options.backgroundCornerRadius, options.backgroundCornerRadius, Math.PI, 1.5 * Math.PI, false )
-      .close();
+      .close()
+      .transformed( backgroundShapeMatrix );
     var backgroundNode = new Path( backgroundShape, {
       lineWidth: options.backgroundLineWidth,
       stroke: options.backgroundStroke,
@@ -96,7 +118,7 @@ define( function( require ) {
     moleculeAndFormula.setScaleMagnitude( 0.7 ); //TODO compute scale
 
     // rendering order
-    if ( options.showShadow ) {
+    if ( options.shadowVisible ) {
       thisNode.addChild( shadowNode );
     }
     thisNode.addChild( backgroundNode );
@@ -107,10 +129,15 @@ define( function( require ) {
     // layout
     shadowNode.x = backgroundNode.x + options.shadowXOffset;
     shadowNode.y = backgroundNode.y + options.shadowYOffset;
-    valueBackgroundNode.left = backgroundNode.left + options.backgroundXMargin;
+    if ( options.pointerLocation === 'topRight' || options.pointerLocation === 'bottomRight' ) {
+      valueBackgroundNode.left = backgroundNode.left + options.backgroundXMargin;
+    }
+    else {
+      valueBackgroundNode.right = backgroundNode.right - options.backgroundXMargin;
+    }
     valueBackgroundNode.top = backgroundNode.top + options.backgroundYMargin;
     moleculeAndFormula.centerX = valueBackgroundNode.centerX;
-    moleculeAndFormula.centerY = 0.75 * backgroundNode.height;
+    moleculeAndFormula.top = valueBackgroundNode.bottom + options.ySpacing;
 
     // sync with value
     valueProperty.link( function( value ) {

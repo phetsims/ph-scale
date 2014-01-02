@@ -37,7 +37,8 @@ LOW
 - lots of stuff copied from beers-law-lab, much of it tweaked slightly
 - English strings have been capitalized, translations have not
 - port strings from Java
-- 'H3O+/OH- ratio' label is a few pixels low on check box
+- vertical alignment of formulas is off, HTMLText bounds issue, scenery#190
+- consider moving 'basics' package to ph-scale-basics, ph-scale-basics#7
 - TODO items in code
 
 MIGRATE TO COMMON

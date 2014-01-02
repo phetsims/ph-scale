@@ -14,7 +14,7 @@ define( function( require ) {
   var GraphScale = require( 'PH_SCALE/common/view/GraphScale' );
   var GraphUnits = require( 'PH_SCALE/common/view/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var LinearConcentrationGraph = require( 'PH_SCALE/common/view/LinearConcentrationGraph' );
+  var LogConcentrationGraph = require( 'PH_SCALE/common/view/LogConcentrationGraph' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -64,7 +64,7 @@ define( function( require ) {
       size: new Dimension2( 50, 25 ) } );
 
     var scaleHeight = GRAPH_SIZE.height - unitsSwitch.height - zoomParent.height - scaleSwitch.height - ( 3 * Y_SPACING );
-    var concentrationGraph = new LinearConcentrationGraph( solution, scaleHeight );
+    var concentrationGraph = new LogConcentrationGraph( solution, scaleHeight );
 
     // rendering order
     thisNode.addChild( guideNode );

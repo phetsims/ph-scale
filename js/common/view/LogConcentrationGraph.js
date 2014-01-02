@@ -23,7 +23,7 @@ define( function( require ) {
   var TICK_LENGTH = 10;
   var TICK_X_SPACING = 5;
 
-  function LinearConcentrationGraph( solution, scaleHeight ) {
+  function LogConcentrationGraph( solution, scaleHeight ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -72,5 +72,5 @@ define( function( require ) {
     return new HTMLText( '10<span style="font-size:85%"><sup>' + exponent + '</sup></span>', { font: TICK_FONT, fill: 'black' } );
   };
 
-  return inherit( Node, LinearConcentrationGraph );
+  return inherit( Node, LogConcentrationGraph );
 } );

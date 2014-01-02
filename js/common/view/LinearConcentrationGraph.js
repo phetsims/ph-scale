@@ -59,9 +59,10 @@ define( function( require ) {
       tickLabel.centerY = leftLine.centerY;
     }
 
-    //XXX
+    //XXX this is a test, to be deleted
     var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-    thisNode.addChild( new GraphIndicatorNode( new Property( 0.000000000000012 ), new H3OMoleculeNode(),
+    thisNode.addChild( new GraphIndicatorNode( new Property( 0.000000000000012 ),
+      new H3OMoleculeNode(),
       new HTMLText( 'H<sub>3</sub>O<sup>+</sup>', { font: new PhetFont( 28 ), fill: 'white' } ),
       PHScaleColors.ACIDIC,
       { x: 5, y: 50 }) );

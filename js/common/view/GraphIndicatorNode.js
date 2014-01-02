@@ -44,7 +44,11 @@ define( function( require ) {
       valueYMargin: 3,
       xSpacing: 8,
       ySpacing: 4,
-      precision: 2
+      precision: 2,
+      showShadow: true,
+      shadowFill: 'rgba(220,220,220,0.6)',
+      shadowXOffset: 3,
+      shadowYOffset: 5
     }, options );
 
     var thisNode = this;
@@ -64,6 +68,10 @@ define( function( require ) {
       lineWidth: options.backgroundLineWidth,
       stroke: options.backgroundStroke,
       fill: options.backgroundFill } );
+
+    var shadowNode = new Path( backgroundShape, {
+      fill: options.shadowFill
+    });
 
     // Cutout where the value is displayed.
     var valueBackgroundNode = new Rectangle( 0, 0,
@@ -87,12 +95,17 @@ define( function( require ) {
     moleculeAndFormula.setScaleMagnitude( 0.7 ); //TODO compute scale
 
     // rendering order
+    if ( options.showShadow ) {
+      thisNode.addChild( shadowNode );
+    }
     thisNode.addChild( backgroundNode );
     thisNode.addChild( valueBackgroundNode );
     thisNode.addChild( valueNode );
     thisNode.addChild( moleculeAndFormula );
 
     // layout
+    shadowNode.x = backgroundNode.x + options.shadowXOffset;
+    shadowNode.y = backgroundNode.y + options.shadowYOffset;
     valueBackgroundNode.left = backgroundNode.left + options.backgroundXMargin;
     valueBackgroundNode.top = backgroundNode.top + options.backgroundYMargin;
     moleculeAndFormula.centerX = valueBackgroundNode.centerX;
@@ -104,6 +117,8 @@ define( function( require ) {
       valueNode.centerX = valueBackgroundNode.centerX;
       valueNode.centerY = valueBackgroundNode.centerY;
     });
+
+    thisNode.mutate( options );
   }
 
   return inherit( Node, GraphIndicatorNode );

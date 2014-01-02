@@ -1,3 +1,4 @@
+1/2/14 add optional drop-shadow to graph indicator
 12/26/13 more work on graph indicator
 12/26/13 partial implementation of graph indicator
 12/23/13 remove unused imports, identified by adding 'unused: true' to jshint-options.js

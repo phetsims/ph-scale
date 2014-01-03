@@ -18,17 +18,15 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
 
   /**
-   * @param {Solution} solution
+   * @param {Property<Number>} valueProperty
    * @param {*} options
    * @constructor
    */
-  function H2OIndicatorNode( solution, options ) {
-    options.pointerLocation = 'bottomLeft';
+  function H2OIndicatorNode( valueProperty, options ) {
+    options = _.extend( { pointerLocation: 'bottomLeft' }, options );
     var thisNode = this;
-    var valueProperty = new Property( 55 ); //TODO compute initial value
     var labelNode = new HTMLText( 'H<sub>2</sub>O', { font: new PhetFont( 28 ), fill: 'white' } );
     GraphIndicatorNode.call( thisNode, valueProperty, new H2OMoleculeNode(), labelNode, PHScaleColors.H2O_BACKGROUND, options );
-    //TODO update valueProperty when solution changes
   }
 
   return inherit( GraphIndicatorNode, H2OIndicatorNode );

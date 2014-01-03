@@ -184,7 +184,7 @@ define( function( require ) {
 
     // sync with value
     valueProperty.link( function( value ) {
-      valueNode.text = PHUtils.toTimesTenString( value, options.precision );
+      valueNode.text = ( value === null )? '-' : PHUtils.toTimesTenString( value, options.precision );
       valueNode.centerX = valueBackgroundNode.centerX;
       valueNode.centerY = valueBackgroundNode.centerY;
     });

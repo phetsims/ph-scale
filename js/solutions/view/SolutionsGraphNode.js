@@ -47,11 +47,18 @@ define( function( require ) {
       size: new Dimension2( 50, 25 ) } );
 
     var scaleHeight = GRAPH_SIZE.height - unitsSwitch.height - Y_SPACING;
-    var concentrationGraph = new LogConcentrationGraph( solution, scaleHeight );
+    var concentrationGraph = new LogConcentrationGraph( solution, {
+      scaleHeight: scaleHeight,
+      isInteractive: false
+    } );
+
+    //TODO add quantityGraph
+    var quantityGraph = new Rectangle( 0, 0, 75, scaleHeight, 20, 20, { stroke: 'black', lineWidth: 2 } );
 
     // rendering order
     thisNode.addChild( guideNode );
     thisNode.addChild( concentrationGraph );
+    thisNode.addChild( quantityGraph );
     thisNode.addChild( unitsSwitch );
 
     // layout
@@ -59,6 +66,14 @@ define( function( require ) {
     unitsSwitch.top = guideNode.top;
     concentrationGraph.centerX = unitsSwitch.centerX;
     concentrationGraph.top = unitsSwitch.bottom + Y_SPACING;
+    quantityGraph.centerX = concentrationGraph.centerX;
+    quantityGraph.top = concentrationGraph.top;
+
+    // toggle visibility of graphs depending on which units are selected
+    graphUnitsProperty.link( function( graphUnits ) {
+      concentrationGraph.visible = ( graphUnits === GraphUnits.MOLES_PER_LITER );
+      quantityGraph.visible = ( graphUnits === GraphUnits.MOLES );
+    } );
   }
 
   return inherit( Node, SolutionsGraphNode );

@@ -1,3 +1,4 @@
+1/3/14 optional handle on graph indicators
 1/2/14 move graph components to common/view/graph/
 1/2/14 create subtypes for graph indicators
 1/2/14 support various locations of pointer on graph indicator

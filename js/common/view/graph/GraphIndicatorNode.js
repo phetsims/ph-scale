@@ -40,7 +40,7 @@ define( function( require ) {
       backgroundHeight: 80,
       backgroundCornerRadius: 10,
       backgroundStroke: 'black',
-      backgroundLineWidth: 1,
+      backgroundLineWidth: 2,
       backgroundXMargin: 10,
       backgroundYMargin: 8,
       valueXMargin: 5,
@@ -51,7 +51,8 @@ define( function( require ) {
       shadowVisible: true, //TODO this should be false by default
       shadowFill: 'rgba(220,220,220,0.7)',
       shadowXOffset: 3,
-      shadowYOffset: 5
+      shadowYOffset: 5,
+      handleVisible: true
     }, options );
 
     var thisNode = this;
@@ -59,18 +60,18 @@ define( function( require ) {
     thisNode.setScaleMagnitude( 0.75 ); //TODO eliminate this?
 
     // Transform shapes to support various orientations of pointer.
-    var backgroundShapeMatrix;
+    var shapeMatrix;
     if ( options.pointerLocation === 'topRight' ) {
-      backgroundShapeMatrix = Matrix3.identity(); // background and handle shapes will be drawn with pointer at top-right
+      shapeMatrix = Matrix3.identity(); // background and handle shapes will be drawn with pointer at top-right
     }
     else if ( options.pointerLocation === 'topLeft' ) {
-      backgroundShapeMatrix = Matrix3.scaling( -1, 1 );
+      shapeMatrix = Matrix3.scaling( -1, 1 );
     }
     else if ( options.pointerLocation === 'bottomRight' ) {
-      backgroundShapeMatrix = Matrix3.scaling( 1, -1 );
+      shapeMatrix = Matrix3.scaling( 1, -1 );
     }
     else if ( options.pointerLocation === 'bottomLeft' ) {
-      backgroundShapeMatrix = Matrix3.scaling( -1, -1 );
+      shapeMatrix = Matrix3.scaling( -1, -1 );
     }
     else {
       throw new Error( 'unsupported options.pointerLocation: ' + options.pointerLocation );
@@ -86,15 +87,41 @@ define( function( require ) {
       .lineTo( -options.backgroundWidth, options.backgroundCornerRadius )
       .arc( -options.backgroundWidth + options.backgroundCornerRadius, options.backgroundCornerRadius, options.backgroundCornerRadius, Math.PI, 1.5 * Math.PI, false )
       .close()
-      .transformed( backgroundShapeMatrix );
+      .transformed( shapeMatrix );
     var backgroundNode = new Path( backgroundShape, {
       lineWidth: options.backgroundLineWidth,
       stroke: options.backgroundStroke,
       fill: backgroundFill } );
 
-    // Background shadow
+    // Optional background shadow
     var backgroundShadowNode = new Path( backgroundShape, {
       fill: options.shadowFill
+    });
+
+    // Optional handle
+    var handleWidth = .15 * options.backgroundWidth;
+    var handleHeight = .7 * options.backgroundHeight;
+    var handleThickness = .1 * options.backgroundHeight;
+    var handleRadius = 0.5 * handleThickness;
+    var handleShape = new Shape()
+      .moveTo( 0, 0 )
+      .lineTo( handleWidth - handleThickness/2, 0 )
+      .arc( handleWidth - handleThickness/2, handleThickness/2, handleRadius, -Math.PI/2, 0, false )
+      .lineTo( handleWidth, handleHeight - handleThickness/2 )
+      .arc( handleWidth - handleThickness/2, handleHeight - handleThickness/2, handleRadius, 0, Math.PI/2, false )
+      .lineTo( 0, handleHeight )
+      .lineTo( 0, handleHeight - handleThickness )
+      .lineTo( handleWidth - ( 1.5 * handleThickness ), handleHeight - handleThickness )
+      .arc( handleWidth - 1.5 * handleThickness, handleHeight - 1.5 * handleThickness, handleRadius, Math.PI/2, 0, true )
+      .lineTo( handleWidth - handleThickness, 1.5 * handleThickness )
+      .arc( handleWidth - 1.5 * handleThickness, 1.5 * handleThickness, handleRadius, 0, -Math.PI/2, true )
+      .lineTo( 0, handleThickness )
+      .close().
+      transformed( shapeMatrix );
+    var handleNode = new Path( handleShape, {
+      fill: 'rgb(200,200,200)', //TODO use a gradient to make it look like brushed metal
+      stroke: 'black',
+      lineWidth: 1
     });
 
     // Cutout where the value is displayed.
@@ -122,6 +149,9 @@ define( function( require ) {
     if ( options.shadowVisible ) {
       thisNode.addChild( backgroundShadowNode );
     }
+    if ( options.handleVisible ) {
+      thisNode.addChild( handleNode );
+    }
     thisNode.addChild( backgroundNode );
     thisNode.addChild( valueBackgroundNode );
     thisNode.addChild( valueNode );
@@ -131,11 +161,14 @@ define( function( require ) {
     backgroundShadowNode.x = backgroundNode.x + options.shadowXOffset;
     backgroundShadowNode.y = backgroundNode.y + options.shadowYOffset;
     if ( options.pointerLocation === 'topRight' || options.pointerLocation === 'bottomRight' ) {
+      handleNode.right = backgroundNode.left + 1;
       valueBackgroundNode.left = backgroundNode.left + options.backgroundXMargin;
     }
     else {
+      handleNode.left = backgroundNode.right - 1;
       valueBackgroundNode.right = backgroundNode.right - options.backgroundXMargin;
     }
+    handleNode.centerY = backgroundNode.centerY;
     valueBackgroundNode.top = backgroundNode.top + options.backgroundYMargin;
     moleculeAndFormula.centerX = valueBackgroundNode.centerX;
     moleculeAndFormula.top = valueBackgroundNode.bottom + options.ySpacing;

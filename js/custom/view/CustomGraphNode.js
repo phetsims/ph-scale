@@ -27,7 +27,7 @@ define( function( require ) {
   var molesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
 
   // constants
-  var GRAPH_SIZE = new Dimension2( 325, 600 );
+  var GRAPH_SIZE = new Dimension2( 360, 600 );
   var Y_SPACING = 20;
 
   /**

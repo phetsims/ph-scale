@@ -17,13 +17,6 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
-  // constants
-  var SCALE_Y_MARGIN = 40; // space above/below top/bottom tick marks
-  var SCALE_CORNER_RADIUS = 20;
-  var TICK_FONT = new PhetFont( 22 );
-  var TICK_LENGTH = 10;
-  var TICK_X_SPACING = 5;
-
   /**
    * @param {Solution} solution
    * @param {*} options
@@ -33,16 +26,22 @@ define( function( require ) {
 
     options = _.extend( {
       scaleHeight: 100,
-      isInteractive: false
+      minScaleWidth: 40,
+      scaleYMargin: 40, // space above/below top/bottom tick marks
+      scaleCornerRadius: 20,
+      isInteractive: false,
+      tickFont: new PhetFont( 22 ),
+      tickLength: 10,
+      tickXSpacing: 5
     }, options );
 
     var thisNode = this;
     Node.call( thisNode );
 
     // background for the scale, width sized to fit
-    var widestTickLabel = createTickLabel( PHScaleConstants.CONCENTRATION_EXPONENT_RANGE.min );
-    var scaleWidth = widestTickLabel.width + ( 2 * TICK_X_SPACING ) + ( 2 * TICK_LENGTH );
-    var backgroundNode = new Rectangle( 0, 0, scaleWidth, options.scaleHeight, SCALE_CORNER_RADIUS, SCALE_CORNER_RADIUS, {
+    var widestTickLabel = createTickLabel( PHScaleConstants.CONCENTRATION_EXPONENT_RANGE.min, options.tickFont );
+    var scaleWidth = Math.max( options.minScaleWidth, widestTickLabel.width + ( 2 * options.tickXSpacing ) + ( 2 * options.tickLength ) );
+    var backgroundNode = new Rectangle( 0, 0, scaleWidth, options.scaleHeight, options.scaleCornerRadius, options.scaleCornerRadius, {
       fill: new LinearGradient( 0, 0, 0, options.scaleHeight ).addColorStop( 0, 'rgb(200,200,200)' ).addColorStop( 1, 'white' ),
       stroke: 'black',
       lineWidth: 2
@@ -51,23 +50,23 @@ define( function( require ) {
 
     // tick marks
     var numberOfTicks = ( PHScaleConstants.CONCENTRATION_EXPONENT_RANGE.getLength() / 2 ) + 1; // every-other exponent
-    var ySpacing = ( options.scaleHeight - ( 2 * SCALE_Y_MARGIN ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
+    var ySpacing = ( options.scaleHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
     var tickLabel, leftLine, rightLine;
     for ( var i = 0; i < numberOfTicks; i++ ) {
       // nodes
-      leftLine = new Line( 0, 0, TICK_LENGTH, 0, { stroke: 'black' } );
-      rightLine = new Line( 0, 0, TICK_LENGTH, 0, { stroke: 'black' } );
-      tickLabel = createTickLabel( PHScaleConstants.CONCENTRATION_EXPONENT_RANGE.max - ( 2 * i ) );
+      leftLine = new Line( 0, 0, options.tickLength, 0, { stroke: 'black' } );
+      rightLine = new Line( 0, 0, options.tickLength, 0, { stroke: 'black' } );
+      tickLabel = createTickLabel( PHScaleConstants.CONCENTRATION_EXPONENT_RANGE.max - ( 2 * i ), options.tickFont );
       // rendering order
       thisNode.addChild( leftLine );
       thisNode.addChild( rightLine );
       thisNode.addChild( tickLabel );
       // layout
       leftLine.left = backgroundNode.left;
-      leftLine.centerY = SCALE_Y_MARGIN + ( i * ySpacing );
+      leftLine.centerY = options.scaleYMargin + ( i * ySpacing );
       rightLine.right = backgroundNode.right;
       rightLine.centerY = leftLine.centerY;
-      tickLabel.left = leftLine.right + TICK_X_SPACING;
+      tickLabel.left = leftLine.right + options.tickXSpacing;
       tickLabel.centerY = leftLine.centerY;
     }
 
@@ -76,13 +75,13 @@ define( function( require ) {
     var concentrationH3OProperty = new Property( null );
     var concentrationOHProperty = new Property( null );
     var h2OIndicatorNode = new H2OIndicatorNode( concentrationH2OProperty, {
-      x: backgroundNode.right - TICK_LENGTH / 2 } );
+      x: backgroundNode.right - options.tickLength / 2 } );
     var h3OIndicatorNode = new H3OIndicatorNode( concentrationH3OProperty, {
-      x: backgroundNode.left + TICK_LENGTH / 2,
+      x: backgroundNode.left + options.tickLength / 2,
       handleVisible: options.isInteractive,
       shadowVisible: options.isInteractive } );
     var oHIndicatorNode = new OHIndicatorNode( concentrationOHProperty, {
-      x: backgroundNode.right - TICK_LENGTH / 2,
+      x: backgroundNode.right - options.tickLength / 2,
       handleVisible: options.isInteractive,
       shadowVisible: options.isInteractive } );
     thisNode.addChild( h2OIndicatorNode );
@@ -112,8 +111,8 @@ define( function( require ) {
     }
   }
 
-  var createTickLabel = function( exponent ) {
-    return new HTMLText( '10<span style="font-size:85%"><sup>' + exponent + '</sup></span>', { font: TICK_FONT, fill: 'black' } );
+  var createTickLabel = function( exponent, font ) {
+    return new HTMLText( '10<span style="font-size:85%"><sup>' + exponent + '</sup></span>', { font: font, fill: 'black' } );
   };
 
   return inherit( Node, LogConcentrationGraph );

@@ -13,7 +13,7 @@ DESIGN
 HIGHEST
 
 HIGH
-- PHUtils.toTimesTenString appears to be buggy, sometimes shows values like '0.000012'
+- PHUtils.toTimesTenString appears to be buggy, eg shows H3O concentration of '0.0000016' for 'Chicken Soup'
 - move graph indicators when concentrations change
 - add interactivity to H3O and OH indicators in Custom screen
 - implement quantity graph

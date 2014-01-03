@@ -52,7 +52,8 @@ define( function( require ) {
       shadowFill: 'rgba(220,220,220,0.7)',
       shadowXOffset: 3,
       shadowYOffset: 5,
-      handleVisible: false
+      handleVisible: false,
+      nullValueString: '-'
     }, options );
 
     var thisNode = this;
@@ -184,7 +185,7 @@ define( function( require ) {
 
     // sync with value
     valueProperty.link( function( value ) {
-      valueNode.text = ( value === null )? '-' : PHUtils.toTimesTenString( value, options.precision );
+      valueNode.text = ( value === null )? options.nullValueString : PHUtils.toTimesTenString( value, options.precision );
       valueNode.centerX = valueBackgroundNode.centerX;
       valueNode.centerY = valueBackgroundNode.centerY;
     });

@@ -8,25 +8,24 @@ DESIGN
 - Solutions: screen is cluttered and crowded
 - Solutions: interference between pH and volume indicators
 - Solutions: difficult to align scales and inefficient use of vertical space with pH value display
+- shrink the 'Molecule counts' feature?
 
 HIGHEST
 
 HIGH
+- PHUtils.toTimesTenString appears to be buggy, sometimes shows values like '0.000012'
+- move graph indicators when concentrations change
+- add interactivity to H3O and OH indicators in Custom screen
+- implement quantity graph
 - Solutions: log graph, not interactive
 - when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
-- Custom: interactive log graph
 - Custom: interactive linear graph, zoom feature
 - 'H3O+/OH- ratio' feature
 - gray out left or right title in graph's expand/collapse bar
-- Solutions: maximize width of beaker
-- shrink the 'Molecule counts' feature
 - vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)
 
 MEDIUM
 - ComboBox: add background color behind arrow button (sun#43)
-- drop shadow on interactive indicators on graph
-- put both zoom buttons at top of linear scale
-- constrain pH and volume so that student computations match displayed values, as in Java sim
 - don't update things that aren't visible (Molecule counts, Ratio, collapsed pH meter, collapsed graph)
 
 LOW

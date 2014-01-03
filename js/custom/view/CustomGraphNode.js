@@ -1,5 +1,6 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
+//TODO lots of duplication with SolutionsGraphNode
 /**
  * The graph for the 'Custom' screen.
  *

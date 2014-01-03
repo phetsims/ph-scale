@@ -52,7 +52,7 @@ define( function( require ) {
       shadowFill: 'rgba(220,220,220,0.7)',
       shadowXOffset: 3,
       shadowYOffset: 5,
-      handleVisible: true
+      handleVisible: true //TODO this should be false by default
     }, options );
 
     var thisNode = this;
@@ -105,23 +105,28 @@ define( function( require ) {
     var handleRadius = 0.5 * handleThickness;
     var handleShape = new Shape()
       .moveTo( 0, 0 )
-      .lineTo( handleWidth - handleThickness/2, 0 )
-      .arc( handleWidth - handleThickness/2, handleThickness/2, handleRadius, -Math.PI/2, 0, false )
-      .lineTo( handleWidth, handleHeight - handleThickness/2 )
-      .arc( handleWidth - handleThickness/2, handleHeight - handleThickness/2, handleRadius, 0, Math.PI/2, false )
+      .lineTo( -handleWidth + handleThickness/2, 0 )
+      .arc( -handleWidth + handleThickness/2, handleThickness/2, handleRadius, -Math.PI/2, -Math.PI, true )
+      .lineTo( -handleWidth, handleHeight - handleThickness/2 )
+      .arc( -handleWidth + handleThickness/2, handleHeight - handleThickness/2, handleRadius, Math.PI, Math.PI/2, true )
       .lineTo( 0, handleHeight )
       .lineTo( 0, handleHeight - handleThickness )
-      .lineTo( handleWidth - ( 1.5 * handleThickness ), handleHeight - handleThickness )
-      .arc( handleWidth - 1.5 * handleThickness, handleHeight - 1.5 * handleThickness, handleRadius, Math.PI/2, 0, true )
-      .lineTo( handleWidth - handleThickness, 1.5 * handleThickness )
-      .arc( handleWidth - 1.5 * handleThickness, 1.5 * handleThickness, handleRadius, 0, -Math.PI/2, true )
+      .lineTo( -handleWidth + 1.5 * handleThickness, handleHeight - handleThickness )
+      .arc( -handleWidth + 1.5 * handleThickness, handleHeight - 1.5 * handleThickness, handleRadius, Math.PI/2, Math.PI, false )
+      .lineTo( -handleWidth + handleThickness, 1.5 * handleThickness )
+      .arc( -handleWidth + 1.5 * handleThickness, 1.5 * handleThickness, handleRadius, -Math.PI, -Math.PI/2, false )
       .lineTo( 0, handleThickness )
       .close().
       transformed( shapeMatrix );
     var handleNode = new Path( handleShape, {
-      fill: 'rgb(200,200,200)', //TODO use a gradient to make it look like brushed metal
+      fill: 'rgb(220,220,220)', //TODO use a gradient to make it look like brushed metal
       stroke: 'black',
       lineWidth: 1
+    });
+
+    // Optional handle shadow
+    var handleShadowNode = new Path( handleShape, {
+      fill: options.shadowFill
     });
 
     // Cutout where the value is displayed.
@@ -148,6 +153,7 @@ define( function( require ) {
     // rendering order
     if ( options.shadowVisible ) {
       thisNode.addChild( backgroundShadowNode );
+      thisNode.addChild( handleShadowNode );
     }
     if ( options.handleVisible ) {
       thisNode.addChild( handleNode );
@@ -157,7 +163,7 @@ define( function( require ) {
     thisNode.addChild( valueNode );
     thisNode.addChild( moleculeAndFormula );
 
-    // layout
+    // layout, relative to backgroundNode
     backgroundShadowNode.x = backgroundNode.x + options.shadowXOffset;
     backgroundShadowNode.y = backgroundNode.y + options.shadowYOffset;
     if ( options.pointerLocation === 'topRight' || options.pointerLocation === 'bottomRight' ) {
@@ -169,6 +175,8 @@ define( function( require ) {
       valueBackgroundNode.right = backgroundNode.right - options.backgroundXMargin;
     }
     handleNode.centerY = backgroundNode.centerY;
+    handleShadowNode.x = handleNode.x + options.shadowXOffset;
+    handleShadowNode.y = handleNode.y + options.shadowYOffset;
     valueBackgroundNode.top = backgroundNode.top + options.backgroundYMargin;
     moleculeAndFormula.centerX = valueBackgroundNode.centerX;
     moleculeAndFormula.top = valueBackgroundNode.bottom + options.ySpacing;

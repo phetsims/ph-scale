@@ -64,8 +64,8 @@ define( function( require ) {
       var H3OIndicatorNode = require( 'PH_SCALE/common/view/graph/H3OIndicatorNode' );
       var OHIndicatorNode = require( 'PH_SCALE/common/view/graph/OHIndicatorNode' );
 
-      thisNode.addChild( new H3OIndicatorNode( solution, { x: 5, y: 300 } ) );
-      thisNode.addChild( new OHIndicatorNode( solution, { x: 75, y: 400 } ) );
+      thisNode.addChild( new H3OIndicatorNode( solution, { x: 5, y: 300, handleVisible: true, shadowVisible: true } ) );
+      thisNode.addChild( new OHIndicatorNode( solution, { x: 75, y: 400, handleVisible: true, shadowVisible: true } ) );
       thisNode.addChild( new H2OIndicatorNode( solution, { x: 75, y: 60 } ) );
     }
   }

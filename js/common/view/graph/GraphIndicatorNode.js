@@ -48,11 +48,11 @@ define( function( require ) {
       xSpacing: 8,
       ySpacing: 4,
       precision: 2,
-      shadowVisible: true, //TODO this should be false by default
+      shadowVisible: false,
       shadowFill: 'rgba(220,220,220,0.7)',
       shadowXOffset: 3,
       shadowYOffset: 5,
-      handleVisible: true //TODO this should be false by default
+      handleVisible: false
     }, options );
 
     var thisNode = this;
@@ -98,6 +98,7 @@ define( function( require ) {
       fill: options.shadowFill
     });
 
+    //TODO make this shape look more like the mockups?
     // Optional handle
     var handleWidth = .15 * options.backgroundWidth;
     var handleHeight = .7 * options.backgroundHeight;

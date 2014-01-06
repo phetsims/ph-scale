@@ -107,12 +107,14 @@ define( function( require ) {
     // graph
     var graphNode = new SolutionsGraphNode( model.solution, viewProperties.graphUnitsProperty );
     var graphExpandCollapseBar = new ExpandCollapseBar( concentrationString, viewProperties.graphVisibleProperty, {
-      rightTitle: quantityString,
       size: new Dimension2( graphNode.width, 40 )
     } );
     viewProperties.graphVisibleProperty.link( function( visible ) {
       graphNode.visible = visible;
     } );
+    viewProperties.graphUnitsProperty.link( function( graphUnits ) {
+      graphExpandCollapseBar.setTitle( ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentrationString : quantityString );
+    });
 
     // solutes combo box
     var soluteListParent = new Node();
@@ -163,17 +165,6 @@ define( function( require ) {
     graphNode.top = pHMeterNode.top;
     resetAllButton.left = beakerControls.right + 30;
     resetAllButton.centerY = beakerControls.centerY;
-
-    //TODO delete this test
-//    {
-//      var OnOffSwitch = require( 'PH_SCALE/common/view/OnOffSwitch' );
-//      var p1 = new Property( true );
-//      var p2 = new Property( false );
-//      rootNode.addChild( new OnOffSwitch( p1, { x: 725, y: 400 } ) );
-//      rootNode.addChild( new OnOffSwitch( p2, { x: 725, y: 450 } ) );
-//      p1.link( function( value ) { console.log( 'p1=' + value ); } );
-//      p2.link( function( value ) { console.log( 'p2=' + value ); } );
-//    }
   }
 
   return inherit( ScreenView, SolutionsView, { layoutBounds: PHScaleConstants.LAYOUT_BOUNDS } );

@@ -34,8 +34,7 @@ define( function( require ) {
       barFill: 'rgb(135,19,70)',
       barStroke: null,
       titleFont: new PhetFont( { size: 18, weight: 'bold' } ),
-      titleFill: 'white',
-      rightTitle: null // {String} optional second title that appears on the right end of the bar
+      titleFill: 'white'
     }, options );
 
     var thisNode = this;
@@ -50,10 +49,10 @@ define( function( require ) {
 
     // title on left end of bar
     var titleOptions = { font: options.titleFont, fill: options.titleFill };
-    var titleNode = new Text( title, titleOptions );
-    thisNode.addChild( titleNode );
-    titleNode.left = barNode.left + options.xMargin;
-    titleNode.centerY = barNode.centerY;
+    this.titleNode = new Text( title, titleOptions ); // private
+    thisNode.addChild( this.titleNode );
+    this.titleNode.left = barNode.left + options.xMargin;
+    this.titleNode.centerY = barNode.centerY;
     
     // expand/collapse button
     var button = new ExpandCollapseButton( 0.7 * options.size.height, visibleProperty );
@@ -61,15 +60,11 @@ define( function( require ) {
     button.right = barNode.right - options.xMargin;
     button.centerY = barNode.centerY;
     button.touchArea = Shape.bounds( button.localBounds.dilatedXY( 10, 10 ) );
-
-    // optional title on right end of bar
-    if ( options.rightTitle !== null ) {
-      var rightTitleNode = new Text( options.rightTitle, titleOptions );
-      thisNode.addChild( rightTitleNode );
-      rightTitleNode.right = button.left - 10;
-      rightTitleNode.centerY = button.centerY;
-    }
   }
 
-  return inherit( Node, ExpandCollapseBar );
+  return inherit( Node, ExpandCollapseBar, {
+    setTitle: function( title ) {
+      this.titleNode.text = title;
+    }
+  } );
 } );

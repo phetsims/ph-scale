@@ -86,6 +86,11 @@ define( function( require ) {
     scaleSwitch.bottom = guideNode.bottom;
     zoomParent.centerX = guideNode.centerX;
     zoomParent.bottom = scaleSwitch.top - Y_SPACING;
+
+    // handle scale changes
+    graphScaleProperty.link( function( graphScale ) {
+      zoomParent.visible = ( graphScale === GraphScale.LINEAR );
+    });
   }
 
   return inherit( Node, CustomGraphNode );

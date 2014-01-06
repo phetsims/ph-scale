@@ -19,8 +19,10 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
   // strings
+  var concentrationString = require( 'string!PH_SCALE/concentration' );
   var molesString = require( 'string!PH_SCALE/units.moles' );
   var molesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
+  var quantityString = require( 'string!PH_SCALE/quantity' );
 
   // constants
   var GRAPH_SIZE = new Dimension2( 325, 550 );
@@ -42,9 +44,12 @@ define( function( require ) {
       lineWidth: 2
     } );
 
-    var unitsSwitch = new ABSwitch( graphUnitsProperty, GraphUnits.MOLES_PER_LITER, molesPerLiterString, GraphUnits.MOLES, molesString, {
-      font: new PhetFont( 18 ),
-      size: new Dimension2( 50, 25 ) } );
+    var unitsSwitch = new ABSwitch( graphUnitsProperty,
+      GraphUnits.MOLES_PER_LITER, concentrationString + '\n(' + molesPerLiterString + ')',
+      GraphUnits.MOLES, quantityString + '\n(' + molesString + ')', {
+        font: new PhetFont( 18 ),
+        size: new Dimension2( 50, 25 )
+      } );
 
     var scaleHeight = GRAPH_SIZE.height - unitsSwitch.height - Y_SPACING;
     var logarithmicGraph = new LogarithmicGraph( solution, graphUnitsProperty, {

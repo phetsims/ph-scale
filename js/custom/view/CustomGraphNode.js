@@ -21,10 +21,12 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
   // strings
+  var concentrationString = require( 'string!PH_SCALE/concentration' );
   var linearString = require( 'string!PH_SCALE/linear' );
   var logarithmicString = require( 'string!PH_SCALE/logarithmic' );
   var molesString = require( 'string!PH_SCALE/units.moles' );
   var molesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
+  var quantityString = require( 'string!PH_SCALE/quantity' );
 
   // constants
   var GRAPH_SIZE = new Dimension2( 360, 600 );
@@ -47,9 +49,12 @@ define( function( require ) {
       lineWidth: 2
     } );
 
-    var unitsSwitch = new ABSwitch( graphUnitsProperty, GraphUnits.MOLES_PER_LITER, molesPerLiterString, GraphUnits.MOLES, molesString, {
+    var unitsSwitch = new ABSwitch( graphUnitsProperty,
+      GraphUnits.MOLES_PER_LITER, concentrationString + '\n(' + molesPerLiterString + ')',
+      GraphUnits.MOLES, quantityString + '\n(' + molesString + ')', {
       font: new PhetFont( 18 ),
-      size: new Dimension2( 50, 25 ) } );
+      size: new Dimension2( 50, 25 )
+      } );
 
     //TODO use sun.PushButton
     var zoomButtonLength = 40;
@@ -62,7 +67,8 @@ define( function( require ) {
 
     var scaleSwitch = new ABSwitch( graphScaleProperty, GraphScale.LOGARITHMIC, logarithmicString, GraphScale.LINEAR, linearString, {
       font: new PhetFont( 18 ),
-      size: new Dimension2( 50, 25 ) } );
+      size: new Dimension2( 50, 25 )
+    } );
 
     var scaleHeight = GRAPH_SIZE.height - unitsSwitch.height - zoomParent.height - scaleSwitch.height - ( 3 * Y_SPACING );
     var logarithmicGraph = new LogarithmicGraph( solution, graphUnitsProperty, {

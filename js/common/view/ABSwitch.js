@@ -1,5 +1,6 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
+//TODO support {Node} for labelA and labelB
 /**
  * Control for switching between 2 choices (A & B).
  * This is an adapter for OnOffProperty, the iOS-like on/off switch.
@@ -15,11 +16,11 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
+  var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
   var OnOffSwitch = require( 'PH_SCALE/common/view/OnOffSwitch' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Property = require( 'AXON/Property' );
-  var Text = require( 'SCENERY/nodes/Text' );
 
   /**
    * @param {Property<*>} property
@@ -34,18 +35,17 @@ define( function( require ) {
 
     // default option values
     options = _.extend( {
-      size: new Dimension2( 60, 30 ),
+      switchSize: new Dimension2( 60, 30 ),
       textFill: 'black',
-      textDisabledFill: 'rgb(160,160,160)',
-      font: new PhetFont( 28 ),
+      font: new PhetFont( 24 ),
       xSpacing: 8,
       cursor: 'pointer',
       centerOnButton: true
     }, options );
     options.trackFill = options.trackFill ||
-                        new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'rgb(40,40,40)' ).addColorStop( 1, 'rgb(200,200,200)' );
+                        new LinearGradient( 0, 0, 0, options.switchSize.height ).addColorStop( 0, 'rgb(40,40,40)' ).addColorStop( 1, 'rgb(200,200,200)' );
     options.thumbFill = options.thumbFill ||
-                        new LinearGradient( 0, 0, 0, options.size.height ).addColorStop( 0, 'white' ).addColorStop( 1, 'rgb(200,200,200)' );
+                        new LinearGradient( 0, 0, 0, options.switchSize.height ).addColorStop( 0, 'white' ).addColorStop( 1, 'rgb(200,200,200)' );
 
     var thisNode = this;
     Node.call( thisNode );
@@ -54,17 +54,17 @@ define( function( require ) {
     var onProperty = new Property( objectB === property.get() );
 
     var onOffSwitch = new OnOffSwitch( onProperty, {
-      size: options.size,
+      size: options.switchSize,
       cursor: options.cursor,
       thumbFill: options.thumbFill,
       trackOnFill: options.trackFill,
       trackOffFill: options.trackFill
     } );
-    var labelANode = new Text( labelA, {
+    var labelANode = new MultiLineText( labelA, {
       fill: options.textFill,
       font: options.font
     } );
-    var labelBNode = new Text( labelB, {
+    var labelBNode = new MultiLineText( labelB, {
       fill: options.textFill,
       font: options.font
     } );
@@ -100,8 +100,7 @@ define( function( require ) {
     } );
     onProperty.link( function( on ) {
       property.set( on ? objectB : objectA );
-      labelANode.fill = on ? options.textDisabledFill : options.textFill;
-      labelBNode.fill = on ? options.textFill : options.textDisabledFill;
+      //TODO if labelA and labelB support 'enabled', then change that property
     } );
 
     // click on labels to select

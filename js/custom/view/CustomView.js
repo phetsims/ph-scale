@@ -33,8 +33,7 @@ define( function( require ) {
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
   // strings
-  var concentrationString = require( 'string!PH_SCALE/concentration' );
-  var quantityString = require( 'string!PH_SCALE/quantity' );
+  var graphString = require( 'string!PH_SCALE/graph' );
 
   /**
    * @param {CustomModel} model
@@ -96,8 +95,7 @@ define( function( require ) {
 
     // graph
     var graphNode = new CustomGraphNode( model.solution, viewProperties.graphUnitsProperty, viewProperties.graphScaleProperty );
-    var graphExpandCollapseBar = new ExpandCollapseBar( concentrationString, viewProperties.graphVisibleProperty, {
-      rightTitle: quantityString,
+    var graphExpandCollapseBar = new ExpandCollapseBar( graphString, viewProperties.graphVisibleProperty, {
       size: new Dimension2( graphNode.width, 40 )
     } );
     viewProperties.graphVisibleProperty.link( function( visible ) {

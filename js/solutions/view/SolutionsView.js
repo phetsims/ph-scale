@@ -34,9 +34,8 @@ define( function( require ) {
   var WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
 
   // strings
-  var concentrationString = require( 'string!PH_SCALE/concentration' );
+  var graphString = require( 'string!PH_SCALE/graph' );
   var pHString = require( 'string!PH_SCALE/pH' );
-  var quantityString = require( 'string!PH_SCALE/quantity' );
 
   /**
    * @param {SolutionsModel} model
@@ -106,15 +105,12 @@ define( function( require ) {
 
     // graph
     var graphNode = new SolutionsGraphNode( model.solution, viewProperties.graphUnitsProperty );
-    var graphExpandCollapseBar = new ExpandCollapseBar( concentrationString, viewProperties.graphVisibleProperty, {
+    var graphExpandCollapseBar = new ExpandCollapseBar( graphString, viewProperties.graphVisibleProperty, {
       size: new Dimension2( graphNode.width, 40 )
     } );
     viewProperties.graphVisibleProperty.link( function( visible ) {
       graphNode.visible = visible;
     } );
-    viewProperties.graphUnitsProperty.link( function( graphUnits ) {
-      graphExpandCollapseBar.setTitle( ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentrationString : quantityString );
-    });
 
     // solutes combo box
     var soluteListParent = new Node();

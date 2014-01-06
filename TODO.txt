@@ -25,6 +25,7 @@ HIGH
 - vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)
 
 MEDIUM
+- change look of label that is 'on' for ABSwitch
 - ComboBox: add background color behind arrow button (sun#43)
 - don't update things that aren't visible (Molecule counts, Ratio, collapsed pH meter, collapsed graph)
 
@@ -42,6 +43,7 @@ LOW
 MIGRATE TO COMMON
 - ExpandCollapseBar
 - OnOffSwitch
+- ABSwitch
 - ChoiceSwitch
 - MovableDragHandler (ph-scale-basics#26)
 - ToggleButton (sun#32)

@@ -9,16 +9,14 @@ DESIGN
 - Solutions: interference between pH and volume indicators
 - Solutions: difficult to align scales and inefficient use of vertical space with pH value display
 - shrink the 'Molecule counts' feature?
+- how do interactive indicators work with the linear scale?
+- how do interactive indicators work with an empty beaker? (which is the initial state)
 
 HIGHEST
 
 HIGH
-- add minor ticks to log graph
 - PHUtils.toTimesTenString appears to be buggy, eg shows H3O concentration of '0.0000016' for 'Chicken Soup'
 - add interactivity to H3O and OH indicators in Custom screen
-- implement quantity graph
-- Solutions: log graph, not interactive
-- when beaker is emptied, try setting values in graph indicators to '0' and position them below 10^-16 (or position at '0' on linear)
 - Custom: interactive linear graph, zoom feature
 - 'H3O+/OH- ratio' feature
 - gray out left or right title in graph's expand/collapse bar

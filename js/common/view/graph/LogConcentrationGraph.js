@@ -31,50 +31,74 @@ define( function( require ) {
   function LogConcentrationGraph( solution, options ) {
 
     options = _.extend( {
+      isInteractive: false,
+      // scale
       scaleHeight: 100,
       minScaleWidth: 40,
       scaleYMargin: 40, // space above/below top/bottom tick marks
       scaleCornerRadius: 20,
-      isInteractive: false,
-      tickFont: new PhetFont( 22 ),
-      tickLength: 10,
-      tickXSpacing: 5
+      scaleStroke: 'black',
+      scaleLineWidth: 2,
+      // major ticks
+      majorTickFont: new PhetFont( 22 ),
+      majorTickLength: 10,
+      majorTickStroke: 'black',
+      majorTickLineWidth: 1,
+      majorTickXSpacing: 5,
+      // minor ticks
+      minorTickLength: 7,
+      minorTickStroke: 'black',
+      minorTickLineWidth: 1
     }, options );
 
     var thisNode = this;
     Node.call( thisNode );
 
     // background for the scale, width sized to fit
-    var widestTickLabel = createTickLabel( PHScaleConstants.CONCENTRATION_EXPONENT_RANGE.min, options.tickFont );
-    var scaleWidth = Math.max( options.minScaleWidth, widestTickLabel.width + ( 2 * options.tickXSpacing ) + ( 2 * options.tickLength ) );
+    var widestTickLabel = createTickLabel( PHScaleConstants.CONCENTRATION_EXPONENT_RANGE.min, options.majorTickFont );
+    var scaleWidth = Math.max( options.minScaleWidth, widestTickLabel.width + ( 2 * options.majorTickXSpacing ) + ( 2 * options.majorTickLength ) );
     var backgroundNode = new Rectangle( 0, 0, scaleWidth, options.scaleHeight, options.scaleCornerRadius, options.scaleCornerRadius, {
       fill: new LinearGradient( 0, 0, 0, options.scaleHeight ).addColorStop( 0, 'rgb(200,200,200)' ).addColorStop( 1, 'white' ),
-      stroke: 'black',
-      lineWidth: 2
+      stroke: options.scaleStroke,
+      lineWidth: options.scaleLineWidth
     } );
     thisNode.addChild( backgroundNode );
 
-    //TODO add minor ticks
+    //TODO take advantage of DAG to reuse tick line nodes
     // tick marks
-    var numberOfTicks = ( PHScaleConstants.CONCENTRATION_EXPONENT_RANGE.getLength() / 2 ) + 1; // every-other exponent
-    var ySpacing = ( options.scaleHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
-    var tickLabel, leftLine, rightLine;
-    for ( var i = 0; i < numberOfTicks; i++ ) {
-      // nodes
-      leftLine = new Line( 0, 0, options.tickLength, 0, { stroke: 'black' } );
-      rightLine = new Line( 0, 0, options.tickLength, 0, { stroke: 'black' } );
-      tickLabel = createTickLabel( PHScaleConstants.CONCENTRATION_EXPONENT_RANGE.max - ( 2 * i ), options.tickFont );
+    var numberOfMajorTicks = ( PHScaleConstants.CONCENTRATION_EXPONENT_RANGE.getLength() / 2 ) + 1; // every-other exponent
+    var ySpacing = ( options.scaleHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfMajorTicks - 1 ); // vertical space between ticks
+    var majorLabel, majorLineLeft, majorLineRight, minorLineLeft, minorLineRight;
+    for ( var i = 0; i < numberOfMajorTicks; i++ ) {
+      // major lines and label
+      majorLineLeft = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
+      majorLineRight = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
+      majorLabel = createTickLabel( PHScaleConstants.CONCENTRATION_EXPONENT_RANGE.max - ( 2 * i ), options.majorTickFont );
       // rendering order
-      thisNode.addChild( leftLine );
-      thisNode.addChild( rightLine );
-      thisNode.addChild( tickLabel );
+      thisNode.addChild( majorLineLeft );
+      thisNode.addChild( majorLineRight );
+      thisNode.addChild( majorLabel );
       // layout
-      leftLine.left = backgroundNode.left;
-      leftLine.centerY = options.scaleYMargin + ( i * ySpacing );
-      rightLine.right = backgroundNode.right;
-      rightLine.centerY = leftLine.centerY;
-      tickLabel.left = leftLine.right + options.tickXSpacing;
-      tickLabel.centerY = leftLine.centerY;
+      majorLineLeft.left = backgroundNode.left;
+      majorLineLeft.centerY = options.scaleYMargin + ( i * ySpacing );
+      majorLineRight.right = backgroundNode.right;
+      majorLineRight.centerY = majorLineLeft.centerY;
+      majorLabel.left = majorLineLeft.right + options.majorTickXSpacing;
+      majorLabel.centerY = majorLineLeft.centerY;
+      // minor lines
+      if ( i !== 0 ) {
+        // minor lines
+        minorLineLeft = new Line( 0, 0, options.minorTickLength, 0, { stroke: options.minorTickStroke, lineWidth: options.minorTickLineWidth } );
+        minorLineRight = new Line( 0, 0, options.minorTickLength, 0, { stroke: options.minorTickStroke, lineWidth: options.minorTickLineWidth } );
+        // rendering order
+        thisNode.addChild( minorLineLeft );
+        thisNode.addChild( minorLineRight );
+        // layout
+        minorLineLeft.left = backgroundNode.left;
+        minorLineLeft.centerY = majorLineLeft.centerY - ( ySpacing / 2 );
+        minorLineRight.right = backgroundNode.right;
+        minorLineRight.centerY = minorLineLeft.centerY;
+      }
     }
 
     // indicators & associated properties
@@ -82,13 +106,13 @@ define( function( require ) {
     var concentrationH3OProperty = new Property( null );
     var concentrationOHProperty = new Property( null );
     var h2OIndicatorNode = new H2OIndicatorNode( concentrationH2OProperty, {
-      x: backgroundNode.right - options.tickLength / 2 } );
+      x: backgroundNode.right - options.majorTickLength / 2 } );
     var h3OIndicatorNode = new H3OIndicatorNode( concentrationH3OProperty, {
-      x: backgroundNode.left + options.tickLength / 2,
+      x: backgroundNode.left + options.majorTickLength / 2,
       handleVisible: options.isInteractive,
       shadowVisible: options.isInteractive } );
     var oHIndicatorNode = new OHIndicatorNode( concentrationOHProperty, {
-      x: backgroundNode.right - options.tickLength / 2,
+      x: backgroundNode.right - options.majorTickLength / 2,
       handleVisible: options.isInteractive,
       shadowVisible: options.isInteractive } );
     thisNode.addChild( h2OIndicatorNode );

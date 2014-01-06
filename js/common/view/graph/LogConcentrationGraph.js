@@ -21,6 +21,7 @@ define( function( require ) {
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Util = require( 'DOT/Util' );
 
   /**
    * @param {Solution} solution
@@ -53,6 +54,7 @@ define( function( require ) {
     } );
     thisNode.addChild( backgroundNode );
 
+    //TODO add minor ticks
     // tick marks
     var numberOfTicks = ( PHScaleConstants.CONCENTRATION_EXPONENT_RANGE.getLength() / 2 ) + 1; // every-other exponent
     var ySpacing = ( options.scaleHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
@@ -93,22 +95,38 @@ define( function( require ) {
     thisNode.addChild( h3OIndicatorNode );
     thisNode.addChild( oHIndicatorNode );
 
-    //XXX delete this block
-    {
-      h2OIndicatorNode.y = 60;
-      h3OIndicatorNode.y = 300;
-      oHIndicatorNode.y = 400;
-    }
-
-    // Move the indicators and update their values.
-    var update = function() {
-      concentrationH2OProperty.set( solution.getConcentrationH2O() );
-      concentrationH3OProperty.set( solution.getConcentrationH3O() );
-      concentrationOHProperty.set( solution.getConcentrationOH() );
-      //TODO move indicators
+    // Given a value, compute it's y position relative to the top of the scale.
+    var computeIndicatorY = function( value ) {
+      if ( value === 0 ) {
+        // below the bottom tick
+        return options.scaleHeight - ( 0.5 * options.scaleYMargin );
+      }
+      else {
+        // between the top and bottom tick
+        var maxHeight = ( options.scaleHeight - 2 * options.scaleYMargin );
+        var maxExponent = PHScaleConstants.CONCENTRATION_EXPONENT_RANGE.max;
+        var minExponent = PHScaleConstants.CONCENTRATION_EXPONENT_RANGE.min;
+        var valueExponent = Util.log10( value );
+        return options.scaleYMargin + maxHeight - ( maxHeight * ( valueExponent - minExponent ) / ( maxExponent - minExponent ) );
+      }
     };
-    //TODO which other properties should be linked?
-    solution.pHProperty.link( update.bind( thisNode ) );
+
+    // Update the indicators
+    var updateIndicators = function() {
+      var concentrationH2O = solution.getConcentrationH2O();
+      var concentrationH3O = solution.getConcentrationH3O();
+      var concentrationOH = solution.getConcentrationOH();
+      // move indicators
+      h2OIndicatorNode.y = computeIndicatorY( concentrationH2O );
+      h3OIndicatorNode.y = computeIndicatorY( concentrationH3O );
+      oHIndicatorNode.y = computeIndicatorY( concentrationOH );
+      // update indicator values
+      concentrationH2OProperty.set( concentrationH2O );
+      concentrationH3OProperty.set( concentrationH3O );
+      concentrationOHProperty.set( concentrationOH );
+    };
+    solution.pHProperty.link( updateIndicators.bind( thisNode ) );
+    solution.volumeProperty.link( updateIndicators.bind( thisNode ) );
 
     if ( options.isInteractive ) {
       //TODO add interactivity for H3O and OH indicators

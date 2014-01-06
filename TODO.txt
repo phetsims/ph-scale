@@ -11,6 +11,8 @@ DESIGN
 - shrink the 'Molecule counts' feature?
 - how do interactive indicators work with the linear scale?
 - how do interactive indicators work with an empty beaker? (which is the initial state)
+- is range of interactive indicators limited so that pH stays in range [-1,15] ?
+- Custom: is it really OK that we can't directly change the pH value to see how the graph changes?
 
 HIGHEST
 

@@ -135,7 +135,7 @@ define( function( require ) {
     graphExpandCollapseBar.right = drainFaucetNode.left - 50;
     graphExpandCollapseBar.top = 20;
     graphNode.centerX = graphExpandCollapseBar.centerX;
-    graphNode.top = graphExpandCollapseBar.bottom + 20;
+    graphNode.top = graphExpandCollapseBar.bottom + 10;
     resetAllButton.left = beakerControls.right + 30;
     resetAllButton.centerY = beakerControls.centerY;
   }

@@ -153,7 +153,7 @@ define( function( require ) {
     soluteComboBox.top = this.layoutBounds.top + 15;
     pHMeterExpandCollapseBar.right = drainFaucetNode.left - 40;
     pHMeterExpandCollapseBar.top = 20;
-    pHMeterNode.top = pHMeterExpandCollapseBar.bottom + 20;
+    pHMeterNode.top = pHMeterExpandCollapseBar.bottom + 10;
     pHMeterNode.centerX = pHMeterExpandCollapseBar.centerX;
     graphExpandCollapseBar.right = pHMeterExpandCollapseBar.left - 20;
     graphExpandCollapseBar.top = pHMeterExpandCollapseBar.top;

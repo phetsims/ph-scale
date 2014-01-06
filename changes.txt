@@ -1,3 +1,4 @@
+1/6/14 wire up log graph to display quantity (moles)
 1/6/14 add minor tick marks to graph, add options
 1/6/14 move graph indicators when concentrations change
 1/3/14 add additional options to LogConcentrationGraph

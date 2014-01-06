@@ -26,7 +26,7 @@ define( function( require ) {
     VOLUME_DECIMAL_PLACES: 2,
     MIN_SOLUTION_VOLUME: 0.015,  // L, minimum non-zero volume for solution, so it's visible and measurable
 
-    // concentration
-    CONCENTRATION_EXPONENT_RANGE: new Range( -16, 2 )
+    // logarithmic graph
+    LOGARITHMIC_EXPONENT_RANGE: new Range( -16, 2 )
   };
 } );

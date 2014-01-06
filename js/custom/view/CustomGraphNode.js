@@ -15,7 +15,7 @@ define( function( require ) {
   var GraphScale = require( 'PH_SCALE/common/view/graph/GraphScale' );
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var LogConcentrationGraph = require( 'PH_SCALE/common/view/graph/LogConcentrationGraph' );
+  var LogarithmicGraph = require( 'PH_SCALE/common/view/graph/LogarithmicGraph' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -65,39 +65,27 @@ define( function( require ) {
       size: new Dimension2( 50, 25 ) } );
 
     var scaleHeight = GRAPH_SIZE.height - unitsSwitch.height - zoomParent.height - scaleSwitch.height - ( 3 * Y_SPACING );
-    var concentrationGraph = new LogConcentrationGraph( solution, {
+    var logarithmicGraph = new LogarithmicGraph( solution, graphUnitsProperty, {
       scaleHeight: scaleHeight,
       isInteractive: true
     } );
-
-    //TODO add quantityGraph
-    var quantityGraph = new Rectangle( 0, 0, 75, scaleHeight, 20, 20, { stroke: 'black', lineWidth: 2 } );
 
     // rendering order
     thisNode.addChild( guideNode );
     thisNode.addChild( unitsSwitch );
     thisNode.addChild( zoomParent );
     thisNode.addChild( scaleSwitch );
-    thisNode.addChild( concentrationGraph );
-    thisNode.addChild( quantityGraph );
+    thisNode.addChild( logarithmicGraph );
 
     // layout
     unitsSwitch.centerX = guideNode.centerX;
     unitsSwitch.top = guideNode.top;
-    concentrationGraph.centerX = guideNode.centerX;
-    concentrationGraph.top = unitsSwitch.bottom + Y_SPACING;
-    quantityGraph.centerX = concentrationGraph.centerX;
-    quantityGraph.top = concentrationGraph.top;
-    zoomParent.centerX = guideNode.centerX;
-    zoomParent.top = concentrationGraph.bottom + Y_SPACING;
+    logarithmicGraph.centerX = guideNode.centerX;
+    logarithmicGraph.top = unitsSwitch.bottom + Y_SPACING;
     scaleSwitch.centerX = guideNode.centerX;
     scaleSwitch.bottom = guideNode.bottom;
-
-    // toggle visibility of graphs depending on which units are selected
-    graphUnitsProperty.link( function( graphUnits ) {
-      concentrationGraph.visible = ( graphUnits === GraphUnits.MOLES_PER_LITER );
-      quantityGraph.visible = ( graphUnits === GraphUnits.MOLES );
-    } );
+    zoomParent.centerX = guideNode.centerX;
+    zoomParent.bottom = scaleSwitch.top - Y_SPACING;
   }
 
   return inherit( Node, CustomGraphNode );

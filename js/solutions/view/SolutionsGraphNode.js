@@ -13,7 +13,7 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var LogConcentrationGraph = require( 'PH_SCALE/common/view/graph/LogConcentrationGraph' );
+  var LogarithmicGraph = require( 'PH_SCALE/common/view/graph/LogarithmicGraph' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -47,33 +47,21 @@ define( function( require ) {
       size: new Dimension2( 50, 25 ) } );
 
     var scaleHeight = GRAPH_SIZE.height - unitsSwitch.height - Y_SPACING;
-    var concentrationGraph = new LogConcentrationGraph( solution, {
+    var logarithmicGraph = new LogarithmicGraph( solution, graphUnitsProperty, {
       scaleHeight: scaleHeight,
       isInteractive: false
     } );
 
-    //TODO add quantityGraph
-    var quantityGraph = new Rectangle( 0, 0, 75, scaleHeight, 20, 20, { stroke: 'black', lineWidth: 2 } );
-
     // rendering order
     thisNode.addChild( guideNode );
-    thisNode.addChild( concentrationGraph );
-    thisNode.addChild( quantityGraph );
+    thisNode.addChild( logarithmicGraph );
     thisNode.addChild( unitsSwitch );
 
     // layout
     unitsSwitch.centerX = guideNode.centerX;
     unitsSwitch.top = guideNode.top;
-    concentrationGraph.centerX = unitsSwitch.centerX;
-    concentrationGraph.top = unitsSwitch.bottom + Y_SPACING;
-    quantityGraph.centerX = concentrationGraph.centerX;
-    quantityGraph.top = concentrationGraph.top;
-
-    // toggle visibility of graphs depending on which units are selected
-    graphUnitsProperty.link( function( graphUnits ) {
-      concentrationGraph.visible = ( graphUnits === GraphUnits.MOLES_PER_LITER );
-      quantityGraph.visible = ( graphUnits === GraphUnits.MOLES );
-    } );
+    logarithmicGraph.centerX = unitsSwitch.centerX;
+    logarithmicGraph.top = unitsSwitch.bottom + Y_SPACING;
   }
 
   return inherit( Node, SolutionsGraphNode );

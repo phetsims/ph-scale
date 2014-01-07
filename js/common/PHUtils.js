@@ -36,7 +36,7 @@ define( function( require ) {
             mantissaString = Util.toFixed( parseFloat( mantissaString ) * Math.pow( 10, parseInt( exponentString, 10 ) - constantExponent ), precision - 1 );
             exponentString = constantExponent.toString();
           }
-          return mantissaString + ' x 10<span style="font-size:85%"><sup>' + parseInt( exponentString ) + '</sup></span>'; // mantissa x 10^exponent
+          return mantissaString + ' x 10<span style="font-size:85%"><sup>' + parseInt( exponentString, 10 ) + '</sup></span>'; // mantissa x 10^exponent
         }
       }
     }

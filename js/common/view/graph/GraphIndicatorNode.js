@@ -101,9 +101,9 @@ define( function( require ) {
 
     //TODO make this shape look more like the mockups?
     // Optional handle
-    var handleWidth = .15 * options.backgroundWidth;
-    var handleHeight = .7 * options.backgroundHeight;
-    var handleThickness = .1 * options.backgroundHeight;
+    var handleWidth = 0.15 * options.backgroundWidth;
+    var handleHeight = 0.7 * options.backgroundHeight;
+    var handleThickness = 0.1 * options.backgroundHeight;
     var handleRadius = 0.5 * handleThickness;
     var handleShape = new Shape()
       .moveTo( 0, 0 )

@@ -15,7 +15,6 @@ define( function( require ) {
   var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var Property = require( 'AXON/Property' );
 
   /**
    * @param {Property<Number>} valueProperty

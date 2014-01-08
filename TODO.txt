@@ -1,12 +1,12 @@
 TODO list for ph-scale (HTML5)
 
-DESIGN
-- is range of interactive indicators limited so that pH stays in range [-1,15] ?
+=========================================================================================================
 
-HIGHEST
+IMPLEMENTATION
 
 HIGH
 - add interactivity to H3O and OH indicators in Custom screen
+- limit range of interactive indicators so that pH stays in range [-1,15]
 - Custom: interactive linear graph, zoom feature
 - 'H3O+/OH- ratio' feature
 - gray out left or right title in graph's expand/collapse bar
@@ -40,8 +40,9 @@ MIGRATE TO COMMON
 - DropperNode, Dropper
 - BeakerNode
 
-===============
-Design issues
+=========================================================================================================
+
+DESIGN
 
 Solutions screen:
 
@@ -99,3 +100,5 @@ and moved the 'Concentration' and 'Quantity' labels next to the switch.
 The 'ratio' feature will be too slow to be usable.
 
 Will the 'ratio' feature have color-coding issues that affect usability?
+
+=========================================================================================================

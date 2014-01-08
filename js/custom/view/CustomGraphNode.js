@@ -44,8 +44,9 @@ define( function( require ) {
     Node.call( thisNode );
 
     // guide for approximate size of graph
+    var guideStroke = ( window.phetcommon.getQueryParameter( 'dev' ) ) ? 'rgb(240,240,240)' : null;
     var guideNode = new Rectangle( 0, 0, GRAPH_SIZE.width, GRAPH_SIZE.height, {
-      stroke: 'rgb(240,240,240)', //TODO remove this later so that the guide is invisible
+      stroke: guideStroke,
       lineWidth: 2
     } );
 

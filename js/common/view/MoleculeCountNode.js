@@ -98,9 +98,9 @@ define( function( require ) {
     var moleculesLeft = Math.min( nodeH3O.left, Math.min( nodeOH.left, nodeH2O.left ) ); // for right justifying counts
     var updateCounts = function() {
       // format and set values
-      countH3O.text = PHUtils.toTimesTenString( solution.getMoleculesH3O(), 3 );
-      countOH.text = PHUtils.toTimesTenString( solution.getMoleculesOH(), 3 );
-      countH2O.text = PHUtils.toTimesTenString( solution.getMoleculesH2O(), 3, 25 );
+      countH3O.text = PHUtils.toTimesTenString( solution.getMoleculesH3O(), 2 );
+      countOH.text = PHUtils.toTimesTenString( solution.getMoleculesOH(), 2 );
+      countH2O.text = PHUtils.toTimesTenString( solution.getMoleculesH2O(), 2, 25 );
       // right justify
       countH3O.right = moleculesLeft - xSpacing;
       countOH.right = moleculesLeft - xSpacing;

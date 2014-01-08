@@ -47,7 +47,8 @@ define( function( require ) {
       valueYMargin: 3,
       xSpacing: 8,
       ySpacing: 4,
-      precision: 2,
+      decimalPlaces: 1,
+      constantExponent: null,
       shadowVisible: false,
       shadowFill: 'rgba(220,220,220,0.7)',
       shadowXOffset: 3,
@@ -185,7 +186,7 @@ define( function( require ) {
 
     // sync with value
     valueProperty.link( function( value ) {
-      valueNode.text = ( value === null )? options.nullValueString : PHUtils.toTimesTenString( value, options.precision );
+      valueNode.text = ( value === null )? options.nullValueString : PHUtils.toTimesTenString( value, options.decimalPlaces, options.constantExponent );
       valueNode.centerX = valueBackgroundNode.centerX;
       valueNode.centerY = valueBackgroundNode.centerY;
     });

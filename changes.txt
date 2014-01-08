@@ -1,3 +1,4 @@
+1/8/14 use toExponential instead of toPrecision in PHUtils.toTimesTenString
 # 1.0.0-dev.3 1/8/14
 1/8/14 show graph guides only in dev mode
 1/6/14 add multi-line labels to units ABSwitch, put 'Graph' in title bar

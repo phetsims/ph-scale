@@ -5,12 +5,13 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- add interactivity to H3O and OH indicators in Custom screen
+- home screen and navbar icons: YY will send to me, separate icons for home screen and navbar
+- do not highlight the pH display on value '7' in 'Solutions' or 'Custom' screens
+- Custom: add interactivity to H3O and OH indicators in log graph
 - limit range of interactive indicators so that pH stays in range [-1,15]
-- Custom: interactive linear graph, zoom feature
 - 'H3O+/OH- ratio' feature
-- gray out left or right title in graph's expand/collapse bar
 - vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)
+- Custom: interactive linear graph, zoom feature
 
 MEDIUM
 - change look of label that is 'on' for ABSwitch
@@ -22,7 +23,6 @@ LOW
 - scale down the 'Molecule counts' feature?
 - exponents look lousy, rewrite using scenery.Text?
 - factor out duplicate code/patterns in model & view for 3 screens
-- home screen and navbar icons
 - lots of stuff copied from beers-law-lab, much of it tweaked slightly
 - English strings have been capitalized, translations have not
 - port strings from Java
@@ -51,6 +51,7 @@ or can something be done to alleviate this?
 
 How do you want the pH meter to be changed? Specifically, how to deal with the expand/collapse
 feature, while maintaining the desired vertical alignment of meter and graph scales.
+> YY: See new mockup in design doc, in table dated 1/9/14.
 
 Custom screen:
 
@@ -60,14 +61,17 @@ This is a major feature that is present in the Java version. It's also a design 
 present in other sims (e.g., Graphing Lines.) Our reason of removing it seems to be
 primarily motivated by design problems, not by any information that tells us that this
 feature is not important. So I think we should bring this up for group discussion one more time.
+> YY: We'll add spinners to pH display. Move pH display between graph and beaker. Will provide mockup.
 
 The default state of the beaker is empty. How do interactive (H30, OH) graph indicators work
 when beaker is empty? Are they not interactive? Do they behave differently if graph is set
 to 'quantity' vs 'concentration'?  Seems like you should be able to change the quantity of
 an empty beaker, but not the concentration.
+> YY: When beaker is empty, point to zero but not interactive, grayed out.
 
 When graph is in 'quantity' mode, does moving the indicators cause solution to be added/removed
 from the beaker? What happens when the beaker becomes full or empty?
+> YY: Quantity mode changes relative quantities, does not change volume.
 
 Are we implementing the Linear graph feature? It represents at least 30 hours of work,
 and has several nontrivial design problems, as noted below.
@@ -89,16 +93,19 @@ disabled, with no values or pointers. In a previous meeting, we decided that thi
 their values are zero. But there is no zero tick mark on the scale. I am currently
 positioning the indicators below the 10^-16 tick, which I think is potentially confusing.
 Should we add a '0' tick mark below 10^-16? Do something else?…
+> YY: OK where they are now, no need for zero tick mark.
 
 When the beaker transitions from empty to non-empty, graph indicators jump to non-zero positions.
 It's correct, but a little jarring, so I wanted to point it out.
+> YY: Not a problem.
 
 Design of the AB-switch (concentration/quantity) at the top of the graph needs to
 be revisited. For the time being, I've changed the expand/collapse title to 'Graph'
 and moved the 'Concentration' and 'Quantity' labels next to the switch.
+> YY: move control into expand/collapse bar, connect bar to scale with vertical line
+> ala pH meter, will put mockup in design doc.
 
 The 'ratio' feature will be too slow to be usable.
-
-Will the 'ratio' feature have color-coding issues that affect usability?
+> Do this sooner rather than later to force the discussion of alternatives for solving this.
 
 =========================================================================================================

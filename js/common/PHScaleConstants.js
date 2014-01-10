@@ -27,6 +27,9 @@ define( function( require ) {
     MIN_SOLUTION_VOLUME: 0.015,  // L, minimum non-zero volume for solution, so it's visible and measurable
 
     // logarithmic graph
-    LOGARITHMIC_EXPONENT_RANGE: new Range( -16, 2 )
+    LOGARITHMIC_EXPONENT_RANGE: new Range( -16, 2 ),
+
+    // expand/collapse buttons
+    EXPAND_COLLAPSE_BUTTON_LENGTH: 30
   };
 } );

@@ -51,7 +51,6 @@ define( function( require ) {
     var viewProperties = new PropertySet( {
       ratioVisible: false,
       moleculeCountVisible: false,
-      pHMeterVisible: true,
       graphVisible: true,
       graphUnits: GraphUnits.MOLES_PER_LITER
     } );
@@ -95,19 +94,13 @@ define( function( require ) {
     var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );
 
     // pH meter
-    var pHMeterNode = new SolutionsPHMeterNode( model.solution.pHProperty, viewProperties.pHMeterVisibleProperty );
-    var pHMeterExpandCollapseBar = new ExpandCollapseBar( pHString, viewProperties.pHMeterVisibleProperty, {
-      size: new Dimension2( 120, 40 )
-    } );
-    viewProperties.pHMeterVisibleProperty.link( function( visible ) {
-      pHMeterNode.visible = visible;
-      pHMeterExpandCollapseBar.visible = !visible;
-    } );
+    var pHMeterNode = new SolutionsPHMeterNode( model.solution.pHProperty, true );
 
     // graph
     var graphNode = new SolutionsGraphNode( model.solution, viewProperties.graphUnitsProperty );
     var graphExpandCollapseBar = new ExpandCollapseBar( graphString, viewProperties.graphVisibleProperty, {
-      size: new Dimension2( graphNode.width, 40 )
+      barWidth: graphNode.width,
+      buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
     } );
     viewProperties.graphVisibleProperty.link( function( visible ) {
       graphNode.visible = visible;
@@ -136,7 +129,6 @@ define( function( require ) {
     rootNode.addChild( volumeIndicatorNode );
     rootNode.addChild( beakerControls );
     rootNode.addChild( pHMeterNode );
-    rootNode.addChild( pHMeterExpandCollapseBar );
     rootNode.addChild( graphNode );
     rootNode.addChild( graphExpandCollapseBar );
     rootNode.addChild( resetAllButton );
@@ -152,14 +144,12 @@ define( function( require ) {
     beakerControls.top = beakerNode.bottom + 15;
     soluteComboBox.left = mvt.modelToViewX( model.beaker.left ) - 50; // anchor on left so it grows to the right during i18n
     soluteComboBox.top = this.layoutBounds.top + 15;
-    pHMeterExpandCollapseBar.right = drainFaucetNode.left - 40;
-    pHMeterExpandCollapseBar.top = 20;
-    pHMeterNode.top = pHMeterExpandCollapseBar.top;
-    pHMeterNode.centerX = pHMeterExpandCollapseBar.centerX;
-    graphExpandCollapseBar.right = pHMeterExpandCollapseBar.left - 20;
-    graphExpandCollapseBar.top = pHMeterExpandCollapseBar.top;
+    pHMeterNode.top = 20;
+    pHMeterNode.right = drainFaucetNode.left - 40;
+    graphExpandCollapseBar.right = pHMeterNode.left - 20;
+    graphExpandCollapseBar.top = pHMeterNode.top;
     graphNode.centerX = graphExpandCollapseBar.centerX;
-    graphNode.top = pHMeterNode.top;
+    graphNode.top = graphExpandCollapseBar.bottom + 10;
     resetAllButton.left = beakerControls.right + 30;
     resetAllButton.centerY = beakerControls.centerY;
   }

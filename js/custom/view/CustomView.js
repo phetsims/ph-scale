@@ -96,7 +96,8 @@ define( function( require ) {
     // graph
     var graphNode = new CustomGraphNode( model.solution, viewProperties.graphUnitsProperty, viewProperties.graphScaleProperty );
     var graphExpandCollapseBar = new ExpandCollapseBar( graphString, viewProperties.graphVisibleProperty, {
-      size: new Dimension2( graphNode.width, 40 )
+      barWidth: graphNode.width,
+      buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
     } );
     viewProperties.graphVisibleProperty.link( function( visible ) {
       graphNode.visible = visible;

@@ -1,3 +1,5 @@
+1/9/14 move expand/collapse bar instance into SolutionsPHMeterNode
+1/9/14 change interface to ExpandCollapseBar
 1/9/14 add expand/collapse button to SolutionsPHMeterNode
 1/9/14 move colors into pH meters, since they are no longer shared across screens
 1/9/14 merge PHValueNode into SolutionsPHMeter, since it will now have it's own (very different) way of working

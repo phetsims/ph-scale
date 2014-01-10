@@ -12,6 +12,7 @@ define( function( require ) {
   // imports
   var Dimension2 = require( 'DOT/Dimension2' );
   var ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
+  var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -20,6 +21,7 @@ define( function( require ) {
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PHScaleNode = require( 'PH_SCALE/common/view/PHScaleNode' );
+  var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -31,6 +33,10 @@ define( function( require ) {
 
   // constants
   var SCALE_SIZE = new Dimension2( 55, 450 );
+  var DISPLAY_X_MARGIN = 14;
+  var DISPLAY_Y_MARGIN = 10;
+  var DISPLAY_CORNER_RADIUS = 12;
+  var PH_LABEL_FONT = new PhetFont( { size: 28, weight: 'bold' } );
   var ENABLED_COLOR = 'rgb(135,19,70)';
   var DISABLED_COLOR = 'rgb(178,178,178)';
 
@@ -42,11 +48,11 @@ define( function( require ) {
    * But hey, that's what they wanted.
    *
    * @param {Property<Number>} pHProperty
-   * @param {Property<Boolean>} visibleProperty
+   * @param {Property<Boolean>} expandedProperty
    * @param {Property<Boolean>} enabledProperty optional
    * @constructor
    */
-  function ValueNode( pHProperty, visibleProperty, enabledProperty ) {
+  function ValueNode( pHProperty, expandedProperty, enabledProperty ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -58,25 +64,22 @@ define( function( require ) {
     // rectangle that the value is displayed in
     var valueXMargin = 8;
     var valueYMargin = 5;
-    var cornerRadius = 12;
-    var valueRectangle = new Rectangle( 0, 0, valueNode.width + ( 2 * valueXMargin ), valueNode.height + ( 2 * valueYMargin ), cornerRadius, cornerRadius,
+    var valueRectangle = new Rectangle( 0, 0, valueNode.width + ( 2 * valueXMargin ), valueNode.height + ( 2 * valueYMargin ), DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS,
       { fill: 'white' } );
 
     // label above the value
     var labelNode = new Text( pHString,
-      { fill: 'white', font: new PhetFont( { size: 28, weight: 'bold' } ) } );
+      { fill: 'white', font: PH_LABEL_FONT } );
 
     // background
-    var backgroundXMargin = 14;
-    var backgroundYMargin = 10;
     var backgroundYSpacing = 6;
-    var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * backgroundXMargin );
-    var backgroundHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * backgroundYMargin );
-    var backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
+    var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * DISPLAY_X_MARGIN );
+    var backgroundHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * DISPLAY_Y_MARGIN );
+    var backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS,
       { fill: ENABLED_COLOR } );
 
     // expand/collapse button
-    var expandCollapseButton = new ExpandCollapseButton( 0.85 * labelNode.height, visibleProperty );
+    var expandCollapseButton = new ExpandCollapseButton( PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH, expandedProperty );
 
     // rendering order
     thisNode.addChild( backgroundRectangle );
@@ -86,7 +89,7 @@ define( function( require ) {
     thisNode.addChild( valueNode );
 
     // layout
-    labelNode.top = backgroundRectangle.top + backgroundYMargin;
+    labelNode.top = backgroundRectangle.top + DISPLAY_Y_MARGIN;
     valueRectangle.centerX = backgroundRectangle.centerX;
     labelNode.left = valueRectangle.left;
     valueRectangle.top = labelNode.bottom + backgroundYSpacing;
@@ -157,31 +160,42 @@ define( function( require ) {
 
   /**
    * @param {Property<Number>} pHProperty
-   * @param {Property<Boolean>} visibleProperty is this node visible?
+   * @param expanded is this node initially expanded?
    * @constructor
    */
-  function SolutionsPHMeterNode( pHProperty, visibleProperty ) {
+  function SolutionsPHMeterNode( pHProperty, expanded ) {
 
     var thisNode = this;
     Node.call( thisNode );
 
+    var expandedProperty = new Property( expanded );
+
     // nodes
-    var valueNode = new ValueNode( pHProperty, visibleProperty );
+    var valueNode = new ValueNode( pHProperty, expandedProperty );
+    var expandCollapseBar = new ExpandCollapseBar( pHString, expandedProperty, {
+      barWidth: valueNode.width,
+      cornerRadius: DISPLAY_CORNER_RADIUS,
+      titleFont: PH_LABEL_FONT,
+      buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH,
+      xMargin: DISPLAY_X_MARGIN,
+      yMargin: DISPLAY_Y_MARGIN
+    } );
     var verticalLineNode = new Line( 0, 0, 0, 25, { stroke: 'black', lineWidth: 5 } );
     var scaleNode = new PHScaleNode( { size: SCALE_SIZE } );
     var pointerNode = new PointerNode( SCALE_SIZE.width );
 
     // rendering order
-    thisNode.addChild( verticalLineNode );
-    thisNode.addChild( valueNode );
-    thisNode.addChild( scaleNode );
-    thisNode.addChild( pointerNode );
+    var meterNode = new Node( { children:[ verticalLineNode, valueNode, scaleNode, pointerNode ] } );
+    thisNode.addChild( expandCollapseBar );
+    thisNode.addChild( meterNode );
 
     // layout
     verticalLineNode.centerX = scaleNode.right - ( SCALE_SIZE.width / 2 );
     verticalLineNode.bottom = scaleNode.top + 1;
     valueNode.centerX = verticalLineNode.centerX;
     valueNode.bottom = verticalLineNode.top + 1;
+    expandCollapseBar.centerX = valueNode.centerX;
+    expandCollapseBar.top = valueNode.top;
     pointerNode.x = scaleNode.right - SCALE_SIZE.width;
     // pointerNode.centerY is set dynamically
 
@@ -190,6 +204,11 @@ define( function( require ) {
       pointerNode.visible = ( value !== null );
       pointerNode.centerY = scaleNode.top + ( scaleNode.getBackgroundStrokeWidth() / 2 ) +
                             Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
+    } );
+
+    expandedProperty.link( function( expanded ) {
+       meterNode.visible = expanded;
+      expandCollapseBar.visible = !expanded;
     } );
   }
 

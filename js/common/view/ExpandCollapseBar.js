@@ -28,9 +28,11 @@ define( function( require ) {
   function ExpandCollapseBar( title, visibleProperty, options ) {
 
     options = _.extend( {
-      size: new Dimension2( 220, 40 ),
+      buttonLength: 15,
       cornerRadius: 6,
       xMargin: 10,
+      yMargin: 8,
+      barWidth: 220,
       barFill: 'rgb(135,19,70)',
       barStroke: null,
       titleFont: new PhetFont( { size: 18, weight: 'bold' } ),
@@ -40,26 +42,30 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
+    // title
+    this.titleNode = new Text( title, { font: options.titleFont, fill: options.titleFill } ); // private
+
+    // expand/collapse button
+    var button = new ExpandCollapseButton( options.buttonLength, visibleProperty );
+    button.touchArea = Shape.bounds( button.localBounds.dilatedXY( 10, 10 ) );
+
     // bar
-    var barNode = new Rectangle( 0, 0, options.size.width, options.size.height, options.cornerRadius, options.cornerRadius, {
+    var barHeight = Math.max( button.height, this.titleNode.height ) + ( 2 * options.yMargin );
+    var barNode = new Rectangle( 0, 0, options.barWidth, barHeight, options.cornerRadius, options.cornerRadius, {
       fill: options.barFill,
       stroke: options.barStroke
     } );
-    thisNode.addChild( barNode );
 
-    // title on left end of bar
-    var titleOptions = { font: options.titleFont, fill: options.titleFill };
-    this.titleNode = new Text( title, titleOptions ); // private
+    // rendering order
+    thisNode.addChild( barNode );
     thisNode.addChild( this.titleNode );
+    thisNode.addChild( button );
+
+    // layout
     this.titleNode.left = barNode.left + options.xMargin;
     this.titleNode.centerY = barNode.centerY;
-    
-    // expand/collapse button
-    var button = new ExpandCollapseButton( 0.7 * options.size.height, visibleProperty );
-    thisNode.addChild( button );
     button.right = barNode.right - options.xMargin;
     button.centerY = barNode.centerY;
-    button.touchArea = Shape.bounds( button.localBounds.dilatedXY( 10, 10 ) );
   }
 
   return inherit( Node, ExpandCollapseBar, {

@@ -42,14 +42,14 @@ define( function( require ) {
     Node.call( thisNode );
 
     // title
-    this.titleNode = new Text( title, { font: options.titleFont, fill: options.titleFill } ); // private
+    var titleNode = new Text( title, { font: options.titleFont, fill: options.titleFill } ); // private
 
     // expand/collapse button
     var button = new ExpandCollapseButton( options.buttonLength, visibleProperty );
     button.touchArea = Shape.bounds( button.localBounds.dilatedXY( 10, 10 ) );
 
     // bar
-    var barHeight = Math.max( button.height, this.titleNode.height ) + ( 2 * options.yMargin );
+    var barHeight = Math.max( button.height, titleNode.height ) + ( 2 * options.yMargin );
     var barNode = new Rectangle( 0, 0, options.barWidth, barHeight, options.cornerRadius, options.cornerRadius, {
       fill: options.barFill,
       stroke: options.barStroke
@@ -57,19 +57,15 @@ define( function( require ) {
 
     // rendering order
     thisNode.addChild( barNode );
-    thisNode.addChild( this.titleNode );
+    thisNode.addChild( titleNode );
     thisNode.addChild( button );
 
     // layout
-    this.titleNode.left = barNode.left + options.xMargin;
-    this.titleNode.centerY = barNode.centerY;
+    titleNode.left = barNode.left + options.xMargin;
+    titleNode.centerY = barNode.centerY;
     button.right = barNode.right - options.xMargin;
     button.centerY = barNode.centerY;
   }
 
-  return inherit( Node, ExpandCollapseBar, {
-    setTitle: function( title ) {
-      this.titleNode.text = title;
-    }
-  } );
+  return inherit( Node, ExpandCollapseBar );
 } );

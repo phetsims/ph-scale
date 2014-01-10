@@ -11,6 +11,7 @@ define( function( require ) {
 
   // imports
   var Dimension2 = require( 'DOT/Dimension2' );
+  var ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -35,11 +36,17 @@ define( function( require ) {
 
   /**
    * Value is displayed inside of this, which sits above the scale.
+   * Has an expand/collapse button for controlling visibility of the entire meter.
+   * What is a bit odd is that button is only visible while the meter is expanded,
+   * and a totally separate expand/collapse bar is shown when the meter is collapsed.
+   * But hey, that's what they wanted.
+   *
    * @param {Property<Number>} pHProperty
+   * @param {Property<Boolean>} visibleProperty
    * @param {Property<Boolean>} enabledProperty optional
    * @constructor
    */
-  function ValueNode( pHProperty, enabledProperty ) {
+  function ValueNode( pHProperty, visibleProperty, enabledProperty ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -68,10 +75,14 @@ define( function( require ) {
     var backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
       { fill: ENABLED_COLOR } );
 
+    // expand/collapse button
+    var expandCollapseButton = new ExpandCollapseButton( 0.85 * labelNode.height, visibleProperty );
+
     // rendering order
     thisNode.addChild( backgroundRectangle );
     thisNode.addChild( valueRectangle );
     thisNode.addChild( labelNode );
+    thisNode.addChild( expandCollapseButton );
     thisNode.addChild( valueNode );
 
     // layout
@@ -81,6 +92,8 @@ define( function( require ) {
     valueRectangle.top = labelNode.bottom + backgroundYSpacing;
     valueNode.right = valueRectangle.right - valueXMargin; // right justified
     valueNode.centerY = valueRectangle.centerY;
+    expandCollapseButton.centerY = labelNode.centerY;
+    expandCollapseButton.right = valueRectangle.right;
 
     // pH value
     pHProperty.link( function( pH ) {
@@ -144,15 +157,16 @@ define( function( require ) {
 
   /**
    * @param {Property<Number>} pHProperty
+   * @param {Property<Boolean>} visibleProperty is this node visible?
    * @constructor
    */
-  function SolutionsPHMeterNode( pHProperty ) {
+  function SolutionsPHMeterNode( pHProperty, visibleProperty ) {
 
     var thisNode = this;
     Node.call( thisNode );
 
     // nodes
-    var valueNode = new ValueNode( pHProperty );
+    var valueNode = new ValueNode( pHProperty, visibleProperty );
     var verticalLineNode = new Line( 0, 0, 0, 25, { stroke: 'black', lineWidth: 5 } );
     var scaleNode = new PHScaleNode( { size: SCALE_SIZE } );
     var pointerNode = new PointerNode( SCALE_SIZE.width );

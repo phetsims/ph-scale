@@ -95,12 +95,13 @@ define( function( require ) {
     var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );
 
     // pH meter
-    var pHMeterNode = new SolutionsPHMeterNode( model.solution.pHProperty );
+    var pHMeterNode = new SolutionsPHMeterNode( model.solution.pHProperty, viewProperties.pHMeterVisibleProperty );
     var pHMeterExpandCollapseBar = new ExpandCollapseBar( pHString, viewProperties.pHMeterVisibleProperty, {
-      size: new Dimension2( pHMeterNode.width, 40 )
+      size: new Dimension2( 120, 40 )
     } );
     viewProperties.pHMeterVisibleProperty.link( function( visible ) {
       pHMeterNode.visible = visible;
+      pHMeterExpandCollapseBar.visible = !visible;
     } );
 
     // graph
@@ -153,7 +154,7 @@ define( function( require ) {
     soluteComboBox.top = this.layoutBounds.top + 15;
     pHMeterExpandCollapseBar.right = drainFaucetNode.left - 40;
     pHMeterExpandCollapseBar.top = 20;
-    pHMeterNode.top = pHMeterExpandCollapseBar.bottom + 10;
+    pHMeterNode.top = pHMeterExpandCollapseBar.top;
     pHMeterNode.centerX = pHMeterExpandCollapseBar.centerX;
     graphExpandCollapseBar.right = pHMeterExpandCollapseBar.left - 20;
     graphExpandCollapseBar.top = pHMeterExpandCollapseBar.top;

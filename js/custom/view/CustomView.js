@@ -129,7 +129,7 @@ define( function( require ) {
 
     // Layout of nodes that don't have a location specified in the model
     pHMeterNode.right = beakerNode.left + 20;
-    pHMeterNode.bottom = beakerNode.top - 60;
+    pHMeterNode.top = 20;
     ratioNode.centerX = beakerNode.centerX; //TODO delete
     ratioNode.centerY = beakerNode.top + ( 0.3 * beakerNode.height ); //TODO delete
     moleculeCountNode.centerX = mvt.modelToViewX( model.beaker.location.x );

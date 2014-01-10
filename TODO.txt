@@ -5,6 +5,7 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
+- move expand/collapse bar into graph nodes, rather than separate in ScreenView subtypes
 - move concentration/quantity switch into expand/collapse bar above graph
 - Custom: add spinners to pH meter
 - home screen and navbar icons: YY will send to me, separate icons for home screen and navbar

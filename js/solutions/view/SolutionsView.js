@@ -11,7 +11,6 @@ define( function( require ) {
   // imports
   var BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
-  var Dimension2 = require( 'DOT/Dimension2' );
   var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
@@ -35,7 +34,6 @@ define( function( require ) {
 
   // strings
   var graphString = require( 'string!PH_SCALE/graph' );
-  var pHString = require( 'string!PH_SCALE/pH' );
 
   /**
    * @param {SolutionsModel} model

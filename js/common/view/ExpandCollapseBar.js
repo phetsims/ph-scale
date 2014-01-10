@@ -10,7 +10,6 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var Dimension2 = require( 'DOT/Dimension2' );
   var ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );

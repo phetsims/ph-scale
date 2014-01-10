@@ -14,7 +14,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Text = require( 'SCENERY/nodes/Text' );

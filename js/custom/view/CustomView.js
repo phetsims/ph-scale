@@ -13,7 +13,6 @@ define( function( require ) {
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var CustomGraphNode = require( 'PH_SCALE/custom/view/CustomGraphNode' );
   var CustomPHMeterNode = require( 'PH_SCALE/custom/view/CustomPHMeterNode' );
-  var Dimension2 = require( 'DOT/Dimension2' );
   var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );

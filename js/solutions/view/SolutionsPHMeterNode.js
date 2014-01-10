@@ -30,6 +30,8 @@ define( function( require ) {
 
   // constants
   var SCALE_SIZE = new Dimension2( 55, 450 );
+  var ENABLED_COLOR = 'rgb(135,19,70)';
+  var DISABLED_COLOR = 'rgb(178,178,178)';
 
   /**
    * Value is displayed inside of this, which sits above the scale.
@@ -64,7 +66,7 @@ define( function( require ) {
     var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * backgroundXMargin );
     var backgroundHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * backgroundYMargin );
     var backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-      { fill: PHScaleColors.SOLUTIONS_PH_METER } );
+      { fill: ENABLED_COLOR } );
 
     // rendering order
     thisNode.addChild( backgroundRectangle );
@@ -94,7 +96,7 @@ define( function( require ) {
 
     if ( enabledProperty ) {
       enabledProperty.link( function( enabled ) {
-        backgroundRectangle.fill = enabled ? PHScaleColors.SOLUTIONS_PH_METER : 'rgb(178,178,178)';
+        backgroundRectangle.fill = enabled ? ENABLED_COLOR : DISABLED_COLOR;
       } );
     }
   }

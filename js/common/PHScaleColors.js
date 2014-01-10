@@ -32,10 +32,6 @@ define( function( require ) {
 
     // particles in 'ratio' view
     H3O_PARTICLES: new Color( 204, 0, 0 ),
-    OH_PARTICLES: new Color( 0, 0, 255 ),
-
-    // pH meters
-    SOLUTIONS_PH_METER: new Color( 31, 113, 2 ),
-    CUSTOM_PH_METER: new Color( 31, 113, 2 )
+    OH_PARTICLES: new Color( 0, 0, 255 )
   };
 } );

@@ -27,7 +27,7 @@ define( function( require ) {
     thisModel.water = Water;
 
     // Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
-    thisModel.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 400, 325 ) );
+    thisModel.beaker = new Beaker( new Vector2( 775, 580 ), new Dimension2( 400, 325 ) );
 
     // Dropper above the beaker
     var yDropper = 210;

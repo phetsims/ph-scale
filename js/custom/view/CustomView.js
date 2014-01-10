@@ -12,6 +12,7 @@ define( function( require ) {
   var BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var CustomGraphNode = require( 'PH_SCALE/custom/view/CustomGraphNode' );
+  var CustomPHMeterNode = require( 'PH_SCALE/custom/view/CustomPHMeterNode' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
@@ -24,7 +25,6 @@ define( function( require ) {
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var PHValueNode = require( 'PH_SCALE/common/view/PHValueNode' );
   var PropertySet = require( 'AXON/PropertySet' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
@@ -91,7 +91,7 @@ define( function( require ) {
     var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );
 
     // pH meter
-    var pHMeterNode = new PHValueNode( model.solution.pHProperty );
+    var pHMeterNode = new CustomPHMeterNode( model.solution.pHProperty );
 
     // graph
     var graphNode = new CustomGraphNode( model.solution, viewProperties.graphUnitsProperty, viewProperties.graphScaleProperty );
@@ -124,15 +124,15 @@ define( function( require ) {
     rootNode.addChild( resetAllButton );
 
     // Layout of nodes that don't have a location specified in the model
-    pHMeterNode.left = beakerNode.right - 20;
-    pHMeterNode.bottom = beakerNode.top - 30;
+    pHMeterNode.right = beakerNode.left + 20;
+    pHMeterNode.bottom = beakerNode.top - 60;
     ratioNode.centerX = beakerNode.centerX; //TODO delete
     ratioNode.centerY = beakerNode.top + ( 0.3 * beakerNode.height ); //TODO delete
     moleculeCountNode.centerX = mvt.modelToViewX( model.beaker.location.x );
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.centerX = mvt.modelToViewX( model.beaker.location.x );
     beakerControls.top = beakerNode.bottom + 15;
-    graphExpandCollapseBar.right = drainFaucetNode.left - 50;
+    graphExpandCollapseBar.right = drainFaucetNode.left - 70;
     graphExpandCollapseBar.top = 20;
     graphNode.centerX = graphExpandCollapseBar.centerX;
     graphNode.top = graphExpandCollapseBar.bottom + 10;

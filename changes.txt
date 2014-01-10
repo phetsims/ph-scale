@@ -1,3 +1,4 @@
+1/9/14 merge PHValueNode into SolutionsPHMeter, since it will now have it's own (very different) way of working
 1/9/14 create CustomPHMeterNode, since 'Custom' screen will now have it's own (very different) pH meter
 1/9/14 move code for displaying pH value into BasicsPHMeterNode, since it no longer shares design with the other screens
 1/8/14 use toExponential instead of toPrecision in PHUtils.toTimesTenString

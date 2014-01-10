@@ -15,16 +15,92 @@ define( function( require ) {
   var Line = require( 'SCENERY/nodes/Line' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PHScaleNode = require( 'PH_SCALE/common/view/PHScaleNode' );
-  var PHValueNode = require( 'PH_SCALE/common/view/PHValueNode' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
+  var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
+
+  // strings
+  var pHString = require( 'string!PH_SCALE/pH' );
+  var stringNoValue = '-';
 
   // constants
   var SCALE_SIZE = new Dimension2( 55, 450 );
 
-  //TODO this could be used by BasicsPHMeterNode.IndicatorNode
+  /**
+   * Value is displayed inside of this, which sits above the scale.
+   * @param {Property<Number>} pHProperty
+   * @param {Property<Boolean>} enabledProperty optional
+   * @constructor
+   */
+  function ValueNode( pHProperty, enabledProperty ) {
+
+    var thisNode = this;
+    Node.call( thisNode );
+
+    // pH value
+    var valueNode = new Text( Util.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
+      { fill: 'black', font: new PhetFont( 28 ) } );
+
+    // rectangle that the value is displayed in
+    var valueXMargin = 8;
+    var valueYMargin = 5;
+    var cornerRadius = 12;
+    var valueRectangle = new Rectangle( 0, 0, valueNode.width + ( 2 * valueXMargin ), valueNode.height + ( 2 * valueYMargin ), cornerRadius, cornerRadius,
+      { fill: 'white' } );
+
+    // label above the value
+    var labelNode = new Text( pHString,
+      { fill: 'white', font: new PhetFont( { size: 28, weight: 'bold' } ) } );
+
+    // background
+    var backgroundXMargin = 14;
+    var backgroundYMargin = 10;
+    var backgroundYSpacing = 6;
+    var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * backgroundXMargin );
+    var backgroundHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * backgroundYMargin );
+    var backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
+      { fill: PHScaleColors.SOLUTIONS_PH_METER } );
+
+    // rendering order
+    thisNode.addChild( backgroundRectangle );
+    thisNode.addChild( valueRectangle );
+    thisNode.addChild( labelNode );
+    thisNode.addChild( valueNode );
+
+    // layout
+    labelNode.top = backgroundRectangle.top + backgroundYMargin;
+    valueRectangle.centerX = backgroundRectangle.centerX;
+    labelNode.left = valueRectangle.left;
+    valueRectangle.top = labelNode.bottom + backgroundYSpacing;
+    valueNode.right = valueRectangle.right - valueXMargin; // right justified
+    valueNode.centerY = valueRectangle.centerY;
+
+    // pH value
+    pHProperty.link( function( pH ) {
+      if ( pH === null ) {
+        valueNode.text = stringNoValue;
+        valueNode.centerX = valueRectangle.centerX; // center justified
+      }
+      else {
+        valueNode.text = Util.toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+        valueNode.right = valueRectangle.right - valueXMargin; // right justified
+      }
+    } );
+
+    if ( enabledProperty ) {
+      enabledProperty.link( function( enabled ) {
+        backgroundRectangle.fill = enabled ? PHScaleColors.SOLUTIONS_PH_METER : 'rgb(178,178,178)';
+      } );
+    }
+  }
+
+  inherit( Node, ValueNode );
+
   /**
    * Arrow and dashed line that points to a value on the pH scale.
    * @param {Property<Number>} scaleWidth
@@ -74,7 +150,7 @@ define( function( require ) {
     Node.call( thisNode );
 
     // nodes
-    var valueNode = new PHValueNode( pHProperty );
+    var valueNode = new ValueNode( pHProperty );
     var verticalLineNode = new Line( 0, 0, 0, 25, { stroke: 'black', lineWidth: 5 } );
     var scaleNode = new PHScaleNode( { size: SCALE_SIZE } );
     var pointerNode = new PointerNode( SCALE_SIZE.width );

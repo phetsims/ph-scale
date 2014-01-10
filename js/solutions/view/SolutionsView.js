@@ -20,6 +20,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PropertySet = require( 'AXON/PropertySet' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
@@ -29,6 +30,7 @@ define( function( require ) {
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
   var SolutionsGraphNode = require( 'PH_SCALE/solutions/view/SolutionsGraphNode' );
   var SolutionsPHMeterNode = require( 'PH_SCALE/solutions/view/SolutionsPHMeterNode' );
+  var Text = require( 'SCENERY/nodes/Text' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
   var WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
 
@@ -96,10 +98,12 @@ define( function( require ) {
 
     // graph
     var graphNode = new SolutionsGraphNode( model.solution, viewProperties.graphUnitsProperty );
-    var graphExpandCollapseBar = new ExpandCollapseBar( graphString, viewProperties.graphVisibleProperty, {
-      barWidth: graphNode.width,
-      buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
-    } );
+    var graphExpandCollapseBar = new ExpandCollapseBar(
+      new Text( graphString, { font: new PhetFont( { size: 18, weight: 'bold' } ), fill: 'white' } ),
+      viewProperties.graphVisibleProperty, {
+        barWidth: graphNode.width,
+        buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
+      } );
     viewProperties.graphVisibleProperty.link( function( visible ) {
       graphNode.visible = visible;
     } );

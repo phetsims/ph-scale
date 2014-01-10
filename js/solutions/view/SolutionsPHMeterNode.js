@@ -171,14 +171,16 @@ define( function( require ) {
 
     // nodes
     var valueNode = new ValueNode( pHProperty, expandedProperty );
-    var expandCollapseBar = new ExpandCollapseBar( pHString, expandedProperty, {
-      barWidth: valueNode.width,
-      cornerRadius: DISPLAY_CORNER_RADIUS,
-      titleFont: PH_LABEL_FONT,
-      buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH,
-      xMargin: DISPLAY_X_MARGIN,
-      yMargin: DISPLAY_Y_MARGIN
-    } );
+    var expandCollapseBar = new ExpandCollapseBar(
+      new Text( pHString, { font: PH_LABEL_FONT, fill: 'white' } ),
+      expandedProperty, {
+        barWidth: valueNode.width,
+        cornerRadius: DISPLAY_CORNER_RADIUS,
+        titleFont: PH_LABEL_FONT,
+        buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH,
+        xMargin: DISPLAY_X_MARGIN,
+        yMargin: DISPLAY_Y_MARGIN
+      } );
     var verticalLineNode = new Line( 0, 0, 0, 25, { stroke: 'black', lineWidth: 5 } );
     var scaleNode = new PHScaleNode( { size: SCALE_SIZE } );
     var pointerNode = new PointerNode( SCALE_SIZE.width );

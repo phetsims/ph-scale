@@ -13,18 +13,16 @@ define( function( require ) {
   var ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
-  var Text = require( 'SCENERY/nodes/Text' );
 
   /**
-   * @param {String} title
+   * @param {Node} titleNode
    * @param {Property<Boolean>} visibleProperty
    * @param {*} options
    * @constructor
    */
-  function ExpandCollapseBar( title, visibleProperty, options ) {
+  function ExpandCollapseBar( titleNode, visibleProperty, options ) {
 
     options = _.extend( {
       buttonLength: 15,
@@ -33,16 +31,11 @@ define( function( require ) {
       yMargin: 8,
       barWidth: 220,
       barFill: 'rgb(135,19,70)',
-      barStroke: null,
-      titleFont: new PhetFont( { size: 18, weight: 'bold' } ),
-      titleFill: 'white'
+      barStroke: null
     }, options );
 
     var thisNode = this;
     Node.call( thisNode );
-
-    // title
-    var titleNode = new Text( title, { font: options.titleFont, fill: options.titleFill } ); // private
 
     // expand/collapse button
     var button = new ExpandCollapseButton( options.buttonLength, visibleProperty );

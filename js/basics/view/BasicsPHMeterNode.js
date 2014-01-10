@@ -51,6 +51,7 @@ define( function( require ) {
 
   /**
    * Displays pH value inside of a rounded rectangle, which is then placed inside of yet-another rounded rectangle.
+   * It highlights when pH is 7.
    * This is the thing that you see sliding up and down the pH Scale.
    * @param {Property<Number>} pHProperty
    * @param {Property<Boolean>} enabledProperty

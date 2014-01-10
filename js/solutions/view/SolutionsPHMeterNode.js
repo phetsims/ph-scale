@@ -11,8 +11,8 @@ define( function( require ) {
 
   // imports
   var Dimension2 = require( 'DOT/Dimension2' );
-  var ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
   var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
+  var ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -32,12 +32,11 @@ define( function( require ) {
 
   // constants
   var SCALE_SIZE = new Dimension2( 55, 450 );
+  var DISPLAY_COLOR = 'rgb(135,19,70)';
   var DISPLAY_X_MARGIN = 14;
   var DISPLAY_Y_MARGIN = 10;
   var DISPLAY_CORNER_RADIUS = 12;
   var PH_LABEL_FONT = new PhetFont( { size: 28, weight: 'bold' } );
-  var ENABLED_COLOR = 'rgb(135,19,70)';
-  var DISABLED_COLOR = 'rgb(178,178,178)';
 
   /**
    * Value is displayed inside of this, which sits above the scale.
@@ -48,10 +47,9 @@ define( function( require ) {
    *
    * @param {Property<Number>} pHProperty
    * @param {Property<Boolean>} expandedProperty
-   * @param {Property<Boolean>} enabledProperty optional
    * @constructor
    */
-  function ValueNode( pHProperty, expandedProperty, enabledProperty ) {
+  function ValueNode( pHProperty, expandedProperty ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -67,15 +65,14 @@ define( function( require ) {
       { fill: 'white' } );
 
     // label above the value
-    var labelNode = new Text( pHString,
-      { fill: 'white', font: PH_LABEL_FONT } );
+    var labelNode = new Text( pHString, { fill: 'white', font: PH_LABEL_FONT } );
 
     // background
     var backgroundYSpacing = 6;
     var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * DISPLAY_X_MARGIN );
     var backgroundHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * DISPLAY_Y_MARGIN );
     var backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS,
-      { fill: ENABLED_COLOR } );
+      { fill: DISPLAY_COLOR } );
 
     // expand/collapse button
     var expandCollapseButton = new ExpandCollapseButton( PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH, expandedProperty );
@@ -108,12 +105,6 @@ define( function( require ) {
         valueNode.right = valueRectangle.right - valueXMargin; // right justified
       }
     } );
-
-    if ( enabledProperty ) {
-      enabledProperty.link( function( enabled ) {
-        backgroundRectangle.fill = enabled ? ENABLED_COLOR : DISABLED_COLOR;
-      } );
-    }
   }
 
   inherit( Node, ValueNode );
@@ -159,15 +150,17 @@ define( function( require ) {
 
   /**
    * @param {Property<Number>} pHProperty
-   * @param expanded is this node initially expanded?
+   * @param {*} options
    * @constructor
    */
-  function SolutionsPHMeterNode( pHProperty, expanded ) {
+  function SolutionsPHMeterNode( pHProperty, options ) {
+
+    options = _.extend( { expanded: true }, options );
 
     var thisNode = this;
     Node.call( thisNode );
 
-    var expandedProperty = new Property( expanded );
+    var expandedProperty = new Property( options.expanded );
 
     // nodes
     var valueNode = new ValueNode( pHProperty, expandedProperty );
@@ -211,6 +204,8 @@ define( function( require ) {
        meterNode.visible = expanded;
       expandCollapseBar.visible = !expanded;
     } );
+
+    thisNode.mutate( options );
   }
 
   return inherit( Node, SolutionsPHMeterNode );

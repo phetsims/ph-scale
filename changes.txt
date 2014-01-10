@@ -1,3 +1,4 @@
+1/9/14 Custom: add expand/collapse feature to pH meter
 1/9/14 generalize ExpandCollapseBar so that it title can be any scenery.Node
 1/9/14 move expand/collapse bar instance into SolutionsPHMeterNode
 1/9/14 change interface to ExpandCollapseBar

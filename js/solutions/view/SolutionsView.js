@@ -94,7 +94,7 @@ define( function( require ) {
     var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );
 
     // pH meter
-    var pHMeterNode = new SolutionsPHMeterNode( model.solution.pHProperty, true );
+    var pHMeterNode = new SolutionsPHMeterNode( model.solution.pHProperty );
 
     // graph
     var graphNode = new SolutionsGraphNode( model.solution, viewProperties.graphUnitsProperty );

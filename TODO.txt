@@ -7,7 +7,6 @@ IMPLEMENTATION
 HIGH
 - move concentration/quantity switch into expand/collapse bar above graph
 - Custom: add spinners to pH meter
-- Custom: add expand/collapse feature to pH meter?
 - home screen and navbar icons: YY will send to me, separate icons for home screen and navbar
 - Custom: add interactivity to H3O and OH indicators in log graph
 - limit range of interactive indicators so that pH stays in range [-1,15]

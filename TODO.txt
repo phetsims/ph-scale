@@ -5,7 +5,6 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- get rid of ExpandCollapseBar in CustomPHMeter
 - Custom: add spinners to pH meter
 - home screen and navbar icons: YY will send to me, separate icons for home screen and navbar
 - Custom: add interactivity to H3O and OH indicators in log graph

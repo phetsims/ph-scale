@@ -32,8 +32,8 @@ define( function( require ) {
 
   // constants
   var SCALE_SIZE = new Dimension2( 55, 450 );
-  var DISPLAY_X_MARGIN = 14;
-  var DISPLAY_Y_MARGIN = 10;
+  var DISPLAY_X_SPACING = 14;
+  var DISPLAY_Y_SPACING = 10;
   var DISPLAY_CORNER_RADIUS = 12;
   var PH_LABEL_FONT = new PhetFont( { size: 28, weight: 'bold' } );
 
@@ -65,17 +65,14 @@ define( function( require ) {
     var labelNode = new Text( pHString, { fill: 'black', font: PH_LABEL_FONT } );
 
     // expanded background
-    var backgroundYSpacing = 6;
-    var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * DISPLAY_X_MARGIN );
-    var expandedHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * DISPLAY_Y_MARGIN );
     var backgroundOptions = { fill: 'rgb(222,222,222)', stroke: 'black', lineWidth: 2 };
-    var expandedRectangle = new Rectangle( 0, 0, backgroundWidth, expandedHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS,
-      backgroundOptions );
+    var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * DISPLAY_X_SPACING );
+    var expandedHeight = labelNode.height + valueRectangle.height + ( 3 * DISPLAY_Y_SPACING );
+    var expandedRectangle = new Rectangle( 0, 0, backgroundWidth, expandedHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS, backgroundOptions );
 
     // collapsed background
-    var collapsedHeight = labelNode.height + ( 2 * DISPLAY_Y_MARGIN );
-    var collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, collapsedHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS,
-      backgroundOptions );
+    var collapsedHeight = labelNode.height + ( 2 * DISPLAY_Y_SPACING );
+    var collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, collapsedHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS, backgroundOptions );
 
     // expand/collapse button
     var expandCollapseButton = new ExpandCollapseButton( PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH, expandedProperty );
@@ -89,10 +86,10 @@ define( function( require ) {
     thisNode.addChild( valueNode );
 
     // layout
-    labelNode.top = expandedRectangle.top + DISPLAY_Y_MARGIN;
+    labelNode.top = expandedRectangle.top + DISPLAY_Y_SPACING;
     valueRectangle.centerX = expandedRectangle.centerX;
     labelNode.left = valueRectangle.left;
-    valueRectangle.top = labelNode.bottom + backgroundYSpacing;
+    valueRectangle.top = labelNode.bottom + DISPLAY_Y_SPACING;
     valueNode.right = valueRectangle.right - valueXMargin; // right justified
     valueNode.centerY = valueRectangle.centerY;
     expandCollapseButton.centerY = labelNode.centerY;

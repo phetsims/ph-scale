@@ -14,13 +14,10 @@ define( function( require ) {
   var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
-  var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
-  var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PropertySet = require( 'AXON/PropertySet' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
@@ -30,12 +27,8 @@ define( function( require ) {
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
   var SolutionsGraphNode = require( 'PH_SCALE/solutions/view/SolutionsGraphNode' );
   var SolutionsPHMeterNode = require( 'PH_SCALE/solutions/view/SolutionsPHMeterNode' );
-  var Text = require( 'SCENERY/nodes/Text' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
   var WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
-
-  // strings
-  var graphString = require( 'string!PH_SCALE/graph' );
 
   /**
    * @param {SolutionsModel} model
@@ -50,9 +43,7 @@ define( function( require ) {
     // view-specific properties
     var viewProperties = new PropertySet( {
       ratioVisible: false,
-      moleculeCountVisible: false,
-      graphVisible: true,
-      graphUnits: GraphUnits.MOLES_PER_LITER
+      moleculeCountVisible: false
     } );
 
     // Parent for all nodes added to this screen
@@ -97,16 +88,7 @@ define( function( require ) {
     var pHMeterNode = new SolutionsPHMeterNode( model.solution.pHProperty );
 
     // graph
-    var graphNode = new SolutionsGraphNode( model.solution, viewProperties.graphUnitsProperty );
-    var graphExpandCollapseBar = new ExpandCollapseBar(
-      new Text( graphString, { font: new PhetFont( { size: 18, weight: 'bold' } ), fill: 'white' } ),
-      viewProperties.graphVisibleProperty, {
-        barWidth: graphNode.width,
-        buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
-      } );
-    viewProperties.graphVisibleProperty.link( function( visible ) {
-      graphNode.visible = visible;
-    } );
+    var graphNode = new SolutionsGraphNode( model.solution );
 
     // solutes combo box
     var soluteListParent = new Node();
@@ -132,7 +114,6 @@ define( function( require ) {
     rootNode.addChild( beakerControls );
     rootNode.addChild( pHMeterNode );
     rootNode.addChild( graphNode );
-    rootNode.addChild( graphExpandCollapseBar );
     rootNode.addChild( resetAllButton );
     rootNode.addChild( soluteComboBox );
     rootNode.addChild( soluteListParent ); // last, so that combo box list is on top
@@ -148,10 +129,8 @@ define( function( require ) {
     soluteComboBox.top = this.layoutBounds.top + 15;
     pHMeterNode.top = 20;
     pHMeterNode.right = drainFaucetNode.left - 40;
-    graphExpandCollapseBar.right = pHMeterNode.left - 20;
-    graphExpandCollapseBar.top = pHMeterNode.top;
-    graphNode.centerX = graphExpandCollapseBar.centerX;
-    graphNode.top = graphExpandCollapseBar.bottom + 10;
+    graphNode.right = pHMeterNode.left - 20;
+    graphNode.top = 20;
     resetAllButton.left = beakerControls.right + 30;
     resetAllButton.centerY = beakerControls.centerY;
   }

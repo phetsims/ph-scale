@@ -31,6 +31,7 @@ LOW
 - consider moving 'basics' package to ph-scale-basics, ph-scale-basics#7
 - TODO items in code
 - how to handle i18n issues with switch in graph's expand/collapse bar
+- how to keep units switch centered above graph, it's currently 'eyeballed', not a robust i18n solution
 
 MIGRATE TO COMMON
 - ExpandCollapseBar

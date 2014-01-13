@@ -3,6 +3,7 @@
 /**
  * pH meter for the 'Solutions' screen.
  * Origin is at top left.
+ * The meter can be expanded and collapsed, but is otherwise not interactive.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

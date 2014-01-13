@@ -12,7 +12,6 @@ define( function( require ) {
 
   // imports
   var Color = require( 'SCENERY/util/Color' );
-  var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
   var ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -22,11 +21,9 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var Util = require( 'DOT/Util' );
 
   // strings
   var pHString = require( 'string!PH_SCALE/pH' );
-  var stringNoValue = '-';
 
   // constants
   var DISPLAY_X_SPACING = 14;
@@ -41,7 +38,7 @@ define( function( require ) {
    */
   function CustomPHMeterNode( pHProperty, options ) {
 
-    options = _.extend( { expanded: true }, options )
+    options = _.extend( { expanded: true }, options );
 
     var thisNode = this;
     Node.call( thisNode );

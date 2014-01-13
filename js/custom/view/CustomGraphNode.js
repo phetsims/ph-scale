@@ -113,6 +113,10 @@ define( function( require ) {
     graphNode.centerX = expandCollapseBar.centerX;
     graphNode.top = expandCollapseBar.bottom;
 
+    expandedProperty.link( function( expanded ) {
+      graphNode.visible = expanded;
+    } );
+
     // handle scale changes
     graphScaleProperty.link( function( graphScale ) {
       zoomButtons.visible = ( graphScale === GraphScale.LINEAR );

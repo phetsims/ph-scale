@@ -1,6 +1,5 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
-//TODO support {Node} for labelA and labelB
 /**
  * Control for switching between 2 choices (A & B).
  * This is an adapter for OnOffProperty, the iOS-like on/off switch.
@@ -22,6 +21,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Property = require( 'AXON/Property' );
 
+  //TODO support {Node} for labelA and labelB
   /**
    * @param {Property<*>} property
    * @param {*} objectA

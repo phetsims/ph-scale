@@ -73,7 +73,8 @@ define( function( require ) {
       backgroundOptions );
 
     // collapsed background
-    var collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, 0.5 * expandedHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS,
+    var collapsedHeight = labelNode.height + ( 2 * DISPLAY_Y_MARGIN );
+    var collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, collapsedHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS,
       backgroundOptions );
 
     // expand/collapse button

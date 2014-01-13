@@ -31,6 +31,5 @@
   "moleculeCount": "Molecule count",
   "ratio": "{0}/{1} ratio",
   "linear": "Linear",
-  "logarithmic": "Logarithmic",
-  "graph": "Graph"
+  "logarithmic": "Logarithmic"
 }

@@ -16,24 +16,18 @@ define( function( require ) {
   var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Line = require( 'SCENERY/nodes/Line' );
   var LogarithmicGraph = require( 'PH_SCALE/common/view/graph/LogarithmicGraph' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Text = require( 'SCENERY/nodes/Text' );
 
   // strings
   var concentrationString = require( 'string!PH_SCALE/concentration' );
-  var graphString = require( 'string!PH_SCALE/graph' );
   var molesString = require( 'string!PH_SCALE/units.moles' );
   var molesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
   var quantityString = require( 'string!PH_SCALE/quantity' );
-
-  // constants
-  var GRAPH_SIZE = new Dimension2( 325, 600 );
-  var Y_SPACING = 20;
 
   /**
    * @param {Solution} solution
@@ -50,13 +44,6 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
-    // guide for approximate size of graph
-    var guideStroke = ( window.phetcommon.getQueryParameter( 'dev' ) ) ? 'rgb(240,240,240)' : null;
-    var guideNode = new Rectangle( 0, 0, GRAPH_SIZE.width, GRAPH_SIZE.height, {
-      stroke: guideStroke,
-      lineWidth: 2
-    } );
-
     // units switch
     var unitsProperty = new Property( options.units );
     var unitsSwitch = new ABSwitch( unitsProperty,
@@ -67,32 +54,34 @@ define( function( require ) {
       } );
 
     // logarithmic graph, switchable between 'concentration' and 'quantity'
-    var scaleHeight = GRAPH_SIZE.height - unitsSwitch.height - Y_SPACING;
     var logarithmicGraph = new LogarithmicGraph( solution, unitsProperty, {
-      scaleHeight: scaleHeight,
+      scaleHeight: 530,
       isInteractive: false
     } );
-    logarithmicGraph.centerX = guideNode.centerX;
-    logarithmicGraph.y = guideNode.top + 30;
+
+    // vertical line that connects graph to expand/collapse bar
+    var lineNode = new Line( 0, 0, 0, 30, { stroke: 'black' } );
 
     // parent for all parts of the graph
     var graphNode = new Node();
     thisNode.addChild( graphNode );
-    graphNode.addChild( guideNode );
+    graphNode.addChild( lineNode );
     graphNode.addChild( logarithmicGraph );
+    logarithmicGraph.centerX = lineNode.centerX;
+    logarithmicGraph.top = lineNode.bottom - 1;
 
     // expand/collapse bar
     var expandedProperty = new Property( options.expanded );
     var expandCollapseBar = new ExpandCollapseBar(
       unitsSwitch,
       expandedProperty, {
-        barWidth: graphNode.width,
+        barWidth: 1.1 * graphNode.width,
         barLineWidth: 2,
         buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
       } );
     thisNode.addChild( expandCollapseBar );
     graphNode.centerX = expandCollapseBar.centerX;
-    graphNode.top = expandCollapseBar.bottom;
+    graphNode.top = expandCollapseBar.bottom - 1;
 
     expandedProperty.link( function( expanded ) {
       graphNode.visible = expanded;

@@ -16,7 +16,6 @@ define( function( require ) {
   var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
-  var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var GraphScale = require( 'PH_SCALE/common/view/graph/GraphScale' );
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
@@ -33,9 +32,6 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
-  // strings
-  var graphString = require( 'string!PH_SCALE/graph' );
-
   /**
    * @param {CustomModel} model
    * @param {ModelViewTransform2} mvt
@@ -49,11 +45,7 @@ define( function( require ) {
     // view-specific properties
     var viewProperties = new PropertySet( {
       ratioVisible: false,
-      moleculeCountVisible: false,
-      pHMeterVisible: true,
-      graphVisible: true,
-      graphUnits: GraphUnits.MOLES_PER_LITER,
-      graphScale: GraphScale.LOGARITHMIC
+      moleculeCountVisible: false
     } );
 
     // Parent for all nodes added to this screen
@@ -95,16 +87,7 @@ define( function( require ) {
     var pHMeterNode = new CustomPHMeterNode( model.solution.pHProperty );
 
     // graph
-    var graphNode = new CustomGraphNode( model.solution, viewProperties.graphUnitsProperty, viewProperties.graphScaleProperty );
-    var graphExpandCollapseBar = new ExpandCollapseBar(
-      new Text( graphString, { font: new PhetFont( { size: 18, weight: 'bold' } ), fill: 'white' } ),
-      viewProperties.graphVisibleProperty, {
-        barWidth: graphNode.width,
-        buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
-      } );
-    viewProperties.graphVisibleProperty.link( function( visible ) {
-      graphNode.visible = visible;
-    } );
+    var graphNode = new CustomGraphNode( model.solution );
 
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
@@ -124,7 +107,6 @@ define( function( require ) {
     rootNode.addChild( beakerControls );
     rootNode.addChild( pHMeterNode );
     rootNode.addChild( graphNode );
-    rootNode.addChild( graphExpandCollapseBar );
     rootNode.addChild( resetAllButton );
 
     // Layout of nodes that don't have a location specified in the model
@@ -136,10 +118,8 @@ define( function( require ) {
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.centerX = mvt.modelToViewX( model.beaker.location.x );
     beakerControls.top = beakerNode.bottom + 15;
-    graphExpandCollapseBar.right = drainFaucetNode.left - 70;
-    graphExpandCollapseBar.top = 20;
-    graphNode.centerX = graphExpandCollapseBar.centerX;
-    graphNode.top = graphExpandCollapseBar.bottom + 10;
+    graphNode.right = drainFaucetNode.left - 70;
+    graphNode.top = 20;
     resetAllButton.left = beakerControls.right + 30;
     resetAllButton.centerY = beakerControls.centerY;
   }

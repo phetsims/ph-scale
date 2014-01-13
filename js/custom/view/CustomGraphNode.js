@@ -12,12 +12,16 @@ define( function( require ) {
   // imports
   var ABSwitch = require( 'PH_SCALE/common/view/ABSwitch' );
   var Dimension2 = require( 'DOT/Dimension2' );
+  var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
   var GraphScale = require( 'PH_SCALE/common/view/graph/GraphScale' );
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Line = require( 'SCENERY/nodes/Line' );
   var LogarithmicGraph = require( 'PH_SCALE/common/view/graph/LogarithmicGraph' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
   // strings
@@ -28,75 +32,91 @@ define( function( require ) {
   var molesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
   var quantityString = require( 'string!PH_SCALE/quantity' );
 
-  // constants
-  var GRAPH_SIZE = new Dimension2( 360, 600 );
-  var Y_SPACING = 20;
-
   /**
    * @param {Solution} solution
-   * @param {Property<GraphUnits>} graphUnitsProperty
-   * @param {Property<GraphScale>} graphScaleProperty
+   * @param {*} options
    * @constructor
    */
-  function CustomGraphNode( solution, graphUnitsProperty, graphScaleProperty ) {
+  function CustomGraphNode( solution, options ) {
+
+    options = _.extend( {
+      expanded: true,
+      units: GraphUnits.MOLES_PER_LITER,
+      graphScale: GraphScale.LOGARITHMIC
+    }, options );
 
     var thisNode = this;
     Node.call( thisNode );
 
-    // guide for approximate size of graph
-    var guideStroke = ( window.phetcommon.getQueryParameter( 'dev' ) ) ? 'rgb(240,240,240)' : null;
-    var guideNode = new Rectangle( 0, 0, GRAPH_SIZE.width, GRAPH_SIZE.height, {
-      stroke: guideStroke,
-      lineWidth: 2
-    } );
-
-    var unitsSwitch = new ABSwitch( graphUnitsProperty,
+    // units switch
+    var unitsProperty = new Property( options.units );
+    var unitsSwitch = new ABSwitch( unitsProperty,
       GraphUnits.MOLES_PER_LITER, concentrationString + '\n(' + molesPerLiterString + ')',
       GraphUnits.MOLES, quantityString + '\n(' + molesString + ')', {
-      font: new PhetFont( 18 ),
+      font: new PhetFont( { size: 18, weight: 'bold' } ),
       size: new Dimension2( 50, 25 )
       } );
 
     //TODO use sun.PushButton
+    // zoom buttons for the linear graph
     var zoomButtonLength = 40;
     var zoomButtonCornerRadius = 10;
     var zoomInButton = new Rectangle( 0, 0, zoomButtonLength, zoomButtonLength, zoomButtonCornerRadius, zoomButtonCornerRadius, { stroke: 'black' } );
     var zoomOutButton = new Rectangle( 0, 0, zoomButtonLength, zoomButtonLength, zoomButtonCornerRadius, zoomButtonCornerRadius, { stroke: 'black' } );
-    var zoomParent = new Node( { children: [ zoomInButton, zoomOutButton ]} );
+    var zoomButtons = new Node( { children: [ zoomInButton, zoomOutButton ]} );
     zoomOutButton.left = zoomInButton.right + 10;
     zoomOutButton.centerY = zoomInButton.centerY;
 
+    // switch between 'Logarithmic' and 'Linear'
+    var graphScaleProperty = new Property( options.graphScale );
     var scaleSwitch = new ABSwitch( graphScaleProperty, GraphScale.LOGARITHMIC, logarithmicString, GraphScale.LINEAR, linearString, {
       font: new PhetFont( 18 ),
       size: new Dimension2( 50, 25 )
     } );
 
-    var scaleHeight = GRAPH_SIZE.height - unitsSwitch.height - zoomParent.height - scaleSwitch.height - ( 3 * Y_SPACING );
-    var logarithmicGraph = new LogarithmicGraph( solution, graphUnitsProperty, {
+    // logarithmic graph, switchable between 'concentration' and 'quantity'
+    var scaleHeight = 475;
+    var logarithmicGraph = new LogarithmicGraph( solution, unitsProperty, {
       scaleHeight: scaleHeight,
       isInteractive: true
     } );
 
-    // rendering order
-    thisNode.addChild( guideNode );
-    thisNode.addChild( unitsSwitch );
-    thisNode.addChild( zoomParent );
-    thisNode.addChild( scaleSwitch );
-    thisNode.addChild( logarithmicGraph );
+    // vertical line that connects graph to expand/collapse bar
+    var lineNode = new Line( 0, 0, 0, 30, { stroke: 'black' } );
+
+    // parent for all parts of the graph
+    var graphNode = new Node();
+    thisNode.addChild( graphNode );
+    graphNode.addChild( lineNode );
+    graphNode.addChild( logarithmicGraph );
+    graphNode.addChild( zoomButtons );
+    graphNode.addChild( scaleSwitch );
 
     // layout
-    unitsSwitch.centerX = guideNode.centerX;
-    unitsSwitch.top = guideNode.top;
-    logarithmicGraph.centerX = guideNode.centerX;
-    logarithmicGraph.top = unitsSwitch.bottom + Y_SPACING;
-    scaleSwitch.centerX = guideNode.centerX;
-    scaleSwitch.bottom = guideNode.bottom;
-    zoomParent.centerX = guideNode.centerX;
-    zoomParent.bottom = scaleSwitch.top - Y_SPACING;
+    logarithmicGraph.centerX = lineNode.centerX;
+    logarithmicGraph.top = lineNode.bottom - 1;
+    zoomButtons.centerX = logarithmicGraph.centerX;
+    zoomButtons.top = lineNode.bottom + scaleHeight + 20;
+    scaleSwitch.centerX = zoomButtons.centerX;
+    scaleSwitch.top = zoomButtons.bottom + 10;
+
+    // expand/collapse bar
+    var expandedProperty = new Property( options.expanded );
+    var expandCollapseBar = new ExpandCollapseBar(
+      unitsSwitch,
+      expandedProperty, {
+        barWidth: graphNode.width,
+        barLineWidth: 2,
+        buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
+      } );
+    thisNode.addChild( expandCollapseBar );
+    graphNode.centerX = expandCollapseBar.centerX;
+    graphNode.top = expandCollapseBar.bottom;
 
     // handle scale changes
     graphScaleProperty.link( function( graphScale ) {
-      zoomParent.visible = ( graphScale === GraphScale.LINEAR );
+      zoomButtons.visible = ( graphScale === GraphScale.LINEAR );
+      //TODO switch to Linear graph
     });
   }
 

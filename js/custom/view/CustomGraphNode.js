@@ -105,7 +105,7 @@ define( function( require ) {
     var expandCollapseBar = new ExpandCollapseBar(
       unitsSwitch,
       expandedProperty, {
-        barWidth: graphNode.width,
+        barWidth: 350,
         barLineWidth: 2,
         buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
       } );

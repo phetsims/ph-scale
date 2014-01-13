@@ -129,7 +129,7 @@ define( function( require ) {
     soluteComboBox.top = this.layoutBounds.top + 15;
     pHMeterNode.top = 20;
     pHMeterNode.right = drainFaucetNode.left - 40;
-    graphNode.right = pHMeterNode.left - 20;
+    graphNode.right = pHMeterNode.left - 10;
     graphNode.top = 20;
     resetAllButton.left = beakerControls.right + 30;
     resetAllButton.centerY = beakerControls.centerY;

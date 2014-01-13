@@ -11,7 +11,6 @@ define( function( require ) {
 
   // imports
   var Dimension2 = require( 'DOT/Dimension2' );
-  var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
   var ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
@@ -40,9 +39,7 @@ define( function( require ) {
   /**
    * Value is displayed inside of this, which sits above the scale.
    * Has an expand/collapse button for controlling visibility of the entire meter.
-   * What is a bit odd is that button is only visible while the meter is expanded,
-   * and a totally separate expand/collapse bar is shown when the meter is collapsed.
-   * But hey, that's what they wanted.
+   * This button also causes the ValueNode to show/hide the value.
    *
    * @param {Property<Number>} pHProperty
    * @param {Property<Boolean>} expandedProperty
@@ -66,32 +63,44 @@ define( function( require ) {
     // label above the value
     var labelNode = new Text( pHString, { fill: 'black', font: PH_LABEL_FONT } );
 
-    // background
+    // expanded background
     var backgroundYSpacing = 6;
     var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * DISPLAY_X_MARGIN );
-    var backgroundHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * DISPLAY_Y_MARGIN );
-    var backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS,
-      { fill: 'rgb(222,222,222)', stroke: 'black', lineWidth: 2 } );
+    var expandedHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * DISPLAY_Y_MARGIN );
+    var backgroundOptions = { fill: 'rgb(222,222,222)', stroke: 'black', lineWidth: 2 };
+    var expandedRectangle = new Rectangle( 0, 0, backgroundWidth, expandedHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS,
+      backgroundOptions );
+
+    // collapsed background
+    var collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, 0.5 * expandedHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS,
+      backgroundOptions );
 
     // expand/collapse button
     var expandCollapseButton = new ExpandCollapseButton( PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH, expandedProperty );
 
     // rendering order
-    thisNode.addChild( backgroundRectangle );
+    thisNode.addChild( collapsedRectangle );
+    thisNode.addChild( expandedRectangle );
     thisNode.addChild( valueRectangle );
     thisNode.addChild( labelNode );
     thisNode.addChild( expandCollapseButton );
     thisNode.addChild( valueNode );
 
     // layout
-    labelNode.top = backgroundRectangle.top + DISPLAY_Y_MARGIN;
-    valueRectangle.centerX = backgroundRectangle.centerX;
+    labelNode.top = expandedRectangle.top + DISPLAY_Y_MARGIN;
+    valueRectangle.centerX = expandedRectangle.centerX;
     labelNode.left = valueRectangle.left;
     valueRectangle.top = labelNode.bottom + backgroundYSpacing;
     valueNode.right = valueRectangle.right - valueXMargin; // right justified
     valueNode.centerY = valueRectangle.centerY;
     expandCollapseButton.centerY = labelNode.centerY;
     expandCollapseButton.right = valueRectangle.right;
+
+    // expand/collapse
+    expandedProperty.link( function( expanded ) {
+      expandedRectangle.visible = valueRectangle.visible = valueNode.visible = expanded;
+      collapsedRectangle.visible = !expanded;
+    } );
 
     // pH value
     pHProperty.link( function( pH ) {
@@ -163,24 +172,12 @@ define( function( require ) {
 
     // nodes
     var valueNode = new ValueNode( pHProperty, expandedProperty );
-    var expandCollapseBar = new ExpandCollapseBar(
-      new Text( pHString, { font: PH_LABEL_FONT, fill: 'black' } ),
-      expandedProperty, {
-        barLineWidth: 2,
-        barWidth: valueNode.width,
-        cornerRadius: DISPLAY_CORNER_RADIUS,
-        titleFont: PH_LABEL_FONT,
-        buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH,
-        xMargin: DISPLAY_X_MARGIN,
-        yMargin: DISPLAY_Y_MARGIN
-      } );
     var verticalLineNode = new Line( 0, 0, 0, 25, { stroke: 'black', lineWidth: 5 } );
     var scaleNode = new PHScaleNode( { size: SCALE_SIZE } );
     var pointerNode = new PointerNode( SCALE_SIZE.width );
 
     // rendering order
     var meterNode = new Node( { children:[ verticalLineNode, valueNode, scaleNode, pointerNode ] } );
-    thisNode.addChild( expandCollapseBar );
     thisNode.addChild( meterNode );
 
     // layout
@@ -188,8 +185,6 @@ define( function( require ) {
     verticalLineNode.bottom = scaleNode.top + 1;
     valueNode.centerX = verticalLineNode.centerX;
     valueNode.bottom = verticalLineNode.top + 1;
-    expandCollapseBar.centerX = valueNode.centerX;
-    expandCollapseBar.top = valueNode.top;
     pointerNode.x = scaleNode.right - SCALE_SIZE.width;
     // pointerNode.centerY is set dynamically
 
@@ -201,8 +196,7 @@ define( function( require ) {
     } );
 
     expandedProperty.link( function( expanded ) {
-       meterNode.visible = expanded;
-      expandCollapseBar.visible = !expanded;
+      verticalLineNode.visible = scaleNode.visible = pointerNode.visible = expanded;
     } );
 
     thisNode.mutate( options );

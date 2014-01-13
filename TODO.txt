@@ -5,22 +5,21 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- Custom: add spinners to pH meter
-- home screen and navbar icons: YY will send to me, separate icons for home screen and navbar
+- CustomPHMeterNode: resolve how to change pHProperty (a derived property), consult Java implementation
 - Custom: add interactivity to H3O and OH indicators in log graph
+- Custom: when beaker is empty, disable interactive graph indicators and position at zero
 - limit range of interactive indicators so that pH stays in range [-1,15]
 - 'H3O+/OH- ratio' feature
-- vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)
 - Custom: interactive linear graph, zoom feature
+- YY will send me separate icons for home screen and navbar
 
 MEDIUM
-- Custom: when beaker is empty, disable interactive graph indicators and position at zero
-- change look of label that is 'on' for ABSwitch
-- ComboBox: add background color behind arrow button (sun#43)
-- don't update things that aren't visible (Molecule counts, Ratio, collapsed pH meter, collapsed graph)
+- vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)
+- change look of ABSwitch labels based on which one is selected
 - Molecule counts: '4.0 x 10^25' should be displayed as '4.00 x 10^25'
 
 LOW
+- ComboBox: add background color behind arrow button (sun#43)
 - scale down the 'Molecule counts' feature?
 - exponents look lousy, rewrite using scenery.Text?
 - factor out duplicate code/patterns in model & view for 3 screens
@@ -32,6 +31,7 @@ LOW
 - TODO items in code
 - how to handle i18n issues with switch in graph's expand/collapse bar
 - how to keep units switch centered above graph, it's currently 'eyeballed', not a robust i18n solution
+- don't update things that aren't visible (Molecule counts, Ratio, collapsed pH meter, collapsed graph)
 
 MIGRATE TO COMMON
 - ExpandCollapseBar

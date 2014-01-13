@@ -30,8 +30,9 @@ define( function( require ) {
       xMargin: 10,
       yMargin: 8,
       barWidth: 220,
-      barFill: 'rgb(135,19,70)',
-      barStroke: null
+      barFill: 'rgb(222,222,222)',
+      barStroke: 'black',
+      barLineWidth: 1
     }, options );
 
     var thisNode = this;
@@ -45,7 +46,8 @@ define( function( require ) {
     var barHeight = Math.max( button.height, titleNode.height ) + ( 2 * options.yMargin );
     var barNode = new Rectangle( 0, 0, options.barWidth, barHeight, options.cornerRadius, options.cornerRadius, {
       fill: options.barFill,
-      stroke: options.barStroke
+      stroke: options.barStroke,
+      lineWidth: options.barLineWidth
     } );
 
     // rendering order

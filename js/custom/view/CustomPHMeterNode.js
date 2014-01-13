@@ -27,7 +27,6 @@ define( function( require ) {
   var stringNoValue = '-';
 
   // constants
-  var DISPLAY_COLOR = 'rgb(135,19,70)';
   var DISPLAY_X_MARGIN = 14;
   var DISPLAY_Y_MARGIN = 10;
   var DISPLAY_CORNER_RADIUS = 12;
@@ -52,17 +51,17 @@ define( function( require ) {
     var valueYMargin = 5;
     var cornerRadius = 12;
     var valueRectangle = new Rectangle( 0, 0, valueNode.width + ( 2 * valueXMargin ), valueNode.height + ( 2 * valueYMargin ), cornerRadius, cornerRadius,
-      { fill: 'white' } );
+      { fill: 'white', stroke: 'darkGray' } );
 
     // label above the value
-    var labelNode = new Text( pHString, { fill: 'white', font: PH_LABEL_FONT } );
+    var labelNode = new Text( pHString, { fill: 'black', font: PH_LABEL_FONT } );
 
     // background
     var backgroundYSpacing = 6;
     var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * DISPLAY_X_MARGIN );
     var backgroundHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * DISPLAY_Y_MARGIN );
     var backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-      { fill: DISPLAY_COLOR } );
+      { fill: 'rgb(222,222,222)', stroke: 'black', lineWidth: 2 } );
 
     // expand/collapse button
     var expandCollapseButton = new ExpandCollapseButton( PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH, expandedProperty );

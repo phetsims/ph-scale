@@ -1,3 +1,5 @@
+1/13/14 use light gray for pH meters and expand/collapse bars, adjust colors and strokes
+1/13/14 Solutions: move units AB-switch into expand/collapse bar
 1/13/14 Solutions: move expand/collapse bar into SolutionsGraphNode
 1/9/14 Custom: add expand/collapse feature to pH meter
 1/9/14 generalize ExpandCollapseBar so that it title can be any scenery.Node

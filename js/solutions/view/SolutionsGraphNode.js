@@ -32,7 +32,7 @@ define( function( require ) {
   var quantityString = require( 'string!PH_SCALE/quantity' );
 
   // constants
-  var GRAPH_SIZE = new Dimension2( 325, 550 );
+  var GRAPH_SIZE = new Dimension2( 325, 600 );
   var Y_SPACING = 20;
 
   /**
@@ -57,45 +57,42 @@ define( function( require ) {
       lineWidth: 2
     } );
 
+    // units switch
     var unitsProperty = new Property( options.units );
     var unitsSwitch = new ABSwitch( unitsProperty,
       GraphUnits.MOLES_PER_LITER, concentrationString + '\n(' + molesPerLiterString + ')',
       GraphUnits.MOLES, quantityString + '\n(' + molesString + ')', {
-        font: new PhetFont( 18 ),
+        font: new PhetFont( { size: 18, weight: 'bold' } ),
         size: new Dimension2( 50, 25 )
       } );
 
+    // logarithmic graph, switchable between 'concentration' and 'quantity'
     var scaleHeight = GRAPH_SIZE.height - unitsSwitch.height - Y_SPACING;
     var logarithmicGraph = new LogarithmicGraph( solution, unitsProperty, {
       scaleHeight: scaleHeight,
       isInteractive: false
     } );
+    logarithmicGraph.centerX = guideNode.centerX;
+    logarithmicGraph.y = guideNode.top + 30;
 
     // parent for all parts of the graph
     var graphNode = new Node();
     thisNode.addChild( graphNode );
     graphNode.addChild( guideNode );
     graphNode.addChild( logarithmicGraph );
-    graphNode.addChild( unitsSwitch );
-
-    // layout of the graph (without expand/collapse bar)
-    unitsSwitch.centerX = guideNode.centerX;
-    unitsSwitch.top = guideNode.top;
-    logarithmicGraph.centerX = unitsSwitch.centerX;
-    logarithmicGraph.top = unitsSwitch.bottom + Y_SPACING;
-
-    var expandedProperty = new Property( options.expanded );
 
     // expand/collapse bar
+    var expandedProperty = new Property( options.expanded );
     var expandCollapseBar = new ExpandCollapseBar(
-      new Text( graphString, { font: new PhetFont( { size: 18, weight: 'bold' } ), fill: 'white' } ),
+      unitsSwitch,
       expandedProperty, {
         barWidth: graphNode.width,
+        barLineWidth: 2,
         buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
       } );
     thisNode.addChild( expandCollapseBar );
     graphNode.centerX = expandCollapseBar.centerX;
-    graphNode.top = expandCollapseBar.bottom + 10;
+    graphNode.top = expandCollapseBar.bottom;
 
     expandedProperty.link( function( expanded ) {
       graphNode.visible = expanded;

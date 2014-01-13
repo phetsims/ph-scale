@@ -11,10 +11,12 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var Color = require( 'SCENERY/util/Color' );
   var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
   var ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var NumberPicker = require( 'SCENERY_PHET/NumberPicker' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
@@ -44,68 +46,54 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
-    // pH value
-    var valueNode = new Text( Util.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
-      { fill: 'black', font: new PhetFont( 28 ) } );
+    // expand/collapse button
+    var expandedProperty = new Property( options.expanded );
+    var expandCollapseButton = new ExpandCollapseButton( PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH, expandedProperty );
 
-    // rectangle that the value is displayed in
-    var valueXMargin = 8;
-    var valueYMargin = 5;
-    var cornerRadius = 12;
-    var valueRectangle = new Rectangle( 0, 0, valueNode.width + ( 2 * valueXMargin ), valueNode.height + ( 2 * valueYMargin ), cornerRadius, cornerRadius,
-      { fill: 'white', stroke: 'darkGray' } );
+    //TODO replace tempProperty with pHProperty, which is a derived property so currently can't be changed directly
+    // pH picker
+    var tempProperty = new Property( 12 );
+    var picker = new NumberPicker( tempProperty, new Property( PHScaleConstants.PH_RANGE ), {
+      color: new Color( 0, 200, 0 ),
+      decimalPlaces: 2,
+      font: new PhetFont( 30 ),
+      upFunction: function() { return tempProperty.get() + 0.01; },
+      downFunction: function() { return tempProperty.get() - 0.01; }
+    } );
 
-    // label above the value
+    // label above the picker
     var labelNode = new Text( pHString, { fill: 'black', font: PH_LABEL_FONT } );
 
     // expanded background
+    var cornerRadius = 12;
     var backgroundOptions = { fill: 'rgb(222,222,222)', stroke: 'black', lineWidth: 2 };
-    var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * DISPLAY_X_SPACING );
-    var expandedHeight = labelNode.height + valueRectangle.height + ( 3 * DISPLAY_Y_SPACING );
+    var backgroundWidth = Math.max( labelNode.width + expandCollapseButton.width + DISPLAY_X_SPACING, picker.width ) + ( 2 * DISPLAY_X_SPACING );
+    var expandedHeight = labelNode.height + picker.height + ( 3 * DISPLAY_Y_SPACING );
     var expandedRectangle = new Rectangle( 0, 0, backgroundWidth, expandedHeight, cornerRadius, cornerRadius, backgroundOptions );
 
     // collapsed background
     var collapsedHeight = labelNode.height + ( 2 * DISPLAY_Y_SPACING );
     var collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, collapsedHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS, backgroundOptions );
 
-    // expand/collapse button
-    var expandedProperty = new Property( options.expanded );
-    var expandCollapseButton = new ExpandCollapseButton( PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH, expandedProperty );
-
     // rendering order
     thisNode.addChild( collapsedRectangle );
     thisNode.addChild( expandedRectangle );
-    thisNode.addChild( valueRectangle );
+    thisNode.addChild( picker );
     thisNode.addChild( labelNode );
     thisNode.addChild( expandCollapseButton );
-    thisNode.addChild( valueNode );
 
     // layout
     labelNode.top = expandedRectangle.top + DISPLAY_Y_SPACING;
-    valueRectangle.centerX = expandedRectangle.centerX;
-    labelNode.left = valueRectangle.left;
-    valueRectangle.top = labelNode.bottom + DISPLAY_Y_SPACING;
-    valueNode.right = valueRectangle.right - valueXMargin; // right justified
-    valueNode.centerY = valueRectangle.centerY;
+    picker.centerX = expandedRectangle.centerX;
+    labelNode.left = expandedRectangle.left + DISPLAY_X_SPACING;
+    picker.top = labelNode.bottom + DISPLAY_Y_SPACING;
     expandCollapseButton.centerY = labelNode.centerY;
-    expandCollapseButton.right = valueRectangle.right;
+    expandCollapseButton.right = expandedRectangle.right - DISPLAY_X_SPACING;
 
     // expand/collapse
     expandedProperty.link( function( expanded ) {
-      expandedRectangle.visible = valueRectangle.visible = valueNode.visible = expanded;
+      expandedRectangle.visible = picker.visible = expanded;
       collapsedRectangle.visible = !expanded;
-    } );
-
-    // pH value
-    pHProperty.link( function( pH ) {
-      if ( pH === null ) {
-        valueNode.text = stringNoValue;
-        valueNode.centerX = valueRectangle.centerX; // center justified
-      }
-      else {
-        valueNode.text = Util.toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES );
-        valueNode.right = valueRectangle.right - valueXMargin; // right justified
-      }
     } );
 
     thisNode.mutate( options );

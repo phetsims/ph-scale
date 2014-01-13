@@ -17,19 +17,15 @@ define( function( require ) {
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
-  var GraphScale = require( 'PH_SCALE/common/view/graph/GraphScale' );
-  var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PropertySet = require( 'AXON/PropertySet' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
-  var Text = require( 'SCENERY/nodes/Text' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
   /**

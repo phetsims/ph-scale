@@ -190,7 +190,7 @@ define( function( require ) {
 
     // move the pointer to the pH value
     pHProperty.link( function( value ) {
-      pointerNode.visible = ( value !== null );
+      pointerNode.visible = ( expandedProperty.get() && value !== null );
       pointerNode.centerY = scaleNode.top + ( scaleNode.getBackgroundStrokeWidth() / 2 ) +
                             Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
     } );

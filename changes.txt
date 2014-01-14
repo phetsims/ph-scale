@@ -1,3 +1,4 @@
+1/14/14 fix: show 'Solutions' pH meter pointer only if meter is expanded
 1/14/14 add option.emptyWhenSoluteChanges to Solution, needed for 'Custom' screen where a new custom solute is created as the pH changes
 1/14/14 make Solute immutable, change pH of 'custom' solution by creating new Solute instances when the pH changes
 1/14/14 bug fix in BasicsPHMeterNode, 'enabled' fill was null

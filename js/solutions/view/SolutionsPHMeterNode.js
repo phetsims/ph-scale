@@ -18,6 +18,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PHScaleNode = require( 'PH_SCALE/common/view/PHScaleNode' );
   var Property = require( 'AXON/Property' );
@@ -65,7 +66,7 @@ define( function( require ) {
     var labelNode = new Text( pHString, { fill: 'black', font: PH_LABEL_FONT } );
 
     // expanded background
-    var backgroundOptions = { fill: 'rgb(222,222,222)', stroke: 'black', lineWidth: 2 };
+    var backgroundOptions = { fill: PHScaleColors.PANEL_FILL, stroke: 'black', lineWidth: 2 };
     var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * DISPLAY_X_SPACING );
     var expandedHeight = labelNode.height + valueRectangle.height + ( 3 * DISPLAY_Y_SPACING );
     var expandedRectangle = new Rectangle( 0, 0, backgroundWidth, expandedHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS, backgroundOptions );

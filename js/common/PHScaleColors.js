@@ -14,6 +14,7 @@ define( function( require ) {
   return {
 
     SCREEN_BACKGROUND: 'white',
+    PANEL_FILL: 'rgb(230,230,230)',
 
     // pH range
     ACIDIC: new Color( 249, 106, 102 ),

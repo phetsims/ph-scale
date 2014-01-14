@@ -1,3 +1,4 @@
+1/14/14 factor out PHScaleColors.PANEL_FILL, color for all panels and expand/collapse bars
 1/13/14 integrate NumberPicker into CustomPHMeterNode
 1/13/14 ditch ExpandCollapseBar in CustomMeterNode, implement something specific to what's needed
 1/13/14 ditch ExpandCollapseBar in SolutionsMeterNode, implement something specific to what's needed

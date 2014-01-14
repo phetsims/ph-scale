@@ -17,6 +17,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var NumberPicker = require( 'SCENERY_PHET/NumberPicker' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -63,7 +64,7 @@ define( function( require ) {
 
     // expanded background
     var cornerRadius = 12;
-    var backgroundOptions = { fill: 'rgb(222,222,222)', stroke: 'black', lineWidth: 2 };
+    var backgroundOptions = { fill: PHScaleColors.PANEL_FILL, stroke: 'black', lineWidth: 2 };
     var backgroundWidth = Math.max( labelNode.width + expandCollapseButton.width + DISPLAY_X_SPACING, picker.width ) + ( 2 * DISPLAY_X_SPACING );
     var expandedHeight = labelNode.height + picker.height + ( 3 * DISPLAY_Y_SPACING );
     var expandedRectangle = new Rectangle( 0, 0, backgroundWidth, expandedHeight, cornerRadius, cornerRadius, backgroundOptions );

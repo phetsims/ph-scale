@@ -59,7 +59,8 @@ define( function( require ) {
     Panel.call( this, content, {
       xMargin: 15,
       yMargin: 10,
-      fill: 'rgb(240,240,240)'
+      lineWidth: 2,
+      fill: PHScaleColors.PANEL_FILL
     } );
   }
 

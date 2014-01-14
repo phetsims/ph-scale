@@ -20,6 +20,7 @@ define( function( require ) {
   var LogarithmicGraph = require( 'PH_SCALE/common/view/graph/LogarithmicGraph' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -105,6 +106,7 @@ define( function( require ) {
     var expandCollapseBar = new ExpandCollapseBar(
       unitsSwitch,
       expandedProperty, {
+        barFill: PHScaleColors.PANEL_FILL,
         barWidth: 350,
         barLineWidth: 2,
         buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH

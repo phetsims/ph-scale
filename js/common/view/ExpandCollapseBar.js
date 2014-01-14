@@ -30,7 +30,7 @@ define( function( require ) {
       xMargin: 10,
       yMargin: 8,
       barWidth: 220,
-      barFill: 'rgb(222,222,222)',
+      barFill: 'white',
       barStroke: 'black',
       barLineWidth: 1
     }, options );

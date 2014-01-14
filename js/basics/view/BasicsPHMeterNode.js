@@ -47,6 +47,8 @@ define( function( require ) {
 
   // constants
   var SCALE_SIZE = new Dimension2( 55, 450 );
+  var BACKGROUND_ENABLED_FILL = 'rgb(31,113,2)';
+  var BACKGROUND_DISABLED_FILL = 'rgb(178,178,178)';
 
   /**
    * Displays pH value inside of a rounded rectangle, which is then placed inside of yet-another rounded rectangle.
@@ -83,7 +85,7 @@ define( function( require ) {
     var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * backgroundXMargin );
     var backgroundHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * backgroundYMargin );
     var backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-      { fill: 'rgb( 31, 113, 2 )' } );
+      { fill: BACKGROUND_ENABLED_FILL } );
 
     // highlight around the background
     var highlightLineWidth = 3;
@@ -124,7 +126,7 @@ define( function( require ) {
 
     if ( enabledProperty ) {
       enabledProperty.link( function( enabled ) {
-        backgroundRectangle.fill = enabled ? PHScaleColors.PH_DISPLAY : 'rgb(178,178,178)';
+        backgroundRectangle.fill = enabled ? BACKGROUND_ENABLED_FILL : BACKGROUND_DISABLED_FILL;
       } );
     }
   }

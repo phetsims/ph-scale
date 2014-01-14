@@ -2,6 +2,7 @@
 
 /**
  * Solute model, with instances used by this sim.
+ * Solutes are immutable, so all fields should be considered immutable.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -41,7 +42,7 @@ define( function( require ) {
   function Solute( name, pH, colorScheme ) {
 
     this.name = name;
-    this.pHProperty = new Property( pH );
+    this.pH = pH;
 
     // unpack the colors to make accessing them more convenient in client code
     this.stockColor = colorScheme.stockColor;
@@ -53,6 +54,11 @@ define( function( require ) {
   }
 
   Solute.prototype = {
+
+    toString: function() {
+      return 'Solution[name:' + this.name + ' pH:' + this.pH + ']';
+    },
+
     /**
      * Computes the color for a dilution of this solute.
      * @param {Number} ratio describes the dilution, range is [0,1] inclusive, 0 is no solute, 1 is all solute
@@ -127,8 +133,15 @@ define( function( require ) {
     colorStop: { color: new Color( 255, 224, 204 ) }
   } );
 
-  // 'magical' mutable solution
-  Solute.CUSTOM = new Solute( customString, 7, { stockColor: new Color( 251, 236, 150 ) } );
+  /**
+   * Creates a custom solute.
+   * @param {Number} pH
+   * @param {Color} color optional color, defaults as shown below
+   * @returns {Solute}
+   */
+  Solute.createCustom = function( pH, color ) {
+    return new Solute( customString, pH, { stockColor: color || new Color( 251, 236, 150 ) } )
+  };
 
   return Solute;
 } );

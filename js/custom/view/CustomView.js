@@ -80,7 +80,7 @@ define( function( require ) {
     var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );
 
     // pH meter
-    var pHMeterNode = new CustomPHMeterNode( model.solution.pHProperty );
+    var pHMeterNode = new CustomPHMeterNode( model.solution );
 
     // graph
     var graphNode = new CustomGraphNode( model.solution );

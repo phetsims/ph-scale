@@ -93,7 +93,7 @@ define( function( require ) {
     valueBackground.centerY = foreground.top + LABEL_Y_OFFSET;
 
     // pH value, rotated and scaled to fit
-    var valueNode = new Text( createPHString( PHScaleConstants.PH_RANGE.max ), { font: new PhetFont( { size: 18, weight: 'bold' } ), fill: 'black' } );
+    var valueNode = new Text( createPHString( dropper.soluteProperty.get().pH ), { font: new PhetFont( { size: 18, weight: 'bold' } ), fill: 'black' } );
     valueNode.setRotation( -Math.PI / 2 );
     valueNode.setScaleMagnitude( Math.min( ( 0.9 * valueBackground.width ) / valueNode.width, ( 0.9 * valueBackground.height ) / valueNode.height ) );
 
@@ -137,22 +137,12 @@ define( function( require ) {
       background.setVisible( empty );
     } );
 
-    // updates the pH value
-    var pHObserver = function( pH ) {
-      // pH value
-      valueNode.text = createPHString( pH );
+    // Change the label and color when the solute changes.
+    dropper.soluteProperty.link( function( solute ) {
+      valueNode.text = createPHString( solute.pH );
       // center the label in its translucent background
       valueNode.centerX = valueBackground.centerX;
       valueNode.centerY = valueBackground.centerY;
-    };
-
-    // Change the label and color when the soluteProperty changes.
-    dropper.soluteProperty.link( function( solute, oldSolute ) {
-
-      // rewire the pH observer
-      if ( oldSolute ) { solute.pHProperty.unlink( pHObserver ); }
-      solute.pHProperty.link( pHObserver );
-
       // fluid color
       fluidNode.fill = solute.stockColor;
     } );

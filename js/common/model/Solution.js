@@ -23,9 +23,14 @@ define( function( require ) {
    * @param {Water} water
    * @param {number} waterVolume liters
    * @param {number} maxVolume liters
+   * @param {*} options
    */
-  function Solution( soluteProperty, soluteVolume, water, waterVolume, maxVolume ) {
+  function Solution( soluteProperty, soluteVolume, water, waterVolume, maxVolume, options ) {
     assert && assert( soluteVolume + waterVolume <= maxVolume );
+
+    options = _.extend( {
+      emptyWhenSoluteChanges: true // whether to empty the solution when the solute changes
+    }, options );
 
     var thisSolution = this;
 
@@ -52,8 +57,10 @@ define( function( require ) {
 
     // solute
     thisSolution.soluteProperty.link( function() {
-      thisSolution.waterVolumeProperty.set( 0 );
-      thisSolution.soluteVolumeProperty.set( 0 );
+      if ( options.emptyWhenSoluteChanges ) {
+        thisSolution.waterVolumeProperty.set( 0 );
+        thisSolution.soluteVolumeProperty.set( 0 );
+      }
     } );
   }
 
@@ -182,7 +189,7 @@ define( function( require ) {
     // Computes the solution's pH.
     computePH: function() {
 
-      var solutePH = this.soluteProperty.get().pHProperty.get();
+      var solutePH = this.soluteProperty.get().pH;
       var soluteVolume = this.soluteVolumeProperty.get();
       var waterPH = this.water.pH;
       var waterVolume = this.waterVolumeProperty.get();

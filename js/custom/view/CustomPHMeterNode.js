@@ -21,6 +21,7 @@ define( function( require ) {
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Solute = require( 'PH_SCALE/common/model/Solute' );
   var Text = require( 'SCENERY/nodes/Text' );
 
   // strings
@@ -33,11 +34,11 @@ define( function( require ) {
   var PH_LABEL_FONT = new PhetFont( { size: 28, weight: 'bold' } );
 
   /**
-   * @param {Property<Number>} pHProperty
+   * @param {Solution} solution
    * @param {Property<Boolean>} expandedProperty optional
    * @constructor
    */
-  function CustomPHMeterNode( pHProperty, options ) {
+  function CustomPHMeterNode( solution, options ) {
 
     options = _.extend( { expanded: true }, options );
 
@@ -48,16 +49,28 @@ define( function( require ) {
     var expandedProperty = new Property( options.expanded );
     var expandCollapseButton = new ExpandCollapseButton( PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH, expandedProperty );
 
-    //TODO replace tempProperty with pHProperty, which is a derived property so currently can't be changed directly
-    // pH picker
-    var tempProperty = new Property( 12 );
-    var picker = new NumberPicker( tempProperty, new Property( PHScaleConstants.PH_RANGE ), {
+    /*
+     * Value displayed by the pH picker. Keep this synchronized with the solution's pH.
+     * Create a new custom solute whenever the pH picker's value changes.
+     * When the solution's volume is zero, it's pH will be null, so do not create a new solute.
+     */
+    var pickerValueProperty = new Property( solution.pHProperty.get() );
+    solution.pHProperty.link( function( pH ) {
+      pickerValueProperty.set( pH );
+    } );
+    pickerValueProperty.link( function( pH ) {
+      if ( pH !== null ) { solution.soluteProperty.set( Solute.createCustom( pH ) ); }
+    } );
+
+    // pH picker,
+    var picker = new NumberPicker( pickerValueProperty, new Property( PHScaleConstants.PH_RANGE ), {
       color: new Color( 0, 200, 0 ),
       decimalPlaces: 2,
       font: new PhetFont( 30 ),
-      upFunction: function() { return tempProperty.get() + 0.01; },
-      downFunction: function() { return tempProperty.get() - 0.01; }
+      upFunction: function() { return pickerValueProperty.get() + 0.01; },
+      downFunction: function() { return pickerValueProperty.get() - 0.01; }
     } );
+
 
     // label above the picker
     var labelNode = new Text( pHString, { fill: 'black', font: PH_LABEL_FONT } );

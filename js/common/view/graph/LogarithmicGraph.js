@@ -170,7 +170,6 @@ define( function( require ) {
 
     if ( options.isInteractive ) {
       //TODO add interactivity for H3O and OH indicators
-      //TODO before dragging indicators, assert && assert( solution.soluteProperty.get() === Solute.CUSTOM )
     }
   }
 

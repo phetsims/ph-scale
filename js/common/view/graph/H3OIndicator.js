@@ -10,7 +10,7 @@ define( function( require ) {
 
   // imports
   var inherit = require( 'PHET_CORE/inherit' );
-  var GraphIndicatorNode = require( 'PH_SCALE/common/view/graph/GraphIndicatorNode' );
+  var GraphIndicator = require( 'PH_SCALE/common/view/graph/GraphIndicator' );
   var H3OMoleculeNode = require( 'PH_SCALE/common/view/H3OMoleculeNode' );
   var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -21,12 +21,12 @@ define( function( require ) {
    * @param {*} options
    * @constructor
    */
-  function H2OIndicatorNode( valueProperty, options ) {
+  function H3OIndicator( valueProperty, options ) {
     options = _.extend( { pointerLocation: 'topRight' }, options );
     var thisNode = this;
     var labelNode = new HTMLText( 'H<sub>3</sub>O<sup>+</sup>', { font: new PhetFont( 28 ), fill: 'white' } );
-    GraphIndicatorNode.call( thisNode, valueProperty, new H3OMoleculeNode(), labelNode, PHScaleColors.ACIDIC, options );
+    GraphIndicator.call( thisNode, valueProperty, new H3OMoleculeNode(), labelNode, PHScaleColors.ACIDIC, options );
   }
 
-  return inherit( GraphIndicatorNode, H2OIndicatorNode );
+  return inherit( GraphIndicator, H3OIndicator );
 } );

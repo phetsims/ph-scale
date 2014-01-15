@@ -12,14 +12,14 @@ define( function( require ) {
   // imports
   var GraphIndicatorDragHandler = require( 'PH_SCALE/common/view/graph/GraphIndicatorDragHandler' );
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
-  var H2OIndicatorNode = require( 'PH_SCALE/common/view/graph/H2OIndicatorNode' );
-  var H3OIndicatorNode = require( 'PH_SCALE/common/view/graph/H3OIndicatorNode' );
+  var H2OIndicator = require( 'PH_SCALE/common/view/graph/H2OIndicator' );
+  var H3OIndicator = require( 'PH_SCALE/common/view/graph/H3OIndicator' );
   var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var OHIndicatorNode = require( 'PH_SCALE/common/view/graph/OHIndicatorNode' );
+  var OHIndicator = require( 'PH_SCALE/common/view/graph/OHIndicator' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
@@ -109,14 +109,14 @@ define( function( require ) {
     var valueH2OProperty = new Property( 0 );
     var valueH3OProperty = new Property( 0 );
     var valueOHProperty = new Property( 0 );
-    var h2OIndicatorNode = new H2OIndicatorNode( valueH2OProperty, {
+    var h2OIndicatorNode = new H2OIndicator( valueH2OProperty, {
       decimalPlaces: 0,
       constantExponent: 0,
       x: backgroundNode.right - options.majorTickLength / 2 } );
-    var h3OIndicatorNode = new H3OIndicatorNode( valueH3OProperty, {
+    var h3OIndicatorNode = new H3OIndicator( valueH3OProperty, {
       x: backgroundNode.left + options.majorTickLength / 2,
       isInteractive: options.isInteractive } );
-    var oHIndicatorNode = new OHIndicatorNode( valueOHProperty, {
+    var oHIndicatorNode = new OHIndicator( valueOHProperty, {
       x: backgroundNode.right - options.majorTickLength / 2,
       isInteractive: options.isInteractive } );
     thisNode.addChild( h2OIndicatorNode );

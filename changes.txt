@@ -1,3 +1,4 @@
+1/15/14 remove 'Node' suffix from GraphIndicator and subtypes
 1/15/14 new screen icons from YY
 1/15/14 constrain pH to valid range when dragging the graph indicators
 1/15/14 make graph indicators look disabled (using opacity) when value is zero

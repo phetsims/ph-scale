@@ -1,3 +1,5 @@
+1/15/14 push duplicate code into GraphIndicatorDragHandler
+1/15/14 change the structure of PHModel, it was acting flakey when returning an object literal
 1/15/14 move responsibility of creating 'custom' solute from Solution setters to LogarithmicGraph
 1/15/14 remove unused polymorphism in Solution.getConcentration*
 1/15/14 PHModel.pHToConcentrationOH calls pHToConcentrationH3O

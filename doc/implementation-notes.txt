@@ -5,6 +5,8 @@ as a joist.Screen in the 'pH Scale' sim. The 'Basics' screen is visible if you r
 query parameter to the URL.) This streamlined development somewhat, and we'll see how it affects testing and future
 maintenance. Just know that all code in js/basics/ is specific to the 'Basics' screen.
 
+All core model computations are in PHModel.
+
 I find that I frequently need to change the rendering order and layout of nodes.
 To make that easier, node constructors typically have this structure:
 

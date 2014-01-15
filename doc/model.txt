@@ -7,8 +7,8 @@ volume range = [0,1.2] L
 
 Definitions:
 
-A= Avogadro's number (6.023E23)
-V= volume in liters (L)
+A = Avogadro's number (6.023E23)
+V = volume in liters (L)
 N = number of molecules
 
 Given a volume of liquid with some pH...

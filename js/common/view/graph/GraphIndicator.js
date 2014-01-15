@@ -187,6 +187,14 @@ define( function( require ) {
     moleculeAndFormula.centerX = valueBackgroundNode.centerX;
     moleculeAndFormula.top = valueBackgroundNode.bottom + options.ySpacing;
 
+    // only backgroundNode and handleOverlay need to be pickable, set pickable false for other nodes to improve performance.
+    backgroundShadowNode.pickable = false;
+    handleNode.pickable = false;
+    handleShadowNode.pickable = false;
+    valueNode.pickable = false;
+    valueBackgroundNode.pickable = false;
+    moleculeAndFormula.pickable = false;
+
     // sync with value
     valueProperty.link( function( value ) {
       valueNode.text = PHUtils.toTimesTenString( value, options.decimalPlaces, options.constantExponent );

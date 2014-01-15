@@ -67,15 +67,11 @@ define( function( require ) {
 
     // 'H3O+/OH- ratio' representation
     var ratioNode = new RatioNode( model.beaker, model.solution, mvt );
-    viewProperties.ratioVisibleProperty.link( function( visible ) {
-      ratioNode.visible = visible;
-    } );
+    viewProperties.ratioVisibleProperty.linkAttribute( ratioNode, 'visible' );
 
     // 'molecule count' representation
     var moleculeCountNode = new MoleculeCountNode( model.solution );
-    viewProperties.moleculeCountVisibleProperty.link( function( visible ) {
-      moleculeCountNode.visible = visible;
-    } );
+    viewProperties.moleculeCountVisibleProperty.linkAttribute( moleculeCountNode, 'visible' );
 
     // beaker controls
     var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );

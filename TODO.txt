@@ -12,7 +12,7 @@ HIGH
 - when graph is set to 'Quantity', it's possible to have indicator values 10^-19, which is below the bottom tick, and below our 'zero' position
 
 MEDIUM
-- vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)
+- Solutions: vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)
 - change look of ABSwitch labels based on which one is selected
 - Molecule counts: '4.0 x 10^25' should be displayed as '4.00 x 10^25'
 

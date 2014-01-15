@@ -120,7 +120,7 @@ define( function( require ) {
       .close().
       transformed( shapeMatrix );
     var handleNode = new Path( handleShape, {
-      fill: 'rgb(220,220,220)', //TODO use a gradient to make it look like brushed metal
+      fill: 'rgb(240,240,240)', //TODO use a gradient to make it look like brushed metal?
       stroke: 'black',
       lineWidth: 1
     });

@@ -11,7 +11,6 @@ define( function( require ) {
 
   // imports
   var Color = require( 'SCENERY/util/Color' );
-  var Property = require( 'AXON/Property' );
   var Water = require( 'PH_SCALE/common/model/Water' );
 
   // strings
@@ -140,7 +139,7 @@ define( function( require ) {
    * @returns {Solute}
    */
   Solute.createCustom = function( pH, color ) {
-    return new Solute( customString, pH, { stockColor: color || new Color( 251, 236, 150 ) } )
+    return new Solute( customString, pH, { stockColor: color || new Color( 251, 236, 150 ) } );
   };
 
   return Solute;

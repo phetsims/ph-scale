@@ -21,7 +21,7 @@ define( function( require ) {
   var screenTitle = require( 'string!PH_SCALE/solutions' );
 
   // images
-  var screenIcon = require( 'image!PH_SCALE/Solutions-screen-icon.jpg' );
+  var screenIcon = require( 'image!PH_SCALE/Solutions-screen-icon.png' );
 
   function SolutionsScreen() {
     Screen.call( this,

@@ -21,7 +21,7 @@ define( function( require ) {
   var screenTitle = require( 'string!PH_SCALE/custom' );
 
   // images
-  var screenIcon = require( 'image!PH_SCALE/Custom-screen-icon.jpg' );
+  var screenIcon = require( 'image!PH_SCALE/Custom-screen-icon.png' );
 
   function CustomScreen() {
     Screen.call( this,

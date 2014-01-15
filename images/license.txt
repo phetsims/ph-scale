@@ -1,5 +1,5 @@
-Custom-screen-icon.jpg author=PhET
-Solutions-screen-icon.jpg author=PhET
+Custom-screen-icon.png source=PhET author=Yuen-ying Carpenter
+Solutions-screen-icon.png source=PhET author=Yuen-ying Carpenter
 pH-meter-probe.png author=PhET notes=copied from beers-law-lab
 dropper-icon.png author=PhET notes=copied from beers-law-lab
 dropper_background.png author=PhET notes=copied from beers-law-lab

@@ -8,7 +8,6 @@ HIGH
 - move responsibility of creating 'custom' solute from Solution setters to LogarithmicGraph?
 - 'H3O+/OH- ratio' feature
 - Custom: interactive linear graph, zoom feature
-- YY will send me separate icons for home screen and navbar
 - when graph is set to 'Quantity', it's possible to have indicator values 10^-19, which is below the bottom tick, and below our 'zero' position
 
 MEDIUM

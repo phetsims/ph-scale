@@ -1,3 +1,4 @@
+1/15/14 add invisible rectangle on top of graph indicator handle, so that space between handle and body isn't a dead zone
 1/15/14 tweak shadow on graph indicators so that they appear to float
 1/15/14 remove 'Node' suffix from GraphIndicator and subtypes
 1/15/14 new screen icons from YY

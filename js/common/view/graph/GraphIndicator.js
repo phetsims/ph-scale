@@ -130,6 +130,9 @@ define( function( require ) {
       fill: options.shadowFill
     });
 
+    // Invisible rectangle over the handle, so that the hole between the handle and background isn't a 'dead zone' for interactivity.
+    var handleOverlay = new Rectangle( 0, 0, handleWidth, handleHeight );
+
     // Cutout where the value is displayed.
     var valueBackgroundNode = new Rectangle( 0, 0,
       ( ( 1 - POINTER_WIDTH_PERCENTAGE ) * options.backgroundWidth ) - ( 2 * options.backgroundXMargin ),
@@ -157,6 +160,7 @@ define( function( require ) {
       thisNode.addChild( backgroundShadowNode );
       thisNode.addChild( handleShadowNode );
       thisNode.addChild( handleNode );
+      thisNode.addChild( handleOverlay );
     }
     thisNode.addChild( backgroundNode );
     thisNode.addChild( valueBackgroundNode );
@@ -175,6 +179,8 @@ define( function( require ) {
       valueBackgroundNode.right = backgroundNode.right - options.backgroundXMargin;
     }
     handleNode.centerY = backgroundNode.centerY;
+    handleOverlay.left = handleNode.left;
+    handleOverlay.top = handleNode.top;
     handleShadowNode.right = handleNode.right + options.shadowXOffset;
     handleShadowNode.bottom = handleNode.bottom + options.shadowYOffset;
     valueBackgroundNode.top = backgroundNode.top + options.backgroundYMargin;

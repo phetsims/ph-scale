@@ -50,8 +50,8 @@ define( function( require ) {
     Node.call( thisNode );
 
     // units switch
-    var unitsProperty = new Property( options.units );
-    var unitsSwitch = new ABSwitch( unitsProperty,
+    var graphUnitsProperty = new Property( options.units );
+    var graphUnitsSwitch = new ABSwitch( graphUnitsProperty,
       GraphUnits.MOLES_PER_LITER, concentrationString + '\n(' + molesPerLiterString + ')',
       GraphUnits.MOLES, quantityString + '\n(' + molesString + ')', {
       font: new PhetFont( { size: 18, weight: 'bold' } ),
@@ -70,14 +70,14 @@ define( function( require ) {
 
     // switch between 'Logarithmic' and 'Linear'
     var graphScaleProperty = new Property( options.graphScale );
-    var scaleSwitch = new ABSwitch( graphScaleProperty, GraphScale.LOGARITHMIC, logarithmicString, GraphScale.LINEAR, linearString, {
+    var graphScaleSwitch = new ABSwitch( graphScaleProperty, GraphScale.LOGARITHMIC, logarithmicString, GraphScale.LINEAR, linearString, {
       font: new PhetFont( 18 ),
       size: new Dimension2( 50, 25 )
     } );
 
     // logarithmic graph, switchable between 'concentration' and 'quantity'
     var scaleHeight = 475;
-    var logarithmicGraph = new LogarithmicGraph( solution, unitsProperty, {
+    var logarithmicGraph = new LogarithmicGraph( solution, graphUnitsProperty, {
       scaleHeight: scaleHeight,
       isInteractive: true
     } );
@@ -91,20 +91,20 @@ define( function( require ) {
     graphNode.addChild( lineNode );
     graphNode.addChild( logarithmicGraph );
     graphNode.addChild( zoomButtons );
-    graphNode.addChild( scaleSwitch );
+    graphNode.addChild( graphScaleSwitch );
 
     // layout
     logarithmicGraph.centerX = lineNode.centerX;
     logarithmicGraph.top = lineNode.bottom - 1;
     zoomButtons.centerX = logarithmicGraph.centerX;
     zoomButtons.top = lineNode.bottom + scaleHeight + 20;
-    scaleSwitch.centerX = zoomButtons.centerX;
-    scaleSwitch.top = zoomButtons.bottom + 10;
+    graphScaleSwitch.centerX = zoomButtons.centerX;
+    graphScaleSwitch.top = zoomButtons.bottom + 10;
 
     // expand/collapse bar
     var expandedProperty = new Property( options.expanded );
     var expandCollapseBar = new ExpandCollapseBar(
-      unitsSwitch,
+      graphUnitsSwitch,
       expandedProperty, {
         barFill: PHScaleColors.PANEL_FILL,
         barWidth: 350,

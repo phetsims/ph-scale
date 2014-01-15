@@ -46,8 +46,8 @@ define( function( require ) {
     Node.call( thisNode );
 
     // units switch
-    var unitsProperty = new Property( options.units );
-    var unitsSwitch = new ABSwitch( unitsProperty,
+    var graphUnitsProperty = new Property( options.units );
+    var graphUnitsSwitch = new ABSwitch( graphUnitsProperty,
       GraphUnits.MOLES_PER_LITER, concentrationString + '\n(' + molesPerLiterString + ')',
       GraphUnits.MOLES, quantityString + '\n(' + molesString + ')', {
         font: new PhetFont( { size: 18, weight: 'bold' } ),
@@ -55,7 +55,7 @@ define( function( require ) {
       } );
 
     // logarithmic graph, switchable between 'concentration' and 'quantity'
-    var logarithmicGraph = new LogarithmicGraph( solution, unitsProperty, {
+    var logarithmicGraph = new LogarithmicGraph( solution, graphUnitsProperty, {
       scaleHeight: 530,
       isInteractive: false
     } );
@@ -74,7 +74,7 @@ define( function( require ) {
     // expand/collapse bar
     var expandedProperty = new Property( options.expanded );
     var expandCollapseBar = new ExpandCollapseBar(
-      unitsSwitch,
+      graphUnitsSwitch,
       expandedProperty, {
         barFill: PHScaleColors.PANEL_FILL,
         barWidth: 350,

@@ -98,7 +98,7 @@ define( function( require ) {
      * Drains a specified amount of solution.
      * @param {Number} deltaVolume amount of solution to drain, in liters
      */
-    drain: function( deltaVolume ) {
+    drainSolution: function( deltaVolume ) {
       var totalVolume = this.volumeProperty.get();
       if ( totalVolume > 0 ) {
         if ( deltaVolume >= totalVolume ) {

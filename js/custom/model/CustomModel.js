@@ -65,7 +65,7 @@ define( function( require ) {
      */
     step: function( deltaSeconds ) {
       this.solution.addSolute( this.dropper.flowRateProperty.get() * deltaSeconds );
-      this.solution.drain( this.drainFaucet.flowRateProperty.get() * deltaSeconds );
+      this.solution.drainSolution( this.drainFaucet.flowRateProperty.get() * deltaSeconds );
     }
   };
 

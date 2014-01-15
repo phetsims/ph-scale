@@ -1,3 +1,4 @@
+1/15/14 PHModel: handle null pH cases, add doc
 1/15/14 factor out all core computations into PHModel, reducing complexity of Solution
 1/15/14 Solution: factor out pH calculations into static functions
 1/15/14 GraphIndicator: pickable=false for nodes that don't need to be involved in interactivity

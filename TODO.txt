@@ -15,6 +15,7 @@ MEDIUM
 - Molecule counts: '4.0 x 10^25' should be displayed as '4.00 x 10^25'
 
 LOW
+- test various multi-touch scenarios
 - ComboBox: add background color behind arrow button (sun#43)
 - scale down the 'Molecule counts' feature?
 - exponents look lousy, rewrite using scenery.Text?

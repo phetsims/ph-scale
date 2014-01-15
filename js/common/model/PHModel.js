@@ -1,7 +1,9 @@
 // Copyright 2002-2014, University of Colorado Boulder
 
 /**
- * This is the core model of pH Scale, all fundamental computations are encapsulated here.
+ * This is the core model of pH Scale. All fundamental computations are encapsulated here.
+ * Throughout this model, a null pH value means 'no value'.
+ * This is the case when the solution volume is zero (beaker is empty).
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -20,7 +22,7 @@ define( function( require ) {
      * Computes a solution's pH.
      *
      * @param {Solution} solution
-     * @return {Number} null if solution's total volume is zero
+     * @return {Number} pH, null if solution's total volume is zero
      */
     solutionToPH: function( solution ) {
 
@@ -46,20 +48,20 @@ define( function( require ) {
      * Compute pH from H3O+ concentration.
      *
      * @param {Number} concentration
-     * @returns {number}
+     * @returns {number} pH, null if concentration is zero
      */
     concentrationH3OToPH: function( concentration ) {
-      return -Util.log10( concentration );
+      return ( concentration === 0 ) ? null : -Util.log10( concentration );
     },
 
     /**
      * Compute pH from OH- concentration.
      *
      * @param {Number} concentration
-     * @returns {number}
+     * @returns {number} pH, null if concentration is zero
      */
     concentrationOHToPH: function( concentration ) {
-      return 14 - this.concentrationH3OToPH( concentration );
+      return ( concentration === 0 ) ? null : 14 - this.concentrationH3OToPH( concentration );
     },
 
     /**
@@ -67,10 +69,10 @@ define( function( require ) {
      *
      * @param {Number} moles
      * @param {Number} volume volume of the solution in liters
-     * @returns {*}
+     * @returns {Number} pH, null if moles or volume is zero
      */
     molesH3OToPH: function( moles, volume ) {
-      return this.concentrationH3OToPH( moles / volume );
+      return ( moles === 0 || volume === 0 ) ? null : this.concentrationH3OToPH( moles / volume );
     },
 
     /**
@@ -78,10 +80,10 @@ define( function( require ) {
      *
      * @param {Number} moles
      * @param {Number} volume volume of the solution in liters
-     * @returns {*}
+     * @returns {Number} pH, null if moles or volume is zero
      */
     molesOHToPH: function( moles, volume ) {
-      return this.concentrationOHToPH( moles / volume );
+      return ( moles === 0 || volume === 0 ) ? null : this.concentrationOHToPH( moles / volume );
     },
 
     /**
@@ -112,7 +114,7 @@ define( function( require ) {
      * @returns {number} moles
      */
     computeMolecules: function( concentration, volume ) {
-      return concentration * AVOGADROS_NUMBER * volume;
+      return concentration * volume * AVOGADROS_NUMBER;
     },
 
     /**

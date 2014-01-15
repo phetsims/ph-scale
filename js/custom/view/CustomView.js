@@ -50,10 +50,10 @@ define( function( require ) {
     var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, mvt );
 
     // dropper
-    var dropperScale = 0.85;
+    var DROPPER_SCALE = 0.85;
     var dropperNode = new DropperNode( model.dropper, mvt, { showPH: true } );
-    dropperNode.setScaleMagnitude( dropperScale );
-    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, dropperScale * dropperNode.getTipWidth(), mvt );
+    dropperNode.setScaleMagnitude( DROPPER_SCALE );
+    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * dropperNode.getTipWidth(), mvt );
 
     // drain faucet
     var drainFaucetNode = new DrainFaucetNode( model.drainFaucet, mvt );

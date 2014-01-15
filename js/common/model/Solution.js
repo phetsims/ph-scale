@@ -142,8 +142,8 @@ define( function( require ) {
       }
     },
 
-    getConcentrationH3O: function( pH ) {
-      return PHModel.pHToConcentrationH3O( pH || this.pHProperty.get() ); //TODO why is this check here?
+    getConcentrationH3O: function() {
+      return PHModel.pHToConcentrationH3O( this.pHProperty.get() );
     },
 
     //TODO move responsibility for creating the custom solute to LogarithmicGraph
@@ -154,8 +154,8 @@ define( function( require ) {
       }
     },
 
-    getConcentrationOH: function( pH ) {
-      return PHModel.pHToConcentrationOH( pH || this.pHProperty.get() ); //TODO why is this check here?
+    getConcentrationOH: function() {
+      return PHModel.pHToConcentrationOH( this.pHProperty.get() );
     },
 
     getConcentrationH2O: function() {

@@ -13,27 +13,24 @@ MEDIUM
 - change look of ABSwitch labels based on which one is selected
 - Molecule counts: '4.0 x 10^25' should be displayed as '4.00 x 10^25'
 - values in graph indicators don't gray out when disabled because scenery.HTMLText doesn't support opacity
+- replace HTMLText with custom solution for sub/superscripts (scenery#190)
 
 LOW
+- nicer handles on graph indicators, match design doc mockups, perhaps use images
+- rewrite PHUtils.toTimesTenString
 - test various multi-touch scenarios
 - ComboBox: add background color behind arrow button (sun#43)
 - scale down the 'Molecule counts' feature?
-- exponents look lousy, rewrite using scenery.Text?
-- lots of stuff copied from beers-law-lab, much of it tweaked slightly
-- English strings have been capitalized, translations have not
 - port strings from Java
-- vertical alignment of formulas is off, HTMLText bounds issue, scenery#190
-- consider moving 'basics' package to ph-scale-basics, ph-scale-basics#7
+- consider moving 'basics' package to ph-scale-basics (ph-scale-basics#7)
 - TODO items in code
 - how to handle i18n issues with switch in graph's expand/collapse bar
-- how to keep units switch centered above graph, it's currently 'eyeballed', not a robust i18n solution
+- dump ExpandCollapseBar in graphs, use a custom solution to keep AB-switch centered
 - don't update things that aren't visible (Molecule counts, Ratio, collapsed pH meter, collapsed graph)
-- nicer handles on graph indicators, match design doc mockups, perhaps use images
-- rewrite PHUtils.toTimesTenString
-- factor out duplication in CustomGraphNode and SolutionsGraphNode
+- factor out duplication in CustomGraphNode and SolutionsGraphNode, after the fate of 'Linear' graph is decided
 
 MIGRATE TO COMMON
-- ExpandCollapseBar
+- ExpandCollapseBar (if not ditched)
 - OnOffSwitch
 - ABSwitch
 - ToggleButton (sun#32)

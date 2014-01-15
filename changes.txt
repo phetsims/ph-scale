@@ -1,3 +1,4 @@
+1/15/14 tweak shadow on graph indicators so that they appear to float
 1/15/14 remove 'Node' suffix from GraphIndicator and subtypes
 1/15/14 new screen icons from YY
 1/15/14 constrain pH to valid range when dragging the graph indicators

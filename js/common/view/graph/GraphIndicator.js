@@ -50,9 +50,9 @@ define( function( require ) {
       decimalPlaces: 1,
       constantExponent: null,
       isInteractive: false,
-      shadowFill: 'rgba(220,220,220,0.7)',
-      shadowXOffset: 3,
-      shadowYOffset: 5
+      shadowFill: 'rgba(200,200,200,0.6)',
+      shadowXOffset: 4,
+      shadowYOffset: 6
     }, options );
 
     var thisNode = this;
@@ -164,8 +164,8 @@ define( function( require ) {
     thisNode.addChild( moleculeAndFormula );
 
     // layout, relative to backgroundNode
-    backgroundShadowNode.x = backgroundNode.x + options.shadowXOffset;
-    backgroundShadowNode.y = backgroundNode.y + options.shadowYOffset;
+    backgroundShadowNode.right = backgroundNode.right + options.shadowXOffset;
+    backgroundShadowNode.bottom = backgroundNode.bottom + options.shadowYOffset;
     if ( options.pointerLocation === 'topRight' || options.pointerLocation === 'bottomRight' ) {
       handleNode.right = backgroundNode.left + 1;
       valueBackgroundNode.left = backgroundNode.left + options.backgroundXMargin;
@@ -175,8 +175,8 @@ define( function( require ) {
       valueBackgroundNode.right = backgroundNode.right - options.backgroundXMargin;
     }
     handleNode.centerY = backgroundNode.centerY;
-    handleShadowNode.x = handleNode.x + options.shadowXOffset;
-    handleShadowNode.y = handleNode.y + options.shadowYOffset;
+    handleShadowNode.right = handleNode.right + options.shadowXOffset;
+    handleShadowNode.bottom = handleNode.bottom + options.shadowYOffset;
     valueBackgroundNode.top = backgroundNode.top + options.backgroundYMargin;
     moleculeAndFormula.centerX = valueBackgroundNode.centerX;
     moleculeAndFormula.top = valueBackgroundNode.bottom + options.ySpacing;

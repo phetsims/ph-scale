@@ -1,3 +1,4 @@
+1/15/14 move responsibility of creating 'custom' solute from Solution setters to LogarithmicGraph
 1/15/14 remove unused polymorphism in Solution.getConcentration*
 1/15/14 PHModel.pHToConcentrationOH calls pHToConcentrationH3O
 1/15/14 PHModel: handle null pH cases, add doc

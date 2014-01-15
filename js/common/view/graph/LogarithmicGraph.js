@@ -21,9 +21,11 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var OHIndicator = require( 'PH_SCALE/common/view/graph/OHIndicator' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var PHModel = require( 'PH_SCALE/common/model/PHModel' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Solute = require( 'PH_SCALE/common/model/Solute' );
   var Util = require( 'DOT/Util' );
 
   /**
@@ -181,13 +183,23 @@ define( function( require ) {
       // H3O+ indicator
       h3OIndicatorNode.cursor = 'pointer';
       h3OIndicatorNode.addInputListener( new GraphIndicatorDragHandler( yToValue,
+        /*
+         * If the solution volume is zero (empty beaker), then we have no solution, and therefore no pH, so do nothing.
+         * Otherwise, compute the pH that corresponds to the indicator position, create a new custom solute with that pH,
+         * and use that solute for the solution.
+         * @param value concentration or quantity, depending on graphUnitsProperty
+         */
         function( value ) {
-          //TODO this should probably compute pH, then call solution.soluteProperty.set(Solute.createCuston(pH))
-          if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
-            solution.setConcentrationH3O( value );
-          }
-          else {
-            solution.setMolesH3O( value );
+          var pH;
+          if ( solution.volumeProperty.get() !== 0 ) {
+            if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
+              pH = PHModel.concentrationH3OToPH( value );
+            }
+            else {
+              pH = PHModel.molesH3OToPH( value, solution.volumeProperty.get() );
+            }
+            pH = Util.clamp( pH, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+            solution.soluteProperty.set( Solute.createCustom( pH ) );
           }
         }
       ) );
@@ -195,19 +207,30 @@ define( function( require ) {
       // OH- indicator
       oHIndicatorNode.cursor = 'pointer';
       oHIndicatorNode.addInputListener( new GraphIndicatorDragHandler( yToValue,
+        /*
+         * If the solution volume is zero (empty beaker), then we have no solution, and therefore no pH, so do nothing.
+         * Otherwise, compute the pH that corresponds to the indicator position, create a new custom solute with that pH,
+         * and use that solute for the solution.
+         * @param value concentration or quantity, depending on graphUnitsProperty
+         */
         function( value ) {
-          //TODO this should probably compute pH, then call solution.soluteProperty.set(Solute.createCuston(pH))
-          if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
-            solution.setConcentrationOH( value );
-          }
-          else {
-            solution.setMolesOH( value );
+          var pH;
+          if ( solution.volumeProperty.get() !== 0 ) {
+            if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
+              pH = PHModel.concentrationOHToPH( value );
+            }
+            else {
+              pH = PHModel.molesOHToPH( value, solution.volumeProperty.get() );
+            }
+            pH = Util.clamp( pH, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+            solution.soluteProperty.set( Solute.createCustom( pH ) );
           }
         }
       ) );
     }
   }
 
+  // Creates a tick label, '10' with some superscript.
   var createTickLabel = function( exponent, font ) {
     return new HTMLText( '10<span style="font-size:85%"><sup>' + exponent + '</sup></span>', { font: font, fill: 'black' } );
   };

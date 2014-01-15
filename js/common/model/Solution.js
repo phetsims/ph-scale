@@ -134,24 +134,8 @@ define( function( require ) {
     // Concentration (moles/L)
     //----------------------------------------------------------------------------
 
-    //TODO move responsibility for creating the custom solute to LogarithmicGraph
-    setConcentrationH3O: function( c ) {
-      if ( this.volumeProperty.get() !== 0 ) {
-        var pH = Util.clamp( PHModel.concentrationH3OToPH( c ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
-        this.soluteProperty.set( Solute.createCustom( pH ) );
-      }
-    },
-
     getConcentrationH3O: function() {
       return PHModel.pHToConcentrationH3O( this.pHProperty.get() );
-    },
-
-    //TODO move responsibility for creating the custom solute to LogarithmicGraph
-    setConcentrationOH: function( c ) {
-      if ( this.volumeProperty.get() !== 0 ) {
-        var pH = Util.clamp( PHModel.concentrationOHToPH( c ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
-        this.soluteProperty.set( Solute.createCustom( pH ) );
-      }
     },
 
     getConcentrationOH: function() {
@@ -182,24 +166,8 @@ define( function( require ) {
     // Number of moles
     //----------------------------------------------------------------------------
 
-    //TODO move responsibility for creating the custom solute to LogarithmicGraph
-    setMolesH3O: function( m ) {
-      if ( this.volumeProperty.get() !== 0 ) {
-        var pH = Util.clamp( PHModel.molesH3OToPH( m, this.volumeProperty.get() ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
-        this.soluteProperty.set( Solute.createCustom( pH ) );
-      }
-    },
-
     getMolesH3O: function() {
       return PHModel.computeMoles( this.getConcentrationH3O(), this.volumeProperty.get() );
-    },
-
-    //TODO move responsibility for creating the custom solute to LogarithmicGraph
-    setMolesOH: function( m ) {
-      if ( this.volumeProperty.get() !== 0 ) {
-        var pH = Util.clamp( PHModel.molesOHToPH( m, this.volumeProperty.get() ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
-        this.soluteProperty.set( Solute.createCustom( pH ) );
-      }
     },
 
     getMolesOH: function() {

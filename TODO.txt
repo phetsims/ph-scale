@@ -5,7 +5,6 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- move responsibility of creating 'custom' solute from Solution setters to LogarithmicGraph?
 - 'H3O+/OH- ratio' feature
 - Custom: interactive linear graph, zoom feature
 

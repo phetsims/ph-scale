@@ -13,7 +13,6 @@ define( function( require ) {
   var PHModel = require( 'PH_SCALE/common/model/PHModel' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
-  var Solute = require( 'PH_SCALE/common/model/Solute' );
   var Util = require( 'DOT/Util' );
 
   /**

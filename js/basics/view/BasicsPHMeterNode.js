@@ -337,7 +337,7 @@ define( function( require ) {
         value = water.pH;
       }
       else if ( probeNode.isInDropperSolution() ) {
-        value = dropper.soluteProperty.get().pHProperty.get();
+        value = dropper.soluteProperty.get().pH;
       }
       else {
         value = null;

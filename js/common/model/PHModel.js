@@ -103,7 +103,7 @@ define( function( require ) {
      * @returns {Number} concentration in moles/L
      */
     pHToConcentrationOH: function( pH ) {
-      return ( pH === null ) ? 0 : Math.pow( 10, -( 14 - pH ) )
+      return ( pH === null ) ? 0 : Math.pow( 10, -( 14 - pH ) );
     },
 
     /**

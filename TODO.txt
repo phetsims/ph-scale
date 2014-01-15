@@ -6,8 +6,6 @@ IMPLEMENTATION
 
 HIGH
 - move responsibility of creating 'custom' solute from Solution setters to LogarithmicGraph?
-- Custom: debug interactivity of graph indicators
-- limit range of interactive indicators so that pH stays in range [-1,15]
 - 'H3O+/OH- ratio' feature
 - Custom: interactive linear graph, zoom feature
 - YY will send me separate icons for home screen and navbar

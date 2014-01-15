@@ -7,7 +7,7 @@
 1/14/14 expand touchArea for picker in 'Custom' pH meter
 1/14/14 fix: show 'Solutions' pH meter pointer only if meter is expanded
 1/14/14 add option.emptyWhenSoluteChanges to Solution, needed for 'Custom' screen where a new custom solute is created as the pH changes
-1/14/14 make Solute immutable, change pH of 'custom' solution by creating new Solute instances when the pH changes
+1/14/14 MAJOR CHANGE: make Solute immutable, change pH of 'custom' solution by creating new Solute instances when the pH changes
 1/14/14 bug fix in BasicsPHMeterNode, 'enabled' fill was null
 1/14/14 factor out PHScaleColors.PANEL_FILL, color for all panels and expand/collapse bars
 1/13/14 integrate NumberPicker into CustomPHMeterNode

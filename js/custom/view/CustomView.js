@@ -65,7 +65,7 @@ define( function( require ) {
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
     // 'H3O+/OH- ratio' representation
-    var ratioNode = new RatioNode( model.solution );
+    var ratioNode = new RatioNode( model.beaker, model.solution, mvt );
     viewProperties.ratioVisibleProperty.link( function( visible ) {
       ratioNode.visible = visible;
     } );
@@ -108,8 +108,6 @@ define( function( require ) {
     // Layout of nodes that don't have a location specified in the model
     pHMeterNode.right = beakerNode.left + 20;
     pHMeterNode.top = 20;
-    ratioNode.centerX = beakerNode.centerX; //TODO delete
-    ratioNode.centerY = beakerNode.top + ( 0.3 * beakerNode.height ); //TODO delete
     moleculeCountNode.centerX = mvt.modelToViewX( model.beaker.location.x );
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.centerX = mvt.modelToViewX( model.beaker.location.x );

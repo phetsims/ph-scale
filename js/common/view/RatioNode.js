@@ -2,6 +2,8 @@
 
 /**
  * Visual representation of H3O+/OH- ratio.
+ *
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
   'use strict';
@@ -13,13 +15,21 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
 
   /**
+   * @param {Beaker} beaker
    * @param {Solution} solution
+   * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function RatioNode( solution ) {
-    Node.call( this );
-    //TODO implement this
-    this.addChild( new Text( 'ratio view goes here', { font: new PhetFont( 22 ) } ) );
+  function RatioNode( beaker, solution, mvt ) {
+
+    var thisNode = this;
+    Node.call( thisNode );
+
+    //TODO replace this placeholder
+    var textNode = new Text( 'ratio view goes here', { font: new PhetFont( 22 ) } );
+    thisNode.addChild( textNode );
+    textNode.centerX = mvt.modelToViewX( beaker.location.x );
+    textNode.centerY = mvt.modelToViewY( beaker.location.y - 0.75 * beaker.size.height );
   }
 
   return inherit( Node, RatioNode );

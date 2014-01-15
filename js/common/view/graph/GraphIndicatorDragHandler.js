@@ -9,24 +9,49 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
+  var Solute = require( 'PH_SCALE/common/model/Solute' );
+  var Util = require( 'DOT/Util' );
 
   /**
-   * @param {Function} yToValue function that takes a {Number} y coordinate and converts it to a {Number} value
-   * @param {Function} setValue takes a {Number} value, returns nothing
+   * @param {Solution} solution
+   * @param {Property<GraphUnits>} graphUnitsProperty
+   * @param {Function} yToValue function that takes a {Number} y coordinate and converts it to a {Number} model value
+   * @param {Function} concentrationToPH takes {Number} concentration, returns pH
+   * @param {Function} molesToPH takes {Number} moles and {Number} volume (L), returns pH
    * @constructor
    */
-  function GraphIndicatorDragHandler( yToValue, setValue ) {
+  function GraphIndicatorDragHandler( solution, graphUnitsProperty, yToValue, concentrationToPH, molesToPH ) {
+
     var clickYOffset; // y-offset between initial click and indicator's origin
+
     SimpleDragHandler.call( this, {
+
       allowTouchSnag: true,
+
+      // Record the offset between the pointer and the indicator's origin.
       start: function( event ) {
         clickYOffset = event.currentTarget.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y;
       },
+
+      // When the indicator is dragged, create a custom solute that corresponds to the new pH.
       drag: function( event ) {
-        var y = event.currentTarget.globalToParentPoint( event.pointer.point ).y - clickYOffset;
-        setValue( yToValue( y ) );
+        // If the solution volume is zero (empty beaker), then we have no solution, and therefore no pH, so do nothing.
+        if ( solution.volumeProperty.get() !== 0 ) {
+          // Adjust the y-coordinate for the offset between the pointer and the indicator's origin
+          var y = event.currentTarget.globalToParentPoint( event.pointer.point ).y - clickYOffset;
+          // Convert the y-coordinate to a model value
+          var value = yToValue( y );
+          // Map the model value to pH, depending on which units we're using.
+          var pH = ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) ? concentrationToPH( value ) : molesToPH( value, solution.volumeProperty.get() );
+          // Constrain the pH to the valid range
+          pH = Util.clamp( pH, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+          // Instantiate a new 'custom' solute with the desired pH, and use it with the solution.
+          solution.soluteProperty.set( Solute.createCustom( pH ) );
+        }
       }
     } );
   }

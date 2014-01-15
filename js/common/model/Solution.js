@@ -10,13 +10,11 @@ define( function( require ) {
 
   // imports
   var DerivedProperty = require( 'AXON/DerivedProperty' );
+  var PHModel = require( 'PH_SCALE/common/model/PHModel' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Solute = require( 'PH_SCALE/common/model/Solute' );
   var Util = require( 'DOT/Util' );
-
-  // constants
-  var AVOGADROS_NUMBER = 6.023E23;
 
   /**
    * @param {Property<Solute>} soluteProperty
@@ -50,11 +48,18 @@ define( function( require ) {
 
     // pH, null if no value
     thisSolution.pHProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.waterVolumeProperty ],
-      this.computePH.bind( this ) );
+      function() { return PHModel.solutionToPH( thisSolution ); } );
 
     // color
     thisSolution.colorProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.pHProperty ],
-      thisSolution.computeColor.bind( this ) );
+      function( solute, pH ) {
+        if ( thisSolution.volumeProperty.get() === 0 || thisSolution.soluteVolumeProperty.get() === 0 || thisSolution.isEquivalentToWater() ) {
+          return thisSolution.water.color;
+        }
+        else {
+          return solute.computeColor( thisSolution.soluteVolumeProperty.get() / thisSolution.volumeProperty.get() );
+        }
+      } );
 
     // solute
     thisSolution.soluteProperty.link( function() {
@@ -67,11 +72,19 @@ define( function( require ) {
 
   Solution.prototype = {
 
-    // @override
     reset: function() {
       this.soluteProperty.reset();
       this.soluteVolumeProperty.reset();
       this.waterVolumeProperty.reset();
+    },
+
+    /*
+     * True if the value displayed by the pH meter has precision that makes it equivalent to the pH of water.
+     * Eg, the value displayed to the user is '7.00'.
+     */
+    isEquivalentToWater: function() {
+      var pHString = Util.toFixed( this.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      return ( parseFloat( pHString ) === this.water.pH ) && ( this.waterVolumeProperty.get() > 0 );
     },
 
     //----------------------------------------------------------------------------
@@ -121,30 +134,28 @@ define( function( require ) {
     // Concentration (moles/L)
     //----------------------------------------------------------------------------
 
-    //TODO this should be converted to Solution.concentrationH3O_to_pH, then let LogarithmicGraph create the custom solute
+    //TODO move responsibility for creating the custom solute to LogarithmicGraph
     setConcentrationH3O: function( c ) {
       if ( this.volumeProperty.get() !== 0 ) {
-        var pH = Util.clamp( Solution.concentrationH3OToPH( c ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+        var pH = Util.clamp( PHModel.concentrationH3OToPH( c ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
         this.soluteProperty.set( Solute.createCustom( pH ) );
       }
     },
 
     getConcentrationH3O: function( pH ) {
-      pH = pH || this.pHProperty.get();
-      return ( pH === null ) ? 0 : Math.pow( 10, -pH );
+      return PHModel.pHToConcentrationH3O( pH || this.pHProperty.get() ); //TODO why is this check here?
     },
 
-    //TODO this should be converted to Solution.concentrationOH_to_pH, then let LogarithmicGraph create the custom solute
+    //TODO move responsibility for creating the custom solute to LogarithmicGraph
     setConcentrationOH: function( c ) {
       if ( this.volumeProperty.get() !== 0 ) {
-        var pH = Util.clamp( Solution.concentrationOHToPH( c ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+        var pH = Util.clamp( PHModel.concentrationOHToPH( c ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
         this.soluteProperty.set( Solute.createCustom( pH ) );
       }
     },
 
     getConcentrationOH: function( pH ) {
-      pH = pH || this.pHProperty.get();
-      return ( pH === null ) ? 0 : Math.pow( 10, -( 14 - pH ) );
+      return PHModel.pHToConcentrationOH( pH || this.pHProperty.get() ); //TODO why is this check here?
     },
 
     getConcentrationH2O: function() {
@@ -156,128 +167,48 @@ define( function( require ) {
     //----------------------------------------------------------------------------
 
     getMoleculesH3O: function() {
-      return Solution.computeMolecules( this.getConcentrationH3O(), this.volumeProperty.get() );
+      return PHModel.computeMolecules( this.getConcentrationH3O(), this.volumeProperty.get() );
     },
 
     getMoleculesOH: function() {
-      return Solution.computeMolecules( this.getConcentrationOH(), this.volumeProperty.get() );
+      return PHModel.computeMolecules( this.getConcentrationOH(), this.volumeProperty.get() );
     },
 
     getMoleculesH2O: function() {
-      return Solution.computeMolecules( this.getConcentrationH2O(), this.volumeProperty.get() );
+      return PHModel.computeMolecules( this.getConcentrationH2O(), this.volumeProperty.get() );
     },
 
     //----------------------------------------------------------------------------
     // Number of moles
     //----------------------------------------------------------------------------
 
-    //TODO this should be converted to Solution.molesH3O_to_pH, then let LogarithmicGraph create the custom solute
+    //TODO move responsibility for creating the custom solute to LogarithmicGraph
     setMolesH3O: function( m ) {
       if ( this.volumeProperty.get() !== 0 ) {
-        var pH = Util.clamp( Solution.molesH3OToPH( m, this.volumeProperty.get() ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+        var pH = Util.clamp( PHModel.molesH3OToPH( m, this.volumeProperty.get() ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
         this.soluteProperty.set( Solute.createCustom( pH ) );
       }
     },
 
     getMolesH3O: function() {
-      return Solution.computeMoles( this.volumeProperty.get(), this.getConcentrationH3O() );
+      return PHModel.computeMoles( this.getConcentrationH3O(), this.volumeProperty.get() );
     },
 
-    //TODO this should be converted to Solution.molesOH_to_pH, then let LogarithmicGraph create the custom solute
+    //TODO move responsibility for creating the custom solute to LogarithmicGraph
     setMolesOH: function( m ) {
       if ( this.volumeProperty.get() !== 0 ) {
-        var pH = Util.clamp( Solution.molesOHToPH( m, this.volumeProperty.get() ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+        var pH = Util.clamp( PHModel.molesOHToPH( m, this.volumeProperty.get() ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
         this.soluteProperty.set( Solute.createCustom( pH ) );
       }
     },
 
     getMolesOH: function() {
-      return Solution.computeMoles( this.volumeProperty.get(), this.getConcentrationOH() );
+      return PHModel.computeMoles( this.getConcentrationOH(), this.volumeProperty.get() );
     },
 
     getMolesH2O: function() {
-      return Solution.computeMoles( this.volumeProperty.get(), this.getConcentrationH2O() );
-    },
-
-    //----------------------------------------------------------------------------
-    // private
-    //----------------------------------------------------------------------------
-
-    // Computes the solution's pH.
-    computePH: function() {
-
-      var solutePH = this.soluteProperty.get().pH;
-      var soluteVolume = this.soluteVolumeProperty.get();
-      var waterPH = this.water.pH;
-      var waterVolume = this.waterVolumeProperty.get();
-
-      var pH;
-      if ( soluteVolume + waterVolume === 0 ) {
-        pH = null;
-      }
-      else if ( solutePH < 7 ) {
-        pH = -Util.log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -waterPH ) * waterVolume ) / ( soluteVolume + waterVolume ) );
-      }
-      else {
-        pH = 14 + Util.log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, waterPH - 14 ) * waterVolume ) / ( soluteVolume + waterVolume ) );
-      }
-      return pH;
-    },
-
-    // Computes the solution's color.
-    computeColor: function() {
-      if ( this.volumeProperty.get() === 0 || this.soluteVolumeProperty.get() === 0 || this.isEquivalentToWater() ) {
-        return this.water.color;
-      }
-      else {
-        return this.soluteProperty.get().computeColor( this.soluteVolumeProperty.get() / this.volumeProperty.get() );
-      }
-    },
-
-    /*
-     * True if the value displayed by the pH meter has precision that makes it equivalent to the pH of water.
-     * Eg, the value displayed to the user is '7.00'.
-     */
-    isEquivalentToWater: function() {
-      var pHString = Util.toFixed( this.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
-      return ( parseFloat( pHString ) === this.water.pH ) && ( this.waterVolumeProperty.get() > 0 );
+      return PHModel.computeMoles( this.getConcentrationH2O(), this.volumeProperty.get() );
     }
-  };
-
-  /**
-   * Computes the number of molecules in solution.
-   * @param {number} concentration moles/L
-   * @param {number} volume L
-   * @returns {number} moles
-   */
-  Solution.computeMolecules = function( concentration, volume ) {
-    return concentration * AVOGADROS_NUMBER * volume;
-  };
-
-  /**
-   * Computes moles in solution.
-   * @param {number} volume L
-   * @param {number} concentration moles/L
-   * @returns {number} moles
-   */
-  Solution.computeMoles = function( volume, concentration ) {
-    return volume * concentration;
-  };
-
-  Solution.concentrationH3OToPH = function( concentration ) {
-    return -Util.log10( concentration );
-  };
-
-  Solution.concentrationOHToPH = function( concentration ) {
-    return 14 - Solution.concentrationH3OToPH( concentration );
-  };
-
-  Solution.molesH3OToPH = function( moles, volume ) {
-    return Solution.concentrationH3OToPH( moles / volume );
-  };
-
-  Solution.molesOHToPH = function( moles, volume ) {
-    return Solution.concentrationOHToPH( moles / volume );
   };
 
   return Solution;

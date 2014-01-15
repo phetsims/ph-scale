@@ -57,7 +57,7 @@ disappear (for H3O and OH), and they are grayed out.  I'm not at all convinced t
 this is a clear representation that these values are 'off the scale'.  The bigger issue
 is that if the H3O or OH handle is removed, then the user can't modify the custom solution.
 
-Custom: Multitouch problem with Linear scale. What happens if an indicator goes off the scale
+Custom: Multi-touch problem with Linear scale. What happens if an indicator goes off the scale
 while it's being dragged? This can happen if 2 indicators are being dragged simultaneously,
 or if the 'zoom in' button is pressed while dragging.
 

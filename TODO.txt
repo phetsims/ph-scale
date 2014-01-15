@@ -44,6 +44,8 @@ DESIGN
 Both: when graph is set to 'Quantity', it's possible to have indicator values 10^-19, which is below
 the bottom tick, and below our 'zero' position
 
+Solutions: 'Molecule count' feature covers beaker tick labels
+
 Custom: it takes awhile to change pH with picker, should delta be larger?
 
 Custom: Are we implementing the Linear graph feature? It represents at least 30 hours of work,

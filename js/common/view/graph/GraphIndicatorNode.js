@@ -49,12 +49,10 @@ define( function( require ) {
       ySpacing: 4,
       decimalPlaces: 1,
       constantExponent: null,
-      shadowVisible: false,
+      isInteractive: false,
       shadowFill: 'rgba(220,220,220,0.7)',
       shadowXOffset: 3,
-      shadowYOffset: 5,
-      handleVisible: false,
-      nullValueString: '-'
+      shadowYOffset: 5
     }, options );
 
     var thisNode = this;
@@ -154,11 +152,10 @@ define( function( require ) {
     moleculeAndFormula.setScaleMagnitude( 0.7 ); //TODO compute scale
 
     // rendering order
-    if ( options.shadowVisible ) {
+    if ( options.isInteractive ) {
+      // interactive indicators get a drop-shadow and handle
       thisNode.addChild( backgroundShadowNode );
       thisNode.addChild( handleShadowNode );
-    }
-    if ( options.handleVisible ) {
       thisNode.addChild( handleNode );
     }
     thisNode.addChild( backgroundNode );
@@ -186,9 +183,10 @@ define( function( require ) {
 
     // sync with value
     valueProperty.link( function( value ) {
-      valueNode.text = ( value === null )? options.nullValueString : PHUtils.toTimesTenString( value, options.decimalPlaces, options.constantExponent );
+      valueNode.text = PHUtils.toTimesTenString( value, options.decimalPlaces, options.constantExponent );
       valueNode.centerX = valueBackgroundNode.centerX;
       valueNode.centerY = valueBackgroundNode.centerY;
+      thisNode.opacity = ( value === 0 ) ? 0.5 : 1.0; // disabled when value is null or zero
     });
 
     thisNode.mutate( options );

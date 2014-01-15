@@ -106,21 +106,19 @@ define( function( require ) {
     }
 
     // indicators & associated properties
-    var valueH2OProperty = new Property( null );
-    var valueH3OProperty = new Property( null );
-    var valueOHProperty = new Property( null );
+    var valueH2OProperty = new Property( 0 );
+    var valueH3OProperty = new Property( 0 );
+    var valueOHProperty = new Property( 0 );
     var h2OIndicatorNode = new H2OIndicatorNode( valueH2OProperty, {
       decimalPlaces: 0,
       constantExponent: 0,
       x: backgroundNode.right - options.majorTickLength / 2 } );
     var h3OIndicatorNode = new H3OIndicatorNode( valueH3OProperty, {
       x: backgroundNode.left + options.majorTickLength / 2,
-      handleVisible: options.isInteractive,
-      shadowVisible: options.isInteractive } );
+      isInteractive: options.isInteractive } );
     var oHIndicatorNode = new OHIndicatorNode( valueOHProperty, {
       x: backgroundNode.right - options.majorTickLength / 2,
-      handleVisible: options.isInteractive,
-      shadowVisible: options.isInteractive } );
+      isInteractive: options.isInteractive } );
     thisNode.addChild( h2OIndicatorNode );
     thisNode.addChild( h3OIndicatorNode );
     thisNode.addChild( oHIndicatorNode );

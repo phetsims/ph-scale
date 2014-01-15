@@ -1,3 +1,5 @@
+1/15/14 make graph indicators look disabled (using opacity) when value is zero
+1/15/14 GraphIndicatorNode: replace multiple options with isInteractive
 1/14/14 Custom: first attempt at making graph indicators interactive, has some range problems
 1/14/14 throw an Error when attempting to construct a Solute with a pH value that is out of range
 1/14/14 use linkAttribute to wire up view properties that control visibility

@@ -27,10 +27,9 @@ define( function( require ) {
   var pHString = require( 'string!PH_SCALE/pH' );
 
   // constants
-  var DISPLAY_X_SPACING = 14;
-  var DISPLAY_Y_SPACING = 10;
-  var DISPLAY_CORNER_RADIUS = 12;
-  var PH_LABEL_FONT = new PhetFont( { size: 28, weight: 'bold' } );
+  var X_SPACING = 14;
+  var Y_SPACING = 10;
+  var CORNER_RADIUS = 12;
 
   /**
    * @param {Solution} solution
@@ -72,18 +71,17 @@ define( function( require ) {
 
 
     // label above the picker
-    var labelNode = new Text( pHString, { fill: 'black', font: PH_LABEL_FONT } );
+    var labelNode = new Text( pHString, { fill: 'black', font: new PhetFont( { size: 28, weight: 'bold' } ) } );
 
     // expanded background
-    var cornerRadius = 12;
     var backgroundOptions = { fill: PHScaleColors.PANEL_FILL, stroke: 'black', lineWidth: 2 };
-    var backgroundWidth = Math.max( labelNode.width + expandCollapseButton.width + DISPLAY_X_SPACING, picker.width ) + ( 2 * DISPLAY_X_SPACING );
-    var expandedHeight = labelNode.height + picker.height + ( 3 * DISPLAY_Y_SPACING );
-    var expandedRectangle = new Rectangle( 0, 0, backgroundWidth, expandedHeight, cornerRadius, cornerRadius, backgroundOptions );
+    var backgroundWidth = Math.max( labelNode.width + expandCollapseButton.width + X_SPACING, picker.width ) + ( 2 * X_SPACING );
+    var expandedHeight = labelNode.height + picker.height + ( 3 * Y_SPACING );
+    var expandedRectangle = new Rectangle( 0, 0, backgroundWidth, expandedHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
 
     // collapsed background
-    var collapsedHeight = labelNode.height + ( 2 * DISPLAY_Y_SPACING );
-    var collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, collapsedHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS, backgroundOptions );
+    var collapsedHeight = labelNode.height + ( 2 * Y_SPACING );
+    var collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, collapsedHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
 
     // rendering order
     thisNode.addChild( collapsedRectangle );
@@ -93,12 +91,12 @@ define( function( require ) {
     thisNode.addChild( expandCollapseButton );
 
     // layout
-    labelNode.top = expandedRectangle.top + DISPLAY_Y_SPACING;
+    labelNode.top = expandedRectangle.top + Y_SPACING;
     picker.centerX = expandedRectangle.centerX;
-    labelNode.left = expandedRectangle.left + DISPLAY_X_SPACING;
-    picker.top = labelNode.bottom + DISPLAY_Y_SPACING;
+    labelNode.left = expandedRectangle.left + X_SPACING;
+    picker.top = labelNode.bottom + Y_SPACING;
     expandCollapseButton.centerY = labelNode.centerY;
-    expandCollapseButton.right = expandedRectangle.right - DISPLAY_X_SPACING;
+    expandCollapseButton.right = expandedRectangle.right - X_SPACING;
 
     // expand/collapse
     expandedProperty.link( function( expanded ) {

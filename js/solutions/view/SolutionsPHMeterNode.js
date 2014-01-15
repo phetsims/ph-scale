@@ -33,10 +33,9 @@ define( function( require ) {
 
   // constants
   var SCALE_SIZE = new Dimension2( 55, 450 );
-  var DISPLAY_X_SPACING = 14;
-  var DISPLAY_Y_SPACING = 10;
-  var DISPLAY_CORNER_RADIUS = 12;
-  var PH_LABEL_FONT = new PhetFont( { size: 28, weight: 'bold' } );
+  var X_SPACING = 14;
+  var Y_SPACING = 10;
+  var CORNER_RADIUS = 12;
 
   /**
    * Value is displayed inside of this, which sits above the scale.
@@ -59,21 +58,21 @@ define( function( require ) {
     // rectangle that the value is displayed in
     var valueXMargin = 8;
     var valueYMargin = 5;
-    var valueRectangle = new Rectangle( 0, 0, valueNode.width + ( 2 * valueXMargin ), valueNode.height + ( 2 * valueYMargin ), DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS,
+    var valueRectangle = new Rectangle( 0, 0, valueNode.width + ( 2 * valueXMargin ), valueNode.height + ( 2 * valueYMargin ), CORNER_RADIUS, CORNER_RADIUS,
       { fill: 'white', stroke: 'darkGray' } );
 
     // label above the value
-    var labelNode = new Text( pHString, { fill: 'black', font: PH_LABEL_FONT } );
+    var labelNode = new Text( pHString, { fill: 'black', font: new PhetFont( { size: 28, weight: 'bold' } ) } );
 
     // expanded background
     var backgroundOptions = { fill: PHScaleColors.PANEL_FILL, stroke: 'black', lineWidth: 2 };
-    var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * DISPLAY_X_SPACING );
-    var expandedHeight = labelNode.height + valueRectangle.height + ( 3 * DISPLAY_Y_SPACING );
-    var expandedRectangle = new Rectangle( 0, 0, backgroundWidth, expandedHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS, backgroundOptions );
+    var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * X_SPACING );
+    var expandedHeight = labelNode.height + valueRectangle.height + ( 3 * Y_SPACING );
+    var expandedRectangle = new Rectangle( 0, 0, backgroundWidth, expandedHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
 
     // collapsed background
-    var collapsedHeight = labelNode.height + ( 2 * DISPLAY_Y_SPACING );
-    var collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, collapsedHeight, DISPLAY_CORNER_RADIUS, DISPLAY_CORNER_RADIUS, backgroundOptions );
+    var collapsedHeight = labelNode.height + ( 2 * Y_SPACING );
+    var collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, collapsedHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
 
     // expand/collapse button
     var expandCollapseButton = new ExpandCollapseButton( PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH, expandedProperty );
@@ -87,10 +86,10 @@ define( function( require ) {
     thisNode.addChild( valueNode );
 
     // layout
-    labelNode.top = expandedRectangle.top + DISPLAY_Y_SPACING;
+    labelNode.top = expandedRectangle.top + Y_SPACING;
     valueRectangle.centerX = expandedRectangle.centerX;
     labelNode.left = valueRectangle.left;
-    valueRectangle.top = labelNode.bottom + DISPLAY_Y_SPACING;
+    valueRectangle.top = labelNode.bottom + Y_SPACING;
     valueNode.right = valueRectangle.right - valueXMargin; // right justified
     valueNode.centerY = valueRectangle.centerY;
     expandCollapseButton.centerY = labelNode.centerY;

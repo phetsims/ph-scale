@@ -14,6 +14,7 @@ MEDIUM
 - Solutions: vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)
 - change look of ABSwitch labels based on which one is selected
 - Molecule counts: '4.0 x 10^25' should be displayed as '4.00 x 10^25'
+- it takes awhile to change pH with picker, should delta be larger?
 
 LOW
 - ComboBox: add background color behind arrow button (sun#43)

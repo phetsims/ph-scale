@@ -1,6 +1,5 @@
 // Copyright 2002-2014, University of Colorado Boulder
 
-//TODO add spinners
 /**
  * Component for displaying and changing the pH value of a 'custom' solution.
  * The meter can be expanded and collapsed (to show/hide the value), and the pH value can be changed using spinners.

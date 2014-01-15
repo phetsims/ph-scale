@@ -31,6 +31,9 @@ LOW
 - how to handle i18n issues with switch in graph's expand/collapse bar
 - how to keep units switch centered above graph, it's currently 'eyeballed', not a robust i18n solution
 - don't update things that aren't visible (Molecule counts, Ratio, collapsed pH meter, collapsed graph)
+- nicer handles on graph indicators, match design doc mockups, perhaps use images
+- rewrite PHUtils.toTimesTenString
+- factor out duplication in CustomGraphNode and SolutionsGraphNode
 
 MIGRATE TO COMMON
 - ExpandCollapseBar

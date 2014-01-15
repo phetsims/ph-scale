@@ -11,6 +11,7 @@ HIGH
 - 'H3O+/OH- ratio' feature
 - Custom: interactive linear graph, zoom feature
 - YY will send me separate icons for home screen and navbar
+- when graph is set to 'Quantity', it's possible to have indicator values 10^-19, which is below the bottom tick, and below our 'zero' position
 
 MEDIUM
 - vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)

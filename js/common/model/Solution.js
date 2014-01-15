@@ -124,7 +124,7 @@ define( function( require ) {
     //TODO this should be converted to Solution.concentrationH3O_to_pH, then let LogarithmicGraph create the custom solute
     setConcentrationH3O: function( c ) {
       if ( this.volumeProperty.get() !== 0 ) {
-        var pH = -Util.log10( c );
+        var pH = Util.clamp( -Util.log10( c ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
         this.soluteProperty.set( Solute.createCustom( pH ) );
       }
     },
@@ -137,7 +137,7 @@ define( function( require ) {
     //TODO this should be converted to Solution.concentrationOH_to_pH, then let LogarithmicGraph create the custom solute
     setConcentrationOH: function( c ) {
       if ( this.volumeProperty.get() !== 0 ) {
-        var pH = 14 + Util.log10( c );
+        var pH = Util.clamp( 14 + Util.log10( c ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
         this.soluteProperty.set( Solute.createCustom( pH ) );
       }
     },
@@ -174,7 +174,7 @@ define( function( require ) {
     //TODO this should be converted to Solution.molesH3O_to_pH, then let LogarithmicGraph create the custom solute
     setMolesH3O: function( m ) {
       if ( this.volumeProperty.get() !== 0 ) {
-        var pH = -Util.log10( m / this.volumeProperty.get() );
+        var pH = Util.clamp( -Util.log10( m / this.volumeProperty.get() ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
         this.soluteProperty.set( Solute.createCustom( pH ) );
       }
     },
@@ -186,7 +186,7 @@ define( function( require ) {
     //TODO this should be converted to Solution.molesOH_to_pH, then let LogarithmicGraph create the custom solute
     setMolesOH: function( m ) {
       if ( this.volumeProperty.get() !== 0 ) {
-        var pH = 14 + Util.log10( m / this.volumeProperty.get() );
+        var pH = Util.clamp( 14 + Util.log10( m / this.volumeProperty.get() ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
         this.soluteProperty.set( Solute.createCustom( pH ) );
       }
     },

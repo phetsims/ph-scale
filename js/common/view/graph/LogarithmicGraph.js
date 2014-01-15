@@ -139,14 +139,11 @@ define( function( require ) {
       }
     };
 
-    //TODO this isn't working correctly, not sure how to constrain pH to range, and values to graph range
     // Given a y position relative to the top of the scale, compute a value.
     var yToValue = function( y ) {
-      var yOffset = y - options.scaleYMargin;
-      var maxHeight = ( options.scaleHeight - 2 * options.scaleYMargin );
+      var yOffset = y - options.scaleYMargin; // distance between indicator's origin and top tick mark
+      var maxHeight = ( options.scaleHeight - 2 * options.scaleYMargin ); // distance between top and bottom tick marks
       var exponent = Util.linear( 0, maxHeight, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, yOffset );
-      exponent = Util.clamp( exponent, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min + 1, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max - 1);
-      console.log( 'LogarithmicGraph.yToValue: y=' + y + ' yOffset=' + yOffset + ' exponent=' + exponent );//XXX
       return Math.pow( 10, exponent );
     };
 

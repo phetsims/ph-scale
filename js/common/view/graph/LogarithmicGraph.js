@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var GraphIndicatorDragHandler = require( 'PH_SCALE/common/view/graph/GraphIndicatorDragHandler' );
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var H2OIndicatorNode = require( 'PH_SCALE/common/view/graph/H2OIndicatorNode' );
   var H3OIndicatorNode = require( 'PH_SCALE/common/view/graph/H3OIndicatorNode' );
@@ -24,14 +25,15 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Util = require( 'DOT/Util' );
+  var Vector2 = require( 'DOT/Vector2' );
 
   /**
    * @param {Solution} solution
-   * @param {GraphUnits} graphUnits
+   * @param {Property<GraphUnits>} graphUnitsProperty
    * @param {*} options
    * @constructor
    */
-  function LogConcentrationGraph( solution, graphUnits, options ) {
+  function LogConcentrationGraph( solution, graphUnitsProperty, options ) {
 
     options = _.extend( {
       isInteractive: false,
@@ -125,7 +127,7 @@ define( function( require ) {
     thisNode.addChild( oHIndicatorNode );
 
     // Given a value, compute it's y position relative to the top of the scale.
-    var computeIndicatorY = function( value ) {
+    var valueToY = function( value ) {
       if ( value === 0 ) {
         // below the bottom tick
         return options.scaleHeight - ( 0.5 * options.scaleYMargin );
@@ -140,10 +142,21 @@ define( function( require ) {
       }
     };
 
+    //TODO this isn't working correctly, not sure how to constrain pH to range, and values to graph range
+    // Given a y position relative to the top of the scale, compute a value.
+    var yToValue = function( y ) {
+      var yOffset = y - options.scaleYMargin;
+      var maxHeight = ( options.scaleHeight - 2 * options.scaleYMargin );
+      var exponent = Util.linear( 0, maxHeight, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, yOffset );
+      exponent = Util.clamp( exponent, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min + 1, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max - 1);
+      console.log( 'LogarithmicGraph.yToValue: y=' + y + ' yOffset=' + yOffset + ' exponent=' + exponent );//XXX
+      return Math.pow( 10, exponent );
+    };
+
     // Update the indicators
     var updateIndicators = function() {
       var valueH2O, valueH3O, valueOH;
-      if ( graphUnits.get() === GraphUnits.MOLES_PER_LITER ) {
+      if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
         // concentration
         valueH2O = solution.getConcentrationH2O();
         valueH3O = solution.getConcentrationH3O();
@@ -156,9 +169,9 @@ define( function( require ) {
         valueOH = solution.getMolesOH();
       }
       // move indicators
-      h2OIndicatorNode.y = computeIndicatorY( valueH2O );
-      h3OIndicatorNode.y = computeIndicatorY( valueH3O );
-      oHIndicatorNode.y = computeIndicatorY( valueOH );
+      h2OIndicatorNode.y = valueToY( valueH2O );
+      h3OIndicatorNode.y = valueToY( valueH3O );
+      oHIndicatorNode.y = valueToY( valueOH );
       // update indicator values
       valueH2OProperty.set( valueH2O );
       valueH3OProperty.set( valueH3O );
@@ -166,10 +179,38 @@ define( function( require ) {
     };
     solution.pHProperty.link( updateIndicators.bind( thisNode ) );
     solution.volumeProperty.link( updateIndicators.bind( thisNode ) );
-    graphUnits.link( updateIndicators.bind( thisNode ) );
+    graphUnitsProperty.link( updateIndicators.bind( thisNode ) );
 
+    // Add optional interactivity
     if ( options.isInteractive ) {
-      //TODO add interactivity for H3O and OH indicators
+
+      // H3O+ indicator
+      h3OIndicatorNode.cursor = 'pointer';
+      h3OIndicatorNode.addInputListener( new GraphIndicatorDragHandler( yToValue,
+        function( value ) {
+          //TODO this should probably compute pH, then call solution.soluteProperty.set(Solute.createCuston(pH))
+          if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
+            solution.setConcentrationH3O( value );
+          }
+          else {
+            solution.setMolesH3O( value );
+          }
+        }
+      ) );
+
+      // OH- indicator
+      oHIndicatorNode.cursor = 'pointer';
+      oHIndicatorNode.addInputListener( new GraphIndicatorDragHandler( yToValue,
+        function( value ) {
+          //TODO this should probably compute pH, then call solution.soluteProperty.set(Solute.createCuston(pH))
+          if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
+            solution.setConcentrationOH( value );
+          }
+          else {
+            solution.setMolesOH( value );
+          }
+        }
+      ) );
     }
   }
 

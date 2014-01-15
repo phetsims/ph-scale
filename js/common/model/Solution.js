@@ -12,6 +12,7 @@ define( function( require ) {
   var DerivedProperty = require( 'AXON/DerivedProperty' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
+  var Solute = require( 'PH_SCALE/common/model/Solute' );
   var Util = require( 'DOT/Util' );
 
   // constants
@@ -120,8 +121,12 @@ define( function( require ) {
     // Concentration (moles/L)
     //----------------------------------------------------------------------------
 
+    //TODO this should be converted to Solution.concentrationH3O_to_pH, then let LogarithmicGraph create the custom solute
     setConcentrationH3O: function( c ) {
-      this.soluteProperty.get().pHProperty.set( -Util.log10( c ) );
+      if ( this.volumeProperty.get() !== 0 ) {
+        var pH = -Util.log10( c );
+        this.soluteProperty.set( Solute.createCustom( pH ) );
+      }
     },
 
     getConcentrationH3O: function( pH ) {
@@ -129,8 +134,12 @@ define( function( require ) {
       return ( pH === null ) ? 0 : Math.pow( 10, -pH );
     },
 
+    //TODO this should be converted to Solution.concentrationOH_to_pH, then let LogarithmicGraph create the custom solute
     setConcentrationOH: function( c ) {
-      this.soluteProperty.get().pHProperty.set( 14 - ( -Util.log10( c ) ) );
+      if ( this.volumeProperty.get() !== 0 ) {
+        var pH = 14 + Util.log10( c );
+        this.soluteProperty.set( Solute.createCustom( pH ) );
+      }
     },
 
     getConcentrationOH: function( pH ) {
@@ -162,16 +171,24 @@ define( function( require ) {
     // Number of moles
     //----------------------------------------------------------------------------
 
+    //TODO this should be converted to Solution.molesH3O_to_pH, then let LogarithmicGraph create the custom solute
     setMolesH3O: function( m ) {
-      this.soluteProperty.get().pHProperty.set( -Util.log10( m / this.volumeProperty.get() ) );
+      if ( this.volumeProperty.get() !== 0 ) {
+        var pH = -Util.log10( m / this.volumeProperty.get() );
+        this.soluteProperty.set( Solute.createCustom( pH ) );
+      }
     },
 
     getMolesH3O: function() {
       return Solution.computeMoles( this.volumeProperty.get(), this.getConcentrationH3O() );
     },
 
+    //TODO this should be converted to Solution.molesOH_to_pH, then let LogarithmicGraph create the custom solute
     setMolesOH: function( m ) {
-      this.soluteProperty.get().pHProperty.set( 14 - ( -Util.log10( m / this.volumeProperty.get() ) ) );
+      if ( this.volumeProperty.get() !== 0 ) {
+        var pH = 14 + Util.log10( m / this.volumeProperty.get() );
+        this.soluteProperty.set( Solute.createCustom( pH ) );
+      }
     },
 
     getMolesOH: function() {

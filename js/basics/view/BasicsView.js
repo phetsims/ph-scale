@@ -36,10 +36,6 @@ define( function( require ) {
     var thisView = this;
     ScreenView.call( thisView, { renderer: 'svg' } );
 
-    // Parent for all nodes added to this screen
-    var rootNode = new Node();
-    thisView.addChild( rootNode );
-
     // beaker
     var beakerNode = new BeakerNode( model.beaker, mvt );
     var solutionNode = new SolutionNode( model.solution, model.beaker, mvt );
@@ -74,21 +70,24 @@ define( function( require ) {
       model.reset();
     } );
 
-    // Rendering order
-    rootNode.addChild( waterFluidNode );
-    rootNode.addChild( waterFaucetNode );
-    rootNode.addChild( drainFluidNode );
-    rootNode.addChild( drainFaucetNode );
-    rootNode.addChild( dropperFluidNode );
-    rootNode.addChild( dropperNode );
-    rootNode.addChild( solutionNode );
-    rootNode.addChild( beakerNode );
-    rootNode.addChild( neutralIndicator );
-    rootNode.addChild( volumeIndicatorNode );
-    rootNode.addChild( soluteComboBox );
-    rootNode.addChild( resetAllButton );
-    rootNode.addChild( pHMeterNode ); // next to last so that probe doesn't get lost behind anything
-    rootNode.addChild( soluteListParent ); // last, so that combo box list is on top
+    // Parent for all nodes added to this screen
+    var rootNode = new Node( { children: [
+      // nodes are rendered in this order
+      waterFluidNode,
+      waterFaucetNode,
+      drainFluidNode,
+      dropperFluidNode,
+      dropperNode,
+      solutionNode,
+      beakerNode,
+      neutralIndicator,
+      volumeIndicatorNode,
+      soluteComboBox,
+      resetAllButton,
+      pHMeterNode, // next to last so that probe doesn't get lost behind anything
+      soluteListParent // last, so that combo box list is on top
+    ] } );
+    thisView.addChild( rootNode );
 
     // Layout of nodes that don't have a location specified in the model
     soluteComboBox.left = mvt.modelToViewX( model.beaker.left ) - 20; // anchor on left so it grows to the right during i18n

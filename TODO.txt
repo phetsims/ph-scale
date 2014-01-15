@@ -21,7 +21,6 @@ LOW
 - ComboBox: add background color behind arrow button (sun#43)
 - scale down the 'Molecule counts' feature?
 - exponents look lousy, rewrite using scenery.Text?
-- factor out duplicate code/patterns in model & view for 3 screens
 - lots of stuff copied from beers-law-lab, much of it tweaked slightly
 - English strings have been capitalized, translations have not
 - port strings from Java

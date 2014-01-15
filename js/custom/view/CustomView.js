@@ -44,10 +44,6 @@ define( function( require ) {
       moleculeCountVisible: false
     } );
 
-    // Parent for all nodes added to this screen
-    var rootNode = new Node();
-    thisView.addChild( rootNode );
-
     // beaker
     var beakerNode = new BeakerNode( model.beaker, mvt );
     var solutionNode = new SolutionNode( model.solution, model.beaker, mvt );
@@ -90,20 +86,24 @@ define( function( require ) {
       viewProperties.reset();
     } );
 
-    // Rendering order
-    rootNode.addChild( drainFluidNode );
-    rootNode.addChild( drainFaucetNode );
-    rootNode.addChild( dropperFluidNode );
-    rootNode.addChild( dropperNode );
-    rootNode.addChild( solutionNode );
-    rootNode.addChild( ratioNode );
-    rootNode.addChild( beakerNode );
-    rootNode.addChild( moleculeCountNode );
-    rootNode.addChild( volumeIndicatorNode );
-    rootNode.addChild( beakerControls );
-    rootNode.addChild( pHMeterNode );
-    rootNode.addChild( graphNode );
-    rootNode.addChild( resetAllButton );
+    // Parent for all nodes added to this screen
+    var rootNode = new Node( { children: [
+      // nodes are rendered in this order
+      drainFluidNode,
+      drainFaucetNode,
+      dropperFluidNode,
+      dropperNode,
+      solutionNode,
+      ratioNode,
+      beakerNode,
+      moleculeCountNode,
+      volumeIndicatorNode,
+      beakerControls,
+      pHMeterNode,
+      graphNode,
+      resetAllButton
+    ] } );
+    thisView.addChild( rootNode );
 
     // Layout of nodes that don't have a location specified in the model
     pHMeterNode.right = beakerNode.left + 20;

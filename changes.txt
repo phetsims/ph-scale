@@ -1,3 +1,4 @@
+1/14/14 use 'children' option to add nodes to each ScreenView's rootNode
 1/14/14 rename Solution.drain to drainSolution for clarify as call sites
 1/14/14 make RatioNode responsible for its own positioning
 1/14/14 expand touchArea for picker in 'Custom' pH meter

@@ -124,7 +124,7 @@ define( function( require ) {
     //TODO this should be converted to Solution.concentrationH3O_to_pH, then let LogarithmicGraph create the custom solute
     setConcentrationH3O: function( c ) {
       if ( this.volumeProperty.get() !== 0 ) {
-        var pH = Util.clamp( -Util.log10( c ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+        var pH = Util.clamp( Solution.concentrationH3OToPH( c ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
         this.soluteProperty.set( Solute.createCustom( pH ) );
       }
     },
@@ -137,7 +137,7 @@ define( function( require ) {
     //TODO this should be converted to Solution.concentrationOH_to_pH, then let LogarithmicGraph create the custom solute
     setConcentrationOH: function( c ) {
       if ( this.volumeProperty.get() !== 0 ) {
-        var pH = Util.clamp( 14 + Util.log10( c ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+        var pH = Util.clamp( Solution.concentrationOHToPH( c ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
         this.soluteProperty.set( Solute.createCustom( pH ) );
       }
     },
@@ -174,7 +174,7 @@ define( function( require ) {
     //TODO this should be converted to Solution.molesH3O_to_pH, then let LogarithmicGraph create the custom solute
     setMolesH3O: function( m ) {
       if ( this.volumeProperty.get() !== 0 ) {
-        var pH = Util.clamp( -Util.log10( m / this.volumeProperty.get() ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+        var pH = Util.clamp( Solution.molesH3OToPH( m, this.volumeProperty.get() ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
         this.soluteProperty.set( Solute.createCustom( pH ) );
       }
     },
@@ -186,7 +186,7 @@ define( function( require ) {
     //TODO this should be converted to Solution.molesOH_to_pH, then let LogarithmicGraph create the custom solute
     setMolesOH: function( m ) {
       if ( this.volumeProperty.get() !== 0 ) {
-        var pH = Util.clamp( 14 + Util.log10( m / this.volumeProperty.get() ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+        var pH = Util.clamp( Solution.molesOHToPH( m, this.volumeProperty.get() ), PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
         this.soluteProperty.set( Solute.createCustom( pH ) );
       }
     },
@@ -262,6 +262,22 @@ define( function( require ) {
    */
   Solution.computeMoles = function( volume, concentration ) {
     return volume * concentration;
+  };
+
+  Solution.concentrationH3OToPH = function( concentration ) {
+    return -Util.log10( concentration );
+  };
+
+  Solution.concentrationOHToPH = function( concentration ) {
+    return 14 - Solution.concentrationH3OToPH( concentration );
+  };
+
+  Solution.molesH3OToPH = function( moles, volume ) {
+    return Solution.concentrationH3OToPH( moles / volume );
+  };
+
+  Solution.molesOHToPH = function( moles, volume ) {
+    return Solution.concentrationOHToPH( moles / volume );
   };
 
   return Solution;

@@ -76,6 +76,7 @@ define( function( require ) {
       waterFluidNode,
       waterFaucetNode,
       drainFluidNode,
+      drainFaucetNode,
       dropperFluidNode,
       dropperNode,
       solutionNode,

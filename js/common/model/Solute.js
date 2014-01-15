@@ -11,6 +11,7 @@ define( function( require ) {
 
   // imports
   var Color = require( 'SCENERY/util/Color' );
+  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Water = require( 'PH_SCALE/common/model/Water' );
 
   // strings
@@ -39,6 +40,10 @@ define( function( require ) {
    * ratio: ratio for the color-stop, (0,1) exclusive, optional, defaults to 0.25
    */
   function Solute( name, pH, colorScheme ) {
+
+    if ( !PHScaleConstants.PH_RANGE.contains( pH ) ) {
+      throw new Error( "Solute constructor, pH value is out of range: " + pH );
+    }
 
     this.name = name;
     this.pH = pH;

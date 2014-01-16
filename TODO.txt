@@ -5,6 +5,9 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
+- add placeholder for LinearGraph
+- shrink units switch to fit maximum width
+- replace HTMLText with custom solution for sub/superscripts (scenery#190), look at MathJax, TeX or HTML?
 - 'H3O+/OH- ratio' feature
 - Custom: interactive linear graph, zoom feature
 
@@ -12,27 +15,28 @@ MEDIUM
 - Solutions: vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)
 - Molecule counts: '4.0 x 10^25' should be displayed as '4.00 x 10^25'
 - values in graph indicators don't gray out when disabled because scenery.HTMLText doesn't support opacity
-- replace HTMLText with custom solution for sub/superscripts (scenery#190), look at MathJax, TeX or HTML?
 
 LOW
+- flesh out Zoom buttons
 - nicer handles on graph indicators, match design doc mockups, perhaps use images
 - rewrite PHUtils.toTimesTenString
 - test various multi-touch scenarios
 - ComboBox: add background color behind arrow button (sun#43)
-- scale down the 'Molecule counts' feature?
 - port strings from Java
 - consider moving 'basics' package to ph-scale-basics (ph-scale-basics#7)
 - TODO items in code
-- how to handle i18n issues with switch in graph's expand/collapse bar
-- dump ExpandCollapseBar in graphs, use a custom solution to keep AB-switch centered
-- don't update things that aren't visible (Molecule counts, Ratio, collapsed pH meter, collapsed graph)
 - factor out duplication in CustomGraphNode and SolutionsGraphNode, after the fate of 'Linear' graph is decided
+- take advantage of DAG to reduce number of nodes allocated in LogarithmicGraph
+
+PERFORMANCE
+- don't update things that aren't visible (Molecule counts, Ratio, collapsed pH meter, collapsed graph)
 
 MIGRATE TO COMMON
-- ExpandCollapseBar to sun (if not ditched)
+- ExpandCollapseBar to sun
 - ToggleButton (sun#32)
 - DropperNode, Dropper
 - BeakerNode
+- ZoomInButton, ZoomOutButton to scenery-phet
 
 =========================================================================================================
 

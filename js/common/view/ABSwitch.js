@@ -2,7 +2,8 @@
 
 /**
  * Control for switching between 2 choices (A & B).
- * This is an adapter for OnOffProperty, the iOS-like on/off switch.
+ * Choice 'A' is to the left of the switch, choice 'B' is to the right.
+ * This decorates OnOffProperty, the iOS-like on/off switch.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -21,23 +22,20 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Property = require( 'AXON/Property' );
 
-  //TODO support {Node} for labelA and labelB
   /**
-   * @param {Property<*>} property
-   * @param {*} objectA
-   * @param {String} labelA label for 'A', to the left of the switch
-   * @param {*} objectB
-   * @param {String} labelB label for 'B', to the right of the switch
+   * @param {Property<*>} property stores the value of the current choice
+   * @param {*} valueA value for choice 'A'
+   * @param {Node} labelA label for choice 'A'
+   * @param {*} valueB value for choice 'B'
+   * @param {Node} labelB label for choice 'B'
    * @param {*} options
    * @constructor
    */
-  function ABSwitch( property, objectA, labelA, objectB, labelB, options ) {
+  function ABSwitch( property, valueA, labelA, valueB, labelB, options ) {
 
     // default option values
     options = _.extend( {
       switchSize: new Dimension2( 60, 30 ),
-      textFill: 'black',
-      font: new PhetFont( 24 ),
       xSpacing: 8,
       cursor: 'pointer',
       centerOnButton: true
@@ -51,7 +49,7 @@ define( function( require ) {
     Node.call( thisNode );
 
     // property for adapting to OnOffSwitch. 'true' is 'B', the object on the 'on' end of the OnOffSwitch.
-    var onProperty = new Property( objectB === property.get() );
+    var onProperty = new Property( valueB === property.get() );
 
     var onOffSwitch = new OnOffSwitch( onProperty, {
       size: options.switchSize,
@@ -60,54 +58,48 @@ define( function( require ) {
       trackOnFill: options.trackFill,
       trackOffFill: options.trackFill
     } );
-    var labelANode = new MultiLineText( labelA, {
-      fill: options.textFill,
-      font: options.font
-    } );
-    var labelBNode = new MultiLineText( labelB, {
-      fill: options.textFill,
-      font: options.font
-    } );
 
     // rendering order
     thisNode.addChild( onOffSwitch );
-    thisNode.addChild( labelANode );
-    thisNode.addChild( labelBNode );
+    thisNode.addChild( labelA );
+    thisNode.addChild( labelB );
 
     // layout: 'A' on the left, 'B' on the right
-    labelANode.right = onOffSwitch.left - options.xSpacing;
-    labelANode.centerY = onOffSwitch.centerY;
-    labelBNode.left = onOffSwitch.right + options.xSpacing;
-    labelBNode.centerY = onOffSwitch.centerY;
+    labelA.right = onOffSwitch.left - options.xSpacing;
+    labelA.centerY = onOffSwitch.centerY;
+    labelB.left = onOffSwitch.right + options.xSpacing;
+    labelB.centerY = onOffSwitch.centerY;
 
     // add a horizontal strut that will cause the 'centerX' of this node to be at the center of the button
     if ( options.centerOnButton ) {
-      var additionalWidth = Math.abs( labelANode.width - labelBNode.width );
+      var additionalWidth = Math.abs( labelA.width - labelB.width );
       var strut = new Line( 0, 0, thisNode.width + additionalWidth, 0 );
       thisNode.addChild( strut );
       strut.moveToBack();
-      if ( labelANode.width < labelANode.width ) {
-        strut.left = labelANode.left - ( additionalWidth / 2 );
+      if ( labelA.width < labelB.width ) {
+        strut.left = labelA.left - ( additionalWidth / 2 );
       }
       else {
-        strut.left = labelANode.left;
+        strut.left = labelA.left;
       }
     }
 
     // sync properties
     property.link( function( object ) {
-      onProperty.set( objectB === object );
+      onProperty.set( valueB === object );
     } );
     onProperty.link( function( on ) {
-      property.set( on ? objectB : objectA );
-      //TODO if labelA and labelB support 'enabled', then change that property
+      property.set( on ? valueB : valueA );
+      // change enabled status of labels if they support it
+      if ( labelA.enabled ) { labelA.enabled = !on; };
+      if ( labelB.enabled ) { labelB.enabled = on; };
     } );
 
     // click on labels to select
-    labelANode.addInputListener( new ButtonListener( {
+    labelA.addInputListener( new ButtonListener( {
       fire: function() { onProperty.set( false ); }
     } ) );
-    labelBNode.addInputListener( new ButtonListener( {
+    labelB.addInputListener( new ButtonListener( {
       fire: function() { onProperty.set( true ); }
     } ) );
 

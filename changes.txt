@@ -1,3 +1,4 @@
+1/16/14 generalize ABSwitch so that the labels are {Node} instead of {String}, and it handles enable/disable of the labels
 1/16/14 change the cursor when interactive graph indicators are disabled
 # 1.0.0-dev.4 1/15/14
 1/15/14 push duplicate code into GraphIndicatorDragHandler

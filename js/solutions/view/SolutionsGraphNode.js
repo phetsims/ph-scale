@@ -18,6 +18,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
   var LogarithmicGraph = require( 'PH_SCALE/common/view/graph/LogarithmicGraph' );
+  var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
@@ -47,12 +48,11 @@ define( function( require ) {
 
     // units switch
     var graphUnitsProperty = new Property( options.units );
+    var textOptions = { font: new PhetFont( { size: 18, weight: 'bold' } ) };
     var graphUnitsSwitch = new ABSwitch( graphUnitsProperty,
-      GraphUnits.MOLES_PER_LITER, concentrationString + '\n(' + molesPerLiterString + ')',
-      GraphUnits.MOLES, quantityString + '\n(' + molesString + ')', {
-        font: new PhetFont( { size: 18, weight: 'bold' } ),
-        size: new Dimension2( 50, 25 )
-      } );
+         GraphUnits.MOLES_PER_LITER, new MultiLineText( concentrationString + '\n(' + molesPerLiterString + ')', textOptions ),
+         GraphUnits.MOLES, new MultiLineText( quantityString + '\n(' + molesString + ')', textOptions ),
+         { size: new Dimension2( 50, 25 ) } );
 
     // logarithmic graph, switchable between 'concentration' and 'quantity'
     var logarithmicGraph = new LogarithmicGraph( solution, graphUnitsProperty, {

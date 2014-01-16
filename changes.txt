@@ -1,3 +1,4 @@
+1/16/14 migrate ExpandCollapseBar to sun
 1/16/14 generalize ExpandCollapseBar
 1/16/14 add placeholder for LinearGraph
 1/16/14 attach beaker controls to left edge of beaker so that i18n strings have room to grow

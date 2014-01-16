@@ -13,7 +13,7 @@ define( function( require ) {
   // imports
   var ABSwitch = require( 'SUN/ABSwitch' );
   var Dimension2 = require( 'DOT/Dimension2' );
-  var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
+  var ExpandCollapseBar = require( 'SUN/ExpandCollapseBar' );
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );

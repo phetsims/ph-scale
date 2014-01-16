@@ -31,7 +31,6 @@ PERFORMANCE
 - don't update things that aren't visible (Molecule counts, Ratio, collapsed pH meter, collapsed graph)
 
 MIGRATE TO COMMON
-- ExpandCollapseBar to sun
 - ToggleButton (sun#32)
 - DropperNode, Dropper
 - BeakerNode

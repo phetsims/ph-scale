@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * On/off switch, similar to iOS' UISwitch, used in 'Settings' app.
+ * On/off switch, similar to iOS' UISwitch, used in iOS `'Settings' app.
  * Drag the thumb to change the value, or click anywhere to toggle the value.
  *
  * @author Chris Malley (PixelZoom, Inc.)

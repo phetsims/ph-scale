@@ -77,7 +77,7 @@ define( function( require ) {
     var graphScaleSwitch = new ABSwitch( graphScaleProperty,
       GraphScale.LOGARITHMIC, new Text( logarithmicString, textOptions ),
       GraphScale.LINEAR, new Text( linearString, textOptions ),
-      { size: new Dimension2( 50, 25 ) } );
+      { size: new Dimension2( 50, 25 ), centerOnButton: true } );
 
     // logarithmic graph, switchable between 'concentration' and 'quantity'
     var scaleHeight = 475;

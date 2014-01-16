@@ -37,7 +37,7 @@ define( function( require ) {
       xSpacing: 8,
       cursor: 'pointer',
       centerOnButton: true,
-      // uses opacity as the default method of indicating whether a node is enabled or disabled
+      // uses opacity as the default method of indicating whether a {Node} node is {Boolean} enabled
       setEnabled: function( node, enabled ) { node.opacity = enabled ? 1.0 : 0.5; }
     }, options );
     options.trackFill = options.trackFill ||
@@ -85,8 +85,10 @@ define( function( require ) {
     }
 
     // initial enabled state
-    options.setEnabled( labelA, property.get() === valueA );
-    options.setEnabled( labelB, property.get() === valueB );
+    if ( options.setEnabled ) {
+      options.setEnabled( labelA, property.get() === valueA );
+      options.setEnabled( labelB, property.get() === valueB );
+    }
 
     // sync properties
     property.link( function( object ) {
@@ -94,8 +96,10 @@ define( function( require ) {
     } );
     onProperty.link( function( on ) {
       property.set( on ? valueB : valueA );
-      options.setEnabled( labelA, !on );
-      options.setEnabled( labelB, on );
+      if ( options.setEnabled ) {
+        options.setEnabled( labelA, !on );
+        options.setEnabled( labelB, on );
+      }
     } );
 
     // click on labels to select

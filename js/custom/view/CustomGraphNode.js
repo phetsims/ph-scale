@@ -10,7 +10,7 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var ABSwitch = require( 'PH_SCALE/common/view/ABSwitch' );
+  var ABSwitch = require( 'SUN/ABSwitch' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var ExpandCollapseBar = require( 'PH_SCALE/common/view/ExpandCollapseBar' );
   var GraphScale = require( 'PH_SCALE/common/view/graph/GraphScale' );

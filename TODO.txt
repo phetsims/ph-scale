@@ -30,8 +30,6 @@ LOW
 
 MIGRATE TO COMMON
 - ExpandCollapseBar to sun (if not ditched)
-- OnOffSwitch to sun
-- ABSwitch to sun
 - ToggleButton (sun#32)
 - DropperNode, Dropper
 - BeakerNode

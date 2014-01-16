@@ -7,7 +7,7 @@ IMPLEMENTATION
 HIGH
 - replace HTMLText with custom node for sub/superscripts (scenery-phet#29)
 - 'H3O+/OH- ratio' feature
-- Custom: interactive linear graph, zoom feature
+- Custom: linear graph
 
 MEDIUM
 - Solutions: vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)
@@ -15,7 +15,7 @@ MEDIUM
 - values in graph indicators don't gray out when disabled because scenery.HTMLText doesn't support opacity
 
 LOW
-- flesh out Zoom buttons
+- Zoom buttons
 - nicer handles on graph indicators, match design doc mockups, perhaps use images
 - rewrite PHUtils.toTimesTenString
 - test various multi-touch scenarios

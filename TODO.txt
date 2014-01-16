@@ -5,7 +5,7 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- replace HTMLText with custom node for sub/superscripts (scenery-phet#29)
+- flesh out SubSupText (scenery-phet#29)
 - 'H3O+/OH- ratio' feature
 - Custom: linear graph
 

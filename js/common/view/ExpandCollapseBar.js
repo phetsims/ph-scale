@@ -1,8 +1,7 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
- * Horizontal bar placed above UI components that can be shown/hidden.
- * (It would have been nice to use sun.AccordionBox, but this sim's design specified a very different look.)
+ * Horizontal bar placed above something that can be expanded/collapsed.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -18,18 +17,20 @@ define( function( require ) {
 
   /**
    * @param {Node} titleNode
-   * @param {Property<Boolean>} visibleProperty
+   * @param {Property<Boolean>} expandedProperty
    * @param {*} options
    * @constructor
    */
-  function ExpandCollapseBar( titleNode, visibleProperty, options ) {
+  function ExpandCollapseBar( titleNode, expandedProperty, options ) {
 
     options = _.extend( {
       buttonLength: 15,
+      minWidth: 1, // minimum width of the bar
+      minHeight: 1, // minimum height of the bar
       cornerRadius: 6,
       xMargin: 10,
       yMargin: 8,
-      barWidth: 220,
+      xSpacing: 10,
       barFill: 'white',
       barStroke: 'black',
       barLineWidth: 1
@@ -39,12 +40,13 @@ define( function( require ) {
     Node.call( thisNode );
 
     // expand/collapse button
-    var button = new ExpandCollapseButton( options.buttonLength, visibleProperty );
+    var button = new ExpandCollapseButton( options.buttonLength, expandedProperty );
     button.touchArea = Shape.bounds( button.localBounds.dilatedXY( 10, 10 ) );
 
     // bar
-    var barHeight = Math.max( button.height, titleNode.height ) + ( 2 * options.yMargin );
-    var barNode = new Rectangle( 0, 0, options.barWidth, barHeight, options.cornerRadius, options.cornerRadius, {
+    var barWidth = Math.max( options.minWidth, titleNode.width + button.width + options.xSpacing + ( 2 * options.xMargin ) );
+    var barHeight = Math.max( options.minHeight, Math.max( titleNode.height, button.height ) + ( 2 * options.yMargin ) );
+    var barNode = new Rectangle( 0, 0, barWidth, barHeight, options.cornerRadius, options.cornerRadius, {
       fill: options.barFill,
       stroke: options.barStroke,
       lineWidth: options.barLineWidth

@@ -118,8 +118,8 @@ define( function( require ) {
     var expandCollapseBar = new ExpandCollapseBar(
       graphUnitsSwitch,
       expandedProperty, {
+        minWidth: 350,
         barFill: PHScaleColors.PANEL_FILL,
-        barWidth: 350,
         barLineWidth: 2,
         buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
       } );

@@ -53,6 +53,7 @@ define( function( require ) {
          GraphUnits.MOLES_PER_LITER, new MultiLineText( concentrationString + '\n(' + molesPerLiterString + ')', textOptions ),
          GraphUnits.MOLES, new MultiLineText( quantityString + '\n(' + molesString + ')', textOptions ),
          { size: new Dimension2( 50, 25 ) } );
+    graphUnitsSwitch.setScaleMagnitude( Math.min( 1, 300 / graphUnitsSwitch.width ) ); // scale for i18n
 
     // logarithmic graph, switchable between 'concentration' and 'quantity'
     var logarithmicGraph = new LogarithmicGraph( solution, graphUnitsProperty, {

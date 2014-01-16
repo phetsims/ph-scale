@@ -60,6 +60,7 @@ define( function( require ) {
       GraphUnits.MOLES_PER_LITER, new MultiLineText( concentrationString + '\n(' + molesPerLiterString + ')', textOptions ),
       GraphUnits.MOLES, new MultiLineText( quantityString + '\n(' + molesString + ')', textOptions ),
       { size: new Dimension2( 50, 25 ) } );
+    graphUnitsSwitch.setScaleMagnitude( Math.min( 1, 300 / graphUnitsSwitch.width ) ); // scale for i18n
 
     //TODO use sun.PushButton
     // zoom buttons for the linear graph

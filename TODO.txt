@@ -5,7 +5,6 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- shrink units switch to fit maximum width
 - replace HTMLText with custom solution for sub/superscripts (scenery#190), look at MathJax, TeX or HTML?
 - 'H3O+/OH- ratio' feature
 - Custom: interactive linear graph, zoom feature

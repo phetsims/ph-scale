@@ -205,7 +205,7 @@ define( function( require ) {
       valueNode.centerY = valueBackgroundNode.centerY;
 
       // disabled when value is zero
-      var isEnabled = ( value != 0 );
+      var isEnabled = ( value !== 0 );
       thisNode.opacity = isEnabled ? 1.0 : 0.5;
       thisNode.cursor = ( isEnabled && options.isInteractive ) ? 'pointer' : 'default';
     });

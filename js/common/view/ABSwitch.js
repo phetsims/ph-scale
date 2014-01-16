@@ -16,10 +16,8 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
-  var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
   var OnOffSwitch = require( 'PH_SCALE/common/view/OnOffSwitch' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Property = require( 'AXON/Property' );
 
   /**
@@ -38,7 +36,9 @@ define( function( require ) {
       switchSize: new Dimension2( 60, 30 ),
       xSpacing: 8,
       cursor: 'pointer',
-      centerOnButton: true
+      centerOnButton: true,
+      // uses opacity as the default method of indicating whether a node is enabled or disabled
+      setEnabled: function( node, enabled ) { node.opacity = enabled ? 1.0 : 0.5; }
     }, options );
     options.trackFill = options.trackFill ||
                         new LinearGradient( 0, 0, 0, options.switchSize.height ).addColorStop( 0, 'rgb(40,40,40)' ).addColorStop( 1, 'rgb(200,200,200)' );
@@ -84,15 +84,18 @@ define( function( require ) {
       }
     }
 
+    // initial enabled state
+    options.setEnabled( labelA, property.get() === valueA );
+    options.setEnabled( labelB, property.get() === valueB );
+
     // sync properties
     property.link( function( object ) {
       onProperty.set( valueB === object );
     } );
     onProperty.link( function( on ) {
       property.set( on ? valueB : valueA );
-      // change enabled status of labels if they support it
-      if ( labelA.enabled ) { labelA.enabled = !on; };
-      if ( labelB.enabled ) { labelB.enabled = on; };
+      options.setEnabled( labelA, !on );
+      options.setEnabled( labelB, on );
     } );
 
     // click on labels to select

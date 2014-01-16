@@ -10,10 +10,9 @@ HIGH
 
 MEDIUM
 - Solutions: vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)
-- change look of ABSwitch labels based on which one is selected
 - Molecule counts: '4.0 x 10^25' should be displayed as '4.00 x 10^25'
 - values in graph indicators don't gray out when disabled because scenery.HTMLText doesn't support opacity
-- replace HTMLText with custom solution for sub/superscripts (scenery#190)
+- replace HTMLText with custom solution for sub/superscripts (scenery#190), look at MathJax, TeX or HTML?
 
 LOW
 - nicer handles on graph indicators, match design doc mockups, perhaps use images

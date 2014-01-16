@@ -25,6 +25,7 @@ define( function( require ) {
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Text = require( 'SCENERY/nodes/Text' );
 
   // strings
   var concentrationString = require( 'string!PH_SCALE/concentration' );
@@ -72,8 +73,8 @@ define( function( require ) {
     // switch between 'Logarithmic' and 'Linear'
     var graphScaleProperty = new Property( options.graphScale );
     var graphScaleSwitch = new ABSwitch( graphScaleProperty,
-      GraphScale.LOGARITHMIC, new MultiLineText( logarithmicString, textOptions ),
-      GraphScale.LINEAR, new MultiLineText( linearString, textOptions ),
+      GraphScale.LOGARITHMIC, new Text( logarithmicString, textOptions ),
+      GraphScale.LINEAR, new Text( linearString, textOptions ),
       { size: new Dimension2( 50, 25 ) } );
 
     // logarithmic graph, switchable between 'concentration' and 'quantity'

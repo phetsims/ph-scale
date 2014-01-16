@@ -180,12 +180,10 @@ define( function( require ) {
     if ( options.isInteractive ) {
 
       // H3O+ indicator
-      h3OIndicatorNode.cursor = 'pointer';
       h3OIndicatorNode.addInputListener(
         new GraphIndicatorDragHandler( solution, graphUnitsProperty, yToValue, PHModel.concentrationH3OToPH, PHModel.molesH3OToPH ) );
 
       // OH- indicator
-      oHIndicatorNode.cursor = 'pointer';
       oHIndicatorNode.addInputListener(
         new GraphIndicatorDragHandler( solution, graphUnitsProperty, yToValue, PHModel.concentrationOHToPH, PHModel.molesOHToPH ) );
     }

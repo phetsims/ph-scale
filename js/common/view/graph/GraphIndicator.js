@@ -156,6 +156,7 @@ define( function( require ) {
 
     // rendering order
     if ( options.isInteractive ) {
+      thisNode.cursor = 'pointer';
       // interactive indicators get a drop-shadow and handle
       thisNode.addChild( backgroundShadowNode );
       thisNode.addChild( handleShadowNode );
@@ -197,10 +198,16 @@ define( function( require ) {
 
     // sync with value
     valueProperty.link( function( value ) {
+
+      // update the displayed value and center it
       valueNode.text = PHUtils.toTimesTenString( value, options.decimalPlaces, options.constantExponent );
       valueNode.centerX = valueBackgroundNode.centerX;
       valueNode.centerY = valueBackgroundNode.centerY;
-      thisNode.opacity = ( value === 0 ) ? 0.5 : 1.0; // disabled when value is null or zero
+
+      // disabled when value is zero
+      var isEnabled = ( value != 0 );
+      thisNode.opacity = isEnabled ? 1.0 : 0.5;
+      thisNode.cursor = ( isEnabled && options.isInteractive ) ? 'pointer' : 'default';
     });
 
     thisNode.mutate( options );

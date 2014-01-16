@@ -1,3 +1,4 @@
+1/16/14 shrink 'Molecule count' feature slightly and reposition so that it doesn't overlap beaker tick labels
 1/16/14 migrate OnOffSwitch and ABSwitch to sun
 1/16/14 change look of ABSwitch labels based on which one is selected
 1/16/14 generalize ABSwitch so that the labels are {Node} instead of {String}, and it handles enable/disable of the labels

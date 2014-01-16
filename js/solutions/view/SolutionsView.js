@@ -70,7 +70,7 @@ define( function( require ) {
     viewProperties.ratioVisibleProperty.linkAttribute( ratioNode, 'visible' );
 
     // 'molecule count' representation
-    var moleculeCountNode = new MoleculeCountNode( model.solution );
+    var moleculeCountNode = new MoleculeCountNode( model.solution, { scale: 0.9 } );
     viewProperties.moleculeCountVisibleProperty.linkAttribute( moleculeCountNode, 'visible' );
 
     // beaker controls
@@ -115,7 +115,7 @@ define( function( require ) {
     thisView.addChild( rootNode );
 
     // Layout of nodes that don't have a location specified in the model
-    moleculeCountNode.centerX = mvt.modelToViewX( model.beaker.location.x );
+    moleculeCountNode.left = mvt.modelToViewX( model.beaker.left ) + 40;
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.centerX = mvt.modelToViewX( model.beaker.location.x );
     beakerControls.top = beakerNode.bottom + 15;

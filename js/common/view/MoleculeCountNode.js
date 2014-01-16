@@ -24,7 +24,7 @@ define( function( require ) {
    * @param {Solution} solution
    * @constructor
    */
-  function MoleculeCountNode( solution ) {
+  function MoleculeCountNode( solution, options ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -109,6 +109,8 @@ define( function( require ) {
     solution.pHProperty.link( updateCounts );
     solution.waterVolumeProperty.link( updateCounts );
     solution.soluteVolumeProperty.link( updateCounts );
+
+    this.mutate( options );
   }
 
   return inherit( Node, MoleculeCountNode );

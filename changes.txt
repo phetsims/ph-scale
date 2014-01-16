@@ -1,3 +1,4 @@
+1/16/14 add placeholder for LinearGraph
 1/16/14 attach beaker controls to left edge of beaker so that i18n strings have room to grow
 1/16/14 shrink 'Molecule count' feature slightly and reposition so that it doesn't overlap beaker tick labels
 1/16/14 migrate OnOffSwitch and ABSwitch to sun

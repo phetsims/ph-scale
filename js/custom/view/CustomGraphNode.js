@@ -17,6 +17,7 @@ define( function( require ) {
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
+  var LinearGraph = require( 'PH_SCALE/common/view/graph/LinearGraph' );
   var LogarithmicGraph = require( 'PH_SCALE/common/view/graph/LogarithmicGraph' );
   var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -84,6 +85,12 @@ define( function( require ) {
       isInteractive: true
     } );
 
+    // linear graph, switchable between 'concentration' and 'quantity'
+    var linearGraph = new LinearGraph( solution, graphUnitsProperty, {
+      scaleHeight: scaleHeight,
+      isInteractive: true
+    } );
+
     // vertical line that connects graph to expand/collapse bar
     var lineNode = new Line( 0, 0, 0, 30, { stroke: 'black' } );
 
@@ -92,12 +99,15 @@ define( function( require ) {
     thisNode.addChild( graphNode );
     graphNode.addChild( lineNode );
     graphNode.addChild( logarithmicGraph );
+    graphNode.addChild( linearGraph );
     graphNode.addChild( zoomButtons );
     graphNode.addChild( graphScaleSwitch );
 
     // layout
     logarithmicGraph.centerX = lineNode.centerX;
     logarithmicGraph.top = lineNode.bottom - 1;
+    linearGraph.centerX = logarithmicGraph.centerX;
+    linearGraph.top = logarithmicGraph.top;
     zoomButtons.centerX = logarithmicGraph.centerX;
     zoomButtons.top = lineNode.bottom + scaleHeight + 20;
     graphScaleSwitch.centerX = zoomButtons.centerX;
@@ -123,8 +133,8 @@ define( function( require ) {
 
     // handle scale changes
     graphScaleProperty.link( function( graphScale ) {
-      zoomButtons.visible = ( graphScale === GraphScale.LINEAR );
-      //TODO switch to Linear graph
+      logarithmicGraph.visible = ( graphScale === GraphScale.LOGARITHMIC );
+      linearGraph.visible = zoomButtons.visible = ( graphScale === GraphScale.LINEAR );
     });
   }
 

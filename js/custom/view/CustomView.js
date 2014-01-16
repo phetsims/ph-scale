@@ -106,7 +106,7 @@ define( function( require ) {
     pHMeterNode.top = 20;
     moleculeCountNode.centerX = mvt.modelToViewX( model.beaker.location.x );
     moleculeCountNode.bottom = beakerNode.bottom - 25;
-    beakerControls.centerX = mvt.modelToViewX( model.beaker.location.x );
+    beakerControls.left = mvt.modelToViewX( model.beaker.left );
     beakerControls.top = beakerNode.bottom + 15;
     graphNode.right = drainFaucetNode.left - 70;
     graphNode.top = 20;

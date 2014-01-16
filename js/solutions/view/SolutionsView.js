@@ -117,7 +117,7 @@ define( function( require ) {
     // Layout of nodes that don't have a location specified in the model
     moleculeCountNode.left = mvt.modelToViewX( model.beaker.left ) + 40;
     moleculeCountNode.bottom = beakerNode.bottom - 25;
-    beakerControls.centerX = mvt.modelToViewX( model.beaker.location.x );
+    beakerControls.left = mvt.modelToViewX( model.beaker.left );
     beakerControls.top = beakerNode.bottom + 15;
     soluteComboBox.left = mvt.modelToViewX( model.beaker.left ) - 50; // anchor on left so it grows to the right during i18n
     soluteComboBox.top = this.layoutBounds.top + 15;

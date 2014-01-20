@@ -1,3 +1,4 @@
+1/19/14 move 'guide' lines for alignment of scale to the top and bottom ticks of the pH scale
 1/19/14 temporary solution for vertical alignment of graph and pH scales
 1/16/14 placeholder for SubSupText
 1/16/14 center log/linear switch

@@ -131,8 +131,8 @@ define( function( require ) {
 
     // 'guide' lines to vertically align the scales of the graph and pH meter
     if ( window.phetcommon.getQueryParameter( 'dev' ) ) {
-      thisView.addChild( new Line( 0, 0, 2000, 0, { y: 197, stroke: 'rgba(100,100,100,0.25)' } ) );
-      thisView.addChild( new Line( 0, 0, 2000, 0, { y: 547, stroke: 'rgba(100,100,100,0.25)' } ) );
+      thisView.addChild( new Line( 0, 0, 2000, 0, { y: 172, stroke: 'rgba(100,100,100,0.25)' } ) );
+      thisView.addChild( new Line( 0, 0, 2000, 0, { y: 572, stroke: 'rgba(100,100,100,0.25)' } ) );
     }
   }
 

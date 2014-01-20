@@ -62,6 +62,30 @@ define( function( require ) {
       { size: new Dimension2( 50, 25 ) } );
     graphUnitsSwitch.setScaleMagnitude( Math.min( 1, 300 / graphUnitsSwitch.width ) ); // scale for i18n
 
+    // expand/collapse bar
+    var expandedProperty = new Property( options.expanded );
+    var expandCollapseBar = new ExpandCollapseBar(
+      graphUnitsSwitch,
+      expandedProperty, {
+        minWidth: 350,
+        barFill: PHScaleColors.PANEL_FILL,
+        barLineWidth: 2,
+        buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
+      } );
+
+    // logarithmic graph, switchable between 'concentration' and 'quantity'
+    var scaleHeight = 475;
+    var logarithmicGraph = new LogarithmicGraph( solution, graphUnitsProperty, {
+      scaleHeight: scaleHeight,
+      isInteractive: true
+    } );
+
+    // linear graph, switchable between 'concentration' and 'quantity'
+    var linearGraph = new LinearGraph( solution, graphUnitsProperty, {
+      scaleHeight: scaleHeight,
+      isInteractive: true
+    } );
+
     //TODO use sun.PushButton
     // zoom buttons for the linear graph
     var zoomButtonLength = 40;
@@ -79,23 +103,11 @@ define( function( require ) {
       GraphScale.LINEAR, new Text( linearString, textOptions ),
       { size: new Dimension2( 50, 25 ), centerOnButton: true } );
 
-    // logarithmic graph, switchable between 'concentration' and 'quantity'
-    var scaleHeight = 475;
-    var logarithmicGraph = new LogarithmicGraph( solution, graphUnitsProperty, {
-      scaleHeight: scaleHeight,
-      isInteractive: true
-    } );
-
-    // linear graph, switchable between 'concentration' and 'quantity'
-    var linearGraph = new LinearGraph( solution, graphUnitsProperty, {
-      scaleHeight: scaleHeight,
-      isInteractive: true
-    } );
-
     // vertical line that connects graph to expand/collapse bar
     var lineNode = new Line( 0, 0, 0, 30, { stroke: 'black' } );
 
-    // parent for all parts of the graph
+    // rendering order
+    thisNode.addChild( expandCollapseBar );
     var graphNode = new Node();
     thisNode.addChild( graphNode );
     graphNode.addChild( lineNode );
@@ -113,18 +125,6 @@ define( function( require ) {
     zoomButtons.top = lineNode.bottom + scaleHeight + 20;
     graphScaleSwitch.centerX = zoomButtons.centerX;
     graphScaleSwitch.top = zoomButtons.bottom + 10;
-
-    // expand/collapse bar
-    var expandedProperty = new Property( options.expanded );
-    var expandCollapseBar = new ExpandCollapseBar(
-      graphUnitsSwitch,
-      expandedProperty, {
-        minWidth: 350,
-        barFill: PHScaleColors.PANEL_FILL,
-        barLineWidth: 2,
-        buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
-      } );
-    thisNode.addChild( expandCollapseBar );
     graphNode.centerX = expandCollapseBar.centerX;
     graphNode.top = expandCollapseBar.bottom;
 
@@ -136,7 +136,7 @@ define( function( require ) {
     graphScaleProperty.link( function( graphScale ) {
       logarithmicGraph.visible = ( graphScale === GraphScale.LOGARITHMIC );
       linearGraph.visible = zoomButtons.visible = ( graphScale === GraphScale.LINEAR );
-    });
+    } );
   }
 
   return inherit( Node, CustomGraphNode );

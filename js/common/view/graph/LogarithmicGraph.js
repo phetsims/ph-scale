@@ -71,38 +71,55 @@ define( function( require ) {
 
     //TODO take advantage of DAG to reuse tick line nodes
     // tick marks
-    var numberOfMajorTicks = ( PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.getLength() / 2 ) + 1; // every-other exponent
-    var ySpacing = ( options.scaleHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfMajorTicks - 1 ); // vertical space between ticks
-    var majorLabel, majorLineLeft, majorLineRight, minorLineLeft, minorLineRight;
-    for ( var i = 0; i < numberOfMajorTicks; i++ ) {
-      // major lines and label
-      majorLineLeft = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
-      majorLineRight = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
-      majorLabel = createTickLabel( PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max - ( 2 * i ), options.majorTickFont );
-      // rendering order
-      thisNode.addChild( majorLineLeft );
-      thisNode.addChild( majorLineRight );
-      thisNode.addChild( majorLabel );
-      // layout
-      majorLineLeft.left = backgroundNode.left;
-      majorLineLeft.centerY = options.scaleYMargin + ( i * ySpacing );
-      majorLineRight.right = backgroundNode.right;
-      majorLineRight.centerY = majorLineLeft.centerY;
-      majorLabel.left = majorLineLeft.right + options.majorTickXSpacing;
-      majorLabel.centerY = majorLineLeft.centerY;
-      // minor lines
-      if ( i !== 0 ) {
-        // minor lines
-        minorLineLeft = new Line( 0, 0, options.minorTickLength, 0, { stroke: options.minorTickStroke, lineWidth: options.minorTickLineWidth } );
-        minorLineRight = new Line( 0, 0, options.minorTickLength, 0, { stroke: options.minorTickStroke, lineWidth: options.minorTickLineWidth } );
+    var numberOfTicks = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.getLength() + 1;
+    var ySpacing = ( options.scaleHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
+    var exponent, tickLabel, tickLineLeft, tickLineRight, pH;
+    for ( var i = 0; i < numberOfTicks; i++ ) {
+
+      exponent = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max - i;
+
+      // major ticks at even-numbered exponents
+      if ( exponent % 2 === 0 ) {
+        // major lines and label
+        tickLineLeft = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
+        tickLineRight = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
+        tickLabel = createTickLabel( exponent, options.majorTickFont );
         // rendering order
-        thisNode.addChild( minorLineLeft );
-        thisNode.addChild( minorLineRight );
+        thisNode.addChild( tickLineLeft );
+        thisNode.addChild( tickLineRight );
+        thisNode.addChild( tickLabel );
         // layout
-        minorLineLeft.left = backgroundNode.left;
-        minorLineLeft.centerY = majorLineLeft.centerY - ( ySpacing / 2 );
-        minorLineRight.right = backgroundNode.right;
-        minorLineRight.centerY = minorLineLeft.centerY;
+        tickLineLeft.left = backgroundNode.left;
+        tickLineLeft.centerY = options.scaleYMargin + ( i * ySpacing );
+        tickLineRight.right = backgroundNode.right;
+        tickLineRight.centerY = tickLineLeft.centerY;
+        tickLabel.left = tickLineLeft.right + options.majorTickXSpacing;
+        tickLabel.centerY = tickLineLeft.centerY;
+      }
+      else {
+        // minor lines
+        tickLineLeft = new Line( 0, 0, options.minorTickLength, 0, { stroke: options.minorTickStroke, lineWidth: options.minorTickLineWidth } );
+        tickLineRight = new Line( 0, 0, options.minorTickLength, 0, { stroke: options.minorTickStroke, lineWidth: options.minorTickLineWidth } );
+        // rendering order
+        thisNode.addChild( tickLineLeft );
+        thisNode.addChild( tickLineRight );
+        // layout
+        tickLineLeft.left = backgroundNode.left;
+        tickLineLeft.centerY = options.scaleYMargin + ( i * ySpacing );;
+        tickLineRight.right = backgroundNode.right;
+        tickLineRight.centerY = tickLineLeft.centerY;
+      }
+
+      /*
+       * Make note of where the ticks are that correspond to min/max pH values.
+       * They will be needed for vertical alignment of the graph with the pH scale.
+       */
+      pH = Util.toFixedNumber( PHModel.concentrationOHToPH( Math.pow( 10, exponent ) ), 0 );
+      if ( pH === PHScaleConstants.PH_RANGE.min ) {
+        this.minPHTickLineY = tickLineLeft.centerY;
+      }
+      else if ( pH === PHScaleConstants.PH_RANGE.max ) {
+        this.maxPHTickLineY = tickLineLeft.centerY;
       }
     }
 

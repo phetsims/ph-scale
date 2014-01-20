@@ -129,10 +129,10 @@ define( function( require ) {
     resetAllButton.left = beakerControls.right + 30;
     resetAllButton.centerY = beakerControls.centerY;
 
-    // 'guide' lines to vertically align the scales of the graph and pH meter
+    // 'guide' lines to verify that the scales of the graph and pH meter are vertically aligned
     if ( window.phetcommon.getQueryParameter( 'dev' ) ) {
-      thisView.addChild( new Line( 0, 0, 2000, 0, { y: 172, stroke: 'rgba(100,100,100,0.25)' } ) );
-      thisView.addChild( new Line( 0, 0, 2000, 0, { y: 572, stroke: 'rgba(100,100,100,0.25)' } ) );
+      thisView.addChild( new Line( 0, 0, 2000, 0, { y: graphNode.y + graphNode.maxPHTickLineY, stroke: 'rgba(100,100,100,0.25)' } ) );
+      thisView.addChild( new Line( 0, 0, 2000, 0, { y: graphNode.y + graphNode.minPHTickLineY, stroke: 'rgba(100,100,100,0.25)' } ) );
     }
   }
 

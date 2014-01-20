@@ -50,27 +50,10 @@ define( function( require ) {
     var graphUnitsProperty = new Property( options.units );
     var textOptions = { font: new PhetFont( { size: 18, weight: 'bold' } ) };
     var graphUnitsSwitch = new ABSwitch( graphUnitsProperty,
-         GraphUnits.MOLES_PER_LITER, new MultiLineText( concentrationString + '\n(' + molesPerLiterString + ')', textOptions ),
-         GraphUnits.MOLES, new MultiLineText( quantityString + '\n(' + molesString + ')', textOptions ),
-         { size: new Dimension2( 50, 25 ) } );
+      GraphUnits.MOLES_PER_LITER, new MultiLineText( concentrationString + '\n(' + molesPerLiterString + ')', textOptions ),
+      GraphUnits.MOLES, new MultiLineText( quantityString + '\n(' + molesString + ')', textOptions ),
+      { size: new Dimension2( 50, 25 ) } );
     graphUnitsSwitch.setScaleMagnitude( Math.min( 1, 300 / graphUnitsSwitch.width ) ); // scale for i18n
-
-    // logarithmic graph, switchable between 'concentration' and 'quantity'
-    var logarithmicGraph = new LogarithmicGraph( solution, graphUnitsProperty, {
-      scaleHeight: 530,
-      isInteractive: false
-    } );
-
-    // vertical line that connects graph to expand/collapse bar
-    var lineNode = new Line( 0, 0, 0, 30, { stroke: 'black' } );
-
-    // parent for all parts of the graph
-    var graphNode = new Node();
-    thisNode.addChild( graphNode );
-    graphNode.addChild( lineNode );
-    graphNode.addChild( logarithmicGraph );
-    logarithmicGraph.centerX = lineNode.centerX;
-    logarithmicGraph.top = lineNode.bottom - 1;
 
     // expand/collapse bar
     var expandedProperty = new Property( options.expanded );
@@ -82,12 +65,33 @@ define( function( require ) {
         barLineWidth: 2,
         buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
       } );
+
+    // vertical line that connects graph to expand/collapse bar
+    var lineNode = new Line( 0, 0, 0, 30, { stroke: 'black' } );
+
+    // logarithmic graph, switchable between 'concentration' and 'quantity'
+    var logarithmicGraph = new LogarithmicGraph( solution, graphUnitsProperty, {
+      scaleHeight: 530,
+      isInteractive: false
+    } );
+
+    // rendering order
     thisNode.addChild( expandCollapseBar );
-    graphNode.centerX = expandCollapseBar.centerX;
-    graphNode.top = expandCollapseBar.bottom - 1;
+    thisNode.addChild( lineNode );
+    thisNode.addChild( logarithmicGraph );
+
+    // layout
+    lineNode.centerX = expandCollapseBar.centerX;
+    lineNode.top = expandCollapseBar.bottom - 1;
+    logarithmicGraph.centerX = lineNode.centerX;
+    logarithmicGraph.top = lineNode.bottom - 1;
+
+    // ticks to be vertically aligned with ticks on the pH scale (does not account for transformation of logarithmicGraph!)
+    this.minPHTickLineY = logarithmicGraph.y + logarithmicGraph.minPHTickLineY;
+    this.maxPHTickLineY = logarithmicGraph.y + logarithmicGraph.maxPHTickLineY;
 
     expandedProperty.link( function( expanded ) {
-      graphNode.visible = expanded;
+      logarithmicGraph.visible = lineNode.visible = expanded;
     } );
   }
 

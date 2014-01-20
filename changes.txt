@@ -1,3 +1,4 @@
+1/20/14 add options.range to PHScaleNode
 1/19/14 reorganize CustomGraphNode so that order of instantiation in constructor matches order of appearance
 1/19/14 detect and remember the graph ticks that correspond to the min and max pH values
 1/19/14 move 'guide' lines for alignment of scale to the top and bottom ticks of the pH scale

@@ -38,6 +38,7 @@ define( function( require ) {
   function PHScaleNode( options ) {
 
     options = _.extend( {
+      range: PHScaleConstants.PH_RANGE,
       size: new Dimension2( 75, 450 )
     }, options );
 
@@ -73,8 +74,8 @@ define( function( require ) {
 
     // tick marks, labeled at 'even' values, skip 7 (neutral)
     var y = options.size.height;
-    var dy = -options.size.height / PHScaleConstants.PH_RANGE.getLength();
-    for ( var pH = PHScaleConstants.PH_RANGE.min; pH <= PHScaleConstants.PH_RANGE.max; pH++ ) {
+    var dy = -options.size.height / options.range.getLength();
+    for ( var pH = options.range.min; pH <= options.range.max; pH++ ) {
       if ( pH !== 7 ) {
         // tick mark
         var lineNode = new Line( 0, 0, TICK_LENGTH, 0, { stroke: 'black', lineWidth: 1 } );

@@ -11,14 +11,13 @@ HIGH
 - Custom: linear graph
 
 MEDIUM
-- Solutions: vertically align pH and graph scales (pH=Log=Linear -> 0=10^-14=10, 14=10^0=80)
 - Molecule counts: '4.0 x 10^25' should be displayed as '4.00 x 10^25'
-- values in graph indicators don't gray out when disabled because scenery.HTMLText doesn't support opacity
+- rewrite PHUtils.toTimesTenString
+- Zoom buttons
 
 LOW
-- Zoom buttons
+- values in graph indicators don't gray out when disabled because scenery.HTMLText doesn't support opacity
 - nicer handles on graph indicators, match design doc mockups, perhaps use images
-- rewrite PHUtils.toTimesTenString
 - test various multi-touch scenarios
 - ComboBox: add background color behind arrow button (sun#43)
 - port strings from Java

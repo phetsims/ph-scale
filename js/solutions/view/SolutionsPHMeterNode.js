@@ -32,7 +32,7 @@ define( function( require ) {
   var stringNoValue = '-';
 
   // constants
-  var SCALE_SIZE = new Dimension2( 55, 450 );
+  var SCALE_SIZE = new Dimension2( 55, 400 );
   var X_SPACING = 14;
   var Y_SPACING = 10;
   var CORNER_RADIUS = 12;
@@ -171,7 +171,7 @@ define( function( require ) {
 
     // nodes
     var valueNode = new ValueNode( pHProperty, expandedProperty );
-    var verticalLineNode = new Line( 0, 0, 0, 25, { stroke: 'black', lineWidth: 5 } );
+    var verticalLineNode = new Line( 0, 0, 0, 47, { stroke: 'black', lineWidth: 5 } );
     var scaleNode = new PHScaleNode( { size: SCALE_SIZE } );
     var pointerNode = new PointerNode( SCALE_SIZE.width );
 

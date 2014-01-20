@@ -16,6 +16,7 @@ define( function( require ) {
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Line = require( 'SCENERY/nodes/Line' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
@@ -127,6 +128,12 @@ define( function( require ) {
     graphNode.top = 20;
     resetAllButton.left = beakerControls.right + 30;
     resetAllButton.centerY = beakerControls.centerY;
+
+    // 'guide' lines to vertically align the scales of the graph and pH meter
+    if ( window.phetcommon.getQueryParameter( 'dev' ) ) {
+      thisView.addChild( new Line( 0, 0, 2000, 0, { y: 197, stroke: 'rgba(100,100,100,0.25)' } ) );
+      thisView.addChild( new Line( 0, 0, 2000, 0, { y: 547, stroke: 'rgba(100,100,100,0.25)' } ) );
+    }
   }
 
   return inherit( ScreenView, SolutionsView, { layoutBounds: PHScaleConstants.LAYOUT_BOUNDS } );

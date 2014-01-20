@@ -1,3 +1,4 @@
+1/19/14 temporary solution for vertical alignment of graph and pH scales
 1/16/14 placeholder for SubSupText
 1/16/14 center log/linear switch
 1/16/14 shrink units switch if it exceeds maximum width, to handle i18n

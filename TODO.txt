@@ -5,6 +5,7 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
+- SolutionsPHMeter: compute scale height and y-offset based on SolutionsGraphNode.minPHTickLineY and maxPHTickLineY
 - flesh out SubSupText (scenery-phet#29)
 - 'H3O+/OH- ratio' feature
 - Custom: linear graph

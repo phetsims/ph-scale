@@ -4,6 +4,7 @@
  * The graph for the 'Solutions' screen.
  * It has an expand/collapse bar at the top of it, and can switch between 'concentration' and 'quantity'.
  * The graph indicators are not interactive because the stock solutions (solutes) are immutable.
+ * Origin is at top-level of the expand/collapse bar.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -86,7 +87,11 @@ define( function( require ) {
     logarithmicGraph.centerX = lineNode.centerX;
     logarithmicGraph.top = lineNode.bottom - 1;
 
-    // ticks to be vertically aligned with ticks on the pH scale (does not account for transformation of logarithmicGraph!)
+    /*
+     * Location of ticks that need to be vertically aligned with ticks on the pH scale.
+     * Values are relative to this node's origin.
+     * Does not account for transformation of logarithmicGraph!
+     */
     this.minPHTickLineY = logarithmicGraph.y + logarithmicGraph.minPHTickLineY;
     this.maxPHTickLineY = logarithmicGraph.y + logarithmicGraph.maxPHTickLineY;
 

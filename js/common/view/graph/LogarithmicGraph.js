@@ -3,6 +3,7 @@
 /**
  * Graph with a logarithmic scale, for displaying concentration (mol/L) and quantity (moles).
  * Assumes that graphing concentration and quantity can be graphed on the same scale.
+ * Origin is at the top-left of the scale rectangle.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -113,6 +114,7 @@ define( function( require ) {
       /*
        * Make note of where the ticks are that correspond to min/max pH values.
        * They will be needed for vertical alignment of the graph with the pH scale.
+       * These values are relative to this node's origin.
        */
       pH = Util.toFixedNumber( PHModel.concentrationOHToPH( Math.pow( 10, exponent ) ), 0 );
       if ( pH === PHScaleConstants.PH_RANGE.min ) {

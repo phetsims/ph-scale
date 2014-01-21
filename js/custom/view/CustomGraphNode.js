@@ -121,9 +121,9 @@ define( function( require ) {
     linearGraph.centerX = logarithmicGraph.centerX;
     linearGraph.top = logarithmicGraph.top;
     zoomButtons.centerX = logarithmicGraph.centerX;
-    zoomButtons.top = lineNode.bottom + scaleHeight + 20;
+    zoomButtons.top = lineNode.bottom + scaleHeight + 15;
     graphScaleSwitch.centerX = zoomButtons.centerX;
-    graphScaleSwitch.top = zoomButtons.bottom + 10;
+    graphScaleSwitch.top = zoomButtons.bottom + 15;
     graphNode.centerX = expandCollapseBar.centerX;
     graphNode.top = expandCollapseBar.bottom;
 

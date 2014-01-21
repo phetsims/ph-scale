@@ -12,7 +12,6 @@ HIGH
 MEDIUM
 - Molecule counts: '4.0 x 10^25' should be displayed as '4.00 x 10^25'
 - rewrite PHUtils.toTimesTenString
-- Zoom buttons
 
 LOW
 - values in graph indicators don't gray out when disabled because scenery.HTMLText doesn't support opacity

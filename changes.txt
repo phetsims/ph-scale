@@ -1,3 +1,4 @@
+# 1.0.0-dev.5 1/21/14
 1/20/14 zoom buttons for linear graph
 1/20/14 robust implementation for vertical alignment of graph and pH scales
 1/20/14 add options.range to PHScaleNode

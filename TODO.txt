@@ -5,11 +5,11 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- flesh out SubSupText (scenery-phet#29)
 - 'H3O+/OH- ratio' feature
 - Custom: linear graph
 
 MEDIUM
+- flesh out SubSupText (scenery-phet#29)
 - Molecule counts: '4.0 x 10^25' should be displayed as '4.00 x 10^25'
 - rewrite PHUtils.toTimesTenString
 

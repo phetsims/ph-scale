@@ -77,11 +77,11 @@ define( function( require ) {
     // beaker controls
     var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );
 
-    // pH meter
-    var pHMeterNode = new SolutionsPHMeterNode( model.solution.pHProperty );
-
     // graph
     var graphNode = new SolutionsGraphNode( model.solution );
+
+    // pH meter
+    var pHMeterNode = new SolutionsPHMeterNode( model.solution.pHProperty, graphNode.minPHTickLineY, graphNode.maxPHTickLineY );
 
     // solutes combo box
     var soluteListParent = new Node();
@@ -125,7 +125,7 @@ define( function( require ) {
     pHMeterNode.top = 20;
     pHMeterNode.right = drainFaucetNode.left - 40;
     graphNode.right = pHMeterNode.left - 10;
-    graphNode.top = 20;
+    graphNode.top = pHMeterNode.top; // graph and pH meter must share the same top, or their scales won't line up
     resetAllButton.left = beakerControls.right + 30;
     resetAllButton.centerY = beakerControls.centerY;
 

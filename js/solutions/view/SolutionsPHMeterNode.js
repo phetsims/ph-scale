@@ -4,6 +4,7 @@
  * pH meter for the 'Solutions' screen.
  * Origin is at top left.
  * The meter can be expanded and collapsed, but is otherwise not interactive.
+ * Ticks marks on the meter's scale are intended to be aligned with tick marks on the graph.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -32,7 +33,6 @@ define( function( require ) {
   var stringNoValue = '-';
 
   // constants
-  var SCALE_SIZE = new Dimension2( 55, 400 );
   var X_SPACING = 14;
   var Y_SPACING = 10;
   var CORNER_RADIUS = 12;
@@ -157,12 +157,16 @@ define( function( require ) {
 
   /**
    * @param {Property<Number>} pHProperty
+   * @param {Number} scaleBottom y-offset of the bottom of the scale, in this node's coordinate frame
+   * @param {Number} scaleTop y-offset of the top of the scale, in this node's coordinate frame
    * @param {*} options
    * @constructor
    */
-  function SolutionsPHMeterNode( pHProperty, options ) {
+  function SolutionsPHMeterNode( pHProperty, scaleBottom, scaleTop, options ) {
 
     options = _.extend( { expanded: true }, options );
+
+    var SCALE_SIZE = new Dimension2( 55, scaleBottom - scaleTop );
 
     var thisNode = this;
     Node.call( thisNode );
@@ -171,7 +175,7 @@ define( function( require ) {
 
     // nodes
     var valueNode = new ValueNode( pHProperty, expandedProperty );
-    var verticalLineNode = new Line( 0, 0, 0, 47, { stroke: 'black', lineWidth: 5 } );
+    var verticalLineNode = new Line( 0, 0, 0, scaleTop - valueNode.height + 2, { stroke: 'black', lineWidth: 5 } );
     var scaleNode = new PHScaleNode( { size: SCALE_SIZE } );
     var pointerNode = new PointerNode( SCALE_SIZE.width );
 
@@ -180,10 +184,10 @@ define( function( require ) {
     thisNode.addChild( meterNode );
 
     // layout
-    verticalLineNode.centerX = scaleNode.right - ( SCALE_SIZE.width / 2 );
+    scaleNode.right = valueNode.centerX + ( SCALE_SIZE.width / 2 );
+    scaleNode.y = scaleTop; // set scaleNode.y instead of scaleNode.top so that we don't have to compensate for stroke width
+    verticalLineNode.centerX = valueNode.centerX;
     verticalLineNode.bottom = scaleNode.top + 1;
-    valueNode.centerX = verticalLineNode.centerX;
-    valueNode.bottom = verticalLineNode.top + 1;
     pointerNode.x = scaleNode.right - SCALE_SIZE.width;
     // pointerNode.centerY is set dynamically
 

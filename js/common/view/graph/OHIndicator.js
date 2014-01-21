@@ -12,9 +12,9 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var GraphIndicator = require( 'PH_SCALE/common/view/graph/GraphIndicator' );
   var OHMoleculeNode = require( 'PH_SCALE/common/view/OHMoleculeNode' );
-  var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
 
   /**
    * @param {Property<Number>} valueProperty
@@ -24,7 +24,7 @@ define( function( require ) {
   function OHIndicator( valueProperty, options ) {
     options = _.extend( { pointerLocation: 'topLeft' }, options );
     var thisNode = this;
-    var labelNode = new HTMLText( 'OH<sup>-</sup>', { font: new PhetFont( 28 ), fill: 'white' } );
+    var labelNode = new SubSupText( 'OH<sup>-</sup>', { font: new PhetFont( 28 ), fill: 'white' } );
     GraphIndicator.call( thisNode, valueProperty, new OHMoleculeNode(), labelNode, PHScaleColors.BASIC, options );
   }
 

@@ -12,9 +12,9 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var GraphIndicator = require( 'PH_SCALE/common/view/graph/GraphIndicator' );
   var H2OMoleculeNode = require( 'PH_SCALE/common/view/H2OMoleculeNode' );
-  var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
 
   /**
    * @param {Property<Number>} valueProperty
@@ -24,7 +24,7 @@ define( function( require ) {
   function H2OIndicator( valueProperty, options ) {
     options = _.extend( { pointerLocation: 'bottomLeft' }, options );
     var thisNode = this;
-    var labelNode = new HTMLText( 'H<sub>2</sub>O', { font: new PhetFont( 28 ), fill: 'white' } );
+    var labelNode = new SubSupText( 'H<sub>2</sub>O', { font: new PhetFont( 28 ), fill: 'white' } );
     GraphIndicator.call( thisNode, valueProperty, new H2OMoleculeNode(), labelNode, PHScaleColors.H2O_BACKGROUND, options );
   }
 

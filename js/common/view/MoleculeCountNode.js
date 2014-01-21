@@ -11,7 +11,6 @@ define( function( require ) {
   // imports
   var H2OMoleculeNode = require( 'PH_SCALE/common/view/H2OMoleculeNode' );
   var H3OMoleculeNode = require( 'PH_SCALE/common/view/H3OMoleculeNode' );
-  var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var OHMoleculeNode = require( 'PH_SCALE/common/view/OHMoleculeNode' );
@@ -19,6 +18,7 @@ define( function( require ) {
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHUtils = require( 'PH_SCALE/common/PHUtils' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
 
   /**
    * @param {Solution} solution
@@ -44,9 +44,9 @@ define( function( require ) {
 
     // count values
     var font = new PhetFont( 22 );
-    var countH3O = new HTMLText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'white' } );
-    var countOH = new HTMLText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'white' } );
-    var countH2O = new HTMLText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'white' } );
+    var countH3O = new SubSupText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'white' } );
+    var countOH = new SubSupText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'white' } );
+    var countH2O = new SubSupText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'white' } );
     var maxCountWidth = countH3O.width;
     var maxCountHeight = countH3O.height;
 

@@ -10,7 +10,6 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Matrix3 = require( 'DOT/Matrix3' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -19,6 +18,7 @@ define( function( require ) {
   var PHUtils = require( 'PH_SCALE/common/PHUtils' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
+  var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
 
   // constants
   var POINTER_WIDTH_PERCENTAGE = 0.2;
@@ -143,7 +143,7 @@ define( function( require ) {
       } );
 
     // Value, scaled to fit background height
-    var valueNode = new HTMLText( '?', { font: new PhetFont( 28 ), fill: 'black' } );
+    var valueNode = new SubSupText( '?', { font: new PhetFont( 28 ), fill: 'black' } );
     valueNode.setScaleMagnitude( 0.7 ); //TODO compute scale
 
     // molecule and formula, scaled to fit available height

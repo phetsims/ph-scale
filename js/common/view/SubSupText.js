@@ -11,31 +11,15 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
 
   function SubSupText( text, options ) {
-
-    options = _.extend( {
-      //TODO defaults for scenery.Text options
-    }, options );
-
     var thisNode = this;
-    Node.call( thisNode );
-
-    // break text into subscripts, superscripts, and plain-text tokens
-    var i, c;
-    for ( i = 0; i < text.length; i++ ) {
-      c = text.charAt( i );
-      //TODO look for <sub>, </sub>, <sup> and </sup> tags, ignore other HTML tags
-    }
-
-    // create a scenery.Text for each token
-
-    thisNode.mutate( options );
+    HTMLText.call( thisNode, text, options ); //TODO use HTMLText for now
   }
 
-  return inherit( Node, SubSupText, {
+  return inherit( HTMLText, SubSupText, {
     //TODO prototype functions for setting scenery.Text attributes
   } );
 } );

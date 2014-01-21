@@ -11,7 +11,6 @@ define( function( require ) {
 
   // imports
   var CheckBox = require( 'SUN/CheckBox' );
-  var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
   var Panel = require( 'SUN/Panel' );
@@ -19,6 +18,7 @@ define( function( require ) {
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Shape = require( 'KITE/Shape' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
   var Text = require( 'SCENERY/nodes/Text' );
   var VBox = require( 'SCENERY/nodes/VBox' );
 
@@ -39,7 +39,7 @@ define( function( require ) {
     // 'H3O+/OH- ratio' check box, with color-coded label
     var stringH3O = '<span style="color:' + PHScaleColors.ACIDIC.toCSS() + '">H<sub>3</sub>O<sup>+</sup></span>';
     var stringOH = '<span style="color:' + PHScaleColors.BASIC.toCSS() + '">OH<sup>-</sup></span>';
-    var ratioLabel = new HTMLText( StringUtils.format( ratioString, stringH3O, stringOH ), { font: FONT } );
+    var ratioLabel = new SubSupText( StringUtils.format( ratioString, stringH3O, stringOH ), { font: FONT } );
     var ratioCheckBox = new CheckBox( ratioLabel, ratioVisibleProperty );
     ratioCheckBox.touchArea = Shape.bounds( ratioCheckBox.localBounds.dilatedXY( 10, 8 ) );
 

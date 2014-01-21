@@ -15,7 +15,6 @@ define( function( require ) {
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var H2OIndicator = require( 'PH_SCALE/common/view/graph/H2OIndicator' );
   var H3OIndicator = require( 'PH_SCALE/common/view/graph/H3OIndicator' );
-  var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
@@ -26,6 +25,7 @@ define( function( require ) {
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
   var Util = require( 'DOT/Util' );
 
   /**
@@ -210,7 +210,7 @@ define( function( require ) {
 
   // Creates a tick label, '10' with some superscript.
   var createTickLabel = function( exponent, font ) {
-    return new HTMLText( '10<span style="font-size:85%"><sup>' + exponent + '</sup></span>', { font: font, fill: 'black' } );
+    return new SubSupText( '10<span style="font-size:85%"><sup>' + exponent + '</sup></span>', { font: font, fill: 'black' } );
   };
 
   return inherit( Node, LogConcentrationGraph );

@@ -14,6 +14,7 @@ MEDIUM
 - rewrite PHUtils.toTimesTenString
 
 LOW
+- color and 'look' of zoom buttons
 - values in graph indicators don't gray out when disabled because scenery.HTMLText doesn't support opacity
 - nicer handles on graph indicators, match design doc mockups, perhaps use images
 - test various multi-touch scenarios

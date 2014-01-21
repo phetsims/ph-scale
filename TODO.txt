@@ -32,7 +32,7 @@ MIGRATE TO COMMON
 - ToggleButton (sun#32)
 - DropperNode, Dropper
 - BeakerNode
-- ZoomInButton, ZoomOutButton to scenery-phet
+- ZoomButton to scenery-phet
 
 =========================================================================================================
 

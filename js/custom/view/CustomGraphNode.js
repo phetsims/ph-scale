@@ -27,6 +27,7 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Text = require( 'SCENERY/nodes/Text' );
+  var ZoomButton = require( 'PH_SCALE/common/view/graph/ZoomButton' );
 
   // strings
   var concentrationString = require( 'string!PH_SCALE/concentration' );
@@ -86,12 +87,10 @@ define( function( require ) {
       isInteractive: true
     } );
 
-    //TODO use sun.PushButton
     // zoom buttons for the linear graph
-    var zoomButtonLength = 40;
-    var zoomButtonCornerRadius = 10;
-    var zoomInButton = new Rectangle( 0, 0, zoomButtonLength, zoomButtonLength, zoomButtonCornerRadius, zoomButtonCornerRadius, { stroke: 'black' } );
-    var zoomOutButton = new Rectangle( 0, 0, zoomButtonLength, zoomButtonLength, zoomButtonCornerRadius, zoomButtonCornerRadius, { stroke: 'black' } );
+    var magnifyingGlassRadius = 10;
+    var zoomInButton = new ZoomButton( { in: true, radius: magnifyingGlassRadius } );
+    var zoomOutButton = new ZoomButton( { in: false, radius: magnifyingGlassRadius } );
     var zoomButtons = new Node( { children: [ zoomInButton, zoomOutButton ]} );
     zoomOutButton.left = zoomInButton.right + 10;
     zoomOutButton.centerY = zoomInButton.centerY;
@@ -136,6 +135,16 @@ define( function( require ) {
     graphScaleProperty.link( function( graphScale ) {
       logarithmicGraph.visible = ( graphScale === GraphScale.LOGARITHMIC );
       linearGraph.visible = zoomButtons.visible = ( graphScale === GraphScale.LINEAR );
+    } );
+
+    // handle zoom of linear graph
+    zoomInButton.addListener( function() {
+      //TODO zoom in
+      console.log( 'zoom in' );
+    } );
+    zoomOutButton.addListener( function() {
+      //TODO zoom out
+      console.log( 'zoom out' );
     } );
   }
 

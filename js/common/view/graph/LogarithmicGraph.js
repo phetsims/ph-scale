@@ -106,7 +106,7 @@ define( function( require ) {
         thisNode.addChild( tickLineRight );
         // layout
         tickLineLeft.left = backgroundNode.left;
-        tickLineLeft.centerY = options.scaleYMargin + ( i * ySpacing );;
+        tickLineLeft.centerY = options.scaleYMargin + ( i * ySpacing );
         tickLineRight.right = backgroundNode.right;
         tickLineRight.centerY = tickLineLeft.centerY;
       }

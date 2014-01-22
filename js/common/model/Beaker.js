@@ -5,8 +5,11 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function() {
+define( function( require ) {
   'use strict';
+
+  // imports
+  var Bounds2 = require( 'DOT/Bounds2' );
 
   /**
    * Constructor
@@ -28,6 +31,7 @@ define( function() {
     // convenience properties
     this.left = location.x - ( size.width / 2 );
     this.right = location.x + ( size.width / 2 );
+    this.bounds = new Bounds2( this.left, location.y - size.height, this.right, location.y );
   }
 
   Beaker.prototype = {

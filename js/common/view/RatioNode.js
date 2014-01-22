@@ -138,13 +138,13 @@ define( function( require ) {
 
           // compute number of molecules
           if ( pH >= ACID_PH_THRESHOLD && pH <= BASE_PH_THRESHOLD ) {
-            // # particles varies logarithmically in this range
+            // # molecules varies logarithmically in this range
             numberOfH3O = Math.max( MIN_MINORITY_MOLECULES, RatioNode.computeNumberOfH3O( pH ) );
             numberOfOH = Math.max( MIN_MINORITY_MOLECULES, RatioNode.computeNumberOfOH( pH ) );
           }
           else {
-            // # particles varies linearly in this range
-            // N is the number of particles to add for each 1 unit of pH above or below the thresholds
+            // # molecules varies linearly in this range
+            // N is the number of molecules to add for each 1 unit of pH above or below the thresholds
             var N = ( NUM_PARTICLES_AT_PH_MAX - RatioNode.computeNumberOfOH( BASE_PH_THRESHOLD ) ) / ( PHScaleConstants.PH_RANGE.max - BASE_PH_THRESHOLD );
             var pHDiff;
             if ( pH > BASE_PH_THRESHOLD ) {

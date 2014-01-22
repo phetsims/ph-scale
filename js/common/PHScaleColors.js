@@ -31,8 +31,8 @@ define( function( require ) {
     // background on various features
     H2O_BACKGROUND: new Color( 20, 184, 238 ),
 
-    // particles in 'ratio' view
-    H3O_PARTICLES: new Color( 204, 0, 0 ),
-    OH_PARTICLES: new Color( 0, 0, 255 )
+    // base colors for molecules in 'ratio' view, alpha added later
+    H3O_MOLECULES: new Color( 204, 0, 0 ),
+    OH_MOLECULES: new Color( 0, 0, 255 )
   };
 } );

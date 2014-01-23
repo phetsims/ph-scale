@@ -1,3 +1,4 @@
+# 1.0.0-dev.6 1/22/14
 1/22/14 clip ratio feature to shape of solution in beaker
 1/22/14 implement ratio feature as it was in Java, too slow to be usable, not clipped to solution bounds
 1/22/14 add Beaker.bounds convenience property

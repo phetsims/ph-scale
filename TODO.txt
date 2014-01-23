@@ -5,7 +5,6 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- clip ratio feature to solution bounds
 - performance of 'H3O+/OH- ratio' feature
 - Custom: linear graph
 

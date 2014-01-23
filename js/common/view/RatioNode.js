@@ -1,6 +1,5 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
-//TODO add clipping to solution bounds
 /**
  * Visual representation of H3O+/OH- ratio.
  * Molecules are drawn as circles.
@@ -22,6 +21,7 @@ define( function( require ) {
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
+  var Shape = require( 'KITE/Shape' );
   var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -100,6 +100,17 @@ define( function( require ) {
 
     // sync view with model
     solution.pHProperty.link( this.update.bind( this ) );
+
+    // clip to the shape of the solution in the beaker
+    solution.volumeProperty.link( function( volume ) {
+      if ( volume === 0 ) {
+        thisNode.clipArea = null;
+      }
+      else {
+        var solutionHeight = beaker.size.height * volume / beaker.volume;
+        thisNode.clipArea = Shape.rectangle( beaker.left, beaker.location.y - solutionHeight, beaker.size.width, solutionHeight );
+      }
+    } );
   }
 
   return inherit( Node, RatioNode, {

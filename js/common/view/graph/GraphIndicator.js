@@ -21,7 +21,7 @@ define( function( require ) {
   var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
 
   // constants
-  var POINTER_WIDTH_PERCENTAGE = 0.2;
+  var POINTER_WIDTH_PERCENTAGE = 0.15;
   var POINTER_HEIGHT_PERCENTAGE = 0.5;
 
   /**

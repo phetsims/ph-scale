@@ -132,12 +132,12 @@ define( function( require ) {
     var h2OIndicatorNode = new H2OIndicator( valueH2OProperty, {
       decimalPlaces: 0,
       constantExponent: 0,
-      x: backgroundNode.right - options.majorTickLength / 2 } );
+      x: backgroundNode.right - options.majorTickLength } );
     var h3OIndicatorNode = new H3OIndicator( valueH3OProperty, {
-      x: backgroundNode.left + options.majorTickLength / 2,
+      x: backgroundNode.left + options.majorTickLength,
       isInteractive: options.isInteractive } );
     var oHIndicatorNode = new OHIndicator( valueOHProperty, {
-      x: backgroundNode.right - options.majorTickLength / 2,
+      x: backgroundNode.right - options.majorTickLength,
       isInteractive: options.isInteractive } );
     thisNode.addChild( h2OIndicatorNode );
     thisNode.addChild( h3OIndicatorNode );

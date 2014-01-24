@@ -17,8 +17,6 @@ HIGH
 - Custom: use a fixed 0.5L of solution
 - Custom: add probe to pH meter that extends to bottom of beaker
 - Solutions: implement linear graph
-- shorter points on graph indicators
-- move graph indicators closer to scale, less whitespace between scale and indicators
 - empty the beaker when volume is < 0.01, see if this resolves the issue of graph values being < 10^16
 - make pH picker advance much more rapidly when held
 

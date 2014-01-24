@@ -9,7 +9,7 @@ HIGH
 - animate auto-filling
 
 MEDIUM
-- Basics: screen icon
+- need new icons for all screens
 - make pH probe look like it's in the solution
 - Basics: use same beaker size and location as other screens?
 - performance of 'H3O+/OH- ratio' feature

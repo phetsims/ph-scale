@@ -201,7 +201,8 @@ define( function( require ) {
 
     options = _.extend( {
       expanded: true,
-      isInteractive: false
+      isInteractive: false,
+      attachProbe: 'center' // 'left'|'center'|'right'
     }, options );
 
     var thisNode = this;
@@ -218,7 +219,15 @@ define( function( require ) {
     thisNode.addChild( valueNode );
 
     // layout
-    probeNode.centerX = valueNode.left + ( 0.75 * valueNode.width );
+    if ( options.attachProbe === 'center' ) {
+      probeNode.centerX = valueNode.centerX;
+    }
+    else if ( options.attachProbe == 'right' ) {
+      probeNode.centerX = valueNode.left + ( 0.75 * valueNode.width );
+    }
+    else {
+      probeNode.centerX = valueNode.left + ( 0.25 * valueNode.width );
+    }
     probeNode.top = valueNode.top;
 
     expandedProperty.link( function( expanded ) {

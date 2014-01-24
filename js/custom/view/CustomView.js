@@ -12,10 +12,10 @@ define( function( require ) {
   var BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var CustomGraphNode = require( 'PH_SCALE/custom/view/CustomGraphNode' );
-  var CustomPHMeterNode = require( 'PH_SCALE/custom/view/CustomPHMeterNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PropertySet = require( 'AXON/PropertySet' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
@@ -57,7 +57,7 @@ define( function( require ) {
     var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );
 
     // pH meter
-    var pHMeterNode = new CustomPHMeterNode( model.solution );
+    var pHMeterNode = new PHMeterNode( model.solution, { isInteractive: true } );
 
     // graph
     var graphNode = new CustomGraphNode( model.solution );

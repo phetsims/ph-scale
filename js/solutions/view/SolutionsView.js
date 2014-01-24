@@ -18,6 +18,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PropertySet = require( 'AXON/PropertySet' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
@@ -26,7 +27,6 @@ define( function( require ) {
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
   var SolutionsGraphNode = require( 'PH_SCALE/solutions/view/SolutionsGraphNode' );
-  var SolutionsPHMeterNode = require( 'PH_SCALE/solutions/view/SolutionsPHMeterNode' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
   var WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
 
@@ -80,7 +80,7 @@ define( function( require ) {
     var graphNode = new SolutionsGraphNode( model.solution );
 
     // pH meter
-    var pHMeterNode = new SolutionsPHMeterNode( model.solution.pHProperty );
+    var pHMeterNode = new PHMeterNode( model.solution );
 
     // solutes combo box
     var soluteListParent = new Node();

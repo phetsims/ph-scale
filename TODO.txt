@@ -11,7 +11,6 @@ HIGH
 - Custom: add probe to pH meter that extends to bottom of beaker
 - Solutions: implement linear graph
 - animate auto-filling
-- combine SolutionsPHMeterNode and CustomPHMeterNode
 
 MEDIUM
 - Basics: use same beaker size and location as other screens?

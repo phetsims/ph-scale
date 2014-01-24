@@ -202,7 +202,7 @@ define( function( require ) {
     options = _.extend( {
       expanded: true,
       isInteractive: false,
-      attachProbe: 'center' // 'left'|'center'|'right'
+      attachProbe: 'center' // where to attach the probe: 'left'|'center'|'right'
     }, options );
 
     var thisNode = this;

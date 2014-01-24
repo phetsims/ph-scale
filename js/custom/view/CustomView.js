@@ -57,7 +57,8 @@ define( function( require ) {
     var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );
 
     // pH meter
-    var pHMeterNode = new PHMeterNode( model.solution, { isInteractive: true } );
+    var pHMeterYOffset = 20;
+    var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterYOffset, { isInteractive: true } );
 
     // graph
     var graphNode = new CustomGraphNode( model.solution );

@@ -18,11 +18,13 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var NumberPicker = require( 'SCENERY_PHET/NumberPicker' );
+  var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Shape = require( 'KITE/Shape' );
   var Solute = require( 'PH_SCALE/common/model/Solute' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
@@ -151,11 +153,45 @@ define( function( require ) {
   inherit( Node, ValueNode );
 
   /**
+   * Probe the extends out the bottom of the meter.
+   * @param probeHeight
+   * @constructor
+   */
+  function ProbeNode( probeHeight ) {
+
+    Node.call( this );
+
+    var probeWidth = 20;
+    var tipHeight = 50;
+    var overlap = 10;
+
+    var shaftNode = new Rectangle( 0, 0, 0.5 * probeWidth, probeHeight - tipHeight + overlap, { fill: 'rgb(64,64,64)' } );
+    var tipNode = new Path( new Shape()
+      .moveTo( 0, 0 )
+      .lineTo( probeWidth, 0 )
+      .lineTo( probeWidth, 0.6 * tipHeight )
+      .lineTo( probeWidth/2, tipHeight )
+      .lineTo( 0, 0.6 * tipHeight )
+      .close(),
+      { fill: 'black' }
+    );
+
+    this.addChild( shaftNode );
+    this.addChild( tipNode );
+
+    tipNode.centerX = shaftNode.centerX;
+    tipNode.top = shaftNode.bottom - overlap;
+  }
+
+  inherit( Node, ProbeNode );
+
+  /**
    * @param {Solution} solution
+   * @param {Number} probeYOffset distance from top of meter to tip of probe, in view coordinate frame
    * @param {*} options
    * @constructor
    */
-  function PHMeterNode( solution, options ) {
+  function PHMeterNode( solution, probeYOffset, options ) {
 
     options = _.extend( {
       expanded: true,
@@ -169,18 +205,18 @@ define( function( require ) {
 
     // nodes
     var valueNode = new ValueNode( solution, expandedProperty, options.isInteractive );
-    //TODO add probe
+    var probeNode = new ProbeNode( probeYOffset );
 
     // rendering order
-    var meterNode = new Node( { children: [ valueNode ] } );
-    thisNode.addChild( meterNode );
-    //TODO thisNode.addChild( probeNode );
+    thisNode.addChild( probeNode );
+    thisNode.addChild( valueNode );
 
     // layout
-    //TODO position probe
+    probeNode.centerX = valueNode.left + ( 0.75 * valueNode.width );
+    probeNode.top = valueNode.top;
 
     expandedProperty.link( function( expanded ) {
-      //TODO probeNode.visible = expanded;
+      probeNode.visible = expanded;
     } );
 
     thisNode.mutate( options );

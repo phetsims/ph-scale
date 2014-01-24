@@ -5,7 +5,6 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- Solutions: add a probe to pH meter that extends to bottom of beaker
 - Solutions: add 'Linear' option to graph, with zoom buttons
 - Custom: remove 'Linear' option from graph
 - Custom: add probe to pH meter that extends to bottom of beaker

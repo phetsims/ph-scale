@@ -1,3 +1,4 @@
+1/23/14 add a probe to pH meter that extends to bottom of beaker
 1/23/14 combine SolutionsPHMeterNode and CustomPHMeterNode into a single meter that optionally allows you to change pH
 1/23/14 Custom: make beaker same size and location as Solutions screen
 1/23/14 Solutions: make beaker wider, scale up 'Molecule count' feature

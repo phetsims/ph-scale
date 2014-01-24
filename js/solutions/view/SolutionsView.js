@@ -80,7 +80,8 @@ define( function( require ) {
     var graphNode = new SolutionsGraphNode( model.solution );
 
     // pH meter
-    var pHMeterNode = new PHMeterNode( model.solution );
+    var pHMeterYOffset = 20;
+    var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterYOffset );
 
     // solutes combo box
     var soluteListParent = new Node();

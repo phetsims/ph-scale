@@ -222,7 +222,7 @@ define( function( require ) {
     if ( options.attachProbe === 'center' ) {
       probeNode.centerX = valueNode.centerX;
     }
-    else if ( options.attachProbe == 'right' ) {
+    else if ( options.attachProbe === 'right' ) {
       probeNode.centerX = valueNode.left + ( 0.75 * valueNode.width );
     }
     else {

@@ -83,7 +83,7 @@ define( function( require ) {
     thisView.addChild( rootNode );
 
     // Layout of nodes that don't have a location specified in the model
-    pHMeterNode.left = beakerNode.left + 20;
+    pHMeterNode.left = mvt.modelToViewX( model.beaker.left );
     pHMeterNode.top = 20;
     moleculeCountNode.centerX = mvt.modelToViewX( model.beaker.location.x );
     moleculeCountNode.bottom = beakerNode.bottom - 25;

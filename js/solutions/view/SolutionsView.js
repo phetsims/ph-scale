@@ -70,7 +70,7 @@ define( function( require ) {
     viewProperties.ratioVisibleProperty.linkAttribute( ratioNode, 'visible' );
 
     // 'molecule count' representation
-    var moleculeCountNode = new MoleculeCountNode( model.solution, { scale: 0.9 } );
+    var moleculeCountNode = new MoleculeCountNode( model.solution );
     viewProperties.moleculeCountVisibleProperty.linkAttribute( moleculeCountNode, 'visible' );
 
     // beaker controls
@@ -115,16 +115,16 @@ define( function( require ) {
     thisView.addChild( rootNode );
 
     // Layout of nodes that don't have a location specified in the model
-    moleculeCountNode.left = mvt.modelToViewX( model.beaker.left ) + 40;
+    moleculeCountNode.centerX = mvt.modelToViewX( model.beaker.location.x );
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.left = mvt.modelToViewX( model.beaker.left );
     beakerControls.top = beakerNode.bottom + 15;
-    soluteComboBox.left = mvt.modelToViewX( model.beaker.left ) - 50; // anchor on left so it grows to the right during i18n
-    soluteComboBox.top = this.layoutBounds.top + 15;
+    pHMeterNode.left = mvt.modelToViewX( model.beaker.left ) - ( 0.4 * pHMeterNode.width );
     pHMeterNode.top = 20;
-    pHMeterNode.right = drainFaucetNode.left - 40;
-    graphNode.right = pHMeterNode.left - 10;
-    graphNode.top = pHMeterNode.top; // graph and pH meter must share the same top, or their scales won't line up
+    graphNode.right = drainFaucetNode.left - 40;
+    graphNode.top = pHMeterNode.top;
+    soluteComboBox.left = pHMeterNode.right + 35;
+    soluteComboBox.top = this.layoutBounds.top + 15;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }

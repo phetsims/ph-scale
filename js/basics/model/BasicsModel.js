@@ -21,7 +21,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var Water = require( 'PH_SCALE/common/model/Water' );
 
-  function BasicsModel() {
+  function BasicsModel( autoFillVolume ) {
 
     var thisModel = this;
 
@@ -52,7 +52,8 @@ define( function( require ) {
       new Bounds2( thisModel.beaker.left + 40, yDropper, thisModel.beaker.right - 200, yDropper ) );
 
     // Solution in the beaker
-    thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume );
+    thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume,
+      { autoFillVolume: autoFillVolume } );
 
     // Water faucet at the beaker's top-right
     thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, thisModel.beaker.location.y - thisModel.beaker.size.height - 45 ),

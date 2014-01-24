@@ -30,7 +30,7 @@ define( function( require ) {
     assert && assert( soluteVolume + waterVolume <= maxVolume );
 
     options = _.extend( {
-      emptyWhenSoluteChanges: true // whether to empty the solution when the solute changes
+      autoFillVolume: 0.5 // automatically fill with this much solute when the solute changes
     }, options );
 
     var thisSolution = this;
@@ -65,10 +65,8 @@ define( function( require ) {
 
     // solute
     thisSolution.soluteProperty.link( function() {
-      if ( options.emptyWhenSoluteChanges ) {
-        thisSolution.waterVolumeProperty.set( 0 );
-        thisSolution.soluteVolumeProperty.set( 0 );
-      }
+      thisSolution.waterVolumeProperty.set( 0 );
+      thisSolution.soluteVolumeProperty.set( options.autoFillVolume );
     } );
   }
 

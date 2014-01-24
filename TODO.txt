@@ -8,7 +8,6 @@ HIGH
 - Solutions: remove scale from pH meter, add a probe that extends to bottom of beaker
 - Solutions: make collapse button on pH meter hide only the pH value
 - Solutions: make beaker wider
-- Solutions: auto-fill to 0.5L when a solute is selected
 - Solutions: add 'Linear' option to graph, with zoom buttons
 - Custom: remove 'Linear' option from graph
 - Custom: remove dropper and drain

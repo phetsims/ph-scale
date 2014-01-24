@@ -200,8 +200,8 @@ define( function( require ) {
   function PHMeterNode( solution, probeYOffset, options ) {
 
     options = _.extend( {
-      expanded: true,
-      isInteractive: false,
+      expanded: true, // initial state
+      isInteractive: false, // true: pH can be changed, false: pH is read-only
       attachProbe: 'center' // where to attach the probe: 'left'|'center'|'right'
     }, options );
 

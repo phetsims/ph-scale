@@ -85,7 +85,7 @@ define( function( require ) {
     lineNode.centerX = expandCollapseBar.centerX;
     lineNode.top = expandCollapseBar.bottom - 1;
     logarithmicGraph.centerX = lineNode.centerX;
-    logarithmicGraph.top = lineNode.bottom - 1;
+    logarithmicGraph.y = lineNode.bottom - 1; // logarithmicGraph.y, not logarithmicGraph.top!
 
     /*
      * Location of ticks that need to be vertically aligned with ticks on the pH scale.

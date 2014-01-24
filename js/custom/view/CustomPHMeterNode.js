@@ -62,6 +62,7 @@ define( function( require ) {
 
     // pH picker,
     var picker = new NumberPicker( pickerValueProperty, new Property( PHScaleConstants.PH_RANGE ), {
+      intervalDelay: 40,
       color: new Color( 0, 200, 0 ),
       decimalPlaces: 2,
       font: new PhetFont( 30 ),

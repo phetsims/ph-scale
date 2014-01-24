@@ -16,7 +16,6 @@ define( function( require ) {
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Line = require( 'SCENERY/nodes/Line' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
@@ -81,7 +80,7 @@ define( function( require ) {
     var graphNode = new SolutionsGraphNode( model.solution );
 
     // pH meter
-    var pHMeterNode = new SolutionsPHMeterNode( model.solution.pHProperty, graphNode.minPHTickLineY, graphNode.maxPHTickLineY );
+    var pHMeterNode = new SolutionsPHMeterNode( model.solution.pHProperty );
 
     // solutes combo box
     var soluteListParent = new Node();
@@ -128,12 +127,6 @@ define( function( require ) {
     graphNode.top = pHMeterNode.top; // graph and pH meter must share the same top, or their scales won't line up
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
-
-    // 'guide' lines to verify that the scales of the graph and pH meter are vertically aligned
-    if ( window.phetcommon.getQueryParameter( 'dev' ) ) {
-      thisView.addChild( new Line( 0, 0, pHMeterNode.right, 0, { y: graphNode.y + graphNode.maxPHTickLineY, stroke: 'rgba(100,100,100,0.25)' } ) );
-      thisView.addChild( new Line( 0, 0, pHMeterNode.right, 0, { y: graphNode.y + graphNode.minPHTickLineY, stroke: 'rgba(100,100,100,0.25)' } ) );
-    }
   }
 
   return inherit( ScreenView, SolutionsView, { layoutBounds: PHScaleConstants.LAYOUT_BOUNDS } );

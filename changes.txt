@@ -1,3 +1,4 @@
+1/23/14 Solutions: remove code related to aligning scales of graph and pH meter, since the pH meter no longer has a scale
 1/23/14 Solutions: remove scale from pH meter
 1/23/14 revert: Custom: don't collapse meter when collapse button is pressed, just hide pH picker
 1/23/14 Custom: remove dropper and drain, use a fixed volume of solution

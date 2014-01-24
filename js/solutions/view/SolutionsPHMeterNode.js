@@ -113,12 +113,10 @@ define( function( require ) {
 
   /**
    * @param {Property<Number>} pHProperty
-   * @param {Number} scaleBottom y-offset of the bottom of the scale, in this node's coordinate frame
-   * @param {Number} scaleTop y-offset of the top of the scale, in this node's coordinate frame
    * @param {*} options
    * @constructor
    */
-  function SolutionsPHMeterNode( pHProperty, scaleBottom, scaleTop, options ) {
+  function SolutionsPHMeterNode( pHProperty, options ) {
 
     options = _.extend( { expanded: true }, options );
 

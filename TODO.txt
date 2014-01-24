@@ -5,14 +5,14 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- Solutions: remove scale from pH meter, add a probe that extends to bottom of beaker
+- Solutions: add a probe to pH meter that extends to bottom of beaker
 - Solutions: make beaker wider
 - Solutions: add 'Linear' option to graph, with zoom buttons
 - Custom: remove 'Linear' option from graph
 - Custom: add probe to pH meter that extends to bottom of beaker
 - Solutions: implement linear graph
 - animate auto-filling
-- single implementation of pH meter for Solutions and Custom screens, with option.isInteractive
+- combine SolutionsPHMeterNode and CustomPHMeterNode
 
 MEDIUM
 - performance of 'H3O+/OH- ratio' feature

@@ -87,14 +87,6 @@ define( function( require ) {
     logarithmicGraph.centerX = lineNode.centerX;
     logarithmicGraph.y = lineNode.bottom - 1; // y, not top
 
-    /*
-     * Location of ticks that need to be vertically aligned with ticks on the pH scale.
-     * Values are relative to this node's origin.
-     * Does not account for transformation of logarithmicGraph!
-     */
-    this.minPHTickLineY = logarithmicGraph.y + logarithmicGraph.minPHTickLineY;
-    this.maxPHTickLineY = logarithmicGraph.y + logarithmicGraph.maxPHTickLineY;
-
     expandedProperty.link( function( expanded ) {
       logarithmicGraph.visible = lineNode.visible = expanded;
     } );

@@ -110,8 +110,8 @@ define( function( require ) {
     beakerControls.top = beakerNode.bottom + 15;
     graphNode.right = drainFaucetNode.left - 70;
     graphNode.top = 20;
-    resetAllButton.left = beakerControls.right + 30;
-    resetAllButton.centerY = beakerControls.centerY;
+    resetAllButton.right = this.layoutBounds.right - 40;
+    resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
 
   return inherit( ScreenView, BasicsView, { layoutBounds: PHScaleConstants.LAYOUT_BOUNDS } );

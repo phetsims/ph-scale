@@ -126,8 +126,8 @@ define( function( require ) {
     pHMeterNode.right = drainFaucetNode.left - 40;
     graphNode.right = pHMeterNode.left - 10;
     graphNode.top = pHMeterNode.top; // graph and pH meter must share the same top, or their scales won't line up
-    resetAllButton.left = beakerControls.right + 30;
-    resetAllButton.centerY = beakerControls.centerY;
+    resetAllButton.right = this.layoutBounds.right - 40;
+    resetAllButton.bottom = this.layoutBounds.bottom - 20;
 
     // 'guide' lines to verify that the scales of the graph and pH meter are vertically aligned
     if ( window.phetcommon.getQueryParameter( 'dev' ) ) {

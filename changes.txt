@@ -1,3 +1,4 @@
+1/23/14 move 'Reset All' buttons to same position (lower right) in all screens
 1/23/14 add temporary icon for 'Basics' screen
 1/23/14 move ph-scale-basics sim title to ph-scale-basics-strings_en.json
 1/23/13 make 'Basics' screen an official part of ph-scale sim

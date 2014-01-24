@@ -37,13 +37,11 @@ MIGRATE TO COMMON
 
 DESIGN
 
-Both: when graph is set to 'Quantity', it's possible to have indicator values 10^-19, which is below
-the bottom tick, and below our 'zero' position
+Custom: when graph is set to 'Quantity', volume < 0.10L, it's possible to have indicator values below 10^-16
 
 Custom: When indicators are off the scale of the Linear graph, the mockups show that they are
 placed next to the scale's upward-pointing arrow, their 'pointers' disappear, 'handles'
 disappear (for H3O and OH), and they are grayed out.  I'm not at all convinced that
-this is a clear representation that these values are 'off the scale'.  The bigger issue
-is that if the H3O or OH handle is removed, then the user can't modify the custom solution.
+this is a clear representation that these values are 'off the scale'.
 
 =========================================================================================================

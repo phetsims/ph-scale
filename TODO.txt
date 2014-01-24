@@ -5,10 +5,25 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- performance of 'H3O+/OH- ratio' feature
-- Custom: linear graph
+- Basics: add as an official first screen in ph-scale, titled 'Basics'
+- Basics: add option to auto-fill solution to a specified volume when a solute is selected. Set this to 0L
+  for ph-scale-basics, 0.5L for ph-scale
+- Solutions: remove scale from pH meter, add a probe that extends to bottom of beaker
+- Solutions: make collapse button on pH meter hide only the pH value
+- Solutions: make beaker wider
+- Solutions: auto-fill to 0.5L when a solute is selected
+- Solutions: add 'Linear' option to graph, with zoom buttons
+- Custom: remove 'Linear' option from graph
+- Custom: remove dropper and drain
+- Custom: use a fixed 0.5L of solution
+- Custom: add probe to pH meter that extends to bottom of beaker
+- Solutions: implement linear graph
+- shorter points on graph indicators
+- move graph indicators closer to scale, less whitespace between scale and indicators
+- empty the beaker when volume is < 0.01, see if this resolves the issue of graph values being < 10^16
 
 MEDIUM
+- performance of 'H3O+/OH- ratio' feature
 - flesh out SubSupText (scenery-phet#29)
 - Molecule counts: '4.0 x 10^25' should be displayed as '4.00 x 10^25'
 - rewrite PHUtils.toTimesTenString

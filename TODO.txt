@@ -13,6 +13,7 @@ HIGH
 - Custom: add probe to pH meter that extends to bottom of beaker
 - Solutions: implement linear graph
 - animate auto-filling
+- single implementation of pH meter for Solutions and Custom screens, with option.isInteractive
 
 MEDIUM
 - performance of 'H3O+/OH- ratio' feature

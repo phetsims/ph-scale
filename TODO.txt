@@ -25,8 +25,7 @@ LOW
 - ComboBox: add background color behind arrow button (sun#43)
 - port strings from Java
 - TODO items in code
-- factor out duplication in CustomGraphNode and SolutionsGraphNode, after the fate of 'Linear' graph is decided
-- take advantage of DAG to reduce number of nodes allocated in LogarithmicGraph
+- factor out duplication in CustomGraphNode and SolutionsGraphNode
 
 PERFORMANCE
 - don't update things that aren't visible (Molecule counts, Ratio, collapsed pH meter, collapsed graph)

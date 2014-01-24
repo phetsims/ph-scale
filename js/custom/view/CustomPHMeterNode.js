@@ -70,39 +70,32 @@ define( function( require ) {
       downFunction: function() { return pickerValueProperty.get() - 0.01; }
     } );
 
-
     // label above the picker
     var labelNode = new Text( pHString, { fill: 'black', font: new PhetFont( { size: 28, weight: 'bold' } ) } );
 
     // expanded background
     var backgroundOptions = { fill: PHScaleColors.PANEL_FILL, stroke: 'black', lineWidth: 2 };
     var backgroundWidth = Math.max( labelNode.width + expandCollapseButton.width + X_SPACING, picker.width ) + ( 2 * X_SPACING );
-    var expandedHeight = labelNode.height + picker.height + ( 3 * Y_SPACING );
-    var expandedRectangle = new Rectangle( 0, 0, backgroundWidth, expandedHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
-
-    // collapsed background
-    var collapsedHeight = labelNode.height + ( 2 * Y_SPACING );
-    var collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, collapsedHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
+    var backgroundHeight = labelNode.height + picker.height + ( 3 * Y_SPACING );
+    var backgroundNode = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
 
     // rendering order
-    thisNode.addChild( collapsedRectangle );
-    thisNode.addChild( expandedRectangle );
+    thisNode.addChild( backgroundNode );
     thisNode.addChild( picker );
     thisNode.addChild( labelNode );
     thisNode.addChild( expandCollapseButton );
 
     // layout
-    labelNode.top = expandedRectangle.top + Y_SPACING;
-    picker.centerX = expandedRectangle.centerX;
-    labelNode.left = expandedRectangle.left + X_SPACING;
+    labelNode.top = backgroundNode.top + Y_SPACING;
+    picker.centerX = backgroundNode.centerX;
+    labelNode.left = backgroundNode.left + X_SPACING;
     picker.top = labelNode.bottom + Y_SPACING;
     expandCollapseButton.centerY = labelNode.centerY;
-    expandCollapseButton.right = expandedRectangle.right - X_SPACING;
+    expandCollapseButton.right = backgroundNode.right - X_SPACING;
 
     // expand/collapse
     expandedProperty.link( function( expanded ) {
-      expandedRectangle.visible = picker.visible = expanded;
-      collapsedRectangle.visible = !expanded;
+      picker.visible = expanded;
     } );
 
     thisNode.mutate( options );

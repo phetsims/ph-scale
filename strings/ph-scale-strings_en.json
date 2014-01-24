@@ -1,6 +1,7 @@
 {
   "ph-scale.name": "pH Scale",
   "ph-scale-basics.name": "pH Scale: Basics",
+  "basics": "Basics",
   "custom": "Custom",
   "solutions": "Solutions",
   "choice.milk": "Milk",

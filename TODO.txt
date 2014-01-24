@@ -5,7 +5,6 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- Basics: add as an official first screen in ph-scale, titled 'Basics'
 - Basics: add option to auto-fill solution to a specified volume when a solute is selected. Set this to 0L
   for ph-scale-basics, 0.5L for ph-scale
 - Solutions: remove scale from pH meter, add a probe that extends to bottom of beaker
@@ -37,7 +36,6 @@ LOW
 - test various multi-touch scenarios
 - ComboBox: add background color behind arrow button (sun#43)
 - port strings from Java
-- consider moving 'basics' package to ph-scale-basics (ph-scale-basics#7)
 - TODO items in code
 - factor out duplication in CustomGraphNode and SolutionsGraphNode, after the fate of 'Linear' graph is decided
 - take advantage of DAG to reduce number of nodes allocated in LogarithmicGraph

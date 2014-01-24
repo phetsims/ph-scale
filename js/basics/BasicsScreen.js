@@ -18,12 +18,12 @@ define( function( require ) {
   var Screen = require( 'JOIST/Screen' );
 
   // strings
-  var screenTitle = require( 'string!PH_SCALE/ph-scale-basics.name' );
+  var screenTitle = require( 'string!PH_SCALE/basics' );
 
   function BasicsScreen() {
     Screen.call( this,
       screenTitle,
-      new Rectangle( 0, 0, 548, 373, { fill: 'green', stroke: 'black' } ), // placeholder
+      new Rectangle( 0, 0, 548, 373, { fill: 'green', stroke: 'black' } ), //TODO placeholder
       function() { return new BasicsModel(); },
       function( model ) { return new BasicsView( model, ModelViewTransform2.createIdentity() ); },
       { backgroundColor: PHScaleColors.SCREEN_BACKGROUND }

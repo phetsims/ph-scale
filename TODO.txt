@@ -6,7 +6,6 @@ IMPLEMENTATION
 
 HIGH
 - Solutions: remove scale from pH meter, add a probe that extends to bottom of beaker
-- Solutions: make collapse button on pH meter hide only the pH value
 - Solutions: make beaker wider
 - Solutions: add 'Linear' option to graph, with zoom buttons
 - Custom: remove 'Linear' option from graph

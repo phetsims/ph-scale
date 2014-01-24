@@ -5,8 +5,6 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- Solutions: add 'Linear' option to graph, with zoom buttons
-- Custom: remove 'Linear' option from graph
 - Solutions: implement linear graph
 - animate auto-filling
 

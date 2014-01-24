@@ -27,9 +27,6 @@ LOW
 - TODO items in code
 - factor out duplication in CustomGraphNode and SolutionsGraphNode
 
-PERFORMANCE
-- don't update things that aren't visible (Molecule counts, Ratio, collapsed pH meter, collapsed graph)
-
 MIGRATE TO COMMON
 - ToggleButton (sun#32)
 - DropperNode, Dropper

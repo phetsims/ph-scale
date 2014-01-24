@@ -15,6 +15,9 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Util = require( 'DOT/Util' );
 
+  // constants
+  var MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );
+
   /**
    * @param {Property<Solute>} soluteProperty
    * @param {number} soluteVolume liters
@@ -99,12 +102,16 @@ define( function( require ) {
 
     // Convenience function for adding solute
     addSolute: function( deltaVolume ) {
-      this.soluteVolumeProperty.set( this.soluteVolumeProperty.get() + Math.min( deltaVolume, this.getFreeVolume() ) );
+      if ( deltaVolume > 0 ) {
+        this.soluteVolumeProperty.set( Math.max( MIN_VOLUME, this.soluteVolumeProperty.get() + Math.min( deltaVolume, this.getFreeVolume() ) ) );
+      }
     },
 
     // Convenience function for adding water
     addWater: function( deltaVolume ) {
-      this.waterVolumeProperty.set( this.waterVolumeProperty.get() + Math.min( deltaVolume, this.getFreeVolume() ) );
+      if ( deltaVolume > 0 ) {
+        this.waterVolumeProperty.set( Math.max( MIN_VOLUME, this.waterVolumeProperty.get() + Math.min( deltaVolume, this.getFreeVolume() ) ) );
+      }
     },
 
     /**
@@ -114,7 +121,7 @@ define( function( require ) {
     drainSolution: function( deltaVolume ) {
       var totalVolume = this.volumeProperty.get();
       if ( totalVolume > 0 ) {
-        if ( deltaVolume >= totalVolume ) {
+        if ( totalVolume - deltaVolume < MIN_VOLUME ) {
           // drain the remaining solution
           this.waterVolumeProperty.set( 0 );
           this.soluteVolumeProperty.set( 0 );

@@ -197,7 +197,8 @@ define( function( require ) {
       for ( var i = 0; i < count; i++ ) {
         this.moleculesParent.addChild( new Circle( radius, {
           fill: color,
-          translation: RatioNode.createRandomPoint( this.beakerBounds )
+          x: RatioNode.createRandomX( this.beakerBounds ),
+          y: RatioNode.createRandomY( this.beakerBounds )
         } ) );
       }
     }
@@ -213,10 +214,14 @@ define( function( require ) {
       return Util.toFixedNumber( PHModel.pHToConcentrationOH( pH ) * ( NUM_PARTICLES_AT_PH7 / 2 ) / 1E-7, 0 );
     },
 
-    //TODO will result in lots of Vector2 allocations, change to createRandomX and createRandomY ?
-    // @ private @static Creates a random {Vector2} point inside some {Bounds2} bounds.
-    createRandomPoint: function( bounds ) {
-      return new Vector2( bounds.x + ( Math.random() * bounds.getWidth() ), bounds.y + ( Math.random() * bounds.getHeight() ) );
+    // @ private @static Creates a random {Number} x-coordinate inside some {Bounds2} bounds.
+    createRandomX: function( bounds ) {
+      return bounds.x + ( Math.random() * bounds.getWidth() );
+    },
+
+    // @ private @static Creates a random {Number} y-cordinate inside some {Bounds2} bounds.
+    createRandomY: function( bounds ) {
+      return bounds.y + ( Math.random() * bounds.getHeight() );
     }
   } );
 } );

@@ -1,3 +1,4 @@
+1/23/14 RatioNode: reduce lots of Vector2 allocations by computing x and y coordinates separately
 1/23/14 fix Reset All so that it fills 0.5L
 1/23/14 center controls under beaker, because it looks better and we have room for i18n now
 1/23/14 move linear graph to Solutions screen

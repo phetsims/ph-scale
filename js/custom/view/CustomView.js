@@ -86,9 +86,9 @@ define( function( require ) {
     // Layout of nodes that don't have a location specified in the model
     pHMeterNode.left = mvt.modelToViewX( model.beaker.left );
     pHMeterNode.top = 20;
-    moleculeCountNode.centerX = mvt.modelToViewX( model.beaker.location.x );
+    moleculeCountNode.centerX = beakerNode.centerX;
     moleculeCountNode.bottom = beakerNode.bottom - 25;
-    beakerControls.left = mvt.modelToViewX( model.beaker.left );
+    beakerControls.centerX = beakerNode.centerX;
     beakerControls.top = beakerNode.bottom + 15;
     graphNode.right = beakerNode.left - 70;
     graphNode.top = 20;

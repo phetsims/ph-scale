@@ -30,7 +30,7 @@ define( function( require ) {
     assert && assert( soluteVolume + waterVolume <= maxVolume );
 
     options = _.extend( {
-      autoFillVolume: 0.5 // automatically fill with this much solute when the solute changes
+      autoFillVolume: soluteVolume // automatically fill with this much solute when the solute changes
     }, options );
 
     var thisSolution = this;

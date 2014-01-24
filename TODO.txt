@@ -21,6 +21,8 @@ HIGH
 - shorter points on graph indicators
 - move graph indicators closer to scale, less whitespace between scale and indicators
 - empty the beaker when volume is < 0.01, see if this resolves the issue of graph values being < 10^16
+- make pH picker advance much more rapidly when held
+- move 'Reset All' buttons to same position (lower right) in all screens
 
 MEDIUM
 - performance of 'H3O+/OH- ratio' feature

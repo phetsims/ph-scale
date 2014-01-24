@@ -116,9 +116,9 @@ define( function( require ) {
 
     // layout
     logarithmicGraph.centerX = lineNode.centerX;
-    logarithmicGraph.y = lineNode.bottom - 1; // logarithmicGraph.y, not logarithmicGraph.top!
+    logarithmicGraph.y = lineNode.bottom - 1; // y, not top
     linearGraph.centerX = logarithmicGraph.centerX;
-    linearGraph.top = logarithmicGraph.top;
+    linearGraph.y = logarithmicGraph.y; // y, not top
     zoomButtons.centerX = logarithmicGraph.centerX;
     zoomButtons.top = lineNode.bottom + scaleHeight + 15;
     graphScaleSwitch.centerX = zoomButtons.centerX;

@@ -10,8 +10,6 @@ HIGH
 - Solutions: make beaker wider
 - Solutions: add 'Linear' option to graph, with zoom buttons
 - Custom: remove 'Linear' option from graph
-- Custom: remove dropper and drain
-- Custom: use a fixed 0.5L of solution
 - Custom: add probe to pH meter that extends to bottom of beaker
 - Solutions: implement linear graph
 - animate auto-filling

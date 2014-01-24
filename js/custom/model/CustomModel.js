@@ -28,8 +28,7 @@ define( function( require ) {
     thisModel.beaker = new Beaker( new Vector2( 775, 580 ), new Dimension2( 400, 325 ) );
 
     // Solution in the beaker
-    thisModel.solution = new Solution( new Property( Solute.createCustom( 7 ) ), 0, thisModel.water, 0, thisModel.beaker.volume,
-      { emptyWhenSoluteChanges: false } );
+    thisModel.solution = new Solution( new Property( Solute.createCustom( 7 ) ), 0, thisModel.water, 0, thisModel.beaker.volume );
   }
 
   CustomModel.prototype = {

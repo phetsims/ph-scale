@@ -166,12 +166,18 @@ define( function( require ) {
     var overlap = 10;
 
     var shaftNode = new Rectangle( 0, 0, 0.5 * probeWidth, probeHeight - tipHeight + overlap, { fill: 'rgb(64,64,64)' } );
+
+    // clockwise from tip of probe
+    var cornerRadius = 4;
     var tipNode = new Path( new Shape()
-      .moveTo( 0, 0 )
-      .lineTo( probeWidth, 0 )
-      .lineTo( probeWidth, 0.6 * tipHeight )
-      .lineTo( probeWidth/2, tipHeight )
+      .moveTo( probeWidth/2, tipHeight )
       .lineTo( 0, 0.6 * tipHeight )
+      .lineTo( 0, cornerRadius )
+      .arc( cornerRadius, cornerRadius, cornerRadius, Math.PI, 1.5 * Math.PI )
+      .lineTo( cornerRadius, 0 )
+      .lineTo( probeWidth - cornerRadius, 0 )
+      .arc( probeWidth - cornerRadius, cornerRadius, cornerRadius, -0.5 * Math.PI, 0 )
+      .lineTo( probeWidth, 0.6 * tipHeight )
       .close(),
       { fill: 'black' }
     );

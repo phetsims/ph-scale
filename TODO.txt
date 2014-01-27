@@ -5,7 +5,7 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- try adding a bit of transparency to solute and water colors, so that pH probe looks like it's in solutionu
+- try adding a bit of transparency to solute and water colors, so that pH probe looks like it's in solution
 - animate auto-filling
 - Solutions: implement linear graph
 - performance of 'H3O+/OH- ratio' feature

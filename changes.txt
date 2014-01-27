@@ -1,3 +1,4 @@
+1/27/14 add animation of auto-fill to 'Basics' model
 1/27/14 make DropperFluidNode observe Dropper.flowRateProperty instead of onProperty and emptyProperty
 1/27/14 delete unused optional arg from Solute.createCustom
 1/27/14 use same location for water faucet in 'Basics' and 'Solutions' screens

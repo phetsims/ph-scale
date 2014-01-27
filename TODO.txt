@@ -5,7 +5,6 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- animate auto-filling
 - Solutions: implement linear graph
 - performance of 'H3O+/OH- ratio' feature
 

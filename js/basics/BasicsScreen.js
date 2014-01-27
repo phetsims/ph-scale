@@ -26,13 +26,13 @@ define( function( require ) {
   function BasicsScreen( options ) {
 
     options = _.extend( {
-      initialVolume: 0.5 // automatically fill with this much solute when the solute changes
+      autoFillVolume: 0.5 // automatically fill beaker with this much solute when the solute changes
     }, options );
 
     Screen.call( this,
       screenTitle,
       new Image( screenIcon ),
-      function() { return new BasicsModel( options.initialVolume ); },
+      function() { return new BasicsModel( options.autoFillVolume ); },
       function( model ) { return new BasicsView( model, ModelViewTransform2.createIdentity() ); },
       { backgroundColor: PHScaleColors.SCREEN_BACKGROUND }
     );

@@ -24,14 +24,9 @@ define( function( require ) {
    * @param {Water} water
    * @param {number} waterVolume liters
    * @param {number} maxVolume liters
-   * @param {*} options
    */
-  function Solution( soluteProperty, soluteVolume, water, waterVolume, maxVolume, options ) {
+  function Solution( soluteProperty, soluteVolume, water, waterVolume, maxVolume ) {
     assert && assert( soluteVolume + waterVolume <= maxVolume );
-
-    options = _.extend( {
-      autoFillVolume: soluteVolume // automatically fill with this much solute when the solute changes
-    }, options );
 
     var thisSolution = this;
 
@@ -65,8 +60,9 @@ define( function( require ) {
 
     // solute
     thisSolution.soluteProperty.link( function() {
-      thisSolution.waterVolumeProperty.set( 0 );
-      thisSolution.soluteVolumeProperty.set( options.autoFillVolume );
+      // reset to volumes that were specified in the constructor
+      thisSolution.waterVolumeProperty.set( waterVolume );
+      thisSolution.soluteVolumeProperty.set( soluteVolume );
     } );
   }
 

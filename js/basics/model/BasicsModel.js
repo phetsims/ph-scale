@@ -21,7 +21,11 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var Water = require( 'PH_SCALE/common/model/Water' );
 
-  function BasicsModel( initialVolume ) {
+  /**
+   * @param autoFillVolume L, how much solute to automatically add to the beaker when changing solutes
+   * @constructor
+   */
+  function BasicsModel( autoFillVolume ) {
 
     var thisModel = this;
 
@@ -52,7 +56,7 @@ define( function( require ) {
       new Bounds2( thisModel.beaker.left + 40, yDropper, thisModel.beaker.right - 200, yDropper ) );
 
     // Solution in the beaker
-    thisModel.solution = new Solution( thisModel.dropper.soluteProperty, initialVolume, thisModel.water, 0, thisModel.beaker.volume );
+    thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume );
 
     // Water faucet at the beaker's top-right
     thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, thisModel.beaker.location.y - thisModel.beaker.size.height - 45 ),
@@ -72,12 +76,20 @@ define( function( require ) {
     thisModel.solution.volumeProperty.link( function( volume ) {
       thisModel.waterFaucet.enabledProperty.set( volume < thisModel.beaker.volume );
       thisModel.drainFaucet.enabledProperty.set( volume > 0 );
-      thisModel.dropper.enabledProperty.set( !thisModel.dropper.emptyProperty.get() && ( volume < thisModel.beaker.volume ) );
+      thisModel.dropper.enabledProperty.set( volume < thisModel.beaker.volume );
+    } );
+
+    // auto-fill when the solute changes
+    this.autoFillVolume = autoFillVolume; // @private
+    this.isAutoFilling = false;
+    thisModel.dropper.soluteProperty.link( function() {
+      thisModel.startAutoFill();
     } );
   }
 
   BasicsModel.prototype = {
 
+    // @public
     reset: function() {
       this.beaker.reset();
       this.dropper.reset();
@@ -85,16 +97,54 @@ define( function( require ) {
       this.waterFaucet.reset();
       this.drainFaucet.reset();
       this.pHMeter.reset();
+      this.startAutoFill();
     },
 
     /*
+     * @public
      * Moves time forward by the specified amount.
      * @param deltaSeconds clock time change, in seconds.
      */
     step: function( deltaSeconds ) {
-      this.solution.addSolute( this.dropper.flowRateProperty.get() * deltaSeconds );
-      this.solution.addWater( this.waterFaucet.flowRateProperty.get() * deltaSeconds );
-      this.solution.drainSolution( this.drainFaucet.flowRateProperty.get() * deltaSeconds );
+      if ( this.isAutoFilling ) {
+        this.stepAutoFill( deltaSeconds );
+      }
+      else {
+        this.solution.addSolute( this.dropper.flowRateProperty.get() * deltaSeconds );
+        this.solution.addWater( this.waterFaucet.flowRateProperty.get() * deltaSeconds );
+        this.solution.drainSolution( this.drainFaucet.flowRateProperty.get() * deltaSeconds );
+      }
+    },
+
+    /**
+     * Starts the auto-fill animation.
+     * @private
+     */
+    startAutoFill: function() {
+      this.isAutoFilling = true;
+      this.dropper.onProperty.set( true );
+      this.dropper.flowRateProperty.set( 1 ); // faster than standard flow rate
+    },
+
+    /**
+     * Advances the auto-fill animation.
+     * @private
+     * @param deltaSeconds clock time change, in seconds.
+     */
+    stepAutoFill: function( deltaSeconds ) {
+      this.solution.addSolute( Math.min( this.dropper.flowRateProperty.get() * deltaSeconds, this.autoFillVolume - this.solution.volumeProperty.get() ) );
+      if ( this.solution.volumeProperty.get() === this.autoFillVolume ) {
+        this.stopAutoFill();
+      }
+    },
+
+    /**
+     * Stops the auto-fill animation.
+     * @private
+     */
+    stopAutoFill: function() {
+      this.isAutoFilling = false;
+      this.dropper.onProperty.set( false );
     }
   };
 

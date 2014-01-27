@@ -50,7 +50,7 @@ define( function( require ) {
       new Bounds2( thisModel.beaker.left + 120, yDropper, thisModel.beaker.right - 170, yDropper ) );
 
     // Solution in the beaker
-    thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0.5, thisModel.water, 0, thisModel.beaker.volume );
+    thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume );
 
     // Water faucet at the beaker's top-right
     thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, thisModel.beaker.location.y - thisModel.beaker.size.height - 45 ),
@@ -65,7 +65,7 @@ define( function( require ) {
     thisModel.solution.volumeProperty.link( function( volume ) {
       thisModel.waterFaucet.enabledProperty.set( volume < thisModel.beaker.volume );
       thisModel.drainFaucet.enabledProperty.set( volume > 0 );
-      thisModel.dropper.enabledProperty.set( !thisModel.dropper.emptyProperty.get() && ( volume < thisModel.beaker.volume ) );
+      thisModel.dropper.enabledProperty.set( volume < thisModel.beaker.volume );
     } );
   }
 

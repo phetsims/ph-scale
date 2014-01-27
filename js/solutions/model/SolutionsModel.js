@@ -41,19 +41,19 @@ define( function( require ) {
     thisModel.water = Water;
 
     // Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
-    thisModel.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 325 ) );
+    thisModel.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
 
     // Dropper above the beaker
-    var yDropper = 260;
+    var yDropper = thisModel.beaker.location.y - thisModel.beaker.size.height - 15;
     thisModel.dropper = new Dropper( Solute.CHICKEN_SOUP,
-      new Vector2( thisModel.beaker.left + 200, yDropper ),
-      new Bounds2( thisModel.beaker.left + 160, yDropper, thisModel.beaker.right - 170, yDropper ) );
+      new Vector2( thisModel.beaker.location.x - 50, yDropper ),
+      new Bounds2( thisModel.beaker.left + 120, yDropper, thisModel.beaker.right - 170, yDropper ) );
 
     // Solution in the beaker
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0.5, thisModel.water, 0, thisModel.beaker.volume );
 
     // Water faucet at the beaker's top-right
-    thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, thisModel.beaker.location.y - thisModel.beaker.size.height - 25 ),
+    thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, thisModel.beaker.location.y - thisModel.beaker.size.height - 45 ),
       thisModel.beaker.right + 400,
       { enabled: thisModel.solution.volumeProperty.get() < thisModel.beaker.volume } );
 

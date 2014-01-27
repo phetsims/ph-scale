@@ -1,3 +1,5 @@
+1/27/14 use same location for water faucet in 'Basics' and 'Solutions' screens
+1/27/14 use same location and size for beakers in all 3 screens, ensure that dropper is above beaker
 1/27/14 make it easier to adjust vertical spacing of zoom buttons and Log/Linear switch
 1/27/14 add vertical line between graph and Linear/Log switch
 1/27/14 use water color for custom solution

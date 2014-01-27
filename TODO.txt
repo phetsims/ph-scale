@@ -22,6 +22,7 @@ LOW
 - ComboBox: add background color behind arrow button (sun#43)
 - port strings from Java
 - TODO items in code
+- factor out duplication in CustomGraphNode and SolutionsGraphNode
 
 MIGRATE TO COMMON
 - ToggleButton (sun#32)

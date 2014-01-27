@@ -10,7 +10,6 @@ HIGH
 
 MEDIUM
 - need new icon for 'Custom' screen
-- make pH probe look like it's in the solution
 - performance of 'H3O+/OH- ratio' feature
 - flesh out SubSupText (scenery-phet#29)
 - Molecule counts: '4.0 x 10^25' should be displayed as '4.00 x 10^25'
@@ -37,6 +36,9 @@ MIGRATE TO COMMON
 DESIGN
 
 Basics: Change color of 'Basics' pH display to match 'Solutions' and 'Custom'?
+
+Solutions, Custom: Make pH probe look like it's in the solution? If so, we'll need to revisit
+all colors to add transparency.
 
 Custom: When indicators are off the scale of the Linear graph, the mockups show that they are
 placed next to the scale's upward-pointing arrow, their 'pointers' disappear, 'handles'

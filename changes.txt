@@ -1,3 +1,4 @@
+1/27/14 add jsdoc @private tags throughout code
 1/27/14 make autoFill and option of BasicModel, instead of a constructor param
 1/27/14 make SolutionsModel a subtype of BasicsModel, which gives us auto-fill animation and eliminates duplicate code
 1/27/14 add animation of auto-fill to 'Basics' model

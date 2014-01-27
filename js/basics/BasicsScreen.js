@@ -24,7 +24,6 @@ define( function( require ) {
   var screenIcon = require( 'image!PH_SCALE/Basics-screen-icon.png' );
 
   function BasicsScreen( modelOptions ) {
-
     Screen.call( this,
       screenTitle,
       new Image( screenIcon ),

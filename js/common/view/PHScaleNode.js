@@ -46,7 +46,7 @@ define( function( require ) {
     Node.call( this );
 
     // gradient background
-    this.backgroundStrokeWidth = 2;
+    this.backgroundStrokeWidth = 2; // @private
     var backgroundNode = new Rectangle( 0, 0, options.size.width, options.size.height, {
       fill: new LinearGradient( 0, 0, 0, options.size.height )
         .addColorStop( 0, PHScaleColors.BASIC )

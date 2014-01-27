@@ -23,9 +23,8 @@ define( function( require ) {
    */
   function H3OIndicator( valueProperty, options ) {
     options = _.extend( { pointerLocation: 'topRight' }, options );
-    var thisNode = this;
     var labelNode = new SubSupText( 'H<sub>3</sub>O<sup>+</sup>', { font: new PhetFont( 28 ), fill: 'white' } );
-    GraphIndicator.call( thisNode, valueProperty, new H3OMoleculeNode(), labelNode, PHScaleColors.ACIDIC, options );
+    GraphIndicator.call( this, valueProperty, new H3OMoleculeNode(), labelNode, PHScaleColors.ACIDIC, options );
   }
 
   return inherit( GraphIndicator, H3OIndicator );

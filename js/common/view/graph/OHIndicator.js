@@ -23,9 +23,8 @@ define( function( require ) {
    */
   function OHIndicator( valueProperty, options ) {
     options = _.extend( { pointerLocation: 'topLeft' }, options );
-    var thisNode = this;
     var labelNode = new SubSupText( 'OH<sup>-</sup>', { font: new PhetFont( 28 ), fill: 'white' } );
-    GraphIndicator.call( thisNode, valueProperty, new OHMoleculeNode(), labelNode, PHScaleColors.BASIC, options );
+    GraphIndicator.call( this, valueProperty, new OHMoleculeNode(), labelNode, PHScaleColors.BASIC, options );
   }
 
   return inherit( GraphIndicator, OHIndicator );

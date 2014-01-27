@@ -87,11 +87,13 @@ define( function( require ) {
     // Volume (Liters)
     //----------------------------------------------------------------------------
 
+    // @private
     isEmpty: function() { return this.volumeProperty.get() === 0; },
 
+    // @private
     isFull: function() { return this.volumeProperty.get() === this.maxVolume; },
 
-    // Returns the amount of volume that is available to fill.
+    // @private Returns the amount of volume that is available to fill.
     getFreeVolume: function() { return this.maxVolume - this.volumeProperty.get(); },
 
     // Convenience function for adding solute

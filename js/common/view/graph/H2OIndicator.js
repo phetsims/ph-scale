@@ -23,9 +23,8 @@ define( function( require ) {
    */
   function H2OIndicator( valueProperty, options ) {
     options = _.extend( { pointerLocation: 'bottomLeft' }, options );
-    var thisNode = this;
     var labelNode = new SubSupText( 'H<sub>2</sub>O', { font: new PhetFont( 28 ), fill: 'white' } );
-    GraphIndicator.call( thisNode, valueProperty, new H2OMoleculeNode(), labelNode, PHScaleColors.H2O_BACKGROUND, options );
+    GraphIndicator.call( this, valueProperty, new H2OMoleculeNode(), labelNode, PHScaleColors.H2O_BACKGROUND, options );
   }
 
   return inherit( GraphIndicator, H2OIndicator );

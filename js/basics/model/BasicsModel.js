@@ -85,7 +85,7 @@ define( function( require ) {
 
     // auto-fill when the solute changes
     this.autoFillVolume = options.autoFillVolume; // @private
-    this.isAutoFilling = false;
+    this.isAutoFilling = false; // @private
     thisModel.dropper.soluteProperty.link( function() {
       thisModel.startAutoFill();
     } );
@@ -93,7 +93,6 @@ define( function( require ) {
 
   BasicsModel.prototype = {
 
-    // @public
     reset: function() {
       this.beaker.reset();
       this.dropper.reset();
@@ -105,7 +104,6 @@ define( function( require ) {
     },
 
     /*
-     * @public
      * Moves time forward by the specified amount.
      * @param deltaSeconds clock time change, in seconds.
      */

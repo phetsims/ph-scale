@@ -110,19 +110,6 @@ define( function( require ) {
         tickLineRight.right = backgroundNode.right;
         tickLineRight.centerY = tickLineLeft.centerY;
       }
-
-      /*
-       * Make note of where the ticks are that correspond to min/max pH values.
-       * They will be needed for vertical alignment of the graph with the pH scale.
-       * These values are relative to this node's origin.
-       */
-      pH = Util.toFixedNumber( PHModel.concentrationOHToPH( Math.pow( 10, exponent ) ), 0 );
-      if ( pH === PHScaleConstants.PH_RANGE.min ) {
-        this.minPHTickLineY = tickLineLeft.centerY;
-      }
-      else if ( pH === PHScaleConstants.PH_RANGE.max ) {
-        this.maxPHTickLineY = tickLineLeft.centerY;
-      }
     }
 
     // indicators & associated properties

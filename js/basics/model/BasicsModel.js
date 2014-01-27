@@ -22,10 +22,14 @@ define( function( require ) {
   var Water = require( 'PH_SCALE/common/model/Water' );
 
   /**
-   * @param autoFillVolume L, how much solute to automatically add to the beaker when changing solutes
+   * @param {*} options
    * @constructor
    */
-  function BasicsModel( autoFillVolume ) {
+  function BasicsModel( options ) {
+
+    options = _.extend( {
+      autoFillVolume: 0.5 // L, automatically fill beaker with this much solute when the solute changes
+    }, options );
 
     var thisModel = this;
 
@@ -80,7 +84,7 @@ define( function( require ) {
     } );
 
     // auto-fill when the solute changes
-    this.autoFillVolume = autoFillVolume; // @private
+    this.autoFillVolume = options.autoFillVolume; // @private
     this.isAutoFilling = false;
     thisModel.dropper.soluteProperty.link( function() {
       thisModel.startAutoFill();

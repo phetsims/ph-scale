@@ -23,16 +23,12 @@ define( function( require ) {
   // images
   var screenIcon = require( 'image!PH_SCALE/Basics-screen-icon.png' );
 
-  function BasicsScreen( options ) {
-
-    options = _.extend( {
-      autoFillVolume: 0.5 // automatically fill beaker with this much solute when the solute changes
-    }, options );
+  function BasicsScreen( modelOptions ) {
 
     Screen.call( this,
       screenTitle,
       new Image( screenIcon ),
-      function() { return new BasicsModel( options.autoFillVolume ); },
+      function() { return new BasicsModel( modelOptions ); },
       function( model ) { return new BasicsView( model, ModelViewTransform2.createIdentity() ); },
       { backgroundColor: PHScaleColors.SCREEN_BACKGROUND }
     );

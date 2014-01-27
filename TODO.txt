@@ -9,9 +9,8 @@ HIGH
 - animate auto-filling
 
 MEDIUM
-- need new icons for all screens
+- need new icon for 'Custom' screen
 - make pH probe look like it's in the solution
-- Basics: use same beaker size and location as other screens?
 - performance of 'H3O+/OH- ratio' feature
 - flesh out SubSupText (scenery-phet#29)
 - Molecule counts: '4.0 x 10^25' should be displayed as '4.00 x 10^25'

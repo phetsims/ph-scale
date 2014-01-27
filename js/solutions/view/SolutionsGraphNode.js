@@ -1,6 +1,5 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
-//TODO some duplication with CustomGraphNode
 /**
  * The graph for the 'Solutions' screen.
  * It has an expand/collapse bar at the top of it, and can switch between 'concentration' and 'quantity'.

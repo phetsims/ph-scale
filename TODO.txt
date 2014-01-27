@@ -5,7 +5,6 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- try adding a bit of transparency to solute and water colors, so that pH probe looks like it's in solution
 - animate auto-filling
 - Solutions: implement linear graph
 - performance of 'H3O+/OH- ratio' feature
@@ -40,7 +39,8 @@ DESIGN
 Basics: Change color of 'Basics' pH display to match 'Solutions' and 'Custom'?
 
 Solutions, Custom: Make pH probe look like it's in the solution? If so, we'll need to revisit
-all colors to add transparency.
+all colors to add transparency. And we'll need to reimplement the fluid the comes out of the dropper
+and water faucet, so that they extend only to the surface of the solution.
 
 Custom: When indicators are off the scale of the Linear graph, the mockups show that they are
 placed next to the scale's upward-pointing arrow, their 'pointers' disappear, 'handles'

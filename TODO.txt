@@ -36,7 +36,7 @@ MIGRATE TO COMMON
 
 DESIGN
 
-Custom: when graph is set to 'Quantity', volume < 0.10L, it's possible to have indicator values below 10^-16
+Basics: Change color of 'Basics' pH display to match 'Solutions' and 'Custom'?
 
 Custom: When indicators are off the scale of the Linear graph, the mockups show that they are
 placed next to the scale's upward-pointing arrow, their 'pointers' disappear, 'handles'

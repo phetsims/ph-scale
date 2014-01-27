@@ -28,6 +28,7 @@ define( function( require ) {
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
+  var Range = require( 'DOT/Range' );
   var Text = require( 'SCENERY/nodes/Text' );
   var ZoomButton = require( 'PH_SCALE/common/view/graph/ZoomButton' );
 
@@ -84,7 +85,11 @@ define( function( require ) {
     } );
 
     // linear graph, switchable between 'concentration' and 'quantity'
-    var linearGraph = new LinearGraph( solution, graphUnitsProperty, {
+    var mantissaRange = new Range( 0, 8 );
+    var exponentRange = new Range( -15, 1 );
+    var exponentProperty = new Property( exponentRange.max );
+    var linearGraph = new LinearGraph( solution, graphUnitsProperty, mantissaRange, exponentRange, exponentProperty, {
+      arrowHeight: 60,
       scaleHeight: scaleHeight
     } );
 
@@ -104,7 +109,7 @@ define( function( require ) {
       { size: new Dimension2( 50, 25 ), centerOnButton: true } );
 
     // vertical line that top of connects graph to expand/collapse bar
-    var lineToBarNode = new Line( 0, 0, 0, 30, { stroke: 'black' } );
+    var lineToBarNode = new Line( 0, 0, 0, 200, { stroke: 'black' } );
 
     // vertical line that connects bottom of graph to Log/Linear switch
     var ySpacing = 15;
@@ -123,7 +128,7 @@ define( function( require ) {
 
     // layout
     logarithmicGraph.centerX = lineToBarNode.centerX;
-    logarithmicGraph.y = lineToBarNode.bottom - 1; // y, not top
+    logarithmicGraph.y = 30; // y, not top
     linearGraph.centerX = logarithmicGraph.centerX;
     linearGraph.y = logarithmicGraph.y; // y, not top
     lineToSwitchNode.centerX = lineToBarNode.centerX;
@@ -146,14 +151,19 @@ define( function( require ) {
       linearGraph.visible = zoomButtons.visible = ( graphScale === GraphScale.LINEAR );
     } );
 
+    // enable/disable zoom buttons
+    exponentProperty.link( function( exponent ) {
+      assert && assert( exponentRange.contains( exponent ) );
+      zoomInButton.enabled = ( exponent > exponentRange.min );
+      zoomOutButton.enabled = ( exponent < exponentRange.max );
+    });
+
     // handle zoom of linear graph
     zoomInButton.addListener( function() {
-      //TODO zoom in
-      console.log( 'zoom in' );
+      exponentProperty.set( exponentProperty.get() - 1 );
     } );
     zoomOutButton.addListener( function() {
-      //TODO zoom out
-      console.log( 'zoom out' );
+      exponentProperty.set( exponentProperty.get() + 1 );
     } );
   }
 

@@ -85,8 +85,8 @@ define( function( require ) {
     } );
 
     // linear graph, switchable between 'concentration' and 'quantity'
-    var mantissaRange = new Range( 0, 8 );
-    var exponentRange = new Range( -15, 1 );
+    var mantissaRange = PHScaleConstants.LINEAR_MANTISSA_RANGE;
+    var exponentRange = PHScaleConstants.LINEAR_EXPONENT_RANGE;
     var exponentProperty = new Property( exponentRange.max );
     var linearGraph = new LinearGraph( solution, graphUnitsProperty, mantissaRange, exponentRange, exponentProperty, {
       arrowHeight: 60,

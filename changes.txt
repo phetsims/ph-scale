@@ -1,3 +1,5 @@
+1/27/14 make it easier to adjust vertical spacing of zoom buttons and Log/Linear switch
+1/27/14 add vertical line between graph and Linear/Log switch
 1/27/14 use water color for custom solution
 1/27/14 integrate new 'Solutions' icon, use old 'Solutions' icon for 'Basics' screen
 # 1.0.0-dev.7 1/23/14

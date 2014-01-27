@@ -104,31 +104,39 @@ define( function( require ) {
       GraphScale.LINEAR, new Text( linearString, textOptions ),
       { size: new Dimension2( 50, 25 ), centerOnButton: true } );
 
-    // vertical line that connects graph to expand/collapse bar
-    var lineNode = new Line( 0, 0, 0, 30, { stroke: 'black' } );
+    // vertical line that top of connects graph to expand/collapse bar
+    var lineToBarNode = new Line( 0, 0, 0, 30, { stroke: 'black' } );
+
+    // vertical line that connects bottom of graph to Log/Linear switch
+    var ySpacing = 15;
+    var lineToSwitchNode = new Line( 0, 0, 0, zoomButtons.height + ( 2 * ySpacing ), { stroke: 'black ' } );
 
     // rendering order
     thisNode.addChild( expandCollapseBar );
     var graphNode = new Node();
     thisNode.addChild( graphNode );
-    graphNode.addChild( lineNode );
+    graphNode.addChild( lineToBarNode );
+    graphNode.addChild( lineToSwitchNode );
     graphNode.addChild( logarithmicGraph );
     graphNode.addChild( linearGraph );
     graphNode.addChild( zoomButtons );
     graphNode.addChild( graphScaleSwitch );
 
     // layout
-    logarithmicGraph.centerX = lineNode.centerX;
-    logarithmicGraph.y = lineNode.bottom - 1; // y, not top
+    logarithmicGraph.centerX = lineToBarNode.centerX;
+    logarithmicGraph.y = lineToBarNode.bottom - 1; // y, not top
     linearGraph.centerX = logarithmicGraph.centerX;
     linearGraph.y = logarithmicGraph.y; // y, not top
+    lineToSwitchNode.centerX = lineToBarNode.centerX;
+    lineToSwitchNode.top = logarithmicGraph.y + scaleHeight - 1;
+    graphScaleSwitch.centerX = lineToSwitchNode.centerX;
+    graphScaleSwitch.top = lineToSwitchNode.bottom - 1;
     zoomButtons.centerX = logarithmicGraph.centerX;
-    zoomButtons.top = lineNode.bottom + scaleHeight + 15;
-    graphScaleSwitch.centerX = zoomButtons.centerX;
-    graphScaleSwitch.top = zoomButtons.bottom + 15;
+    zoomButtons.centerY = lineToSwitchNode.centerY;
     graphNode.centerX = expandCollapseBar.centerX;
     graphNode.top = expandCollapseBar.bottom;
 
+    // expand/collapse the graph
     expandedProperty.link( function( expanded ) {
       graphNode.visible = expanded;
     } );

@@ -50,9 +50,9 @@ define( function( require ) {
     this.pH = pH;
 
     // unpack the colors to make accessing them more convenient in client code
-    this.stockColor = colorScheme.stockColor;
-    this.dilutedColor = colorScheme.dilutedColor || Water.color;
-    this.colorStop = colorScheme.colorStop; // optional, color computation will ignore it if undefined
+    this.stockColor = colorScheme.stockColor; //@public
+    this.dilutedColor = colorScheme.dilutedColor || Water.color; // @private
+    this.colorStop = colorScheme.colorStop; // @private, optional, color computation will ignore it if undefined
     if ( this.colorStop ) {
       this.colorStop.ratio = this.colorStop.ratio || 0.25;
     }
@@ -66,6 +66,7 @@ define( function( require ) {
 
     /**
      * Computes the color for a dilution of this solute.
+     * @public
      * @param {Number} ratio describes the dilution, range is [0,1] inclusive, 0 is no solute, 1 is all solute
      * @returns {Color}
      */
@@ -140,6 +141,7 @@ define( function( require ) {
 
   /**
    * Creates a custom solute.
+   * @public
    * @param {Number} pH
    * @returns {Solute}
    */

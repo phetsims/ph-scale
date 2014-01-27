@@ -141,11 +141,10 @@ define( function( require ) {
   /**
    * Creates a custom solute.
    * @param {Number} pH
-   * @param {Color} color optional color, defaults as shown below
    * @returns {Solute}
    */
-  Solute.createCustom = function( pH, color ) {
-    return new Solute( customString, pH, { stockColor: color || PHScaleColors.WATER } );
+  Solute.createCustom = function( pH ) {
+    return new Solute( customString, pH, { stockColor: PHScaleColors.WATER } );
   };
 
   return Solute;

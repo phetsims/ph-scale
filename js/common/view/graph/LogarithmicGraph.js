@@ -70,7 +70,6 @@ define( function( require ) {
     } );
     thisNode.addChild( backgroundNode );
 
-    //TODO take advantage of DAG to reuse tick line nodes
     // tick marks
     var numberOfTicks = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.getLength() + 1;
     var ySpacing = ( options.scaleHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfTicks - 1 ); // vertical space between ticks

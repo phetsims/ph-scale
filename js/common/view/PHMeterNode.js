@@ -165,7 +165,7 @@ define( function( require ) {
     var tipHeight = 50;
     var overlap = 10;
 
-    var shaftNode = new Rectangle( 0, 0, 0.5 * probeWidth, probeHeight - tipHeight + overlap, { fill: 'rgb(64,64,64)' } );
+    var shaftNode = new Rectangle( 0, 0, 0.5 * probeWidth, probeHeight - tipHeight + overlap, { fill: 'rgb(80,80,80)' } );
 
     // clockwise from tip of probe
     var cornerRadius = 4;

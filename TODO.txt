@@ -5,6 +5,9 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
+- use water color for custom solution
+- vertical line between graph and Linear/Log switch
+- same location and size for all beakers, shorter so dropper isn't in solution
 - Solutions: implement linear graph
 - animate auto-filling
 

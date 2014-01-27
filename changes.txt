@@ -1,3 +1,4 @@
+1/27/14 make DropperFluidNode observe Dropper.flowRateProperty instead of onProperty and emptyProperty
 1/27/14 delete unused optional arg from Solute.createCustom
 1/27/14 use same location for water faucet in 'Basics' and 'Solutions' screens
 1/27/14 use same location and size for beakers in all 3 screens, ensure that dropper is above beaker

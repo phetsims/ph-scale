@@ -11,6 +11,7 @@ define( function( require ) {
   // imports
   var BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
+  var GraphNode = require( 'PH_SCALE/common/view/graph/GraphNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -21,7 +22,6 @@ define( function( require ) {
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
-  var SolutionsGraphNode = require( 'PH_SCALE/solutions/view/SolutionsGraphNode' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
   /**
@@ -61,7 +61,7 @@ define( function( require ) {
     var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterYOffset, { isInteractive: true } );
 
     // graph
-    var graphNode = new SolutionsGraphNode( model.solution, {
+    var graphNode = new GraphNode( model.solution, {
       isInteractive: true,
       scaleHeight: 575
     } );

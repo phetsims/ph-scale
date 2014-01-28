@@ -1,10 +1,9 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * The graph for the 'Solutions' screen.
+ * Container for all components related to the graph feature.
  * It has an expand/collapse bar at the top of it, and can switch between 'concentration' and 'quantity'.
- * Below the graph is a switch for 'logarithmic' vs 'linear' scales.
- * The graph indicators are not interactive because the stock solutions (solutes) are immutable.
+ * Interactivity and linear scale are optional.
  * Origin is at top-level of the expand/collapse bar.
  *
  * @author Chris Malley (PixelZoom, Inc.)
@@ -44,7 +43,7 @@ define( function( require ) {
    * @param {*} options
    * @constructor
    */
-  function SolutionsGraphNode( solution, options ) {
+  function GraphNode( solution, options ) {
 
     options = _.extend( {
       isInteractive: false, // only the Log scale can be interactive
@@ -176,5 +175,5 @@ define( function( require ) {
     }
   }
 
-  return inherit( Node, SolutionsGraphNode );
+  return inherit( Node, GraphNode );
 } );

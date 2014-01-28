@@ -1,4 +1,5 @@
-1/28/14 factor out duplication in CustomGraphNode and SolutionsGraphNode
+1/28/14 move SolutionsGraphNode to common.view.graph.GraphNode
+1/28/14 factor out duplication in CustomGraphNode and SolutionsGraphNode, make linear graph and interactive options to SolutionsGraphNode
 # 1.0.0-dev.9 1/23/14
 1/27/14 linear graph: add 'off scale' label in arrow
 1/27/14 linear graph: position indicators correctly

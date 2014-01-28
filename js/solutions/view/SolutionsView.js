@@ -15,6 +15,7 @@ define( function( require ) {
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
+  var GraphNode = require( 'PH_SCALE/common/view/graph/GraphNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -26,7 +27,6 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
-  var SolutionsGraphNode = require( 'PH_SCALE/solutions/view/SolutionsGraphNode' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
   var WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
 
@@ -77,7 +77,7 @@ define( function( require ) {
     var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );
 
     // graph
-    var graphNode = new SolutionsGraphNode( model.solution, {
+    var graphNode = new GraphNode( model.solution, {
       hasLinearFeature: true,
       scaleHeight: 475
     } );

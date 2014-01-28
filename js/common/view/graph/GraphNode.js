@@ -48,22 +48,23 @@ define( function( require ) {
     options = _.extend( {
       isInteractive: false, // only the Log scale can be interactive
       scaleHeight: 100,
-      expanded: true,
-      hasLinearFeature: false,
-      units: GraphUnits.MOLES_PER_LITER,
-      graphScale: GraphScale.LOGARITHMIC
+      expanded: true, // initial state, true=expanded, false=collapsed
+      units: GraphUnits.MOLES_PER_LITER, // initial state of the units switch
+      hasLinearFeature: false, // add the linear graph feature?
+      graphScale: GraphScale.LOGARITHMIC // initial state of the scale switch, meaningful only if hasLinearFeature === true
     }, options );
 
     var thisNode = this;
     Node.call( thisNode );
 
-    var textOptions = { font: new PhetFont( { size: 18, weight: 'bold' } ) };
+    // options for the text in all AB switches
+    var switchTextOptions = { font: new PhetFont( { size: 18, weight: 'bold' } ) };
 
-    // units switch
+    // units switch (Concentration vs Quantity)
     var graphUnitsProperty = new Property( options.units );
     var graphUnitsSwitch = new ABSwitch( graphUnitsProperty,
-      GraphUnits.MOLES_PER_LITER, new MultiLineText( concentrationString + '\n(' + molesPerLiterString + ')', textOptions ),
-      GraphUnits.MOLES, new MultiLineText( quantityString + '\n(' + molesString + ')', textOptions ),
+      GraphUnits.MOLES_PER_LITER, new MultiLineText( concentrationString + '\n(' + molesPerLiterString + ')', switchTextOptions ),
+      GraphUnits.MOLES, new MultiLineText( quantityString + '\n(' + molesString + ')', switchTextOptions ),
       { size: new Dimension2( 50, 25 ) } );
     graphUnitsSwitch.setScaleMagnitude( Math.min( 1, 300 / graphUnitsSwitch.width ) ); // scale for i18n
 
@@ -108,6 +109,7 @@ define( function( require ) {
     // optional linear graph
     if ( options.hasLinearFeature ) {
 
+      // linear graph
       var mantissaRange = PHScaleConstants.LINEAR_MANTISSA_RANGE;
       var exponentRange = PHScaleConstants.LINEAR_EXPONENT_RANGE;
       var exponentProperty = new Property( exponentRange.max );
@@ -124,11 +126,11 @@ define( function( require ) {
       zoomOutButton.left = zoomInButton.right + 10;
       zoomOutButton.centerY = zoomInButton.centerY;
 
-      // switch between 'Logarithmic' and 'Linear'
+      // scale switch (Logarithmic vs Linear)
       var graphScaleProperty = new Property( options.graphScale );
       var graphScaleSwitch = new ABSwitch( graphScaleProperty,
-        GraphScale.LOGARITHMIC, new Text( logarithmicString, textOptions ),
-        GraphScale.LINEAR, new Text( linearString, textOptions ),
+        GraphScale.LOGARITHMIC, new Text( logarithmicString, switchTextOptions ),
+        GraphScale.LINEAR, new Text( linearString, switchTextOptions ),
         { size: new Dimension2( 50, 25 ), centerOnButton: true } );
 
       // vertical line that connects bottom of graph to top of scale switch

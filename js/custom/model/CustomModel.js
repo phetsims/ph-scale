@@ -36,14 +36,6 @@ define( function( require ) {
     reset: function() {
       this.beaker.reset();
       this.solution.reset();
-    },
-
-    /*
-     * Moves time forward by the specified amount.
-     * @param deltaSeconds clock time change, in seconds.
-     */
-    step: function( deltaSeconds ) {
-      // do nothing
     }
   };
 

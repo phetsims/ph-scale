@@ -1,3 +1,4 @@
+# 1.0.0-dev.9 1/23/14
 1/27/14 linear graph: add 'off scale' label in arrow
 1/27/14 linear graph: position indicators correctly
 1/27/14 linear graph: add indicators, values are correct, position is not correct (always at zero)

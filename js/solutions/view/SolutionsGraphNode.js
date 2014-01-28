@@ -28,7 +28,6 @@ define( function( require ) {
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
-  var Range = require( 'DOT/Range' );
   var Text = require( 'SCENERY/nodes/Text' );
   var ZoomButton = require( 'PH_SCALE/common/view/graph/ZoomButton' );
 

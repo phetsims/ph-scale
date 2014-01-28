@@ -178,7 +178,7 @@ define( function( require ) {
     var updateTickLabels = function( exponent ) {
       var tickText;
       for ( var i = 0; i < tickLabels.length; i++ ) {
-        if ( i == 0 ) {
+        if ( i === 0 ) {
           tickText = '0';
         }
         else if ( exponent === 0 ) {

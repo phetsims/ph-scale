@@ -10,11 +10,15 @@ define( function( require ) {
 
   // imports
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
+  var H2OIndicator = require( 'PH_SCALE/common/view/graph/H2OIndicator' );
+  var H3OIndicator = require( 'PH_SCALE/common/view/graph/H3OIndicator' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var OHIndicator = require( 'PH_SCALE/common/view/graph/OHIndicator' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
@@ -101,16 +105,59 @@ define( function( require ) {
       tickLabels.push( tickLabel );
     }
 
-    //TODO create the graph indicators
+    // indicators & associated properties
+    var valueH2OProperty = new Property( 0 );
+    var valueH3OProperty = new Property( 0 );
+    var valueOHProperty = new Property( 0 );
+    var h2OIndicatorNode = new H2OIndicator( valueH2OProperty, {
+      decimalPlaces: 0,
+      constantExponent: 0,
+      x: scaleNode.right - options.majorTickLength } );
+    var h3OIndicatorNode = new H3OIndicator( valueH3OProperty, {
+      x: scaleNode.left + options.majorTickLength,
+      isInteractive: options.isInteractive } );
+    var oHIndicatorNode = new OHIndicator( valueOHProperty, {
+      x: scaleNode.right - options.majorTickLength,
+      isInteractive: options.isInteractive } );
+    thisNode.addChild( h2OIndicatorNode );
+    thisNode.addChild( h3OIndicatorNode );
+    thisNode.addChild( oHIndicatorNode );
 
+    // Given a value, compute it's y position relative to the top of the scale.
+    var valueToY = function( value ) {
+      //TODO
+      return tickLabels[0].centerY;
+    };
+
+    // Update the indicators
     var updateIndicators = function() {
+      var valueH2O, valueH3O, valueOH;
       if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
-        //TODO
+        // concentration
+        valueH2O = solution.getConcentrationH2O();
+        valueH3O = solution.getConcentrationH3O();
+        valueOH = solution.getConcentrationOH();
       }
       else {
-        //TODO
+        // quantity
+        valueH2O = solution.getMolesH2O();
+        valueH3O = solution.getMolesH3O();
+        valueOH = solution.getMolesOH();
       }
+      // move indicators
+      h2OIndicatorNode.y = valueToY( valueH2O );
+      h3OIndicatorNode.y = valueToY( valueH3O );
+      oHIndicatorNode.y = valueToY( valueOH );
+      // update indicator values
+      valueH2OProperty.set( valueH2O );
+      valueH3OProperty.set( valueH3O );
+      valueOHProperty.set( valueOH );
     };
+    // Move the indicators when any of these change.
+    solution.pHProperty.link( updateIndicators.bind( thisNode ) );
+    solution.volumeProperty.link( updateIndicators.bind( thisNode ) );
+    graphUnitsProperty.link( updateIndicators.bind( thisNode ) );
+    exponentProperty.link( updateIndicators.bind( thisNode ) );
 
     // updates the tick labels to match the exponent
     var updateTickLabels = function( exponent ) {
@@ -140,14 +187,7 @@ define( function( require ) {
       arrowScaleNode.visible = !scaleNode.visible;
       // relabel the tick marks
       updateTickLabels( exponent );
-      // move the graph indicators
-      updateIndicators();
     } );
-
-    // Move the indicators when the units change
-    graphUnitsProperty.link( function( graphUnits ) {
-      updateIndicators();
-    });
   }
 
   return inherit( Node, LinearGraph );

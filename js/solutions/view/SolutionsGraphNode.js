@@ -138,7 +138,7 @@ define( function( require ) {
     zoomButtons.centerX = logarithmicGraph.centerX;
     zoomButtons.centerY = lineToSwitchNode.centerY;
     graphNode.centerX = expandCollapseBar.centerX;
-    graphNode.top = expandCollapseBar.bottom;
+    graphNode.y = expandCollapseBar.bottom; // y, not top
 
     // expand/collapse the graph
     expandedProperty.link( function( expanded ) {

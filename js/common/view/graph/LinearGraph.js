@@ -22,6 +22,7 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
+  var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
 
   /**
@@ -81,6 +82,13 @@ define( function( require ) {
     );
     thisNode.addChild( scaleNode );
 
+    //TODO restrict to a maximum width
+    // 'off scale' label that goes in arrow
+    var offScaleNode = new Text( 'off scale', { font: new PhetFont( 14 ), fill: 'black' } );
+    thisNode.addChild( offScaleNode );
+    offScaleNode.centerX = arrowScaleNode.centerX;
+    offScaleNode.centerY = arrowScaleNode.top + ( 0.75 * arrowHeight );
+
     // Create the tick marks. Correct labels will be assigned later.
     var tickLabels = [];
     var numberOfTicks = mantissaRange.getLength() + 1;
@@ -129,7 +137,7 @@ define( function( require ) {
       var topTickValue = mantissaRange.max * Math.pow( 10, exponentProperty.get() );
       if ( value > topTickValue ) {
         // values out of range are placed in the arrow
-        return arrowScaleNode.top + ( 0.75 * arrowHeight );
+        return offScaleNode.centerY;
       }
       else {
         return Util.linear( 0, topTickValue, tickLabels[0].centerY, tickLabels[tickLabels.length-1].centerY, value );
@@ -191,7 +199,7 @@ define( function( require ) {
     exponentProperty.link( function( exponent ) {
       // show the proper scale background (with or without arrow)
       scaleNode.visible = ( exponent === exponentRange.max );
-      arrowScaleNode.visible = !scaleNode.visible;
+      arrowScaleNode.visible = offScaleNode.visible = !scaleNode.visible;
       // relabel the tick marks
       updateTickLabels( exponent );
     } );

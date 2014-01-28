@@ -1,3 +1,4 @@
+1/27/14 linear graph: add 'off scale' label in arrow
 1/27/14 linear graph: position indicators correctly
 1/27/14 linear graph: add indicators, values are correct, position is not correct (always at zero)
 1/27/14 linear graph: add arrow to top of scale, implement tick marks, wire up zoom buttons

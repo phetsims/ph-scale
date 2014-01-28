@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Model for the 'Basics' screen.
+ * Model for the 'Basics' screen. Also serves as the supertype for the 'Solutions' model.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

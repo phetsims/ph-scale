@@ -3,7 +3,7 @@
 /**
  * Container for all components related to the graph feature.
  * It has an expand/collapse bar at the top of it, and can switch between 'concentration' and 'quantity'.
- * Interactivity and linear scale are optional.
+ * Logarithmic graph is the standard scale. Interactivity and a linear scale are optional.
  * Origin is at top-level of the expand/collapse bar.
  *
  * @author Chris Malley (PixelZoom, Inc.)

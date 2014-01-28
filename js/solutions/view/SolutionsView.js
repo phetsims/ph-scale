@@ -77,7 +77,10 @@ define( function( require ) {
     var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );
 
     // graph
-    var graphNode = new SolutionsGraphNode( model.solution );
+    var graphNode = new SolutionsGraphNode( model.solution, {
+      hasLinearFeature: true,
+      scaleHeight: 475
+    } );
 
     // pH meter
     var pHMeterYOffset = 20;

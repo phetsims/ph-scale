@@ -22,6 +22,7 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
+  var Util = require( 'DOT/Util' );
 
   /**
    * @param {Solution} solution
@@ -125,8 +126,14 @@ define( function( require ) {
 
     // Given a value, compute it's y position relative to the top of the scale.
     var valueToY = function( value ) {
-      //TODO
-      return tickLabels[0].centerY;
+      var topTickValue = mantissaRange.max * Math.pow( 10, exponentProperty.get() );
+      if ( value > topTickValue ) {
+        // values out of range are placed in the arrow
+        return arrowScaleNode.top + ( 0.75 * arrowHeight );
+      }
+      else {
+        return Util.linear( 0, topTickValue, tickLabels[0].centerY, tickLabels[tickLabels.length-1].centerY, value );
+      }
     };
 
     // Update the indicators

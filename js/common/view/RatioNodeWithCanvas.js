@@ -55,9 +55,11 @@ define( function( require ) {
      */
     drawMolecules: function( numberOfH3OMolecules, numberOfOHMolecules ) {
       console.log( 'MoleculesCanvasNode.drawMolecules' );//XXX
-      this.numberOfH3OMolecules = numberOfH3OMolecules;
-      this.numberOfOHMolecules = numberOfOHMolecules;
-      this.invalidatePaint(); // results in paintCanvas being called
+      if ( numberOfH3OMolecules !== this.numberOfH3OMolecules || numberOfOHMolecules !== this.numberOfOHMolecules ) {
+        this.numberOfH3OMolecules = numberOfH3OMolecules;
+        this.numberOfOHMolecules = numberOfOHMolecules;
+        this.invalidatePaint(); // results in paintCanvas being called
+      }
     },
 
     /**

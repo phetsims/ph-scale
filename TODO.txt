@@ -22,8 +22,8 @@ LOW
 
 MIGRATE TO COMMON
 - ToggleButton (sun#32)
-- DropperNode, Dropper
-- BeakerNode
+- DropperNode, Dropper to scenery-phet
+- BeakerNode to scenery-phet
 - ZoomButton to scenery-phet
 - toScientificNotation to phet-core
 

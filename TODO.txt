@@ -11,7 +11,6 @@ MEDIUM
 - make linear scale wider, use larger fonts for ticks?
 - need new icon for 'Custom' screen
 - flesh out SubSupText (scenery-phet#29)
-- Molecule counts: '4.0 x 10^25' should be displayed as '4.00 x 10^25'
 - rewrite PHUtils.toTimesTenString
 
 LOW

@@ -36,7 +36,7 @@ define( function( require ) {
           var mantissaString = tokens[0];
           var exponentString = tokens[1];
           if ( constantExponent !== undefined && constantExponent !== null ) {
-            mantissaString = Util.toFixed( parseFloat( mantissaString ) * Math.pow( 10, parseInt( exponentString, 10 ) - constantExponent ), Math.max( 0, decimalPlaces - 1 ) );
+            mantissaString = Util.toFixed( parseFloat( mantissaString ) * Math.pow( 10, parseInt( exponentString, 10 ) - constantExponent ), Math.max( 0, decimalPlaces ) );
             exponentString = constantExponent.toString();
           }
           return mantissaString + ' x 10<span style="font-size:85%"><sup>' + parseInt( exponentString, 10 ) + '</sup></span>'; // mantissa x 10^exponent

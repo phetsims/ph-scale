@@ -1,3 +1,4 @@
+1/29/14 fix: in Molecule counts, mantissa for H2O values is missing a decimal place (eg '4.0 x 10^25' should be '4.00 x 10^25')
 1/28/14 remove CustomModel.step 'do nothing' function, since screen.model.step is now optional in joist.Sim.animationLoop
 1/28/14 move SolutionsGraphNode to common.view.graph.GraphNode
 1/28/14 factor out duplication in CustomGraphNode and SolutionsGraphNode, make linear graph and interactive options to SolutionsGraphNode

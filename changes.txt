@@ -1,3 +1,4 @@
+1/29/14 first attempt at a version of RatioNode that draws to Canvas using CanvasNode (not working, messes up the entire scene)
 1/29/14 fix 'this' errors in RatioNode
 1/29/14 rename toTimesTenString to toScientificNotation
 1/29/14 rewrite toTimesTenString

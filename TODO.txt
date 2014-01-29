@@ -33,6 +33,8 @@ DESIGN
 
 Basics: Change color of 'Basics' pH display to match 'Solutions' and 'Custom'?
 
+Solutions: How to indicate when values are off the scale of the Linear graph?
+
 Solutions: color and 'look' of zoom buttons?
 
 Solutions, Custom: Why are non-interactive graph indicators grayed out when their value is zero?
@@ -40,10 +42,5 @@ Solutions, Custom: Why are non-interactive graph indicators grayed out when thei
 Solutions, Custom: Make pH probe look like it's in the solution? If so, we'll need to revisit
 all colors to add transparency. And we'll need to reimplement the fluid the comes out of the dropper
 and water faucet, so that they extend only to the surface of the solution.
-
-Custom: When indicators are off the scale of the Linear graph, the mockups show that they are
-placed next to the scale's upward-pointing arrow, their 'pointers' disappear, 'handles'
-disappear (for H3O and OH), and they are grayed out.  I'm not at all convinced that
-this is a clear representation that these values are 'off the scale'.
 
 =========================================================================================================

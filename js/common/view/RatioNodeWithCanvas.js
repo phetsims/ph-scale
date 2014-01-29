@@ -114,8 +114,8 @@ define( function( require ) {
         thisNode.clipArea = null;
       }
       else {
-        var solutionHeight = beaker.size.height * volume / beaker.volume;
-        thisNode.clipArea = Shape.rectangle( beaker.left, beaker.location.y - solutionHeight, beaker.size.width, solutionHeight );
+        var solutionHeight = thisNode.beakerBounds.getHeight() * volume / beaker.volume;
+        thisNode.clipArea = Shape.rectangle( thisNode.beakerBounds.minX, thisNode.beakerBounds.maxY - solutionHeight, thisNode.beakerBounds.getWidth(), solutionHeight );
       }
     } );
   }

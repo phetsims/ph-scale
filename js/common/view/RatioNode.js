@@ -19,7 +19,6 @@ define( function( require ) {
   var PHModel = require( 'PH_SCALE/common/model/PHModel' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Property = require( 'AXON/Property' );
   var Shape = require( 'KITE/Shape' );
   var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
   var Util = require( 'DOT/Util' );
@@ -67,10 +66,6 @@ define( function( require ) {
     // current pH
     thisNode.pH = null; // @private null to force an update
 
-    // current number of each type of molecule
-    thisNode.numberOfH3OProperty = new Property( 0 ); // @private
-    thisNode.numberOfOHProperty = new Property( 0 ); // @private
-
     // bounds of the beaker, in view coordinates
     thisNode.beakerBounds = mvt.modelToViewBounds( beaker.bounds );
 
@@ -78,23 +73,10 @@ define( function( require ) {
     thisNode.moleculesParent = new Node(); // @private
     thisNode.addChild( thisNode.moleculesParent );
 
-    // dev mode
+    // dev mode, show numbers of molecules in lower-left of beaker
+    thisNode.ratioText = new SubSupText( '?', { font: new PhetFont( 30 ), fill: 'black', left: thisNode.beakerBounds.getCenterX(), bottom: thisNode.beakerBounds.maxY - 20 } ); // @private
     if ( window.phetcommon.getQueryParameter( 'dev' ) ) {
-
-      // parent for all dev nodes, in foreground
-      var devParent = new Node();
-      thisNode.addChild( devParent );
-
-      // show numbers of molecules in lower-left of beaker
-      var beakerLocation = mvt.modelToViewPosition( beaker.location );
-      var ratioText = new SubSupText( '?', { font: new PhetFont( 30 ), fill: 'black', bottom: beakerLocation.y - 20 } );
-      devParent.addChild( ratioText );
-      var updateRatioText = function() {
-        ratioText.text = thisNode.numberOfH3OProperty.get() + ' / ' + thisNode.numberOfOHProperty.get();
-        ratioText.centerX = beakerLocation.x;
-      };
-      thisNode.numberOfH3OProperty.link( updateRatioText.bind( thisNode ) );
-      thisNode.numberOfOHProperty.link( updateRatioText.bind( thisNode ) );
+      thisNode.addChild( thisNode.ratioText );
     }
 
     // sync view with model
@@ -106,8 +88,8 @@ define( function( require ) {
         thisNode.clipArea = null;
       }
       else {
-        var solutionHeight = beaker.size.height * volume / beaker.volume;
-        thisNode.clipArea = Shape.rectangle( beaker.left, beaker.location.y - solutionHeight, beaker.size.width, solutionHeight );
+        var solutionHeight = thisNode.beakerBounds.getHeight() * volume / beaker.volume;
+        thisNode.clipArea = Shape.rectangle( thisNode.beakerBounds.minX, thisNode.beakerBounds.maxY - solutionHeight, thisNode.beakerBounds.getWidth(), solutionHeight );
       }
     } );
   }
@@ -187,8 +169,7 @@ define( function( require ) {
         }
 
         // update counts
-        this.numberOfH3OProperty.set( numberOfH3O );
-        this.numberOfOHProperty.set( numberOfOH );
+        this.ratioText.text = numberOfH3O + ' / ' + numberOfOH;
       }
     },
 

@@ -23,7 +23,6 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
   var Util = require( 'DOT/Util' );
-  var Vector2 = require( 'DOT/Vector2' );
 
   // constants
   var ACID_PH_THRESHOLD = 6;

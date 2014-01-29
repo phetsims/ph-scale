@@ -5,6 +5,7 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
+- why does RatioNodeWithCanvas mess up the scene?
 - performance of 'H3O+/OH- ratio' feature
 
 MEDIUM

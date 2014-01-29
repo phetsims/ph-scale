@@ -120,7 +120,7 @@ define( function( require ) {
     var valueOHProperty = new Property( 0 );
     var h2OIndicatorNode = new H2OIndicator( valueH2OProperty, {
       decimalPlaces: 0,
-      constantExponent: 0,
+      exponent: 0,
       x: scaleNode.right - options.majorTickLength } );
     var h3OIndicatorNode = new H3OIndicator( valueH3OProperty, {
       x: scaleNode.left + options.majorTickLength,

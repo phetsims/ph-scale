@@ -16,9 +16,9 @@ define( function( require ) {
   var OHMoleculeNode = require( 'PH_SCALE/common/view/OHMoleculeNode' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var PHUtils = require( 'PH_SCALE/common/PHUtils' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
+  var toTimesTenString = require( 'PH_SCALE/common/toTimesTenString' );
 
   /**
    * @param {Solution} solution
@@ -98,9 +98,9 @@ define( function( require ) {
     var moleculesLeft = Math.min( nodeH3O.left, Math.min( nodeOH.left, nodeH2O.left ) ); // for right justifying counts
     var updateCounts = function() {
       // format and set values
-      countH3O.text = PHUtils.toTimesTenString( solution.getMoleculesH3O(), 2 );
-      countOH.text = PHUtils.toTimesTenString( solution.getMoleculesOH(), 2 );
-      countH2O.text = PHUtils.toTimesTenString( solution.getMoleculesH2O(), 2, 25 );
+      countH3O.text = toTimesTenString( solution.getMoleculesH3O(), 2 );
+      countOH.text = toTimesTenString( solution.getMoleculesOH(), 2 );
+      countH2O.text = toTimesTenString( solution.getMoleculesH2O(), 2, { exponent: 25 } );
       // right justify
       countH3O.right = moleculesLeft - xSpacing;
       countOH.right = moleculesLeft - xSpacing;

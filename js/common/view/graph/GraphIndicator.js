@@ -15,10 +15,10 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var PHUtils = require( 'PH_SCALE/common/PHUtils' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
+  var toTimesTenString = require( 'PH_SCALE/common/toTimesTenString' );
 
   // constants
   var POINTER_WIDTH_PERCENTAGE = 0.15;
@@ -48,7 +48,7 @@ define( function( require ) {
       xSpacing: 8,
       ySpacing: 4,
       decimalPlaces: 1,
-      constantExponent: null,
+      exponent: null, // request a specific exponent
       isInteractive: false,
       shadowFill: 'rgba(200,200,200,0.6)',
       shadowXOffset: 4,
@@ -200,7 +200,7 @@ define( function( require ) {
     valueProperty.link( function( value ) {
 
       // update the displayed value and center it
-      valueNode.text = PHUtils.toTimesTenString( value, options.decimalPlaces, options.constantExponent );
+      valueNode.text = toTimesTenString( value, options.decimalPlaces, { exponent: options.exponent } );
       valueNode.centerX = valueBackgroundNode.centerX;
       valueNode.centerY = valueBackgroundNode.centerY;
 

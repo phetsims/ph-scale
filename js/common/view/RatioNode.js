@@ -1,5 +1,6 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
+//TODO delete unused strategies (inner types)
 /**
  * Visual representation of H3O+/OH- ratio.
  * Molecules are drawn as circles.
@@ -12,6 +13,7 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var CanvasNode = require( 'SCENERY/nodes/CanvasNode' );
   var Circle = require( 'SCENERY/nodes/Circle' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -38,8 +40,10 @@ define( function( require ) {
   var H3O_RADIUS = 3;
   var OH_RADIUS = H3O_RADIUS;
 
+  //-------------------------------------------------------------------------------------
+
   /**
-   * Draws molecules.
+   * Draws each molecule as a separate Scenery node.
    * @param {Bounds2} beakerBounds beaker bounds in view coordinate frame
    * @constructor
    */
@@ -53,7 +57,6 @@ define( function( require ) {
   inherit( Node, MoleculesNode, {
 
     /**
-     * Draws each molecule as a separate Scenery node.
      * @param {Number} numberOfH3OMolecules
      * @param {Number} numberOfOHMolecules
      */
@@ -89,13 +92,59 @@ define( function( require ) {
     }
   } );
 
+  //-------------------------------------------------------------------------------------
+
+  /**
+   * Draws all molecules directly to Canvas.
+   * @param {Bounds2} beakerBounds beaker bounds in view coordinate frame
+   * @constructor
+   */
+  function MoleculesCanvas( beakerBounds ) {
+    CanvasNode.call( this, { canvasBounds: beakerBounds } );
+    this.numberOfH3OMolecules = 0; // @private
+    this.numberOfOHMolecules = 0; // @private
+  }
+
+  inherit( CanvasNode, MoleculesCanvas, {
+
+    /**
+     * @param {Number} numberOfH3OMolecules
+     * @param {Number} numberOfOHMolecules
+     */
+    drawMolecules: function( numberOfH3OMolecules, numberOfOHMolecules ) {
+      console.log( 'MoleculesCanvas.drawMolecules' );//XXX
+      if ( numberOfH3OMolecules !== this.numberOfH3OMolecules || numberOfOHMolecules !== this.numberOfOHMolecules ) {
+        this.numberOfH3OMolecules = numberOfH3OMolecules;
+        this.numberOfOHMolecules = numberOfOHMolecules;
+        this.invalidatePaint(); // results in paintCanvas being called
+      }
+    },
+
+    /**
+     * @override
+     * @protected
+     * @param {CanvasContextWrapper} wrapper
+     */
+    paintCanvas: function( wrapper ) {
+      console.log( 'MoleculesCanvas.paintCanvas' );//XXX
+      //TODO draw molecules based on this.numberOfH3OMolecules and this.numberOfOHMolecules, majority species behind minority species
+    }
+  } );
+
+  //-------------------------------------------------------------------------------------
+
   /**
    * @param {Beaker} beaker
    * @param {Solution} solution
    * @param {ModelViewTransform2} mvt
+   * @param {*} options
    * @constructor
    */
-  function RatioNode( beaker, solution, mvt ) {
+  function RatioNode( beaker, solution, mvt, options ) {
+
+    options = _.extend( {
+       strategy: 'nodes' // nodes: draw each molecule as a scenery Node; canvas: draw molecules directly to canvas
+    }, options );
 
     var thisNode = this;
     Node.call( thisNode );
@@ -110,7 +159,7 @@ define( function( require ) {
     var beakerBounds = mvt.modelToViewBounds( beaker.bounds );
 
     // parent for all molecules
-    thisNode.moleculesNode = new MoleculesNode( beakerBounds ); // @private
+    thisNode.moleculesNode = ( options.strategy === 'nodes' ) ? new MoleculesNode( beakerBounds ) : new MoleculesCanvas( beakerBounds ); // @private
     thisNode.addChild( thisNode.moleculesNode );
 
     // dev mode, show numbers of molecules in lower-left of beaker

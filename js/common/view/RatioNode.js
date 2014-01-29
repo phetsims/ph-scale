@@ -3,7 +3,7 @@
 /**
  * Visual representation of H3O+/OH- ratio.
  * Molecules are drawn as circles.
- * In pH range 6 to 8, the relationship between number of molecules and pH is log.
+ * In the pH range close to neutral, the relationship between number of molecules and pH is log.
  * Outside of that range, we can't possibly draw that many molecules, so we fake it using a linear relationship.
  *
  * @author Chris Malley (PixelZoom, Inc.)

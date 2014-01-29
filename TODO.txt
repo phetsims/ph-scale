@@ -35,6 +35,8 @@ Basics: Change color of 'Basics' pH display to match 'Solutions' and 'Custom'?
 
 Solutions: color and 'look' of zoom buttons?
 
+Solutions, Custom: Why are non-interactive graph indicators grayed out when their value is zero?
+
 Solutions, Custom: Make pH probe look like it's in the solution? If so, we'll need to revisit
 all colors to add transparency. And we'll need to reimplement the fluid the comes out of the dropper
 and water faucet, so that they extend only to the surface of the solution.

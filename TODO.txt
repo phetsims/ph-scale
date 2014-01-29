@@ -5,7 +5,7 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
-- why does RatioNode with option.strategy 'canvas' mess up the scene?
+- why is the scene messed up with RatioNode(...,{ strategy: 'canvas' }) ?
 - performance of 'H3O+/OH- ratio' feature
 
 MEDIUM

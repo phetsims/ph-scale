@@ -25,7 +25,7 @@ MIGRATE TO COMMON
 - DropperNode, Dropper
 - BeakerNode
 - ZoomButton to scenery-phet
-- toTimesTenString to phet-core
+- toScientificNotation to phet-core
 
 =========================================================================================================
 

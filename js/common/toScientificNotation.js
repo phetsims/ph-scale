@@ -7,13 +7,13 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   /*
-   * Converts a number to a format like 1.23 x 10^25
+   * Converts a number to scientific-notation format, like 1.23 x 10^25.
    * @param {Number} value the number to be formatted
    * @param {Number} decimalPlaces how many digits after the decimal point
    * @param {*} options
    * @return {String} HTML fragment
    */
-  var toTimesTenString = function( value, decimalPlaces, options ) {
+  var toScientificNotation = function( value, decimalPlaces, options ) {
 
     options = _.extend( {
       // if provided, use this exponent, otherwise determine the exponent dynamically with 1 digit to the left of the mantissa's decimal place
@@ -28,7 +28,7 @@ define( function( require ) {
       return '0';
     }
     else {
-      // Convert to a string in scientific notation (eg 2e+2).
+      // Convert to a string in exponential notation (eg 2e+2).
       // Request an additional decimal place, because toExponential uses toFixed, which doesn't round the same on all platforms.
       var exponentialString = value.toExponential( decimalPlaces + 1 );
 
@@ -50,5 +50,5 @@ define( function( require ) {
     }
   };
 
-  return toTimesTenString;
+  return toScientificNotation;
 } );

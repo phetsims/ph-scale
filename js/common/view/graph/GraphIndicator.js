@@ -18,7 +18,7 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
-  var toTimesTenString = require( 'PH_SCALE/common/toTimesTenString' );
+  var toScientificNotation = require( 'PH_SCALE/common/toScientificNotation' );
 
   // constants
   var POINTER_WIDTH_PERCENTAGE = 0.15;
@@ -200,7 +200,7 @@ define( function( require ) {
     valueProperty.link( function( value ) {
 
       // update the displayed value and center it
-      valueNode.text = toTimesTenString( value, options.decimalPlaces, { exponent: options.exponent } );
+      valueNode.text = toScientificNotation( value, options.decimalPlaces, { exponent: options.exponent } );
       valueNode.centerX = valueBackgroundNode.centerX;
       valueNode.centerY = valueBackgroundNode.centerY;
 

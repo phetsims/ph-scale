@@ -36,25 +36,25 @@ define( function( require ) {
 //  var OH_RADIUS = H3O_RADIUS;
 
   /**
-   * Draws molecules directly to a Canvas.
+   * Draws molecules.
    * @param canvasBounds
    * @constructor
    */
-  function MoleculesCanvasNode( canvasBounds ) {
+  function MoleculesNode( canvasBounds ) {
     CanvasNode.call( this, { canvasBounds: canvasBounds } );
     this.numberOfH3OMolecules = 0; // @private
     this.numberOfOHMolecules = 0; // @private
   }
 
-  inherit( CanvasNode, MoleculesCanvasNode, {
+  inherit( CanvasNode, MoleculesNode, {
 
     /**
-     * Draws molecules to the Canvas.
+     * Draws molecules directly to a Canvas.
      * @param {Number} numberOfH3OMolecules
      * @param {Number} numberOfOHMolecules
      */
     drawMolecules: function( numberOfH3OMolecules, numberOfOHMolecules ) {
-      console.log( 'MoleculesCanvasNode.drawMolecules' );//XXX
+      console.log( 'MoleculesNode.drawMolecules' );//XXX
       if ( numberOfH3OMolecules !== this.numberOfH3OMolecules || numberOfOHMolecules !== this.numberOfOHMolecules ) {
         this.numberOfH3OMolecules = numberOfH3OMolecules;
         this.numberOfOHMolecules = numberOfOHMolecules;
@@ -67,7 +67,7 @@ define( function( require ) {
      * @param {CanvasContextWrapper} wrapper
      */
     paintCanvas: function( wrapper ) {
-      console.log( 'MoleculesCanvasNode.paintCanvas' );//XXX
+      console.log( 'MoleculesNode.paintCanvas' );//XXX
       //TODO draw molecules based on this.numberOfH3OMolecules and this.numberOfOHMolecules
     }
   } );
@@ -93,7 +93,7 @@ define( function( require ) {
     var beakerBounds = mvt.modelToViewBounds( beaker.bounds );
 
     // @private molecules will be drawn directly to this Canvas
-    thisNode.canvasNode = new MoleculesCanvasNode( beakerBounds );
+    thisNode.canvasNode = new MoleculesNode( beakerBounds );
     //TODO if canvasNode is added to the scene, then the scene doesn't render properly
 //    thisNode.addChild( thisNode.canvasNode );
 

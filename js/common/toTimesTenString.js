@@ -19,14 +19,13 @@ define( function( require ) {
       // if provided, use this exponent, otherwise determine the exponent dynamically with 1 digit to the left of the mantissa's decimal place
       exponent: null,
       // size of the exponent superscript, relative to the '10', expressed as a percentage (100 is 'same size'), will be rounded to an integer
-      superscriptScale: 85
+      superscriptScale: 85,
+      // if true, zero will be '0' and not converted to times-ten format
+      zeroIsInteger: true
     }, options );
 
-    if ( value === 0 ) {
+    if ( value === 0 && options.zeroIsInteger ) {
       return '0';
-    }
-    else if ( options.exponent === 0 ) {
-      return Util.toFixed( value, decimalPlaces );
     }
     else {
       // Convert to a string in scientific notation (eg 2e+2).

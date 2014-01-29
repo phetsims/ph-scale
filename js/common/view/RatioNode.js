@@ -73,7 +73,7 @@ define( function( require ) {
     thisNode.numberOfOHProperty = new Property( 0 ); // @private
 
     // bounds of the beaker, in view coordinates
-    this.beakerBounds = mvt.modelToViewBounds( beaker.bounds );
+    thisNode.beakerBounds = mvt.modelToViewBounds( beaker.bounds );
 
     // parent for all molecules
     thisNode.moleculesParent = new Node(); // @private
@@ -87,18 +87,19 @@ define( function( require ) {
       thisNode.addChild( devParent );
 
       // show numbers of molecules in lower-left of beaker
-      var lowerLeft = mvt.modelToViewPosition( new Vector2( beaker.left, beaker.location.y ) );
-      var ratioText = new SubSupText( '?', { font: new PhetFont( 22 ), fill: 'black', left: lowerLeft.x + 50, bottom: lowerLeft.y - 20 } );
+      var beakerLocation = mvt.modelToViewPosition( beaker.location );
+      var ratioText = new SubSupText( '?', { font: new PhetFont( 30 ), fill: 'black', bottom: beakerLocation.y - 20 } );
       devParent.addChild( ratioText );
       var updateRatioText = function() {
-        ratioText.text = this.numberOfH3OProperty.get() + ' / ' + this.numberOfOHProperty.get();
+        ratioText.text = thisNode.numberOfH3OProperty.get() + ' / ' + thisNode.numberOfOHProperty.get();
+        ratioText.centerX = beakerLocation.x;
       };
-      this.numberOfH3OProperty.link( updateRatioText.bind( this ) );
-      this.numberOfOHProperty.link( updateRatioText.bind( this ) );
+      thisNode.numberOfH3OProperty.link( updateRatioText.bind( thisNode ) );
+      thisNode.numberOfOHProperty.link( updateRatioText.bind( thisNode ) );
     }
 
     // sync view with model
-    solution.pHProperty.link( this.update.bind( this ) );
+    solution.pHProperty.link( thisNode.update.bind( thisNode ) );
 
     // clip to the shape of the solution in the beaker
     solution.volumeProperty.link( function( volume ) {

@@ -37,11 +37,11 @@ define( function( require ) {
 
   /**
    * Draws molecules.
-   * @param canvasBounds
+   * @param {Bounds2} beakerBounds beaker bounds in view coordinate frame
    * @constructor
    */
-  function MoleculesNode( canvasBounds ) {
-    CanvasNode.call( this, { canvasBounds: canvasBounds } );
+  function MoleculesNode( beakerBounds ) {
+    CanvasNode.call( this, { canvasBounds: beakerBounds } );
     this.numberOfH3OMolecules = 0; // @private
     this.numberOfOHMolecules = 0; // @private
   }
@@ -186,7 +186,7 @@ define( function( require ) {
         // create molecules
         this.canvasNode.drawMolecules( numberOfH3O, numberOfOH );
 
-        // update counts
+        // update dev counts
         this.ratioText.text = numberOfH3O + ' / ' + numberOfOH;
       }
     }

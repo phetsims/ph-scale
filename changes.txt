@@ -1,3 +1,4 @@
+1/29/14 make RatioNode implementation more similar to RatioNodeWithCanvas, ie with inner type MoleculesNode
 1/29/14 use view coordinates to clip ratio feature to solution bounds
 1/29/14 first attempt at a version of RatioNode that draws to Canvas using CanvasNode (not working, messes up the entire scene)
 1/29/14 fix 'this' errors in RatioNode

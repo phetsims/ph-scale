@@ -39,15 +39,55 @@ define( function( require ) {
   var OH_RADIUS = H3O_RADIUS;
 
   /**
-   * @param {Number} diameter
+   * Draws molecules.
+   * @param {Bounds2} beakerBounds beaker bounds in view coordinate frame
    * @constructor
    */
-  function MoleculeNode( diameter, options ) {
-    options = _.extend( { fill: 'black' }, options );
-    Circle.call( this, diameter / 2, options );
+  function MoleculesNode( beakerBounds ) {
+    Node.call( this );
+    this.beakerBounds = beakerBounds; // @private
+    this.numberOfH3OMolecules = 0; // @private
+    this.numberOfOHMolecules = 0; // @private
   }
 
-  inherit( Circle, MoleculeNode );
+  inherit( Node, MoleculesNode, {
+
+    /**
+     * Draws each molecule as a separate Scenery node.
+     * @param {Number} numberOfH3OMolecules
+     * @param {Number} numberOfOHMolecules
+     */
+    drawMolecules: function( numberOfH3OMolecules, numberOfOHMolecules ) {
+      if ( numberOfH3OMolecules !== this.numberOfH3OMolecules || numberOfOHMolecules !== this.numberOfOHMolecules ) {
+
+        this.numberOfH3OMolecules = numberOfH3OMolecules;
+        this.numberOfOHMolecules = numberOfOHMolecules;
+
+        this.removeAllChildren();
+
+        // create molecules, minority species in foreground
+        if ( numberOfH3OMolecules > numberOfOHMolecules ) {
+          this.createMolecules( numberOfH3OMolecules, H3O_RADIUS, H3O_MAJORITY_COLOR );
+          this.createMolecules( numberOfOHMolecules, OH_RADIUS, OH_MINORITY_COLOR );
+        }
+        else {
+          this.createMolecules( numberOfOHMolecules, OH_RADIUS, OH_MAJORITY_COLOR );
+          this.createMolecules( numberOfH3OMolecules, H3O_RADIUS, H3O_MINORITY_COLOR );
+        }
+      }
+    },
+
+    // @private Adds a specified number of molecule nodes to the scene graph.
+    createMolecules: function( count, radius, color ) {
+      for ( var i = 0; i < count; i++ ) {
+        this.addChild( new Circle( radius, {
+          fill: color,
+          x: RatioNode.createRandomX( this.beakerBounds ),
+          y: RatioNode.createRandomY( this.beakerBounds )
+        } ) );
+      }
+    }
+  } );
 
   /**
    * @param {Beaker} beaker
@@ -67,14 +107,14 @@ define( function( require ) {
     thisNode.pH = null; // @private null to force an update
 
     // bounds of the beaker, in view coordinates
-    thisNode.beakerBounds = mvt.modelToViewBounds( beaker.bounds );
+    var beakerBounds = mvt.modelToViewBounds( beaker.bounds );
 
     // parent for all molecules
-    thisNode.moleculesParent = new Node(); // @private
-    thisNode.addChild( thisNode.moleculesParent );
+    thisNode.moleculesNode = new MoleculesNode( beakerBounds ); // @private
+    thisNode.addChild( thisNode.moleculesNode );
 
     // dev mode, show numbers of molecules in lower-left of beaker
-    thisNode.ratioText = new SubSupText( '?', { font: new PhetFont( 30 ), fill: 'black', left: thisNode.beakerBounds.getCenterX(), bottom: thisNode.beakerBounds.maxY - 20 } ); // @private
+    thisNode.ratioText = new SubSupText( '?', { font: new PhetFont( 30 ), fill: 'black', left: beakerBounds.getCenterX(), bottom: beakerBounds.maxY - 20 } ); // @private
     if ( window.phetcommon.getQueryParameter( 'dev' ) ) {
       thisNode.addChild( thisNode.ratioText );
     }
@@ -88,8 +128,8 @@ define( function( require ) {
         thisNode.clipArea = null;
       }
       else {
-        var solutionHeight = thisNode.beakerBounds.getHeight() * volume / beaker.volume;
-        thisNode.clipArea = Shape.rectangle( thisNode.beakerBounds.minX, thisNode.beakerBounds.maxY - solutionHeight, thisNode.beakerBounds.getWidth(), solutionHeight );
+        var solutionHeight = beakerBounds.getHeight() * volume / beaker.volume;
+        thisNode.clipArea = Shape.rectangle( beakerBounds.minX, beakerBounds.maxY - solutionHeight, beakerBounds.getWidth(), solutionHeight );
       }
     } );
   }
@@ -122,7 +162,6 @@ define( function( require ) {
       if ( this.pH !== pH ) {
 
         this.pH = pH;
-        this.moleculesParent.removeAllChildren();
         var numberOfH3O = 0;
         var numberOfOH = 0;
 
@@ -156,31 +195,13 @@ define( function( require ) {
           // convert to integer values
           numberOfH3O = Util.toFixedNumber( numberOfH3O, 0 );
           numberOfOH = Util.toFixedNumber( numberOfOH, 0 );
-
-          // create molecules, minority species in foreground
-          if ( numberOfH3O > numberOfOH ) {
-            this.createMolecules( numberOfH3O, H3O_RADIUS, H3O_MAJORITY_COLOR );
-            this.createMolecules( numberOfOH, OH_RADIUS, OH_MINORITY_COLOR );
-          }
-          else {
-            this.createMolecules( numberOfOH, OH_RADIUS, OH_MAJORITY_COLOR );
-            this.createMolecules( numberOfH3O, H3O_RADIUS, H3O_MINORITY_COLOR );
-          }
         }
 
-        // update counts
-        this.ratioText.text = numberOfH3O + ' / ' + numberOfOH;
-      }
-    },
+        // update molecules
+        this.moleculesNode.drawMolecules( numberOfH3O, numberOfOH );
 
-    // @private Adds a specified number of molecule nodes to the scene graph.
-    createMolecules: function( count, radius, color ) {
-      for ( var i = 0; i < count; i++ ) {
-        this.moleculesParent.addChild( new Circle( radius, {
-          fill: color,
-          x: RatioNode.createRandomX( this.beakerBounds ),
-          y: RatioNode.createRandomY( this.beakerBounds )
-        } ) );
+        // update dev counts
+        this.ratioText.text = numberOfH3O + ' / ' + numberOfOH;
       }
     }
   }, {

@@ -7,6 +7,8 @@ IMPLEMENTATION
 HIGH
 - why is the scene messed up with RatioNode(...,{ strategy: 'canvas' }) ?
 - performance of 'H3O+/OH- ratio' feature
+- set RatioNode.visible=false before it has a chance to create molecules, to reduce startup time
+- interactive graph seems to be crashing on iPad
 
 MEDIUM
 - make linear scale wider, use larger fonts for ticks?

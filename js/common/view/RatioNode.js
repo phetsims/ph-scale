@@ -168,7 +168,7 @@ define( function( require ) {
       thisNode.addChild( thisNode.ratioText );
     }
 
-    thisNode.mutate( options );
+    thisNode.mutate( options ); // call before registering for property notifications, because 'visible' significantly affects initialization time
 
     // sync view with model
     solution.pHProperty.link( thisNode.update.bind( thisNode ) );

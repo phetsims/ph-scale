@@ -66,7 +66,7 @@ define( function( require ) {
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
     // 'H3O+/OH- ratio' representation
-    var ratioNode = new RatioNode( model.beaker, model.solution, mvt );
+    var ratioNode = new RatioNode( model.beaker, model.solution, mvt, { visible: viewProperties.ratioVisibleProperty.get() } );
     viewProperties.ratioVisibleProperty.linkAttribute( ratioNode, 'visible' );
 
     // 'molecule count' representation

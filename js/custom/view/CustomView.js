@@ -46,7 +46,7 @@ define( function( require ) {
     var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, mvt );
 
     // 'H3O+/OH- ratio' representation
-    var ratioNode = new RatioNode( model.beaker, model.solution, mvt );
+    var ratioNode = new RatioNode( model.beaker, model.solution, mvt, { visible: viewProperties.ratioVisibleProperty.get() } );
     viewProperties.ratioVisibleProperty.linkAttribute( ratioNode, 'visible' );
 
     // 'molecule count' representation

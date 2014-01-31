@@ -168,6 +168,8 @@ define( function( require ) {
       thisNode.addChild( thisNode.ratioText );
     }
 
+    thisNode.mutate( options );
+
     // sync view with model
     solution.pHProperty.link( thisNode.update.bind( thisNode ) );
 

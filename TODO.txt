@@ -5,9 +5,9 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
+- auto-fill animation is a little fast?
 - why is the scene messed up with RatioNode(...,{ strategy: 'canvas' }) ?
 - performance of 'H3O+/OH- ratio' feature
-- set RatioNode.visible=false before it has a chance to create molecules, to reduce startup time
 - interactive graph seems to be crashing on iPad
 
 MEDIUM

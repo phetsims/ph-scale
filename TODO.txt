@@ -38,6 +38,8 @@ Basics: Change color of 'Basics' pH display to match 'Solutions' and 'Custom'?
 
 Solutions: How to indicate when values are off the scale of the Linear graph?
 
+Solutions: split the arrow head off of the Linear scale?
+
 Solutions: color and 'look' of zoom buttons?
 
 Solutions, Custom: Why are non-interactive graph indicators grayed out when their value is zero?

@@ -5,6 +5,8 @@ TODO list for ph-scale (HTML5)
 IMPLEMENTATION
 
 HIGH
+- Custom: pH picker gets stuck (or crashes?) on iPad
+- Solutions: Reset All button doesn't reset graph
 - auto-fill animation is a little fast?
 - why is the scene messed up with RatioNode(...,{ strategy: 'canvas' }) ?
 - performance of 'H3O+/OH- ratio' feature
@@ -35,6 +37,8 @@ MIGRATE TO COMMON
 DESIGN
 
 Basics: Change color of 'Basics' pH display to match 'Solutions' and 'Custom'?
+
+Basics, Solutions: Students are having difficulty using the faucets.
 
 Solutions: How to indicate when values are off the scale of the Linear graph?
 

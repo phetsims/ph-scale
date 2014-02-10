@@ -40,7 +40,7 @@ define( function( require ) {
       isInteractive: false,
       // scale
       scaleHeight: 100,
-      minScaleWidth: 40,
+      minScaleWidth: 100,
       scaleYMargin: 40, // space above/below top/bottom tick marks
       scaleCornerRadius: 20,
       scaleStroke: 'black',
@@ -93,7 +93,7 @@ define( function( require ) {
         tickLineLeft.centerY = options.scaleYMargin + ( i * ySpacing );
         tickLineRight.right = backgroundNode.right;
         tickLineRight.centerY = tickLineLeft.centerY;
-        tickLabel.left = tickLineLeft.right + options.majorTickXSpacing;
+        tickLabel.centerX = backgroundNode.centerX;
         tickLabel.centerY = tickLineLeft.centerY;
       }
       else {

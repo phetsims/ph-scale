@@ -1,3 +1,5 @@
+2/10/14 horizontally center major tick labels in log graph
+2/10/14 make linear and log graph scales wider, so we can use a larger tick font in linear
 2/10/14 swap positions of zoom in/out buttons, 'out' on left, 'in' on right
 1/30/14 set RatioNode.visible=false before it has a chance to create molecules, to reduce startup time
 1/29/14 replace RatioNodeWithCanvas with strategy pattern in RatioNode

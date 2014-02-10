@@ -39,7 +39,7 @@ define( function( require ) {
     options = _.extend( {
       // scale
       scaleHeight: 100,
-      minScaleWidth: 80,
+      minScaleWidth: 100,
       scaleFill: 'white',
       scaleStroke: 'black',
       scaleLineWidth: 2,
@@ -47,7 +47,7 @@ define( function( require ) {
       // arrow at top of scale
       arrowHeight: 20,
       // major ticks
-      majorTickFont: new PhetFont( 14 ),
+      majorTickFont: new PhetFont( 18 ),
       majorTickLength: 10,
       majorTickStroke: 'black',
       majorTickLineWidth: 1,

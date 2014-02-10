@@ -1,3 +1,4 @@
+2/10/14 make arrow always visible in linear graph, not just when some value is off-scale
 2/10/14 add a break below arrow head in linear graph
 2/10/14 slow down auto-fill animation (from 0.5 sec to 0.65 sec) because it seemed a little fast
 2/10/14 fixed bug in scenery-phet.NumberPicker that was causing multiple timers to be created, giving the appearance of being stuck, most noticeable on iPad

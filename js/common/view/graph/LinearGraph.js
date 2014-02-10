@@ -47,6 +47,7 @@ define( function( require ) {
       scaleYMargin: 20,
       // arrow at top of scale
       arrowHeight: 20,
+      arrowAlwaysVisible: true, //TODO if people like this behavior, delete the non-arrow version
       // major ticks
       majorTickFont: new PhetFont( 18 ),
       majorTickLength: 10,
@@ -219,8 +220,8 @@ define( function( require ) {
     // When the exponent changes...
     exponentProperty.link( function( exponent ) {
       // show the proper scale background (with or without arrow)
-      scaleNode.visible = ( exponent === exponentRange.max );
-      arrowNode.visible = arrowScaleNode.visible = offScaleNode.visible = maskRectangle.visible = !scaleNode.visible;
+      scaleNode.visible = ( exponent === exponentRange.max && !options.arrowAlwaysVisible );
+      arrowNode.visible = arrowScaleNode.visible = offScaleNode.visible = maskRectangle.visible = ( !scaleNode.visible );
       // relabel the tick marks
       updateTickLabels( exponent );
     } );

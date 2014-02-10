@@ -7,7 +7,6 @@ IMPLEMENTATION
 HIGH
 - add ticks that give a rough approximation of log scale, ala semi-log graph paper
 - change screen title: Solutions, Molecules, Custom
-- auto-fill animation is a little fast?
 - why is the scene messed up with RatioNode(...,{ strategy: 'canvas' }) ?
 - performance of 'H3O+/OH- ratio' feature
 - interactive graph seems to be crashing on iPad
@@ -15,7 +14,6 @@ HIGH
 - shift molecule labels on OH and H2O sliders closer to bottom edge of sliders, like H3O (??)
 
 MEDIUM
-- make linear scale wider, use larger fonts for ticks?
 - need new icon for 'Custom' screen
 - flesh out SubSupText (scenery-phet#29)
 
@@ -41,10 +39,6 @@ DESIGN
 Basics: Change color of 'Basics' pH display to match 'Solutions' and 'Custom'?
 
 Basics, Solutions: Students are having difficulty using the faucets.
-
-Solutions: How to indicate when values are off the scale of the Linear graph?
-
-Solutions: split the arrow head off of the Linear scale?
 
 Solutions, Custom: Why are non-interactive graph indicators grayed out when their value is zero?
     YY: Since the pH readout is also null (-), it makes sense that the corresponding graph would have a null readout as well

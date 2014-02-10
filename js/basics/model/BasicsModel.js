@@ -125,7 +125,7 @@ define( function( require ) {
     startAutoFill: function() {
       this.isAutoFilling = true;
       this.dropper.onProperty.set( true );
-      this.dropper.flowRateProperty.set( 1 ); // faster than standard flow rate
+      this.dropper.flowRateProperty.set( 0.75 ); // faster than standard flow rate
     },
 
     /**

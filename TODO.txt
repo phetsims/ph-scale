@@ -7,12 +7,12 @@ IMPLEMENTATION
 HIGH
 - add ticks that give a rough approximation of log scale, ala semi-log graph paper
 - change screen title: Solutions, Molecules, Custom
-- Custom: pH picker gets stuck (or crashes?) on iPad
 - auto-fill animation is a little fast?
 - why is the scene messed up with RatioNode(...,{ strategy: 'canvas' }) ?
 - performance of 'H3O+/OH- ratio' feature
 - interactive graph seems to be crashing on iPad
 - add a break in the Linear graph, just below the arrow head
+- shift molecule labels on OH and H2O sliders closer to bottom edge of sliders, like H3O (??)
 
 MEDIUM
 - make linear scale wider, use larger fonts for ticks?
@@ -53,5 +53,7 @@ Solutions, Custom: Why are non-interactive graph indicators grayed out when thei
 Solutions, Custom: Make pH probe look like it's in the solution? If so, we'll need to revisit
 all colors to add transparency. And we'll need to reimplement the fluid the comes out of the dropper
 and water faucet, so that they extend only to the surface of the solution.
+
+Custom: Students are not finding the handles on the graph indicators.
 
 =========================================================================================================

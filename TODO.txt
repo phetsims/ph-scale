@@ -9,7 +9,6 @@ HIGH
 - change screen title: Solutions, Molecules, Custom
 - why is the scene messed up with RatioNode(...,{ strategy: 'canvas' }) ?
 - performance of 'H3O+/OH- ratio' feature
-- interactive graph seems to be crashing on iPad
 - add a break in the Linear graph, just below the arrow head
 - shift molecule labels on OH and H2O sliders closer to bottom edge of sliders, like H3O (??)
 

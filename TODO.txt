@@ -39,6 +39,9 @@ Basics: Change color of 'Basics' pH display to match 'Solutions' and 'Custom'?
 
 Basics, Solutions: Students are having difficulty using the faucets.
 
+Solutions: Should linear graph always have an arrow head? Making it appear and disappear adds a variable
+that doesn't need to be there.
+
 Solutions, Custom: Why are non-interactive graph indicators grayed out when their value is zero?
     YY: Since the pH readout is also null (-), it makes sense that the corresponding graph would have a null readout as well
     CM: then should graph indicators read '-' instead of '0'?

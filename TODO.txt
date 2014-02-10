@@ -7,9 +7,9 @@ IMPLEMENTATION
 HIGH
 - add ticks that give a rough approximation of log scale, ala semi-log graph paper
 - change screen title: Solutions, Molecules, Custom
+- shift molecule labels on OH and H2O sliders closer to bottom edge of sliders, like H3O (??)
 - why is the scene messed up with RatioNode(...,{ strategy: 'canvas' }) ?
 - performance of 'H3O+/OH- ratio' feature
-- shift molecule labels on OH and H2O sliders closer to bottom edge of sliders, like H3O (??)
 
 MEDIUM
 - need new icon for 'Custom' screen

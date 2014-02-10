@@ -1,3 +1,4 @@
+2/10/14 swap positions of zoom in/out buttons, 'out' on left, 'in' on right
 1/30/14 set RatioNode.visible=false before it has a chance to create molecules, to reduce startup time
 1/29/14 replace RatioNodeWithCanvas with strategy pattern in RatioNode
 1/29/14 make RatioNode implementation more similar to RatioNodeWithCanvas, ie with inner type MoleculesNode

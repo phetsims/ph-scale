@@ -120,11 +120,11 @@ define( function( require ) {
 
       // zoom buttons for the linear graph
       var magnifyingGlassRadius = 10;
-      var zoomInButton = new ZoomButton( { in: true, radius: magnifyingGlassRadius } );
       var zoomOutButton = new ZoomButton( { in: false, radius: magnifyingGlassRadius } );
-      var zoomButtons = new Node( { children: [ zoomInButton, zoomOutButton ]} );
-      zoomOutButton.left = zoomInButton.right + 10;
-      zoomOutButton.centerY = zoomInButton.centerY;
+      var zoomInButton = new ZoomButton( { in: true, radius: magnifyingGlassRadius } );
+      var zoomButtons = new Node( { children: [ zoomOutButton, zoomInButton ]} );
+      zoomInButton.left = zoomOutButton.right + 10;
+      zoomInButton.centerY = zoomOutButton.centerY;
 
       // scale switch (Logarithmic vs Linear)
       var graphScaleProperty = new Property( options.graphScale );

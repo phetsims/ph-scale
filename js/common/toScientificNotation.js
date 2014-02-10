@@ -27,6 +27,9 @@ define( function( require ) {
     if ( value === 0 && options.zeroIsInteger ) {
       return '0';
     }
+    else if ( options.exponent === 0 ) {
+      return Util.toFixed( value, decimalPlaces );
+    }
     else {
       // Convert to a string in exponential notation (eg 2e+2).
       // Request an additional decimal place, because toExponential uses toFixed, which doesn't round the same on all platforms.

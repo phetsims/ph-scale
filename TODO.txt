@@ -10,7 +10,6 @@ HIGH
 - why is the scene messed up with RatioNode(...,{ strategy: 'canvas' }) ?
 - performance of 'H3O+/OH- ratio' feature
 - shift molecule labels on OH and H2O sliders closer to bottom edge of sliders, like H3O (??)
-- H2O values on graph displaying as '60.0 x 10^0', should be 55
 
 MEDIUM
 - need new icon for 'Custom' screen

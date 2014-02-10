@@ -22,7 +22,10 @@ define( function( require ) {
    * @constructor
    */
   function H2OIndicator( valueProperty, options ) {
-    options = _.extend( { pointerLocation: 'bottomLeft' }, options );
+    options = _.extend( {
+      exponent: 0,
+      decimalPlaces: 0,
+      pointerLocation: 'bottomLeft' }, options );
     var labelNode = new SubSupText( 'H<sub>2</sub>O', { font: new PhetFont( 28 ), fill: 'white' } );
     GraphIndicator.call( this, valueProperty, new H2OMoleculeNode(), labelNode, PHScaleColors.H2O_BACKGROUND, options );
   }

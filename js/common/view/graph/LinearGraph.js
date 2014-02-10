@@ -62,7 +62,7 @@ define( function( require ) {
     var arrowWidth = 1.5 * scaleWidth;
     var arrowHeight = options.arrowHeight;
 
-    // scale with arrow at top
+    // scale with arrow at top, starting from arrow tip and moving clockwise
     var arrowScaleNode = new Path( new Shape()
       .moveTo( 0, 0 )
       .lineTo( arrowWidth / 2, arrowHeight )

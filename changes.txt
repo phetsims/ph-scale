@@ -1,3 +1,4 @@
+2/10/14 apply 'Reset All' to the graphs
 2/10/14 fill linear graph scale with gray RGB(230,230,230), which is roughly the fill at the the midpoint of the log scale
 2/10/14 horizontally center major tick labels in log graph
 2/10/14 make linear and log graph scales wider, so we can use a larger tick font in linear

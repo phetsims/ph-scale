@@ -69,6 +69,7 @@ define( function( require ) {
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
       viewProperties.reset();
+      graphNode.reset();
     } );
 
     // Parent for all nodes added to this screen

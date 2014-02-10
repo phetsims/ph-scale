@@ -8,7 +8,6 @@ HIGH
 - add ticks that give a rough approximation of log scale, ala semi-log graph paper
 - change screen title: Solutions, Molecules, Custom
 - Custom: pH picker gets stuck (or crashes?) on iPad
-- Solutions, Custom: Reset All button doesn't reset graph
 - auto-fill animation is a little fast?
 - why is the scene messed up with RatioNode(...,{ strategy: 'canvas' }) ?
 - performance of 'H3O+/OH- ratio' feature

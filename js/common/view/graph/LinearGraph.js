@@ -18,6 +18,7 @@ define( function( require ) {
   var OHIndicator = require( 'PH_SCALE/common/view/graph/OHIndicator' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
@@ -61,16 +62,29 @@ define( function( require ) {
     var scaleHeight = options.scaleHeight;
     var arrowWidth = 1.5 * scaleWidth;
     var arrowHeight = options.arrowHeight;
+    var arrowHeadHeight = 0.85 * arrowHeight;
+    var arrowYOffset = -10;
 
-    // scale with arrow at top, starting from arrow tip and moving clockwise
-    var arrowScaleNode = new Path( new Shape()
+    // arrow above scale, starting from arrow tip and moving clockwise
+    var arrowNode = new Path( new Shape()
       .moveTo( 0, 0 )
-      .lineTo( arrowWidth / 2, arrowHeight )
+      .lineTo( arrowWidth / 2, arrowHeadHeight )
+      .lineTo( scaleWidth / 2, arrowHeadHeight )
       .lineTo( scaleWidth / 2, arrowHeight )
+      .cubicCurveTo( -scaleWidth / 4, 0.75 * arrowHeight, scaleWidth / 4, 1.25 * arrowHeight, -scaleWidth / 2, arrowHeight )
+      .lineTo( -scaleWidth / 2, arrowHeadHeight )
+      .lineTo( -arrowWidth / 2, arrowHeadHeight )
+      .close(),
+      { fill: options.scaleFill, stroke: options.scaleStroke, lineWidth: options.scaleLineWidth, top: arrowYOffset }
+    );
+    thisNode.addChild( arrowNode );
+
+    // scale with arrow above it
+    var arrowScaleNode = new Path( new Shape()
+      .moveTo( -scaleWidth / 2, arrowHeight )
+      .cubicCurveTo( scaleWidth / 4, 1.25 * arrowHeight, -scaleWidth / 4, 0.75 * arrowHeight,scaleWidth / 2, arrowHeight )
       .lineTo( scaleWidth / 2, scaleHeight )
       .lineTo( -scaleWidth / 2, scaleHeight )
-      .lineTo( -scaleWidth / 2, arrowHeight )
-      .lineTo( -arrowWidth / 2, arrowHeight )
       .close(),
       { fill: options.scaleFill, stroke: options.scaleStroke, lineWidth: options.scaleLineWidth }
     );
@@ -82,12 +96,19 @@ define( function( require ) {
     );
     thisNode.addChild( scaleNode );
 
-    //TODO restrict to a maximum width
-    // 'off scale' label that goes in arrow
+    //TODO restrict to a maximum width for i18n
+    // 'off scale' label, positioned inside arrow
     var offScaleNode = new Text( 'off scale', { font: new PhetFont( 14 ), fill: 'black' } );
     thisNode.addChild( offScaleNode );
-    offScaleNode.centerX = arrowScaleNode.centerX;
-    offScaleNode.centerY = arrowScaleNode.top + ( 0.75 * arrowHeight );
+    offScaleNode.centerX = arrowNode.centerX;
+    offScaleNode.y = arrowNode.top + ( 0.85 * arrowHeadHeight );
+
+    // Hack to hide a line that's visible behind the graph when the arrow is displayed.
+    var maskRectangle = new Rectangle( 0, 0, 30, 0.75 * arrowHeight, { fill: PHScaleColors.SCREEN_BACKGROUND } );
+    thisNode.addChild( maskRectangle );
+    maskRectangle.moveToBack();
+    maskRectangle.centerX = arrowNode.centerX;
+    maskRectangle.centerY = arrowNode.bottom;
 
     // Create the tick marks. Correct labels will be assigned later.
     var tickLabels = [];
@@ -137,7 +158,7 @@ define( function( require ) {
       var topTickValue = mantissaRange.max * Math.pow( 10, exponentProperty.get() );
       if ( value > topTickValue ) {
         // values out of range are placed in the arrow
-        return offScaleNode.centerY;
+        return arrowNode.top + ( 0.9 * arrowHeadHeight );
       }
       else {
         return Util.linear( 0, topTickValue, tickLabels[0].centerY, tickLabels[tickLabels.length-1].centerY, value );
@@ -199,7 +220,7 @@ define( function( require ) {
     exponentProperty.link( function( exponent ) {
       // show the proper scale background (with or without arrow)
       scaleNode.visible = ( exponent === exponentRange.max );
-      arrowScaleNode.visible = offScaleNode.visible = !scaleNode.visible;
+      arrowNode.visible = arrowScaleNode.visible = offScaleNode.visible = maskRectangle.visible = !scaleNode.visible;
       // relabel the tick marks
       updateTickLabels( exponent );
     } );

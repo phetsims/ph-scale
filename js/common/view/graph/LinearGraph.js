@@ -144,12 +144,17 @@ define( function( require ) {
     thisNode.addChild( h3OIndicatorNode );
     thisNode.addChild( oHIndicatorNode );
 
-    // Given a value, compute it's y position relative to the top of the scale.
-    var valueToY = function( value ) {
+    /*
+     * Given a value, compute it's y position relative to the top of the scale.
+     * @param {Number} value in model coordinates
+     * @param {Number} offScaleYOffset optional y-offset added to the position if the value is off the scale
+     * @return {Number} y postion in view coordinates
+     */
+    var valueToY = function( value, offScaleYOffset ) {
       var topTickValue = mantissaRange.max * Math.pow( 10, exponentProperty.get() );
       if ( value > topTickValue ) {
         // values out of range are placed in the arrow
-        return arrowNode.top + ( 0.8 * arrowHeadHeight );
+        return arrowNode.top + ( 0.8 * arrowHeadHeight ) + ( offScaleYOffset || 0 );
       }
       else {
         return Util.linear( 0, topTickValue, tickLabels[0].centerY, tickLabels[tickLabels.length-1].centerY, value );
@@ -172,7 +177,7 @@ define( function( require ) {
         valueOH = solution.getMolesOH();
       }
       // move indicators
-      h2OIndicatorNode.y = valueToY( valueH2O );
+      h2OIndicatorNode.y = valueToY( valueH2O, -4 ); // offset the H2O indicator when off scale, so it doesn't butt up again OH indicator
       h3OIndicatorNode.y = valueToY( valueH3O );
       oHIndicatorNode.y = valueToY( valueOH );
       // update indicator values

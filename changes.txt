@@ -1,4 +1,5 @@
 # 1.0.0-dev.10 2/10/14
+2/10/14 offset the H2O indicator when off scale, so it doesn't butt up again OH indicator
 2/10/14 shorten line between expand/collapse box and graph scale, remove masking hack from linear graph
 2/10/14 reduce height of linear scale a bit, so that zoom buttons aren't crowded by graph indicators, may make them more inviting
 2/10/14 restore original height of log scale in 'Solutions' so that indicators don't overlap scale switch when beaker is empty

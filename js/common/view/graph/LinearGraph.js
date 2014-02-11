@@ -18,7 +18,6 @@ define( function( require ) {
   var OHIndicator = require( 'PH_SCALE/common/view/graph/OHIndicator' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );

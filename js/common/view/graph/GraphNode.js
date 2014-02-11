@@ -138,8 +138,7 @@ define( function( require ) {
         { size: new Dimension2( 50, 25 ), centerOnButton: true } );
 
       // vertical line that connects bottom of graph to top of scale switch
-      var ySpacing = 15;
-      var lineToSwitchNode = new Line( 0, 0, 0, zoomButtons.height + ( 2 * ySpacing ), { stroke: 'black ' } );
+      var lineToSwitchNode = new Line( 0, 0, 0, 200, { stroke: 'black ' } );
 
       // rendering order
       graphNode.addChild( lineToSwitchNode );
@@ -149,14 +148,17 @@ define( function( require ) {
       graphNode.addChild( graphScaleSwitch );
 
       // layout
+      var ySpacing = 15;
       linearGraph.centerX = logarithmicGraph.centerX;
       linearGraph.y = logarithmicGraph.y; // y, not top
-      lineToSwitchNode.centerX = lineToBarNode.centerX;
-      lineToSwitchNode.top = logarithmicGraph.y + options.linearScaleHeight - 1;
-      graphScaleSwitch.centerX = lineToSwitchNode.centerX;
-      graphScaleSwitch.top = lineToSwitchNode.bottom - 1;
       zoomButtons.centerX = logarithmicGraph.centerX;
-      zoomButtons.centerY = lineToSwitchNode.centerY;
+      zoomButtons.top = linearGraph.y + options.linearScaleHeight + ( 2 * ySpacing );
+      graphScaleSwitch.centerX = lineToSwitchNode.centerX;
+      graphScaleSwitch.top = zoomButtons.bottom + ySpacing;
+      lineToSwitchNode.centerX = lineToBarNode.centerX;
+      lineToSwitchNode.bottom = graphScaleSwitch.top + 1;
+
+
 
       // handle scale changes
       thisNode.graphScaleProperty.link( function( graphScale ) {

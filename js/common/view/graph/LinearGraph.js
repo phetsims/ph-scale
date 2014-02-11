@@ -104,6 +104,7 @@ define( function( require ) {
     offScaleNode.centerX = arrowNode.centerX;
     offScaleNode.y = arrowNode.top + ( 0.85 * arrowHeadHeight );
 
+    //TODO delete this if arrow is always visible
     // Hack to hide a line that's visible behind the graph when the arrow is displayed.
     var maskRectangle = new Rectangle( 0, 0, 30, 0.75 * arrowHeight, { fill: PHScaleColors.SCREEN_BACKGROUND } );
     thisNode.addChild( maskRectangle );

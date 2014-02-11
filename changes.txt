@@ -1,3 +1,5 @@
+2/10/14 reduce height of linear scale a bit, so that zoom buttons aren't crowded by graph indicators, may make them more inviting
+2/10/14 restore original height of log scale in 'Solutions' so that indicators don't overlap scale switch when beaker is empty
 2/10/14 increase height of arrow head on linear graph
 2/10/14 increase y-margin on linear scale, so that it looks more balanced and is similar to log scale
 2/10/14 increase horizontal spacing between zoom buttons a bit, increase touch areas

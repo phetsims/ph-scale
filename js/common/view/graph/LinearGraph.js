@@ -46,7 +46,7 @@ define( function( require ) {
       scaleLineWidth: 2,
       scaleYMargin: 30,
       // arrow at top of scale
-      arrowHeight: 20,
+      arrowHeight: 75,
       arrowAlwaysVisible: true, //TODO if people like this behavior, delete the non-arrow version
       // major ticks
       majorTickFont: new PhetFont( 18 ),
@@ -64,7 +64,7 @@ define( function( require ) {
     var arrowWidth = 1.5 * scaleWidth;
     var arrowHeight = options.arrowHeight;
     var arrowHeadHeight = 0.85 * arrowHeight;
-    var arrowYOffset = -10;
+    var arrowGap = -10; // this controls the vertical gap between the arrow and the scale
 
     // arrow above scale, starting from arrow tip and moving clockwise
     var arrowNode = new Path( new Shape()
@@ -76,7 +76,7 @@ define( function( require ) {
       .lineTo( -scaleWidth / 2, arrowHeadHeight )
       .lineTo( -arrowWidth / 2, arrowHeadHeight )
       .close(),
-      { fill: options.scaleFill, stroke: options.scaleStroke, lineWidth: options.scaleLineWidth, top: arrowYOffset }
+      { fill: options.scaleFill, stroke: options.scaleStroke, lineWidth: options.scaleLineWidth, top: arrowGap }
     );
     thisNode.addChild( arrowNode );
 
@@ -157,7 +157,7 @@ define( function( require ) {
       var topTickValue = mantissaRange.max * Math.pow( 10, exponentProperty.get() );
       if ( value > topTickValue ) {
         // values out of range are placed in the arrow
-        return arrowNode.top + ( 0.9 * arrowHeadHeight );
+        return arrowNode.top + ( 0.8 * arrowHeadHeight );
       }
       else {
         return Util.linear( 0, topTickValue, tickLabels[0].centerY, tickLabels[tickLabels.length-1].centerY, value );

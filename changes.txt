@@ -1,3 +1,4 @@
+2/10/14 increase horizontal spacing between zoom buttons a bit, increase touch areas
 2/10/14 Custom: made log scale a tag shorter, so that there's some whitespace below graph indicators when they're dragged to bottom of screen
 2/10/14 reduce y-margin on log scale from 40 to 30
 2/10/14 make log scale taller in 'Solutions' screen

@@ -125,8 +125,11 @@ define( function( require ) {
       var zoomOutButton = new ZoomButton( { in: false, radius: magnifyingGlassRadius } );
       var zoomInButton = new ZoomButton( { in: true, radius: magnifyingGlassRadius } );
       var zoomButtons = new Node( { children: [ zoomOutButton, zoomInButton ]} );
-      zoomInButton.left = zoomOutButton.right + 10;
+      zoomInButton.left = zoomOutButton.right + 20;
       zoomInButton.centerY = zoomOutButton.centerY;
+      // expand touch area
+      zoomOutButton.touchArea = zoomOutButton.localBounds.dilate( 5, 5 );
+      zoomInButton.touchArea = zoomOutButton.localBounds.dilate( 5, 5 );
 
       // scale switch (Logarithmic vs Linear)
       thisNode.graphScaleProperty = new Property( options.graphScale ); // @private

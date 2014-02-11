@@ -272,7 +272,7 @@ define( function( require ) {
       return bounds.x + ( Math.random() * bounds.getWidth() );
     },
 
-    // @private @static Creates a random {Number} y-cordinate inside some {Bounds2} bounds.
+    // @private @static Creates a random {Number} y-coordinate inside some {Bounds2} bounds.
     createRandomY: function( bounds ) {
       return bounds.y + ( Math.random() * bounds.getHeight() );
     }

@@ -9,7 +9,7 @@ HIGHEST
 - see build-a-molecule.Molecule3DNode for example of using scenery.DOM and a properly-sized canvas
 - performance of 'H3O+/OH- ratio' feature stinks (plan on interviewing without this)
 
-HIGHu
+HIGH
 - add 'tap to dispense' feature to faucets?
 - add ticks that give a rough approximation of log scale, ala semi-log graph paper (I don't understand spec, replacing minor ticks is problematic)
 - change screen titles: Basics -> Solutions, Solutions -> Molecules (are you certain of the names? this requires major code reorganization)

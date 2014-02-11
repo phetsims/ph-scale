@@ -4,12 +4,15 @@ TODO list for ph-scale (HTML5)
 
 IMPLEMENTATION
 
-HIGH
-- add ticks that give a rough approximation of log scale, ala semi-log graph paper
-- change screen title: Solutions, Molecules, Custom
-- shift molecule labels on OH and H2O sliders closer to bottom edge of sliders, like H3O (??)
+HIGHEST
 - why is the scene messed up with RatioNode(...,{ strategy: 'canvas' }) ?
-- performance of 'H3O+/OH- ratio' feature
+- performance of 'H3O+/OH- ratio' feature (plan on interviewing without this)
+
+HIGH
+- add 'tap to dispense' feature to faucets?
+- add ticks that give a rough approximation of log scale, ala semi-log graph paper (I don't understand spec)
+- change screen title: Solutions, Molecules, Custom
+- shift molecule labels on OH and H2O sliders closer to bottom edge of sliders, like H3O (I don't understand spec)
 
 MEDIUM
 - need new icon for 'Custom' screen

@@ -10,6 +10,7 @@ HIGHEST
 - performance of 'H3O+/OH- ratio' feature stinks (plan on interviewing without this)
 
 HIGH
+- flesh out SubSupText (scenery-phet#29)
 - add 'tap to dispense' feature to faucets?
 - add ticks that give a rough approximation of log scale, ala semi-log graph paper (I don't understand spec, replacing minor ticks is problematic)
 - change screen titles: Basics -> Solutions, Solutions -> Molecules (are you certain of the names? this requires major code reorganization)
@@ -17,7 +18,6 @@ HIGH
 
 MEDIUM
 - need new icon for 'Custom' screen
-- flesh out SubSupText (scenery-phet#29)
 - GraphNode layout code could be more robust
 
 LOW

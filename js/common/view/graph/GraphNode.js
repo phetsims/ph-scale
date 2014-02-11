@@ -158,8 +158,6 @@ define( function( require ) {
       lineToSwitchNode.centerX = lineToBarNode.centerX;
       lineToSwitchNode.bottom = graphScaleSwitch.top + 1;
 
-
-
       // handle scale changes
       thisNode.graphScaleProperty.link( function( graphScale ) {
         logarithmicGraph.visible = ( graphScale === GraphScale.LOGARITHMIC );

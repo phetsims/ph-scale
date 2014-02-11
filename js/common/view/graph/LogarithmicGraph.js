@@ -41,7 +41,7 @@ define( function( require ) {
       // scale
       scaleHeight: 100,
       minScaleWidth: 100,
-      scaleYMargin: 40, // space above/below top/bottom tick marks
+      scaleYMargin: 30, // space above/below top/bottom tick marks
       scaleCornerRadius: 20,
       scaleStroke: 'black',
       scaleLineWidth: 2,

@@ -1,3 +1,6 @@
+2/10/14 reduce y-margin on log scale from 40 to 30
+2/10/14 make log scale taller in 'Solutions' screen
+2/10/14 decouple heights of log and linear scales
 2/10/14 fix display of H2O values on graph indicators, broken when I rewrote toScientificNotation on 1/29/14
 2/10/14 make arrow always visible in linear graph, not just when some value is off-scale
 2/10/14 add a break below arrow head in linear graph

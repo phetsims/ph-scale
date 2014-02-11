@@ -63,7 +63,7 @@ define( function( require ) {
     // graph
     var graphNode = new GraphNode( model.solution, {
       isInteractive: true,
-      scaleHeight: 575
+      logScaleHeight: 575
     } );
 
     var resetAllButton = new ResetAllButton( function() {

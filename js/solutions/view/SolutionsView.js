@@ -79,7 +79,8 @@ define( function( require ) {
     // graph
     var graphNode = new GraphNode( model.solution, {
       hasLinearFeature: true,
-      scaleHeight: 475
+      logScaleHeight: 515,
+      linearScaleHeight: 475
     } );
 
     // pH meter

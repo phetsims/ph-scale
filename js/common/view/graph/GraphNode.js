@@ -47,7 +47,8 @@ define( function( require ) {
 
     options = _.extend( {
       isInteractive: false, // only the Log scale can be interactive
-      scaleHeight: 100,
+      logScaleHeight: 500,
+      linearScaleHeight: 500,
       expanded: true, // initial state, true=expanded, false=collapsed
       units: GraphUnits.MOLES_PER_LITER, // initial state of the units switch
       hasLinearFeature: false, // add the linear graph feature?
@@ -81,7 +82,7 @@ define( function( require ) {
 
     // logarithmic graph
     var logarithmicGraph = new LogarithmicGraph( solution, thisNode.graphUnitsProperty, {
-      scaleHeight: options.scaleHeight,
+      scaleHeight: options.logScaleHeight,
       isInteractive: options.isInteractive
     } );
 
@@ -116,7 +117,7 @@ define( function( require ) {
       thisNode.exponentProperty = new Property( exponentRange.max ); // @private
       var linearGraph = new LinearGraph( solution, thisNode.graphUnitsProperty, mantissaRange, exponentRange, thisNode.exponentProperty, {
         arrowHeight: 60,
-        scaleHeight: options.scaleHeight
+        scaleHeight: options.linearScaleHeight
       } );
 
       // zoom buttons for the linear graph
@@ -149,7 +150,7 @@ define( function( require ) {
       linearGraph.centerX = logarithmicGraph.centerX;
       linearGraph.y = logarithmicGraph.y; // y, not top
       lineToSwitchNode.centerX = lineToBarNode.centerX;
-      lineToSwitchNode.top = logarithmicGraph.y + options.scaleHeight - 1;
+      lineToSwitchNode.top = logarithmicGraph.y + options.linearScaleHeight - 1;
       graphScaleSwitch.centerX = lineToSwitchNode.centerX;
       graphScaleSwitch.top = lineToSwitchNode.bottom - 1;
       zoomButtons.centerX = logarithmicGraph.centerX;

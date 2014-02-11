@@ -17,6 +17,7 @@ HIGH
 MEDIUM
 - need new icon for 'Custom' screen
 - flesh out SubSupText (scenery-phet#29)
+- GraphNode layout code could be more robust
 
 LOW
 - values in graph indicators don't gray out when disabled because scenery.HTMLText doesn't support opacity

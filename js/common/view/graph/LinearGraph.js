@@ -104,14 +104,6 @@ define( function( require ) {
     offScaleNode.centerX = arrowNode.centerX;
     offScaleNode.y = arrowNode.top + ( 0.85 * arrowHeadHeight );
 
-    //TODO delete this if arrow is always visible
-    // Hack to hide a line that's visible behind the graph when the arrow is displayed.
-    var maskRectangle = new Rectangle( 0, 0, 30, 0.75 * arrowHeight, { fill: PHScaleColors.SCREEN_BACKGROUND } );
-    thisNode.addChild( maskRectangle );
-    maskRectangle.moveToBack();
-    maskRectangle.centerX = arrowNode.centerX;
-    maskRectangle.centerY = arrowNode.bottom;
-
     // Create the tick marks. Correct labels will be assigned later.
     var tickLabels = [];
     var numberOfTicks = mantissaRange.getLength() + 1;
@@ -220,7 +212,7 @@ define( function( require ) {
     exponentProperty.link( function( exponent ) {
       // show the proper scale background (with or without arrow)
       scaleNode.visible = ( exponent === exponentRange.max && !options.arrowAlwaysVisible );
-      arrowNode.visible = arrowScaleNode.visible = offScaleNode.visible = maskRectangle.visible = ( !scaleNode.visible );
+      arrowNode.visible = arrowScaleNode.visible = offScaleNode.visible = ( !scaleNode.visible );
       // relabel the tick marks
       updateTickLabels( exponent );
     } );

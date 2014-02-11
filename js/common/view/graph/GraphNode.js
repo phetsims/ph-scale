@@ -87,7 +87,7 @@ define( function( require ) {
     } );
 
     // vertical line that connects bottom of expand/collapse bar to top of graph
-    var lineToBarNode = new Line( 0, 0, 0, 200, { stroke: 'black' } );
+    var lineToBarNode = new Line( 0, 0, 0, 75, { stroke: 'black' } );
 
     // rendering order
     thisNode.addChild( expandCollapseBar );

@@ -1,3 +1,4 @@
+2/11/14 temporarily hide the 'ratio' feature if we're not running in dev mode, so it doesn't interfere with interviews
 # 1.0.0-dev.10 2/10/14
 2/10/14 offset the H2O indicator when off scale, so it doesn't butt up again OH indicator
 2/10/14 shorten line between expand/collapse box and graph scale, remove masking hack from linear graph

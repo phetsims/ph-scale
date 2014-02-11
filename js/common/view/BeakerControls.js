@@ -50,8 +50,13 @@ define( function( require ) {
 
     var separator = new Line( 0, 0, Math.max( moleculeCountCheckBox.width, ratioCheckBox.width ), 0, { stroke: 'gray' } );
 
+    var children = [ ratioCheckBox, separator, moleculeCountCheckBox ];
+    if ( !window.phetcommon.getQueryParameter( 'dev' ) ) {
+      children = [ moleculeCountCheckBox ]; //TODO temporarily hide the ratio feature until it's usable
+    }
+
     var content = new VBox( {
-      children: [ ratioCheckBox, separator, moleculeCountCheckBox ],
+      children: children,
       align: 'left',
       spacing: 10
     } );

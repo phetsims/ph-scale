@@ -44,7 +44,7 @@ define( function( require ) {
       scaleFill: 'rgb(230,230,230)',
       scaleStroke: 'black',
       scaleLineWidth: 2,
-      scaleYMargin: 20,
+      scaleYMargin: 30,
       // arrow at top of scale
       arrowHeight: 20,
       arrowAlwaysVisible: true, //TODO if people like this behavior, delete the non-arrow version

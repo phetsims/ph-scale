@@ -10,8 +10,8 @@ HIGHEST
 
 HIGH
 - add 'tap to dispense' feature to faucets?
-- add ticks that give a rough approximation of log scale, ala semi-log graph paper (I don't understand spec)
-- change screen title: Solutions, Molecules, Custom
+- add ticks that give a rough approximation of log scale, ala semi-log graph paper (I don't understand spec, replacing minor ticks is problematic)
+- change screen titles: Basics -> Solutions, Solutions -> Molecules (are you certain of the names? this requires major code reorganization)
 - shift molecule labels on OH and H2O sliders closer to bottom edge of sliders, like H3O (I don't understand spec)
 
 MEDIUM

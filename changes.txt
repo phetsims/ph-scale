@@ -1,3 +1,4 @@
+# 1.0.0-dev.12 2/12/14
 2/12/14 change tap-to-dispense parameters: flowRate=0.15, interval=333
 2/12/14 lighten color of pH probe from RGB(80,80,80) to RGB(140,140,140)
 2/12/14 new screen names: Basics -> Macro, Solutions -> Micro

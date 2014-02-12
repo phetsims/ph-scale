@@ -35,7 +35,7 @@ define( function( require ) {
     EXPAND_COLLAPSE_BUTTON_LENGTH: 30,
 
     // tap-to-dispense feature for faucets
-    TAP_TO_DISPENSE_AMOUNT: 0.05, // L
+    TAP_TO_DISPENSE_FLOW_RATE: 0.15, // L/sec
     TAP_TO_DISPENSE_INTERVAL: 333 // ms
   };
 } );

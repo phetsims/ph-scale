@@ -18,7 +18,7 @@ define( function( require ) {
   var SolutionsView = require( 'PH_SCALE/solutions/view/SolutionsView' );
 
   // strings
-  var screenTitle = require( 'string!PH_SCALE/solutions' );
+  var screenTitle = require( 'string!PH_SCALE/micro' );
 
   // images
   var screenIcon = require( 'image!PH_SCALE/Solutions-screen-icon.png' );

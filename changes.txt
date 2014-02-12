@@ -1,3 +1,4 @@
+2/12/14 new screen names: Basics -> Macro, Solutions -> Micro
 2/12/14 new icon for 'Custom' screen
 # 1.0.0-dev.11 2/12/14
 2/12/14 add tap-to-dispense feature to faucets, dispense 0.01L in 0.5 sec

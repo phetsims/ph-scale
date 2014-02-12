@@ -11,10 +11,9 @@ HIGHEST
 
 HIGH
 - flesh out SubSupText (scenery-phet#29)
-- add 'tap to dispense' feature to faucets?
-- change screen titles: Basics -> Solutions, Solutions -> Molecules (are you certain of the names? this requires major code reorganization)
 
 MEDIUM
+ - rename Basics -> Macro, Solutions -> Micro throughout
 
 LOW
 - GraphNode layout code could be more robust

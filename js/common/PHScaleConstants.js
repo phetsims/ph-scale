@@ -32,6 +32,10 @@ define( function( require ) {
     LINEAR_MANTISSA_RANGE: new Range( 0, 8 ),
 
     // expand/collapse buttons
-    EXPAND_COLLAPSE_BUTTON_LENGTH: 30
+    EXPAND_COLLAPSE_BUTTON_LENGTH: 30,
+
+    // tap-to-dispense feature for faucets
+    TAP_TO_DISPENSE_AMOUNT: 0.05, // L
+    TAP_TO_DISPENSE_INTERVAL: 333 // ms
   };
 } );

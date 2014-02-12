@@ -27,15 +27,13 @@ define( function( require ) {
     Node.call( this );
 
     var scale = 0.6;
-    var tapToDispenseAmount = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES ); // L
-    var tapToDispenseInterval = 500; // ms
 
     var horizontalPipeLength = Math.abs( mvt.modelToViewX( faucet.location.x - faucet.pipeMinX ) ) / scale;
     var faucetNode = new FaucetNode( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
       horizontalPipeLength: horizontalPipeLength,
       verticalPipeLength: 20,
-      tapToDispenseFlowRate: tapToDispenseAmount / ( tapToDispenseInterval / 1000 ), // L/sec
-      tapToDispenseInterval: tapToDispenseInterval
+      tapToDispenseFlowRate: PHScaleConstants.TAP_TO_DISPENSE_AMOUNT / ( PHScaleConstants.TAP_TO_DISPENSE_INTERVAL / 1000 ), // L/sec
+      tapToDispenseInterval: PHScaleConstants.TAP_TO_DISPENSE_INTERVAL
     } );
     faucetNode.translation = mvt.modelToViewPosition( faucet.location );
     faucetNode.setScaleMagnitude( -scale, scale ); // reflect

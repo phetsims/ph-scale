@@ -1,3 +1,4 @@
+2/12/14 lighten color of pH probe from RGB(80,80,80) to RGB(140,140,140)
 2/12/14 new screen names: Basics -> Macro, Solutions -> Micro
 2/12/14 new icon for 'Custom' screen
 # 1.0.0-dev.11 2/12/14

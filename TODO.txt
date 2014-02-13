@@ -14,13 +14,11 @@ HIGH
 - flesh out SubSupText (scenery-phet#29)
 
 MEDIUM
- - rename Basics -> Macro, Solutions -> Micro throughout code, images, GitHub (after names have survived interviews and team review)
+- rename Basics -> Macro, Solutions -> Micro throughout code, images, GitHub (after names have survived interviews and team review)
 
 LOW
-- get asset file from YY for screen icons
 - GraphNode layout code could be more robust
 - values in graph indicators don't gray out when disabled because scenery.HTMLText doesn't support opacity
-- nicer handles on graph indicators, match design doc mockups, perhaps use images
 - test various multi-touch scenarios
 - ComboBox: add background color behind arrow button (sun#43)
 - port strings from Java
@@ -38,19 +36,6 @@ MIGRATE TO COMMON
 DESIGN
 
 Basics: Change color of 'Basics' pH display to match 'Solutions' and 'Custom'?
-
-Basics, Solutions: Students are having difficulty using the faucets.
-
-Solutions: Should linear graph always have an arrow head? Making it appear and disappear adds a variable
-that doesn't need to be there.
-
-Solutions, Custom: Why are non-interactive graph indicators grayed out when their value is zero?
-    YY: Since the pH readout is also null (-), it makes sense that the corresponding graph would have a null readout as well
-    CM: then should graph indicators read '-' instead of '0'?
-
-Solutions, Custom: Make pH probe look like it's in the solution? If so, we'll need to revisit
-all colors to add transparency. And we'll need to reimplement the fluid the comes out of the dropper
-and water faucet, so that they extend only to the surface of the solution.
 
 Custom: Students are not finding the handles on the graph indicators.
 

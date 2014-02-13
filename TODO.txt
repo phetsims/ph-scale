@@ -13,7 +13,7 @@ HIGH
 - flesh out SubSupText (scenery-phet#29)
 
 MEDIUM
- - rename Basics -> Macro, Solutions -> Micro throughout
+ - rename Basics -> Macro, Solutions -> Micro throughout (after names have survived interviews and team review)
 
 LOW
 - get asset file from YY for screen icons

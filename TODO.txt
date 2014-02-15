@@ -10,10 +10,10 @@ HIGHEST
 - performance of 'H3O+/OH- ratio' feature stinks (plan on interviewing without this)
 
 HIGH
-- add arrows to interactive graph indicators (permanent at first, then 'disappear when any indicator is dragged')
 - flesh out SubSupText (scenery-phet#29)
 
 MEDIUM
+- pointer areas are a little off for interactive graph indicators
 - rename Basics -> Macro, Solutions -> Micro throughout code, images, GitHub (after names have survived interviews and team review)
 
 LOW

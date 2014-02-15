@@ -1,3 +1,4 @@
+2/15/14 add interactive arrows to graph indicators
 2/15/14 delete handle and shadow from interactive graph indicators, in preparation for adding arrows
 2/15/14 changes options interface for tap-to-dispense feature in FaucetNode
 2/12/14 revised 'Custom' screen icon, .ai file for all screen icons

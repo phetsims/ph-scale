@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Matrix3 = require( 'DOT/Matrix3' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -35,6 +36,7 @@ define( function( require ) {
   function GraphIndicatorNode( valueProperty, moleculeNode, formulaNode, backgroundFill, options ) {
 
     options = _.extend( {
+      scale: 0.75, // specified by design team
       pointerLocation: 'topRight', // values: topLeft, topRight, bottomLeft, bottomRight
       backgroundWidth: 160,
       backgroundHeight: 80,
@@ -49,12 +51,13 @@ define( function( require ) {
       ySpacing: 4,
       decimalPlaces: 1,
       exponent: null, // request a specific exponent
-      isInteractive: false
+      isInteractive: false,
+      arrowFill: 'rgb(0,200,0)',
+      arrowXSpacing: 5
     }, options );
 
     var thisNode = this;
     Node.call( thisNode );
-    thisNode.setScaleMagnitude( 0.75 ); //TODO eliminate this?
 
     // Transform shapes to support various orientations of pointer.
     var shapeMatrix;
@@ -101,7 +104,7 @@ define( function( require ) {
 
     // Value, scaled to fit background height
     var valueNode = new SubSupText( '?', { font: new PhetFont( 28 ), fill: 'black' } );
-    valueNode.setScaleMagnitude( 0.7 ); //TODO compute scale
+    valueNode.setScaleMagnitude( 0.7 );
 
     // molecule and formula, scaled to fit available height
     var moleculeAndFormula = new Node();
@@ -109,12 +112,23 @@ define( function( require ) {
     moleculeAndFormula.addChild( formulaNode );
     formulaNode.left = moleculeNode.right + options.xSpacing;
     formulaNode.centerY = moleculeNode.centerY;
-    moleculeAndFormula.setScaleMagnitude( 0.7 ); //TODO compute scale
+    moleculeAndFormula.setScaleMagnitude( 0.7 );
+
+    // double-headed arrow
+    var arrowNode = new ArrowNode( 0, 0, 0, 50, {
+      doubleHead: true,
+      tailWidth: 8,
+      headWidth: 22,
+      headHeight: 18,
+      fill: options.arrowFill,
+      stroke: 'black',
+      lineWidth: 2,
+      scale: 1.25
+    } );
 
     // rendering order
     if ( options.isInteractive ) {
-      thisNode.cursor = 'pointer';
-      //TODO arrows
+      thisNode.addChild( arrowNode );
     }
     thisNode.addChild( backgroundNode );
     thisNode.addChild( valueBackgroundNode );
@@ -123,22 +137,29 @@ define( function( require ) {
 
     // layout, relative to backgroundNode
     if ( options.pointerLocation === 'topRight' || options.pointerLocation === 'bottomRight' ) {
-      //TODO arrows
+      arrowNode.right = backgroundNode.left - options.arrowXSpacing;
       valueBackgroundNode.left = backgroundNode.left + options.backgroundXMargin;
     }
     else {
-      //TODO arrows
+      arrowNode.left = backgroundNode.right + options.arrowXSpacing;
       valueBackgroundNode.right = backgroundNode.right - options.backgroundXMargin;
     }
-    //TODO arrows
+    arrowNode.centerY = backgroundNode.centerY;
     valueBackgroundNode.top = backgroundNode.top + options.backgroundYMargin;
     moleculeAndFormula.centerX = valueBackgroundNode.centerX;
     moleculeAndFormula.top = valueBackgroundNode.bottom + options.ySpacing;
 
-    // set pickable false for nodes that don't need to be interactive, to improve performance.
-    valueNode.pickable = false;
-    valueBackgroundNode.pickable = false;
-    moleculeAndFormula.pickable = false;
+    if ( options.isInteractive ) {
+      thisNode.cursor = 'pointer';
+
+      // make the entire bounds interactive, so there's no dead space between background and arrows
+      thisNode.mouseArea = thisNode.touchArea = thisNode.localBounds;
+
+      // set pickable false for nodes that don't need to be interactive, to improve performance.
+      valueNode.pickable = false;
+      valueBackgroundNode.pickable = false;
+      moleculeAndFormula.pickable = false;
+    }
 
     // sync with value
     valueProperty.link( function( value ) {

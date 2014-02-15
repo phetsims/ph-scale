@@ -49,10 +49,7 @@ define( function( require ) {
       ySpacing: 4,
       decimalPlaces: 1,
       exponent: null, // request a specific exponent
-      isInteractive: false,
-      shadowFill: 'rgba(200,200,200,0.6)',
-      shadowXOffset: 4,
-      shadowYOffset: 6
+      isInteractive: false
     }, options );
 
     var thisNode = this;
@@ -62,7 +59,7 @@ define( function( require ) {
     // Transform shapes to support various orientations of pointer.
     var shapeMatrix;
     if ( options.pointerLocation === 'topRight' ) {
-      shapeMatrix = Matrix3.identity(); // background and handle shapes will be drawn with pointer at top-right
+      shapeMatrix = Matrix3.identity(); // background shape will be drawn with pointer at top-right
     }
     else if ( options.pointerLocation === 'topLeft' ) {
       shapeMatrix = Matrix3.scaling( -1, 1 );
@@ -93,46 +90,6 @@ define( function( require ) {
       stroke: options.backgroundStroke,
       fill: backgroundFill } );
 
-    // Optional background shadow
-    var backgroundShadowNode = new Path( backgroundShape, {
-      fill: options.shadowFill
-    });
-
-    //TODO make this shape look more like the mockups?
-    // Optional handle
-    var handleWidth = 0.15 * options.backgroundWidth;
-    var handleHeight = 0.7 * options.backgroundHeight;
-    var handleThickness = 0.1 * options.backgroundHeight;
-    var handleRadius = 0.5 * handleThickness;
-    var handleShape = new Shape()
-      .moveTo( 0, 0 )
-      .lineTo( -handleWidth + handleThickness/2, 0 )
-      .arc( -handleWidth + handleThickness/2, handleThickness/2, handleRadius, -Math.PI/2, -Math.PI, true )
-      .lineTo( -handleWidth, handleHeight - handleThickness/2 )
-      .arc( -handleWidth + handleThickness/2, handleHeight - handleThickness/2, handleRadius, Math.PI, Math.PI/2, true )
-      .lineTo( 0, handleHeight )
-      .lineTo( 0, handleHeight - handleThickness )
-      .lineTo( -handleWidth + 1.5 * handleThickness, handleHeight - handleThickness )
-      .arc( -handleWidth + 1.5 * handleThickness, handleHeight - 1.5 * handleThickness, handleRadius, Math.PI/2, Math.PI, false )
-      .lineTo( -handleWidth + handleThickness, 1.5 * handleThickness )
-      .arc( -handleWidth + 1.5 * handleThickness, 1.5 * handleThickness, handleRadius, -Math.PI, -Math.PI/2, false )
-      .lineTo( 0, handleThickness )
-      .close().
-      transformed( shapeMatrix );
-    var handleNode = new Path( handleShape, {
-      fill: 'rgb(240,240,240)', //TODO use a gradient to make it look like brushed metal?
-      stroke: 'black',
-      lineWidth: 1
-    });
-
-    // Optional handle shadow
-    var handleShadowNode = new Path( handleShape, {
-      fill: options.shadowFill
-    });
-
-    // Invisible rectangle over the handle, so that the hole between the handle and background isn't a 'dead zone' for interactivity.
-    var handleOverlay = new Rectangle( 0, 0, handleWidth, handleHeight );
-
     // Cutout where the value is displayed.
     var valueBackgroundNode = new Rectangle( 0, 0,
       ( ( 1 - POINTER_WIDTH_PERCENTAGE ) * options.backgroundWidth ) - ( 2 * options.backgroundXMargin ),
@@ -157,11 +114,7 @@ define( function( require ) {
     // rendering order
     if ( options.isInteractive ) {
       thisNode.cursor = 'pointer';
-      // interactive indicators get a drop-shadow and handle
-      thisNode.addChild( backgroundShadowNode );
-      thisNode.addChild( handleShadowNode );
-      thisNode.addChild( handleNode );
-      thisNode.addChild( handleOverlay );
+      //TODO arrows
     }
     thisNode.addChild( backgroundNode );
     thisNode.addChild( valueBackgroundNode );
@@ -169,29 +122,20 @@ define( function( require ) {
     thisNode.addChild( moleculeAndFormula );
 
     // layout, relative to backgroundNode
-    backgroundShadowNode.right = backgroundNode.right + options.shadowXOffset;
-    backgroundShadowNode.bottom = backgroundNode.bottom + options.shadowYOffset;
     if ( options.pointerLocation === 'topRight' || options.pointerLocation === 'bottomRight' ) {
-      handleNode.right = backgroundNode.left + 1;
+      //TODO arrows
       valueBackgroundNode.left = backgroundNode.left + options.backgroundXMargin;
     }
     else {
-      handleNode.left = backgroundNode.right - 1;
+      //TODO arrows
       valueBackgroundNode.right = backgroundNode.right - options.backgroundXMargin;
     }
-    handleNode.centerY = backgroundNode.centerY;
-    handleOverlay.left = handleNode.left;
-    handleOverlay.top = handleNode.top;
-    handleShadowNode.right = handleNode.right + options.shadowXOffset;
-    handleShadowNode.bottom = handleNode.bottom + options.shadowYOffset;
+    //TODO arrows
     valueBackgroundNode.top = backgroundNode.top + options.backgroundYMargin;
     moleculeAndFormula.centerX = valueBackgroundNode.centerX;
     moleculeAndFormula.top = valueBackgroundNode.bottom + options.ySpacing;
 
-    // only backgroundNode and handleOverlay need to be pickable, set pickable false for other nodes to improve performance.
-    backgroundShadowNode.pickable = false;
-    handleNode.pickable = false;
-    handleShadowNode.pickable = false;
+    // set pickable false for nodes that don't need to be interactive, to improve performance.
     valueNode.pickable = false;
     valueBackgroundNode.pickable = false;
     moleculeAndFormula.pickable = false;

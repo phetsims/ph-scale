@@ -1,3 +1,4 @@
+2/15/14 changes options interface for tap-to-dispense feature in FaucetNode
 2/12/14 revised 'Custom' screen icon, .ai file for all screen icons
 # 1.0.0-dev.12 2/12/14
 2/12/14 change tap-to-dispense parameters: flowRate=0.15, interval=333

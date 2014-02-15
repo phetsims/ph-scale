@@ -32,7 +32,7 @@ define( function( require ) {
     var faucetNode = new FaucetNode( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
       horizontalPipeLength: horizontalPipeLength,
       verticalPipeLength: 20,
-      tapToDispenseFlowRate: PHScaleConstants.TAP_TO_DISPENSE_FLOW_RATE,
+      tapToDispenseAmount: PHScaleConstants.TAP_TO_DISPENSE_AMOUNT,
       tapToDispenseInterval: PHScaleConstants.TAP_TO_DISPENSE_INTERVAL
     } );
     faucetNode.translation = mvt.modelToViewPosition( faucet.location );

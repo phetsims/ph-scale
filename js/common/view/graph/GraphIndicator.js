@@ -115,15 +115,14 @@ define( function( require ) {
     moleculeAndFormula.setScaleMagnitude( 0.7 );
 
     // double-headed arrow
-    var arrowNode = new ArrowNode( 0, 0, 0, 50, {
+    var arrowNode = new ArrowNode( 0, 0, 0, 60, {
       doubleHead: true,
-      tailWidth: 8,
-      headWidth: 22,
-      headHeight: 18,
+      tailWidth: 10,
+      headWidth: 28,
+      headHeight: 22,
       fill: options.arrowFill,
       stroke: 'black',
-      lineWidth: 2,
-      scale: 1.25
+      lineWidth: 2
     } );
 
     // rendering order

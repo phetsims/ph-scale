@@ -115,7 +115,7 @@ define( function( require ) {
     moleculeAndFormula.setScaleMagnitude( 0.7 );
 
     // double-headed arrow
-    var arrowNode = new ArrowNode( 0, 0, 0, 60, {
+    var arrowNode = new ArrowNode( 0, 0, 0, 0.75 * options.backgroundHeight, {
       doubleHead: true,
       tailWidth: 10,
       headWidth: 28,

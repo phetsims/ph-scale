@@ -33,7 +33,7 @@ define( function( require ) {
    * @param {*} options
    * @constructor
    */
-  function GraphIndicatorNode( valueProperty, moleculeNode, formulaNode, backgroundFill, options ) {
+  function GraphIndicator( valueProperty, moleculeNode, formulaNode, backgroundFill, options ) {
 
     options = _.extend( {
       scale: 0.75, // specified by design team
@@ -177,5 +177,5 @@ define( function( require ) {
     thisNode.mutate( options );
   }
 
-  return inherit( Node, GraphIndicatorNode );
+  return inherit( Node, GraphIndicator );
 } );

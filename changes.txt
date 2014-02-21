@@ -1,3 +1,4 @@
+2/20/14 fix problem with timers in tap-to-dispense feature of FaucetNode, phetsims/phet-scale#1, phetsims/scenery-phet#31
 # 1.0.0-dev.13 2/15/14
 2/15/14 add interactive arrows to graph indicators
 2/15/14 delete handle and shadow from interactive graph indicators, in preparation for adding arrows

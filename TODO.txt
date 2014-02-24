@@ -11,7 +11,6 @@ HIGHEST
 
 HIGH
 - #3 interactive graph indicators become non-responsive after a few uses on iPad (HTMLText)
-- #1 problem with tap-to-dispense on faucets
 - flesh out SubSupText (scenery-phet#29)
 
 MEDIUM

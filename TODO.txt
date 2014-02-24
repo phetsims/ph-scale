@@ -15,7 +15,7 @@ HIGH
 
 MEDIUM
 - make zoom buttons larger and increase x-spacing?
-- pointer areas are a little off for interactive graph indicators
+- pointer areas are a little off for interactive graph indicators (due to HTMLText incorrect bounds for values)
 - rename Basics -> Macro, Solutions -> Micro throughout code, images, GitHub (after names have survived interviews and team review)
 
 LOW

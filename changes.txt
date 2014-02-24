@@ -1,6 +1,7 @@
 2/24/14 start fleshing out SubSupText with options and setters/getters
 2/24/14 clicking on faucet shooter cancels any tap-to-dispense that may be in progress, scenery-phet#31
 2/24/14 #4, limit precision of pH in model so that consistent values are presented to user
+2/24/14 #3 investigate why interactive graph indicators are failing on iPad, traced to scenery.HTMLText, abandoned there
 2/24/14 prevent needless creation of an additional custom solute in the case where the pH is unchanged
 2/20/14 fix problem with timers in tap-to-dispense feature of FaucetNode, phetsims/phet-scale#1, phetsims/scenery-phet#31
 # 1.0.0-dev.13 2/15/14

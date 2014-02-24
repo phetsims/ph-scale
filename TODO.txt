@@ -1,8 +1,9 @@
 TODO list for ph-scale (HTML5)
 
-=========================================================================================================
-
-IMPLEMENTATION
+DESIGN
+- Macro: Change color of pH display to match other screens?
+- Micro: make zoom buttons larger and increase x-spacing?
+- Custom: pH picker 'up' button feels a little too close to the pH meter 'close' button
 
 HIGHEST
 - RatioNode(...,{ strategy: 'canvas' }) is running out of memory because of the number of layers created by HTMLText
@@ -10,16 +11,14 @@ HIGHEST
 - performance of 'H3O+/OH- ratio' feature stinks (plan on interviewing without this)
 
 HIGH
-- #3 interactive graph indicators become non-responsive after a few uses on iPad (HTMLText)
 - flesh out SubSupText (scenery-phet#29)
+- #3 interactive graph indicators become non-responsive after a few uses on iPad (HTMLText)
 
 MEDIUM
-- make zoom buttons larger and increase x-spacing?
 - pointer areas are a little off for interactive graph indicators (due to HTMLText incorrect bounds for values)
 - rename Basics -> Macro, Solutions -> Micro throughout code, images, GitHub (after names have survived interviews and team review)
 
 LOW
-- pH picker 'up' button feels a little too close to the pH meter 'close' button
 - GraphNode layout code could be more robust
 - values in graph indicators don't gray out when disabled because scenery.HTMLText doesn't support opacity
 - test various multi-touch scenarios
@@ -33,13 +32,3 @@ MIGRATE TO COMMON
 - BeakerNode to scenery-phet
 - ZoomButton to scenery-phet
 - toScientificNotation to phet-core
-
-=========================================================================================================
-
-DESIGN
-
-Basics: Change color of 'Basics' pH display to match 'Solutions' and 'Custom'?
-
-Custom: Students are not finding the handles on the graph indicators.
-
-=========================================================================================================

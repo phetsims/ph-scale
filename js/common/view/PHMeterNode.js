@@ -67,7 +67,9 @@ define( function( require ) {
         pickerValueProperty.set( pH );
       } );
       pickerValueProperty.link( function( pH ) {
-        if ( pH !== null ) { solution.soluteProperty.set( Solute.createCustom( pH ) ); }
+        if ( pH !== null && pH !== solution.pHProperty.get() ) {
+          solution.soluteProperty.set( Solute.createCustom( pH ) );
+        }
       } );
 
       // pH picker,

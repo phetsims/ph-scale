@@ -10,6 +10,7 @@ HIGHEST
 - performance of 'H3O+/OH- ratio' feature stinks (plan on interviewing without this)
 
 HIGH
+- Custom: interactive graph indicators become non-responsive after using pH picker on iPad
 - #1, problem with tap-to-dispense on faucets
 - flesh out SubSupText (scenery-phet#29)
 

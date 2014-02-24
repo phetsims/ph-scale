@@ -10,8 +10,8 @@ HIGHEST
 - performance of 'H3O+/OH- ratio' feature stinks (plan on interviewing without this)
 
 HIGH
-- Custom: interactive graph indicators become non-responsive after a few uses on iPad
-- #1, problem with tap-to-dispense on faucets
+- #3 interactive graph indicators become non-responsive after a few uses on iPad (HTMLText)
+- #1 problem with tap-to-dispense on faucets
 - flesh out SubSupText (scenery-phet#29)
 
 MEDIUM

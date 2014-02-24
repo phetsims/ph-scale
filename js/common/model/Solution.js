@@ -45,7 +45,13 @@ define( function( require ) {
 
     // pH, null if no value
     thisSolution.pHProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.waterVolumeProperty ],
-      function() { return PHModel.solutionToPH( thisSolution ); } );
+      function() {
+        var pH = PHModel.solutionToPH( thisSolution );
+        if ( pH !== null ) {
+          pH = Util.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ); // constrain to the pH meter format, see issue #4
+        }
+        return pH;
+      } );
 
     // color
     thisSolution.colorProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.pHProperty ],

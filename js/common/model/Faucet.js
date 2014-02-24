@@ -27,8 +27,6 @@ define( function( require ) {
       enabled: true
     }, options );
 
-    assert && assert( pipeMinX < location.x ); // pipe enters the faucet from the left
-
     var thisFaucet = this;
 
     thisFaucet.location = location;

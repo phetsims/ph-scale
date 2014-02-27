@@ -19,7 +19,6 @@ define( function( require ) {
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Property = require( 'AXON/Property' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -84,7 +83,7 @@ define( function( require ) {
     // scale below the arrow
     var scaleNode = new Path( new Shape()
       .moveTo( -scaleWidth / 2, arrowHeight )
-      .cubicCurveTo( scaleWidth / 4, 1.25 * arrowHeight, -scaleWidth / 4, 0.75 * arrowHeight,scaleWidth / 2, arrowHeight )
+      .cubicCurveTo( scaleWidth / 4, 1.25 * arrowHeight, -scaleWidth / 4, 0.75 * arrowHeight, scaleWidth / 2, arrowHeight )
       .lineTo( scaleWidth / 2, scaleHeight )
       .lineTo( -scaleWidth / 2, scaleHeight )
       .close(),
@@ -153,7 +152,7 @@ define( function( require ) {
         return arrowNode.top + ( 0.8 * arrowHeadHeight ) + ( offScaleYOffset || 0 );
       }
       else {
-        return Util.linear( 0, topTickValue, tickLabels[0].centerY, tickLabels[tickLabels.length-1].centerY, value );
+        return Util.linear( 0, topTickValue, tickLabels[0].centerY, tickLabels[tickLabels.length - 1].centerY, value );
       }
     };
 

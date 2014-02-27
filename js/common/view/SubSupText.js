@@ -20,12 +20,16 @@ define( function( require ) {
 
     // defaults
     options = _.extend( {
-      font: new PhetFont(),
-      fill: 'black',
-      subScale: 0.85, // percentage of text size
-      supScale: 0.85, // percentage of text size
-      subYOffset: 0.5, // percentage of text height, positive is above baseline, negative is below baseline
-      supYOffset: 0.5 // percentage of text height, positive is above baseline, negative is below baseline
+      fill: 'black', // used for all text
+      font: new PhetFont( 20 ), // font used for everything that's not a subscript or superscript
+      // subscripts
+      subFont: new PhetFont( 16 ),
+      subXOffset: 2,
+      subYOffset: 5, // y-offset from baseline
+      // superscripts
+      supFont: new PhetFont( 16 ),
+      supXOffset: 2,
+      supYOffset: -20 // y-offset from baseline //TODO offset from cap line would be better
     }, options );
 
     // scenery.Text properties with setters and getters
@@ -39,13 +43,19 @@ define( function( require ) {
     this._textParent = new Node(); // @private
     this.addChild( this._textParent );
 
-    // TODO render using a single HTMLText for now
-    this._textParent.addChild( new HTMLText( text, { font: options.font, fill: options.fill } ) );
+    this._htmlText = new HTMLText( this._text, { font: this._font, fill: this._fill } ); //TODO delete this, use HTMLText for now
+    this._textParent.addChild( this._htmlText );
+    this.update();
 
     this.mutate( options ); //TODO be careful about which options are passed to supertype
   }
 
   return inherit( Node, SubSupText, {
+
+    // @private
+    update: function() {
+      //TODO parse this._text and build scene graph
+    },
 
     //TODO add setters and getters for other scenery.Text properties as needed
 
@@ -53,10 +63,8 @@ define( function( require ) {
 
     setText: function( text ) {
       this._text = text;
-      var childrenCount = this._textParent.getChildrenCount();
-      for ( var i = 0; i < childrenCount; i++ ) {
-        this._textParent.getChildAt( i ).text = text;
-      }
+      this._htmlText.text = text; //TODO delete this
+      this.update();
     },
 
     getText: function() { return this._text; },
@@ -64,22 +72,6 @@ define( function( require ) {
     // ES5
     set text( value ) { this.setText( value ); },
     get text() { return this.getText(); },
-
-    // font ----------------------------------------------------------
-
-    setFont: function( font ) {
-      this._font = font;
-      var childrenCount = this._textParent.getChildrenCount();
-      for ( var i = 0; i < childrenCount; i++ ) {
-        this._textParent.getChildAt( i ).font = font;
-      }
-    },
-
-    getFont: function() { return this._font; },
-
-    // ES5
-    set font( value ) { this.setFont( value ); },
-    get font() { return this.getFont(); },
 
     // fill ----------------------------------------------------------
 

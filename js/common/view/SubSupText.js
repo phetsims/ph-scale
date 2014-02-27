@@ -4,6 +4,7 @@
  * Renders text that contains subscripts and superscripts. This is intended primarily to render
  * chemical formulae (e.g., 'H<sub>3</sub>O<sup>+</sup>') and 'power-of-ten' numbers (e.g. '4.2 x 10<sup>8</sup>').
  * Uses HTML markup, ignores all tags except <sub> and <sup>.
+ * Nesting of tags is not supported.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

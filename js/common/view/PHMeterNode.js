@@ -36,7 +36,7 @@ define( function( require ) {
   // constants
   var X_MARGIN = 14;
   var Y_MARGIN = 10;
-  var Y_SPACING = 10;
+  var Y_SPACING = 15;
   var CORNER_RADIUS = 12;
 
   /**
@@ -142,7 +142,7 @@ define( function( require ) {
     labelNode.top = expandedRectangle.top + Y_MARGIN;
     labelNode.left = X_MARGIN;
     valueNode.centerX = expandedRectangle.centerX;
-    valueNode.top = labelNode.bottom + Y_MARGIN;
+    valueNode.top = labelNode.bottom + Y_SPACING;
     expandCollapseButton.right = expandedRectangle.right - X_MARGIN;
     expandCollapseButton.centerY = labelNode.centerY;
 

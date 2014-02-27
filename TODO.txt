@@ -2,8 +2,6 @@ TODO list for ph-scale (HTML5)
 
 DESIGN
 - Macro: Change color of pH display to match other screens?
-- Micro: make zoom buttons larger and increase x-spacing?
-- Custom: pH picker 'up' button feels a little too close to the pH meter 'close' button
 
 HIGHEST
 - RatioNode(...,{ strategy: 'canvas' }) is running out of memory because of the number of layers created by HTMLText

@@ -46,7 +46,6 @@ define( function( require ) {
       scaleYMargin: 30,
       // arrow at top of scale
       arrowHeight: 75,
-      arrowAlwaysVisible: true, //TODO if people like this behavior, delete the non-arrow version
       // major ticks
       majorTickFont: new PhetFont( 18 ),
       majorTickLength: 10,
@@ -79,19 +78,13 @@ define( function( require ) {
     );
     thisNode.addChild( arrowNode );
 
-    // scale with arrow above it
-    var arrowScaleNode = new Path( new Shape()
+    // scale below the arrow
+    var scaleNode = new Path( new Shape()
       .moveTo( -scaleWidth / 2, arrowHeight )
       .cubicCurveTo( scaleWidth / 4, 1.25 * arrowHeight, -scaleWidth / 4, 0.75 * arrowHeight,scaleWidth / 2, arrowHeight )
       .lineTo( scaleWidth / 2, scaleHeight )
       .lineTo( -scaleWidth / 2, scaleHeight )
       .close(),
-      { fill: options.scaleFill, stroke: options.scaleStroke, lineWidth: options.scaleLineWidth }
-    );
-    thisNode.addChild( arrowScaleNode );
-
-    // scale with no arrow
-    var scaleNode = new Rectangle( -scaleWidth / 2, arrowHeight, scaleWidth, scaleHeight - arrowHeight,
       { fill: options.scaleFill, stroke: options.scaleStroke, lineWidth: options.scaleLineWidth }
     );
     thisNode.addChild( scaleNode );
@@ -214,9 +207,6 @@ define( function( require ) {
 
     // When the exponent changes...
     exponentProperty.link( function( exponent ) {
-      // show the proper scale background (with or without arrow)
-      scaleNode.visible = ( exponent === exponentRange.max && !options.arrowAlwaysVisible );
-      arrowNode.visible = arrowScaleNode.visible = offScaleNode.visible = ( !scaleNode.visible );
       // relabel the tick marks
       updateTickLabels( exponent );
     } );

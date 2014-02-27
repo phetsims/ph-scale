@@ -1,3 +1,4 @@
+2/27/14 remove option to have linear scale with no arrow at the top, decided to always show the arrow
 2/27/14 make zoom buttons a bit larger, increase horizontal space between them, make linear scale a bit shorter to avoid crowding buttons
 2/27/14 change top margin to 15 for 'Micro' and 'Custom' screens
 2/27/14 disable icon in zoom button when the button is disabled

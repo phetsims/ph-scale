@@ -1,3 +1,4 @@
+2/27/14 touch area for expand/collapse button in pH meter
 2/27/14 make 'off screen' label slightly larger
 2/27/14 refine options for SubSupText
 2/24/14 start fleshing out SubSupText with options and setters/getters

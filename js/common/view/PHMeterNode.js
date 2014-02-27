@@ -129,6 +129,7 @@ define( function( require ) {
 
     // expand/collapse button
     var expandCollapseButton = new ExpandCollapseButton( PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH, expandedProperty );
+    expandCollapseButton.touchArea = Shape.bounds( expandCollapseButton.localBounds.dilatedXY( 10, 10 ) );
 
     // rendering order
     thisNode.addChild( collapsedRectangle );

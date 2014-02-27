@@ -98,7 +98,7 @@ define( function( require ) {
 
     //TODO restrict to a maximum width for i18n
     // 'off scale' label, positioned inside arrow
-    var offScaleNode = new Text( 'off scale', { font: new PhetFont( 14 ), fill: 'black' } );
+    var offScaleNode = new Text( 'off scale', { font: new PhetFont( 18 ), fill: 'black' } );
     thisNode.addChild( offScaleNode );
     offScaleNode.centerX = arrowNode.centerX;
     offScaleNode.y = arrowNode.top + ( 0.85 * arrowHeadHeight );

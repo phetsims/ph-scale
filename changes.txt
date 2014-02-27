@@ -1,3 +1,4 @@
+2/27/14 make 'off screen' label slightly larger
 2/27/14 refine options for SubSupText
 2/24/14 start fleshing out SubSupText with options and setters/getters
 2/24/14 clicking on faucet shooter cancels any tap-to-dispense that may be in progress, scenery-phet#31

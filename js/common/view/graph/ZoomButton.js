@@ -38,7 +38,13 @@ define( function( require ) {
     var signNode = options.in ? new PlusNode( signOptions ) : new MinusNode( signOptions );
 
     RectanglePushButton.call( this, new Node( { children: [ handleNode, glassNode, signNode ] } ) );
+
+    this.getEnabledProperty().link( function( enabled ) {
+       glassNode.stroke = handleNode.stroke = signNode.fill = enabled ? 'black' : 'rgb(128,128,128)';
+    } );
   }
 
-  return inherit( RectanglePushButton, ZoomButton );
+  return inherit( RectanglePushButton, ZoomButton, {
+
+  } );
 } );

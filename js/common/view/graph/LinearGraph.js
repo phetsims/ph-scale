@@ -25,6 +25,9 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
 
+  // strings
+  var offScaleString = require( 'string!PH_SCALE/offScale' );
+
   /**
    * @param {Solution} solution
    * @param {Property<GraphUnits>} graphUnitsProperty
@@ -90,7 +93,7 @@ define( function( require ) {
     thisNode.addChild( scaleNode );
 
     // 'off scale' label, positioned inside arrow
-    var offScaleNode = new Text( 'off scale', { font: new PhetFont( 18 ), fill: 'black' } );
+    var offScaleNode = new Text( offScaleString, { font: new PhetFont( 18 ), fill: 'black' } );
     thisNode.addChild( offScaleNode );
     offScaleNode.setScaleMagnitude( Math.min( 1, 0.5 * arrowWidth / offScaleNode.width ) ); // restrict size for i18n
     offScaleNode.centerX = arrowNode.centerX;

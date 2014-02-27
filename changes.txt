@@ -1,3 +1,4 @@
+# 1.0.0-dev.14 2/27/14
 2/27/14 expand pointer areas (touch and mouse) for pH picker
 2/27/14 rename 'Solutions' -> 'Micro' throughout (code, images, file names, directory structure)
 2/27/14 rename 'Basics' -> 'Macro' throughout (code, images, file names, directory structure)

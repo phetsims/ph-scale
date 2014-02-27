@@ -11,11 +11,11 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
 
-  function SolutionsModel() {
+  function MicroModel() {
 
     MacroModel.call( this );
 
@@ -24,5 +24,5 @@ define( function( require ) {
     this.dropper.dragBounds = new Bounds2( this.beaker.left + 120, yDropper, this.beaker.right - 170, yDropper );
   }
 
-  return inherit( MacroModel, SolutionsModel );
+  return inherit( MacroModel, MicroModel );
 } );

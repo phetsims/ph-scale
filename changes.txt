@@ -1,4 +1,5 @@
-2/27/14 rename Basics -> Macro throughout code, images, GitHub
+2/27/14 rename 'Solutions' -> 'Micro' throughout (code, images, file names, directory structure)
+2/27/14 rename 'Basics' -> 'Macro' throughout (code, images, file names, directory structure)
 2/27/14 add 'off scale' to strings file
 2/27/14 increase y-spacing in pH meter, so that picker isn't so close to expand/collapse button
 2/27/14 restrict size of 'off scale' label for i18n, so that the label fits inside the arrow

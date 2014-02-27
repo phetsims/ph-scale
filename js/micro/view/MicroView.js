@@ -31,11 +31,11 @@ define( function( require ) {
   var WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
 
   /**
-   * @param {SolutionsModel} model
+   * @param {MicroModel} model
    * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function SolutionsView( model, mvt ) {
+  function MicroView( model, mvt ) {
 
     var thisView = this;
     ScreenView.call( thisView, { renderer: 'svg' } );
@@ -136,5 +136,5 @@ define( function( require ) {
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
 
-  return inherit( ScreenView, SolutionsView, { layoutBounds: PHScaleConstants.LAYOUT_BOUNDS } );
+  return inherit( ScreenView, MicroView, { layoutBounds: PHScaleConstants.LAYOUT_BOUNDS } );
 } );

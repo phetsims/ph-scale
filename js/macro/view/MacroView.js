@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * View for the 'Basics' screen.
+ * View for the 'Macro' screen.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -9,14 +9,14 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var BasicsPHMeterNode = require( 'PH_SCALE/basics/view/BasicsPHMeterNode' );
+  var MacroPHMeterNode = require( 'PH_SCALE/macro/view/MacroPHMeterNode' );
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var NeutralIndicator = require( 'PH_SCALE/basics/view/NeutralIndicator' );
+  var NeutralIndicator = require( 'PH_SCALE/macro/view/NeutralIndicator' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
@@ -27,11 +27,11 @@ define( function( require ) {
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
   /**
-   * @param {BasicsModel} model
+   * @param {MacroModel} model
    * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function BasicsView( model, mvt ) {
+  function MacroView( model, mvt ) {
 
     var thisView = this;
     ScreenView.call( thisView, { renderer: 'svg' } );
@@ -59,7 +59,7 @@ define( function( require ) {
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
     // pH meter
-    var pHMeterNode = new BasicsPHMeterNode(  model.pHMeter, model.solution, model.water, model.dropper,
+    var pHMeterNode = new MacroPHMeterNode(  model.pHMeter, model.solution, model.water, model.dropper,
           solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, mvt );
 
     // solutes combo box
@@ -99,5 +99,5 @@ define( function( require ) {
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
 
-  return inherit( ScreenView, BasicsView, { layoutBounds: PHScaleConstants.LAYOUT_BOUNDS } );
+  return inherit( ScreenView, MacroView, { layoutBounds: PHScaleConstants.LAYOUT_BOUNDS } );
 } );

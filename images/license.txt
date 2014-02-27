@@ -1,4 +1,4 @@
-Basics-screen-icon.png source=PhET author=Yuen-ying Carpenter
+Macro-screen-icon.png source=PhET author=Yuen-ying Carpenter
 Custom-screen-icon.png source=PhET author=Yuen-ying Carpenter
 Solutions-screen-icon.png source=PhET author=Yuen-ying Carpenter
 pH-meter-probe.png author=PhET notes=copied from beers-law-lab

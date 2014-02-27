@@ -9,7 +9,7 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var BasicsScreen = require( 'PH_SCALE/basics/BasicsScreen' );
+  var MacroScreen = require( 'PH_SCALE/macro/MacroScreen' );
   var CustomScreen = require( 'PH_SCALE/custom/CustomScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
@@ -18,7 +18,7 @@ define( function( require ) {
   // strings
   var simTitle = require( 'string!PH_SCALE/ph-scale.name' );
 
-  var screens = [ new BasicsScreen(), new SolutionsScreen(), new CustomScreen() ];
+  var screens = [ new MacroScreen(), new SolutionsScreen(), new CustomScreen() ];
 
   var simOptions = {
     credits: {

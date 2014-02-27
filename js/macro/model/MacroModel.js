@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Model for the 'Basics' screen. Also serves as the supertype for the 'Solutions' model.
+ * Model for the 'Macro' screen. Also serves as the supertype for the 'Micro' model.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -14,7 +14,7 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var Dropper = require( 'PH_SCALE/common/model/Dropper' );
   var Faucet = require( 'PH_SCALE/common/model/Faucet' );
-  var PHMeter = require( 'PH_SCALE/basics/model/PHMeter' );
+  var PHMeter = require( 'PH_SCALE/macro/model/PHMeter' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Solute = require( 'PH_SCALE/common/model/Solute' );
   var Solution = require( 'PH_SCALE/common/model/Solution' );
@@ -25,7 +25,7 @@ define( function( require ) {
    * @param {*} options
    * @constructor
    */
-  function BasicsModel( options ) {
+  function MacroModel( options ) {
 
     options = _.extend( {
       autoFillVolume: 0.5 // L, automatically fill beaker with this much solute when the solute changes
@@ -91,7 +91,7 @@ define( function( require ) {
     } );
   }
 
-  BasicsModel.prototype = {
+  MacroModel.prototype = {
 
     reset: function() {
       this.beaker.reset();
@@ -150,5 +150,5 @@ define( function( require ) {
     }
   };
 
-  return BasicsModel;
+  return MacroModel;
 } );

@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * View for the 'Basics' screen.
+ * View for the 'Micro' screen.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

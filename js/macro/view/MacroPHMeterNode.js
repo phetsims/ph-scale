@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * pH meter for the 'Basics' screen.
+ * pH meter for the 'Macro' screen.
  * <p/>
  * The probe registers the concentration of all possible fluids that it may contact, including:
  * <ul>
@@ -301,7 +301,7 @@ define( function( require ) {
    * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function BasicsPHMeterNode( meter, solution, water, dropper, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, mvt ) {
+  function MacroPHMeterNode( meter, solution, water, dropper, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, mvt ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -353,5 +353,5 @@ define( function( require ) {
     drainFluidNode.addEventListener( 'bounds', updateValue );
   }
 
-  return inherit( Node, BasicsPHMeterNode );
+  return inherit( Node, MacroPHMeterNode );
 } );

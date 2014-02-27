@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * The 'Basics' screen.
+ * The 'Macro' screen.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -9,8 +9,8 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var BasicsModel = require( 'PH_SCALE/basics/model/BasicsModel' );
-  var BasicsView = require( 'PH_SCALE/basics/view/BasicsView' );
+  var MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
+  var MacroView = require( 'PH_SCALE/macro/view/MacroView' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
@@ -21,17 +21,17 @@ define( function( require ) {
   var screenTitle = require( 'string!PH_SCALE/macro' );
 
   // images
-  var screenIcon = require( 'image!PH_SCALE/Basics-screen-icon.png' );
+  var screenIcon = require( 'image!PH_SCALE/Macro-screen-icon.png' );
 
-  function BasicsScreen( modelOptions ) {
+  function MacroScreen( modelOptions ) {
     Screen.call( this,
       screenTitle,
       new Image( screenIcon ),
-      function() { return new BasicsModel( modelOptions ); },
-      function( model ) { return new BasicsView( model, ModelViewTransform2.createIdentity() ); },
+      function() { return new MacroModel( modelOptions ); },
+      function( model ) { return new MacroView( model, ModelViewTransform2.createIdentity() ); },
       { backgroundColor: PHScaleColors.SCREEN_BACKGROUND }
     );
   }
 
-  return inherit( Screen, BasicsScreen );
+  return inherit( Screen, MacroScreen );
 } );

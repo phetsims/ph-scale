@@ -120,11 +120,11 @@ define( function( require ) {
       } );
 
       // zoom buttons for the linear graph
-      var magnifyingGlassRadius = 10;
+      var magnifyingGlassRadius = 13;
       var zoomOutButton = new ZoomButton( { in: false, radius: magnifyingGlassRadius } );
       var zoomInButton = new ZoomButton( { in: true, radius: magnifyingGlassRadius } );
       var zoomButtons = new Node( { children: [ zoomOutButton, zoomInButton ]} );
-      zoomInButton.left = zoomOutButton.right + 20;
+      zoomInButton.left = zoomOutButton.right + 25;
       zoomInButton.centerY = zoomOutButton.centerY;
       // expand touch area
       zoomOutButton.touchArea = zoomOutButton.localBounds.dilate( 5, 5 );
@@ -152,7 +152,7 @@ define( function( require ) {
       linearGraph.centerX = logarithmicGraph.centerX;
       linearGraph.y = logarithmicGraph.y; // y, not top
       zoomButtons.centerX = logarithmicGraph.centerX;
-      zoomButtons.top = linearGraph.y + options.linearScaleHeight + ( 2 * ySpacing );
+      zoomButtons.top = linearGraph.y + options.linearScaleHeight + ( 3 * ySpacing );
       graphScaleSwitch.centerX = lineToSwitchNode.centerX;
       graphScaleSwitch.top = zoomButtons.bottom + ySpacing;
       lineToSwitchNode.centerX = lineToBarNode.centerX;

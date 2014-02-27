@@ -16,7 +16,6 @@ MEDIUM
 - pointer areas are a little off for interactive graph indicators (due to HTMLText incorrect bounds for values)
 
 LOW
-- non-interactive space between picker background and arrows
 - GraphNode layout code could be more robust
 - values in graph indicators don't gray out when disabled because scenery.HTMLText doesn't support opacity
 - test various multi-touch scenarios

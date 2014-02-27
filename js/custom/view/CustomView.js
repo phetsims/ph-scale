@@ -57,13 +57,13 @@ define( function( require ) {
     var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );
 
     // pH meter
-    var pHMeterYOffset = 20;
-    var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterYOffset, { isInteractive: true } );
+    var pHMeterTop = 15;
+    var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterTop, { isInteractive: true } );
 
     // graph
     var graphNode = new GraphNode( model.solution, {
       isInteractive: true,
-      logScaleHeight: 560
+      logScaleHeight: 565
     } );
 
     var resetAllButton = new ResetAllButton( function() {
@@ -89,13 +89,13 @@ define( function( require ) {
 
     // Layout of nodes that don't have a location specified in the model
     pHMeterNode.left = mvt.modelToViewX( model.beaker.left );
-    pHMeterNode.top = 20;
+    pHMeterNode.top = pHMeterTop;
     moleculeCountNode.centerX = beakerNode.centerX;
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.centerX = beakerNode.centerX;
     beakerControls.top = beakerNode.bottom + 15;
     graphNode.right = beakerNode.left - 70;
-    graphNode.top = 20;
+    graphNode.top = pHMeterNode.top;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }

@@ -79,13 +79,13 @@ define( function( require ) {
     // graph
     var graphNode = new GraphNode( model.solution, {
       hasLinearFeature: true,
-      logScaleHeight: 475,
-      linearScaleHeight: 450
+      logScaleHeight: 485,
+      linearScaleHeight: 460
     } );
 
     // pH meter
-    var pHMeterYOffset = 20;
-    var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterYOffset,
+    var pHMeterTop = 15;
+    var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterTop,
     { attachProbe: 'right' } );
 
     // solutes combo box
@@ -127,11 +127,11 @@ define( function( require ) {
     beakerControls.centerX = beakerNode.centerX;
     beakerControls.top = beakerNode.bottom + 15;
     pHMeterNode.left = mvt.modelToViewX( model.beaker.left ) - ( 0.4 * pHMeterNode.width );
-    pHMeterNode.top = 20;
+    pHMeterNode.top = pHMeterTop;
     graphNode.right = drainFaucetNode.left - 40;
     graphNode.top = pHMeterNode.top;
     soluteComboBox.left = pHMeterNode.right + 35;
-    soluteComboBox.top = this.layoutBounds.top + 15;
+    soluteComboBox.top = this.layoutBounds.top + pHMeterTop;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }

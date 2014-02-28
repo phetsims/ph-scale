@@ -22,7 +22,7 @@ define( function( require ) {
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Shape = require( 'KITE/Shape' );
-  var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
+  var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
 
   // constants
@@ -163,7 +163,7 @@ define( function( require ) {
     thisNode.addChild( thisNode.moleculesNode );
 
     // dev mode, show numbers of molecules in lower-left of beaker
-    thisNode.ratioText = new SubSupText( '?', { font: new PhetFont( 30 ), fill: 'black', left: beakerBounds.getCenterX(), bottom: beakerBounds.maxY - 20 } ); // @private
+    thisNode.ratioText = new Text( '?', { font: new PhetFont( 30 ), fill: 'black', left: beakerBounds.getCenterX(), bottom: beakerBounds.maxY - 20 } ); // @private
     if ( window.phetcommon.getQueryParameter( 'dev' ) ) {
       thisNode.addChild( thisNode.ratioText );
     }

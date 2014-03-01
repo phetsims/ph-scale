@@ -13,7 +13,6 @@ HIGH
 MEDIUM
 
 LOW
-- GraphNode layout code could be more robust
 - test various multi-touch scenarios
 - ComboBox: add background color behind arrow button (sun#43)
 - port strings from Java

@@ -17,7 +17,6 @@ MEDIUM
 
 LOW
 - GraphNode layout code could be more robust
-- values in graph indicators don't gray out when disabled because scenery.HTMLText doesn't support opacity
 - test various multi-touch scenarios
 - ComboBox: add background color behind arrow button (sun#43)
 - port strings from Java

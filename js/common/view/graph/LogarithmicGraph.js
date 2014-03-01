@@ -116,7 +116,7 @@ define( function( require ) {
     var valueH3OProperty = new Property( 0 );
     var valueOHProperty = new Property( 0 );
     var h2OIndicatorNode = new H2OIndicator( valueH2OProperty, {
-      decimalPlaces: 0,
+      mantissaDecimalPlaces: 0,
       exponent: 0,
       x: backgroundNode.right - options.majorTickLength } );
     var h3OIndicatorNode = new H3OIndicator( valueH3OProperty, {

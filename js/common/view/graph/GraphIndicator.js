@@ -48,7 +48,7 @@ define( function( require ) {
       valueYMargin: 3,
       xSpacing: 8,
       ySpacing: 4,
-      decimalPlaces: 1,
+      mantissaDecimalPlaces: 1,
       exponent: null, // request a specific exponent
       isInteractive: false,
       arrowFill: 'rgb(0,200,0)',
@@ -105,7 +105,7 @@ define( function( require ) {
     var valueNode = new ScientificNotationNode( valueProperty.get(), {
       font: new PhetFont( 28 ),
       fill: 'black',
-      decimalPlaces: options.decimalPlaces,
+      mantissaDecimalPlaces: options.mantissaDecimalPlaces,
       exponent: options.exponent
     } );
     valueNode.setScaleMagnitude( 0.7 );

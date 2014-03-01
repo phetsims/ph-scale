@@ -1,3 +1,4 @@
+2/28/14 reimplement 'H3O/OH ratio' check box label to use SubSupText and include color-coding
 2/28/14 fix: H2O value is displaying at '55.0', should be '55'
 2/28/14 use SubSupText for '10^E' ticks on log graph, remove 'no mantissa' support from ScientificNotationNode
 2/28/14 eliminate unnecessary string-number conversions in ScientificNotationNode

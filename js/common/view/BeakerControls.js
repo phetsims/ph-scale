@@ -13,6 +13,7 @@ define( function( require ) {
   var CheckBox = require( 'SUN/CheckBox' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
+  var Node = require( 'SCENERY/nodes/Node' );
   var Panel = require( 'SUN/Panel' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
@@ -37,7 +38,12 @@ define( function( require ) {
   function BeakerControls( ratioVisibleProperty, moleculeCountVisibleProperty ) {
 
     // 'H3O+/OH- ratio' check box, with color-coded label
-    var ratioLabel = new SubSupText( StringUtils.format( ratioString, 'H<sub>3</sub>O<sup>+</sup>', 'OH<sup>-</sup>' ), { font: FONT } );
+    var xSpacing = 6;
+    var textH3O = new SubSupText( 'H<sub>3</sub>O<sup>+</sup>', { font: FONT, fill: PHScaleColors.H3O_MOLECULES } );
+    var textSlash = new Text( '/', { font: FONT, left: textH3O.right + xSpacing } );
+    var textOH = new SubSupText( 'OH<sup>-</sup>', { font: FONT, fill: PHScaleColors.OH_MOLECULES, left: textSlash.right + xSpacing } );
+    var textRatio = new Text( ratioString, { font: FONT, left: textOH.right + xSpacing } );
+    var ratioLabel = new Node( { children: [ textH3O, textSlash, textOH, textRatio ] } );
     var ratioCheckBox = new CheckBox( ratioLabel, ratioVisibleProperty );
     ratioCheckBox.touchArea = Shape.bounds( ratioCheckBox.localBounds.dilatedXY( 10, 8 ) );
 

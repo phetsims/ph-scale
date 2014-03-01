@@ -29,7 +29,7 @@
   "concentration": "Concentration",
   "quantity": "Quantity",
   "moleculeCount": "Molecule count",
-  "ratio": "{0}/{1} ratio",
+  "ratio": "ratio",
   "linear": "Linear",
   "logarithmic": "Logarithmic",
   "offScale": "off scale"

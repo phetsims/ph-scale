@@ -34,7 +34,7 @@ define( function( require ) {
       showZeroExponent: false, // if true, show 'M x 10^0', otherwise show 'M'
       showOneMantissa: true, // if true, show '1 x 10^E', otherwise show '10^E'
       exponentXSpacing: 2, // space to left of exponent
-      exponentYOffset: 5, // from top of 'x 10'
+      exponentYOffset: 5, // offset of exponent's center from top of 'x 10'
       nullValueString: '-' // if the value is null, display this string
     }, options );
     this.options = options; // @private

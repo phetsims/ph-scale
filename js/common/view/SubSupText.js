@@ -52,7 +52,10 @@ define( function( require ) {
 
   return inherit( Node, SubSupText, {
 
-    // @private
+    /*
+     * @private
+     * @throws Error if the text doesn't follow the constraints defines in the JSdoc above
+     */
     update: function() {
 
       var thisNode = this;

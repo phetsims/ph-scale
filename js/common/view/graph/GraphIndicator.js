@@ -147,6 +147,7 @@ define( function( require ) {
       arrowNode.left = backgroundNode.right + options.arrowXSpacing;
       valueBackgroundNode.right = backgroundNode.right - options.backgroundXMargin;
     }
+    valueNode.centerY = valueBackgroundNode.centerY;
     arrowNode.centerY = backgroundNode.centerY;
     valueBackgroundNode.top = backgroundNode.top + options.backgroundYMargin;
     moleculeAndFormula.centerX = valueBackgroundNode.centerX;

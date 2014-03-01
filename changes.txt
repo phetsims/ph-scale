@@ -1,3 +1,4 @@
+2/28/14 fix pointer areas for interactive graph indicators
 2/28/14 replace HTMLText with ScientificNotationNode, efficient node for rendering numbers in scientific notation (M x 10^E)
 # 1.0.0-dev.14 2/27/14
 2/27/14 expand pointer areas (touch and mouse) for pH picker

@@ -13,7 +13,6 @@ HIGH
 - #3 interactive graph indicators become non-responsive after a few uses on iPad (HTMLText)
 
 MEDIUM
-- pointer areas are a little off for interactive graph indicators (due to HTMLText incorrect bounds for values)
 
 LOW
 - GraphNode layout code could be more robust

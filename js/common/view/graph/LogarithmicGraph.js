@@ -34,7 +34,7 @@ define( function( require ) {
    * @param {*} options
    * @constructor
    */
-  function LogConcentrationGraph( solution, graphUnitsProperty, options ) {
+  function LogarithmicGraph( solution, graphUnitsProperty, options ) {
 
     options = _.extend( {
       isInteractive: false,
@@ -199,5 +199,5 @@ define( function( require ) {
     return new ScientificNotationNode( Math.pow( 10, exponent ), { font: font, fill: 'black', exponent: exponent, showOneMantissa: false } );
   };
 
-  return inherit( Node, LogConcentrationGraph );
+  return inherit( Node, LogarithmicGraph );
 } );

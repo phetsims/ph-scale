@@ -19,8 +19,8 @@ define( function( require ) {
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Property = require( 'AXON/Property' );
+  var ScientificNotationNode = require( 'PH_SCALE/common/view/ScientificNotationNode' );
   var Shape = require( 'KITE/Shape' );
-  var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
 
@@ -107,7 +107,7 @@ define( function( require ) {
       // major lines and label
       tickLineLeft = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
       tickLineRight = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
-      tickLabel = new SubSupText( i, { font: options.majorTickFont, fill: 'black' } );
+      tickLabel = new ScientificNotationNode( i, { font: options.majorTickFont, fill: 'black', mantissaDecimalPlaces: 0 } );
       // rendering order
       thisNode.addChild( tickLineLeft );
       thisNode.addChild( tickLineRight );
@@ -188,21 +188,9 @@ define( function( require ) {
 
     // updates the tick labels to match the exponent
     var updateTickLabels = function( exponent ) {
-      var tickText;
+      var tickOptions = ( exponent >= 0 ) ? { exponent: 0 } : { exponent: exponent }; // show positive exponents as integers
       for ( var i = 0; i < tickLabels.length; i++ ) {
-        if ( i === 0 ) {
-          tickText = '0';
-        }
-        else if ( exponent === 0 ) {
-          tickText = i;
-        }
-        else if ( exponent === 1 ) {
-          tickText = ( 10 * i );
-        }
-        else {
-          tickText = i + ' x 10<span style="font-size:85%"><sup>' + exponent + '</sup></span>';
-        }
-        tickLabels[i].text = tickText;
+        tickLabels[i].setValue( i * Math.pow( 10, exponent ), tickOptions );
         tickLabels[i].centerX = scaleNode.centerX;
       }
     };

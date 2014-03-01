@@ -17,9 +17,8 @@ define( function( require ) {
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var ScientificNotationNode = require( 'PH_SCALE/common/view/ScientificNotationNode' );
   var Shape = require( 'KITE/Shape' );
-  var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
-  var toScientificNotation = require( 'PH_SCALE/common/toScientificNotation' );
 
   // constants
   var POINTER_WIDTH_PERCENTAGE = 0.15;
@@ -103,7 +102,12 @@ define( function( require ) {
       } );
 
     // Value, scaled to fit background height
-    var valueNode = new SubSupText( '?', { font: new PhetFont( 28 ), fill: 'black' } );
+    var valueNode = new ScientificNotationNode( valueProperty.get(), {
+      font: new PhetFont( 28 ),
+      fill: 'black',
+      decimalPlaces: options.decimalPlaces,
+      exponent: options.exponent
+    } );
     valueNode.setScaleMagnitude( 0.7 );
 
     // molecule and formula, scaled to fit available height
@@ -164,7 +168,7 @@ define( function( require ) {
     valueProperty.link( function( value ) {
 
       // update the displayed value and center it
-      valueNode.text = toScientificNotation( value, options.decimalPlaces, { exponent: options.exponent } );
+      valueNode.setValue( value );
       valueNode.centerX = valueBackgroundNode.centerX;
       valueNode.centerY = valueBackgroundNode.centerY;
 

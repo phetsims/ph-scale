@@ -17,8 +17,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
-  var toScientificNotation = require( 'PH_SCALE/common/toScientificNotation' );
+  var ScientificNotationNode = require( 'PH_SCALE/common/view/ScientificNotationNode' );
 
   /**
    * @param {Solution} solution
@@ -44,9 +43,9 @@ define( function( require ) {
 
     // count values
     var font = new PhetFont( 22 );
-    var countH3O = new SubSupText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'white' } );
-    var countOH = new SubSupText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'white' } );
-    var countH2O = new SubSupText( '0.00 x 10<sup>00</sup>', { font: font, fill: 'white' } );
+    var countH3O = new ScientificNotationNode( 1e16, { font: font, fill: 'white', mantissaDecimalPlaces: 2 } );
+    var countOH = new ScientificNotationNode( 1e16, { font: font, fill: 'white', mantissaDecimalPlaces: 2 } );
+    var countH2O = new ScientificNotationNode( 1e16, { font: font, fill: 'white', mantissaDecimalPlaces: 2, exponent: 25 } );
     var maxCountWidth = countH3O.width;
     var maxCountHeight = countH3O.height;
 
@@ -87,24 +86,24 @@ define( function( require ) {
       nodeOH.centerY = backgroundOH.centerY;
       nodeH2O.centerX = backgroundH2O.right - xMargin - ( maxMoleculeWidth / 2 );
       nodeH2O.centerY = backgroundH2O.centerY;
-      // counts are vertically centered in the backgrounds
-      countH3O.centerY = backgroundH3O.centerY;
-      countOH.centerY = backgroundOH.centerY;
-      countH2O.centerY = backgroundH2O.centerY;
-      // counts will be dynamically right-justified
+      // counts will be dynamically positioned
     }
 
     // update counts when the solution changes
     var moleculesLeft = Math.min( nodeH3O.left, Math.min( nodeOH.left, nodeH2O.left ) ); // for right justifying counts
     var updateCounts = function() {
-      // format and set values
-      countH3O.text = toScientificNotation( solution.getMoleculesH3O(), 2 );
-      countOH.text = toScientificNotation( solution.getMoleculesOH(), 2 );
-      countH2O.text = toScientificNotation( solution.getMoleculesH2O(), 2, { exponent: 25 } );
-      // right justify
+      // set counts
+      countH3O.setValue( solution.getMoleculesH3O() );
+      countOH.setValue( solution.getMoleculesOH() );
+      countH2O.setValue( solution.getMoleculesH2O() );
+      // right justified
       countH3O.right = moleculesLeft - xSpacing;
       countOH.right = moleculesLeft - xSpacing;
       countH2O.right = moleculesLeft - xSpacing;
+      // vertically centered
+      countH3O.centerY = backgroundH3O.centerY;
+      countOH.centerY = backgroundOH.centerY;
+      countH2O.centerY = backgroundH2O.centerY;
     };
     solution.pHProperty.link( updateCounts );
     solution.waterVolumeProperty.link( updateCounts );

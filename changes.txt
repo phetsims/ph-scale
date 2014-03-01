@@ -1,3 +1,4 @@
+2/28/14 use SubSupText for '10^E' ticks on log graph, remove 'no mantissa' support from ScientificNotationNode
 2/28/14 eliminate unnecessary string-number conversions in ScientificNotationNode
 2/28/14 first pass at parsing HTML in SubSupText node, and creating scene graph based exclusively on scenery.Text
 2/28/14 fix pointer areas for interactive graph indicators

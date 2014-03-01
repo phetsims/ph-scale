@@ -25,7 +25,7 @@ define( function( require ) {
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var ScientificNotationNode = require( 'PH_SCALE/common/view/ScientificNotationNode' );
+  var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
   var Util = require( 'DOT/Util' );
 
   /**
@@ -194,9 +194,9 @@ define( function( require ) {
     }
   }
 
-  // Creates a tick label, '10' with some superscript.
+  // Creates a tick label, '10' to some exponent.
   var createTickLabel = function( exponent, font ) {
-    return new ScientificNotationNode( Math.pow( 10, exponent ), { font: font, fill: 'black', exponent: exponent, showOneMantissa: false } );
+    return new SubSupText( '10<sup>' + exponent + '</sup>', { font: font, fill: 'black' } );
   };
 
   return inherit( Node, LogarithmicGraph );

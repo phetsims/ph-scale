@@ -31,7 +31,6 @@ define( function( require ) {
       exponentScale: 0.75, // scale of the exponent, relative to the size of the '10'
       showZeroAsInteger: true, // if true, show '0 x 10^E' as '0'
       showZeroExponent: false, // if false, show 'M x 10^0' as 'M'
-      showOneMantissa: true, // if false, show '1 x 10^E' as '10^E'
       exponentXSpacing: 2, // space to left of exponent
       exponentYOffset: 5, // offset of exponent's center from top of 'x 10'
       nullValueString: '-' // if the value is null, display this string
@@ -84,12 +83,6 @@ define( function( require ) {
         this.mantissaNode.text = '0';
         this.removeChild( this.timesTenNode );
         this.removeChild( this.exponentNode );
-      }
-      else if ( scientificNotation.mantissa === 1 && !options.showOneMantissa ) {
-        // show '1 x 10^E' as '10^E'
-        this.removeChild( this.mantissaNode );
-        this.timesTenNode.text = '10';
-        this.exponentNode.text = scientificNotation.exponent;
       }
       else if (scientificNotation.exponent === 0 && !options.showZeroExponent ) {
         // show 'M x 10^0' as 'M'

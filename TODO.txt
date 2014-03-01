@@ -4,8 +4,8 @@ DESIGN
 - Macro: Change color of pH display to match other screens?
 
 HIGHEST
+- performance of 'H3O+/OH- ratio' feature stinks
 - see build-a-molecule.Molecule3DNode for example of using scenery.DOM and a properly-sized canvas
-- performance of 'H3O+/OH- ratio' feature stinks (plan on interviewing without this)
 
 HIGH
 - #3 interactive graph indicators become non-responsive after a few uses on iPad (HTMLText)

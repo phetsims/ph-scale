@@ -157,7 +157,7 @@ define( function( require ) {
 
         //TODO eliminate unnecessary conversions between string and number
         mantissa = parseFloat( mantissaString );
-        exponent = parseInt( exponentString );
+        exponent = parseInt( exponentString, 10 );
       }
 
       // mantissa x 10^exponent

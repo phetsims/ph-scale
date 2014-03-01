@@ -144,20 +144,14 @@ define( function( require ) {
         var tokens = exponentialString.toLowerCase().split( 'e' );
 
         // Adjust the mantissa token to the correct number of decimal places, using nearest-neighbor rounding.
-        var mantissaString = Util.toFixed( parseFloat( tokens[0] ), options.mantissaDecimalPlaces );
-        var exponentString = tokens[1];
+        mantissa = Util.toFixedNumber( parseFloat( tokens[0] ), options.mantissaDecimalPlaces );
+        exponent = parseInt( tokens[1], 10 );
 
         // Convert if a specific exponent was requested.
         if ( options.exponent !== null ) {
-          mantissaString = Util.toFixed(
-            parseFloat( mantissaString ) * Math.pow( 10, parseInt( exponentString, 10 ) - options.exponent ),
-            Math.max( 0, options.mantissaDecimalPlaces ) );
-          exponentString = options.exponent.toString();
+          mantissa = Util.toFixedNumber( mantissa * Math.pow( 10, exponent - options.exponent ), Math.max( 0, options.mantissaDecimalPlaces ) );
+          exponent = options.exponent;
         }
-
-        //TODO eliminate unnecessary conversions between string and number
-        mantissa = parseFloat( mantissaString );
-        exponent = parseInt( exponentString, 10 );
       }
 
       // mantissa x 10^exponent

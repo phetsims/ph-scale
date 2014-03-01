@@ -37,9 +37,7 @@ define( function( require ) {
   function BeakerControls( ratioVisibleProperty, moleculeCountVisibleProperty ) {
 
     // 'H3O+/OH- ratio' check box, with color-coded label
-    var stringH3O = '<span style="color:' + PHScaleColors.ACIDIC.toCSS() + '">H<sub>3</sub>O<sup>+</sup></span>';
-    var stringOH = '<span style="color:' + PHScaleColors.BASIC.toCSS() + '">OH<sup>-</sup></span>';
-    var ratioLabel = new SubSupText( StringUtils.format( ratioString, stringH3O, stringOH ), { font: FONT } );
+    var ratioLabel = new SubSupText( StringUtils.format( ratioString, 'H<sub>3</sub>O<sup>+</sup>', 'OH<sup>-</sup>' ), { font: FONT } );
     var ratioCheckBox = new CheckBox( ratioLabel, ratioVisibleProperty );
     ratioCheckBox.touchArea = Shape.bounds( ratioCheckBox.localBounds.dilatedXY( 10, 8 ) );
 

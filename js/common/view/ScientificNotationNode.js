@@ -25,7 +25,7 @@ define( function( require ) {
 
     options = _.extend( {
       fill: 'black',
-      font: new PhetFont( 22 ),
+      font: new PhetFont( 20 ),
       exponent: null,
       mantissaDecimalPlaces: 1,
       exponentScale: 0.75, // scale of the exponent, relative to the size of the '10'

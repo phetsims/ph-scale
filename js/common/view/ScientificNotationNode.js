@@ -17,7 +17,6 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   /**
-   * Value to display.
    * @param value
    * @param {*} options
    * @constructor

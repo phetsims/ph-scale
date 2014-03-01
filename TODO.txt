@@ -9,7 +9,8 @@ HIGHEST
 - performance of 'H3O+/OH- ratio' feature stinks (plan on interviewing without this)
 
 HIGH
-- flesh out SubSupText (scenery-phet#29)
+- H2O value is displaying at '55.0', should be '55'
+- ratio checkbox needs to color-code the formulas
 - #3 interactive graph indicators become non-responsive after a few uses on iPad (HTMLText)
 
 MEDIUM

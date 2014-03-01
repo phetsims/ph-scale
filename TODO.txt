@@ -4,7 +4,6 @@ DESIGN
 - Macro: Change color of pH display to match other screens?
 
 HIGHEST
-- RatioNode(...,{ strategy: 'canvas' }) is running out of memory because of the number of layers created by HTMLText
 - see build-a-molecule.Molecule3DNode for example of using scenery.DOM and a properly-sized canvas
 - performance of 'H3O+/OH- ratio' feature stinks (plan on interviewing without this)
 

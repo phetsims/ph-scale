@@ -47,7 +47,7 @@ define( function( require ) {
 
     this.update();
 
-    this.mutate( options ); //TODO be careful about which options are passed to supertype
+    this.mutate( options );
   }
 
   return inherit( Node, SubSupText, {

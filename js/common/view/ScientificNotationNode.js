@@ -28,10 +28,10 @@ define( function( require ) {
       font: new PhetFont( 22 ),
       exponent: null,
       mantissaDecimalPlaces: 1,
-      exponentScale: 0.75, // size of the exponent, relative to the '10', expressed as a percentage (100 is 'same size'), will be rounded to an integer
-      zeroIsInteger: true, // if true, zero will be displayed as '0'
-      showZeroExponent: false, // if true, show 'M x 10^0', otherwise show 'M'
-      showOneMantissa: true, // if true, show '1 x 10^E', otherwise show '10^E'
+      exponentScale: 0.75, // scale of the exponent, relative to the size of the '10'
+      showZeroAsInteger: true, // if true, show '0 x 10^E' as '0'
+      showZeroExponent: false, // if false, show 'M x 10^0' as 'M'
+      showOneMantissa: true, // if false, show '1 x 10^E' as '10^E'
       exponentXSpacing: 2, // space to left of exponent
       exponentYOffset: 5, // offset of exponent's center from top of 'x 10'
       nullValueString: '-' // if the value is null, display this string
@@ -79,7 +79,7 @@ define( function( require ) {
         this.removeChild( this.timesTenNode );
         this.removeChild( this.exponentNode );
       }
-      else if ( scientificNotation.mantissa === 0 && options.zeroIsInteger ) {
+      else if ( scientificNotation.mantissa === 0 && options.showZeroAsInteger ) {
         // show '0 x 10^E' as '0'
         this.mantissaNode.text = '0';
         this.removeChild( this.timesTenNode );

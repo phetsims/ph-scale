@@ -1,8 +1,8 @@
 // Copyright 2002-2014, University of Colorado Boulder
 
 /**
- * Renders text that contains subscripts and superscripts. This is intended primarily to render
- * chemical formulas (e.g., 'H<sub>3</sub>O<sup>+</sup>') and numbers in scientific notation (e.g. '4.2 x 10<sup>8</sup>').
+ * Renders text that contains subscripts and superscripts.
+ * This was created to render chemical formulas (e.g. 'H<sub>3</sub>O<sup>+</sup>') but will undoubtedly have other uses.
  * Text must be provided in HTML format, and may contain only plaintext, <sub> and <sup>.
  * Each <sub> and <sup> tag must be preceded by plaintext, and nesting of tags is not supported.
  *

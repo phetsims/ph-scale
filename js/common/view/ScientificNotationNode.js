@@ -47,10 +47,11 @@ define( function( require ) {
     // compute width of space between mantissa and 'x 10'
     this.mantissaXSpacing = new Text( ' ', textOptions ).width;
 
-    options.children = [ this.mantissaNode, this.exponentNode, this.timesTenNode ];
-    Node.call( this, options );
+    Node.call( this, { children: [ this.mantissaNode, this.exponentNode, this.timesTenNode ] } );
 
     this.setValue( value );
+
+    this.mutate( _.omit( options, 'children' ) );
   }
 
   return inherit( Node, ScientificNotationNode, {
@@ -150,5 +151,7 @@ define( function( require ) {
       // mantissa x 10^exponent
       return { mantissa: mantissa, exponent: exponent };
     }
+
+    //TODO add setters and getters for scenery.Text properties as needed
   } );
 } );

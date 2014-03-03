@@ -36,7 +36,7 @@ define( function( require ) {
       tapToDispenseInterval: PHScaleConstants.TAP_TO_DISPENSE_INTERVAL
     } );
     faucetNode.translation = mvt.modelToViewPosition( faucet.location );
-    faucetNode.setScaleMagnitude( -scale, scale ); // reflect
+    faucetNode.setScaleMagnitude( -scale, scale ); // reflect horizontally
     this.addChild( faucetNode );
 
     // decorate the faucet with the name of the water

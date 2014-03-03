@@ -30,7 +30,7 @@ define( function( require ) {
       tapToDispenseInterval: PHScaleConstants.TAP_TO_DISPENSE_INTERVAL
     } );
     this.translation = mvt.modelToViewPosition( faucet.location );
-    this.setScaleMagnitude( -scale, scale ); // reflect
+    this.setScaleMagnitude( -scale, scale ); // reflect horizontally
   }
 
   return inherit( FaucetNode, DrainFaucetNode );

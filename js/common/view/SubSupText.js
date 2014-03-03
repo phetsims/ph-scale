@@ -5,6 +5,10 @@
  * This was created to render chemical formulas (e.g. 'H<sub>3</sub>O<sup>+</sup>') but will undoubtedly have other uses.
  * Text must be provided in HTML format, and may contain only plaintext, <sub> and <sup>.
  * Each <sub> and <sup> tag must be preceded by plaintext, and nesting of tags is not supported.
+ * <p>
+ * Beware of using this for situations where the text changes frequently.
+ * The implementation relies on jQuery to parse the HTML, and this has not been profiled.
+ * More significantly, since the HTML string is general, changing it requires rebuilding the node.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -103,8 +107,6 @@ define( function( require ) {
       } );
     },
 
-    //TODO add setters and getters for other scenery.Text properties as needed
-
     // text ----------------------------------------------------------
 
     setText: function( text ) {
@@ -133,5 +135,7 @@ define( function( require ) {
     // ES5
     set fill( value ) { this.setFill( value ); },
     get fill() { return this.getFill(); }
+
+    //TODO add setters and getters for other scenery.Text properties as needed
   } );
 } );

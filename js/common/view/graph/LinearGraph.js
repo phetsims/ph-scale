@@ -9,13 +9,11 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var GraphIndicator = require( 'PH_SCALE/common/view/graph/GraphIndicator' );
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
-  var H2OIndicator = require( 'PH_SCALE/common/view/graph/H2OIndicator' );
-  var H3OIndicator = require( 'PH_SCALE/common/view/graph/H3OIndicator' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var OHIndicator = require( 'PH_SCALE/common/view/graph/OHIndicator' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Property = require( 'AXON/Property' );
@@ -127,12 +125,12 @@ define( function( require ) {
     var valueH2OProperty = new Property( 0 );
     var valueH3OProperty = new Property( 0 );
     var valueOHProperty = new Property( 0 );
-    var h2OIndicatorNode = new H2OIndicator( valueH2OProperty, {
+    var h2OIndicatorNode = new GraphIndicator.createH2OIndicator( valueH2OProperty, {
       x: scaleNode.right - options.majorTickLength } );
-    var h3OIndicatorNode = new H3OIndicator( valueH3OProperty, {
+    var h3OIndicatorNode = new GraphIndicator.createH3OIndicator( valueH3OProperty, {
       x: scaleNode.left + options.majorTickLength,
       isInteractive: options.isInteractive } );
-    var oHIndicatorNode = new OHIndicator( valueOHProperty, {
+    var oHIndicatorNode = new GraphIndicator.createOHIndicator( valueOHProperty, {
       x: scaleNode.right - options.majorTickLength,
       isInteractive: options.isInteractive } );
     thisNode.addChild( h2OIndicatorNode );

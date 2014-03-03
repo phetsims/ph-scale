@@ -12,14 +12,20 @@ define( function( require ) {
 
   // imports
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
+  var H2ONode = require( 'PH_SCALE/common/view/molecules/H2ONode' );
+  var H3ONode = require( 'PH_SCALE/common/view/molecules/H3ONode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Matrix3 = require( 'DOT/Matrix3' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var OHNode = require( 'PH_SCALE/common/view/molecules/OHNode' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
   var Shape = require( 'KITE/Shape' );
+  var SubSupText = require( 'SCENERY_PHET/SubSupText' );
 
   // constants
   var POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute width of the pointy part of the indicator
@@ -183,5 +189,56 @@ define( function( require ) {
     thisNode.mutate( options );
   }
 
-  return inherit( Node, GraphIndicator );
+  return inherit( Node, GraphIndicator, {}, {
+
+    /**
+     * Creates an indicator for H3O+.
+     * @static
+     * @param {Property<Number>} valueProperty
+     * @param {*} options see GraphIndicator constructor
+     */
+    createH3OIndicator: function( valueProperty, options ) {
+      return new GraphIndicator( valueProperty,
+        new H3ONode(),
+        new SubSupText( PHScaleConstants.H3O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
+        _.extend( {
+          backgroundFill: PHScaleColors.ACIDIC,
+          pointerLocation: 'topRight'
+        }, options ) );
+    },
+
+    /**
+     * Creates an indicator for OH-.
+     * @static
+     * @param {Property<Number>} valueProperty
+     * @param {*} options see GraphIndicator constructor
+     */
+    createOHIndicator: function( valueProperty, options ) {
+      return new GraphIndicator( valueProperty,
+        new OHNode(),
+        new SubSupText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
+        _.extend( {
+          backgroundFill: PHScaleColors.BASIC,
+          pointerLocation: 'topLeft'
+        }, options ) );
+    },
+
+    /**
+     * Creates an indicator for H2O.
+     * @static
+     * @param {Property<Number>} valueProperty
+     * @param {*} options see GraphIndicator constructor
+     */
+    createH2OIndicator: function( valueProperty, options ) {
+      return new GraphIndicator( valueProperty,
+        new H2ONode(),
+        new SubSupText( PHScaleConstants.H2O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
+        _.extend( {
+          backgroundFill: PHScaleColors.H2O_BACKGROUND,
+          pointerLocation: 'bottomLeft',
+          mantissaDecimalPlaces: 0,
+          exponent: 0
+        }, options ) );
+    }
+  } );
 } );

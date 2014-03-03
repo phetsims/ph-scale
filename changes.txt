@@ -1,3 +1,4 @@
+3/3/14 replace GraphIndicator subtypes with factory functions
 3/3/14 move molecules and atoms to common/view/molecules/
 3/3/14 add flag to RatioNode for disabling feature, so that all aspects of this feature are in one file
 3/3/14 fix x-spacing of log graph indicators, broken when major ticks were made longer

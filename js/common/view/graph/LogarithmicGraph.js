@@ -11,15 +11,13 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var GraphIndicator = require( 'PH_SCALE/common/view/graph/GraphIndicator' );
   var GraphIndicatorDragHandler = require( 'PH_SCALE/common/view/graph/GraphIndicatorDragHandler' );
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
-  var H2OIndicator = require( 'PH_SCALE/common/view/graph/H2OIndicator' );
-  var H3OIndicator = require( 'PH_SCALE/common/view/graph/H3OIndicator' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var OHIndicator = require( 'PH_SCALE/common/view/graph/OHIndicator' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHModel = require( 'PH_SCALE/common/model/PHModel' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
@@ -117,14 +115,12 @@ define( function( require ) {
     var valueH2OProperty = new Property( 0 );
     var valueH3OProperty = new Property( 0 );
     var valueOHProperty = new Property( 0 );
-    var h2OIndicatorNode = new H2OIndicator( valueH2OProperty, {
-      mantissaDecimalPlaces: 0,
-      exponent: 0,
+    var h2OIndicatorNode = new GraphIndicator.createH2OIndicator( valueH2OProperty, {
       x: backgroundNode.right - options.indicatorXOffset } );
-    var h3OIndicatorNode = new H3OIndicator( valueH3OProperty, {
+    var h3OIndicatorNode = new GraphIndicator.createH3OIndicator( valueH3OProperty, {
       x: backgroundNode.left + options.indicatorXOffset,
       isInteractive: options.isInteractive } );
-    var oHIndicatorNode = new OHIndicator( valueOHProperty, {
+    var oHIndicatorNode = new GraphIndicator.createOHIndicator( valueOHProperty, {
       x: backgroundNode.right - options.indicatorXOffset,
       isInteractive: options.isInteractive } );
     thisNode.addChild( h2OIndicatorNode );

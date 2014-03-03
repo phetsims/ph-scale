@@ -156,7 +156,7 @@ define( function( require ) {
   inherit( Node, ValueNode );
 
   /**
-   * Probe the extends out the bottom of the meter.
+   * Probe that extends out the bottom of the meter.
    * @param probeHeight
    * @constructor
    */

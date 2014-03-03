@@ -1,3 +1,4 @@
+3/3/14 delete unused dropper-icon.png
 3/3/14 #8 horizontally flip dropper images so that lighting is consistent with other parts of the sim
 3/3/14 ratio: reduced number of molecules to 1000, use CanvasNode, performance is much better
 3/3/14 update implementation-notes.txt

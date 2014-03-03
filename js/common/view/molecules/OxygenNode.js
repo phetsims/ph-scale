@@ -14,12 +14,12 @@ define( function( require ) {
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
 
-  function OxygenAtom() {
+  function OxygenNode() {
     ShadedSphereNode.call( this, 30, {
       mainColor: PHScaleColors.OXYGEN,
       highlightColor: new Color( 255, 255, 255 )
     } );
   }
 
-  return inherit( ShadedSphereNode, OxygenAtom );
+  return inherit( ShadedSphereNode, OxygenNode );
 } );

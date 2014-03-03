@@ -9,11 +9,11 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var H2OMoleculeNode = require( 'PH_SCALE/common/view/H2OMoleculeNode' );
-  var H3OMoleculeNode = require( 'PH_SCALE/common/view/H3OMoleculeNode' );
+  var H2ONode = require( 'PH_SCALE/common/view/molecules/H2ONode' );
+  var H3ONode = require( 'PH_SCALE/common/view/molecules/H3ONode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var OHMoleculeNode = require( 'PH_SCALE/common/view/OHMoleculeNode' );
+  var OHNode = require( 'PH_SCALE/common/view/molecules/OHNode' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -35,9 +35,9 @@ define( function( require ) {
     var ySpacing = 6;
 
     // molecule icons
-    var nodeH3O = new H3OMoleculeNode();
-    var nodeOH = new OHMoleculeNode();
-    var nodeH2O = new H2OMoleculeNode();
+    var nodeH3O = new H3ONode();
+    var nodeOH = new OHNode();
+    var nodeH2O = new H2ONode();
     var maxMoleculeWidth = Math.max( nodeH3O.width, Math.max( nodeOH.width, nodeH2O.width ) );
     var maxMoleculeHeight = Math.max( nodeH3O.height, Math.max( nodeOH.height, nodeH2O.height ) );
 

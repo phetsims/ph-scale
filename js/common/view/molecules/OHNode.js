@@ -9,18 +9,18 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var HydrogenAtomNode = require( 'PH_SCALE/common/view/HydrogenAtomNode' );
+  var HydrogenNode = require( 'PH_SCALE/common/view/molecules/HydrogenNode' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var OxygenAtomNode = require( 'PH_SCALE/common/view/OxygenAtomNode' );
+  var OxygenNode = require( 'PH_SCALE/common/view/molecules/OxygenNode' );
   var Node = require( 'SCENERY/nodes/Node' );
 
-  function OHMoleculeNode( options ) {
+  function OHNode( options ) {
 
     Node.call( this );
 
     // atoms
-    var oxygen = new OxygenAtomNode();
-    var hydrogen = new HydrogenAtomNode();
+    var oxygen = new OxygenNode();
+    var hydrogen = new HydrogenNode();
 
     // rendering order
     this.addChild( oxygen );
@@ -33,5 +33,5 @@ define( function( require ) {
     this.mutate( options );
   }
 
-  return inherit( Node, OHMoleculeNode );
+  return inherit( Node, OHNode );
 } );

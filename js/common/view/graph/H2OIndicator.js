@@ -11,7 +11,7 @@ define( function( require ) {
   // imports
   var inherit = require( 'PHET_CORE/inherit' );
   var GraphIndicator = require( 'PH_SCALE/common/view/graph/GraphIndicator' );
-  var H2OMoleculeNode = require( 'PH_SCALE/common/view/H2OMoleculeNode' );
+  var H2ONode = require( 'PH_SCALE/common/view/molecules/H2ONode' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
@@ -32,7 +32,7 @@ define( function( require ) {
     }, options );
 
     GraphIndicator.call( this, valueProperty,
-      new H2OMoleculeNode(),
+      new H2ONode(),
       new SubSupText( PHScaleConstants.H2O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
       options );
   }

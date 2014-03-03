@@ -1,3 +1,4 @@
+3/3/14 update implementation-notes.txt
 3/3/14 fixed logic for hiding 'ratio' feature
 3/3/14 move PHScaleNode to inner type of MacroPHMeterNode, since it's only used there
 3/3/14 replace GraphIndicator subtypes with factory functions

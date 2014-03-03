@@ -1,11 +1,8 @@
-'ph Scale' implementation notes
-
-Since the 'ph Scale: Basics' sim gets most of its implementation from 'pH Scale', we chose to treat the 'Basics' sim
-as a joist.Screen in the 'pH Scale' sim. The 'Basics' screen is visible if you run in development mode (add the '?dev'
-query parameter to the URL.) This streamlined development somewhat, and we'll see how it affects testing and future
-maintenance. Just know that all code in js/basics/ is specific to the 'Basics' screen.
+'pH Scale' implementation notes
 
 All core model computations are in PHModel.
+
+When accessing properties from a PropertySet, I prefer propertySet.fooProperty to propertySet.property( 'foo ' ).
 
 I find that I frequently need to change the rendering order and layout of nodes.
 To make that easier, node constructors typically have this structure:

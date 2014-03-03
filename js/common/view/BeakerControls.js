@@ -56,7 +56,7 @@ define( function( require ) {
     var separator = new Line( 0, 0, Math.max( moleculeCountCheckBox.width, ratioCheckBox.width ), 0, { stroke: 'gray' } );
 
     var children = [ ratioCheckBox, separator, moleculeCountCheckBox ];
-    if ( !window.phetcommon.getQueryParameter( 'dev' ) || RatioNode.FEATURE_VISIBLE ) {
+    if ( !window.phetcommon.getQueryParameter( 'dev' ) && !RatioNode.FEATURE_VISIBLE ) {
       children = [ moleculeCountCheckBox ];
     }
 

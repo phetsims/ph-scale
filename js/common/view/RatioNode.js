@@ -26,7 +26,6 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // constants
-  var FEATURE_VISIBLE = false; // determines whether this feature is visible in the production version
   var ACID_PH_THRESHOLD = 6;
   var BASE_PH_THRESHOLD = 8;
   var NUM_PARTICLES_AT_PH7 = 100;
@@ -257,6 +256,8 @@ define( function( require ) {
       }
     }
   }, {
+    // @static determines whether this feature is visible in the production version
+    FEATURE_VISIBLE: false,
 
     // @private @static Computes the {Number} number of H3O+ molecules for some {Number} pH.
     computeNumberOfH3O: function( pH ) {

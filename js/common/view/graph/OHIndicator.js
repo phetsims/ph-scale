@@ -14,7 +14,7 @@ define( function( require ) {
   var OHMoleculeNode = require( 'PH_SCALE/common/view/OHMoleculeNode' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var SubSupText = require( 'PH_SCALE/common/view/SubSupText' );
+  var SubSupText = require( 'SCENERY_PHET/SubSupText' );
 
   /**
    * @param {Property<Number>} valueProperty

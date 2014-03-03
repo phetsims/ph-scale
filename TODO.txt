@@ -20,6 +20,5 @@ LOW
 
 MIGRATE TO COMMON
 - ToggleButton (sun#32)
-- ZoomButton to scenery-phet
 - ScientificNotationNode to scenery-phet
 - SubSupText to scenery-phet

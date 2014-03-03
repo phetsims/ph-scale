@@ -1,3 +1,4 @@
+3/3/14 generalize ph-scale.ZoomButton and migrate to scenery-phet
 3/3/14 add this.mutate(options) to ZoomButton
 3/3/14 make major ticks 50% longer on log scale
 # 1.0.0-dev.15 2/27/14

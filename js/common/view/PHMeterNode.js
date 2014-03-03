@@ -1,10 +1,10 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * pH meter for the 'Solutions' and 'Custom' screens.
+ * pH meter for the 'Micro' and 'Custom' screens.
  * Origin is at top left.
  * The meter can be expanded and collapsed.
- * By default, the meter display pH but does not allow you to change it.
+ * By default, the meter displays pH but does not allow you to change it.
  * pH can be optionally changed (using a picker) for custom solutions.
  *
  * @author Chris Malley (PixelZoom, Inc.)

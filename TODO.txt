@@ -8,7 +8,6 @@ HIGHEST
 - see build-a-molecule.Molecule3DNode for example of using scenery.DOM and a properly-sized canvas
 
 HIGH
-- make major ticks 50% longer on log scale
 - #2 scientific notation displays 10.0 x 10^-8, rather than 1.0 x 10^-7
 - #5 code review
 

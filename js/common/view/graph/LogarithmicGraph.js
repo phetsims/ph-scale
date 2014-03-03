@@ -47,7 +47,7 @@ define( function( require ) {
       scaleLineWidth: 2,
       // major ticks
       majorTickFont: new PhetFont( 22 ),
-      majorTickLength: 10,
+      majorTickLength: 15,
       majorTickStroke: 'black',
       majorTickLineWidth: 1,
       majorTickXSpacing: 5,

@@ -17,7 +17,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var ScientificNotationNode = require( 'PH_SCALE/common/view/ScientificNotationNode' );
+  var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
 
   /**
    * @param {Solution} solution

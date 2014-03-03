@@ -17,4 +17,3 @@ LOW
 
 MIGRATE TO COMMON
 - ToggleButton (sun#32)
-- ScientificNotationNode to scenery-phet

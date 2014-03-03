@@ -29,7 +29,7 @@ define( function( require ) {
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var PHScaleNode = require( 'PH_SCALE/common/view/PHScaleNode' );
+  var PHScaleNode = require( 'PH_SCALE/macro/view/PHScaleNode' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );

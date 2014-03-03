@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * pH scale used in meters.
+ * pH scale used in the 'Macro' pH meter.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

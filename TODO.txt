@@ -1,8 +1,5 @@
 TODO list for ph-scale (HTML5)
 
-DESIGN
-- Macro: Change color of pH display to match other screens?
-
 HIGHEST
 - performance of 'H3O+/OH- ratio' feature stinks
 - see build-a-molecule.Molecule3DNode for example of using scenery.DOM and a properly-sized canvas

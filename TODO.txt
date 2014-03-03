@@ -8,7 +8,8 @@ HIGHEST
 - see build-a-molecule.Molecule3DNode for example of using scenery.DOM and a properly-sized canvas
 
 HIGH
-- #3 interactive graph indicators become non-responsive after a few uses on iPad (HTMLText)
+- #2 scientific notation displays 10.0 x 10^-8, rather than 1.0 x 10^-7
+- #5 code review
 
 MEDIUM
 
@@ -20,7 +21,6 @@ LOW
 
 MIGRATE TO COMMON
 - ToggleButton (sun#32)
-- DropperNode, Dropper to scenery-phet
-- BeakerNode to scenery-phet
 - ZoomButton to scenery-phet
 - ScientificNotationNode to scenery-phet
+- SubSupText to scenery-phet

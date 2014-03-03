@@ -2,7 +2,7 @@
 
 /**
  * Fluid coming out of a faucet.
- * Origin is at the top center, to simplify alignment with the center of the faucet's output pipe.
+ * Origin is at the top center, to simplify alignment with the center of the faucet's spout.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

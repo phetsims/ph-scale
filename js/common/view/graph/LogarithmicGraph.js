@@ -54,7 +54,9 @@ define( function( require ) {
       // minor ticks
       minorTickLength: 7,
       minorTickStroke: 'black',
-      minorTickLineWidth: 1
+      minorTickLineWidth: 1,
+      // indicators
+      indicatorXOffset: 10
     }, options );
 
     var thisNode = this;
@@ -118,12 +120,12 @@ define( function( require ) {
     var h2OIndicatorNode = new H2OIndicator( valueH2OProperty, {
       mantissaDecimalPlaces: 0,
       exponent: 0,
-      x: backgroundNode.right - options.majorTickLength } );
+      x: backgroundNode.right - options.indicatorXOffset } );
     var h3OIndicatorNode = new H3OIndicator( valueH3OProperty, {
-      x: backgroundNode.left + options.majorTickLength,
+      x: backgroundNode.left + options.indicatorXOffset,
       isInteractive: options.isInteractive } );
     var oHIndicatorNode = new OHIndicator( valueOHProperty, {
-      x: backgroundNode.right - options.majorTickLength,
+      x: backgroundNode.right - options.indicatorXOffset,
       isInteractive: options.isInteractive } );
     thisNode.addChild( h2OIndicatorNode );
     thisNode.addChild( h3OIndicatorNode );

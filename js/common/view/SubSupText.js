@@ -79,13 +79,13 @@ define( function( require ) {
             throw new Error( 'sub or sup element must be preceded by text' );
           }
 
-          if ( element.tagName === 'SUB' ) {
+          if ( element.tagName === 'SUB' ) { // HTML spec says that element names are uppercase
             node = new Text( element.innerHTML, { font: options.font, fill: options.fill, scale: options.subScale } );
             thisNode._textParent.addChild( node );
             node.left = previousNode.right + options.subXSpacing;
             node.centerY = previousNode.y; // center on baseline
           }
-          else if ( element.tagName === 'SUP' ) {
+          else if ( element.tagName === 'SUP' ) { // HTML spec says that element names are uppercase
             node = new Text( element.innerHTML, { font: options.font, fill: options.fill, scale: options.supScale } );
             thisNode._textParent.addChild( node );
             node.left = previousNode.right + options.supXSpacing;

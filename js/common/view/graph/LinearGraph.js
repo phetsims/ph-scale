@@ -141,7 +141,7 @@ define( function( require ) {
      * Given a value, compute it's y position relative to the top of the scale.
      * @param {Number} value in model coordinates
      * @param {Number} offScaleYOffset optional y-offset added to the position if the value is off the scale
-     * @return {Number} y postion in view coordinates
+     * @return {Number} y position in view coordinates
      */
     var valueToY = function( value, offScaleYOffset ) {
       var topTickValue = mantissaRange.max * Math.pow( 10, exponentProperty.get() );

@@ -125,21 +125,7 @@ define( function( require ) {
     formulaNode.centerY = moleculeNode.centerY;
     moleculeAndFormula.setScaleMagnitude( 0.7 );
 
-    // double-headed arrow
-    var arrowNode = new ArrowNode( 0, 0, 0, 0.75 * options.backgroundHeight, {
-      doubleHead: true,
-      tailWidth: 10,
-      headWidth: 28,
-      headHeight: 22,
-      fill: options.arrowFill,
-      stroke: 'black',
-      lineWidth: 2
-    } );
-
     // rendering order
-    if ( options.isInteractive ) {
-      thisNode.addChild( arrowNode );
-    }
     thisNode.addChild( backgroundNode );
     thisNode.addChild( valueBackgroundNode );
     thisNode.addChild( valueNode );
@@ -147,21 +133,39 @@ define( function( require ) {
 
     // layout, relative to backgroundNode
     if ( options.pointerLocation === 'topRight' || options.pointerLocation === 'bottomRight' ) {
-      arrowNode.right = backgroundNode.left - options.arrowXSpacing;
       valueBackgroundNode.left = backgroundNode.left + options.backgroundXMargin;
     }
     else {
-      arrowNode.left = backgroundNode.right + options.arrowXSpacing;
       valueBackgroundNode.right = backgroundNode.right - options.backgroundXMargin;
     }
     valueNode.centerY = valueBackgroundNode.centerY;
-    arrowNode.centerY = backgroundNode.centerY;
     valueBackgroundNode.top = backgroundNode.top + options.backgroundYMargin;
     moleculeAndFormula.centerX = valueBackgroundNode.centerX;
     moleculeAndFormula.top = valueBackgroundNode.bottom + options.ySpacing;
 
     if ( options.isInteractive ) {
       thisNode.cursor = 'pointer';
+
+      // add double-headed arrow
+      var arrowNode = new ArrowNode( 0, 0, 0, 0.75 * options.backgroundHeight, {
+        doubleHead: true,
+        tailWidth: 10,
+        headWidth: 28,
+        headHeight: 22,
+        fill: options.arrowFill,
+        stroke: 'black',
+        lineWidth: 2
+      } );
+      thisNode.addChild( arrowNode );
+
+      // put the arrow on opposite side of the indicator's pointer
+      if ( options.pointerLocation === 'topRight' || options.pointerLocation === 'bottomRight' ) {
+        arrowNode.right = backgroundNode.left - options.arrowXSpacing;
+      }
+      else {
+        arrowNode.left = backgroundNode.right + options.arrowXSpacing;
+      }
+      arrowNode.centerY = backgroundNode.centerY;
 
       // make the entire bounds interactive, so there's no dead space between background and arrows
       thisNode.mouseArea = thisNode.touchArea = thisNode.localBounds;

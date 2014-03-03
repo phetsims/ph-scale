@@ -1,3 +1,4 @@
+3/3/14 #9 create arrow only for interactive graph indicators
 3/3/14 #7 change '**' to '^' for exponent operator in model.txt
 3/3/14 delete unused dropper-icon.png
 3/3/14 #8 horizontally flip dropper images so that lighting is consistent with other parts of the sim

@@ -115,7 +115,7 @@ define( function( require ) {
       var mantissaRange = PHScaleConstants.LINEAR_MANTISSA_RANGE;
       var exponentRange = PHScaleConstants.LINEAR_EXPONENT_RANGE;
       thisNode.exponentProperty = new Property( exponentRange.max ); // @private
-      var linearGraph = new LinearGraph( solution, thisNode.graphUnitsProperty, mantissaRange, exponentRange, thisNode.exponentProperty, {
+      var linearGraph = new LinearGraph( solution, thisNode.graphUnitsProperty, mantissaRange, thisNode.exponentProperty, {
         scaleHeight: options.linearScaleHeight
       } );
 

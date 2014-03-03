@@ -29,12 +29,11 @@ define( function( require ) {
    * @param {Solution} solution
    * @param {Property<GraphUnits>} graphUnitsProperty
    * @param {Range} mantissaRange
-   * @param {Range} exponentRange
    * @param {Property<Number>} exponentProperty
    * @param {*} options
    * @constructor
    */
-  function LinearGraph( solution, graphUnitsProperty, mantissaRange, exponentRange, exponentProperty, options ) {
+  function LinearGraph( solution, graphUnitsProperty, mantissaRange, exponentProperty, options ) {
 
     options = _.extend( {
       // scale

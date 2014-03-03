@@ -1,3 +1,4 @@
+3/3/14 position superscripts relative to cap line in SubSupText
 3/3/14 generalize ph-scale.ZoomButton and migrate to scenery-phet
 3/3/14 add this.mutate(options) to ZoomButton
 3/3/14 make major ticks 50% longer on log scale

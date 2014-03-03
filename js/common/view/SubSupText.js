@@ -5,6 +5,7 @@
  * This was created to render chemical formulas (e.g. 'H<sub>3</sub>O<sup>+</sup>') but will undoubtedly have other uses.
  * Text must be provided in HTML format, and may contain only plaintext, <sub> and <sup>.
  * Each <sub> and <sup> tag must be preceded by plaintext, and nesting of tags is not supported.
+ * This node's y position will be at the text's baseline.
  * <p>
  * Beware of using this for situations where the text changes frequently.
  * The implementation relies on jQuery to parse the HTML, and this has not been profiled.
@@ -25,23 +26,28 @@ define( function( require ) {
 
     // defaults
     options = _.extend( {
-      fill: 'black', // used for all text
-      font: new PhetFont( 20 ), // font used for everything that's not a subscript or superscript
+      // all text
+      fill: 'black',
+      font: new PhetFont( 20 ),
       // plain text
-      textXSpacing: 2,
+      textXSpacing: 2, // space between plain text and whatever precedes it
       // subscripts
-      subScale: 0.75,
-      subXSpacing: 2,
-      subYOffset: 5, // y-offset from baseline
+      subScale: 0.75, // scale of subscript relative to plain text
+      subXSpacing: 2, // space between subscript and whatever precedes it
+      subYOffset: 0, // offset of subscript's center from baseline
       // superscripts
-      supScale: 0.75,
-      supXSpacing: 2,
-      supYOffset: 5 // offset of superscript's center from top of plaintext
+      supScale: 0.75, // scale of superscript relative to plain text
+      supXSpacing: 2, // space between superscript and whatever precedes it
+      supYOffset: 5 // offset of superscript's center from cap line, default is non-zero because of Text height inaccuracies
     }, options );
 
     // scenery.Text properties with setters and getters
     this._text = text; // @private
     this._options = options; // @private
+
+    // compute cap line offset from baseline, must be recomputed if font changes!
+    var tmpText = new Text( 'X', { font: options.font } );
+    this._capLineYOffset = ( tmpText.top - tmpText.y ); // @private
 
     Node.call( this );
 
@@ -87,13 +93,13 @@ define( function( require ) {
             node = new Text( element.innerHTML, { font: options.font, fill: options.fill, scale: options.subScale } );
             thisNode._textParent.addChild( node );
             node.left = previousNode.right + options.subXSpacing;
-            node.centerY = previousNode.y; // center on baseline
+            node.centerY = previousNode.y + options.subYOffset; // center on baseline
           }
           else if ( element.tagName === 'SUP' ) { // HTML spec says that element names are uppercase
             node = new Text( element.innerHTML, { font: options.font, fill: options.fill, scale: options.supScale } );
             thisNode._textParent.addChild( node );
             node.left = previousNode.right + options.supXSpacing;
-            node.centerY = previousNode.top + options.supYOffset; // center at top of plaintext
+            node.centerY = previousNode.y + thisNode._capLineYOffset + options.supYOffset; // center on cap line
           }
           else {
             throw new Error( 'unsupported tagName: ' + element.tagName );

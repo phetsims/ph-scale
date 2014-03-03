@@ -24,12 +24,13 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
+  var LinearGradient = require( 'SCENERY/util/LinearGradient' );
   var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var PHScaleNode = require( 'PH_SCALE/macro/view/PHScaleNode' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
@@ -41,13 +42,103 @@ define( function( require ) {
   var probeImage = require( 'image!PH_SCALE/pH-meter-probe.png' );
 
   // strings
+  var acidicString = require( 'string!PH_SCALE/acidic' );
+  var basicString = require( 'string!PH_SCALE/basic' );
   var pHString = require( 'string!PH_SCALE/pH' );
   var stringNoValue = '-';
 
   // constants
-  var SCALE_SIZE = new Dimension2( 55, 450 );
   var BACKGROUND_ENABLED_FILL = 'rgb(31,113,2)';
   var BACKGROUND_DISABLED_FILL = 'rgb(178,178,178)';
+  var SCALE_SIZE = new Dimension2( 55, 450 );
+  var SCALE_LABEL_FONT = new PhetFont( { size: 30, weight: 'bold' } );
+  var TICK_LENGTH = 15;
+  var TICK_FONT = new PhetFont( 22 );
+  var NEUTRAL_TICK_LENGTH = 40;
+  var TICK_LABEL_X_SPACING = 5;
+
+  /**
+   * The meter's vertical scale.
+   * @param {*} options
+   * @constructor
+   */
+  function ScaleNode( options ) {
+
+    options = _.extend( {
+      range: PHScaleConstants.PH_RANGE,
+      size: new Dimension2( 75, 450 )
+    }, options );
+
+    var thisNode = this;
+    Node.call( this );
+
+    // gradient background
+    this.backgroundStrokeWidth = 2; // @private
+    var backgroundNode = new Rectangle( 0, 0, options.size.width, options.size.height, {
+      fill: new LinearGradient( 0, 0, 0, options.size.height )
+        .addColorStop( 0, PHScaleColors.BASIC )
+        .addColorStop( 0.5, PHScaleColors.NEUTRAL )
+        .addColorStop( 1, PHScaleColors.ACIDIC ),
+      stroke: 'black',
+      lineWidth: this.backgroundStrokeWidth
+    } );
+    thisNode.addChild( backgroundNode );
+
+    // 'Acidic' label
+    var textOptions = { fill: 'white', font: SCALE_LABEL_FONT };
+    var acidicNode = new Text( acidicString, textOptions );
+    acidicNode.rotation = -Math.PI / 2;
+    acidicNode.centerX = backgroundNode.centerX;
+    acidicNode.centerY = 0.75 * backgroundNode.height;
+    thisNode.addChild( acidicNode );
+
+    // 'Basic' label
+    var basicNode = new Text( basicString, textOptions );
+    basicNode.rotation = -Math.PI / 2;
+    basicNode.centerX = backgroundNode.centerX;
+    basicNode.centerY = 0.25 * backgroundNode.height;
+    thisNode.addChild( basicNode );
+
+    // tick marks, labeled at 'even' values, skip 7 (neutral)
+    var y = options.size.height;
+    var dy = -options.size.height / options.range.getLength();
+    for ( var pH = options.range.min; pH <= options.range.max; pH++ ) {
+      if ( pH !== 7 ) {
+        // tick mark
+        var lineNode = new Line( 0, 0, TICK_LENGTH, 0, { stroke: 'black', lineWidth: 1 } );
+        lineNode.right = backgroundNode.left;
+        lineNode.centerY = y;
+        thisNode.addChild( lineNode );
+
+        // tick label
+        if ( pH % 2 === 0 ) {
+          var tickLabelNode = new Text( pH, { font: TICK_FONT } );
+          tickLabelNode.right = lineNode.left - TICK_LABEL_X_SPACING;
+          tickLabelNode.centerY = lineNode.centerY;
+          thisNode.addChild( tickLabelNode );
+        }
+      }
+      y += dy;
+    }
+
+    // 'Neutral' tick mark
+    var neutralLineNode = new Line( 0, 0, NEUTRAL_TICK_LENGTH, 0, { stroke: 'black', lineWidth: 3 } );
+    neutralLineNode.right = backgroundNode.left;
+    neutralLineNode.centerY = options.size.height / 2;
+    thisNode.addChild( neutralLineNode );
+    var neutralLabelNode = new Text( '7', { fill: PHScaleColors.NEUTRAL, font: new PhetFont( { family: 'Arial black', size: 28, weight: 'bold' } ) } );
+    thisNode.addChild( neutralLabelNode );
+    neutralLabelNode.right = neutralLineNode.left - TICK_LABEL_X_SPACING;
+    neutralLabelNode.centerY = neutralLineNode.centerY;
+  }
+
+  inherit( Node, ScaleNode, {
+
+    // needed for precise positioning of things that point to values on the scale
+    getBackgroundStrokeWidth: function() {
+      return this.backgroundStrokeWidth;
+    }
+  } );
 
   /**
    * Displays pH value inside of a rounded rectangle, which is then placed inside of yet-another rounded rectangle.
@@ -307,7 +398,7 @@ define( function( require ) {
     Node.call( thisNode );
 
     // pH scale, positioned at meter 'body' location
-    var scaleNode = new PHScaleNode( { size: SCALE_SIZE } );
+    var scaleNode = new ScaleNode( { size: SCALE_SIZE } );
     scaleNode.translation = mvt.modelToViewPosition( meter.bodyLocation );
 
     // indicator that slides vertically along scale

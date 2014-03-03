@@ -22,9 +22,12 @@ define( function( require ) {
    * @constructor
    */
   function OHIndicator( valueProperty, options ) {
-    options = _.extend( { pointerLocation: 'topLeft' }, options );
+    options = _.extend( {
+      backgroundFill: PHScaleColors.BASIC,
+      pointerLocation: 'topLeft'
+    }, options );
     var labelNode = new SubSupText( 'OH<sup>-</sup>', { font: new PhetFont( 28 ), fill: 'white' } );
-    GraphIndicator.call( this, valueProperty, new OHMoleculeNode(), labelNode, PHScaleColors.BASIC, options );
+    GraphIndicator.call( this, valueProperty, new OHMoleculeNode(), labelNode, options );
   }
 
   return inherit( GraphIndicator, OHIndicator );

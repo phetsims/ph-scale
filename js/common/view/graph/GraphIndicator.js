@@ -29,15 +29,15 @@ define( function( require ) {
    * @param {Property<Number>} valueProperty
    * @param {Node} moleculeNode
    * @param {Node} formulaNode
-   * @param {String|Color} backgroundFill
    * @param {*} options
    * @constructor
    */
-  function GraphIndicator( valueProperty, moleculeNode, formulaNode, backgroundFill, options ) {
+  function GraphIndicator( valueProperty, moleculeNode, formulaNode, options ) {
 
     options = _.extend( {
       scale: 0.75, // specified by design team
       pointerLocation: 'topRight', // values: topLeft, topRight, bottomLeft, bottomRight
+      backgroundFill: 'white',
       backgroundWidth: 160,
       backgroundHeight: 80,
       backgroundCornerRadius: 10,
@@ -91,7 +91,7 @@ define( function( require ) {
     var backgroundNode = new Path( backgroundShape, {
       lineWidth: options.backgroundLineWidth,
       stroke: options.backgroundStroke,
-      fill: backgroundFill } );
+      fill: options.backgroundFill } );
 
     // Cutout where the value is displayed.
     var valueBackgroundNode = new Rectangle( 0, 0,

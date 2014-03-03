@@ -22,9 +22,12 @@ define( function( require ) {
    * @constructor
    */
   function H3OIndicator( valueProperty, options ) {
-    options = _.extend( { pointerLocation: 'topRight' }, options );
+    options = _.extend( {
+      backgroundFill: PHScaleColors.ACIDIC,
+      pointerLocation: 'topRight'
+    }, options );
     var labelNode = new SubSupText( 'H<sub>3</sub>O<sup>+</sup>', { font: new PhetFont( 28 ), fill: 'white' } );
-    GraphIndicator.call( this, valueProperty, new H3OMoleculeNode(), labelNode, PHScaleColors.ACIDIC, options );
+    GraphIndicator.call( this, valueProperty, new H3OMoleculeNode(), labelNode, options );
   }
 
   return inherit( GraphIndicator, H3OIndicator );

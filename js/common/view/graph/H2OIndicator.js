@@ -25,9 +25,11 @@ define( function( require ) {
     options = _.extend( {
       exponent: 0,
       mantissaDecimalPlaces: 0,
-      pointerLocation: 'bottomLeft' }, options );
+      backgroundFill: PHScaleColors.H2O_BACKGROUND,
+      pointerLocation: 'bottomLeft'
+    }, options );
     var labelNode = new SubSupText( 'H<sub>2</sub>O', { font: new PhetFont( 28 ), fill: 'white' } );
-    GraphIndicator.call( this, valueProperty, new H2OMoleculeNode(), labelNode, PHScaleColors.H2O_BACKGROUND, options );
+    GraphIndicator.call( this, valueProperty, new H2OMoleculeNode(), labelNode, options );
   }
 
   return inherit( GraphIndicator, H2OIndicator );

@@ -3,6 +3,7 @@
 /**
  * The indicator that points to a value on a graph's vertical scale.
  * Origin is at the indicator's pointer, and the pointer can be attached to any corner of the indicator (see options.pointerLocation).
+ * Interactive indicators are decorated with a double-headed arrow, indicating the direction of dragging.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -21,8 +22,8 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
 
   // constants
-  var POINTER_WIDTH_PERCENTAGE = 0.15;
-  var POINTER_HEIGHT_PERCENTAGE = 0.5;
+  var POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute width of the pointy part of the indicator
+  var POINTER_HEIGHT_PERCENTAGE = 0.5; // used to compute height of the pointy part of the indicator
 
   /**
    * @param {Property<Number>} valueProperty
@@ -49,7 +50,7 @@ define( function( require ) {
       xSpacing: 8,
       ySpacing: 4,
       mantissaDecimalPlaces: 1,
-      exponent: null, // request a specific exponent
+      exponent: null, // use this to request a specific exponent, otherwise the exponent is computed
       isInteractive: false,
       arrowFill: 'rgb(0,200,0)',
       arrowXSpacing: 5

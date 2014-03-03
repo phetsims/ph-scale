@@ -173,7 +173,7 @@ define( function( require ) {
     // clockwise from tip of probe
     var cornerRadius = 4;
     var tipNode = new Path( new Shape()
-      .moveTo( probeWidth/2, tipHeight )
+      .moveTo( probeWidth / 2, tipHeight )
       .lineTo( 0, 0.6 * tipHeight )
       .lineTo( 0, cornerRadius )
       .arc( cornerRadius, cornerRadius, cornerRadius, Math.PI, 1.5 * Math.PI )

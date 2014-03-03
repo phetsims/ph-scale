@@ -169,7 +169,7 @@ define( function( require ) {
         assert && assert( exponentRange.contains( exponent ) );
         zoomInButton.enabled = ( exponent > exponentRange.min );
         zoomOutButton.enabled = ( exponent < exponentRange.max );
-      });
+      } );
 
       // handle zoom of linear graph
       zoomInButton.addListener( function() {

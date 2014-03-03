@@ -35,17 +35,17 @@ define( function( require ) {
 
     // solute choices, in order that they'll appear in the combo box
     thisModel.solutes = [
-       Solute.DRAIN_CLEANER,
-       Solute.HAND_SOAP,
-       Solute.BLOOD,
-       Solute.SPIT,
-       Solute.MILK,
-       Solute.CHICKEN_SOUP,
-       Solute.COFFEE,
-       Solute.BEER,
-       Solute.SODA,
-       Solute.VOMIT,
-       Solute.BATTERY_ACID
+      Solute.DRAIN_CLEANER,
+      Solute.HAND_SOAP,
+      Solute.BLOOD,
+      Solute.SPIT,
+      Solute.MILK,
+      Solute.CHICKEN_SOUP,
+      Solute.COFFEE,
+      Solute.BEER,
+      Solute.SODA,
+      Solute.VOMIT,
+      Solute.BATTERY_ACID
     ];
 
     thisModel.water = Water;

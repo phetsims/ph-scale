@@ -86,7 +86,7 @@ define( function( require ) {
     // pH meter
     var pHMeterTop = 15;
     var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterTop,
-    { attachProbe: 'right' } );
+      { attachProbe: 'right' } );
 
     // solutes combo box
     var soluteListParent = new Node();

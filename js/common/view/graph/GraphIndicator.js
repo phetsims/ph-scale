@@ -178,7 +178,7 @@ define( function( require ) {
       var isEnabled = ( value !== 0 );
       thisNode.opacity = isEnabled ? 1.0 : 0.5;
       thisNode.cursor = ( isEnabled && options.isInteractive ) ? 'pointer' : 'default';
-    });
+    } );
 
     thisNode.mutate( options );
   }

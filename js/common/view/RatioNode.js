@@ -143,7 +143,7 @@ define( function( require ) {
   function RatioNode( beaker, solution, mvt, options ) {
 
     options = _.extend( {
-       strategy: 'nodes' // nodes: draw each molecule as a scenery Node; canvas: draw molecules directly to canvas
+      strategy: 'nodes' // nodes: draw each molecule as a scenery Node; canvas: draw molecules directly to canvas
     }, options );
 
     var thisNode = this;

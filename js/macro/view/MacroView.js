@@ -59,8 +59,8 @@ define( function( require ) {
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
     // pH meter
-    var pHMeterNode = new MacroPHMeterNode(  model.pHMeter, model.solution, model.water, model.dropper,
-          solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, mvt );
+    var pHMeterNode = new MacroPHMeterNode( model.pHMeter, model.solution, model.water, model.dropper,
+      solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, mvt );
 
     // solutes combo box
     var soluteListParent = new Node();

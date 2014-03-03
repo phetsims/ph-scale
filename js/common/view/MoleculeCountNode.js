@@ -105,11 +105,11 @@ define( function( require ) {
       countOH.centerY = backgroundOH.centerY;
       countH2O.centerY = backgroundH2O.centerY;
     };
-    solution.pHProperty.link( updateCounts );
-    solution.waterVolumeProperty.link( updateCounts );
-    solution.soluteVolumeProperty.link( updateCounts );
+    solution.pHProperty.link( updateCounts.bind( thisNode ) );
+    solution.waterVolumeProperty.link( updateCounts.bind( thisNode ) );
+    solution.soluteVolumeProperty.link( updateCounts.bind( thisNode ) );
 
-    this.mutate( options );
+    thisNode.mutate( options );
   }
 
   return inherit( Node, MoleculeCountNode );

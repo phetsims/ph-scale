@@ -29,7 +29,7 @@ define( function( require ) {
   var ACID_PH_THRESHOLD = 6;
   var BASE_PH_THRESHOLD = 8;
   var NUM_PARTICLES_AT_PH7 = 100;
-  var NUM_PARTICLES_AT_PH_MAX = 3000;
+  var NUM_PARTICLES_AT_PH_MAX = 1000;
   var MIN_MINORITY_MOLECULES = 5;
   var MAJORITY_ALPHA = 0.55; // alpha of the majority species, [0-1], transparent-opaque
   var MINORITY_ALPHA = 1.0; // alpha of the minority species, [0-1], transparent-opaque
@@ -101,6 +101,7 @@ define( function( require ) {
    */
   function MoleculesCanvas( beakerBounds ) {
     CanvasNode.call( this, { canvasBounds: beakerBounds } );
+    this.beakerBounds = beakerBounds; // @private
     this.numberOfH3OMolecules = 0; // @private
     this.numberOfOHMolecules = 0; // @private
   }
@@ -112,7 +113,6 @@ define( function( require ) {
      * @param {Number} numberOfOHMolecules
      */
     drawMolecules: function( numberOfH3OMolecules, numberOfOHMolecules ) {
-      console.log( 'MoleculesCanvas.drawMolecules' );//XXX
       if ( numberOfH3OMolecules !== this.numberOfH3OMolecules || numberOfOHMolecules !== this.numberOfOHMolecules ) {
         this.numberOfH3OMolecules = numberOfH3OMolecules;
         this.numberOfOHMolecules = numberOfOHMolecules;
@@ -121,13 +121,40 @@ define( function( require ) {
     },
 
     /**
+     * Paints both species of molecule to the canvas.
      * @override
      * @protected
      * @param {CanvasContextWrapper} wrapper
      */
     paintCanvas: function( wrapper ) {
-      console.log( 'MoleculesCanvas.paintCanvas' );//XXX
-      //TODO draw molecules based on this.numberOfH3OMolecules and this.numberOfOHMolecules, majority species behind minority species
+      // draw majority species behind minority species
+      if ( this.numberOfH3OMolecules > this.numberOfOHMolecules ) {
+        this.paintMolecules( wrapper, this.numberOfH3OMolecules, H3O_MAJORITY_COLOR, H3O_RADIUS );
+        this.paintMolecules( wrapper, this.numberOfOHMolecules, OH_MINORITY_COLOR, OH_RADIUS );
+      }
+      else {
+        this.paintMolecules( wrapper, this.numberOfOHMolecules, OH_MAJORITY_COLOR, OH_RADIUS );
+        this.paintMolecules( wrapper, this.numberOfH3OMolecules, H3O_MINORITY_COLOR, H3O_RADIUS );
+      }
+    },
+
+    /**
+     * Paints one species of molecule, using a single path.
+     * @private
+     * @param {CanvasContextWrapper} wrapper
+     * @param {Number} numberOfMolecules
+     * @param {String} color
+     * @param {Number} radius
+     */
+    paintMolecules: function( wrapper, numberOfMolecules, color, radius ) {
+      var context = wrapper.context;
+      wrapper.setFillStyle( color );
+      context.beginPath();
+      for ( var i = 0; i < numberOfMolecules; i++ ) {
+        context.arc( RatioNode.createRandomX( this.beakerBounds ), RatioNode.createRandomY( this.beakerBounds ), radius, 0, 2 * Math.PI, false );
+        context.closePath();
+      }
+      context.fill();
     }
   } );
 
@@ -143,7 +170,7 @@ define( function( require ) {
   function RatioNode( beaker, solution, mvt, options ) {
 
     options = _.extend( {
-      strategy: 'nodes' // nodes: draw each molecule as a scenery Node; canvas: draw molecules directly to canvas
+      strategy: 'canvas' // nodes: draw each molecule as a scenery Node; canvas: draw molecules directly to canvas
     }, options );
 
     var thisNode = this;

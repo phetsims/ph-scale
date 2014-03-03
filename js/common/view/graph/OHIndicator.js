@@ -14,6 +14,7 @@ define( function( require ) {
   var OHMoleculeNode = require( 'PH_SCALE/common/view/OHMoleculeNode' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var SubSupText = require( 'SCENERY_PHET/SubSupText' );
 
   /**
@@ -30,7 +31,7 @@ define( function( require ) {
 
     GraphIndicator.call( this, valueProperty,
       new OHMoleculeNode(),
-      new SubSupText( 'OH<sup>-</sup>', { font: new PhetFont( 28 ), fill: 'white' } ),
+      new SubSupText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
       options );
   }
 

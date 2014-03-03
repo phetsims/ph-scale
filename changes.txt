@@ -1,3 +1,4 @@
+3/3/14 move html formulas to PHScaleConstants to avoid duplication
 3/3/14 format all code to match PhetStyle.xml
 3/3/14 migrate ph-scale.ScientificNotationNode to scenery-phet
 3/3/14 add this.mutate(options) to ScientificNotationNode

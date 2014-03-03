@@ -36,6 +36,11 @@ define( function( require ) {
 
     // tap-to-dispense feature for faucets
     TAP_TO_DISPENSE_AMOUNT: 0.05, // L
-    TAP_TO_DISPENSE_INTERVAL: 333 // ms
+    TAP_TO_DISPENSE_INTERVAL: 333, // ms
+
+    // formulas, no i18n required
+    H3O_FORMULA: 'H<sub>3</sub>O<sup>+</sup>',
+    OH_FORMULA: 'OH<sup>-</sup>',
+    H2O_FORMULA: 'H<sub>2</sub>O'
   };
 } );

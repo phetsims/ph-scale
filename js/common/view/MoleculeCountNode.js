@@ -42,10 +42,10 @@ define( function( require ) {
     var maxMoleculeHeight = Math.max( nodeH3O.height, Math.max( nodeOH.height, nodeH2O.height ) );
 
     // count values
-    var font = new PhetFont( 22 );
-    var countH3O = new ScientificNotationNode( 1e16, { font: font, fill: 'white', mantissaDecimalPlaces: 2 } );
-    var countOH = new ScientificNotationNode( 1e16, { font: font, fill: 'white', mantissaDecimalPlaces: 2 } );
-    var countH2O = new ScientificNotationNode( 1e16, { font: font, fill: 'white', mantissaDecimalPlaces: 2, exponent: 25 } );
+    var notationOptions = { font: new PhetFont( 22 ), fill: 'white', mantissaDecimalPlaces: 2 };
+    var countH3O = new ScientificNotationNode( 1e16, notationOptions );
+    var countOH = new ScientificNotationNode( 1e16, notationOptions );
+    var countH2O = new ScientificNotationNode( 1e16, _.extend( { exponent: 25 }, notationOptions ) );
     var maxCountWidth = countH3O.width;
     var maxCountHeight = countH3O.height;
 

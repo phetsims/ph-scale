@@ -42,9 +42,9 @@ define( function( require ) {
     this.getEnabledProperty().link( function( enabled ) {
        glassNode.stroke = handleNode.stroke = signNode.fill = enabled ? 'black' : 'rgb(128,128,128)';
     } );
+
+    this.mutate( options );
   }
 
-  return inherit( RectanglePushButton, ZoomButton, {
-
-  } );
+  return inherit( RectanglePushButton, ZoomButton );
 } );

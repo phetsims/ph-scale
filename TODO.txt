@@ -2,7 +2,7 @@ TODO list for ph-scale (HTML5)
 
 HIGHEST
 - performance of 'H3O+/OH- ratio' feature stinks
-- see build-a-molecule.Molecule3DNode for example of using scenery.DOM and a properly-sized canvas
+- see build-a-molecule.Molecule3DNode and Molecule3DDialog for example of using scenery.DOM and a properly-sized canvas
 
 HIGH
 - code review issues 6, 10, 13, 16, 19

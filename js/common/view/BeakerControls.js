@@ -30,7 +30,6 @@ define( function( require ) {
 
   // constants
   var FONT = new PhetFont( 20 );
-  var X_SPACING = 6;
 
   /**
    * @param {Property<Boolean>} ratioVisibleProperty
@@ -39,11 +38,11 @@ define( function( require ) {
    */
   function BeakerControls( ratioVisibleProperty, moleculeCountVisibleProperty ) {
 
-    // 'H3O+/OH- ratio' check box, with color-coded label
+    // 'H3O+/OH- ratio' check box, with color-coded label, spacing tweaked visually
     var textH3O = new SubSupText( PHScaleConstants.H3O_FORMULA, { font: FONT, fill: PHScaleColors.H3O_MOLECULES } );
-    var textSlash = new Text( '/', { font: FONT, left: textH3O.right + X_SPACING } );
-    var textOH = new SubSupText( PHScaleConstants.OH_FORMULA, { font: FONT, fill: PHScaleColors.OH_MOLECULES, left: textSlash.right + X_SPACING, supXSpacing: 2 } );
-    var textRatio = new Text( ratioString, { font: FONT, left: textOH.right + X_SPACING } );
+    var textSlash = new Text( '/', { font: FONT, left: textH3O.right + 2 } );
+    var textOH = new SubSupText( PHScaleConstants.OH_FORMULA, { font: FONT, fill: PHScaleColors.OH_MOLECULES, left: textSlash.right + 4, supXSpacing: 2 } );
+    var textRatio = new Text( ratioString, { font: FONT, left: textOH.right + 4 } );
     var ratioLabel = new Node( { children: [ textH3O, textSlash, textOH, textRatio ] } );
     var ratioCheckBox = new CheckBox( ratioLabel, ratioVisibleProperty );
     ratioCheckBox.touchArea = Shape.bounds( ratioCheckBox.localBounds.dilatedXY( 10, 8 ) );

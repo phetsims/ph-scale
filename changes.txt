@@ -1,3 +1,4 @@
+3/3/14 tweak spacing in 'H3O+/OH-' label
 3/4/14 tweak the y-spacing above and below the beaker controls
 3/4/14 tweak the x-spacing in formulas, so that H3O+ isn't so spread out
 3/3/14 simplify FaucetFluidNode constructor, so that it uniformly takes a colorProperty parameter and doesn't rely on duck-typing of solution

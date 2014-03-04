@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
  * Water, the solvent in this sim.
@@ -14,9 +14,9 @@ define( function( require ) {
   // strings
   var waterString = require( 'string!PH_SCALE/choice.water' );
 
-  return {
+  return Object.freeze( {
     name: waterString,
     pH: 7,
     color: PHScaleColors.WATER
-  };
+  } );
 } );

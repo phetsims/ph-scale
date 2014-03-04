@@ -12,6 +12,7 @@ define( function( require ) {
 
   // imports
   var Util = require( 'DOT/Util' );
+  var Water = require( 'PH_SCALE/common/model/Water' );
 
   // constants
   var AVOGADROS_NUMBER = 6.023E23; // number of molecules in one mole of solution
@@ -28,7 +29,7 @@ define( function( require ) {
 
     var solutePH = solution.soluteProperty.get().pH;
     var soluteVolume = solution.soluteVolumeProperty.get();
-    var waterPH = solution.water.pH;
+    var waterPH = Water.pH;
     var waterVolume = solution.waterVolumeProperty.get();
 
     var pH;

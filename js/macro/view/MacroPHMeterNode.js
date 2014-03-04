@@ -37,6 +37,7 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
+  var Water = require( 'PH_SCALE/common/model/Water' );
 
   // images
   var probeImage = require( 'image!PH_SCALE/pH-meter-probe.png' );
@@ -383,7 +384,6 @@ define( function( require ) {
   /**
    * @param {PHMeter} meter
    * @param {Solution} solution
-   * @param {Water} water
    * @param {Dropper} dropper
    * @param {Node} solutionNode
    * @param {Node} dropperFluidNode
@@ -392,7 +392,7 @@ define( function( require ) {
    * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function MacroPHMeterNode( meter, solution, water, dropper, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, mvt ) {
+  function MacroPHMeterNode( meter, solution, dropper, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, mvt ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -425,7 +425,7 @@ define( function( require ) {
         value = solution.pHProperty.get();
       }
       else if ( probeNode.isInWater() ) {
-        value = water.pH;
+        value = Water.pH;
       }
       else if ( probeNode.isInDropperSolution() ) {
         value = dropper.soluteProperty.get().pH;

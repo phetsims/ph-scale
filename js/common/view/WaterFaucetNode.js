@@ -15,14 +15,14 @@ define( function( require ) {
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
+  var Water = require( 'PH_SCALE/common/model/Water' );
 
   /**
-   * @param {Water} water
    * @param {Faucet} faucet
    * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function WaterFaucetNode( water, faucet, mvt ) {
+  function WaterFaucetNode( faucet, mvt ) {
 
     Node.call( this );
 
@@ -40,7 +40,7 @@ define( function( require ) {
     this.addChild( faucetNode );
 
     // decorate the faucet with the name of the water
-    var labelNode = new Text( water.name, { font: new PhetFont( 28 ) } );
+    var labelNode = new Text( Water.name, { font: new PhetFont( 28 ) } );
     this.addChild( labelNode );
     labelNode.right = faucetNode.left + 190;
     labelNode.bottom = faucetNode.centerY - 40;

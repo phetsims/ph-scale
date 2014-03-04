@@ -14,6 +14,7 @@ define( function( require ) {
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Util = require( 'DOT/Util' );
+  var Water = require( 'PH_SCALE/common/model/Water' );
 
   // constants
   var MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );
@@ -21,18 +22,16 @@ define( function( require ) {
   /**
    * @param {Property<Solute>} soluteProperty
    * @param {number} soluteVolume liters
-   * @param {Water} water
    * @param {number} waterVolume liters
    * @param {number} maxVolume liters
    */
-  function Solution( soluteProperty, soluteVolume, water, waterVolume, maxVolume ) {
+  function Solution( soluteProperty, soluteVolume, waterVolume, maxVolume ) {
     assert && assert( soluteVolume + waterVolume <= maxVolume );
 
     var thisSolution = this;
 
     thisSolution.soluteProperty = soluteProperty;
     thisSolution.soluteVolumeProperty = new Property( soluteVolume );
-    thisSolution.water = water;
     thisSolution.waterVolumeProperty = new Property( waterVolume );
     thisSolution.maxVolume = maxVolume;
 
@@ -57,7 +56,7 @@ define( function( require ) {
     thisSolution.colorProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.pHProperty ],
       function( solute, pH ) {
         if ( thisSolution.volumeProperty.get() === 0 || thisSolution.soluteVolumeProperty.get() === 0 || thisSolution.isEquivalentToWater() ) {
-          return thisSolution.water.color;
+          return Water.color;
         }
         else {
           return solute.computeColor( thisSolution.soluteVolumeProperty.get() / thisSolution.volumeProperty.get() );
@@ -86,7 +85,7 @@ define( function( require ) {
      */
     isEquivalentToWater: function() {
       var pHString = Util.toFixed( this.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
-      return ( parseFloat( pHString ) === this.water.pH ) && ( this.waterVolumeProperty.get() > 0 );
+      return ( parseFloat( pHString ) === Water.pH ) && ( this.waterVolumeProperty.get() > 0 );
     },
 
     //----------------------------------------------------------------------------

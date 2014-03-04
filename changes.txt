@@ -1,3 +1,4 @@
+3/3/14 #21 replace water property in model with direct access of Water constant at various use sites
 3/3/14 #20 remove unused exponentRange parameter from LinearGraph constructor
 3/3/14 #18 factor out options that are common to all ScientificNotationNode instantiations
 3/3/14 #14 bind added to linked functions in MoleculeCountNode

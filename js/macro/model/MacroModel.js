@@ -19,7 +19,6 @@ define( function( require ) {
   var Solute = require( 'PH_SCALE/common/model/Solute' );
   var Solution = require( 'PH_SCALE/common/model/Solution' );
   var Vector2 = require( 'DOT/Vector2' );
-  var Water = require( 'PH_SCALE/common/model/Water' );
 
   /**
    * @param {*} options
@@ -48,8 +47,6 @@ define( function( require ) {
       Solute.BATTERY_ACID
     ];
 
-    thisModel.water = Water;
-
     // Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
     thisModel.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
 
@@ -60,7 +57,7 @@ define( function( require ) {
       new Bounds2( thisModel.beaker.left + 40, yDropper, thisModel.beaker.right - 200, yDropper ) );
 
     // Solution in the beaker
-    thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, thisModel.water, 0, thisModel.beaker.volume );
+    thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, 0, thisModel.beaker.volume );
 
     // Water faucet at the beaker's top-right
     thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, thisModel.beaker.location.y - thisModel.beaker.size.height - 45 ),

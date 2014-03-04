@@ -25,6 +25,7 @@ define( function( require ) {
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
   var WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
+  var Water = require( 'PH_SCALE/common/model/Water' );
 
   /**
    * @param {MacroModel} model
@@ -51,15 +52,15 @@ define( function( require ) {
     var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * dropperNode.getTipWidth(), mvt );
 
     // faucets
-    var waterFaucetNode = new WaterFaucetNode( model.water, model.waterFaucet, mvt );
+    var waterFaucetNode = new WaterFaucetNode( model.waterFaucet, mvt );
     var drainFaucetNode = new DrainFaucetNode( model.drainFaucet, mvt );
     var WATER_FLUID_HEIGHT = model.beaker.location.y - model.waterFaucet.location.y;
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
-    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, model.solution.water, WATER_FLUID_HEIGHT, mvt );
+    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, Water, WATER_FLUID_HEIGHT, mvt );
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
     // pH meter
-    var pHMeterNode = new MacroPHMeterNode( model.pHMeter, model.solution, model.water, model.dropper,
+    var pHMeterNode = new MacroPHMeterNode( model.pHMeter, model.solution, model.dropper,
       solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, mvt );
 
     // solutes combo box

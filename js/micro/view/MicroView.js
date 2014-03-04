@@ -28,6 +28,7 @@ define( function( require ) {
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
+  var Water = require( 'PH_SCALE/common/model/Water' );
   var WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
 
   /**
@@ -58,11 +59,11 @@ define( function( require ) {
     var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * dropperNode.getTipWidth(), mvt );
 
     // faucets
-    var waterFaucetNode = new WaterFaucetNode( model.water, model.waterFaucet, mvt );
+    var waterFaucetNode = new WaterFaucetNode( model.waterFaucet, mvt );
     var drainFaucetNode = new DrainFaucetNode( model.drainFaucet, mvt );
     var SOLVENT_FLUID_HEIGHT = model.beaker.location.y - model.waterFaucet.location.y;
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
-    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, model.solution.water, SOLVENT_FLUID_HEIGHT, mvt );
+    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, Water, SOLVENT_FLUID_HEIGHT, mvt );
     var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
 
     // 'H3O+/OH- ratio' representation

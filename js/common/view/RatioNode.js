@@ -197,8 +197,9 @@ define( function( require ) {
 
     // @override When this node becomes visible, update it.
     setVisible: function( visible ) {
+      var doUpdate = visible && !this.visible;
       Node.prototype.setVisible.call( this, visible );
-      this.update();
+      if ( doUpdate ) { this.update(); }
     },
 
     /**

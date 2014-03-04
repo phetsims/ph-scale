@@ -1,6 +1,7 @@
+3/4/13 #23 stylistic, remove curly braces around layout code in MoleculeCountNode
 3/4/13 #10 change ScientificNotationNode to use Property instead of setValue
 3/3/14 #16 add note about indicator code to JSdoc
-3/4/14 #22 added blank lines before comments, as suggested
+3/4/14 #22 stylistic, add blank lines before some comments
 # 1.0.0-dev.16 2/27/14
 3/4/14 RatioNode cleanup
 3/4/14 enable 'ratio' feature in production version, since it's now usable on all platforms

@@ -78,24 +78,20 @@ define( function( require ) {
     thisNode.addChild( nodeOH );
     thisNode.addChild( nodeH2O );
 
-    // layout
-    {
-      // backgrounds are vertically stacked
-      backgroundOH.left = backgroundH3O.left;
-      backgroundOH.top = backgroundH3O.bottom + ySpacing;
-      backgroundH2O.left = backgroundOH.left;
-      backgroundH2O.top = backgroundOH.bottom + ySpacing;
-
-      // molecule icons are vertically centered in the backgrounds, horizontally centered above each other
-      nodeH3O.centerX = backgroundH3O.right - xMargin - ( maxMoleculeWidth / 2 );
-      nodeH3O.centerY = backgroundH3O.centerY;
-      nodeOH.centerX = backgroundOH.right - xMargin - ( maxMoleculeWidth / 2 );
-      nodeOH.centerY = backgroundOH.centerY;
-      nodeH2O.centerX = backgroundH2O.right - xMargin - ( maxMoleculeWidth / 2 );
-      nodeH2O.centerY = backgroundH2O.centerY;
-
-      // counts will be dynamically positioned
-    }
+    // layout...
+    // backgrounds are vertically stacked
+    backgroundOH.left = backgroundH3O.left;
+    backgroundOH.top = backgroundH3O.bottom + ySpacing;
+    backgroundH2O.left = backgroundOH.left;
+    backgroundH2O.top = backgroundOH.bottom + ySpacing;
+    // molecule icons are vertically centered in the backgrounds, horizontally centered above each other
+    nodeH3O.centerX = backgroundH3O.right - xMargin - ( maxMoleculeWidth / 2 );
+    nodeH3O.centerY = backgroundH3O.centerY;
+    nodeOH.centerX = backgroundOH.right - xMargin - ( maxMoleculeWidth / 2 );
+    nodeOH.centerY = backgroundOH.centerY;
+    nodeH2O.centerX = backgroundH2O.right - xMargin - ( maxMoleculeWidth / 2 );
+    nodeH2O.centerY = backgroundH2O.centerY;
+    // counts will be dynamically positioned
 
     // update counts when the solution changes
     var moleculesLeft = Math.min( nodeH3O.left, Math.min( nodeOH.left, nodeH2O.left ) ); // for right justifying counts

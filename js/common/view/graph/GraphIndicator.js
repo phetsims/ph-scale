@@ -109,7 +109,7 @@ define( function( require ) {
       } );
 
     // Value, scaled to fit background height
-    var valueNode = new ScientificNotationNode( valueProperty.get(), {
+    var valueNode = new ScientificNotationNode( valueProperty, {
       font: new PhetFont( 28 ),
       fill: 'black',
       mantissaDecimalPlaces: options.mantissaDecimalPlaces,
@@ -180,7 +180,6 @@ define( function( require ) {
     valueProperty.link( function( value ) {
 
       // update the displayed value and center it
-      valueNode.setValue( value );
       valueNode.centerX = valueBackgroundNode.centerX;
       valueNode.centerY = valueBackgroundNode.centerY;
 

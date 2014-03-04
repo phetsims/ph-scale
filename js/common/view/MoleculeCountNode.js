@@ -16,6 +16,7 @@ define( function( require ) {
   var OHNode = require( 'PH_SCALE/common/view/molecules/OHNode' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
 
@@ -41,13 +42,18 @@ define( function( require ) {
     var maxMoleculeWidth = Math.max( nodeH3O.width, Math.max( nodeOH.width, nodeH2O.width ) );
     var maxMoleculeHeight = Math.max( nodeH3O.height, Math.max( nodeOH.height, nodeH2O.height ) );
 
+    // internal properties for counts
+    var countH3OProperty = new Property( 1e16 );
+    var countOHProperty = new Property( 1e16 );
+    var countH2OProperty = new Property( 1e16 );
+
     // count values
     var notationOptions = { font: new PhetFont( 22 ), fill: 'white', mantissaDecimalPlaces: 2 };
-    var countH3O = new ScientificNotationNode( 1e16, notationOptions );
-    var countOH = new ScientificNotationNode( 1e16, notationOptions );
-    var countH2O = new ScientificNotationNode( 1e16, _.extend( { exponent: 25 }, notationOptions ) );
-    var maxCountWidth = countH3O.width;
-    var maxCountHeight = countH3O.height;
+    var countH3ONode = new ScientificNotationNode( countH3OProperty, notationOptions );
+    var countOHNode = new ScientificNotationNode( countOHProperty, notationOptions );
+    var countH2ONode = new ScientificNotationNode( countH2OProperty, _.extend( { exponent: 25 }, notationOptions ) );
+    var maxCountWidth = countH3ONode.width;
+    var maxCountHeight = countH3ONode.height;
 
     // backgrounds
     var backgroundWidth = maxCountWidth + xSpacing + maxMoleculeWidth + ( 2 * xMargin );
@@ -65,9 +71,9 @@ define( function( require ) {
     thisNode.addChild( backgroundH3O );
     thisNode.addChild( backgroundOH );
     thisNode.addChild( backgroundH2O );
-    thisNode.addChild( countH3O );
-    thisNode.addChild( countOH );
-    thisNode.addChild( countH2O );
+    thisNode.addChild( countH3ONode );
+    thisNode.addChild( countOHNode );
+    thisNode.addChild( countH2ONode );
     thisNode.addChild( nodeH3O );
     thisNode.addChild( nodeOH );
     thisNode.addChild( nodeH2O );
@@ -95,20 +101,20 @@ define( function( require ) {
     var moleculesLeft = Math.min( nodeH3O.left, Math.min( nodeOH.left, nodeH2O.left ) ); // for right justifying counts
     var updateCounts = function() {
 
-      // set counts
-      countH3O.setValue( solution.getMoleculesH3O() );
-      countOH.setValue( solution.getMoleculesOH() );
-      countH2O.setValue( solution.getMoleculesH2O() );
+      // set counts, which in turn updates values displayed by nodes
+      countH3OProperty.set( solution.getMoleculesH3O() );
+      countOHProperty.set( solution.getMoleculesOH() );
+      countH2OProperty.set( solution.getMoleculesH2O() );
 
       // right justified
-      countH3O.right = moleculesLeft - xSpacing;
-      countOH.right = moleculesLeft - xSpacing;
-      countH2O.right = moleculesLeft - xSpacing;
+      countH3ONode.right = moleculesLeft - xSpacing;
+      countOHNode.right = moleculesLeft - xSpacing;
+      countH2ONode.right = moleculesLeft - xSpacing;
 
       // vertically centered
-      countH3O.centerY = backgroundH3O.centerY;
-      countOH.centerY = backgroundOH.centerY;
-      countH2O.centerY = backgroundH2O.centerY;
+      countH3ONode.centerY = backgroundH3O.centerY;
+      countOHNode.centerY = backgroundOH.centerY;
+      countH2ONode.centerY = backgroundH2O.centerY;
     };
     solution.pHProperty.link( updateCounts.bind( thisNode ) );
     solution.waterVolumeProperty.link( updateCounts.bind( thisNode ) );

@@ -108,7 +108,12 @@ define( function( require ) {
       // major lines and label
       tickLineLeft = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
       tickLineRight = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
-      tickLabel = new ScientificNotationNode( i, { font: options.majorTickFont, fill: 'black', mantissaDecimalPlaces: 0 } );
+      tickLabel = new ScientificNotationNode( new Property( i ), {
+        font: options.majorTickFont,
+        fill: 'black',
+        mantissaDecimalPlaces: 0,
+        showIntegersAsMantissaOnly: true
+      } );
       // rendering order
       thisNode.addChild( tickLineLeft );
       thisNode.addChild( tickLineRight );
@@ -195,7 +200,7 @@ define( function( require ) {
     var updateTickLabels = function( exponent ) {
       var tickOptions = ( exponent >= 0 ) ? { exponent: 0 } : { exponent: exponent }; // show positive exponents as integers
       for ( var i = 0; i < tickLabels.length; i++ ) {
-        tickLabels[i].setValue( i * Math.pow( 10, exponent ), tickOptions );
+        tickLabels[i].valueProperty.set( i * Math.pow( 10, exponent ), tickOptions );
         tickLabels[i].centerX = scaleNode.centerX;
       }
     };

@@ -1,6 +1,8 @@
 TODO list for ph-scale (HTML5)
 
 HIGH
+- increase spacing between pH picker and expand/collapse button
+- increase height of pointer areas for pH picker
 - code review issues 10, 16
 - ratio: sometimes clipped near top of the surface on iPad and Nexus7, when switching solutions
 - ratio: paintCanvas is called when solution volume changes, causes molecules to redraw

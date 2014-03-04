@@ -21,6 +21,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  var Property = require( 'AXON/Property' );
   var PropertySet = require( 'AXON/PropertySet' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
@@ -63,8 +64,8 @@ define( function( require ) {
     var drainFaucetNode = new DrainFaucetNode( model.drainFaucet, mvt );
     var SOLVENT_FLUID_HEIGHT = model.beaker.location.y - model.waterFaucet.location.y;
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
-    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, Water, SOLVENT_FLUID_HEIGHT, mvt );
-    var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
+    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), SOLVENT_FLUID_HEIGHT, mvt );
+    var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, mvt );
 
     // 'H3O+/OH- ratio' representation
     var ratioNode = new RatioNode( model.beaker, model.solution, mvt, { visible: viewProperties.ratioVisibleProperty.get() } );

@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2014, University of Colorado Boulder
 
 /**
  * Fluid coming out of a faucet.
@@ -15,28 +15,21 @@ define( function( require ) {
 
   /**
    * @param {Faucet} faucet
-   * @param {*} fluid anything that has a 'color' or 'colorProperty'
+   * @param {Property<Color>} colorProperty
    * @param {Number} height in model coordinates
    * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function FaucetFluidNode( faucet, fluid, height, mvt ) {
+  function FaucetFluidNode( faucet, colorProperty, height, mvt ) {
 
     var thisNode = this;
     Rectangle.call( thisNode, 0, 0, 0, 0, { lineWidth: 1, pickable: false } );
 
-    // Set the color of the fluid coming out of the spout, dynamically if supported
-    if ( fluid.colorProperty ) {
-      // @param {Color} color
-      fluid.colorProperty.link( function( color ) {
-        thisNode.fill = color;
-        thisNode.stroke = color.darkerColor();
-      } );
-    }
-    else {
-      thisNode.fill = fluid.color;
-      thisNode.stroke = fluid.color.darkerColor();
-    }
+    // Set the color of the fluid coming out of the spout.
+    colorProperty.link( function( color ) {
+      thisNode.fill = color;
+      thisNode.stroke = color.darkerColor();
+    } );
 
     /*
      * Set the width of the shape to match the flow rate.

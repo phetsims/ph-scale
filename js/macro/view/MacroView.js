@@ -19,6 +19,7 @@ define( function( require ) {
   var NeutralIndicator = require( 'PH_SCALE/macro/view/NeutralIndicator' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  var Property = require( 'AXON/Property' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
@@ -56,8 +57,8 @@ define( function( require ) {
     var drainFaucetNode = new DrainFaucetNode( model.drainFaucet, mvt );
     var WATER_FLUID_HEIGHT = model.beaker.location.y - model.waterFaucet.location.y;
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
-    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, Water, WATER_FLUID_HEIGHT, mvt );
-    var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution, DRAIN_FLUID_HEIGHT, mvt );
+    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), WATER_FLUID_HEIGHT, mvt );
+    var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, mvt );
 
     // pH meter
     var pHMeterNode = new MacroPHMeterNode( model.pHMeter, model.solution, model.dropper,

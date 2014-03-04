@@ -215,6 +215,7 @@ define( function( require ) {
       }
 
       var pH = this.solution.pHProperty.get();
+      console.log( 'RatioNode.update pH=' + pH );//XXX
       if ( pH !== null ) {
         pH = Util.toFixedNumber( this.solution.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
       }

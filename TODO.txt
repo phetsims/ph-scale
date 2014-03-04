@@ -2,6 +2,7 @@ TODO list for ph-scale (HTML5)
 
 HIGH
 - code review issues 10, 16
+- top part of ratio view is sometimes clipped on iPad and Nexus7, when switching solutions
 - ratio: display some of minority species in visible portion of solution
 
 MEDIUM

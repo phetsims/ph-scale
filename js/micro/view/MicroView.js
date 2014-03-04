@@ -127,7 +127,7 @@ define( function( require ) {
     moleculeCountNode.centerX = beakerNode.centerX;
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.centerX = beakerNode.centerX;
-    beakerControls.top = beakerNode.bottom + 15;
+    beakerControls.top = beakerNode.bottom + 10;
     pHMeterNode.left = mvt.modelToViewX( model.beaker.left ) - ( 0.4 * pHMeterNode.width );
     pHMeterNode.top = pHMeterTop;
     graphNode.right = drainFaucetNode.left - 40;

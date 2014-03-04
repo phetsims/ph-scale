@@ -93,7 +93,7 @@ define( function( require ) {
     moleculeCountNode.centerX = beakerNode.centerX;
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.centerX = beakerNode.centerX;
-    beakerControls.top = beakerNode.bottom + 15;
+    beakerControls.top = beakerNode.bottom + 10;
     graphNode.right = beakerNode.left - 70;
     graphNode.top = pHMeterNode.top;
     resetAllButton.right = this.layoutBounds.right - 40;

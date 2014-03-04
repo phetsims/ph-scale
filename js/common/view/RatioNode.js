@@ -5,6 +5,9 @@
  * Molecules are drawn as circles, directly to Canvas for performance.
  * In the pH range close to neutral, the relationship between number of molecules and pH is log.
  * Outside of that range, we can't possibly draw that many molecules, so we fake it using a linear relationship.
+ * <p>
+ * Note: The implementation refers to 'majority' or 'minority' species throughout.
+ * This is a fancy was of saying 'the molecule that has the larger (or smaller) count'.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

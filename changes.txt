@@ -1,3 +1,4 @@
+3/3/14 increase performance of 'ratio' feature by using drawImage instead of arc
 3/3/14 tweak spacing in 'H3O+/OH-' label
 3/4/14 tweak the y-spacing above and below the beaker controls
 3/4/14 tweak the x-spacing in formulas, so that H3O+ isn't so spread out

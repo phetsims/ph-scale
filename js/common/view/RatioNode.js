@@ -25,6 +25,12 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
 
+  // images
+  var imageH3OMajority = require( 'image!PH_SCALE/H3O-majority.png' );
+  var imageH3OMinority = require( 'image!PH_SCALE/H3O-minority.png' );
+  var imageOHMajority = require( 'image!PH_SCALE/OH-majority.png' );
+  var imageOHMinority = require( 'image!PH_SCALE/OH-minority.png' );
+
   // constants
   var ACID_PH_THRESHOLD = 6;
   var BASE_PH_THRESHOLD = 8;
@@ -100,10 +106,21 @@ define( function( require ) {
    * @constructor
    */
   function MoleculesCanvas( beakerBounds ) {
-    CanvasNode.call( this, { canvasBounds: beakerBounds } );
-    this.beakerBounds = beakerBounds; // @private
-    this.numberOfH3OMolecules = 0; // @private
-    this.numberOfOHMolecules = 0; // @private
+
+    var thisNode = this;
+    CanvasNode.call( thisNode, { canvasBounds: beakerBounds } );
+
+    thisNode.beakerBounds = beakerBounds; // @private
+    thisNode.numberOfH3OMolecules = 0; // @private
+    thisNode.numberOfOHMolecules = 0; // @private
+
+    // generate images of each molecule, with majority and minority coloring
+    new Circle( H3O_RADIUS, PHScaleColors.H3O_MOLECULES ).toImage( function( image ) {
+      thisNode.imageH3O = image;
+    } );
+    new Circle( OH_RADIUS, PHScaleColors.OH_MOLECULES ).toImage( function( image ) {
+      thisNode.imageOH = image;
+    } );
   }
 
   inherit( CanvasNode, MoleculesCanvas, {
@@ -129,32 +146,28 @@ define( function( require ) {
     paintCanvas: function( wrapper ) {
       // draw majority species behind minority species
       if ( this.numberOfH3OMolecules > this.numberOfOHMolecules ) {
-        this.paintMolecules( wrapper, this.numberOfH3OMolecules, H3O_MAJORITY_COLOR, H3O_RADIUS );
-        this.paintMolecules( wrapper, this.numberOfOHMolecules, OH_MINORITY_COLOR, OH_RADIUS );
+        this.paintMolecules( wrapper, this.numberOfH3OMolecules, imageH3OMajority );
+        this.paintMolecules( wrapper, this.numberOfOHMolecules, imageOHMinority );
       }
       else {
-        this.paintMolecules( wrapper, this.numberOfOHMolecules, OH_MAJORITY_COLOR, OH_RADIUS );
-        this.paintMolecules( wrapper, this.numberOfH3OMolecules, H3O_MINORITY_COLOR, H3O_RADIUS );
+        this.paintMolecules( wrapper, this.numberOfOHMolecules, imageOHMajority );
+        this.paintMolecules( wrapper, this.numberOfH3OMolecules, imageH3OMinority );
       }
     },
 
     /**
-     * Paints one species of molecule, using a single path.
+     * Paints one species of molecule.
+     * Using drawImage is faster than arc.
      * @private
      * @param {CanvasContextWrapper} wrapper
      * @param {Number} numberOfMolecules
      * @param {String} color
      * @param {Number} radius
      */
-    paintMolecules: function( wrapper, numberOfMolecules, color, radius ) {
-      var context = wrapper.context;
-      wrapper.setFillStyle( color );
-      context.beginPath();
+    paintMolecules: function( wrapper, numberOfMolecules, image ) {
       for ( var i = 0; i < numberOfMolecules; i++ ) {
-        context.arc( RatioNode.createRandomX( this.beakerBounds ), RatioNode.createRandomY( this.beakerBounds ), radius, 0, 2 * Math.PI, false );
-        context.closePath();
+        wrapper.context.drawImage( image, RatioNode.createRandomX( this.beakerBounds ), RatioNode.createRandomY( this.beakerBounds ) );
       }
-      context.fill();
     }
   } );
 

@@ -210,12 +210,9 @@ define( function( require ) {
     update: function() {
 
       // don't update if not visible
-      if ( !this.visible ) {
-        return;
-      }
+      if ( !this.visible ) { return; }
 
       var pH = this.solution.pHProperty.get();
-      console.log( 'RatioNode.update pH=' + pH );//XXX
       if ( pH !== null ) {
         pH = Util.toFixedNumber( this.solution.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
       }

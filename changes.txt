@@ -1,3 +1,4 @@
+3/4/14 tweak the x-spacing in formulas, so that H3O+ isn't so spread out
 3/3/14 simplify FaucetFluidNode constructor, so that it uniformly takes a colorProperty parameter and doesn't rely on duck-typing of solution
 3/3/14 #21 replace water property in model with direct access of Water constant at various use sites
 3/3/14 #20 remove unused exponentRange parameter from LinearGraph constructor

@@ -220,7 +220,7 @@ define( function( require ) {
     createOHIndicator: function( valueProperty, options ) {
       return new GraphIndicator( valueProperty,
         new OHNode(),
-        new SubSupText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
+        new SubSupText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: 'white', supXSpacing: 2 } ),
         _.extend( {
           backgroundFill: PHScaleColors.BASIC,
           pointerLocation: 'topLeft'

@@ -264,8 +264,5 @@ define( function( require ) {
         this.ratioText.text = numberOfH3O + ' / ' + numberOfOH;
       }
     }
-  }, {
-    // @static determines whether this feature is visible in the production version
-    FEATURE_VISIBLE: false
   } );
 } );

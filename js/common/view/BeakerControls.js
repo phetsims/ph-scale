@@ -18,7 +18,6 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
   var Shape = require( 'KITE/Shape' );
   var SubSupText = require( 'SCENERY_PHET/SubSupText' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -54,13 +53,8 @@ define( function( require ) {
 
     var separator = new Line( 0, 0, Math.max( moleculeCountCheckBox.width, ratioCheckBox.width ), 0, { stroke: 'gray' } );
 
-    var children = [ ratioCheckBox, separator, moleculeCountCheckBox ];
-    if ( !window.phetcommon.getQueryParameter( 'dev' ) && !RatioNode.FEATURE_VISIBLE ) {
-      children = [ moleculeCountCheckBox ];
-    }
-
     var content = new VBox( {
-      children: children,
+      children: [ ratioCheckBox, separator, moleculeCountCheckBox ],
       align: 'left',
       spacing: 10
     } );

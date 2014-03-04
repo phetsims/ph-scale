@@ -2,6 +2,12 @@
 
 /**
  * View for the 'Custom' screen.
+ * <p>
+ * NOTE:
+ * This view currently consists of a subset of the nodes in the 'Micro' screen.
+ * But some of the common nodes are configured differently, and the screen has different layering and layout requirements.
+ * So I choose to duplicate some code rather than attempt a refactor that would result in an implementation that
+ * was more difficult to understand and maintain.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

@@ -20,45 +20,41 @@ define( function( require ) {
   var PHModel = require( 'PH_SCALE/common/model/PHModel' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  var Range = require( 'DOT/Range' );
   var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
 
   // constants
-  var ACID_PH_THRESHOLD = 6;
-  var BASE_PH_THRESHOLD = 8;
-  var NUM_PARTICLES_AT_PH7 = 100;
-  var NUM_PARTICLES_AT_PH_MAX = 1000;
-  var MIN_MINORITY_MOLECULES = 5;
+  var TOTAL_MOLECULES_AT_PH_7 = 100;
+  var MAX_MAJORITY_MOLECULES = 1000;
+  var MIN_MINORITY_MOLECULES = 5; // any non-zero number of particles will be set to this number
+  var LOG_PH_RANGE = new Range( 6, 8 ); // in this range, number of molecule is computed using log
   var MAJORITY_ALPHA = 0.55; // alpha of the majority species, [0-1], transparent-opaque
   var MINORITY_ALPHA = 1.0; // alpha of the minority species, [0-1], transparent-opaque
-  var H3O_MAJORITY_COLOR = PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA );
-  var H3O_MINORITY_COLOR = PHScaleColors.H3O_MOLECULES.withAlpha( MINORITY_ALPHA );
-  var OH_MAJORITY_COLOR = PHScaleColors.OH_MOLECULES.withAlpha( MAJORITY_ALPHA );
-  var OH_MINORITY_COLOR = PHScaleColors.OH_MOLECULES.withAlpha( MINORITY_ALPHA );
   var H3O_RADIUS = 3;
   var OH_RADIUS = H3O_RADIUS;
 
   // @private ----------------------------------------------------------------------------
 
-  // Creates a random {Number} x-coordinate inside some {Bounds2} bounds.
+  // Creates a random {Number} x-coordinate inside some {Bounds2} bounds. Integer values improves Canvas performance.
   var createRandomX = function( bounds ) {
-    return bounds.x + ( Math.random() * bounds.getWidth() );
+    return Math.floor( bounds.x + ( Math.random() * bounds.getWidth() ) );
   };
 
-  // Creates a random {Number} y-coordinate inside some {Bounds2} bounds.
+  // Creates a random {Number} y-coordinate inside some {Bounds2} bounds. Integer values improves Canvas performance.
   var createRandomY = function( bounds ) {
-    return bounds.y + ( Math.random() * bounds.getHeight() );
+    return Math.floor( bounds.y + ( Math.random() * bounds.getHeight() ) );
   };
 
   // Computes the {Number} number of H3O+ molecules for some {Number} pH.
   var computeNumberOfH3O = function( pH ) {
-    return Util.toFixedNumber( PHModel.pHToConcentrationH3O( pH ) * ( NUM_PARTICLES_AT_PH7 / 2 ) / 1E-7, 0 );
+    return Util.toFixedNumber( PHModel.pHToConcentrationH3O( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7, 0 );
   };
 
   // Computes the {Number} number of OH- molecules for some {Number} pH.
   var computeNumberOfOH = function( pH ) {
-    return Util.toFixedNumber( PHModel.pHToConcentrationOH( pH ) * ( NUM_PARTICLES_AT_PH7 / 2 ) / 1E-7, 0 );
+    return Util.toFixedNumber( PHModel.pHToConcentrationOH( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7, 0 );
   };
 
   //-------------------------------------------------------------------------------------
@@ -78,16 +74,16 @@ define( function( require ) {
     thisNode.numberOfOHMolecules = 0; // @private
 
     // generate majority and minority images for each molecule
-    new Circle( H3O_RADIUS, { fill: H3O_MAJORITY_COLOR } ).toImage( function( image ) {
+    new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA ) } ).toImage( function( image ) {
       thisNode.imageH3OMajority = image; // @private
     } );
-    new Circle( H3O_RADIUS, { fill: H3O_MINORITY_COLOR } ).toImage( function( image ) {
+    new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MINORITY_ALPHA ) } ).toImage( function( image ) {
       thisNode.imageH3OMinority = image; // @private
     } );
-    new Circle( OH_RADIUS, { fill: OH_MAJORITY_COLOR } ).toImage( function( image ) {
+    new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MAJORITY_ALPHA ) } ).toImage( function( image ) {
       thisNode.imageOHMajority = image; // @private
     } );
-    new Circle( OH_RADIUS, { fill: OH_MINORITY_COLOR } ).toImage( function( image ) {
+    new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MINORITY_ALPHA ) } ).toImage( function( image ) {
       thisNode.imageOHMinority = image; // @private
     } );
   }
@@ -134,7 +130,7 @@ define( function( require ) {
      * @param {Number} radius
      */
     paintMolecules: function( wrapper, numberOfMolecules, image ) {
-      if ( image ) { // images are generated asynchronously, so just in case they aren't available when this is first called
+      if ( image ) { // images are generated asynchronously, so test just in case they aren't available when this is first called
         for ( var i = 0; i < numberOfMolecules; i++ ) {
           wrapper.context.drawImage( image, createRandomX( this.beakerBounds ), createRandomY( this.beakerBounds ) );
         }
@@ -171,9 +167,9 @@ define( function( require ) {
     thisNode.moleculesNode = new MoleculesCanvas( beakerBounds ); // @private
     thisNode.addChild( thisNode.moleculesNode );
 
-    // dev mode, show numbers of molecules in lower-left of beaker
-    thisNode.ratioText = new Text( '?', { font: new PhetFont( 30 ), fill: 'black', left: beakerBounds.getCenterX(), bottom: beakerBounds.maxY - 20 } ); // @private
+    // dev mode, show numbers of molecules at bottom of beaker
     if ( window.phetcommon.getQueryParameter( 'dev' ) ) {
+      thisNode.ratioText = new Text( '?', { font: new PhetFont( 30 ), fill: 'black', left: beakerBounds.getCenterX(), bottom: beakerBounds.maxY - 20 } ); // @private
       thisNode.addChild( thisNode.ratioText );
     }
 
@@ -228,7 +224,7 @@ define( function( require ) {
         if ( pH !== null ) {
 
           // compute number of molecules
-          if ( pH >= ACID_PH_THRESHOLD && pH <= BASE_PH_THRESHOLD ) {
+          if ( LOG_PH_RANGE.contains( pH ) ) {
             // # molecules varies logarithmically in this range
             numberOfH3O = Math.max( MIN_MINORITY_MOLECULES, computeNumberOfH3O( pH ) );
             numberOfOH = Math.max( MIN_MINORITY_MOLECULES, computeNumberOfOH( pH ) );
@@ -236,19 +232,19 @@ define( function( require ) {
           else {
             // # molecules varies linearly in this range
             // N is the number of molecules to add for each 1 unit of pH above or below the thresholds
-            var N = ( NUM_PARTICLES_AT_PH_MAX - computeNumberOfOH( BASE_PH_THRESHOLD ) ) / ( PHScaleConstants.PH_RANGE.max - BASE_PH_THRESHOLD );
+            var N = ( MAX_MAJORITY_MOLECULES - computeNumberOfOH( LOG_PH_RANGE.max ) ) / ( PHScaleConstants.PH_RANGE.max - LOG_PH_RANGE.max );
             var pHDiff;
-            if ( pH > BASE_PH_THRESHOLD ) {
+            if ( pH > LOG_PH_RANGE.max ) {
               // strong base
-              pHDiff = pH - BASE_PH_THRESHOLD;
-              numberOfH3O = Math.max( MIN_MINORITY_MOLECULES, ( computeNumberOfH3O( BASE_PH_THRESHOLD ) - pHDiff ) );
-              numberOfOH = computeNumberOfOH( BASE_PH_THRESHOLD ) + ( pHDiff * N );
+              pHDiff = pH - LOG_PH_RANGE.max;
+              numberOfH3O = Math.max( MIN_MINORITY_MOLECULES, ( computeNumberOfH3O( LOG_PH_RANGE.max ) - pHDiff ) );
+              numberOfOH = computeNumberOfOH( LOG_PH_RANGE.max ) + ( pHDiff * N );
             }
             else {
               // strong acid
-              pHDiff = ACID_PH_THRESHOLD - pH;
-              numberOfH3O = computeNumberOfH3O( ACID_PH_THRESHOLD ) + ( pHDiff * N );
-              numberOfOH = Math.max( MIN_MINORITY_MOLECULES, ( computeNumberOfOH( ACID_PH_THRESHOLD ) - pHDiff ) );
+              pHDiff = LOG_PH_RANGE.min - pH;
+              numberOfH3O = computeNumberOfH3O( LOG_PH_RANGE.min ) + ( pHDiff * N );
+              numberOfOH = Math.max( MIN_MINORITY_MOLECULES, ( computeNumberOfOH( LOG_PH_RANGE.min ) - pHDiff ) );
             }
           }
 
@@ -261,7 +257,9 @@ define( function( require ) {
         this.moleculesNode.drawMolecules( numberOfH3O, numberOfOH );
 
         // update dev counts
-        this.ratioText.text = numberOfH3O + ' / ' + numberOfOH;
+        if ( this.ratioText ) {
+          this.ratioText.text = numberOfH3O + ' / ' + numberOfOH;
+        }
       }
     }
   } );

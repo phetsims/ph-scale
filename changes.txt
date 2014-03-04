@@ -1,3 +1,4 @@
+3/4/14 RatioNode cleanup
 3/4/14 enable 'ratio' feature in production version, since it's now usable on all platforms
 3/4/14 ratio: use scenery to create molecule images, which are then drawn directly to canvas
 3/4/14 delete node-per-molecule strategy from 'ratio' feature since it's unusably slow

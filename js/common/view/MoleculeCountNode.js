@@ -79,6 +79,7 @@ define( function( require ) {
       backgroundOH.top = backgroundH3O.bottom + ySpacing;
       backgroundH2O.left = backgroundOH.left;
       backgroundH2O.top = backgroundOH.bottom + ySpacing;
+
       // molecule icons are vertically centered in the backgrounds, horizontally centered above each other
       nodeH3O.centerX = backgroundH3O.right - xMargin - ( maxMoleculeWidth / 2 );
       nodeH3O.centerY = backgroundH3O.centerY;
@@ -86,20 +87,24 @@ define( function( require ) {
       nodeOH.centerY = backgroundOH.centerY;
       nodeH2O.centerX = backgroundH2O.right - xMargin - ( maxMoleculeWidth / 2 );
       nodeH2O.centerY = backgroundH2O.centerY;
+
       // counts will be dynamically positioned
     }
 
     // update counts when the solution changes
     var moleculesLeft = Math.min( nodeH3O.left, Math.min( nodeOH.left, nodeH2O.left ) ); // for right justifying counts
     var updateCounts = function() {
+
       // set counts
       countH3O.setValue( solution.getMoleculesH3O() );
       countOH.setValue( solution.getMoleculesOH() );
       countH2O.setValue( solution.getMoleculesH2O() );
+
       // right justified
       countH3O.right = moleculesLeft - xSpacing;
       countOH.right = moleculesLeft - xSpacing;
       countH2O.right = moleculesLeft - xSpacing;
+
       // vertically centered
       countH3O.centerY = backgroundH3O.centerY;
       countOH.centerY = backgroundOH.centerY;

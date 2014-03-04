@@ -39,16 +39,22 @@ define( function( require ) {
 
       // When the indicator is dragged, create a custom solute that corresponds to the new pH.
       drag: function( event ) {
+
         // If the solution volume is zero (empty beaker), then we have no solution, and therefore no pH, so do nothing.
         if ( solution.volumeProperty.get() !== 0 ) {
+
           // Adjust the y-coordinate for the offset between the pointer and the indicator's origin
           var y = event.currentTarget.globalToParentPoint( event.pointer.point ).y - clickYOffset;
+
           // Convert the y-coordinate to a model value
           var value = yToValue( y );
+
           // Map the model value to pH, depending on which units we're using.
           var pH = ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) ? concentrationToPH( value ) : molesToPH( value, solution.volumeProperty.get() );
+
           // Constrain the pH to the valid range
           pH = Util.clamp( pH, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+
           // Instantiate a new 'custom' solute with the desired pH, and use it with the solution.
           solution.soluteProperty.set( Solute.createCustom( pH ) );
         }

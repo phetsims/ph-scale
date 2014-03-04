@@ -155,6 +155,7 @@ define( function( require ) {
 
     // Update the indicators
     var updateIndicators = function() {
+
       var valueH2O, valueH3O, valueOH;
       if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
         // concentration
@@ -168,15 +169,18 @@ define( function( require ) {
         valueH3O = solution.getMolesH3O();
         valueOH = solution.getMolesOH();
       }
+
       // move indicators
       h2OIndicatorNode.y = valueToY( valueH2O, -4 ); // offset the H2O indicator when off scale, so it doesn't butt up again OH indicator
       h3OIndicatorNode.y = valueToY( valueH3O );
       oHIndicatorNode.y = valueToY( valueOH );
+
       // update indicator values
       valueH2OProperty.set( valueH2O );
       valueH3OProperty.set( valueH3O );
       valueOHProperty.set( valueOH );
     };
+
     // Move the indicators when any of these change.
     solution.pHProperty.link( updateIndicators.bind( thisNode ) );
     solution.volumeProperty.link( updateIndicators.bind( thisNode ) );

@@ -80,14 +80,17 @@ define( function( require ) {
 
       // major ticks at even-numbered exponents
       if ( exponent % 2 === 0 ) {
+
         // major lines and label
         tickLineLeft = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
         tickLineRight = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
         tickLabel = createTickLabel( exponent, options.majorTickFont );
+
         // rendering order
         thisNode.addChild( tickLineLeft );
         thisNode.addChild( tickLineRight );
         thisNode.addChild( tickLabel );
+
         // layout
         tickLineLeft.left = backgroundNode.left;
         tickLineLeft.centerY = options.scaleYMargin + ( i * ySpacing );
@@ -100,9 +103,11 @@ define( function( require ) {
         // minor lines
         tickLineLeft = new Line( 0, 0, options.minorTickLength, 0, { stroke: options.minorTickStroke, lineWidth: options.minorTickLineWidth } );
         tickLineRight = new Line( 0, 0, options.minorTickLength, 0, { stroke: options.minorTickStroke, lineWidth: options.minorTickLineWidth } );
+
         // rendering order
         thisNode.addChild( tickLineLeft );
         thisNode.addChild( tickLineRight );
+
         // layout
         tickLineLeft.left = backgroundNode.left;
         tickLineLeft.centerY = options.scaleYMargin + ( i * ySpacing );
@@ -153,6 +158,7 @@ define( function( require ) {
 
     // Update the indicators
     var updateIndicators = function() {
+
       var valueH2O, valueH3O, valueOH;
       if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
         // concentration
@@ -166,10 +172,12 @@ define( function( require ) {
         valueH3O = solution.getMolesH3O();
         valueOH = solution.getMolesOH();
       }
+
       // move indicators
       h2OIndicatorNode.y = valueToY( valueH2O );
       h3OIndicatorNode.y = valueToY( valueH3O );
       oHIndicatorNode.y = valueToY( valueOH );
+
       // update indicator values
       valueH2OProperty.set( valueH2O );
       valueH3OProperty.set( valueH3O );

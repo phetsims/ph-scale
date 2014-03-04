@@ -139,10 +139,13 @@ define( function( require ) {
 
     // Change the label and color when the solute changes.
     dropper.soluteProperty.link( function( solute ) {
+
       valueNode.text = createPHString( solute.pH );
+
       // center the label in its translucent background
       valueNode.centerX = valueBackground.centerX;
       valueNode.centerY = valueBackground.centerY;
+
       // fluid color
       fluidNode.fill = solute.stockColor;
     } );

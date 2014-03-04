@@ -4,6 +4,10 @@
  * Graph with a logarithmic scale, for displaying concentration (mol/L) and quantity (moles).
  * Assumes that graphing concentration and quantity can be graphed on the same scale.
  * Origin is at the top-left of the scale rectangle.
+ * <p>
+ * Some of the code related to indicators (initialization and updateIndicators) is similar
+ * to LinearGraph. But it was difficult to identify a natural pattern for factoring
+ * this out, so I chose to leave it as is. See issue #16.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

@@ -5,7 +5,7 @@ HIGHEST
 - see build-a-molecule.Molecule3DNode for example of using scenery.DOM and a properly-sized canvas
 
 HIGH
-- #5 code review
+- code review issues 6, 10, 13, 16, 19
 
 MEDIUM
 - ratio: display some of minority species in visible portion of solution

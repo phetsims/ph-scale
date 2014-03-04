@@ -14,17 +14,16 @@ define( function( require ) {
 
   // imports
   var CanvasNode = require( 'SCENERY/nodes/CanvasNode' );
-  var Circle = require( 'SCENERY/nodes/Circle' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHModel = require( 'PH_SCALE/common/model/PHModel' );
-  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
 
+  //TODO render these using scenery
   // images
   var imageH3OMajority = require( 'image!PH_SCALE/H3O-majority.png' );
   var imageH3OMinority = require( 'image!PH_SCALE/H3O-minority.png' );
@@ -37,66 +36,14 @@ define( function( require ) {
   var NUM_PARTICLES_AT_PH7 = 100;
   var NUM_PARTICLES_AT_PH_MAX = 1000;
   var MIN_MINORITY_MOLECULES = 5;
-  var MAJORITY_ALPHA = 0.55; // alpha of the majority species, [0-1], transparent-opaque
-  var MINORITY_ALPHA = 1.0; // alpha of the minority species, [0-1], transparent-opaque
-  var H3O_MAJORITY_COLOR = PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA );
-  var H3O_MINORITY_COLOR = PHScaleColors.H3O_MOLECULES.withAlpha( MINORITY_ALPHA );
-  var OH_MAJORITY_COLOR = PHScaleColors.OH_MOLECULES.withAlpha( MAJORITY_ALPHA );
-  var OH_MINORITY_COLOR = PHScaleColors.OH_MOLECULES.withAlpha( MINORITY_ALPHA );
-  var H3O_RADIUS = 3;
-  var OH_RADIUS = H3O_RADIUS;
-
-  //-------------------------------------------------------------------------------------
-
-  /**
-   * Draws each molecule as a separate Scenery node.
-   * @param {Bounds2} beakerBounds beaker bounds in view coordinate frame
-   * @constructor
-   */
-  function MoleculesNode( beakerBounds ) {
-    Node.call( this );
-    this.beakerBounds = beakerBounds; // @private
-    this.numberOfH3OMolecules = 0; // @private
-    this.numberOfOHMolecules = 0; // @private
-  }
-
-  inherit( Node, MoleculesNode, {
-
-    /**
-     * @param {Number} numberOfH3OMolecules
-     * @param {Number} numberOfOHMolecules
-     */
-    drawMolecules: function( numberOfH3OMolecules, numberOfOHMolecules ) {
-      if ( numberOfH3OMolecules !== this.numberOfH3OMolecules || numberOfOHMolecules !== this.numberOfOHMolecules ) {
-
-        this.numberOfH3OMolecules = numberOfH3OMolecules;
-        this.numberOfOHMolecules = numberOfOHMolecules;
-
-        this.removeAllChildren();
-
-        // create molecules, minority species in foreground
-        if ( numberOfH3OMolecules > numberOfOHMolecules ) {
-          this.createMolecules( numberOfH3OMolecules, H3O_RADIUS, H3O_MAJORITY_COLOR );
-          this.createMolecules( numberOfOHMolecules, OH_RADIUS, OH_MINORITY_COLOR );
-        }
-        else {
-          this.createMolecules( numberOfOHMolecules, OH_RADIUS, OH_MAJORITY_COLOR );
-          this.createMolecules( numberOfH3OMolecules, H3O_RADIUS, H3O_MINORITY_COLOR );
-        }
-      }
-    },
-
-    // @private Adds a specified number of molecule nodes to the scene graph.
-    createMolecules: function( count, radius, color ) {
-      for ( var i = 0; i < count; i++ ) {
-        this.addChild( new Circle( radius, {
-          fill: color,
-          x: RatioNode.createRandomX( this.beakerBounds ),
-          y: RatioNode.createRandomY( this.beakerBounds )
-        } ) );
-      }
-    }
-  } );
+//  var MAJORITY_ALPHA = 0.55; // alpha of the majority species, [0-1], transparent-opaque
+//  var MINORITY_ALPHA = 1.0; // alpha of the minority species, [0-1], transparent-opaque
+//  var H3O_MAJORITY_COLOR = PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA );
+//  var H3O_MINORITY_COLOR = PHScaleColors.H3O_MOLECULES.withAlpha( MINORITY_ALPHA );
+//  var OH_MAJORITY_COLOR = PHScaleColors.OH_MOLECULES.withAlpha( MAJORITY_ALPHA );
+//  var OH_MINORITY_COLOR = PHScaleColors.OH_MOLECULES.withAlpha( MINORITY_ALPHA );
+//  var H3O_RADIUS = 3;
+//  var OH_RADIUS = H3O_RADIUS;
 
   //-------------------------------------------------------------------------------------
 
@@ -113,14 +60,6 @@ define( function( require ) {
     thisNode.beakerBounds = beakerBounds; // @private
     thisNode.numberOfH3OMolecules = 0; // @private
     thisNode.numberOfOHMolecules = 0; // @private
-
-    // generate images of each molecule, with majority and minority coloring
-    new Circle( H3O_RADIUS, PHScaleColors.H3O_MOLECULES ).toImage( function( image ) {
-      thisNode.imageH3O = image;
-    } );
-    new Circle( OH_RADIUS, PHScaleColors.OH_MOLECULES ).toImage( function( image ) {
-      thisNode.imageOH = image;
-    } );
   }
 
   inherit( CanvasNode, MoleculesCanvas, {
@@ -182,10 +121,6 @@ define( function( require ) {
    */
   function RatioNode( beaker, solution, mvt, options ) {
 
-    options = _.extend( {
-      strategy: 'canvas' // nodes: draw each molecule as a scenery Node; canvas: draw molecules directly to canvas
-    }, options );
-
     var thisNode = this;
     Node.call( thisNode );
 
@@ -199,7 +134,7 @@ define( function( require ) {
     var beakerBounds = mvt.modelToViewBounds( beaker.bounds );
 
     // parent for all molecules
-    thisNode.moleculesNode = ( options.strategy === 'nodes' ) ? new MoleculesNode( beakerBounds ) : new MoleculesCanvas( beakerBounds ); // @private
+    thisNode.moleculesNode = new MoleculesCanvas( beakerBounds ); // @private
     thisNode.addChild( thisNode.moleculesNode );
 
     // dev mode, show numbers of molecules in lower-left of beaker

@@ -30,7 +30,7 @@ define( function( require ) {
 
   // constants
   var TOTAL_MOLECULES_AT_PH_7 = 100;
-  var MAX_MAJORITY_MOLECULES = 1000;
+  var MAX_MAJORITY_MOLECULES = 3000;
   var MIN_MINORITY_MOLECULES = 5; // any non-zero number of particles will be set to this number
   var LOG_PH_RANGE = new Range( 6, 8 ); // in this range, number of molecule is computed using log
   var MAJORITY_ALPHA = 0.55; // alpha of the majority species, [0-1], transparent-opaque

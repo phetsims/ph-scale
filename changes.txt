@@ -1,3 +1,4 @@
+3/4/13 ratio: increase to 3000 molecules, 1000 wasn't showing obvious differences for pH values in the 'linear' range
 3/4/13 #23 stylistic, remove curly braces around layout code in MoleculeCountNode
 3/4/13 #10 change ScientificNotationNode to use Property instead of setValue
 3/3/14 #16 add note about indicator code to JSdoc

@@ -40,24 +40,24 @@ define( function( require ) {
 
   // @private ----------------------------------------------------------------------------
 
-  // Creates a random {Number} x-coordinate inside some {Bounds2} bounds. Integer values improves Canvas performance.
+  // Creates a random {Number} x-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
   var createRandomX = function( bounds ) {
     return Math.floor( bounds.x + ( Math.random() * bounds.getWidth() ) );
   };
 
-  // Creates a random {Number} y-coordinate inside some {Bounds2} bounds. Integer values improves Canvas performance.
+  // Creates a random {Number} y-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
   var createRandomY = function( bounds ) {
     return Math.floor( bounds.y + ( Math.random() * bounds.getHeight() ) );
   };
 
   // Computes the {Number} number of H3O+ molecules for some {Number} pH.
   var computeNumberOfH3O = function( pH ) {
-    return Util.toFixedNumber( PHModel.pHToConcentrationH3O( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7, 0 );
+    return Math.round( PHModel.pHToConcentrationH3O( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
   };
 
   // Computes the {Number} number of OH- molecules for some {Number} pH.
   var computeNumberOfOH = function( pH ) {
-    return Util.toFixedNumber( PHModel.pHToConcentrationOH( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7, 0 );
+    return Math.round( PHModel.pHToConcentrationOH( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
   };
 
   //-------------------------------------------------------------------------------------
@@ -75,10 +75,14 @@ define( function( require ) {
     thisNode.beakerBounds = beakerBounds; // @private
     thisNode.numberOfH3OMolecules = 0; // @private
     thisNode.numberOfOHMolecules = 0; // @private
-    thisNode.xH3O = [];
-    thisNode.yH3O = [];
-    thisNode.xOH = [];
-    thisNode.yOH = [];
+
+    // allocate arrays for molecule coordinates
+    var ArrayConstructor = window.Float32Array || window.Array; // use typed array if available, it will use less memory and be faster
+    var maxMolecules = MAX_MAJORITY_MOLECULES + MIN_MINORITY_MOLECULES; // creates arrays of the max size to elimininate allocation in critical code
+    thisNode.xH3O = new ArrayConstructor( maxMolecules ); // @private
+    thisNode.yH3O = new ArrayConstructor( maxMolecules ); // @private
+    thisNode.xOH = new ArrayConstructor( maxMolecules ); // @private
+    thisNode.yOH = new ArrayConstructor( maxMolecules ); // @private
 
     // generate majority and minority images for each molecule
     new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA ) } ).toImage( function( image ) {
@@ -276,8 +280,8 @@ define( function( require ) {
           }
 
           // convert to integer values
-          numberOfH3O = Util.toFixedNumber( numberOfH3O, 0 );
-          numberOfOH = Util.toFixedNumber( numberOfOH, 0 );
+          numberOfH3O = Math.round( numberOfH3O );
+          numberOfOH = Math.round( numberOfOH );
         }
 
         // update molecules

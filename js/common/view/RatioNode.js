@@ -112,8 +112,8 @@ define( function( require ) {
          */
         var i;
         for ( i = 0; i < numberOfH3OMolecules; i++ ) {
-          this.xH3O[i] =createRandomX( this.beakerBounds );
-          this.yH3O[i] =createRandomY( this.beakerBounds );
+          this.xH3O[i] = createRandomX( this.beakerBounds );
+          this.yH3O[i] = createRandomY( this.beakerBounds );
         }
         for ( i = 0; i < numberOfOHMolecules; i++ ) {
           this.xOH[i] = createRandomX( this.beakerBounds );

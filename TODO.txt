@@ -3,7 +3,7 @@ TODO list for ph-scale (HTML5)
 HIGH
 - code review issues 10, 16
 - #25 ratio: paintCanvas is called when solution volume changes, causes molecules to redraw
-- ratio: display some of minority species in visible portion of solution
+- 'ratio' molecules don't show up on some solution colors (hand soap, blood)
 
 MEDIUM
 

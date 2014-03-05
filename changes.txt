@@ -1,4 +1,5 @@
-3/5/14 #24 added workaround for clipping issue, general problem is scenery#200
+3/5/14 #25 ratio: store molecule locations so that they don't move when solution volume changes and pH remains constant
+3/5/14 #24 ratio: added workaround for clipping issue, general problem is scenery#200
 3/5/14 exclude 'ratio' feature from production version until we work out issues
 # 1.0.0-dev.18 3/5/14
 3/5/14 pH meter: replace picker with up/down arrow buttons

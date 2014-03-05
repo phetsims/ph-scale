@@ -75,6 +75,10 @@ define( function( require ) {
     thisNode.beakerBounds = beakerBounds; // @private
     thisNode.numberOfH3OMolecules = 0; // @private
     thisNode.numberOfOHMolecules = 0; // @private
+    thisNode.xH3O = [];
+    thisNode.yH3O = [];
+    thisNode.xOH = [];
+    thisNode.yOH = [];
 
     // generate majority and minority images for each molecule
     new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA ) } ).toImage( function( image ) {
@@ -99,8 +103,27 @@ define( function( require ) {
      */
     drawMolecules: function( numberOfH3OMolecules, numberOfOHMolecules ) {
       if ( numberOfH3OMolecules !== this.numberOfH3OMolecules || numberOfOHMolecules !== this.numberOfOHMolecules ) {
+
+        /*
+         * paintCanvas may be called when other things in beakerBounds change,
+         * and we don't want the molecule positions to change when the pH remains constant.
+         * So generate and store molecule coordinates here, reusing the array.
+         * See #25.
+         */
+        var i;
+        for ( i = 0; i < numberOfH3OMolecules; i++ ) {
+          this.xH3O[i] =createRandomX( this.beakerBounds );
+          this.yH3O[i] =createRandomY( this.beakerBounds );
+        }
+        for ( i = 0; i < numberOfOHMolecules; i++ ) {
+          this.xOH[i] = createRandomX( this.beakerBounds );
+          this.yOH[i] = createRandomY( this.beakerBounds );
+        }
+
+        // remember how many entries in coordinate arrays are significant
         this.numberOfH3OMolecules = numberOfH3OMolecules;
         this.numberOfOHMolecules = numberOfOHMolecules;
+
         this.invalidatePaint(); // results in paintCanvas being called
       }
     },
@@ -114,12 +137,12 @@ define( function( require ) {
     paintCanvas: function( wrapper ) {
       // draw majority species behind minority species
       if ( this.numberOfH3OMolecules > this.numberOfOHMolecules ) {
-        this.paintMolecules( wrapper, this.numberOfH3OMolecules, this.imageH3OMajority );
-        this.paintMolecules( wrapper, this.numberOfOHMolecules, this.imageOHMinority );
+        this.paintMolecules( wrapper, this.numberOfH3OMolecules, this.imageH3OMajority, this.xH3O, this.yH3O );
+        this.paintMolecules( wrapper, this.numberOfOHMolecules, this.imageOHMinority, this.xOH, this.yOH );
       }
       else {
-        this.paintMolecules( wrapper, this.numberOfOHMolecules, this.imageOHMajority );
-        this.paintMolecules( wrapper, this.numberOfH3OMolecules, this.imageH3OMinority );
+        this.paintMolecules( wrapper, this.numberOfOHMolecules, this.imageOHMajority, this.xOH, this.yOH );
+        this.paintMolecules( wrapper, this.numberOfH3OMolecules, this.imageH3OMinority, this.xH3O, this.yH3O );
       }
     },
 
@@ -129,13 +152,14 @@ define( function( require ) {
      * @private
      * @param {CanvasContextWrapper} wrapper
      * @param {Number} numberOfMolecules
-     * @param {String} color
-     * @param {Number} radius
+     * @param {Image} image
+     * @param {Array<Number>} xCoords
+     * @param {Array<Number>} yCoords
      */
-    paintMolecules: function( wrapper, numberOfMolecules, image ) {
+    paintMolecules: function( wrapper, numberOfMolecules, image, xCoords, yCoords ) {
       if ( image ) { // images are generated asynchronously, so test just in case they aren't available when this is first called
         for ( var i = 0; i < numberOfMolecules; i++ ) {
-          wrapper.context.drawImage( image, createRandomX( this.beakerBounds ), createRandomY( this.beakerBounds ) );
+          wrapper.context.drawImage( image, xCoords[i], yCoords[i] );
         }
       }
     }

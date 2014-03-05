@@ -1,13 +1,14 @@
+# 1.0.0-dev.18 3/5/14
 3/5/14 pH meter: replace picker with up/down arrow buttons
 3/4/14 port strings from Java
 3/4/14 pH Meter: increase height of touch area for pH picker, increase space between pH picker and expand/collapse button
-# 1.0.0-dev.17 2/27/14
+# 1.0.0-dev.17 3/4/14
 3/4/14 ratio: increase to 3000 molecules, 1000 wasn't showing obvious differences for pH values in the 'linear' range
 3/4/14 #23 stylistic, remove curly braces around layout code in MoleculeCountNode
 3/4/14 #10 change ScientificNotationNode to use Property instead of setValue
 3/3/14 #16 add note about indicator code to JSdoc
 3/4/14 #22 stylistic, add blank lines before some comments
-# 1.0.0-dev.16 2/27/14
+# 1.0.0-dev.16 2/28/14
 3/4/14 RatioNode cleanup
 3/4/14 enable 'ratio' feature in production version, since it's now usable on all platforms
 3/4/14 ratio: use scenery to create molecule images, which are then drawn directly to canvas

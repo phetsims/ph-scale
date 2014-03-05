@@ -1,3 +1,4 @@
+# 1.0.0-dev.19 3/5/14
 3/5/14 fix potential ordering dependency in how value is positioned in graph indicator
 3/5/14 restore 'ratio' feature in production version
 3/5/14 #25 ratio performance enhancements: use Float32Array if available, pre-allocate max array size, replace Util.toFixedNumber with Math.round

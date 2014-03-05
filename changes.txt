@@ -1,3 +1,4 @@
+3/4/14 port strings from Java
 3/4/14 pH Meter: increase height of touch area for pH picker, increase space between pH picker and expand/collapse button
 # 1.0.0-dev.17 2/27/14
 3/4/14 ratio: increase to 3000 molecules, 1000 wasn't showing obvious differences for pH values in the 'linear' range

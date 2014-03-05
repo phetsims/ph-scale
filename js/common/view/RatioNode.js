@@ -78,11 +78,10 @@ define( function( require ) {
 
     // allocate arrays for molecule coordinates, see #25
     var ArrayConstructor = window.Float32Array || window.Array; // use typed array if available, it will use less memory and be faster
-    var maxMolecules = MAX_MAJORITY_MOLECULES + MIN_MINORITY_MOLECULES; // creates arrays of the max size to elimininate allocation in critical code
-    thisNode.xH3O = new ArrayConstructor( maxMolecules ); // @private
-    thisNode.yH3O = new ArrayConstructor( maxMolecules ); // @private
-    thisNode.xOH = new ArrayConstructor( maxMolecules ); // @private
-    thisNode.yOH = new ArrayConstructor( maxMolecules ); // @private
+    thisNode.xH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
+    thisNode.yH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
+    thisNode.xOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
+    thisNode.yOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
 
     // generate majority and minority images for each molecule
     new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA ) } ).toImage( function( image ) {

@@ -18,7 +18,6 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
   var Shape = require( 'KITE/Shape' );
   var SubSupText = require( 'SCENERY_PHET/SubSupText' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -59,12 +58,6 @@ define( function( require ) {
       align: 'left',
       spacing: 10
     } );
-
-    //TODO 'ratio' feature is excluded from production version until we work out issues
-    if ( !window.phetcommon.getQueryParameter( 'dev' ) ) {
-      content.removeChild( separator );
-      content.removeChild( ratioCheckBox );
-    }
 
     Panel.call( this, content, {
       xMargin: 15,

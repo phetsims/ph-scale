@@ -76,7 +76,7 @@ define( function( require ) {
     thisNode.numberOfH3OMolecules = 0; // @private
     thisNode.numberOfOHMolecules = 0; // @private
 
-    // allocate arrays for molecule coordinates
+    // allocate arrays for molecule coordinates, see #25
     var ArrayConstructor = window.Float32Array || window.Array; // use typed array if available, it will use less memory and be faster
     var maxMolecules = MAX_MAJORITY_MOLECULES + MIN_MINORITY_MOLECULES; // creates arrays of the max size to elimininate allocation in critical code
     thisNode.xH3O = new ArrayConstructor( maxMolecules ); // @private
@@ -102,6 +102,7 @@ define( function( require ) {
   inherit( CanvasNode, MoleculesCanvas, {
 
     /**
+     * Called when the solution's pH changes.
      * @param {Number} numberOfH3OMolecules
      * @param {Number} numberOfOHMolecules
      */
@@ -151,8 +152,7 @@ define( function( require ) {
     },
 
     /**
-     * Paints one species of molecule.
-     * Using drawImage is faster than arc.
+     * Paints one species of molecule. Using drawImage is faster than arc.
      * @private
      * @param {CanvasContextWrapper} wrapper
      * @param {Number} numberOfMolecules

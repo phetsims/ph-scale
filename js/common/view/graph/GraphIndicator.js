@@ -178,15 +178,17 @@ define( function( require ) {
 
     // sync with value
     valueProperty.link( function( value ) {
-
-      // update the displayed value and center it
-      valueNode.centerX = valueBackgroundNode.centerX;
-      valueNode.centerY = valueBackgroundNode.centerY;
-
       // disabled when value is zero
       var isEnabled = ( value !== 0 );
       thisNode.opacity = isEnabled ? 1.0 : 0.5;
       thisNode.cursor = ( isEnabled && options.isInteractive ) ? 'pointer' : 'default';
+    } );
+
+    // don't do this by observing valueProperty, since we need to be certain that valueNode has updated its display
+    valueNode.addEventListener( 'bounds', function() {
+      // center value in the display
+      valueNode.centerX = valueBackgroundNode.centerX;
+      valueNode.centerY = valueBackgroundNode.centerY;
     } );
 
     thisNode.mutate( options );

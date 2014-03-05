@@ -190,6 +190,7 @@ define( function( require ) {
         var solutionHeight = beakerBounds.getHeight() * volume / beaker.volume;
         thisNode.clipArea = Shape.rectangle( beakerBounds.minX, beakerBounds.maxY - solutionHeight, beakerBounds.getWidth(), solutionHeight );
       }
+      thisNode.moleculesNode.invalidatePaint(); //WORKAROUND: #25, scenery#200
     } );
   }
 

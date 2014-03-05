@@ -2,8 +2,8 @@ TODO list for ph-scale (HTML5)
 
 HIGH
 - code review issues 10, 16
-- ratio: sometimes clipped near top of the surface on iPad and Nexus7, when switching solutions
-- ratio: paintCanvas is called when solution volume changes, causes molecules to redraw
+- #24 ratio: sometimes clipped near top of the surface on iPad and Nexus7, when switching solutions
+- #25 ratio: paintCanvas is called when solution volume changes, causes molecules to redraw
 - ratio: display some of minority species in visible portion of solution
 
 MEDIUM

@@ -1,3 +1,4 @@
+3/5/14 pH meter: replace picker with up/down arrow buttons
 3/4/14 port strings from Java
 3/4/14 pH Meter: increase height of touch area for pH picker, increase space between pH picker and expand/collapse button
 # 1.0.0-dev.17 2/27/14

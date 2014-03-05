@@ -13,11 +13,10 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var Color = require( 'SCENERY/util/Color' );
+  var ArrowButton = require( 'SCENERY_PHET/ArrowButton' );
   var ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var NumberPicker = require( 'SCENERY_PHET/NumberPicker' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
@@ -37,6 +36,11 @@ define( function( require ) {
   var X_MARGIN = 14;
   var Y_MARGIN = 10;
   var CORNER_RADIUS = 12;
+  var SPINNER_DELTA = 0.01;
+  var SPINNER_X_SPACING = 6;
+  var SPINNER_Y_SPACING = 4;
+  var SPINNER_INTERVAL_DELAY = 40;
+  var SPINNER_ARROW_COLOR = 'rgb(0,200,0)';
 
   /**
    * Value is displayed inside of this, which sits above the scale.
@@ -53,63 +57,83 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
-    var valueNode = new Node();
+    // pH value
+    var valueText = new Text( Util.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
+      { fill: 'black', font: new PhetFont( 28 ) } );
+
+    // rectangle that the value is displayed in
+    var valueXMargin = 8;
+    var valueYMargin = 5;
+    var valueRectangle = new Rectangle( 0, 0, valueText.width + ( 2 * valueXMargin ), valueText.height + ( 2 * valueYMargin ), CORNER_RADIUS, CORNER_RADIUS,
+      { fill: 'white', stroke: 'darkGray' } );
+
+    // layout
+    valueText.right = valueRectangle.right - valueXMargin;
+    valueText.centerY = valueRectangle.centerY;
+
+    // parent for all components related to the value
+    var valueNode = new Node( { children: [ valueRectangle, valueText ] } );
+
+    // sync with pH value
+    solution.pHProperty.link( function( pH ) {
+      if ( pH === null ) {
+        valueText.text = stringNoValue;
+        valueText.centerX = valueRectangle.centerX; // center justified
+      }
+      else {
+        valueText.text = Util.toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+        valueText.right = valueRectangle.right - valueXMargin; // right justified
+      }
+    } );
+
+    // optional spinner arrows
     if ( isInteractive ) {
 
+      var pHValueProperty, upArrowNode, downArrowNode;
+
+      // options common to both arrow buttons
+      var arrowButtonOptions = { intervalDelay: SPINNER_INTERVAL_DELAY, enabledFill: SPINNER_ARROW_COLOR };
+
+      // up arrow
+      upArrowNode = new ArrowButton( 'up',
+        function() { pHValueProperty.set( Math.min( PHScaleConstants.PH_RANGE.max, solution.pHProperty.get() + SPINNER_DELTA ) ); },
+        _.extend( {
+          left: valueRectangle.right + SPINNER_X_SPACING,
+          bottom: valueRectangle.centerY - ( SPINNER_Y_SPACING / 2 )
+        }, arrowButtonOptions )
+      );
+      valueNode.addChild( upArrowNode );
+
+      // down arrow
+      downArrowNode = new ArrowButton( 'down',
+        function() { pHValueProperty.set( ( PHScaleConstants.PH_RANGE.min, solution.pHProperty.get() - SPINNER_DELTA ) ); },
+        _.extend( {
+          left: upArrowNode.left,
+          top: upArrowNode.bottom + SPINNER_Y_SPACING
+        }, arrowButtonOptions )
+      );
+      valueNode.addChild( downArrowNode );
+
+      // touch areas, expanded mostly to the right
+      var expandX = upArrowNode.width / 2;
+      var expandY = 6;
+      upArrowNode.touchArea = upArrowNode.localBounds.dilatedXY( expandX, expandY ).shifted( expandX, -expandY );
+      downArrowNode.touchArea = downArrowNode.localBounds.dilatedXY( expandX, expandY ).shifted( expandX, expandY );
+
       /*
-       * Value displayed by the pH picker. Keep this synchronized with the solution's pH.
-       * Create a new custom solute whenever the pH picker's value changes.
-       * When the solution's volume is zero, it's pH will be null, so do not create a new solute.
+       * solution.pHProperty is derived, so we can't change it directly.
+       * So when pH changes, create a new custom solution with the desired pH.
        */
-      var pickerValueProperty = new Property( solution.pHProperty.get() );
+      pHValueProperty = new Property( solution.pHProperty.get() );
       solution.pHProperty.link( function( pH ) {
-        pickerValueProperty.set( pH );
+        pHValueProperty.set( pH );
       } );
-      pickerValueProperty.link( function( pH ) {
+      pHValueProperty.link( function( pH ) {
         if ( pH !== null && pH !== solution.pHProperty.get() ) {
           solution.soluteProperty.set( Solute.createCustom( pH ) );
         }
-      } );
-
-      // pH picker,
-      valueNode = new NumberPicker( pickerValueProperty, new Property( PHScaleConstants.PH_RANGE ), {
-        intervalDelay: 40,
-        color: new Color( 0, 200, 0 ),
-        decimalPlaces: 2,
-        font: new PhetFont( 30 ),
-        upFunction: function() { return pickerValueProperty.get() + 0.01; },
-        downFunction: function() { return pickerValueProperty.get() - 0.01; }
-      } );
-    }
-    else {
-      // pH value
-      var valueText = new Text( Util.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
-        { fill: 'black', font: new PhetFont( 28 ) } );
-
-      // rectangle that the value is displayed in
-      var valueXMargin = 8;
-      var valueYMargin = 5;
-      var valueRectangle = new Rectangle( 0, 0, valueText.width + ( 2 * valueXMargin ), valueText.height + ( 2 * valueYMargin ), CORNER_RADIUS, CORNER_RADIUS,
-        { fill: 'white', stroke: 'darkGray' } );
-
-      // rendering order
-      valueNode.addChild( valueRectangle );
-      valueNode.addChild( valueText );
-
-      // layout
-      valueText.right = valueRectangle.right - valueXMargin;
-      valueText.centerY = valueRectangle.centerY;
-
-      // sync with pH value
-      solution.pHProperty.link( function( pH ) {
-        if ( pH === null ) {
-          valueText.text = stringNoValue;
-          valueText.centerX = valueRectangle.centerX; // center justified
-        }
-        else {
-          valueText.text = Util.toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES );
-          valueText.right = valueRectangle.right - valueXMargin; // right justified
-        }
+        upArrowNode.setEnabled( pH < PHScaleConstants.PH_RANGE.max );
+        downArrowNode.setEnabled( pH > PHScaleConstants.PH_RANGE.min );
       } );
     }
 
@@ -119,7 +143,7 @@ define( function( require ) {
     // expanded background
     var backgroundOptions = { fill: PHScaleColors.PANEL_FILL, stroke: 'black', lineWidth: 2 };
     var backgroundWidth = Math.max( labelNode.width, valueNode.width ) + ( 2 * X_MARGIN );
-    var ySpacing = isInteractive ? 30 : 10;
+    var ySpacing = isInteractive ? 25 : 10;
     var expandedHeight = labelNode.height + valueNode.height + ( 2 * Y_MARGIN ) + ySpacing;
     var expandedRectangle = new Rectangle( 0, 0, backgroundWidth, expandedHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
 

@@ -56,7 +56,7 @@ define( function( require ) {
     } );
 
     if ( options.onWhilePressed ) {
-      // momentary button, onProperty while pressed, off when released
+      // momentary button, on while pressed, off when released
       thisButton.addInputListener( new DownUpListener( {
         down: function() {
           onProperty.set( enabledProperty.get() );

@@ -85,17 +85,21 @@ define( function( require ) {
     thisNode.xOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
     thisNode.yOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
 
-    // generate majority and minority images for each molecule
-    new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA ) } ).toImage( function( image ) {
+    /*
+     * Generate majority and minority images for each molecule.
+     * We don't care whether the images are in the same position as a scenery.Circle, so ignore x, y args in toImage callbacks.
+     * toImage also takes optional x,y,width,height args, but we'll omit those and let scenery intelligently pick bounds.
+     */
+    new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA ) } ).toImage( function( image, x, y ) {
       thisNode.imageH3OMajority = image; // @private
     } );
-    new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MINORITY_ALPHA ) } ).toImage( function( image ) {
+    new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MINORITY_ALPHA ) } ).toImage( function( image, x, y ) {
       thisNode.imageH3OMinority = image; // @private
     } );
-    new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MAJORITY_ALPHA ) } ).toImage( function( image ) {
+    new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MAJORITY_ALPHA ) } ).toImage( function( image, x, y ) {
       thisNode.imageOHMajority = image; // @private
     } );
-    new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MINORITY_ALPHA ) } ).toImage( function( image ) {
+    new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MINORITY_ALPHA ) } ).toImage( function( image, x, y ) {
       thisNode.imageOHMinority = image; // @private
     } );
   }

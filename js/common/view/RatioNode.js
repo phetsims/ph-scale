@@ -76,7 +76,7 @@ define( function( require ) {
     thisNode.numberOfH3OMolecules = 0; // @private
     thisNode.numberOfOHMolecules = 0; // @private
 
-    // allocate arrays for molecule coordinates, see #25
+    // pre-allocate arrays for molecule coordinates, see #25
     var ArrayConstructor = window.Float32Array || window.Array; // use typed array if available, it will use less memory and be faster
     thisNode.xH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
     thisNode.yH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private

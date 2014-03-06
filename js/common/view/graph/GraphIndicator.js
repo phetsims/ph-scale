@@ -183,8 +183,12 @@ define( function( require ) {
       thisNode.cursor = ( isEnabled && options.isInteractive ) ? 'pointer' : 'default';
     } );
 
-    // don't do this by observing valueProperty, since we need to be certain that valueNode has updated its display
-    valueNode.addEventListener( 'bounds', function() {
+    /*
+     * Don't do this by observing valueProperty, since we need to be certain that valueNode has updated its display.
+     * Listen for 'childBounds' instead of 'bounds' so we don't get into an infinite bounds listener cycle caused
+     * by moving the node whose bounds we're listening to.
+     */
+    valueNode.addEventListener( 'childBounds', function() {
       // center value in the display
       valueNode.center = valueBackgroundNode.center;
     } );

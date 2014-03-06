@@ -95,12 +95,12 @@ define( function( require ) {
   } );
 
   Solute.HAND_SOAP = new Solute( handSoapString, 10, {
-    stockColor: new Color( 204, 0, 204 ),
+    stockColor: new Color( 224, 141, 242 ),
     colorStop: { color: new Color( 232, 204, 255 ) }
   } );
 
   Solute.BLOOD = new Solute( bloodString, 7.4, {
-    stockColor: new Color( 185, 12, 0 ),
+    stockColor: new Color( 211, 79, 68 ),
     colorStop: { color: new Color( 255, 207, 204 ) }
   } );
 

@@ -221,21 +221,19 @@ define( function( require ) {
   /**
    * @param {Solution} solution
    * @param {Number} probeYOffset distance from top of meter to tip of probe, in view coordinate frame
+   * @param {Property<Boolean>} expandedProperty
    * @param {*} options
    * @constructor
    */
-  function PHMeterNode( solution, probeYOffset, options ) {
+  function PHMeterNode( solution, probeYOffset, expandedProperty, options ) {
 
     options = _.extend( {
-      expanded: true, // initial state
       isInteractive: false, // true: pH can be changed, false: pH is read-only
       attachProbe: 'center' // where to attach the probe: 'left'|'center'|'right'
     }, options );
 
     var thisNode = this;
     Node.call( thisNode );
-
-    var expandedProperty = new Property( options.expanded );
 
     // nodes
     var valueNode = new ValueNode( solution, expandedProperty, options.isInteractive );

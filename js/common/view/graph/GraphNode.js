@@ -40,16 +40,16 @@ define( function( require ) {
 
   /**
    * @param {Solution} solution
+   * @param {Property<Boolean>} expandedProperty
    * @param {*} options
    * @constructor
    */
-  function GraphNode( solution, options ) {
+  function GraphNode( solution, expandedProperty, options ) {
 
     options = _.extend( {
       isInteractive: false, // only the Log scale can be interactive
       logScaleHeight: 500,
       linearScaleHeight: 500,
-      expanded: true, // initial state, true=expanded, false=collapsed
       units: GraphUnits.MOLES_PER_LITER, // initial state of the units switch
       hasLinearFeature: false, // add the linear graph feature?
       graphScale: GraphScale.LOGARITHMIC // initial state of the scale switch, meaningful only if hasLinearFeature === true
@@ -70,10 +70,9 @@ define( function( require ) {
     graphUnitsSwitch.setScaleMagnitude( Math.min( 1, 300 / graphUnitsSwitch.width ) ); // scale for i18n
 
     // expand/collapse bar
-    thisNode.expandedProperty = new Property( options.expanded ); // @private
     var expandCollapseBar = new ExpandCollapseBar(
       graphUnitsSwitch,
-      thisNode.expandedProperty, {
+      expandedProperty, {
         minWidth: 350,
         barFill: PHScaleColors.PANEL_FILL,
         barLineWidth: 2,
@@ -103,7 +102,7 @@ define( function( require ) {
     graphNode.y = expandCollapseBar.bottom; // y, not top
 
     // expand/collapse the graph
-    thisNode.expandedProperty.link( function( expanded ) {
+    expandedProperty.link( function( expanded ) {
       graphNode.visible = expanded;
     } );
 
@@ -185,7 +184,6 @@ define( function( require ) {
 
     reset: function() {
       this.graphUnitsProperty.reset();
-      this.expandedProperty.reset();
       if ( this.hasLinearFeature ) {
         this.graphScaleProperty.reset();
         this.exponentProperty.reset();

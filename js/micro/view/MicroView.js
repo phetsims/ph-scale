@@ -51,7 +51,9 @@ define( function( require ) {
     // view-specific properties
     var viewProperties = new PropertySet( {
       ratioVisible: false,
-      moleculeCountVisible: false
+      moleculeCountVisible: false,
+      pHMeterExpanded: true,
+      graphExpanded: true
     } );
 
     // beaker
@@ -85,7 +87,7 @@ define( function( require ) {
     var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );
 
     // graph
-    var graphNode = new GraphNode( model.solution, {
+    var graphNode = new GraphNode( model.solution, viewProperties.graphExpandedProperty, {
       hasLinearFeature: true,
       logScaleHeight: 485,
       linearScaleHeight: 440
@@ -93,7 +95,7 @@ define( function( require ) {
 
     // pH meter
     var pHMeterTop = 15;
-    var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterTop,
+    var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterTop, viewProperties.pHMeterExpandedProperty,
       { attachProbe: 'right' } );
 
     // solutes combo box

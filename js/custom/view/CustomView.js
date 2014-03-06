@@ -43,7 +43,9 @@ define( function( require ) {
     // view-specific properties
     var viewProperties = new PropertySet( {
       ratioVisible: false,
-      moleculeCountVisible: false
+      moleculeCountVisible: false,
+      pHMeterExpanded: true,
+      graphExpanded: true
     } );
 
     // beaker
@@ -62,20 +64,20 @@ define( function( require ) {
     // beaker controls
     var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );
 
-    // pH meter
-    var pHMeterTop = 15;
-    var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterTop, { isInteractive: true } );
-
     // graph
-    var graphNode = new GraphNode( model.solution, {
+    var graphNode = new GraphNode( model.solution, viewProperties.graphExpandedProperty, {
       isInteractive: true,
       logScaleHeight: 565
     } );
 
+    // pH meter
+    var pHMeterTop = 15;
+    var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterTop, viewProperties.pHMeterExpandedProperty,
+      { isInteractive: true } );
+
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
       viewProperties.reset();
-      graphNode.reset();
     } );
 
     // Parent for all nodes added to this screen

@@ -1,3 +1,4 @@
+3/6/13 #32 tap-to-dispense fixed on Win+Chrome via a fix to scenery.SimpleDragHandler
 3/6/14 #33 fix infinite bounds cycle by changing how we position value in graph indicators
 3/6/14 #25 prevent intermediate pH value changes when changing the volume of water and solute simultaneously, so that 'ratio' doesn't update while draining
 3/6/14 #26 new colors for 'blood' and 'hand soap', so that H3O+ molecules are visible with 'ratio' feature

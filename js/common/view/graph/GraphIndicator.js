@@ -144,7 +144,6 @@ define( function( require ) {
     moleculeAndFormula.top = valueBackgroundNode.bottom + options.ySpacing;
 
     if ( options.isInteractive ) {
-      thisNode.cursor = 'pointer';
 
       // add double-headed arrow
       var arrowNode = new ArrowNode( 0, 0, 0, 0.75 * options.backgroundHeight, {

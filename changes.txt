@@ -1,3 +1,4 @@
+3/6/14 #37 fix Reset All for graph in 'Custom' screen, use PropertySet for all properties internal to GraphNode
 3/6/14 #35 fix Reset All for pH meters, add expandedProperty to viewProperties for both graph and pH meter
 # 1.0.0-dev.19 3/5/14
 3/5/14 fix potential ordering dependency in how value is positioned in graph indicator

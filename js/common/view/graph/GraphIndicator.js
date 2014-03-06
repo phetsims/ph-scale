@@ -186,8 +186,7 @@ define( function( require ) {
     // don't do this by observing valueProperty, since we need to be certain that valueNode has updated its display
     valueNode.addEventListener( 'bounds', function() {
       // center value in the display
-      valueNode.centerX = valueBackgroundNode.centerX;
-      valueNode.centerY = valueBackgroundNode.centerY;
+      valueNode.center = valueBackgroundNode.center;
     } );
 
     thisNode.mutate( options );

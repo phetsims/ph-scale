@@ -73,7 +73,7 @@ define( function( require ) {
     // pH meter
     var pHMeterTop = 15;
     var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterTop, viewProperties.pHMeterExpandedProperty,
-      { isInteractive: true } );
+      { attachProbe: 'right', isInteractive: true } );
 
     var resetAllButton = new ResetAllButton( function() {
       model.reset();
@@ -85,19 +85,19 @@ define( function( require ) {
     var rootNode = new Node( { children: [
       // nodes are rendered in this order
       solutionNode,
+      pHMeterNode,
       ratioNode,
       beakerNode,
       moleculeCountNode,
       volumeIndicatorNode,
       beakerControls,
-      pHMeterNode,
       graphNode,
       resetAllButton
     ] } );
     thisView.addChild( rootNode );
 
     // Layout of nodes that don't have a location specified in the model
-    pHMeterNode.left = mvt.modelToViewX( model.beaker.left );
+    pHMeterNode.left = beakerNode.left;
     pHMeterNode.top = pHMeterTop;
     moleculeCountNode.centerX = beakerNode.centerX;
     moleculeCountNode.bottom = beakerNode.bottom - 25;

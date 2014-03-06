@@ -35,21 +35,34 @@ define( function( require ) {
     thisSolution.waterVolumeProperty = new Property( waterVolume );
     thisSolution.maxVolume = maxVolume;
 
+    /*
+     * See issue #25.
+     * True when changes to water volume and solute volume should be ignored, because they will both be changing,
+     * which currently happens only during draining. To prevent bogus intermediate values (for example, pH and total volume),
+     * clients who observe both waterVolumeProperty and soluteVolumeProperty should consult the ignoreVolumeUpdate flag before updating.
+     */
+    thisSolution.ignoreVolumeUpdate = false;
+
     // volume
     thisSolution.volumeProperty = new DerivedProperty( [ thisSolution.soluteVolumeProperty, thisSolution.waterVolumeProperty ],
       function( soluteVolume, waterVolume ) {
-        return soluteVolume + waterVolume;
+        return ( thisSolution.ignoreVolumeUpdate ) ? thisSolution.volumeProperty.get() : ( soluteVolume + waterVolume );
       }
     );
 
     // pH, null if no value
     thisSolution.pHProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.waterVolumeProperty ],
       function() {
-        var pH = PHModel.solutionToPH( thisSolution );
-        if ( pH !== null ) {
-          pH = Util.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ); // constrain to the pH meter format, see issue #4
+        if ( thisSolution.ignoreVolumeUpdate ) {
+          return thisSolution.pHProperty.get();
         }
-        return pH;
+        else {
+          var pH = PHModel.solutionToPH( thisSolution );
+          if ( pH !== null ) {
+            pH = Util.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ); // constrain to the pH meter format, see issue #4
+          }
+          return pH;
+        }
       } );
 
     // color
@@ -124,17 +137,30 @@ define( function( require ) {
       if ( totalVolume > 0 ) {
         if ( totalVolume - deltaVolume < MIN_VOLUME ) {
           // drain the remaining solution
-          this.waterVolumeProperty.set( 0 );
-          this.soluteVolumeProperty.set( 0 );
+          this.setVolumeAtomic( 0, 0 );
         }
         else {
           // drain equal percentages of water and solute
           var waterVolume = this.waterVolumeProperty.get();
           var soluteVolume = this.soluteVolumeProperty.get();
-          this.waterVolumeProperty.set( waterVolume - ( deltaVolume * waterVolume / totalVolume ) );
-          this.soluteVolumeProperty.set( soluteVolume - ( deltaVolume * soluteVolume / totalVolume ) );
+          this.setVolumeAtomic( waterVolume - ( deltaVolume * waterVolume / totalVolume ), soluteVolume - ( deltaVolume * soluteVolume / totalVolume ) );
         }
       }
+    },
+
+    /**
+     * Sets volume atomically, to prevent pH value from going through an intermediate state.
+     * See documentation of ignoreVolumeUpdate above.
+     *
+     * @private
+     * @param {Number} waterVolume liters
+     * @param {Number} soluteVolume liters
+     */
+    setVolumeAtomic: function( waterVolume, soluteVolume ) {
+      this.ignoreVolumeUpdate = true; // ignore the first notification, because both volumes will be updated
+      this.waterVolumeProperty.set( waterVolume );
+      this.ignoreVolumeUpdate = false; // don't ignore the second notification, so that observers will update
+      this.soluteVolumeProperty.set( soluteVolume );
     },
 
     //----------------------------------------------------------------------------

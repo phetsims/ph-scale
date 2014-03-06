@@ -1,3 +1,4 @@
+3/6/14 #25 prevent intermediate pH value changes when changing the volume of water and solute simultaneously, so that 'ratio' doesn't update while draining
 3/6/14 #26 new colors for 'blood' and 'hand soap', so that H3O+ molecules are visible with 'ratio' feature
 3/6/14 move pH probe from 'center' to 'right' position for 'Custom' screen, move meter slightly to left so probe doesn't hit molecule counts
 3/6/14 move pH probe behind ratio and molecule counts, so that it doesn't obscure these and looks more like probe is in solution

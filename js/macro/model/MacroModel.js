@@ -84,6 +84,10 @@ define( function( require ) {
     this.autoFillVolume = options.autoFillVolume; // @private
     this.isAutoFilling = false; // @private
     thisModel.dropper.soluteProperty.link( function() {
+      // disable the faucets to cancel any multi-touch interaction that may be in progress, see issue #28
+      thisModel.waterFaucet.enabledProperty.set( false );
+      thisModel.drainFaucet.enabledProperty.set( false );
+      // animate the dropper adding solute to the beaker
       thisModel.startAutoFill();
     } );
   }

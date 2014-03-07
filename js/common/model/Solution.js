@@ -133,17 +133,19 @@ define( function( require ) {
      * @param {Number} deltaVolume amount of solution to drain, in liters
      */
     drainSolution: function( deltaVolume ) {
-      var totalVolume = this.volumeProperty.get();
-      if ( totalVolume > 0 ) {
-        if ( totalVolume - deltaVolume < MIN_VOLUME ) {
-          // drain the remaining solution
-          this.setVolumeAtomic( 0, 0 );
-        }
-        else {
-          // drain equal percentages of water and solute
-          var waterVolume = this.waterVolumeProperty.get();
-          var soluteVolume = this.soluteVolumeProperty.get();
-          this.setVolumeAtomic( waterVolume - ( deltaVolume * waterVolume / totalVolume ), soluteVolume - ( deltaVolume * soluteVolume / totalVolume ) );
+      if ( deltaVolume > 0 ) {
+        var totalVolume = this.volumeProperty.get();
+        if ( totalVolume > 0 ) {
+          if ( totalVolume - deltaVolume < MIN_VOLUME ) {
+            // drain the remaining solution
+            this.setVolumeAtomic( 0, 0 );
+          }
+          else {
+            // drain equal percentages of water and solute
+            var waterVolume = this.waterVolumeProperty.get();
+            var soluteVolume = this.soluteVolumeProperty.get();
+            this.setVolumeAtomic( waterVolume - ( deltaVolume * waterVolume / totalVolume ), soluteVolume - ( deltaVolume * soluteVolume / totalVolume ) );
+          }
         }
       }
     },
@@ -157,7 +159,8 @@ define( function( require ) {
      * @param {Number} soluteVolume liters
      */
     setVolumeAtomic: function( waterVolume, soluteVolume ) {
-      this.ignoreVolumeUpdate = true; // ignore the first notification, because both volumes will be updated
+      // ignore the first notification if both volumes are changing
+      this.ignoreVolumeUpdate = ( waterVolume !== this.waterVolumeProperty.get() ) && ( soluteVolume !== this.soluteVolumeProperty.get() );
       this.waterVolumeProperty.set( waterVolume );
       this.ignoreVolumeUpdate = false; // don't ignore the second notification, so that observers will update
       this.soluteVolumeProperty.set( soluteVolume );

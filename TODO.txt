@@ -1,7 +1,6 @@
 TODO list for ph-scale (HTML5)
 
 HIGH
-- #26 'ratio' molecules don't show up on some solution colors (hand soap, blood)
 
 MEDIUM
 

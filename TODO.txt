@@ -5,7 +5,6 @@ HIGH
 MEDIUM
 
 LOW
-- test various multi-touch scenarios
 - ComboBox: add background color behind arrow button (sun#43)
 
 MIGRATE TO COMMON

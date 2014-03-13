@@ -21,15 +21,19 @@ define( function( require ) {
   var screenTitle = require( 'string!PH_SCALE/macro' );
 
   // images
-  var screenIcon = require( 'image!PH_SCALE/Macro-screen-icon.png' );
+  var homeIcon = require( 'image!PH_SCALE/Macro-home-icon.png' );
+  var navbarIcon = require( 'image!PH_SCALE/Macro-navbar-icon.png' );
 
   function MacroScreen( modelOptions ) {
     Screen.call( this,
       screenTitle,
-      new Image( screenIcon ),
+      new Image( homeIcon ),
       function() { return new MacroModel( modelOptions ); },
       function( model ) { return new MacroView( model, ModelViewTransform2.createIdentity() ); },
-      { backgroundColor: PHScaleColors.SCREEN_BACKGROUND }
+      {
+        backgroundColor: PHScaleColors.SCREEN_BACKGROUND,
+        navigationBarIcon: new Image( navbarIcon )
+      }
     );
   }
 

@@ -21,15 +21,19 @@ define( function( require ) {
   var screenTitle = require( 'string!PH_SCALE/custom' );
 
   // images
-  var screenIcon = require( 'image!PH_SCALE/Custom-screen-icon.png' );
+  var homeIcon = require( 'image!PH_SCALE/Custom-home-icon.png' );
+  var navbarIcon = require( 'image!PH_SCALE/Custom-navbar-icon.png' );
 
   function CustomScreen() {
     Screen.call( this,
       screenTitle,
-      new Image( screenIcon ),
+      new Image( homeIcon ),
       function() { return new CustomModel(); },
       function( model ) { return new CustomView( model, ModelViewTransform2.createIdentity() ); },
-      { backgroundColor: PHScaleColors.SCREEN_BACKGROUND }
+      {
+        backgroundColor: PHScaleColors.SCREEN_BACKGROUND,
+        navigationBarIcon: new Image( navbarIcon )
+      }
     );
   }
 

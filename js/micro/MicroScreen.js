@@ -21,15 +21,19 @@ define( function( require ) {
   var screenTitle = require( 'string!PH_SCALE/micro' );
 
   // images
-  var screenIcon = require( 'image!PH_SCALE/Micro-screen-icon.png' );
+  var homeIcon = require( 'image!PH_SCALE/Micro-home-icon.png' );
+  var navbarIcon = require( 'image!PH_SCALE/Micro-navbar-icon.png' );
 
   function MicroScreen() {
     Screen.call( this,
       screenTitle,
-      new Image( screenIcon ),
+      new Image( homeIcon ),
       function() { return new MicroModel(); },
       function( model ) { return new MicroView( model, ModelViewTransform2.createIdentity() ); },
-      { backgroundColor: PHScaleColors.SCREEN_BACKGROUND }
+      {
+        backgroundColor: PHScaleColors.SCREEN_BACKGROUND,
+        navigationBarIcon: new Image( navbarIcon )
+      }
     );
   }
 

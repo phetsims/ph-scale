@@ -1,3 +1,4 @@
+3/13/14 #39 provide navbar-specific icons to improve quality
 3/8/14 create 1.0 branch to begin release-candidate testing
 3/8/14 #38 zoom buttons: attach handle so that its line cap doesn't appear inside glassNode
 # 1.0.0-dev.20 3/6/14

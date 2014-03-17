@@ -20,27 +20,24 @@ define( function( require ) {
   function PHModel() {}
 
   /**
-   * Computes a solution's pH.
+   * General algorithm for pH.
    *
-   * @param {Solution} solution
-   * @return {Number} pH, null if solution's total volume is zero
+   * @param {Number} solutePH
+   * @param {Number} soluteVolume liters
+   * @param {Number} waterVolume liters
+   * @return {Number|null} pH, null if total volume is zero
    */
-  PHModel.solutionToPH = function( solution ) {
-
-    var solutePH = solution.soluteProperty.get().pH;
-    var soluteVolume = solution.soluteVolumeProperty.get();
-    var waterPH = Water.pH;
-    var waterVolume = solution.waterVolumeProperty.get();
-
+  PHModel.computePH = function( solutePH, soluteVolume, waterVolume ) {
     var pH;
-    if ( soluteVolume + waterVolume === 0 ) {
+    var totalVolume = soluteVolume + waterVolume;
+    if ( totalVolume === 0 ) {
       pH = null;
     }
     else if ( solutePH < 7 ) {
-      pH = -Util.log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -waterPH ) * waterVolume ) / ( soluteVolume + waterVolume ) );
+      pH = -Util.log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -Water.pH ) * waterVolume ) / totalVolume );
     }
     else {
-      pH = 14 + Util.log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, waterPH - 14 ) * waterVolume ) / ( soluteVolume + waterVolume ) );
+      pH = 14 + Util.log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, Water.pH - 14 ) * waterVolume ) / totalVolume );
     }
     return pH;
   };

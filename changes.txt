@@ -1,3 +1,4 @@
+3/20/14 #43 change zoom range of Linear scale
 3/17/14 #40 eliminate display of incorrect intermediate 'Molecule count' values, remove dependency in PHModel on Solution
 3/13/14 delete TODO.txt
 3/13/14 #39 provide navbar-specific icons to improve quality

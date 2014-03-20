@@ -28,7 +28,7 @@ define( function( require ) {
 
     // logarithmic graph
     LOGARITHMIC_EXPONENT_RANGE: new Range( -16, 2 ),
-    LINEAR_EXPONENT_RANGE: new Range( -15, 1 ),
+    LINEAR_EXPONENT_RANGE: new Range( -14, 1 ),
     LINEAR_MANTISSA_RANGE: new Range( 0, 8 ),
 
     // expand/collapse buttons

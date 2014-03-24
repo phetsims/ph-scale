@@ -73,13 +73,6 @@ define( function( require ) {
     thisModel.pHMeter = new PHMeter( pHMeterLocation, new Vector2( pHMeterLocation.x + 150, thisModel.beaker.location.y ),
       PHScaleConstants.LAYOUT_BOUNDS );
 
-    // Enable faucets and dropper based on amount of solution in the beaker.
-    thisModel.solution.volumeProperty.link( function( volume ) {
-      thisModel.waterFaucet.enabledProperty.set( volume < thisModel.beaker.volume );
-      thisModel.drainFaucet.enabledProperty.set( volume > 0 );
-      thisModel.dropper.enabledProperty.set( volume < thisModel.beaker.volume );
-    } );
-
     // auto-fill when the solute changes
     this.autoFillVolume = options.autoFillVolume; // @private
     this.isAutoFilling = false; // @private
@@ -89,6 +82,13 @@ define( function( require ) {
       thisModel.drainFaucet.enabledProperty.set( false );
       // animate the dropper adding solute to the beaker
       thisModel.startAutoFill();
+    } );
+
+    // Enable faucets and dropper based on amount of solution in the beaker.
+    thisModel.solution.volumeProperty.link( function( volume ) {
+      thisModel.waterFaucet.enabledProperty.set( volume < thisModel.beaker.volume );
+      thisModel.drainFaucet.enabledProperty.set( volume > 0 );
+      thisModel.dropper.enabledProperty.set( volume < thisModel.beaker.volume );
     } );
   }
 

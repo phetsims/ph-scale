@@ -30,7 +30,7 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var PropertySet = require( 'AXON/PropertySet' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
-  var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
+  var ResetAllButtonDeprecated = require( 'SCENERY_PHET/ResetAllButtonDeprecated' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
@@ -102,7 +102,7 @@ define( function( require ) {
     var soluteListParent = new Node();
     var soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent );
 
-    var resetAllButton = new ResetAllButton( function() {
+    var resetAllButton = new ResetAllButtonDeprecated( function() {
       model.reset();
       viewProperties.reset();
       graphNode.reset();

@@ -25,7 +25,7 @@ define( function( require ) {
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PropertySet = require( 'AXON/PropertySet' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
-  var ResetAllButtonDeprecated = require( 'SCENERY_PHET/ResetAllButtonDeprecated' );
+  var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
@@ -75,10 +75,12 @@ define( function( require ) {
     var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterTop, viewProperties.pHMeterExpandedProperty,
       { attachProbe: 'right', isInteractive: true } );
 
-    var resetAllButton = new ResetAllButtonDeprecated( function() {
-      model.reset();
-      viewProperties.reset();
-      graphNode.reset();
+    var resetAllButton = new ResetAllButton( {
+      listener: function() {
+        model.reset();
+        viewProperties.reset();
+        graphNode.reset();
+      }
     } );
 
     // Parent for all nodes added to this screen

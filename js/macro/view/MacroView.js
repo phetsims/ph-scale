@@ -20,7 +20,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
-  var ResetAllButtonDeprecated = require( 'SCENERY_PHET/ResetAllButtonDeprecated' );
+  var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
@@ -68,8 +68,10 @@ define( function( require ) {
     var soluteListParent = new Node();
     var soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent );
 
-    var resetAllButton = new ResetAllButtonDeprecated( function() {
-      model.reset();
+    var resetAllButton = new ResetAllButton( {
+      listener: function() {
+        model.reset();
+      }
     } );
 
     // Parent for all nodes added to this screen

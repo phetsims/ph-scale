@@ -76,6 +76,7 @@ define( function( require ) {
       { attachProbe: 'right', isInteractive: true } );
 
     var resetAllButton = new ResetAllButton( {
+      scale: 1.32,
       listener: function() {
         model.reset();
         viewProperties.reset();

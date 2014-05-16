@@ -86,9 +86,7 @@ define( function( require ) {
 
     // Enable faucets and dropper based on amount of solution in the beaker.
     thisModel.solution.volumeProperty.link( function( volume ) {
-      thisModel.waterFaucet.enabledProperty.set( volume < thisModel.beaker.volume );
-      thisModel.drainFaucet.enabledProperty.set( volume > 0 );
-      thisModel.dropper.enabledProperty.set( volume < thisModel.beaker.volume );
+      thisModel.updateFaucetsAndDropper();
     } );
   }
 
@@ -102,6 +100,17 @@ define( function( require ) {
       this.drainFaucet.reset();
       this.pHMeter.reset();
       this.startAutoFill();
+    },
+
+    /*
+     * Enables faucets and dropper based on amount of solution in the beaker.
+     * @private
+     */
+    updateFaucetsAndDropper: function() {
+      var volume = this.solution.volumeProperty.get();
+      this.waterFaucet.enabledProperty.set( volume < this.beaker.volume );
+      this.drainFaucet.enabledProperty.set( volume > 0 );
+      this.dropper.enabledProperty.set( volume < this.beaker.volume );
     },
 
     /*
@@ -148,6 +157,7 @@ define( function( require ) {
     stopAutoFill: function() {
       this.isAutoFilling = false;
       this.dropper.onProperty.set( false );
+      this.updateFaucetsAndDropper();
     }
   };
 

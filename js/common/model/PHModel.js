@@ -10,7 +10,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var Util = require( 'DOT/Util' );
   var Water = require( 'PH_SCALE/common/model/Water' );
 

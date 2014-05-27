@@ -8,7 +8,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
   var MacroView = require( 'PH_SCALE/macro/view/MacroView' );
   var Image = require( 'SCENERY/nodes/Image' );

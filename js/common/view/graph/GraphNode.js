@@ -11,7 +11,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var ABSwitch = require( 'SUN/ABSwitch' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var ExpandCollapseBar = require( 'SUN/ExpandCollapseBar' );

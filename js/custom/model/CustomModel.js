@@ -9,7 +9,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var Beaker = require( 'PH_SCALE/common/model/Beaker' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var Property = require( 'AXON/Property' );

@@ -8,7 +8,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var MacroPHMeterNode = require( 'PH_SCALE/macro/view/MacroPHMeterNode' );
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );

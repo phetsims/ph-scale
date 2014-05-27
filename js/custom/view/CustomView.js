@@ -14,7 +14,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var GraphNode = require( 'PH_SCALE/common/view/graph/GraphNode' );

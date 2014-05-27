@@ -8,7 +8,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var CustomModel = require( 'PH_SCALE/custom/model/CustomModel' );
   var CustomView = require( 'PH_SCALE/custom/view/CustomView' );
   var Image = require( 'SCENERY/nodes/Image' );

@@ -8,7 +8,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
 
   // strings

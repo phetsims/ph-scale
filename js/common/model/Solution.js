@@ -8,7 +8,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var Color = require( 'SCENERY/util/Color' );
   var DerivedProperty = require( 'AXON/DerivedProperty' );
   var PHModel = require( 'PH_SCALE/common/model/PHModel' );

@@ -10,7 +10,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var Bounds2 = require( 'DOT/Bounds2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );

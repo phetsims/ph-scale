@@ -12,7 +12,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var ArrowButton = require( 'SCENERY_PHET/ArrowButton' );
   var ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
   var inherit = require( 'PHET_CORE/inherit' );

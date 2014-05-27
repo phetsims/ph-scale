@@ -8,7 +8,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var HydrogenNode = require( 'PH_SCALE/common/view/molecules/HydrogenNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var OxygenNode = require( 'PH_SCALE/common/view/molecules/OxygenNode' );

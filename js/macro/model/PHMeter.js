@@ -13,7 +13,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var Movable = require( 'PH_SCALE/common/model/Movable' );
   var Property = require( 'AXON/Property' );
 

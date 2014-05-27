@@ -8,7 +8,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var CustomScreen = require( 'PH_SCALE/custom/CustomScreen' );
   var MacroScreen = require( 'PH_SCALE/macro/MacroScreen' );
   var MicroScreen = require( 'PH_SCALE/micro/MicroScreen' );

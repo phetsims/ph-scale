@@ -8,7 +8,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );

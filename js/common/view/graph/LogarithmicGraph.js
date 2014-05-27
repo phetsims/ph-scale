@@ -14,7 +14,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var GraphIndicator = require( 'PH_SCALE/common/view/graph/GraphIndicator' );
   var GraphIndicatorDragHandler = require( 'PH_SCALE/common/view/graph/GraphIndicatorDragHandler' );
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );

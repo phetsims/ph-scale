@@ -9,7 +9,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );

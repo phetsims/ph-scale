@@ -12,7 +12,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var GraphIndicator = require( 'PH_SCALE/common/view/graph/GraphIndicator' );
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );

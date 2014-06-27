@@ -1,3 +1,4 @@
+6/26/14 #48 replace explicit prototype assignment with inherit(Object,...)
 6/26/14 #47 change mvt to modelViewTransform
 5/27/14 change 'imports' to 'modules' in require comments
 5/16/14 ph-scale-basics#38 fix: water faucet is disabled after switching solvents

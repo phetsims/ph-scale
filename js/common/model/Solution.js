@@ -11,6 +11,7 @@ define( function( require ) {
   // modules
   var Color = require( 'SCENERY/util/Color' );
   var DerivedProperty = require( 'AXON/DerivedProperty' );
+  var inherit = require( 'PHET_CORE/inherit' );
   var PHModel = require( 'PH_SCALE/common/model/PHModel' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
@@ -88,7 +89,7 @@ define( function( require ) {
     } );
   }
 
-  Solution.prototype = {
+  return inherit( Object, Solution, {
 
     reset: function() {
       this.soluteProperty.reset();
@@ -239,7 +240,5 @@ define( function( require ) {
     getMolesH2O: function() {
       return PHModel.computeMoles( this.getConcentrationH2O(), this.computeVolume() );
     }
-  };
-
-  return Solution;
+  } );
 } );

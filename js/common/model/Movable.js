@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
 
   /**
@@ -22,11 +23,9 @@ define( function( require ) {
     this.dragBounds = dragBounds;
   }
 
-  Movable.prototype = {
+  return inherit( Object, Movable, {
     reset: function() {
       this.locationProperty.reset();
     }
-  };
-
-  return Movable;
+  } );
 } );

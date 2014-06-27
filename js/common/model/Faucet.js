@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
 
   /**
@@ -44,13 +45,11 @@ define( function( require ) {
     } );
   }
 
-  Faucet.prototype = {
+  return inherit( Object, Faucet, {
     reset: function() {
       this.flowRateProperty.reset();
       this.enabledProperty.reset();
     }
-  };
-
-  return Faucet;
+  } );
 } );
 

@@ -14,6 +14,7 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var Dropper = require( 'PH_SCALE/common/model/Dropper' );
   var Faucet = require( 'PH_SCALE/common/model/Faucet' );
+  var inherit = require( 'PHET_CORE/inherit' );
   var PHMeter = require( 'PH_SCALE/macro/model/PHMeter' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Solute = require( 'PH_SCALE/common/model/Solute' );
@@ -90,7 +91,7 @@ define( function( require ) {
     } );
   }
 
-  MacroModel.prototype = {
+  return inherit( Object, MacroModel, {
 
     reset: function() {
       this.beaker.reset();
@@ -159,7 +160,5 @@ define( function( require ) {
       this.dropper.onProperty.set( false );
       this.updateFaucetsAndDropper();
     }
-  };
-
-  return MacroModel;
+  } );
 } );

@@ -14,6 +14,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var inherit = require( 'PHET_CORE/inherit' );
   var Movable = require( 'PH_SCALE/common/model/Movable' );
   var Property = require( 'AXON/Property' );
 
@@ -29,13 +30,10 @@ define( function( require ) {
     this.probe = new Movable( probeLocation, probeDragBounds );
   }
 
-  PHMeter.prototype = {
+  return inherit( Object, PHMeter, {
     reset: function() {
       this.valueProperty.reset();
       this.probe.reset();
     }
-  };
-
-  return PHMeter;
-
+  } );
 } );

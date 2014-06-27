@@ -10,6 +10,7 @@ define( function( require ) {
 
   // modules
   var Bounds2 = require( 'DOT/Bounds2' );
+  var inherit = require( 'PHET_CORE/inherit' );
 
   /**
    * Constructor
@@ -34,9 +35,7 @@ define( function( require ) {
     this.bounds = new Bounds2( this.left, location.y - size.height, this.right, location.y );
   }
 
-  Beaker.prototype = {
+  return inherit( Object, Beaker, {
     reset: function() { /* currently nothing to reset */ }
-  };
-
-  return Beaker;
+  } );
 } );

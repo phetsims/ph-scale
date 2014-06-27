@@ -11,6 +11,7 @@ define( function( require ) {
 
   // modules
   var Color = require( 'SCENERY/util/Color' );
+  var inherit = require( 'PHET_CORE/inherit' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Water = require( 'PH_SCALE/common/model/Water' );
@@ -58,7 +59,7 @@ define( function( require ) {
     }
   }
 
-  Solute.prototype = {
+  inherit( Object, Solute, {
 
     toString: function() {
       return 'Solution[name:' + this.name + ' pH:' + this.pH + ']';
@@ -86,9 +87,21 @@ define( function( require ) {
       }
       return color;
     }
-  };
+  }, {
+
+    /**
+     * Creates a custom solute.
+     * @static
+     * @param {Number} pH
+     * @returns {Solute}
+     */
+    createCustom: function( pH ) {
+      return new Solute( customString, pH, { stockColor: PHScaleColors.WATER } );
+    }
+  } );
 
   // 'real world' immutable solutions
+
   Solute.DRAIN_CLEANER = new Solute( drainCleanerString, 13, {
     stockColor: new Color( 255, 255, 0 ),
     colorStop: { color: new Color( 255, 255, 204 ) }
@@ -137,15 +150,6 @@ define( function( require ) {
     stockColor: new Color( 255, 255, 0 ),
     colorStop: { color: new Color( 255, 224, 204 ) }
   } );
-
-  /**
-   * Creates a custom solute.
-   * @param {Number} pH
-   * @returns {Solute}
-   */
-  Solute.createCustom = function( pH ) {
-    return new Solute( customString, pH, { stockColor: PHScaleColors.WATER } );
-  };
 
   return Solute;
 } );

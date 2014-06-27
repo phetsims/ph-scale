@@ -15,21 +15,21 @@ define( function( require ) {
 
   /**
    * @param {Faucet} faucet
-   * @param {ModelViewTransform2} mvt
+   * @param {ModelViewTransform2} modelViewTransform
    * @constructor
    */
-  function DrainFaucetNode( faucet, mvt ) {
+  function DrainFaucetNode( faucet, modelViewTransform ) {
 
     var scale = 0.6;
 
-    var horizontalPipeLength = Math.abs( mvt.modelToViewX( faucet.location.x - faucet.pipeMinX ) ) / scale;
+    var horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.location.x - faucet.pipeMinX ) ) / scale;
     FaucetNode.call( this, faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
       horizontalPipeLength: horizontalPipeLength,
       verticalPipeLength: 5,
       tapToDispenseAmount: PHScaleConstants.TAP_TO_DISPENSE_AMOUNT,
       tapToDispenseInterval: PHScaleConstants.TAP_TO_DISPENSE_INTERVAL
     } );
-    this.translation = mvt.modelToViewPosition( faucet.location );
+    this.translation = modelViewTransform.modelToViewPosition( faucet.location );
     this.setScaleMagnitude( -scale, scale ); // reflect horizontally
   }
 

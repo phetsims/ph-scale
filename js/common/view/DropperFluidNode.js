@@ -16,10 +16,10 @@ define( function( require ) {
    * @param {Dropper} dropper
    * @param {Beaker} beaker
    * @param {Number} tipWidth
-   * @param {ModelViewTransform2} mvt
+   * @param {ModelViewTransform2} modelViewTransform
    * @constructor
    */
-  function DropperFluidNode( dropper, beaker, tipWidth, mvt ) {
+  function DropperFluidNode( dropper, beaker, tipWidth, modelViewTransform ) {
 
     var thisNode = this;
     Rectangle.call( thisNode, 0, 0, 0, 0, { lineWidth: 1 } );
@@ -34,7 +34,7 @@ define( function( require ) {
         thisNode.setRect( 0, 0, 0, 0 );
       }
       // move this node to the dropper's location
-      thisNode.translation = mvt.modelToViewPosition( dropper.locationProperty.get() );
+      thisNode.translation = modelViewTransform.modelToViewPosition( dropper.locationProperty.get() );
     };
     dropper.locationProperty.link( updateShapeAndLocation );
     dropper.flowRateProperty.link( updateShapeAndLocation );

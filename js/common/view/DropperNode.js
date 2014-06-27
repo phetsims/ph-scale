@@ -50,11 +50,11 @@ define( function( require ) {
 
   /**
    * @param {Dropper} dropper
-   * @param {ModelViewTransform2} mvt
+   * @param {ModelViewTransform2} modelViewTransform
    * @param {*} options
    * @constructor
    */
-  function DropperNode( dropper, mvt, options ) {
+  function DropperNode( dropper, modelViewTransform, options ) {
 
     options = _.extend( {
       showPH: false
@@ -120,7 +120,7 @@ define( function( require ) {
 
     // Update location
     dropper.locationProperty.link( function( location ) {
-      thisNode.translation = mvt.modelToViewPosition( location );
+      thisNode.translation = modelViewTransform.modelToViewPosition( location );
     } );
 
     // Visibility
@@ -156,7 +156,7 @@ define( function( require ) {
     thisNode.touchArea = Shape.rectangle( -( ( foreground.width / 2 ) + dx ), -( foreground.height + dy ), foreground.width + dx + dx, foreground.height + dy + dy );
 
     // drag handler
-    thisNode.addInputListener( new MovableDragHandler( dropper, mvt ) );
+    thisNode.addInputListener( new MovableDragHandler( dropper, modelViewTransform ) );
   }
 
   // Formats a pH values for labeling the dropper, eg 'pH 11.00'

@@ -29,17 +29,17 @@ define( function( require ) {
   var ARROW_SIZE = new Dimension2( 21, 28 );
   var VALUE_FONT = new PhetFont( { size: 24, weight: 'bold' } );
 
-  function VolumeIndicatorNode( volumeProperty, beaker, mvt ) {
+  function VolumeIndicatorNode( volumeProperty, beaker, modelViewTransform ) {
 
     var thisNode = this;
     Node.call( thisNode );
 
     // nodes
     var arrowHead = new Path( new Shape()
-      .moveTo( 0, 0 )
-      .lineTo( ARROW_SIZE.width, ARROW_SIZE.height / 2 )
-      .lineTo( ARROW_SIZE.width, -ARROW_SIZE.height / 2 )
-      .close(),
+        .moveTo( 0, 0 )
+        .lineTo( ARROW_SIZE.width, ARROW_SIZE.height / 2 )
+        .lineTo( ARROW_SIZE.width, -ARROW_SIZE.height / 2 )
+        .close(),
       { fill: 'black' } );
     var valueNode = new Text( '0', {
       font: VALUE_FONT,
@@ -52,7 +52,7 @@ define( function( require ) {
     thisNode.addChild( arrowHead );
 
     // x location
-    thisNode.left = mvt.modelToViewX( beaker.right ) + 3;
+    thisNode.left = modelViewTransform.modelToViewX( beaker.right ) + 3;
 
     // update when the volume changes
     volumeProperty.link( function( volume ) {
@@ -60,7 +60,7 @@ define( function( require ) {
       valueNode.text = StringUtils.format( pattern_0value_1units, Util.toFixed( volume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), litersString );
       // y-location
       var solutionHeight = Util.linear( 0, beaker.volume, 0, beaker.size.height, volume ); // volume -> height, model coordinates
-      thisNode.y = mvt.modelToViewY( beaker.location.y - solutionHeight );
+      thisNode.y = modelViewTransform.modelToViewY( beaker.location.y - solutionHeight );
     } );
   }
 

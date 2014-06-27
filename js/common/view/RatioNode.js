@@ -181,11 +181,11 @@ define( function( require ) {
   /**
    * @param {Beaker} beaker
    * @param {Solution} solution
-   * @param {ModelViewTransform2} mvt
+   * @param {ModelViewTransform2} modelViewTransform
    * @param {*} options
    * @constructor
    */
-  function RatioNode( beaker, solution, mvt, options ) {
+  function RatioNode( beaker, solution, modelViewTransform, options ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -197,7 +197,7 @@ define( function( require ) {
     thisNode.pH = null; // @private null to force an update
 
     // bounds of the beaker, in view coordinates
-    var beakerBounds = mvt.modelToViewBounds( beaker.bounds );
+    var beakerBounds = modelViewTransform.modelToViewBounds( beaker.bounds );
 
     // parent for all molecules
     thisNode.moleculesNode = new MoleculesCanvas( beakerBounds ); // @private

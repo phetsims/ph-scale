@@ -40,10 +40,10 @@ define( function( require ) {
 
   /**
    * @param {MicroModel} model
-   * @param {ModelViewTransform2} mvt
+   * @param {ModelViewTransform2} modelViewTransform
    * @constructor
    */
-  function MicroView( model, mvt ) {
+  function MicroView( model, modelViewTransform ) {
 
     var thisView = this;
     ScreenView.call( thisView, { renderer: 'svg' } );
@@ -57,26 +57,26 @@ define( function( require ) {
     } );
 
     // beaker
-    var beakerNode = new BeakerNode( model.beaker, mvt );
-    var solutionNode = new SolutionNode( model.solution, model.beaker, mvt );
-    var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, mvt );
+    var beakerNode = new BeakerNode( model.beaker, modelViewTransform );
+    var solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
+    var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform );
 
     // dropper
     var DROPPER_SCALE = 0.85;
-    var dropperNode = new DropperNode( model.dropper, mvt );
+    var dropperNode = new DropperNode( model.dropper, modelViewTransform );
     dropperNode.setScaleMagnitude( DROPPER_SCALE );
-    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * dropperNode.getTipWidth(), mvt );
+    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * dropperNode.getTipWidth(), modelViewTransform );
 
     // faucets
-    var waterFaucetNode = new WaterFaucetNode( model.waterFaucet, mvt );
-    var drainFaucetNode = new DrainFaucetNode( model.drainFaucet, mvt );
+    var waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform );
+    var drainFaucetNode = new DrainFaucetNode( model.drainFaucet, modelViewTransform );
     var SOLVENT_FLUID_HEIGHT = model.beaker.location.y - model.waterFaucet.location.y;
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
-    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), SOLVENT_FLUID_HEIGHT, mvt );
-    var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, mvt );
+    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), SOLVENT_FLUID_HEIGHT, modelViewTransform );
+    var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform );
 
     // 'H3O+/OH- ratio' representation
-    var ratioNode = new RatioNode( model.beaker, model.solution, mvt, { visible: viewProperties.ratioVisibleProperty.get() } );
+    var ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, { visible: viewProperties.ratioVisibleProperty.get() } );
     viewProperties.ratioVisibleProperty.linkAttribute( ratioNode, 'visible' );
 
     // 'molecule count' representation
@@ -95,7 +95,7 @@ define( function( require ) {
 
     // pH meter
     var pHMeterTop = 15;
-    var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterTop, viewProperties.pHMeterExpandedProperty,
+    var pHMeterNode = new PHMeterNode( model.solution, modelViewTransform.modelToViewY( model.beaker.location.y ) - pHMeterTop, viewProperties.pHMeterExpandedProperty,
       { attachProbe: 'right' } );
 
     // solutes combo box
@@ -139,7 +139,7 @@ define( function( require ) {
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.centerX = beakerNode.centerX;
     beakerControls.top = beakerNode.bottom + 10;
-    pHMeterNode.left = mvt.modelToViewX( model.beaker.left ) - ( 0.4 * pHMeterNode.width );
+    pHMeterNode.left = modelViewTransform.modelToViewX( model.beaker.left ) - ( 0.4 * pHMeterNode.width );
     pHMeterNode.top = pHMeterTop;
     graphNode.right = drainFaucetNode.left - 40;
     graphNode.top = pHMeterNode.top;

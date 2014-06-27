@@ -19,23 +19,23 @@ define( function( require ) {
 
   /**
    * @param {Faucet} faucet
-   * @param {ModelViewTransform2} mvt
+   * @param {ModelViewTransform2} modelViewTransform
    * @constructor
    */
-  function WaterFaucetNode( faucet, mvt ) {
+  function WaterFaucetNode( faucet, modelViewTransform ) {
 
     Node.call( this );
 
     var scale = 0.6;
 
-    var horizontalPipeLength = Math.abs( mvt.modelToViewX( faucet.location.x - faucet.pipeMinX ) ) / scale;
+    var horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.location.x - faucet.pipeMinX ) ) / scale;
     var faucetNode = new FaucetNode( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
       horizontalPipeLength: horizontalPipeLength,
       verticalPipeLength: 20,
       tapToDispenseAmount: PHScaleConstants.TAP_TO_DISPENSE_AMOUNT,
       tapToDispenseInterval: PHScaleConstants.TAP_TO_DISPENSE_INTERVAL
     } );
-    faucetNode.translation = mvt.modelToViewPosition( faucet.location );
+    faucetNode.translation = modelViewTransform.modelToViewPosition( faucet.location );
     faucetNode.setScaleMagnitude( -scale, scale ); // reflect horizontally
     this.addChild( faucetNode );
 

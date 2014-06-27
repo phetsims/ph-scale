@@ -227,14 +227,14 @@ define( function( require ) {
   /**
    * Meter probe, origin at center of crosshairs.
    * @param {Movable} probe
-   * @param {ModelViewTransform2} mvt
+   * @param {ModelViewTransform2} modelViewTransform
    * @param {Node} solutionNode
    * @param {Node} dropperFluidNode
    * @param {Node} waterFluidNode
    * @param {Node} drainFluidNode
    * @constructor
    */
-  function ProbeNode( probe, mvt, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode ) {
+  function ProbeNode( probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode ) {
 
     var thisNode = this;
     Node.call( thisNode, {
@@ -250,7 +250,7 @@ define( function( require ) {
 
     // probe location
     probe.locationProperty.link( function( location ) {
-      thisNode.translation = mvt.modelToViewPosition( location );
+      thisNode.translation = modelViewTransform.modelToViewPosition( location );
     } );
 
     // touch area
@@ -259,7 +259,7 @@ define( function( require ) {
     thisNode.touchArea = Shape.rectangle( imageNode.x - dx, imageNode.y - dy, imageNode.width + dx + dx, imageNode.height + dy + dy );
 
     // drag handler
-    thisNode.addInputListener( new MovableDragHandler( probe, mvt ) );
+    thisNode.addInputListener( new MovableDragHandler( probe, modelViewTransform ) );
 
     var isInNode = function( node ) {
       return node.getBounds().containsPoint( probe.locationProperty.get() );
@@ -352,10 +352,10 @@ define( function( require ) {
     // arrow head pointing at the scale
     var arrowSize = new Dimension2( 21, 28 );
     var arrowNode = new Path( new Shape()
-      .moveTo( 0, 0 )
-      .lineTo( arrowSize.width, -arrowSize.height / 2 )
-      .lineTo( arrowSize.width, arrowSize.height / 2 )
-      .close(),
+        .moveTo( 0, 0 )
+        .lineTo( arrowSize.width, -arrowSize.height / 2 )
+        .lineTo( arrowSize.width, arrowSize.height / 2 )
+        .close(),
       { fill: 'black' } );
 
     // rendering order
@@ -389,23 +389,23 @@ define( function( require ) {
    * @param {Node} dropperFluidNode
    * @param {Node} waterFluidNode
    * @param {Node} drainFluidNode
-   * @param {ModelViewTransform2} mvt
+   * @param {ModelViewTransform2} modelViewTransform
    * @constructor
    */
-  function MacroPHMeterNode( meter, solution, dropper, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, mvt ) {
+  function MacroPHMeterNode( meter, solution, dropper, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform ) {
 
     var thisNode = this;
     Node.call( thisNode );
 
     // pH scale, positioned at meter 'body' location
     var scaleNode = new ScaleNode( { size: SCALE_SIZE } );
-    scaleNode.translation = mvt.modelToViewPosition( meter.bodyLocation );
+    scaleNode.translation = modelViewTransform.modelToViewPosition( meter.bodyLocation );
 
     // indicator that slides vertically along scale
     var indicatorNode = new IndicatorNode( meter.valueProperty, SCALE_SIZE.width );
     indicatorNode.left = scaleNode.x;
 
-    var probeNode = new ProbeNode( meter.probe, mvt, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode );
+    var probeNode = new ProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode );
     var wireNode = new WireNode( meter.probe, scaleNode, probeNode );
 
     // rendering order

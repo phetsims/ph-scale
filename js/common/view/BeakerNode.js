@@ -35,17 +35,17 @@ define( function( require ) {
   /**
    * Constructor
    * @param {Beaker} beaker
-   * @param {ModelViewTransform2} mvt
+   * @param {ModelViewTransform2} modelViewTransform
    * @constructor
    */
-  function BeakerNode( beaker, mvt ) {
+  function BeakerNode( beaker, modelViewTransform ) {
 
     var thisNode = this;
     Node.call( thisNode );
 
     // outline of the beaker, starting from upper left
-    var beakerWidth = mvt.modelToViewDeltaX( beaker.size.width );
-    var beakerHeight = mvt.modelToViewDeltaY( beaker.size.height );
+    var beakerWidth = modelViewTransform.modelToViewDeltaX( beaker.size.width );
+    var beakerHeight = modelViewTransform.modelToViewDeltaY( beaker.size.height );
     var outlineShape = new Shape()
       .moveTo( -(beakerWidth / 2 ) - RIM_OFFSET, -beakerHeight - RIM_OFFSET )
       .lineTo( -(beakerWidth / 2), -beakerHeight )
@@ -99,7 +99,7 @@ define( function( require ) {
       }
     }
 
-    thisNode.translation = mvt.modelToViewPosition( beaker.location );
+    thisNode.translation = modelViewTransform.modelToViewPosition( beaker.location );
   }
 
   return inherit( Node, BeakerNode );

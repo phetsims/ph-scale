@@ -18,10 +18,10 @@ define( function( require ) {
   /**
    * @param {Solution} solution
    * @param {Beaker} beaker
-   * @param {ModelViewTransform2} mvt
+   * @param {ModelViewTransform2} modelViewTransform
    * @constructor
    */
-  function SolutionNode( solution, beaker, mvt ) {
+  function SolutionNode( solution, beaker, modelViewTransform ) {
 
     var thisNode = this;
     Rectangle.call( thisNode, 0, 0, 1, 1, { lineWidth: 1 } ); // size and color set dynamically
@@ -42,8 +42,8 @@ define( function( require ) {
      * Updates the amount of stuff in the beaker, based on solution volume.
      * @param {Number} volume
      */
-    var viewLocation = mvt.modelToViewPosition( beaker.location );
-    var viewWidth = mvt.modelToViewDeltaX( beaker.size.width );
+    var viewLocation = modelViewTransform.modelToViewPosition( beaker.location );
+    var viewWidth = modelViewTransform.modelToViewDeltaX( beaker.size.width );
     solution.volumeProperty.link( function( volume ) {
       assert && assert( volume >= 0 );
 
@@ -56,7 +56,7 @@ define( function( require ) {
       var solutionHeight = Util.linear( 0, beaker.volume, 0, beaker.size.height, volume ); // volume -> height
 
       // convert to view coordinates and create shape
-      var viewHeight = mvt.modelToViewDeltaY( solutionHeight );
+      var viewHeight = modelViewTransform.modelToViewDeltaY( solutionHeight );
 
       // shape
       thisNode.setRect( viewLocation.x - (viewWidth / 2), viewLocation.y - viewHeight, viewWidth, viewHeight );

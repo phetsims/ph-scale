@@ -32,10 +32,10 @@ define( function( require ) {
 
   /**
    * @param {CustomModel} model
-   * @param {ModelViewTransform2} mvt
+   * @param {ModelViewTransform2} modelViewTransform
    * @constructor
    */
-  function CustomView( model, mvt ) {
+  function CustomView( model, modelViewTransform ) {
 
     var thisView = this;
     ScreenView.call( thisView, { renderer: 'svg' } );
@@ -49,12 +49,12 @@ define( function( require ) {
     } );
 
     // beaker
-    var beakerNode = new BeakerNode( model.beaker, mvt );
-    var solutionNode = new SolutionNode( model.solution, model.beaker, mvt );
-    var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, mvt );
+    var beakerNode = new BeakerNode( model.beaker, modelViewTransform );
+    var solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
+    var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform );
 
     // 'H3O+/OH- ratio' representation
-    var ratioNode = new RatioNode( model.beaker, model.solution, mvt, { visible: viewProperties.ratioVisibleProperty.get() } );
+    var ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, { visible: viewProperties.ratioVisibleProperty.get() } );
     viewProperties.ratioVisibleProperty.linkAttribute( ratioNode, 'visible' );
 
     // 'molecule count' representation
@@ -72,7 +72,7 @@ define( function( require ) {
 
     // pH meter
     var pHMeterTop = 15;
-    var pHMeterNode = new PHMeterNode( model.solution, mvt.modelToViewY( model.beaker.location.y ) - pHMeterTop, viewProperties.pHMeterExpandedProperty,
+    var pHMeterNode = new PHMeterNode( model.solution, modelViewTransform.modelToViewY( model.beaker.location.y ) - pHMeterTop, viewProperties.pHMeterExpandedProperty,
       { attachProbe: 'right', isInteractive: true } );
 
     var resetAllButton = new ResetAllButton( {

@@ -30,39 +30,39 @@ define( function( require ) {
 
   /**
    * @param {MacroModel} model
-   * @param {ModelViewTransform2} mvt
+   * @param {ModelViewTransform2} modelViewTransform
    * @constructor
    */
-  function MacroView( model, mvt ) {
+  function MacroView( model, modelViewTransform ) {
 
     var thisView = this;
     ScreenView.call( thisView, { renderer: 'svg' } );
 
     // beaker
-    var beakerNode = new BeakerNode( model.beaker, mvt );
-    var solutionNode = new SolutionNode( model.solution, model.beaker, mvt );
-    var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, mvt );
+    var beakerNode = new BeakerNode( model.beaker, modelViewTransform );
+    var solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
+    var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform );
 
     // neutral indicator that appears in the bottom of the beaker
     var neutralIndicator = new NeutralIndicator( model.solution );
 
     // dropper
     var DROPPER_SCALE = 0.85;
-    var dropperNode = new DropperNode( model.dropper, mvt );
+    var dropperNode = new DropperNode( model.dropper, modelViewTransform );
     dropperNode.setScaleMagnitude( DROPPER_SCALE );
-    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * dropperNode.getTipWidth(), mvt );
+    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * dropperNode.getTipWidth(), modelViewTransform );
 
     // faucets
-    var waterFaucetNode = new WaterFaucetNode( model.waterFaucet, mvt );
-    var drainFaucetNode = new DrainFaucetNode( model.drainFaucet, mvt );
+    var waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform );
+    var drainFaucetNode = new DrainFaucetNode( model.drainFaucet, modelViewTransform );
     var WATER_FLUID_HEIGHT = model.beaker.location.y - model.waterFaucet.location.y;
     var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
-    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), WATER_FLUID_HEIGHT, mvt );
-    var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, mvt );
+    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), WATER_FLUID_HEIGHT, modelViewTransform );
+    var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform );
 
     // pH meter
     var pHMeterNode = new MacroPHMeterNode( model.pHMeter, model.solution, model.dropper,
-      solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, mvt );
+      solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform );
 
     // solutes combo box
     var soluteListParent = new Node();
@@ -96,7 +96,7 @@ define( function( require ) {
     thisView.addChild( rootNode );
 
     // Layout of nodes that don't have a location specified in the model
-    soluteComboBox.left = mvt.modelToViewX( model.beaker.left ) - 20; // anchor on left so it grows to the right during i18n
+    soluteComboBox.left = modelViewTransform.modelToViewX( model.beaker.left ) - 20; // anchor on left so it grows to the right during i18n
     soluteComboBox.top = this.layoutBounds.top + 15;
     neutralIndicator.centerX = beakerNode.centerX;
     neutralIndicator.bottom = beakerNode.bottom - 30;

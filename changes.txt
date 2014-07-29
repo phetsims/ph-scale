@@ -1,3 +1,4 @@
+7/29/14 check in ph-scale-128.png (website thumbnail)
 6/26/14 #48 replace explicit prototype assignment with inherit(Object,...)
 6/26/14 #47 change mvt to modelViewTransform
 5/27/14 change 'imports' to 'modules' in require comments

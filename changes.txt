@@ -1,3 +1,4 @@
+8/19/14 check in dependencies.json for 1.1.0-rc.1
 # 1.1.0-rc.1 8/19/14
 # 1.1 branched 8/19/14
 7/29/14 check in ph-scale-128.png (website thumbnail)

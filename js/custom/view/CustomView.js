@@ -38,7 +38,7 @@ define( function( require ) {
   function CustomView( model, modelViewTransform ) {
 
     var thisView = this;
-    ScreenView.call( thisView, { renderer: 'svg' } );
+    ScreenView.call( thisView, PHScaleConstants.SCREEN_VIEW_OPTIONS );
 
     // view-specific properties
     var viewProperties = new PropertySet( {
@@ -112,5 +112,5 @@ define( function( require ) {
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
 
-  return inherit( ScreenView, CustomView, { layoutBounds: PHScaleConstants.LAYOUT_BOUNDS } );
+  return inherit( ScreenView, CustomView );
 } );

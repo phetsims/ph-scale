@@ -15,7 +15,7 @@ define( function( require ) {
   return {
 
     // ScreenView
-    LAYOUT_BOUNDS: new Bounds2( 0, 0, 1100, 700 ),
+    SCREEN_VIEW_OPTIONS: { renderer: 'svg', layoutBounds: new Bounds2( 0, 0, 1100, 700 ) },
 
     // pH
     PH_RANGE: new Range( -1, 15, 7 ),

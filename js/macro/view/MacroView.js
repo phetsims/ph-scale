@@ -36,7 +36,7 @@ define( function( require ) {
   function MacroView( model, modelViewTransform ) {
 
     var thisView = this;
-    ScreenView.call( thisView, { renderer: 'svg' } );
+    ScreenView.call( thisView, PHScaleConstants.SCREEN_VIEW_OPTIONS );
 
     // beaker
     var beakerNode = new BeakerNode( model.beaker, modelViewTransform );
@@ -104,5 +104,5 @@ define( function( require ) {
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
 
-  return inherit( ScreenView, MacroView, { layoutBounds: PHScaleConstants.LAYOUT_BOUNDS } );
+  return inherit( ScreenView, MacroView );
 } );

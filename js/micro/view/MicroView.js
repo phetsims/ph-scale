@@ -46,7 +46,7 @@ define( function( require ) {
   function MicroView( model, modelViewTransform ) {
 
     var thisView = this;
-    ScreenView.call( thisView, { renderer: 'svg' } );
+    ScreenView.call( thisView, PHScaleConstants.SCREEN_VIEW_OPTIONS );
 
     // view-specific properties
     var viewProperties = new PropertySet( {
@@ -149,5 +149,5 @@ define( function( require ) {
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
 
-  return inherit( ScreenView, MicroView, { layoutBounds: PHScaleConstants.LAYOUT_BOUNDS } );
+  return inherit( ScreenView, MicroView );
 } );

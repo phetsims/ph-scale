@@ -1,3 +1,4 @@
+8/19/14 #50 fix drag bounds of pH meter
 # 1.1 branched 8/19/14
 7/29/14 check in ph-scale-128.png (website thumbnail)
 6/26/14 #48 replace explicit prototype assignment with inherit(Object,...)

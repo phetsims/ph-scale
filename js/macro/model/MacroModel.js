@@ -72,7 +72,7 @@ define( function( require ) {
     // pH meter to the left of the drain faucet
     var pHMeterLocation = new Vector2( thisModel.drainFaucet.location.x - 300, 75 );
     thisModel.pHMeter = new PHMeter( pHMeterLocation, new Vector2( pHMeterLocation.x + 150, thisModel.beaker.location.y ),
-      PHScaleConstants.LAYOUT_BOUNDS );
+      PHScaleConstants.SCREEN_VIEW_OPTIONS.layoutBounds );
 
     // auto-fill when the solute changes
     this.autoFillVolume = options.autoFillVolume; // @private

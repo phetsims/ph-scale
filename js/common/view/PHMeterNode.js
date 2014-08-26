@@ -152,7 +152,7 @@ define( function( require ) {
     var collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, collapsedHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
 
     // expand/collapse button
-    var expandCollapseButton = new ExpandCollapseButton( PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH, expandedProperty );
+    var expandCollapseButton = new ExpandCollapseButton( expandedProperty, { sideLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH } );
     expandCollapseButton.touchArea = Shape.bounds( expandCollapseButton.localBounds.dilatedXY( 10, 10 ) );
 
     // rendering order

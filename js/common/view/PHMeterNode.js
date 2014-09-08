@@ -222,7 +222,7 @@ define( function( require ) {
    * @param {Solution} solution
    * @param {Number} probeYOffset distance from top of meter to tip of probe, in view coordinate frame
    * @param {Property<Boolean>} expandedProperty
-   * @param {*} options
+   * @param {Object} options
    * @constructor
    */
   function PHMeterNode( solution, probeYOffset, expandedProperty, options ) {

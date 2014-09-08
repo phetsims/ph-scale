@@ -22,7 +22,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
 
   /**
-   * @param {*} options
+   * @param {Object} options
    * @constructor
    */
   function MacroModel( options ) {

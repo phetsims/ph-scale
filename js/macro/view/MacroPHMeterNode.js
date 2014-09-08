@@ -60,7 +60,7 @@ define( function( require ) {
 
   /**
    * The meter's vertical scale.
-   * @param {*} options
+   * @param {Object} options
    * @constructor
    */
   function ScaleNode( options ) {

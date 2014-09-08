@@ -34,7 +34,7 @@ define( function( require ) {
    * @param {Property<GraphUnits>} graphUnitsProperty
    * @param {Range} mantissaRange
    * @param {Property<Number>} exponentProperty
-   * @param {*} options
+   * @param {Object} options
    * @constructor
    */
   function LinearGraph( solution, graphUnitsProperty, mantissaRange, exponentProperty, options ) {

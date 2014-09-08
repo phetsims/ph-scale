@@ -16,7 +16,7 @@ define( function( require ) {
   /**
    * @param {Vector2} location center of output pipe
    * @param {Number} pipeMinX x-coordinate of where the pipe starts
-   * @param {*} options
+   * @param {Object} options
    * @constructor
    */
   function Faucet( location, pipeMinX, options ) {

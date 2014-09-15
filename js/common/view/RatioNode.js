@@ -182,7 +182,7 @@ define( function( require ) {
    * @param {Beaker} beaker
    * @param {Solution} solution
    * @param {ModelViewTransform2} modelViewTransform
-   * @param {Object} options
+   * @param {Object} [options]
    * @constructor
    */
   function RatioNode( beaker, solution, modelViewTransform, options ) {

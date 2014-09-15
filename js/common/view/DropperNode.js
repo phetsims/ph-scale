@@ -51,7 +51,7 @@ define( function( require ) {
   /**
    * @param {Dropper} dropper
    * @param {ModelViewTransform2} modelViewTransform
-   * @param {Object} options
+   * @param {Object} [options]
    * @constructor
    */
   function DropperNode( dropper, modelViewTransform, options ) {

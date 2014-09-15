@@ -16,7 +16,7 @@ define( function( require ) {
    * Constructor
    * @param {Vector2} location bottom center
    * @param {Dimension2} size
-   * @param {Object} options
+   * @param {Object} [options]
    * @constructor
    */
   function Beaker( location, size, options ) {

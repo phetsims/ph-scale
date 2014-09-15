@@ -17,7 +17,7 @@ define( function( require ) {
    * @param {Solute} default solute
    * @param {Vector2} location
    * @param {Bounds2} dragBounds
-   * @param {Object} options
+   * @param {Object} [options]
    * @constructor
    */
   function Dropper( solute, location, dragBounds, options ) {

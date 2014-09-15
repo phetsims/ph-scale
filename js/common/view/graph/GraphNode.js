@@ -41,7 +41,7 @@ define( function( require ) {
   /**
    * @param {Solution} solution
    * @param {Property<Boolean>} expandedProperty
-   * @param {Object} options
+   * @param {Object} [options]
    * @constructor
    */
   function GraphNode( solution, expandedProperty, options ) {

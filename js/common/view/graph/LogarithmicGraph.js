@@ -33,7 +33,7 @@ define( function( require ) {
   /**
    * @param {Solution} solution
    * @param {Property<GraphUnits>} graphUnitsProperty
-   * @param {Object} options
+   * @param {Object} [options]
    * @constructor
    */
   function LogarithmicGraph( solution, graphUnitsProperty, options ) {

@@ -132,8 +132,8 @@ define( function( require ) {
         if ( pH !== null && pH !== solution.pHProperty.get() ) {
           solution.soluteProperty.set( Solute.createCustom( pH ) );
         }
-        upArrowNode.setEnabled( pH < PHScaleConstants.PH_RANGE.max );
-        downArrowNode.setEnabled( pH > PHScaleConstants.PH_RANGE.min );
+        upArrowNode.enabled = ( pH < PHScaleConstants.PH_RANGE.max );
+        downArrowNode.enabled = ( pH > PHScaleConstants.PH_RANGE.min );
       } );
     }
 

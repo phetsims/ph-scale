@@ -106,7 +106,7 @@ define( function( require ) {
 
       // down arrow
       downArrowNode = new ArrowButton( 'down',
-        function() { pHValueProperty.set( ( PHScaleConstants.PH_RANGE.min, solution.pHProperty.get() - SPINNER_DELTA ) ); },
+        function() { pHValueProperty.set( Math.max( PHScaleConstants.PH_RANGE.min, solution.pHProperty.get() - SPINNER_DELTA ) ); },
         _.extend( {
           left: upArrowNode.left,
           top: upArrowNode.bottom + SPINNER_Y_SPACING

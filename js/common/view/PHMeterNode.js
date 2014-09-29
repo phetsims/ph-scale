@@ -96,7 +96,9 @@ define( function( require ) {
 
       // up arrow
       upArrowNode = new ArrowButton( 'up',
-        function() { pHValueProperty.set( Math.min( PHScaleConstants.PH_RANGE.max, solution.pHProperty.get() + SPINNER_DELTA ) ); },
+        function() {
+          pHValueProperty.set( Math.min( PHScaleConstants.PH_RANGE.max, solution.pHProperty.get() + SPINNER_DELTA ) );
+        },
         _.extend( {
           left: valueRectangle.right + SPINNER_X_SPACING,
           bottom: valueRectangle.centerY - ( SPINNER_Y_SPACING / 2 )
@@ -106,7 +108,9 @@ define( function( require ) {
 
       // down arrow
       downArrowNode = new ArrowButton( 'down',
-        function() { pHValueProperty.set( Math.max( PHScaleConstants.PH_RANGE.min, solution.pHProperty.get() - SPINNER_DELTA ) ); },
+        function() {
+          pHValueProperty.set( Math.max( PHScaleConstants.PH_RANGE.min, solution.pHProperty.get() - SPINNER_DELTA ) );
+        },
         _.extend( {
           left: upArrowNode.left,
           top: upArrowNode.bottom + SPINNER_Y_SPACING

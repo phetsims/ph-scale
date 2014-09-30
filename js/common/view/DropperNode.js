@@ -20,18 +20,15 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var RoundRedButton = require( 'SCENERY_PHET/RoundRedButton' );
   var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var ToggleButton = require( 'PH_SCALE/common/view/ToggleButton' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Util = require( 'DOT/Util' );
 
   // images
   var dropperForegroundImage = require( 'image!PH_SCALE/dropper_foreground.png' );
   var dropperBackgroundImage = require( 'image!PH_SCALE/dropper_background.png' );
-  var buttonPressedImage = require( 'image!PH_SCALE/red_button_pressed.png' );
-  var buttonUnpressedImage = require( 'image!PH_SCALE/red_button_unpressed.png' );
-  var buttonDisabledImage = require( 'image!PH_SCALE/red_button_disabled.png' );
 
   // strings
   var pattern_ph_0value = require( 'string!PH_SCALE/pattern.ph.0value' );
@@ -98,8 +95,7 @@ define( function( require ) {
     valueNode.setScaleMagnitude( Math.min( ( 0.9 * valueBackground.width ) / valueNode.width, ( 0.9 * valueBackground.height ) / valueNode.height ) );
 
     // button, centered in the dropper's bulb
-    var button = new ToggleButton( buttonUnpressedImage, buttonPressedImage, buttonDisabledImage,
-      dropper.onProperty, dropper.enabledProperty, { onWhilePressed: true } );
+    var button = new RoundRedButton( dropper.onProperty, dropper.enabledProperty, { onWhilePressed: true } );
     button.touchArea = Shape.circle( button.width / 2, button.height / 2, ( button.width / 2 ) + 30 );
     button.setScaleMagnitude( 0.3 );
     button.x = foreground.centerX - ( button.width / 2 );

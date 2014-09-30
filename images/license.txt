@@ -7,6 +7,3 @@ Macro-navbar-icon.png source=PhET author=Yuen-ying Carpenter
 Micro-home-icon.png source=PhET author=Yuen-ying Carpenter
 Micro-navbar-icon.png source=PhET author=Yuen-ying Carpenter
 pH-meter-probe.png author=PhET notes=copied from beers-law-lab
-red_button_disabled.png author=PhET notes=copied from beers-law-lab
-red_button_pressed.png author=PhET notes=copied from beers-law-lab
-red_button_unpressed.png author=PhET notes=copied from beers-law-lab

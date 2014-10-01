@@ -15,7 +15,7 @@ define( function( require ) {
   /**
    * @param {Dropper} dropper
    * @param {Beaker} beaker
-   * @param {Number} tipWidth
+   * @param {number} tipWidth
    * @param {ModelViewTransform2} modelViewTransform
    * @constructor
    */

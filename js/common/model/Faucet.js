@@ -15,7 +15,7 @@ define( function( require ) {
 
   /**
    * @param {Vector2} location center of output pipe
-   * @param {Number} pipeMinX x-coordinate of where the pipe starts
+   * @param {number} pipeMinX x-coordinate of where the pipe starts
    * @param {Object} [options]
    * @constructor
    */

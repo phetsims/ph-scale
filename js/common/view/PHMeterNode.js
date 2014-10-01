@@ -48,8 +48,8 @@ define( function( require ) {
    * This button also causes the ValueNode to show/hide the value.
    *
    * @param {Solution} solution
-   * @param {Property<Boolean>} expandedProperty
-   * @param {Boolean} isInteractive
+   * @param {Property.<boolean>} expandedProperty
+   * @param {boolean} isInteractive
    * @constructor
    */
   function ValueNode( solution, expandedProperty, isInteractive ) {
@@ -224,8 +224,8 @@ define( function( require ) {
 
   /**
    * @param {Solution} solution
-   * @param {Number} probeYOffset distance from top of meter to tip of probe, in view coordinate frame
-   * @param {Property<Boolean>} expandedProperty
+   * @param {number} probeYOffset distance from top of meter to tip of probe, in view coordinate frame
+   * @param {Property.<boolean>} expandedProperty
    * @param {Object} [options]
    * @constructor
    */

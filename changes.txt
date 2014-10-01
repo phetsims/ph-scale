@@ -1,3 +1,4 @@
+10/1/14 use new JSdoc conventions for @param
 9/29/14 #53 fix bug in pH meter 'down' arrow
 9/8/14 use {Object} instead of {*} as type expression for options param
 8/19/14 #50 fix drag bounds of pH meter

@@ -31,8 +31,8 @@ define( function( require ) {
   var FONT = new PhetFont( 20 );
 
   /**
-   * @param {Property<Boolean>} ratioVisibleProperty
-   * @param {Property<Boolean>} moleculeCountVisibleProperty
+   * @param {Property.<boolean>} ratioVisibleProperty
+   * @param {Property.<boolean>} moleculeCountVisibleProperty
    * @constructor
    */
   function BeakerControls( ratioVisibleProperty, moleculeCountVisibleProperty ) {

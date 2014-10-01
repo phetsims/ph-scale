@@ -40,22 +40,22 @@ define( function( require ) {
 
   // @private ----------------------------------------------------------------------------
 
-  // Creates a random {Number} x-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
+  // Creates a random {number} x-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
   var createRandomX = function( bounds ) {
     return Math.floor( bounds.x + ( Math.random() * bounds.getWidth() ) );
   };
 
-  // Creates a random {Number} y-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
+  // Creates a random {number} y-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
   var createRandomY = function( bounds ) {
     return Math.floor( bounds.y + ( Math.random() * bounds.getHeight() ) );
   };
 
-  // Computes the {Number} number of H3O+ molecules for some {Number} pH.
+  // Computes the {number} number of H3O+ molecules for some {number} pH.
   var computeNumberOfH3O = function( pH ) {
     return Math.round( PHModel.pHToConcentrationH3O( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
   };
 
-  // Computes the {Number} number of OH- molecules for some {Number} pH.
+  // Computes the {number} number of OH- molecules for some {number} pH.
   var computeNumberOfOH = function( pH ) {
     return Math.round( PHModel.pHToConcentrationOH( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
   };
@@ -108,8 +108,8 @@ define( function( require ) {
 
     /**
      * Called when the solution's pH changes.
-     * @param {Number} numberOfH3OMolecules
-     * @param {Number} numberOfOHMolecules
+     * @param {number} numberOfH3OMolecules
+     * @param {number} numberOfOHMolecules
      */
     drawMolecules: function( numberOfH3OMolecules, numberOfOHMolecules ) {
       if ( numberOfH3OMolecules !== this.numberOfH3OMolecules || numberOfOHMolecules !== this.numberOfOHMolecules ) {
@@ -160,10 +160,10 @@ define( function( require ) {
      * Paints one species of molecule. Using drawImage is faster than arc.
      * @private
      * @param {CanvasContextWrapper} wrapper
-     * @param {Number} numberOfMolecules
+     * @param {number} numberOfMolecules
      * @param {Image} image
-     * @param {Array<Number>} xCoords
-     * @param {Array<Number>} yCoords
+     * @param {number[]} xCoords
+     * @param {number[]} yCoords
      */
     paintMolecules: function( wrapper, numberOfMolecules, image, xCoords, yCoords ) {
       if ( image ) { // images are generated asynchronously, so test just in case they aren't available when this is first called

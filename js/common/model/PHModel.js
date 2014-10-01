@@ -22,10 +22,10 @@ define( function( require ) {
   /**
    * General algorithm for pH.
    *
-   * @param {Number} solutePH
-   * @param {Number} soluteVolume liters
-   * @param {Number} waterVolume liters
-   * @return {Number|null} pH, null if total volume is zero
+   * @param {number} solutePH
+   * @param {number} soluteVolume liters
+   * @param {number} waterVolume liters
+   * @return {number|null} pH, null if total volume is zero
    */
   PHModel.computePH = function( solutePH, soluteVolume, waterVolume ) {
     var pH;
@@ -45,7 +45,7 @@ define( function( require ) {
   /**
    * Compute pH from H3O+ concentration.
    *
-   * @param {Number} concentration
+   * @param {number} concentration
    * @returns {number} pH, null if concentration is zero
    */
   PHModel.concentrationH3OToPH = function( concentration ) {
@@ -55,7 +55,7 @@ define( function( require ) {
   /**
    * Compute pH from OH- concentration.
    *
-   * @param {Number} concentration
+   * @param {number} concentration
    * @returns {number} pH, null if concentration is zero
    */
   PHModel.concentrationOHToPH = function( concentration ) {
@@ -65,9 +65,9 @@ define( function( require ) {
   /**
    * Compute pH from moles of H3O+.
    *
-   * @param {Number} moles
-   * @param {Number} volume volume of the solution in liters
-   * @returns {Number} pH, null if moles or volume is zero
+   * @param {number} moles
+   * @param {number} volume volume of the solution in liters
+   * @returns {number} pH, null if moles or volume is zero
    */
   PHModel.molesH3OToPH = function( moles, volume ) {
     return ( moles === 0 || volume === 0 ) ? null : PHModel.concentrationH3OToPH( moles / volume );
@@ -76,9 +76,9 @@ define( function( require ) {
   /**
    * Compute pH from moles of OH-.
    *
-   * @param {Number} moles
-   * @param {Number} volume volume of the solution in liters
-   * @returns {Number} pH, null if moles or volume is zero
+   * @param {number} moles
+   * @param {number} volume volume of the solution in liters
+   * @returns {number} pH, null if moles or volume is zero
    */
   PHModel.molesOHToPH = function( moles, volume ) {
     return ( moles === 0 || volume === 0 ) ? null : PHModel.concentrationOHToPH( moles / volume );
@@ -87,8 +87,8 @@ define( function( require ) {
   /**
    * Computes concentration of H3O+ from pH.
    *
-   * @param {Number} pH null mean 'no value'
-   * @returns {Number} concentration in moles/L
+   * @param {number} pH null mean 'no value'
+   * @returns {number} concentration in moles/L
    */
   PHModel.pHToConcentrationH3O = function( pH ) {
     return ( pH === null ) ? 0 : Math.pow( 10, -pH );
@@ -97,8 +97,8 @@ define( function( require ) {
   /**
    * Computes concentration of OH- from pH.
    *
-   * @param {Number} pH null means 'no value'
-   * @returns {Number} concentration in moles/L
+   * @param {number} pH null means 'no value'
+   * @returns {number} concentration in moles/L
    */
   PHModel.pHToConcentrationOH = function( pH ) {
     return ( pH === null ) ? 0 : PHModel.pHToConcentrationH3O( 14 - pH );

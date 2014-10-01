@@ -145,8 +145,8 @@ define( function( require ) {
    * Displays pH value inside of a rounded rectangle, which is then placed inside of yet-another rounded rectangle.
    * It highlights when pH is 7.
    * This is the thing that you see sliding up and down the pH Scale.
-   * @param {Property<Number>} pHProperty
-   * @param {Property<Boolean>} enabledProperty
+   * @param {Property.<number>} pHProperty
+   * @param {Property.<boolean>} enabledProperty
    * @constructor
    */
   function ValueNode( pHProperty, enabledProperty ) {
@@ -329,8 +329,8 @@ define( function( require ) {
   /**
    * pH indicator that slides vertically along scale.
    * When there is no pH value, it points to 'neutral' but does not display a value.
-   * @param {Property<Number>} pHProperty
-   * @param {Number} scaleWidth
+   * @param {Property.<number>} pHProperty
+   * @param {number} scaleWidth
    * @constructor
    */
   function IndicatorNode( pHProperty, scaleWidth ) {

@@ -32,7 +32,7 @@ define( function( require ) {
   var POINTER_HEIGHT_PERCENTAGE = 0.5; // used to compute height of the pointy part of the indicator
 
   /**
-   * @param {Property<Number>} valueProperty
+   * @param {Property.<number>} valueProperty
    * @param {Node} moleculeNode
    * @param {Node} formulaNode
    * @param {Object} [options]
@@ -201,7 +201,7 @@ define( function( require ) {
     /**
      * Creates an indicator for H3O+.
      * @static
-     * @param {Property<Number>} valueProperty
+     * @param {Property.<number>} valueProperty
      * @param {Object} [options] see GraphIndicator constructor
      */
     createH3OIndicator: function( valueProperty, options ) {
@@ -217,7 +217,7 @@ define( function( require ) {
     /**
      * Creates an indicator for OH-.
      * @static
-     * @param {Property<Number>} valueProperty
+     * @param {Property.<number>} valueProperty
      * @param {Object} [options] see GraphIndicator constructor
      */
     createOHIndicator: function( valueProperty, options ) {
@@ -233,7 +233,7 @@ define( function( require ) {
     /**
      * Creates an indicator for H2O.
      * @static
-     * @param {Property<Number>} valueProperty
+     * @param {Property.<number>} valueProperty
      * @param {Object} [options] see GraphIndicator constructor
      */
     createH2OIndicator: function( valueProperty, options ) {

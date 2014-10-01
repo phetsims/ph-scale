@@ -31,8 +31,8 @@ define( function( require ) {
   var customString = require( 'string!PH_SCALE/choice.custom' );
 
   /**
-   * @param {String} name
-   * @param {Number} pH
+   * @param {string} name
+   * @param {number} pH
    * @param {stockColor:Color, [dilutedColor]:Color, colorStop:{color:{Color}, [ratio]:Number} } colorScheme
    *
    * colorScheme is an object literal with these properties:
@@ -67,7 +67,7 @@ define( function( require ) {
 
     /**
      * Computes the color for a dilution of this solute.
-     * @param {Number} ratio describes the dilution, range is [0,1] inclusive, 0 is no solute, 1 is all solute
+     * @param {number} ratio describes the dilution, range is [0,1] inclusive, 0 is no solute, 1 is all solute
      * @returns {Color}
      */
     computeColor: function( ratio ) {
@@ -92,7 +92,7 @@ define( function( require ) {
     /**
      * Creates a custom solute.
      * @static
-     * @param {Number} pH
+     * @param {number} pH
      * @returns {Solute}
      */
     createCustom: function( pH ) {

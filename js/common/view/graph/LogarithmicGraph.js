@@ -32,7 +32,7 @@ define( function( require ) {
 
   /**
    * @param {Solution} solution
-   * @param {Property<GraphUnits>} graphUnitsProperty
+   * @param {Property.<GraphUnits>} graphUnitsProperty
    * @param {Object} [options]
    * @constructor
    */

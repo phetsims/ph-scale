@@ -15,8 +15,8 @@ define( function( require ) {
 
   /**
    * @param {Faucet} faucet
-   * @param {Property<Color>} colorProperty
-   * @param {Number} height in model coordinates
+   * @param {Property.<Color>} colorProperty
+   * @param {number} height in model coordinates
    * @param {ModelViewTransform2} modelViewTransform
    * @constructor
    */
@@ -33,7 +33,7 @@ define( function( require ) {
 
     /*
      * Set the width of the shape to match the flow rate.
-     * @param {Number} flowRate
+     * @param {number} flowRate
      */
     var viewLocation = modelViewTransform.modelToViewPosition( faucet.location );
     var viewHeight = modelViewTransform.modelToViewDeltaY( height );

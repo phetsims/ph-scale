@@ -40,7 +40,7 @@ define( function( require ) {
 
   /**
    * @param {Solution} solution
-   * @param {Property<Boolean>} expandedProperty
+   * @param {Property.<boolean>} expandedProperty
    * @param {Object} [options]
    * @constructor
    */

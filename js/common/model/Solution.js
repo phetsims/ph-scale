@@ -22,7 +22,7 @@ define( function( require ) {
   var MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );
 
   /**
-   * @param {Property<Solute>} soluteProperty
+   * @param {Property.<Solute>} soluteProperty
    * @param {number} soluteVolume liters
    * @param {number} waterVolume liters
    * @param {number} maxVolume liters
@@ -135,7 +135,7 @@ define( function( require ) {
 
     /**
      * Drains a specified amount of solution.
-     * @param {Number} deltaVolume amount of solution to drain, in liters
+     * @param {number} deltaVolume amount of solution to drain, in liters
      */
     drainSolution: function( deltaVolume ) {
       if ( deltaVolume > 0 ) {
@@ -160,8 +160,8 @@ define( function( require ) {
      * See documentation of ignoreVolumeUpdate above.
      *
      * @private
-     * @param {Number} waterVolume liters
-     * @param {Number} soluteVolume liters
+     * @param {number} waterVolume liters
+     * @param {number} soluteVolume liters
      */
     setVolumeAtomic: function( waterVolume, soluteVolume ) {
       // ignore the first notification if both volumes are changing
@@ -178,7 +178,7 @@ define( function( require ) {
     /**
      * Computes total volume for this solution.
      * @private Used in internal computations to prevent incorrect intermediate values, see issue #40
-     * @return {Number} liters
+     * @return {number} liters
      */
     computeVolume: function() {
       return ( this.soluteVolumeProperty.get() + this.waterVolumeProperty.get() );
@@ -187,7 +187,7 @@ define( function( require ) {
     /**
      * Compute pH for this solution.
      * @private Used in internal computations to prevent incorrect intermediate values, see issue #40
-     * @return {Number|null} pH, null if total volume is zero
+     * @return {number|null} pH, null if total volume is zero
      */
     computePH: function() {
       return PHModel.computePH( this.soluteProperty.get().pH, this.soluteVolumeProperty.get(), this.waterVolumeProperty.get() );

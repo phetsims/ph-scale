@@ -31,9 +31,9 @@ define( function( require ) {
 
   /**
    * @param {Solution} solution
-   * @param {Property<GraphUnits>} graphUnitsProperty
+   * @param {Property.<GraphUnits>} graphUnitsProperty
    * @param {Range} mantissaRange
-   * @param {Property<Number>} exponentProperty
+   * @param {Property.<number>} exponentProperty
    * @param {Object} [options]
    * @constructor
    */
@@ -147,9 +147,9 @@ define( function( require ) {
 
     /*
      * Given a value, compute it's y position relative to the top of the scale.
-     * @param {Number} value in model coordinates
-     * @param {Number} offScaleYOffset optional y-offset added to the position if the value is off the scale
-     * @return {Number} y position in view coordinates
+     * @param {number} value in model coordinates
+     * @param {number} offScaleYOffset optional y-offset added to the position if the value is off the scale
+     * @return {number} y position in view coordinates
      */
     var valueToY = function( value, offScaleYOffset ) {
       var topTickValue = mantissaRange.max * Math.pow( 10, exponentProperty.get() );

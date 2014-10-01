@@ -23,8 +23,8 @@ define( function( require ) {
   var pattern_0name_1pH = require( 'string!PH_SCALE/pattern.0name.1pH' );
 
   /**
-   * @param {Array<Solute>} solutes
-   * @param {Property<Solute>} selectedSolute
+   * @param {Solute[]} solutes
+   * @param {Property.<Solute>} selectedSolute
    * @param {Node} soluteListParent
    * @constructor
    */

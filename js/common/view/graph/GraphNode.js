@@ -28,7 +28,7 @@ define( function( require ) {
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var ZoomButton = require( 'SCENERY_PHET/ZoomButton' );
+  var ZoomButton = require( 'SCENERY_PHET/buttons/ZoomButton' );
 
   // strings
   var concentrationString = require( 'string!PH_SCALE/concentration' );

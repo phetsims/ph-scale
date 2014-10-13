@@ -76,14 +76,14 @@ define( function( require ) {
       if ( this.colorStop ) {
         // solute has an optional color-stop
         if ( ratio > this.colorStop.ratio ) {
-          color = Color.interpolateRBGA( this.colorStop.color, this.stockColor, ( ratio - this.colorStop.ratio ) / ( 1 - this.colorStop.ratio) );
+          color = Color.interpolateRGBA( this.colorStop.color, this.stockColor, ( ratio - this.colorStop.ratio ) / ( 1 - this.colorStop.ratio) );
         }
         else {
-          color = Color.interpolateRBGA( this.dilutedColor, this.colorStop.color, ratio / this.colorStop.ratio );
+          color = Color.interpolateRGBA( this.dilutedColor, this.colorStop.color, ratio / this.colorStop.ratio );
         }
       }
       else {
-        color = Color.interpolateRBGA( this.dilutedColor, this.stockColor, ratio );
+        color = Color.interpolateRGBA( this.dilutedColor, this.stockColor, ratio );
       }
       return color;
     }

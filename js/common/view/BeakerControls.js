@@ -12,6 +12,7 @@ define( function( require ) {
   // modules
   var CheckBox = require( 'SUN/CheckBox' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var LayoutBox = require( 'SCENERY/nodes/LayoutBox' );
   var Line = require( 'SCENERY/nodes/Line' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Panel = require( 'SUN/Panel' );
@@ -21,7 +22,6 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var SubSupText = require( 'SCENERY_PHET/SubSupText' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var VBox = require( 'SCENERY/nodes/VBox' );
 
   // strings
   var moleculeCountString = require( 'string!PH_SCALE/moleculeCount' );
@@ -53,8 +53,9 @@ define( function( require ) {
 
     var separator = new Line( 0, 0, Math.max( moleculeCountCheckBox.width, ratioCheckBox.width ), 0, { stroke: 'gray' } );
 
-    var content = new VBox( {
+    var content = new LayoutBox( {
       children: [ ratioCheckBox, separator, moleculeCountCheckBox ],
+      orientation: 'vertical',
       align: 'left',
       spacing: 10
     } );

@@ -24,7 +24,7 @@ define( function( require ) {
   var milkString = require( 'string!PH_SCALE/choice.milk' );
   var chickenSoupString = require( 'string!PH_SCALE/choice.chickenSoup' );
   var coffeeString = require( 'string!PH_SCALE/choice.coffee' );
-  var beerString = require( 'string!PH_SCALE/choice.beer' );
+  var orangeJuiceString = require( 'string!PH_SCALE/choice.orangeJuice' );
   var sodaString = require( 'string!PH_SCALE/choice.soda' );
   var vomitString = require( 'string!PH_SCALE/choice.vomit' );
   var batteryAcidString = require( 'string!PH_SCALE/choice.batteryAcid' );
@@ -131,8 +131,8 @@ define( function( require ) {
     colorStop: { color: new Color( 255, 240, 204 ) }
   } );
 
-  Solute.BEER = new Solute( beerString, 4.5, {
-    stockColor: new Color( 255, 200, 0 ),
+  Solute.ORANGE_JUICE = new Solute( orangeJuiceString, 3.5, {
+    stockColor: new Color( 255, 180, 0 ),
     colorStop: { color: new Color( 255, 242, 204 ) }
   } );
 

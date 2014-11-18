@@ -132,8 +132,8 @@ define( function( require ) {
   } );
 
   Solute.ORANGE_JUICE = new Solute( orangeJuiceString, 3.5, {
-    stockColor: new Color( 255, 200, 0 ),
-    colorStop: { color: new Color( 255, 180, 0 ) }
+    stockColor: new Color( 255, 180, 0 ),
+    colorStop: { color: new Color( 255, 242, 204 ) }
   } );
 
   Solute.SODA = new Solute( sodaString, 2.5, {

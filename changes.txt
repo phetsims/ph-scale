@@ -1,3 +1,4 @@
+11/18/14 #54 replace 'Beer' with 'Orange Juice'
 10/20/14 replace VBox with LayoutBox throughout
 10/1/14 use new JSdoc conventions for @param
 9/29/14 #53 fix bug in pH meter 'down' arrow

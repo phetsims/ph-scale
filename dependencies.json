@@ -52,8 +52,8 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "cb4a6d9f0b0487c33aee00cac66f8396296f8c80",
+    "sha": "346d7be0c82712882cc329c8ec0d0272ef514387",
     "branch": "1.1"
   },
-  "comment": "# ph-scale 1.1.1 Tue Nov 18 2014 18:22:28 GMT-0700 (MST)"
+  "comment": "# ph-scale 1.1.1 Tue Nov 18 2014 18:53:12 GMT-0700 (MST)"
 }

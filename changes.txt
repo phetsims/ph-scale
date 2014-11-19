@@ -1,3 +1,4 @@
+11/18/14 check in dependencies.json for 1.1.1
 # 1.1.1 11/18/17
 # 1.1.1.dev-1 11/18/17
 11/18/14 #54 replace 'Beer' with 'Orange Juice'

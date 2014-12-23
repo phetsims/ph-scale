@@ -65,7 +65,7 @@ define( function( require ) {
     var DROPPER_SCALE = 0.85;
     var dropperNode = new DropperNode( model.dropper, modelViewTransform );
     dropperNode.setScaleMagnitude( DROPPER_SCALE );
-    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * dropperNode.getTipWidth(), modelViewTransform );
+    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * dropperNode.TIP_WIDTH, modelViewTransform );
 
     // faucets
     var waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform );

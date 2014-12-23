@@ -39,7 +39,7 @@ define( function( require ) {
   var SPINNER_DELTA = 0.01;
   var SPINNER_X_SPACING = 6;
   var SPINNER_Y_SPACING = 4;
-  var SPINNER_INTERVAL_DELAY = 40;
+  var SPINNER_TIMER_INTERVAL = 40; // ms
   var SPINNER_ARROW_COLOR = 'rgb(0,200,0)';
 
   /**
@@ -92,7 +92,7 @@ define( function( require ) {
       var pHValueProperty, upArrowNode, downArrowNode;
 
       // options common to both arrow buttons
-      var arrowButtonOptions = { intervalDelay: SPINNER_INTERVAL_DELAY, enabledFill: SPINNER_ARROW_COLOR };
+      var arrowButtonOptions = { timerInterval: SPINNER_TIMER_INTERVAL, enabledFill: SPINNER_ARROW_COLOR };
 
       // up arrow
       upArrowNode = new ArrowButton( 'up',

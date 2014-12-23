@@ -13,7 +13,7 @@ define( function( require ) {
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
-  var DropperNode = require( 'PH_SCALE/common/view/DropperNode' );
+  var PHDropperNode = require( 'PH_SCALE/common/view/PHDropperNode' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var NeutralIndicator = require( 'PH_SCALE/macro/view/NeutralIndicator' );
@@ -48,7 +48,7 @@ define( function( require ) {
 
     // dropper
     var DROPPER_SCALE = 0.85;
-    var dropperNode = new DropperNode( model.dropper, modelViewTransform );
+    var dropperNode = new PHDropperNode( model.dropper, modelViewTransform );
     dropperNode.setScaleMagnitude( DROPPER_SCALE );
     var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * dropperNode.TIP_WIDTH, modelViewTransform );
 

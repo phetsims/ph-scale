@@ -21,7 +21,7 @@ define( function( require ) {
    * @param {Object} [options]
    * @constructor
    */
-  function DropperNode( dropper, modelViewTransform, options ) {
+  function PHDropperNode( dropper, modelViewTransform, options ) {
 
     var thisNode = this;
 
@@ -54,5 +54,5 @@ define( function( require ) {
     thisNode.addInputListener( new MovableDragHandler( dropper, modelViewTransform ) );
   }
 
-  return inherit( EyeDropperNode, DropperNode );
+  return inherit( EyeDropperNode, PHDropperNode );
 } );

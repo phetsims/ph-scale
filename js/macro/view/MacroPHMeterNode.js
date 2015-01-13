@@ -127,7 +127,10 @@ define( function( require ) {
     neutralLineNode.right = backgroundNode.left;
     neutralLineNode.centerY = options.size.height / 2;
     thisNode.addChild( neutralLineNode );
-    var neutralLabelNode = new Text( '7', { fill: PHScaleColors.NEUTRAL, font: new PhetFont( { family: 'Arial black', size: 28, weight: 'bold' } ) } );
+    var neutralLabelNode = new Text( '7', {
+      fill: PHScaleColors.NEUTRAL,
+      font: new PhetFont( { family: 'Arial black', size: 28, weight: 'bold' } )
+    } );
     thisNode.addChild( neutralLabelNode );
     neutralLabelNode.right = neutralLineNode.left - TICK_LABEL_X_SPACING;
     neutralLabelNode.centerY = neutralLineNode.centerY;

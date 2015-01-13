@@ -112,26 +112,28 @@ define( function( require ) {
     } );
 
     // Parent for all nodes added to this screen
-    var rootNode = new Node( { children: [
-      // nodes are rendered in this order
-      waterFluidNode,
-      waterFaucetNode,
-      drainFluidNode,
-      drainFaucetNode,
-      dropperFluidNode,
-      dropperNode,
-      solutionNode,
-      pHMeterNode,
-      ratioNode,
-      beakerNode,
-      moleculeCountNode,
-      volumeIndicatorNode,
-      beakerControls,
-      graphNode,
-      resetAllButton,
-      soluteComboBox,
-      soluteListParent // last, so that combo box list is on top
-    ] } );
+    var rootNode = new Node( {
+      children: [
+        // nodes are rendered in this order
+        waterFluidNode,
+        waterFaucetNode,
+        drainFluidNode,
+        drainFaucetNode,
+        dropperFluidNode,
+        dropperNode,
+        solutionNode,
+        pHMeterNode,
+        ratioNode,
+        beakerNode,
+        moleculeCountNode,
+        volumeIndicatorNode,
+        beakerControls,
+        graphNode,
+        resetAllButton,
+        soluteComboBox,
+        soluteListParent // last, so that combo box list is on top
+      ]
+    } );
     thisView.addChild( rootNode );
 
     // Layout of nodes that don't have a location specified in the model

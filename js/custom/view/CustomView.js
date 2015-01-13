@@ -85,18 +85,20 @@ define( function( require ) {
     } );
 
     // Parent for all nodes added to this screen
-    var rootNode = new Node( { children: [
-      // nodes are rendered in this order
-      solutionNode,
-      pHMeterNode,
-      ratioNode,
-      beakerNode,
-      moleculeCountNode,
-      volumeIndicatorNode,
-      beakerControls,
-      graphNode,
-      resetAllButton
-    ] } );
+    var rootNode = new Node( {
+      children: [
+        // nodes are rendered in this order
+        solutionNode,
+        pHMeterNode,
+        ratioNode,
+        beakerNode,
+        moleculeCountNode,
+        volumeIndicatorNode,
+        beakerControls,
+        graphNode,
+        resetAllButton
+      ]
+    } );
     thisView.addChild( rootNode );
 
     // Layout of nodes that don't have a location specified in the model

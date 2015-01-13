@@ -125,13 +125,16 @@ define( function( require ) {
     var valueH3OProperty = new Property( 0 );
     var valueOHProperty = new Property( 0 );
     var h2OIndicatorNode = new GraphIndicator.createH2OIndicator( valueH2OProperty, {
-      x: backgroundNode.right - options.indicatorXOffset } );
+      x: backgroundNode.right - options.indicatorXOffset
+    } );
     var h3OIndicatorNode = new GraphIndicator.createH3OIndicator( valueH3OProperty, {
       x: backgroundNode.left + options.indicatorXOffset,
-      isInteractive: options.isInteractive } );
+      isInteractive: options.isInteractive
+    } );
     var oHIndicatorNode = new GraphIndicator.createOHIndicator( valueOHProperty, {
       x: backgroundNode.right - options.indicatorXOffset,
-      isInteractive: options.isInteractive } );
+      isInteractive: options.isInteractive
+    } );
     thisNode.addChild( h2OIndicatorNode );
     thisNode.addChild( h3OIndicatorNode );
     thisNode.addChild( oHIndicatorNode );

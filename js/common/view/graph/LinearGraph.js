@@ -69,25 +69,25 @@ define( function( require ) {
 
     // arrow above scale, starting from arrow tip and moving clockwise
     var arrowNode = new Path( new Shape()
-      .moveTo( 0, 0 )
-      .lineTo( arrowWidth / 2, arrowHeadHeight )
-      .lineTo( scaleWidth / 2, arrowHeadHeight )
-      .lineTo( scaleWidth / 2, arrowHeight )
-      .cubicCurveTo( -scaleWidth / 4, 0.75 * arrowHeight, scaleWidth / 4, 1.25 * arrowHeight, -scaleWidth / 2, arrowHeight )
-      .lineTo( -scaleWidth / 2, arrowHeadHeight )
-      .lineTo( -arrowWidth / 2, arrowHeadHeight )
-      .close(),
+        .moveTo( 0, 0 )
+        .lineTo( arrowWidth / 2, arrowHeadHeight )
+        .lineTo( scaleWidth / 2, arrowHeadHeight )
+        .lineTo( scaleWidth / 2, arrowHeight )
+        .cubicCurveTo( -scaleWidth / 4, 0.75 * arrowHeight, scaleWidth / 4, 1.25 * arrowHeight, -scaleWidth / 2, arrowHeight )
+        .lineTo( -scaleWidth / 2, arrowHeadHeight )
+        .lineTo( -arrowWidth / 2, arrowHeadHeight )
+        .close(),
       { fill: options.scaleFill, stroke: options.scaleStroke, lineWidth: options.scaleLineWidth, top: arrowGap }
     );
     thisNode.addChild( arrowNode );
 
     // scale below the arrow
     var scaleNode = new Path( new Shape()
-      .moveTo( -scaleWidth / 2, arrowHeight )
-      .cubicCurveTo( scaleWidth / 4, 1.25 * arrowHeight, -scaleWidth / 4, 0.75 * arrowHeight, scaleWidth / 2, arrowHeight )
-      .lineTo( scaleWidth / 2, scaleHeight )
-      .lineTo( -scaleWidth / 2, scaleHeight )
-      .close(),
+        .moveTo( -scaleWidth / 2, arrowHeight )
+        .cubicCurveTo( scaleWidth / 4, 1.25 * arrowHeight, -scaleWidth / 4, 0.75 * arrowHeight, scaleWidth / 2, arrowHeight )
+        .lineTo( scaleWidth / 2, scaleHeight )
+        .lineTo( -scaleWidth / 2, scaleHeight )
+        .close(),
       { fill: options.scaleFill, stroke: options.scaleStroke, lineWidth: options.scaleLineWidth }
     );
     thisNode.addChild( scaleNode );
@@ -134,13 +134,16 @@ define( function( require ) {
     var valueH3OProperty = new Property( 0 );
     var valueOHProperty = new Property( 0 );
     var h2OIndicatorNode = new GraphIndicator.createH2OIndicator( valueH2OProperty, {
-      x: scaleNode.right - options.majorTickLength } );
+      x: scaleNode.right - options.majorTickLength
+    } );
     var h3OIndicatorNode = new GraphIndicator.createH3OIndicator( valueH3OProperty, {
       x: scaleNode.left + options.majorTickLength,
-      isInteractive: options.isInteractive } );
+      isInteractive: options.isInteractive
+    } );
     var oHIndicatorNode = new GraphIndicator.createOHIndicator( valueOHProperty, {
       x: scaleNode.right - options.majorTickLength,
-      isInteractive: options.isInteractive } );
+      isInteractive: options.isInteractive
+    } );
     thisNode.addChild( h2OIndicatorNode );
     thisNode.addChild( h3OIndicatorNode );
     thisNode.addChild( oHIndicatorNode );
@@ -158,7 +161,7 @@ define( function( require ) {
         return arrowNode.top + ( 0.8 * arrowHeadHeight ) + ( offScaleYOffset || 0 );
       }
       else {
-        return Util.linear( 0, topTickValue, tickLabels[0].centerY, tickLabels[tickLabels.length - 1].centerY, value );
+        return Util.linear( 0, topTickValue, tickLabels[ 0 ].centerY, tickLabels[ tickLabels.length - 1 ].centerY, value );
       }
     };
 
@@ -200,8 +203,8 @@ define( function( require ) {
     var updateTickLabels = function( exponent ) {
       var tickOptions = ( exponent >= 0 ) ? { exponent: 0 } : { exponent: exponent }; // show positive exponents as integers
       for ( var i = 0; i < tickLabels.length; i++ ) {
-        tickLabels[i].valueProperty.set( i * Math.pow( 10, exponent ), tickOptions );
-        tickLabels[i].centerX = scaleNode.centerX;
+        tickLabels[ i ].valueProperty.set( i * Math.pow( 10, exponent ), tickOptions );
+        tickLabels[ i ].centerX = scaleNode.centerX;
       }
     };
 

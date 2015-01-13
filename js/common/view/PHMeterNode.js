@@ -100,7 +100,7 @@ define( function( require ) {
           pHValueProperty.set( Math.min( PHScaleConstants.PH_RANGE.max, solution.pHProperty.get() + SPINNER_DELTA ) );
         },
         _.extend( {
-          left: valueRectangle.right + SPINNER_X_SPACING,
+          left:   valueRectangle.right + SPINNER_X_SPACING,
           bottom: valueRectangle.centerY - ( SPINNER_Y_SPACING / 2 )
         }, arrowButtonOptions )
       );
@@ -201,15 +201,15 @@ define( function( require ) {
     // clockwise from tip of probe
     var cornerRadius = 4;
     var tipNode = new Path( new Shape()
-      .moveTo( probeWidth / 2, tipHeight )
-      .lineTo( 0, 0.6 * tipHeight )
-      .lineTo( 0, cornerRadius )
-      .arc( cornerRadius, cornerRadius, cornerRadius, Math.PI, 1.5 * Math.PI )
-      .lineTo( cornerRadius, 0 )
-      .lineTo( probeWidth - cornerRadius, 0 )
-      .arc( probeWidth - cornerRadius, cornerRadius, cornerRadius, -0.5 * Math.PI, 0 )
-      .lineTo( probeWidth, 0.6 * tipHeight )
-      .close(),
+        .moveTo( probeWidth / 2, tipHeight )
+        .lineTo( 0, 0.6 * tipHeight )
+        .lineTo( 0, cornerRadius )
+        .arc( cornerRadius, cornerRadius, cornerRadius, Math.PI, 1.5 * Math.PI )
+        .lineTo( cornerRadius, 0 )
+        .lineTo( probeWidth - cornerRadius, 0 )
+        .arc( probeWidth - cornerRadius, cornerRadius, cornerRadius, -0.5 * Math.PI, 0 )
+        .lineTo( probeWidth, 0.6 * tipHeight )
+        .close(),
       { fill: 'black' }
     );
 

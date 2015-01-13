@@ -122,12 +122,12 @@ define( function( require ) {
          */
         var i;
         for ( i = 0; i < numberOfH3OMolecules; i++ ) {
-          this.xH3O[i] = createRandomX( this.beakerBounds );
-          this.yH3O[i] = createRandomY( this.beakerBounds );
+          this.xH3O[ i ] = createRandomX( this.beakerBounds );
+          this.yH3O[ i ] = createRandomY( this.beakerBounds );
         }
         for ( i = 0; i < numberOfOHMolecules; i++ ) {
-          this.xOH[i] = createRandomX( this.beakerBounds );
-          this.yOH[i] = createRandomY( this.beakerBounds );
+          this.xOH[ i ] = createRandomX( this.beakerBounds );
+          this.yOH[ i ] = createRandomY( this.beakerBounds );
         }
 
         // remember how many entries in coordinate arrays are significant
@@ -168,13 +168,11 @@ define( function( require ) {
     paintMolecules: function( wrapper, numberOfMolecules, image, xCoords, yCoords ) {
       if ( image ) { // images are generated asynchronously, so test just in case they aren't available when this is first called
         for ( var i = 0; i < numberOfMolecules; i++ ) {
-          wrapper.context.drawImage( image, xCoords[i], yCoords[i] );
+          wrapper.context.drawImage( image, xCoords[ i ], yCoords[ i ] );
         }
       }
     }
-  }, {
-
-  } );
+  }, {} );
 
   //-------------------------------------------------------------------------------------
 
@@ -205,7 +203,12 @@ define( function( require ) {
 
     // dev mode, show numbers of molecules at bottom of beaker
     if ( window.phetcommon.getQueryParameter( 'dev' ) ) {
-      thisNode.ratioText = new Text( '?', { font: new PhetFont( 30 ), fill: 'black', left: beakerBounds.getCenterX(), bottom: beakerBounds.maxY - 20 } ); // @private
+      thisNode.ratioText = new Text( '?', {
+        font: new PhetFont( 30 ),
+        fill: 'black',
+        left: beakerBounds.getCenterX(),
+        bottom: beakerBounds.maxY - 20
+      } ); // @private
       thisNode.addChild( thisNode.ratioText );
     }
 

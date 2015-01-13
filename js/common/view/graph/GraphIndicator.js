@@ -97,7 +97,8 @@ define( function( require ) {
     var backgroundNode = new Path( backgroundShape, {
       lineWidth: options.backgroundLineWidth,
       stroke: options.backgroundStroke,
-      fill: options.backgroundFill } );
+      fill: options.backgroundFill
+    } );
 
     // Cutout where the value is displayed.
     var valueBackgroundNode = new Rectangle( 0, 0,

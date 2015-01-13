@@ -130,7 +130,7 @@ define( function( require ) {
       var magnifyingGlassRadius = 13;
       var zoomOutButton = new ZoomButton( { in: false, radius: magnifyingGlassRadius } );
       var zoomInButton = new ZoomButton( { in: true, radius: magnifyingGlassRadius } );
-      var zoomButtons = new Node( { children: [ zoomOutButton, zoomInButton ]} );
+      var zoomButtons = new Node( { children: [ zoomOutButton, zoomInButton ] } );
       zoomInButton.left = zoomOutButton.right + 25;
       zoomInButton.centerY = zoomOutButton.centerY;
       // expand touch area

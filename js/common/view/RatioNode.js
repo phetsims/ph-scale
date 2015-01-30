@@ -202,7 +202,7 @@ define( function( require ) {
     thisNode.addChild( thisNode.moleculesNode );
 
     // dev mode, show numbers of molecules at bottom of beaker
-    if ( window.phetcommon.getQueryParameter( 'dev' ) ) {
+    if ( phet.phetcommon.getQueryParameter( 'dev' ) ) {
       thisNode.ratioText = new Text( '?', {
         font: new PhetFont( 30 ),
         fill: 'black',

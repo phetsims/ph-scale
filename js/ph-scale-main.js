@@ -30,15 +30,6 @@ define( function( require ) {
     }
   };
 
-  // Appending '?dev' to the URL will enable developer-only features.
-  if ( phet.phetcommon.getQueryParameter( 'dev' ) ) {
-    // add dev-specific options here
-    simOptions = _.extend( {
-      showHomeScreen: false,
-      screenIndex: 2
-    }, simOptions );
-  }
-
   SimLauncher.launch( function() {
     var sim = new Sim( simTitle, screens, simOptions );
     sim.start();

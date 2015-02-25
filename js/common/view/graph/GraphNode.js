@@ -134,8 +134,8 @@ define( function( require ) {
       zoomInButton.left = zoomOutButton.right + 25;
       zoomInButton.centerY = zoomOutButton.centerY;
       // expand touch area
-      zoomOutButton.touchArea = zoomOutButton.localBounds.dilate( 5, 5 );
-      zoomInButton.touchArea = zoomOutButton.localBounds.dilate( 5, 5 );
+      zoomOutButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
+      zoomInButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
 
       // scale switch (Logarithmic vs Linear)
       var graphScaleSwitch = new ABSwitch( thisNode.viewProperties.graphScaleProperty,

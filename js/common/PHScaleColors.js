@@ -10,6 +10,7 @@ define( function( require ) {
 
   // modules
   var Color = require( 'SCENERY/util/Color' );
+  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
 
   return {
 
@@ -22,7 +23,7 @@ define( function( require ) {
     NEUTRAL: new Color( 164, 58, 149 ),
 
     // atom colors
-    OXYGEN: new Color( 255, 85, 0 ), // colorblind-friendly red
+    OXYGEN: PhetColorScheme.RED_COLORBLIND,
     HYDROGEN: new Color( 255, 255, 255 ),
 
     // water

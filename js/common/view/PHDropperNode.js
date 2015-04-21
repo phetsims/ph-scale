@@ -26,7 +26,7 @@ define( function( require ) {
     var thisNode = this;
 
     EyeDropperNode.call( thisNode, _.extend( {
-      dispensingProperty: dropper.onProperty,
+      dispensingProperty: dropper.dispensingProperty,
       enabledProperty: dropper.enabledProperty,
       emptyProperty: dropper.emptyProperty
     }, options ) );

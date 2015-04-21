@@ -25,7 +25,7 @@ define( function( require ) {
     options = _.extend( {
       maxFlowRate: 0.05, // L/sec
       flowRate: 0, // L/sec
-      on: false,
+      dispensing: false, // is the dropper dispensing solute?
       enabled: true,
       empty: false,
       visible: true
@@ -36,7 +36,7 @@ define( function( require ) {
 
     thisDropper.soluteProperty = new Property( solute );
     thisDropper.visibleProperty = new Property( options.visible );
-    thisDropper.onProperty = new Property( options.on ); // true if the dropper is dispensing solution
+    thisDropper.dispensingProperty = new Property( options.dispensing );
     thisDropper.enabledProperty = new Property( options.enabled );
     thisDropper.emptyProperty = new Property( options.empty );
     thisDropper.flowRateProperty = new Property( options.flowRate ); // L/sec
@@ -44,12 +44,12 @@ define( function( require ) {
     // Turn off the dropper when it's disabled.
     thisDropper.enabledProperty.link( function( enabled ) {
       if ( !enabled ) {
-        thisDropper.onProperty.set( false );
+        thisDropper.dispensingProperty.set( false );
       }
     } );
 
     // Toggle the flow rate when the dropper is turned on/off.
-    thisDropper.onProperty.link( function( on ) {
+    thisDropper.dispensingProperty.link( function( on ) {
       thisDropper.flowRateProperty.set( on ? options.maxFlowRate : 0 );
     } );
 
@@ -66,7 +66,7 @@ define( function( require ) {
       Movable.prototype.reset.call( this );
       this.soluteProperty.reset();
       this.visibleProperty.reset();
-      this.onProperty.reset();
+      this.dispensingProperty.reset();
       this.enabledProperty.reset();
       this.emptyProperty.reset();
       this.flowRateProperty.reset();

@@ -135,7 +135,7 @@ define( function( require ) {
      */
     startAutoFill: function() {
       this.isAutoFilling = true;
-      this.dropper.onProperty.set( true );
+      this.dropper.dispensingProperty.set( true );
       this.dropper.flowRateProperty.set( 0.75 ); // faster than standard flow rate
     },
 
@@ -157,7 +157,7 @@ define( function( require ) {
      */
     stopAutoFill: function() {
       this.isAutoFilling = false;
-      this.dropper.onProperty.set( false );
+      this.dropper.dispensingProperty.set( false );
       this.updateFaucetsAndDropper();
     }
   } );

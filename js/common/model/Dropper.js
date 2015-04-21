@@ -49,8 +49,8 @@ define( function( require ) {
     } );
 
     // Toggle the flow rate when the dropper is turned on/off.
-    thisDropper.dispensingProperty.link( function( on ) {
-      thisDropper.flowRateProperty.set( on ? options.maxFlowRate : 0 );
+    thisDropper.dispensingProperty.link( function( dispensing ) {
+      thisDropper.flowRateProperty.set( dispensing ? options.maxFlowRate : 0 );
     } );
 
     // When the dropper becomes empty, disable it.

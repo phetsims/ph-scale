@@ -1,0 +1,101 @@
+{
+  "ph-scale.name": {
+    "value": "pH Scale"
+  },
+  "macro": {
+    "value": "Macro"
+  },
+  "micro": {
+    "value": "Micro"
+  },
+  "custom": {
+    "value": "Custom"
+  },
+  "choice.milk": {
+    "value": "Milk"
+  },
+  "choice.chickenSoup": {
+    "value": "Chicken Soup"
+  },
+  "choice.batteryAcid": {
+    "value": "Battery Acid"
+  },
+  "choice.vomit": {
+    "value": "Vomit"
+  },
+  "choice.soda": {
+    "value": "Soda Pop"
+  },
+  "choice.orangeJuice": {
+    "value": "Orange Juice"
+  },
+  "choice.coffee": {
+    "value": "Coffee"
+  },
+  "choice.spit": {
+    "value": "Spit"
+  },
+  "choice.blood": {
+    "value": "Blood"
+  },
+  "choice.handSoap": {
+    "value": "Hand Soap"
+  },
+  "choice.water": {
+    "value": "Water"
+  },
+  "choice.drainCleaner": {
+    "value": "Drain Cleaner"
+  },
+  "choice.custom": {
+    "value": "Custom"
+  },
+  "units.liters": {
+    "value": "L"
+  },
+  "units.moles": {
+    "value": "mol"
+  },
+  "units.molesPerLiter": {
+    "value": "mol/L"
+  },
+  "pattern.0value.1units": {
+    "value": "{0} {1}"
+  },
+  "pattern.0name.1pH": {
+    "value": "{0} (pH {1})"
+  },
+  "pH": {
+    "value": "pH"
+  },
+  "acidic": {
+    "value": "Acidic"
+  },
+  "basic": {
+    "value": "Basic"
+  },
+  "neutral": {
+    "value": "Neutral"
+  },
+  "concentration": {
+    "value": "Concentration"
+  },
+  "quantity": {
+    "value": "Quantity"
+  },
+  "moleculeCount": {
+    "value": "Molecule count"
+  },
+  "ratio": {
+    "value": "ratio"
+  },
+  "linear": {
+    "value": "Linear"
+  },
+  "logarithmic": {
+    "value": "Logarithmic"
+  },
+  "offScale": {
+    "value": "off scale"
+  }
+}

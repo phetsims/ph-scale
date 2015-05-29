@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Model for the 'Custom' screen.
+ * Model for the 'My Solution' screen.
  * The solution in the beaker is 100% solute (stock solution).
  *
  * @author Chris Malley (PixelZoom, Inc.)
@@ -18,7 +18,7 @@ define( function( require ) {
   var Solution = require( 'PH_SCALE/common/model/Solution' );
   var Vector2 = require( 'DOT/Vector2' );
 
-  function CustomModel() {
+  function MySolutionModel() {
 
     var thisModel = this;
 
@@ -29,7 +29,7 @@ define( function( require ) {
     thisModel.solution = new Solution( new Property( Solute.createCustom( 7 ) ), 0.5, 0, thisModel.beaker.volume );
   }
 
-  return inherit( Object, CustomModel, {
+  return inherit( Object, MySolutionModel, {
 
     reset: function() {
       this.beaker.reset();

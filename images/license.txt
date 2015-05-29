@@ -1,5 +1,5 @@
-Custom-home-icon.png source=PhET author=Yuen-ying Carpenter
-Custom-navbar-icon.png source=PhET author=Yuen-ying Carpenter
+MySolution-home-icon.png source=PhET author=Yuen-ying Carpenter
+MySolution-navbar-icon.png source=PhET author=Yuen-ying Carpenter
 Macro-home-icon.png source=PhET author=Yuen-ying Carpenter
 Macro-navbar-icon.png source=PhET author=Yuen-ying Carpenter
 Micro-home-icon.png source=PhET author=Yuen-ying Carpenter

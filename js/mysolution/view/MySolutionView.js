@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * View for the 'Custom' screen.
+ * View for the 'My Solution' screen.
  * <p>
  * NOTE:
  * This view currently consists of a subset of the nodes in the 'Micro' screen.
@@ -31,11 +31,11 @@ define( function( require ) {
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
   /**
-   * @param {CustomModel} model
+   * @param {MySolutionModel} model
    * @param {ModelViewTransform2} modelViewTransform
    * @constructor
    */
-  function CustomView( model, modelViewTransform ) {
+  function MySolutionView( model, modelViewTransform ) {
 
     var thisView = this;
     ScreenView.call( thisView, PHScaleConstants.SCREEN_VIEW_OPTIONS );
@@ -114,5 +114,5 @@ define( function( require ) {
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
 
-  return inherit( ScreenView, CustomView );
+  return inherit( ScreenView, MySolutionView );
 } );

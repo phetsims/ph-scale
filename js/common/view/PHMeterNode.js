@@ -92,7 +92,7 @@ define( function( require ) {
       var pHValueProperty, upArrowNode, downArrowNode;
 
       // options common to both arrow buttons
-      var arrowButtonOptions = { timerInterval: SPINNER_TIMER_INTERVAL, enabledFill: SPINNER_ARROW_COLOR };
+      var arrowButtonOptions = { fireOnHoldInterval: SPINNER_TIMER_INTERVAL, enabledFill: SPINNER_ARROW_COLOR };
 
       // up arrow
       upArrowNode = new ArrowButton( 'up',

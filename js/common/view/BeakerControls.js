@@ -33,9 +33,17 @@ define( function( require ) {
   /**
    * @param {Property.<boolean>} ratioVisibleProperty
    * @param {Property.<boolean>} moleculeCountVisibleProperty
+   * @param {Object} [options]
    * @constructor
    */
-  function BeakerControls( ratioVisibleProperty, moleculeCountVisibleProperty ) {
+  function BeakerControls( ratioVisibleProperty, moleculeCountVisibleProperty, options ) {
+
+    options = _.extend( {
+      xMargin: 15,
+      yMargin: 10,
+      lineWidth: 2,
+      fill: PHScaleColors.PANEL_FILL
+    }, options );
 
     // 'H3O+/OH- ratio' check box, with color-coded label, spacing tweaked visually
     var textH3O = new SubSupText( PHScaleConstants.H3O_FORMULA, { font: FONT, fill: PHScaleColors.H3O_MOLECULES } );
@@ -65,12 +73,7 @@ define( function( require ) {
       spacing: 10
     } );
 
-    Panel.call( this, content, {
-      xMargin: 15,
-      yMargin: 10,
-      lineWidth: 2,
-      fill: PHScaleColors.PANEL_FILL
-    } );
+    Panel.call( this, content, options );
   }
 
   return inherit( Panel, BeakerControls );

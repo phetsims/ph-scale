@@ -62,7 +62,8 @@ define( function( require ) {
     viewProperties.moleculeCountVisibleProperty.linkAttribute( moleculeCountNode, 'visible' );
 
     // beaker controls
-    var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty );
+    var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty,
+      { maxWidth: 0.85 * beakerNode.width } );
 
     // graph
     var graphNode = new GraphNode( model.solution, viewProperties.graphExpandedProperty, {

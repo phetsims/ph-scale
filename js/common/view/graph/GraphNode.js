@@ -64,7 +64,7 @@ define( function( require ) {
     } );
 
     // options for the text in all AB switches
-    var switchTextOptions = { font: new PhetFont( { size: 18, weight: 'bold' } ) };
+    var switchTextOptions = { font: new PhetFont( { size: 18, weight: 'bold' } ), maxWidth: 110 };
 
     // units switch (Concentration vs Quantity)
     var graphUnitsSwitch = new ABSwitch( this.viewProperties.graphUnitsProperty,

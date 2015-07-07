@@ -44,7 +44,8 @@ define( function( require ) {
     var valueNode = new Text( '0', {
       font: VALUE_FONT,
       left: arrowHead.right + 3,
-      centerY: arrowHead.centerY
+      centerY: arrowHead.centerY,
+      maxWidth: 75
     } );
 
     // rendering order

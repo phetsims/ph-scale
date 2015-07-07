@@ -40,9 +40,9 @@ define( function( require ) {
     this.addChild( faucetNode );
 
     // decorate the faucet with the name of the water
-    var labelNode = new Text( Water.name, { font: new PhetFont( 28 ) } );
+    var labelNode = new Text( Water.name, { font: new PhetFont( 28 ), maxWidth: 85 } );
     this.addChild( labelNode );
-    labelNode.right = faucetNode.left + 190;
+    labelNode.left = faucetNode.left + 115;
     labelNode.bottom = faucetNode.centerY - 40;
   }
 

@@ -26,9 +26,18 @@ define( function( require ) {
    * @param {Solute[]} solutes
    * @param {Property.<Solute>} selectedSolute
    * @param {Node} soluteListParent
+   * @param {Object} [options]
    * @constructor
    */
-  function SoluteComboBox( solutes, selectedSolute, soluteListParent ) {
+  function SoluteComboBox( solutes, selectedSolute, soluteListParent, options ) {
+
+    options = _.extend( {
+      listPosition: 'below',
+      itemYMargin: 12,
+      itemHighlightFill: 'rgb(218,255,255)',
+      buttonLineWidth: 3,
+      buttonCornerRadius: 10
+    }, options );
 
     // items
     var items = [];
@@ -37,13 +46,7 @@ define( function( require ) {
       items[ i ] = createItem( solute );
     }
 
-    ComboBox.call( this, items, selectedSolute, soluteListParent, {
-      listPosition: 'below',
-      itemYMargin: 12,
-      itemHighlightFill: 'rgb(218,255,255)',
-      buttonLineWidth: 3,
-      buttonCornerRadius: 10
-    } );
+    ComboBox.call( this, items, selectedSolute, soluteListParent, options );
   }
 
   /**

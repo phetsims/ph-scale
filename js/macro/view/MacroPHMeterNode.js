@@ -86,7 +86,7 @@ define( function( require ) {
     thisNode.addChild( backgroundNode );
 
     // 'Acidic' label
-    var textOptions = { fill: 'white', font: SCALE_LABEL_FONT };
+    var textOptions = { fill: 'white', font: SCALE_LABEL_FONT, maxWidth: 0.45 * options.size.height };
     var acidicNode = new Text( acidicString, textOptions );
     acidicNode.rotation = -Math.PI / 2;
     acidicNode.centerX = backgroundNode.centerX;

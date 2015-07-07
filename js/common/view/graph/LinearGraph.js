@@ -93,9 +93,8 @@ define( function( require ) {
     thisNode.addChild( scaleNode );
 
     // 'off scale' label, positioned inside arrow
-    var offScaleNode = new Text( offScaleString, { font: new PhetFont( 18 ), fill: 'black' } );
+    var offScaleNode = new Text( offScaleString, { font: new PhetFont( 18 ), fill: 'black', maxWidth: 0.5 * arrowWidth } );
     thisNode.addChild( offScaleNode );
-    offScaleNode.setScaleMagnitude( Math.min( 1, 0.5 * arrowWidth / offScaleNode.width ) ); // restrict size for i18n
     offScaleNode.centerX = arrowNode.centerX;
     offScaleNode.y = arrowNode.top + ( 0.85 * arrowHeadHeight );
 

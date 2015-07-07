@@ -38,6 +38,9 @@ define( function( require ) {
   var molesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
   var quantityString = require( 'string!PH_SCALE/quantity' );
 
+  // constants
+  var AB_SWITCH_FONT = new PhetFont( { size: 18, weight: 'bold' } );
+
   /**
    * @param {Solution} solution
    * @param {Property.<boolean>} expandedProperty
@@ -63,24 +66,30 @@ define( function( require ) {
       graphUnits: options.units
     } );
 
-    // options for the text in all AB switches
-    var switchTextOptions = { font: new PhetFont( { size: 18, weight: 'bold' } ), maxWidth: 120 };
-
-    // units switch (Concentration vs Quantity)
-    var graphUnitsSwitch = new ABSwitch( this.viewProperties.graphUnitsProperty,
-      GraphUnits.MOLES_PER_LITER, new MultiLineText( concentrationString + '\n(' + molesPerLiterString + ')', switchTextOptions ),
-      GraphUnits.MOLES, new MultiLineText( quantityString + '\n(' + molesString + ')', switchTextOptions ),
-      { size: new Dimension2( 50, 25 ) } );
-    graphUnitsSwitch.setScaleMagnitude( Math.min( 1, 300 / graphUnitsSwitch.width ) ); // scale for i18n
-
     // expand/collapse bar
     var expandCollapseBar = new ExpandCollapseBar(
-      graphUnitsSwitch,
+      new Text( '' ),
       expandedProperty, {
         minWidth: 350,
+        minHeight: 55,
         barFill: PHScaleColors.PANEL_FILL,
         barLineWidth: 2,
         buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
+      } );
+
+    // units switch (Concentration vs Quantity)
+    var graphUnitsSwitch = new ABSwitch( this.viewProperties.graphUnitsProperty,
+      GraphUnits.MOLES_PER_LITER, new MultiLineText( concentrationString + '\n(' + molesPerLiterString + ')', {
+        font: AB_SWITCH_FONT,
+        maxWidth: 125
+      } ),
+      GraphUnits.MOLES, new MultiLineText( quantityString + '\n(' + molesString + ')', {
+        font: AB_SWITCH_FONT,
+        maxWidth: 85
+      } ), {
+        size: new Dimension2( 50, 25 ),
+        centerOnButton: true,
+        center: expandCollapseBar.center
       } );
 
     // logarithmic graph
@@ -94,6 +103,7 @@ define( function( require ) {
 
     // rendering order
     thisNode.addChild( expandCollapseBar );
+    thisNode.addChild( graphUnitsSwitch );
     var graphNode = new Node();
     thisNode.addChild( graphNode );
     graphNode.addChild( lineToBarNode );
@@ -138,9 +148,13 @@ define( function( require ) {
       zoomInButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
 
       // scale switch (Logarithmic vs Linear)
+      var textOptions = {
+        font: AB_SWITCH_FONT,
+        maxWidth: 125
+      };
       var graphScaleSwitch = new ABSwitch( thisNode.viewProperties.graphScaleProperty,
-        GraphScale.LOGARITHMIC, new Text( logarithmicString, switchTextOptions ),
-        GraphScale.LINEAR, new Text( linearString, switchTextOptions ),
+        GraphScale.LOGARITHMIC, new Text( logarithmicString, textOptions ),
+        GraphScale.LINEAR, new Text( linearString, textOptions ),
         { size: new Dimension2( 50, 25 ), centerOnButton: true } );
 
       // vertical line that connects bottom of graph to top of scale switch

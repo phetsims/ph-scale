@@ -29,6 +29,12 @@ define( function( require ) {
   var ARROW_SIZE = new Dimension2( 21, 28 );
   var VALUE_FONT = new PhetFont( { size: 24, weight: 'bold' } );
 
+  /**
+   * @param {Property.<number>} volumeProperty
+   * @param {Beaker} beaker
+   * @param {ModelViewTransform2} modelViewTransform
+   * @constructor
+   */
   function VolumeIndicatorNode( volumeProperty, beaker, modelViewTransform ) {
 
     var thisNode = this;

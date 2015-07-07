@@ -93,7 +93,8 @@ define( function( require ) {
             font: MAJOR_TICK_FONT,
             fill: 'black',
             right: beakerRight - tickLength - TICK_LABEL_X_SPACING,
-            centerY: y
+            centerY: y,
+            maxWidth: 0.25 * beaker.size.width
           } ) );
         }
       }

@@ -99,8 +99,8 @@ define( function( require ) {
       { attachProbe: 'right' } );
 
     // solutes combo box
-    var soluteListParent = new Node();
-    var soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent );
+    var soluteListParent = new Node( { maxWidth: 380 });
+    var soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent, { maxWidth: 400 } );
 
     var resetAllButton = new ResetAllButton( {
       scale: 1.32,

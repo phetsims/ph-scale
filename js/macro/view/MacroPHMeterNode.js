@@ -169,8 +169,11 @@ define( function( require ) {
       { fill: 'white' } );
 
     // label above the value
-    var labelNode = new Text( pHString,
-      { fill: 'white', font: new PhetFont( { size: 28, weight: 'bold' } ) } );
+    var labelNode = new Text( pHString, {
+      fill: 'white',
+      font: new PhetFont( { size: 28, weight: 'bold' } ),
+      maxWidth: 100
+    } );
 
     // background
     var backgroundXMargin = 14;

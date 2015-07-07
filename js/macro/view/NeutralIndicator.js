@@ -28,7 +28,7 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
-    var label = new Text( neutralString, { font: new PhetFont( { size: 30, weight: 'bold' } ) } );
+    var label = new Text( neutralString, { font: new PhetFont( { size: 30, weight: 'bold' } ), maxWidth: 300 } );
 
     // translucent light-gray background, so this shows up on all solution colors
     var background = new Rectangle( 0, 0, 1.4 * label.width, 1.2 * label.height, 8, 8,

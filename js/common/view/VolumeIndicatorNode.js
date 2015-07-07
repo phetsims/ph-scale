@@ -50,7 +50,6 @@ define( function( require ) {
     var valueNode = new Text( '0', {
       font: VALUE_FONT,
       left: arrowHead.right + 3,
-      centerY: arrowHead.centerY,
       maxWidth: 75
     } );
 
@@ -65,6 +64,7 @@ define( function( require ) {
     volumeProperty.link( function( volume ) {
       // text
       valueNode.text = StringUtils.format( pattern_0value_1units, Util.toFixed( volume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), litersString );
+      valueNode.centerY = arrowHead.centerY;
       // y-location
       var solutionHeight = Util.linear( 0, beaker.volume, 0, beaker.size.height, volume ); // volume -> height, model coordinates
       thisNode.y = modelViewTransform.modelToViewY( beaker.location.y - solutionHeight );

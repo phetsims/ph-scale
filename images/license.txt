@@ -1,7 +1,58 @@
-MySolution-home-icon.png source=PhET author=Yuen-ying Carpenter
-MySolution-navbar-icon.png source=PhET author=Yuen-ying Carpenter
-Macro-home-icon.png source=PhET author=Yuen-ying Carpenter
-Macro-navbar-icon.png source=PhET author=Yuen-ying Carpenter
-Micro-home-icon.png source=PhET author=Yuen-ying Carpenter
-Micro-navbar-icon.png source=PhET author=Yuen-ying Carpenter
-pH-meter-probe.png author=PhET notes=copied from beers-law-lab
+{
+  "MySolution-home-icon.png": {
+    "text": [
+      "Copyright 2002-2015 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Yuen-ying Carpenter"
+  },
+  "MySolution-navbar-icon.png": {
+    "text": [
+      "Copyright 2002-2015 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Yuen-ying Carpenter"
+  },
+  "Macro-home-icon.png": {
+    "text": [
+      "Copyright 2002-2015 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Yuen-ying Carpenter"
+  },
+  "Macro-navbar-icon.png": {
+    "text": [
+      "Copyright 2002-2015 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Yuen-ying Carpenter"
+  },
+  "Micro-home-icon.png": {
+    "text": [
+      "Copyright 2002-2015 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Yuen-ying Carpenter"
+  },
+  "Micro-navbar-icon.png": {
+    "text": [
+      "Copyright 2002-2015 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Yuen-ying Carpenter"
+  },
+  "pH-meter-probe.png": {
+    "text": [
+      "Copyright 2002-2015 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "copied from beers-law-lab"
+  }
+}

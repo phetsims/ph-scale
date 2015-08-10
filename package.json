@@ -2,6 +2,7 @@
   "name": "ph-scale",
   "version": "1.2.0-dev.1",
   "license": "GPLv3",
+  "requirejsNamespace": "PH_SCALE",
   "simTitleStringKey": "PH_SCALE/ph-scale.name",
   "phetLibs": [
     "ph-scale",

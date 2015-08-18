@@ -17,7 +17,6 @@
     "requirejsNamespace": "PH_SCALE",
     "simTitleStringKey": "PH_SCALE/ph-scale.name",
     "phetLibs": [
-      "ph-scale",
       "nitroglycerin"
     ]
   }

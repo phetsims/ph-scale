@@ -32,12 +32,14 @@ define( function( require ) {
 
     var thisSolution = this;
 
+    // @public
     thisSolution.soluteProperty = soluteProperty;
     thisSolution.soluteVolumeProperty = new Property( soluteVolume );
     thisSolution.waterVolumeProperty = new Property( waterVolume );
     thisSolution.maxVolume = maxVolume;
 
     /*
+     * @public
      * See issue #25.
      * True when changes to water volume and solute volume should be ignored, because they will both be changing,
      * which currently happens only during draining. To prevent bogus intermediate values (for example, pH and total volume),
@@ -45,14 +47,14 @@ define( function( require ) {
      */
     thisSolution.ignoreVolumeUpdate = false;
 
-    // volume
+    // @public volume
     thisSolution.volumeProperty = new DerivedProperty( [ thisSolution.soluteVolumeProperty, thisSolution.waterVolumeProperty ],
       function() {
         return ( thisSolution.ignoreVolumeUpdate ) ? thisSolution.volumeProperty.get() : thisSolution.computeVolume();
       }
     );
 
-    // pH, null if no value
+    // @public pH, null if no value
     thisSolution.pHProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.waterVolumeProperty ],
       function() {
         if ( thisSolution.ignoreVolumeUpdate ) {
@@ -67,7 +69,7 @@ define( function( require ) {
         }
       } );
 
-    // color
+    // @public color
     thisSolution.colorProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.waterVolumeProperty ],
       function( solute, soluteVolume, waterVolume ) {
         if ( soluteVolume + waterVolume === 0 ) {
@@ -91,6 +93,7 @@ define( function( require ) {
 
   return inherit( Object, Solution, {
 
+    // @public
     reset: function() {
       this.soluteProperty.reset();
       this.soluteVolumeProperty.reset();
@@ -100,6 +103,7 @@ define( function( require ) {
     /*
      * True if the value displayed by the pH meter has precision that makes it equivalent to the pH of water.
      * Eg, the value displayed to the user is '7.00'.
+     * @public
      */
     isEquivalentToWater: function() {
       var pHString = Util.toFixed( this.computePH(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
@@ -119,14 +123,14 @@ define( function( require ) {
     // @private Returns the amount of volume that is available to fill.
     getFreeVolume: function() { return this.maxVolume - this.computeVolume(); },
 
-    // Convenience function for adding solute
+    // @public Convenience function for adding solute
     addSolute: function( deltaVolume ) {
       if ( deltaVolume > 0 ) {
         this.soluteVolumeProperty.set( Math.max( MIN_VOLUME, this.soluteVolumeProperty.get() + Math.min( deltaVolume, this.getFreeVolume() ) ) );
       }
     },
 
-    // Convenience function for adding water
+    // @public Convenience function for adding water
     addWater: function( deltaVolume ) {
       if ( deltaVolume > 0 ) {
         this.waterVolumeProperty.set( Math.max( MIN_VOLUME, this.waterVolumeProperty.get() + Math.min( deltaVolume, this.getFreeVolume() ) ) );
@@ -136,6 +140,7 @@ define( function( require ) {
     /**
      * Drains a specified amount of solution.
      * @param {number} deltaVolume amount of solution to drain, in liters
+     * @public
      */
     drainSolution: function( deltaVolume ) {
       if ( deltaVolume > 0 ) {
@@ -159,9 +164,9 @@ define( function( require ) {
      * Sets volume atomically, to prevent pH value from going through an intermediate state.
      * See documentation of ignoreVolumeUpdate above.
      *
-     * @private
      * @param {number} waterVolume liters
      * @param {number} soluteVolume liters
+     * @private
      */
     setVolumeAtomic: function( waterVolume, soluteVolume ) {
       // ignore the first notification if both volumes are changing
@@ -177,8 +182,8 @@ define( function( require ) {
 
     /**
      * Computes total volume for this solution.
-     * @private Used in internal computations to prevent incorrect intermediate values, see issue #40
      * @return {number} liters
+     * @private Used in internal computations to prevent incorrect intermediate values, see issue #40
      */
     computeVolume: function() {
       return ( this.soluteVolumeProperty.get() + this.waterVolumeProperty.get() );
@@ -186,8 +191,8 @@ define( function( require ) {
 
     /**
      * Compute pH for this solution.
-     * @private Used in internal computations to prevent incorrect intermediate values, see issue #40
      * @return {number|null} pH, null if total volume is zero
+     * @private Used in internal computations to prevent incorrect intermediate values, see issue #40
      */
     computePH: function() {
       return PHModel.computePH( this.soluteProperty.get().pH, this.soluteVolumeProperty.get(), this.waterVolumeProperty.get() );
@@ -197,14 +202,17 @@ define( function( require ) {
     // Concentration (moles/L)
     //----------------------------------------------------------------------------
 
+    // @public
     getConcentrationH3O: function() {
       return PHModel.pHToConcentrationH3O( this.computePH() );
     },
 
+    // @public
     getConcentrationOH: function() {
       return PHModel.pHToConcentrationOH( this.computePH() );
     },
 
+    // @public
     getConcentrationH2O: function() {
       return ( this.isEmpty() ? 0 : 55 );
     },
@@ -213,14 +221,17 @@ define( function( require ) {
     // Number of molecules
     //----------------------------------------------------------------------------
 
+    // @public
     getMoleculesH3O: function() {
       return PHModel.computeMolecules( this.getConcentrationH3O(), this.computeVolume() );
     },
 
+    // @public
     getMoleculesOH: function() {
       return PHModel.computeMolecules( this.getConcentrationOH(), this.computeVolume() );
     },
 
+    // @public
     getMoleculesH2O: function() {
       return PHModel.computeMolecules( this.getConcentrationH2O(), this.computeVolume() );
     },
@@ -229,14 +240,17 @@ define( function( require ) {
     // Number of moles
     //----------------------------------------------------------------------------
 
+    // @public
     getMolesH3O: function() {
       return PHModel.computeMoles( this.getConcentrationH3O(), this.computeVolume() );
     },
 
+    // @public
     getMolesOH: function() {
       return PHModel.computeMoles( this.getConcentrationOH(), this.computeVolume() );
     },
 
+    // @public
     getMolesH2O: function() {
       return PHModel.computeMoles( this.getConcentrationH2O(), this.computeVolume() );
     }

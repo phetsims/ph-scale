@@ -25,12 +25,14 @@ define( function( require ) {
    * @constructor
    */
   function PHMeter( bodyLocation, probeLocation, probeDragBounds ) {
-    this.valueProperty = new Property( null ); // null if the meter is not reading a value
-    this.bodyLocation = bodyLocation;
-    this.probe = new Movable( probeLocation, probeDragBounds );
+    this.valueProperty = new Property( null ); // @public null if the meter is not reading a value
+    this.bodyLocation = bodyLocation; // @public
+    this.probe = new Movable( probeLocation, probeDragBounds ); // @public
   }
 
   return inherit( Object, PHMeter, {
+
+    // @public
     reset: function() {
       this.valueProperty.reset();
       this.probe.reset();

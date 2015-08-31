@@ -47,8 +47,8 @@ define( function( require ) {
       throw new Error( "Solute constructor, pH value is out of range: " + pH );
     }
 
-    this.name = name;
-    this.pH = pH;
+    this.name = name; // @public
+    this.pH = pH; // @public
 
     // unpack the colors to make accessing them more convenient in client code
     this.stockColor = colorScheme.stockColor; // @public
@@ -61,6 +61,7 @@ define( function( require ) {
 
   inherit( Object, Solute, {
 
+    // @public
     toString: function() {
       return 'Solution[name:' + this.name + ' pH:' + this.pH + ']';
     },
@@ -69,6 +70,7 @@ define( function( require ) {
      * Computes the color for a dilution of this solute.
      * @param {number} ratio describes the dilution, range is [0,1] inclusive, 0 is no solute, 1 is all solute
      * @returns {Color}
+     * @public
      */
     computeColor: function( ratio ) {
       assert && assert( ratio >= 0 && ratio <= 1 );
@@ -91,9 +93,10 @@ define( function( require ) {
 
     /**
      * Creates a custom solute.
-     * @static
      * @param {number} pH
      * @returns {Solute}
+     * @static
+     * @public
      */
     createCustom: function( pH ) {
       return new Solute( customString, pH, { stockColor: PHScaleColors.WATER } );

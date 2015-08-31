@@ -110,6 +110,7 @@ define( function( require ) {
      * Called when the solution's pH changes.
      * @param {number} numberOfH3OMolecules
      * @param {number} numberOfOHMolecules
+     * @private
      */
     drawMolecules: function( numberOfH3OMolecules, numberOfOHMolecules ) {
       if ( numberOfH3OMolecules !== this.numberOfH3OMolecules || numberOfOHMolecules !== this.numberOfOHMolecules ) {
@@ -158,12 +159,12 @@ define( function( require ) {
 
     /**
      * Paints one species of molecule. Using drawImage is faster than arc.
-     * @private
      * @param {CanvasContextWrapper} wrapper
      * @param {number} numberOfMolecules
      * @param {Image} image
      * @param {number[]} xCoords
      * @param {number[]} yCoords
+     * @private
      */
     paintMolecules: function( wrapper, numberOfMolecules, image, xCoords, yCoords ) {
       if ( image ) { // images are generated asynchronously, so test just in case they aren't available when this is first called
@@ -232,7 +233,7 @@ define( function( require ) {
 
   return inherit( Node, RatioNode, {
 
-    // @override When this node becomes visible, update it.
+    // @override @public When this node becomes visible, update it.
     setVisible: function( visible ) {
       var doUpdate = visible && !this.visible;
       Node.prototype.setVisible.call( this, visible );

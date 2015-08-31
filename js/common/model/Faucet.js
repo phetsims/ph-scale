@@ -30,6 +30,7 @@ define( function( require ) {
 
     var thisFaucet = this;
 
+    // @public
     thisFaucet.location = location;
     thisFaucet.pipeMinX = pipeMinX;
     thisFaucet.spoutWidth = options.spoutWidth;
@@ -46,6 +47,8 @@ define( function( require ) {
   }
 
   return inherit( Object, Faucet, {
+
+    // @public
     reset: function() {
       this.flowRateProperty.reset();
       this.enabledProperty.reset();

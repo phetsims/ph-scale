@@ -33,7 +33,7 @@ define( function( require ) {
 
     var thisModel = this;
 
-    // solute choices, in order that they'll appear in the combo box
+    // @public solute choices, in order that they'll appear in the combo box
     thisModel.solutes = [
       Solute.DRAIN_CLEANER,
       Solute.HAND_SOAP,
@@ -48,24 +48,25 @@ define( function( require ) {
       Solute.BATTERY_ACID
     ];
 
-    // Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
+    // @public Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
     thisModel.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
 
     // Dropper above the beaker
     var yDropper = thisModel.beaker.location.y - thisModel.beaker.size.height - 15;
+    // @public
     thisModel.dropper = new Dropper( Solute.CHICKEN_SOUP,
       new Vector2( thisModel.beaker.location.x - 50, yDropper ),
       new Bounds2( thisModel.beaker.left + 40, yDropper, thisModel.beaker.right - 200, yDropper ) );
 
-    // Solution in the beaker
+    // @public Solution in the beaker
     thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, 0, thisModel.beaker.volume );
 
-    // Water faucet at the beaker's top-right
+    // @public Water faucet at the beaker's top-right
     thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, thisModel.beaker.location.y - thisModel.beaker.size.height - 45 ),
       thisModel.beaker.right + 400,
       { enabled: thisModel.solution.volumeProperty.get() < thisModel.beaker.volume } );
 
-    // Drain faucet at the beaker's bottom-left.
+    // @public Drain faucet at the beaker's bottom-left.
     thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.left - 75, thisModel.beaker.location.y + 43 ), thisModel.beaker.left,
       { enabled: thisModel.solution.volumeProperty.get() > 0 } );
 
@@ -93,6 +94,7 @@ define( function( require ) {
 
   return inherit( Object, MacroModel, {
 
+    // @public
     reset: function() {
       this.beaker.reset();
       this.dropper.reset();
@@ -117,6 +119,7 @@ define( function( require ) {
     /*
      * Moves time forward by the specified amount.
      * @param deltaSeconds clock time change, in seconds.
+     * @public
      */
     step: function( deltaSeconds ) {
       if ( this.isAutoFilling ) {
@@ -141,8 +144,8 @@ define( function( require ) {
 
     /**
      * Advances the auto-fill animation.
+     * @param deltaSeconds clock time change, in seconds
      * @private
-     * @param deltaSeconds clock time change, in seconds.
      */
     stepAutoFill: function( deltaSeconds ) {
       this.solution.addSolute( Math.min( this.dropper.flowRateProperty.get() * deltaSeconds, this.autoFillVolume - this.solution.volumeProperty.get() ) );

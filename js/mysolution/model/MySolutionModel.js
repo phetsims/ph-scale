@@ -22,15 +22,16 @@ define( function( require ) {
 
     var thisModel = this;
 
-    // Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
+    // @public Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
     thisModel.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
 
-    // Solution in the beaker
+    // @public Solution in the beaker
     thisModel.solution = new Solution( new Property( Solute.createCustom( 7 ) ), 0.5, 0, thisModel.beaker.volume );
   }
 
   return inherit( Object, MySolutionModel, {
 
+    // @public
     reset: function() {
       this.beaker.reset();
       this.solution.reset();

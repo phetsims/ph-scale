@@ -19,11 +19,15 @@ define( function( require ) {
    * @constructor
    */
   function Movable( location, dragBounds ) {
+
+    // @public
     this.locationProperty = new Property( location );
     this.dragBounds = dragBounds;
   }
 
   return inherit( Object, Movable, {
+
+    // @public
     reset: function() {
       this.locationProperty.reset();
     }

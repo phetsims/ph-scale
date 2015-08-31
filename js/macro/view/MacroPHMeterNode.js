@@ -138,7 +138,7 @@ define( function( require ) {
 
   inherit( Node, ScaleNode, {
 
-    // needed for precise positioning of things that point to values on the scale
+    // @public needed for precise positioning of things that point to values on the scale
     getBackgroundStrokeWidth: function() {
       return this.backgroundStrokeWidth;
     }

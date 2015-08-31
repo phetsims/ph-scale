@@ -26,9 +26,6 @@ define( function( require ) {
     var thisNode = this;
     Rectangle.call( thisNode, 0, 0, 1, 1, { lineWidth: 1 } ); // size and color set dynamically
 
-    thisNode.solution = solution;
-    thisNode.beaker = beaker;
-
     /*
      * Updates the color of the solution, accounting for saturation.
      * @param {Color} color
@@ -63,8 +60,5 @@ define( function( require ) {
     } );
   }
 
-  inherit( Rectangle, SolutionNode );
-
-  return SolutionNode;
-
+  return inherit( Rectangle, SolutionNode );
 } );

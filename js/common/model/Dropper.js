@@ -34,6 +34,7 @@ define( function( require ) {
     var thisDropper = this;
     Movable.call( thisDropper, location, dragBounds );
 
+    // @public
     thisDropper.soluteProperty = new Property( solute );
     thisDropper.visibleProperty = new Property( options.visible );
     thisDropper.dispensingProperty = new Property( options.dispensing );
@@ -62,6 +63,8 @@ define( function( require ) {
   }
 
   return inherit( Movable, Dropper, {
+
+    // @public
     reset: function() {
       Movable.prototype.reset.call( this );
       this.soluteProperty.reset();

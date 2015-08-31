@@ -201,9 +201,10 @@ define( function( require ) {
 
     /**
      * Creates an indicator for H3O+.
-     * @static
      * @param {Property.<number>} valueProperty
      * @param {Object} [options] see GraphIndicator constructor
+     * @static
+     * @public
      */
     createH3OIndicator: function( valueProperty, options ) {
       return new GraphIndicator( valueProperty,
@@ -217,9 +218,10 @@ define( function( require ) {
 
     /**
      * Creates an indicator for OH-.
-     * @static
      * @param {Property.<number>} valueProperty
      * @param {Object} [options] see GraphIndicator constructor
+     * @static
+     * @public
      */
     createOHIndicator: function( valueProperty, options ) {
       return new GraphIndicator( valueProperty,
@@ -233,9 +235,10 @@ define( function( require ) {
 
     /**
      * Creates an indicator for H2O.
-     * @static
      * @param {Property.<number>} valueProperty
      * @param {Object} [options] see GraphIndicator constructor
+     * @static
+     * @public
      */
     createH2OIndicator: function( valueProperty, options ) {
       return new GraphIndicator( valueProperty,

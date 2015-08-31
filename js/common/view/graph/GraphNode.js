@@ -203,6 +203,7 @@ define( function( require ) {
 
   return inherit( Node, GraphNode, {
 
+    // @public
     reset: function() {
       this.viewProperties.reset();
     }

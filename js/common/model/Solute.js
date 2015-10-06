@@ -44,7 +44,7 @@ define( function( require ) {
   function Solute( name, pH, colorScheme ) {
 
     if ( !PHScaleConstants.PH_RANGE.contains( pH ) ) {
-      throw new Error( "Solute constructor, pH value is out of range: " + pH );
+      throw new Error( 'Solute constructor, pH value is out of range: ' + pH );
     }
 
     this.name = name; // @public

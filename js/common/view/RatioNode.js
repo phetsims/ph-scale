@@ -143,17 +143,17 @@ define( function( require ) {
      * Paints both species of molecule to the canvas.
      * @override
      * @protected
-     * @param {CanvasContextWrapper} wrapper
+     * @param {CanvasRenderingContext2D} context
      */
-    paintCanvas: function( wrapper ) {
+    paintCanvas: function( context ) {
       // draw majority species behind minority species
       if ( this.numberOfH3OMolecules > this.numberOfOHMolecules ) {
-        this.paintMolecules( wrapper, this.numberOfH3OMolecules, this.imageH3OMajority, this.xH3O, this.yH3O );
-        this.paintMolecules( wrapper, this.numberOfOHMolecules, this.imageOHMinority, this.xOH, this.yOH );
+        this.paintMolecules( context, this.numberOfH3OMolecules, this.imageH3OMajority, this.xH3O, this.yH3O );
+        this.paintMolecules( context, this.numberOfOHMolecules, this.imageOHMinority, this.xOH, this.yOH );
       }
       else {
-        this.paintMolecules( wrapper, this.numberOfOHMolecules, this.imageOHMajority, this.xOH, this.yOH );
-        this.paintMolecules( wrapper, this.numberOfH3OMolecules, this.imageH3OMinority, this.xH3O, this.yH3O );
+        this.paintMolecules( context, this.numberOfOHMolecules, this.imageOHMajority, this.xOH, this.yOH );
+        this.paintMolecules( context, this.numberOfH3OMolecules, this.imageH3OMinority, this.xH3O, this.yH3O );
       }
     },
 
@@ -166,10 +166,10 @@ define( function( require ) {
      * @param {number[]} yCoords
      * @private
      */
-    paintMolecules: function( wrapper, numberOfMolecules, image, xCoords, yCoords ) {
+    paintMolecules: function( context, numberOfMolecules, image, xCoords, yCoords ) {
       if ( image ) { // images are generated asynchronously, so test just in case they aren't available when this is first called
         for ( var i = 0; i < numberOfMolecules; i++ ) {
-          wrapper.context.drawImage( image, xCoords[ i ], yCoords[ i ] );
+          context.drawImage( image, xCoords[ i ], yCoords[ i ] );
         }
       }
     }

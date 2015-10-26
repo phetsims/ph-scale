@@ -169,7 +169,9 @@ define( function( require ) {
     // Update the indicators
     var updateIndicators = function() {
 
-      var valueH2O, valueH3O, valueOH;
+      var valueH2O;
+      var valueH3O;
+      var valueOH;
       if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
         // concentration
         valueH2O = solution.getConcentrationH2O();

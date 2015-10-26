@@ -77,7 +77,10 @@ define( function( require ) {
     // tick marks
     var numberOfTicks = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.getLength() + 1;
     var ySpacing = ( options.scaleHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
-    var exponent, tickLabel, tickLineLeft, tickLineRight;
+    var exponent;
+    var tickLabel;
+    var tickLineLeft;
+    var tickLineRight;
     for ( var i = 0; i < numberOfTicks; i++ ) {
 
       exponent = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max - i;

@@ -89,7 +89,9 @@ define( function( require ) {
     // optional spinner arrows
     if ( isInteractive ) {
 
-      var pHValueProperty, upArrowNode, downArrowNode;
+      var pHValueProperty;
+      var upArrowNode;
+      var downArrowNode;
 
       // options common to both arrow buttons
       var arrowButtonOptions = { fireOnHoldInterval: SPINNER_TIMER_INTERVAL, enabledFill: SPINNER_ARROW_COLOR };

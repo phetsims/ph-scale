@@ -102,7 +102,9 @@ define( function( require ) {
     var tickLabels = [];
     var numberOfTicks = mantissaRange.getLength() + 1;
     var ySpacing = ( scaleHeight - arrowHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
-    var tickLabel, tickLineLeft, tickLineRight;
+    var tickLabel;
+    var tickLineLeft;
+    var tickLineRight;
     for ( var i = 0; i < numberOfTicks; i++ ) {
       // major lines and label
       tickLineLeft = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
@@ -167,7 +169,9 @@ define( function( require ) {
     // Update the indicators
     var updateIndicators = function() {
 
-      var valueH2O, valueH3O, valueOH;
+      var valueH2O;
+      var valueH3O;
+      var valueOH;
       if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
         // concentration
         valueH2O = solution.getConcentrationH2O();

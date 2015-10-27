@@ -31,6 +31,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  var ProbeNode = require( 'SCENERY_PHET/ProbeNode' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
@@ -38,9 +39,6 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
   var Water = require( 'PH_SCALE/common/model/Water' );
-
-  // images
-  var probeImage = require( 'image!PH_SCALE/pH-meter-probe.png' );
 
   // strings
   var acidicString = require( 'string!PH_SCALE/acidic' );
@@ -240,19 +238,25 @@ define( function( require ) {
    * @param {Node} drainFluidNode
    * @constructor
    */
-  function ProbeNode( probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode ) {
+  function PHProbeNode( probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode ) {
 
     var thisNode = this;
-    Node.call( thisNode, {
-      cursor: 'pointer'
-    } );
 
-    // probe image file
-    var imageNode = new Image( probeImage );
-    thisNode.addChild( imageNode );
-    var radius = imageNode.height / 2; // assumes that image height defines the radius
-    imageNode.x = -imageNode.width + radius; // assumes the image is oriented with probe 'handle' on left
-    imageNode.y = -radius; // assumes the image is oriented horizontally
+    ProbeNode.call( thisNode, {
+      sensorType: ProbeNode.crosshairs( {
+        intersectionRadius: 6
+      } ),
+      radius: 34,
+      innerRadius: 26,
+      handleWidth: 30,
+      handleHeight: 25,
+      handleCornerRadius: 12,
+      lightAngle: 0.85 * Math.PI,
+      color: 'rgb( 35, 129, 0 )',
+      rotation: Math.PI / 2,
+      cursor: 'pointer',
+      scale: 2
+    } );
 
     // probe location
     probe.locationProperty.link( function( location ) {
@@ -260,9 +264,9 @@ define( function( require ) {
     } );
 
     // touch area
-    var dx = 0.25 * imageNode.width;
-    var dy = 0.25 * imageNode.height;
-    thisNode.touchArea = Shape.rectangle( imageNode.x - dx, imageNode.y - dy, imageNode.width + dx + dx, imageNode.height + dy + dy );
+    var dx = 0.25 * thisNode.width;
+    var dy = 0.25 * thisNode.height;
+    thisNode.touchArea = Shape.rectangle( thisNode.x - dx, thisNode.y - dy, thisNode.width + dx + dx, thisNode.height + dy + dy );
 
     // drag handler
     thisNode.addInputListener( new MovableDragHandler( probe.locationProperty, {
@@ -291,7 +295,7 @@ define( function( require ) {
     };
   }
 
-  inherit( Node, ProbeNode );
+  inherit( Node, PHProbeNode );
 
   /**
    * Wire that connects the body and probe.
@@ -414,7 +418,7 @@ define( function( require ) {
     var indicatorNode = new IndicatorNode( meter.valueProperty, SCALE_SIZE.width );
     indicatorNode.left = scaleNode.x;
 
-    var probeNode = new ProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode );
+    var probeNode = new PHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode );
     var wireNode = new WireNode( meter.probe, scaleNode, probeNode );
 
     // rendering order

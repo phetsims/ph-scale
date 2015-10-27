@@ -18,7 +18,7 @@ define( function( require ) {
   var Screen = require( 'JOIST/Screen' );
 
   // strings
-  var screenTitle = require( 'string!PH_SCALE/macro' );
+  var screenTitle = require( 'string!PH_SCALE/screen.macro' );
 
   // images
   var homeIcon = require( 'image!PH_SCALE/Macro-home-icon.png' );

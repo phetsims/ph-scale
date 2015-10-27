@@ -2,13 +2,13 @@
   "ph-scale.title": {
     "value": "pH Scale"
   },
-  "macro": {
+  "screen.macro": {
     "value": "Macro"
   },
-  "micro": {
+  "screen.micro": {
     "value": "Micro"
   },
-  "mySolution": {
+  "screen.mySolution": {
     "value": "My Solution"
   },
   "choice.milk": {

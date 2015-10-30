@@ -253,8 +253,7 @@ define( function( require ) {
       lightAngle: 0.85 * Math.PI,
       color: 'rgb( 35, 129, 0 )',
       rotation: Math.PI / 2,
-      cursor: 'pointer',
-      scale: 2
+      cursor: 'pointer'
     } );
 
     // probe location

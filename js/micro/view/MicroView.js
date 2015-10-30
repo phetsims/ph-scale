@@ -19,6 +19,7 @@ define( function( require ) {
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
+  var EyeDropperNode = require( 'SCENERY_PHET/EyeDropperNode' );
   var PHDropperNode = require( 'PH_SCALE/common/view/PHDropperNode' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var GraphNode = require( 'PH_SCALE/common/view/graph/GraphNode' );
@@ -65,7 +66,7 @@ define( function( require ) {
     var DROPPER_SCALE = 0.85;
     var dropperNode = new PHDropperNode( model.dropper, modelViewTransform );
     dropperNode.setScaleMagnitude( DROPPER_SCALE );
-    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * dropperNode.TIP_WIDTH, modelViewTransform );
+    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * EyeDropperNode.TIP_WIDTH, modelViewTransform );
 
     // faucets
     var waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform );

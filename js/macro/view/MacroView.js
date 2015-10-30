@@ -13,11 +13,12 @@ define( function( require ) {
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
-  var PHDropperNode = require( 'PH_SCALE/common/view/PHDropperNode' );
+  var EyeDropperNode = require( 'SCENERY_PHET/EyeDropperNode' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var NeutralIndicator = require( 'PH_SCALE/macro/view/NeutralIndicator' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PHDropperNode = require( 'PH_SCALE/common/view/PHDropperNode' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
@@ -50,7 +51,7 @@ define( function( require ) {
     var DROPPER_SCALE = 0.85;
     var dropperNode = new PHDropperNode( model.dropper, modelViewTransform );
     dropperNode.setScaleMagnitude( DROPPER_SCALE );
-    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * dropperNode.TIP_WIDTH, modelViewTransform );
+    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * EyeDropperNode.TIP_WIDTH, modelViewTransform );
 
     // faucets
     var waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform );

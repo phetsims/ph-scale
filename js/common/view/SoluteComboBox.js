@@ -20,7 +20,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // strings
-  var pattern_0name_1pH = require( 'string!PH_SCALE/pattern.0name.1pH' );
+  var pattern0Name1PHString = require( 'string!PH_SCALE/pattern.0name.1pH' );
 
   /**
    * @param {Solute[]} solutes
@@ -63,7 +63,7 @@ define( function( require ) {
 
     // label
     var textNode = new Text(
-      StringUtils.format( pattern_0name_1pH, solute.name, Util.toFixed( solute.pH, PHScaleConstants.PH_COMBO_BOX_DECIMAL_PLACES ) ),
+      StringUtils.format( pattern0Name1PHString, solute.name, Util.toFixed( solute.pH, PHScaleConstants.PH_COMBO_BOX_DECIMAL_PLACES ) ),
       { font: new PhetFont( 22 ) } );
 
     node.addChild( colorNode );

@@ -16,7 +16,7 @@ define( function( require ) {
   var SimLauncher = require( 'JOIST/SimLauncher' );
 
   // strings
-  var simTitle = require( 'string!PH_SCALE/ph-scale.title' );
+  var phScaleTitleString = require( 'string!PH_SCALE/ph-scale.title' );
 
   var screens = [ new MacroScreen(), new MicroScreen(), new MySolutionScreen() ];
 
@@ -32,7 +32,7 @@ define( function( require ) {
   };
 
   SimLauncher.launch( function() {
-    var sim = new Sim( simTitle, screens, simOptions );
+    var sim = new Sim( phScaleTitleString, screens, simOptions );
     sim.start();
   } );
 } );

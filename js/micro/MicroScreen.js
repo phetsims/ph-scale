@@ -18,7 +18,7 @@ define( function( require ) {
   var Screen = require( 'JOIST/Screen' );
 
   // strings
-  var screenTitle = require( 'string!PH_SCALE/screen.micro' );
+  var screenMicroString = require( 'string!PH_SCALE/screen.micro' );
 
   // images
   var homeIcon = require( 'image!PH_SCALE/Micro-home-icon.png' );
@@ -26,7 +26,7 @@ define( function( require ) {
 
   function MicroScreen() {
     Screen.call( this,
-      screenTitle,
+      screenMicroString,
       new Image( homeIcon ),
       function() { return new MicroModel(); },
       function( model ) { return new MicroView( model, ModelViewTransform2.createIdentity() ); },

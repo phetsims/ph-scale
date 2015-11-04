@@ -18,7 +18,7 @@ define( function( require ) {
   var Screen = require( 'JOIST/Screen' );
 
   // strings
-  var screenTitle = require( 'string!PH_SCALE/screen.macro' );
+  var screenMacroString = require( 'string!PH_SCALE/screen.macro' );
 
   // images
   var homeIcon = require( 'image!PH_SCALE/Macro-home-icon.png' );
@@ -26,7 +26,7 @@ define( function( require ) {
 
   function MacroScreen( modelOptions ) {
     Screen.call( this,
-      screenTitle,
+      screenMacroString,
       new Image( homeIcon ),
       function() { return new MacroModel( modelOptions ); },
       function( model ) { return new MacroView( model, ModelViewTransform2.createIdentity() ); },

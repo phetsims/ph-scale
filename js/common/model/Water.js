@@ -12,10 +12,10 @@ define( function( require ) {
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
 
   // strings
-  var waterString = require( 'string!PH_SCALE/choice.water' );
+  var choiceWaterString = require( 'string!PH_SCALE/choice.water' );
 
   return Object.freeze( {
-    name: waterString,
+    name: choiceWaterString,
     pH: 7,
     color: PHScaleColors.WATER
   } );

@@ -18,7 +18,7 @@ define( function( require ) {
   var Screen = require( 'JOIST/Screen' );
 
   // strings
-  var screenTitle = require( 'string!PH_SCALE/screen.mySolution' );
+  var screenMySolutionString = require( 'string!PH_SCALE/screen.mySolution' );
 
   // images
   var homeIcon = require( 'image!PH_SCALE/MySolution-home-icon.png' );
@@ -26,7 +26,7 @@ define( function( require ) {
 
   function MySolutionScreen() {
     Screen.call( this,
-      screenTitle,
+      screenMySolutionString,
       new Image( homeIcon ),
       function() { return new MySolutionModel(); },
       function( model ) { return new MySolutionView( model, ModelViewTransform2.createIdentity() ); },

@@ -22,8 +22,8 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // strings
-  var pattern_0value_1units = require( 'string!PH_SCALE/pattern.0value.1units' );
-  var litersString = require( 'string!PH_SCALE/units.liters' );
+  var pattern0Value1UnitsString = require( 'string!PH_SCALE/pattern.0value.1units' );
+  var unitsLitersString = require( 'string!PH_SCALE/units.liters' );
 
   // constants
   var ARROW_SIZE = new Dimension2( 21, 28 );
@@ -63,7 +63,7 @@ define( function( require ) {
     // update when the volume changes
     volumeProperty.link( function( volume ) {
       // text
-      valueNode.text = StringUtils.format( pattern_0value_1units, Util.toFixed( volume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), litersString );
+      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( volume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), unitsLitersString );
       valueNode.centerY = arrowHead.centerY;
       // y-location
       var solutionHeight = Util.linear( 0, beaker.volume, 0, beaker.size.height, volume ); // volume -> height, model coordinates

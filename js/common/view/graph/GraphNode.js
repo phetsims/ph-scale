@@ -34,8 +34,8 @@ define( function( require ) {
   var concentrationString = require( 'string!PH_SCALE/concentration' );
   var linearString = require( 'string!PH_SCALE/linear' );
   var logarithmicString = require( 'string!PH_SCALE/logarithmic' );
-  var molesString = require( 'string!PH_SCALE/units.moles' );
-  var molesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
+  var unitsMolesString = require( 'string!PH_SCALE/units.moles' );
+  var unitsMolesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
   var quantityString = require( 'string!PH_SCALE/quantity' );
 
   // constants
@@ -79,11 +79,11 @@ define( function( require ) {
 
     // units switch (Concentration vs Quantity)
     var graphUnitsSwitch = new ABSwitch( this.viewProperties.graphUnitsProperty,
-      GraphUnits.MOLES_PER_LITER, new MultiLineText( concentrationString + '\n(' + molesPerLiterString + ')', {
+      GraphUnits.MOLES_PER_LITER, new MultiLineText( concentrationString + '\n(' + unitsMolesPerLiterString + ')', {
         font: AB_SWITCH_FONT,
         maxWidth: 125
       } ),
-      GraphUnits.MOLES, new MultiLineText( quantityString + '\n(' + molesString + ')', {
+      GraphUnits.MOLES, new MultiLineText( quantityString + '\n(' + unitsMolesString + ')', {
         font: AB_SWITCH_FONT,
         maxWidth: 85
       } ), {

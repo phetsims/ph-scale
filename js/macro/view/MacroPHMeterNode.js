@@ -242,7 +242,7 @@ define( function( require ) {
     var thisNode = this;
 
     ProbeNode.call( thisNode, {
-      sensorType: ProbeNode.crosshairs( {
+      sensorTypeFunction: ProbeNode.crosshairs( {
         intersectionRadius: 6
       } ),
       radius: 34,

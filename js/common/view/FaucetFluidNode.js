@@ -39,7 +39,7 @@ define( function( require ) {
     var viewHeight = modelViewTransform.modelToViewDeltaY( height );
     faucet.flowRateProperty.link( function( flowRate ) {
       if ( flowRate === 0 ) {
-        thisNode.setRect( 0, 0, 0, 0 ); // empty rectangle
+        thisNode.setRect( -1, -1, 0, 0 ); // empty rectangle, at a location where we won't intersect with it
       }
       else {
         var viewWidth = modelViewTransform.modelToViewDeltaX( faucet.spoutWidth * flowRate / faucet.maxFlowRate );

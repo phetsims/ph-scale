@@ -20,6 +20,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var Property = require( 'AXON/Property' );
   var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
   var Shape = require( 'KITE/Shape' );
@@ -217,6 +218,8 @@ define( function( require ) {
       updateTickLabels( exponent );
     } );
   }
+
+  phScale.register( 'LinearGraph', LinearGraph );
 
   return inherit( Node, LinearGraph );
 } );

@@ -11,6 +11,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
   /**
@@ -47,6 +48,8 @@ define( function( require ) {
       }
     } );
   }
+
+  phScale.register( 'FaucetFluidNode', FaucetFluidNode );
 
   return inherit( Rectangle, FaucetFluidNode );
 } );

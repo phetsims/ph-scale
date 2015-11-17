@@ -14,6 +14,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var Shape = require( 'KITE/Shape' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -102,6 +103,8 @@ define( function( require ) {
 
     thisNode.translation = modelViewTransform.modelToViewPosition( beaker.location );
   }
+
+  phScale.register( 'BeakerNode', BeakerNode );
 
   return inherit( Node, BeakerNode );
 } );

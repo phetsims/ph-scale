@@ -28,6 +28,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var ProbeNode = require( 'SCENERY_PHET/ProbeNode' );
@@ -54,6 +55,73 @@ define( function( require ) {
   var TICK_FONT = new PhetFont( 22 );
   var NEUTRAL_TICK_LENGTH = 40;
   var TICK_LABEL_X_SPACING = 5;
+
+  /**
+   * @param {PHMeter} meter
+   * @param {Solution} solution
+   * @param {Dropper} dropper
+   * @param {Node} solutionNode
+   * @param {Node} dropperFluidNode
+   * @param {Node} waterFluidNode
+   * @param {Node} drainFluidNode
+   * @param {ModelViewTransform2} modelViewTransform
+   * @constructor
+   */
+  function MacroPHMeterNode( meter, solution, dropper, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform ) {
+
+    var thisNode = this;
+    Node.call( thisNode );
+
+    // pH scale, positioned at meter 'body' location
+    var scaleNode = new ScaleNode( { size: SCALE_SIZE } );
+    scaleNode.translation = modelViewTransform.modelToViewPosition( meter.bodyLocation );
+
+    // indicator that slides vertically along scale
+    var indicatorNode = new IndicatorNode( meter.valueProperty, SCALE_SIZE.width );
+    indicatorNode.left = scaleNode.x;
+
+    var probeNode = new PHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode );
+    var wireNode = new WireNode( meter.probe, scaleNode, probeNode );
+
+    // rendering order
+    thisNode.addChild( wireNode );
+    thisNode.addChild( probeNode );
+    thisNode.addChild( scaleNode );
+    thisNode.addChild( indicatorNode );
+
+    // vertical position of the indicator
+    meter.valueProperty.link( function( value ) {
+      indicatorNode.centerY = scaleNode.y + Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
+    } );
+
+    var updateValue = function() {
+      var value;
+      if ( probeNode.isInSolution() || probeNode.isInDrainFluid() ) {
+        value = solution.pHProperty.get();
+      }
+      else if ( probeNode.isInWater() ) {
+        value = Water.pH;
+      }
+      else if ( probeNode.isInDropperSolution() ) {
+        value = dropper.soluteProperty.get().pH;
+      }
+      else {
+        value = null;
+      }
+      meter.valueProperty.set( value );
+    };
+    meter.probe.locationProperty.link( updateValue );
+    solution.soluteProperty.link( updateValue );
+    solution.pHProperty.link( updateValue );
+    solutionNode.addEventListener( 'bounds', updateValue );
+    dropperFluidNode.addEventListener( 'bounds', updateValue );
+    waterFluidNode.addEventListener( 'bounds', updateValue );
+    drainFluidNode.addEventListener( 'bounds', updateValue );
+  }
+
+  phScale.register( 'MacroPHMeterNode', MacroPHMeterNode );
+
+  inherit( Node, MacroPHMeterNode );
 
   /**
    * The meter's vertical scale.
@@ -132,6 +200,8 @@ define( function( require ) {
     neutralLabelNode.right = neutralLineNode.left - TICK_LABEL_X_SPACING;
     neutralLabelNode.centerY = neutralLineNode.centerY;
   }
+
+  phScale.register( 'MacroPHMeterNode.ScaleNode', ScaleNode );
 
   inherit( Node, ScaleNode, {
 
@@ -224,6 +294,8 @@ define( function( require ) {
       } );
     }
   }
+
+  phScale.register( 'MacroPHMeterNode.ValueNode', ValueNode );
 
   inherit( Node, ValueNode );
 
@@ -335,6 +407,8 @@ define( function( require ) {
     probe.locationProperty.link( updateCurve );
   }
 
+  phScale.register( 'MacroPHMeterNode.WireNode', WireNode );
+
   inherit( Path, WireNode );
 
   /**
@@ -390,70 +464,9 @@ define( function( require ) {
     } );
   }
 
+  phScale.register( 'MacroPHMeterNode.IndicatorNode', IndicatorNode );
+
   inherit( Node, IndicatorNode );
 
-  /**
-   * @param {PHMeter} meter
-   * @param {Solution} solution
-   * @param {Dropper} dropper
-   * @param {Node} solutionNode
-   * @param {Node} dropperFluidNode
-   * @param {Node} waterFluidNode
-   * @param {Node} drainFluidNode
-   * @param {ModelViewTransform2} modelViewTransform
-   * @constructor
-   */
-  function MacroPHMeterNode( meter, solution, dropper, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform ) {
-
-    var thisNode = this;
-    Node.call( thisNode );
-
-    // pH scale, positioned at meter 'body' location
-    var scaleNode = new ScaleNode( { size: SCALE_SIZE } );
-    scaleNode.translation = modelViewTransform.modelToViewPosition( meter.bodyLocation );
-
-    // indicator that slides vertically along scale
-    var indicatorNode = new IndicatorNode( meter.valueProperty, SCALE_SIZE.width );
-    indicatorNode.left = scaleNode.x;
-
-    var probeNode = new PHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode );
-    var wireNode = new WireNode( meter.probe, scaleNode, probeNode );
-
-    // rendering order
-    thisNode.addChild( wireNode );
-    thisNode.addChild( probeNode );
-    thisNode.addChild( scaleNode );
-    thisNode.addChild( indicatorNode );
-
-    // vertical position of the indicator
-    meter.valueProperty.link( function( value ) {
-      indicatorNode.centerY = scaleNode.y + Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
-    } );
-
-    var updateValue = function() {
-      var value;
-      if ( probeNode.isInSolution() || probeNode.isInDrainFluid() ) {
-        value = solution.pHProperty.get();
-      }
-      else if ( probeNode.isInWater() ) {
-        value = Water.pH;
-      }
-      else if ( probeNode.isInDropperSolution() ) {
-        value = dropper.soluteProperty.get().pH;
-      }
-      else {
-        value = null;
-      }
-      meter.valueProperty.set( value );
-    };
-    meter.probe.locationProperty.link( updateValue );
-    solution.soluteProperty.link( updateValue );
-    solution.pHProperty.link( updateValue );
-    solutionNode.addEventListener( 'bounds', updateValue );
-    dropperFluidNode.addEventListener( 'bounds', updateValue );
-    waterFluidNode.addEventListener( 'bounds', updateValue );
-    drainFluidNode.addEventListener( 'bounds', updateValue );
-  }
-
-  return inherit( Node, MacroPHMeterNode );
+  return MacroPHMeterNode;
 } );

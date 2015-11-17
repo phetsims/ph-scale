@@ -13,6 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Text = require( 'SCENERY/nodes/Text' );
 
@@ -47,6 +48,8 @@ define( function( require ) {
       thisNode.setVisible( solution.isEquivalentToWater() );
     } );
   }
+
+  phScale.register( 'NeutralIndicator', NeutralIndicator );
 
   return inherit( Node, NeutralIndicator );
 } );

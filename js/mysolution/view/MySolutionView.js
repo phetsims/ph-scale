@@ -22,6 +22,7 @@ define( function( require ) {
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PropertySet = require( 'AXON/PropertySet' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
@@ -114,6 +115,8 @@ define( function( require ) {
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
+
+  phScale.register( 'MySolutionView', MySolutionView );
 
   return inherit( ScreenView, MySolutionView );
 } );

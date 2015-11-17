@@ -11,6 +11,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var phScale = require( 'PH_SCALE/phScale' );
   var Util = require( 'DOT/Util' );
   var Water = require( 'PH_SCALE/common/model/Water' );
 
@@ -18,6 +19,8 @@ define( function( require ) {
   var AVOGADROS_NUMBER = 6.023E23; // number of molecules in one mole of solution
 
   function PHModel() {}
+
+  phScale.register( 'PHModel', PHModel );
 
   /**
    * General algorithm for pH.

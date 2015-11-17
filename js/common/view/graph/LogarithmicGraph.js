@@ -24,6 +24,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHModel = require( 'PH_SCALE/common/model/PHModel' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -211,6 +212,8 @@ define( function( require ) {
         new GraphIndicatorDragHandler( solution, graphUnitsProperty, yToValue, PHModel.concentrationOHToPH, PHModel.molesOHToPH ) );
     }
   }
+
+  phScale.register( 'LogarithmicGraph', LogarithmicGraph );
 
   // Creates a tick label, '10' to some exponent.
   var createTickLabel = function( exponent, font ) {

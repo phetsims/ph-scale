@@ -11,6 +11,7 @@ define( function( require ) {
   // modules
   var Bounds2 = require( 'DOT/Bounds2' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var phScale = require( 'PH_SCALE/phScale' );
 
   /**
    * Constructor
@@ -35,6 +36,8 @@ define( function( require ) {
     this.right = location.x + ( size.width / 2 );
     this.bounds = new Bounds2( this.left, location.y - size.height, this.right, location.y );
   }
+
+  phScale.register( 'Beaker', Beaker );
 
   return inherit( Object, Beaker, {
 

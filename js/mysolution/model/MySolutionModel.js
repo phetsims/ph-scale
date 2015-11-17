@@ -13,11 +13,15 @@ define( function( require ) {
   var Beaker = require( 'PH_SCALE/common/model/Beaker' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var Property = require( 'AXON/Property' );
   var Solute = require( 'PH_SCALE/common/model/Solute' );
   var Solution = require( 'PH_SCALE/common/model/Solution' );
   var Vector2 = require( 'DOT/Vector2' );
 
+  /**
+   * @constructor
+   */
   function MySolutionModel() {
 
     var thisModel = this;
@@ -28,6 +32,8 @@ define( function( require ) {
     // @public Solution in the beaker
     thisModel.solution = new Solution( new Property( Solute.createCustom( 7 ) ), 0.5, 0, thisModel.beaker.volume );
   }
+
+  phScale.register( 'MySolutionModel', MySolutionModel );
 
   return inherit( Object, MySolutionModel, {
 

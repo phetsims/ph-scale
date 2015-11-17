@@ -24,6 +24,7 @@ define( function( require ) {
   var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PropertySet = require( 'AXON/PropertySet' );
@@ -200,6 +201,8 @@ define( function( require ) {
       } );
     }
   }
+
+  phScale.register( 'GraphNode', GraphNode );
 
   return inherit( Node, GraphNode, {
 

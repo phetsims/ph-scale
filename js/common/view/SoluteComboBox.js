@@ -13,6 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -48,6 +49,8 @@ define( function( require ) {
 
     ComboBox.call( this, items, selectedSolute, soluteListParent, options );
   }
+
+  phScale.register( 'SoluteComboBox', SoluteComboBox );
 
   /**
    * Creates an item for the combo box.

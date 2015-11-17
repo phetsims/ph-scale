@@ -12,6 +12,7 @@ define( function( require ) {
   var Color = require( 'SCENERY/util/Color' );
   var DerivedProperty = require( 'AXON/DerivedProperty' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHModel = require( 'PH_SCALE/common/model/PHModel' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
@@ -26,6 +27,7 @@ define( function( require ) {
    * @param {number} soluteVolume liters
    * @param {number} waterVolume liters
    * @param {number} maxVolume liters
+   * @constructor
    */
   function Solution( soluteProperty, soluteVolume, waterVolume, maxVolume ) {
     assert && assert( soluteVolume + waterVolume <= maxVolume );
@@ -90,6 +92,8 @@ define( function( require ) {
       thisSolution.soluteVolumeProperty.set( soluteVolume );
     } );
   }
+
+  phScale.register( 'Solution', Solution );
 
   return inherit( Object, Solution, {
 

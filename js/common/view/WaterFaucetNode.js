@@ -12,6 +12,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var FaucetNode = require( 'SCENERY_PHET/FaucetNode' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -45,6 +46,8 @@ define( function( require ) {
     labelNode.left = faucetNode.left + 115;
     labelNode.bottom = faucetNode.centerY - 40;
   }
+
+  phScale.register( 'WaterFaucetNode', WaterFaucetNode );
 
   return inherit( Node, WaterFaucetNode );
 } );

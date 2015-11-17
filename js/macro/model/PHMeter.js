@@ -16,6 +16,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Movable = require( 'PH_SCALE/common/model/Movable' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var Property = require( 'AXON/Property' );
 
   /**
@@ -29,6 +30,8 @@ define( function( require ) {
     this.bodyLocation = bodyLocation; // @public
     this.probe = new Movable( probeLocation, probeDragBounds ); // @public
   }
+
+  phScale.register( 'PHMeter', PHMeter );
 
   return inherit( Object, PHMeter, {
 

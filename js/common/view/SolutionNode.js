@@ -11,6 +11,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Util = require( 'DOT/Util' );
@@ -59,6 +60,8 @@ define( function( require ) {
       thisNode.setRect( viewLocation.x - (viewWidth / 2), viewLocation.y - viewHeight, viewWidth, viewHeight );
     } );
   }
+
+  phScale.register( 'SolutionNode', SolutionNode );
 
   return inherit( Rectangle, SolutionNode );
 } );

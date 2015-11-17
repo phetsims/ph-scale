@@ -14,6 +14,7 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Screen = require( 'JOIST/Screen' );
 
@@ -24,6 +25,10 @@ define( function( require ) {
   var homeIcon = require( 'image!PH_SCALE/Macro-home-icon.png' );
   var navbarIcon = require( 'image!PH_SCALE/Macro-navbar-icon.png' );
 
+  /**
+   * @param {Object} [modelOptions]
+   * @constructor
+   */
   function MacroScreen( modelOptions ) {
     Screen.call( this,
       screenMacroString,
@@ -36,6 +41,8 @@ define( function( require ) {
       }
     );
   }
+
+  phScale.register( 'MacroScreen', MacroScreen );
 
   return inherit( Screen, MacroScreen );
 } );

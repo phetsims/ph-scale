@@ -15,6 +15,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var OHNode = require( 'PH_SCALE/common/view/molecules/OHNode' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -118,6 +119,8 @@ define( function( require ) {
 
     thisNode.mutate( options );
   }
+
+  phScale.register( 'MoleculeCountNode', MoleculeCountNode );
 
   return inherit( Node, MoleculeCountNode );
 } );

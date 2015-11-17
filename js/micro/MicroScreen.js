@@ -14,6 +14,7 @@ define( function( require ) {
   var MicroModel = require( 'PH_SCALE/micro/model/MicroModel' );
   var MicroView = require( 'PH_SCALE/micro/view/MicroView' );
   var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Screen = require( 'JOIST/Screen' );
 
@@ -24,6 +25,9 @@ define( function( require ) {
   var homeIcon = require( 'image!PH_SCALE/Micro-home-icon.png' );
   var navbarIcon = require( 'image!PH_SCALE/Micro-navbar-icon.png' );
 
+  /**
+   * @constructor
+   */
   function MicroScreen() {
     Screen.call( this,
       screenMicroString,
@@ -36,6 +40,8 @@ define( function( require ) {
       }
     );
   }
+
+  phScale.register( 'MicroScreen', MicroScreen );
 
   return inherit( Screen, MicroScreen );
 } );

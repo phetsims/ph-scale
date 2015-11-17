@@ -11,6 +11,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var Property = require( 'AXON/Property' );
 
   /**
@@ -45,6 +46,8 @@ define( function( require ) {
       }
     } );
   }
+
+  phScale.register( 'Faucet', Faucet );
 
   return inherit( Object, Faucet, {
 

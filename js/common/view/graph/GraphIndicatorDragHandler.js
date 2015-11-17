@@ -11,6 +11,7 @@ define( function( require ) {
   // modules
   var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Solute = require( 'PH_SCALE/common/model/Solute' );
@@ -61,6 +62,8 @@ define( function( require ) {
       }
     } );
   }
+
+  phScale.register( 'GraphIndicatorDragHandler', GraphIndicatorDragHandler );
 
   return inherit( SimpleDragHandler, GraphIndicatorDragHandler );
 } );

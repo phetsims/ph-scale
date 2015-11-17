@@ -10,9 +10,10 @@ define( function( require ) {
 
   // modules
   var Bounds2 = require( 'DOT/Bounds2' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var Range = require( 'DOT/Range' );
 
-  return {
+  var PHScaleConstants = {
 
     // ScreenView
     SCREEN_VIEW_OPTIONS: { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) },
@@ -43,4 +44,8 @@ define( function( require ) {
     OH_FORMULA: 'OH<sup>-</sup>',
     H2O_FORMULA: 'H<sub>2</sub>O'
   };
+
+  phScale.register( 'PHScaleConstants', PHScaleConstants );
+
+  return PHScaleConstants;
 } );

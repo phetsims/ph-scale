@@ -17,6 +17,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Panel = require( 'SUN/Panel' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Shape = require( 'KITE/Shape' );
@@ -75,6 +76,8 @@ define( function( require ) {
 
     Panel.call( this, content, options );
   }
+
+  phScale.register( 'BeakerControls', BeakerControls );
 
   return inherit( Panel, BeakerControls );
 } );

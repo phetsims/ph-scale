@@ -19,6 +19,7 @@ define( function( require ) {
   var NeutralIndicator = require( 'PH_SCALE/macro/view/NeutralIndicator' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PHDropperNode = require( 'PH_SCALE/common/view/PHDropperNode' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
@@ -106,6 +107,8 @@ define( function( require ) {
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
+
+  phScale.register( 'MacroView', MacroView );
 
   return inherit( ScreenView, MacroView );
 } );

@@ -11,6 +11,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var Property = require( 'AXON/Property' );
 
   /**
@@ -24,6 +25,8 @@ define( function( require ) {
     this.locationProperty = new Property( location );
     this.dragBounds = dragBounds;
   }
+
+  phScale.register( 'Movable', Movable );
 
   return inherit( Object, Movable, {
 

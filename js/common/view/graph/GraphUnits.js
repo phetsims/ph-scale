@@ -5,12 +5,18 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function() {
+define( function( require ) {
   'use strict';
 
+  var phScale = require( 'PH_SCALE/phScale' );
+
   // NOTE: enum pattern recommends using {} for each value, but strings are more convenient for debugging
-  return Object.freeze( {
+  var GraphUnits = Object.freeze( {
     MOLES_PER_LITER: 'molesPerLiter',
     MOLES: 'moles'
   } );
+
+  phScale.register( 'GraphUnits', GraphUnits );
+
+  return GraphUnits;
 } );

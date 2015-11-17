@@ -16,6 +16,7 @@ define( function( require ) {
   var Faucet = require( 'PH_SCALE/common/model/Faucet' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PHMeter = require( 'PH_SCALE/macro/model/PHMeter' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Solute = require( 'PH_SCALE/common/model/Solute' );
   var Solution = require( 'PH_SCALE/common/model/Solution' );
@@ -91,6 +92,8 @@ define( function( require ) {
       thisModel.updateFaucetsAndDropper();
     } );
   }
+
+  phScale.register( 'MacroModel', MacroModel );
 
   return inherit( Object, MacroModel, {
 

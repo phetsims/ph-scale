@@ -19,6 +19,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
@@ -41,6 +42,54 @@ define( function( require ) {
   var SPINNER_Y_SPACING = 4;
   var SPINNER_TIMER_INTERVAL = 40; // ms
   var SPINNER_ARROW_COLOR = 'rgb(0,200,0)';
+
+  /**
+   * @param {Solution} solution
+   * @param {number} probeYOffset distance from top of meter to tip of probe, in view coordinate frame
+   * @param {Property.<boolean>} expandedProperty
+   * @param {Object} [options]
+   * @constructor
+   */
+  function PHMeterNode( solution, probeYOffset, expandedProperty, options ) {
+
+    options = _.extend( {
+      isInteractive: false, // true: pH can be changed, false: pH is read-only
+      attachProbe: 'center' // where to attach the probe: 'left'|'center'|'right'
+    }, options );
+
+    var thisNode = this;
+    Node.call( thisNode );
+
+    // nodes
+    var valueNode = new ValueNode( solution, expandedProperty, options.isInteractive );
+    var probeNode = new ProbeNode( probeYOffset );
+
+    // rendering order
+    thisNode.addChild( probeNode );
+    thisNode.addChild( valueNode );
+
+    // layout
+    if ( options.attachProbe === 'center' ) {
+      probeNode.centerX = valueNode.centerX;
+    }
+    else if ( options.attachProbe === 'right' ) {
+      probeNode.centerX = valueNode.left + ( 0.75 * valueNode.width );
+    }
+    else {
+      probeNode.centerX = valueNode.left + ( 0.25 * valueNode.width );
+    }
+    probeNode.top = valueNode.top;
+
+    expandedProperty.link( function( expanded ) {
+      probeNode.visible = expanded;
+    } );
+
+    thisNode.mutate( options );
+  }
+
+  phScale.register( 'PHMeterNode', PHMeterNode );
+
+  inherit( Node, PHMeterNode );
 
   /**
    * Value is displayed inside of this, which sits above the scale.
@@ -183,6 +232,8 @@ define( function( require ) {
     } );
   }
 
+  phScale.register( 'PHMeterNode.ValueNode', ValueNode );
+
   inherit( Node, ValueNode );
 
   /**
@@ -222,51 +273,9 @@ define( function( require ) {
     tipNode.top = shaftNode.bottom - overlap;
   }
 
+  phScale.register( 'PHMeterNode.ProbeNode', ProbeNode );
+
   inherit( Node, ProbeNode );
 
-  /**
-   * @param {Solution} solution
-   * @param {number} probeYOffset distance from top of meter to tip of probe, in view coordinate frame
-   * @param {Property.<boolean>} expandedProperty
-   * @param {Object} [options]
-   * @constructor
-   */
-  function PHMeterNode( solution, probeYOffset, expandedProperty, options ) {
-
-    options = _.extend( {
-      isInteractive: false, // true: pH can be changed, false: pH is read-only
-      attachProbe: 'center' // where to attach the probe: 'left'|'center'|'right'
-    }, options );
-
-    var thisNode = this;
-    Node.call( thisNode );
-
-    // nodes
-    var valueNode = new ValueNode( solution, expandedProperty, options.isInteractive );
-    var probeNode = new ProbeNode( probeYOffset );
-
-    // rendering order
-    thisNode.addChild( probeNode );
-    thisNode.addChild( valueNode );
-
-    // layout
-    if ( options.attachProbe === 'center' ) {
-      probeNode.centerX = valueNode.centerX;
-    }
-    else if ( options.attachProbe === 'right' ) {
-      probeNode.centerX = valueNode.left + ( 0.75 * valueNode.width );
-    }
-    else {
-      probeNode.centerX = valueNode.left + ( 0.25 * valueNode.width );
-    }
-    probeNode.top = valueNode.top;
-
-    expandedProperty.link( function( expanded ) {
-      probeNode.visible = expanded;
-    } );
-
-    thisNode.mutate( options );
-  }
-
-  return inherit( Node, PHMeterNode );
+  return PHMeterNode;
 } );

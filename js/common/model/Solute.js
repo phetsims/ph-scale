@@ -12,6 +12,7 @@ define( function( require ) {
   // modules
   var Color = require( 'SCENERY/util/Color' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Water = require( 'PH_SCALE/common/model/Water' );
@@ -58,6 +59,8 @@ define( function( require ) {
       this.colorStop.ratio = this.colorStop.ratio || 0.25;
     }
   }
+
+  phScale.register( 'Solute', Solute );
 
   inherit( Object, Solute, {
 

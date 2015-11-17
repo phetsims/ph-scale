@@ -15,6 +15,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Shape = require( 'KITE/Shape' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -70,6 +71,8 @@ define( function( require ) {
       thisNode.y = modelViewTransform.modelToViewY( beaker.location.y - solutionHeight );
     } );
   }
+
+  phScale.register( 'VolumeIndicatorNode', VolumeIndicatorNode );
 
   return inherit( Node, VolumeIndicatorNode );
 } );

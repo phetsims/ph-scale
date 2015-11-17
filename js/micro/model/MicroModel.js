@@ -14,7 +14,11 @@ define( function( require ) {
   var Bounds2 = require( 'DOT/Bounds2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
+  var phScale = require( 'PH_SCALE/phScale' );
 
+  /**
+   * @constructor
+   */
   function MicroModel() {
 
     MacroModel.call( this );
@@ -23,6 +27,8 @@ define( function( require ) {
     var yDropper = this.dropper.locationProperty.get().y;
     this.dropper.dragBounds = new Bounds2( this.beaker.left + 120, yDropper, this.beaker.right - 170, yDropper );
   }
+
+  phScale.register( 'MicroModel', MicroModel );
 
   return inherit( MacroModel, MicroModel );
 } );

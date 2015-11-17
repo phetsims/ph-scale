@@ -12,8 +12,13 @@ define( function( require ) {
   var HydrogenNode = require( 'PH_SCALE/common/view/molecules/HydrogenNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var OxygenNode = require( 'PH_SCALE/common/view/molecules/OxygenNode' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var Node = require( 'SCENERY/nodes/Node' );
 
+  /**
+   * @param {Object} options
+   * @constructor
+   */
   function H2ONode( options ) {
 
     Node.call( this );
@@ -36,6 +41,8 @@ define( function( require ) {
 
     this.mutate( options );
   }
+
+  phScale.register( 'H2ONode', H2ONode );
 
   return inherit( Node, H2ONode );
 } );

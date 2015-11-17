@@ -11,8 +11,9 @@ define( function( require ) {
   // modules
   var Color = require( 'SCENERY/util/Color' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  var phScale = require( 'PH_SCALE/phScale' );
 
-  return {
+  var PHScaleColors = {
 
     SCREEN_BACKGROUND: 'white',
     PANEL_FILL: 'rgb(230,230,230)',
@@ -36,4 +37,8 @@ define( function( require ) {
     H3O_MOLECULES: new Color( 204, 0, 0 ),
     OH_MOLECULES: new Color( 0, 0, 255 )
   };
+
+  phScale.register( 'PHScaleColors', PHScaleColors );
+
+  return PHScaleColors;
 } );

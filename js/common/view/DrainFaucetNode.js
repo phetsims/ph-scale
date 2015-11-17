@@ -11,6 +11,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var FaucetNode = require( 'SCENERY_PHET/FaucetNode' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
 
   /**
@@ -32,6 +33,8 @@ define( function( require ) {
     this.translation = modelViewTransform.modelToViewPosition( faucet.location );
     this.setScaleMagnitude( -scale, scale ); // reflect horizontally
   }
+
+  phScale.register( 'DrainFaucetNode', DrainFaucetNode );
 
   return inherit( FaucetNode, DrainFaucetNode );
 } );

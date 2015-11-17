@@ -21,6 +21,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHModel = require( 'PH_SCALE/common/model/PHModel' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Range = require( 'DOT/Range' );
@@ -37,6 +38,137 @@ define( function( require ) {
   var MINORITY_ALPHA = 1.0; // alpha of the minority species, [0-1], transparent-opaque
   var H3O_RADIUS = 3;
   var OH_RADIUS = H3O_RADIUS;
+
+  //-------------------------------------------------------------------------------------
+
+  /**
+   * @param {Beaker} beaker
+   * @param {Solution} solution
+   * @param {ModelViewTransform2} modelViewTransform
+   * @param {Object} [options]
+   * @constructor
+   */
+  function RatioNode( beaker, solution, modelViewTransform, options ) {
+
+    var thisNode = this;
+    Node.call( thisNode );
+
+    // save constructor args
+    thisNode.solution = solution; // @private
+
+    // current pH
+    thisNode.pH = null; // @private null to force an update
+
+    // bounds of the beaker, in view coordinates
+    var beakerBounds = modelViewTransform.modelToViewBounds( beaker.bounds );
+
+    // parent for all molecules
+    thisNode.moleculesNode = new MoleculesCanvas( beakerBounds ); // @private
+    thisNode.addChild( thisNode.moleculesNode );
+
+    // dev mode, show numbers of molecules at bottom of beaker
+    if ( phet.chipper.getQueryParameter( 'dev' ) ) {
+      thisNode.ratioText = new Text( '?', {
+        font: new PhetFont( 30 ),
+        fill: 'black',
+        left: beakerBounds.getCenterX(),
+        bottom: beakerBounds.maxY - 20
+      } ); // @private
+      thisNode.addChild( thisNode.ratioText );
+    }
+
+    thisNode.mutate( options ); // call before registering for property notifications, because 'visible' significantly affects initialization time
+
+    // sync view with model
+    solution.pHProperty.link( thisNode.update.bind( thisNode ) );
+
+    // clip to the shape of the solution in the beaker
+    solution.volumeProperty.link( function( volume ) {
+      if ( volume === 0 ) {
+        thisNode.clipArea = null;
+      }
+      else {
+        var solutionHeight = beakerBounds.getHeight() * volume / beaker.volume;
+        thisNode.clipArea = Shape.rectangle( beakerBounds.minX, beakerBounds.maxY - solutionHeight, beakerBounds.getWidth(), solutionHeight );
+      }
+      thisNode.moleculesNode.invalidatePaint(); //WORKAROUND: #25, scenery#200
+    } );
+  }
+
+  phScale.register( 'RatioNode', RatioNode );
+
+  inherit( Node, RatioNode, {
+
+    // @override @public When this node becomes visible, update it.
+    setVisible: function( visible ) {
+      var doUpdate = visible && !this.visible;
+      Node.prototype.setVisible.call( this, visible );
+      if ( doUpdate ) { this.update(); }
+    },
+
+    /**
+     * Updates the number of molecules when the pH (as displayed on the meter) changes.
+     * If volume changes, we don't create more molecules, we just expose more of them.
+     * @private
+     */
+    update: function() {
+
+      // don't update if not visible
+      if ( !this.visible ) { return; }
+
+      var pH = this.solution.pHProperty.get();
+      if ( pH !== null ) {
+        pH = Util.toFixedNumber( this.solution.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      }
+
+      if ( this.pH !== pH ) {
+
+        this.pH = pH;
+        var numberOfH3O = 0;
+        var numberOfOH = 0;
+
+        if ( pH !== null ) {
+
+          // compute number of molecules
+          if ( LOG_PH_RANGE.contains( pH ) ) {
+            // # molecules varies logarithmically in this range
+            numberOfH3O = Math.max( MIN_MINORITY_MOLECULES, computeNumberOfH3O( pH ) );
+            numberOfOH = Math.max( MIN_MINORITY_MOLECULES, computeNumberOfOH( pH ) );
+          }
+          else {
+            // # molecules varies linearly in this range
+            // N is the number of molecules to add for each 1 unit of pH above or below the thresholds
+            var N = ( MAX_MAJORITY_MOLECULES - computeNumberOfOH( LOG_PH_RANGE.max ) ) / ( PHScaleConstants.PH_RANGE.max - LOG_PH_RANGE.max );
+            var pHDiff;
+            if ( pH > LOG_PH_RANGE.max ) {
+              // strong base
+              pHDiff = pH - LOG_PH_RANGE.max;
+              numberOfH3O = Math.max( MIN_MINORITY_MOLECULES, ( computeNumberOfH3O( LOG_PH_RANGE.max ) - pHDiff ) );
+              numberOfOH = computeNumberOfOH( LOG_PH_RANGE.max ) + ( pHDiff * N );
+            }
+            else {
+              // strong acid
+              pHDiff = LOG_PH_RANGE.min - pH;
+              numberOfH3O = computeNumberOfH3O( LOG_PH_RANGE.min ) + ( pHDiff * N );
+              numberOfOH = Math.max( MIN_MINORITY_MOLECULES, ( computeNumberOfOH( LOG_PH_RANGE.min ) - pHDiff ) );
+            }
+          }
+
+          // convert to integer values
+          numberOfH3O = Math.round( numberOfH3O );
+          numberOfOH = Math.round( numberOfOH );
+        }
+
+        // update molecules
+        this.moleculesNode.drawMolecules( numberOfH3O, numberOfOH );
+
+        // update dev counts
+        if ( this.ratioText ) {
+          this.ratioText.text = numberOfH3O + ' / ' + numberOfOH;
+        }
+      }
+    }
+  } );
 
   // @private ----------------------------------------------------------------------------
 
@@ -103,6 +235,8 @@ define( function( require ) {
       thisNode.imageOHMinority = image; // @private
     } );
   }
+
+  phScale.register( 'RatioNode.MoleculesCanvas', MoleculesCanvas );
 
   inherit( CanvasNode, MoleculesCanvas, {
 
@@ -175,132 +309,5 @@ define( function( require ) {
     }
   }, {} );
 
-  //-------------------------------------------------------------------------------------
-
-  /**
-   * @param {Beaker} beaker
-   * @param {Solution} solution
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {Object} [options]
-   * @constructor
-   */
-  function RatioNode( beaker, solution, modelViewTransform, options ) {
-
-    var thisNode = this;
-    Node.call( thisNode );
-
-    // save constructor args
-    thisNode.solution = solution; // @private
-
-    // current pH
-    thisNode.pH = null; // @private null to force an update
-
-    // bounds of the beaker, in view coordinates
-    var beakerBounds = modelViewTransform.modelToViewBounds( beaker.bounds );
-
-    // parent for all molecules
-    thisNode.moleculesNode = new MoleculesCanvas( beakerBounds ); // @private
-    thisNode.addChild( thisNode.moleculesNode );
-
-    // dev mode, show numbers of molecules at bottom of beaker
-    if ( phet.chipper.getQueryParameter( 'dev' ) ) {
-      thisNode.ratioText = new Text( '?', {
-        font: new PhetFont( 30 ),
-        fill: 'black',
-        left: beakerBounds.getCenterX(),
-        bottom: beakerBounds.maxY - 20
-      } ); // @private
-      thisNode.addChild( thisNode.ratioText );
-    }
-
-    thisNode.mutate( options ); // call before registering for property notifications, because 'visible' significantly affects initialization time
-
-    // sync view with model
-    solution.pHProperty.link( thisNode.update.bind( thisNode ) );
-
-    // clip to the shape of the solution in the beaker
-    solution.volumeProperty.link( function( volume ) {
-      if ( volume === 0 ) {
-        thisNode.clipArea = null;
-      }
-      else {
-        var solutionHeight = beakerBounds.getHeight() * volume / beaker.volume;
-        thisNode.clipArea = Shape.rectangle( beakerBounds.minX, beakerBounds.maxY - solutionHeight, beakerBounds.getWidth(), solutionHeight );
-      }
-      thisNode.moleculesNode.invalidatePaint(); //WORKAROUND: #25, scenery#200
-    } );
-  }
-
-  return inherit( Node, RatioNode, {
-
-    // @override @public When this node becomes visible, update it.
-    setVisible: function( visible ) {
-      var doUpdate = visible && !this.visible;
-      Node.prototype.setVisible.call( this, visible );
-      if ( doUpdate ) { this.update(); }
-    },
-
-    /**
-     * Updates the number of molecules when the pH (as displayed on the meter) changes.
-     * If volume changes, we don't create more molecules, we just expose more of them.
-     * @private
-     */
-    update: function() {
-
-      // don't update if not visible
-      if ( !this.visible ) { return; }
-
-      var pH = this.solution.pHProperty.get();
-      if ( pH !== null ) {
-        pH = Util.toFixedNumber( this.solution.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
-      }
-
-      if ( this.pH !== pH ) {
-
-        this.pH = pH;
-        var numberOfH3O = 0;
-        var numberOfOH = 0;
-
-        if ( pH !== null ) {
-
-          // compute number of molecules
-          if ( LOG_PH_RANGE.contains( pH ) ) {
-            // # molecules varies logarithmically in this range
-            numberOfH3O = Math.max( MIN_MINORITY_MOLECULES, computeNumberOfH3O( pH ) );
-            numberOfOH = Math.max( MIN_MINORITY_MOLECULES, computeNumberOfOH( pH ) );
-          }
-          else {
-            // # molecules varies linearly in this range
-            // N is the number of molecules to add for each 1 unit of pH above or below the thresholds
-            var N = ( MAX_MAJORITY_MOLECULES - computeNumberOfOH( LOG_PH_RANGE.max ) ) / ( PHScaleConstants.PH_RANGE.max - LOG_PH_RANGE.max );
-            var pHDiff;
-            if ( pH > LOG_PH_RANGE.max ) {
-              // strong base
-              pHDiff = pH - LOG_PH_RANGE.max;
-              numberOfH3O = Math.max( MIN_MINORITY_MOLECULES, ( computeNumberOfH3O( LOG_PH_RANGE.max ) - pHDiff ) );
-              numberOfOH = computeNumberOfOH( LOG_PH_RANGE.max ) + ( pHDiff * N );
-            }
-            else {
-              // strong acid
-              pHDiff = LOG_PH_RANGE.min - pH;
-              numberOfH3O = computeNumberOfH3O( LOG_PH_RANGE.min ) + ( pHDiff * N );
-              numberOfOH = Math.max( MIN_MINORITY_MOLECULES, ( computeNumberOfOH( LOG_PH_RANGE.min ) - pHDiff ) );
-            }
-          }
-
-          // convert to integer values
-          numberOfH3O = Math.round( numberOfH3O );
-          numberOfOH = Math.round( numberOfOH );
-        }
-
-        // update molecules
-        this.moleculesNode.drawMolecules( numberOfH3O, numberOfOH );
-
-        // update dev counts
-        if ( this.ratioText ) {
-          this.ratioText.text = numberOfH3O + ' / ' + numberOfOH;
-        }
-      }
-    }
-  } );
+  return RatioNode;
 } );

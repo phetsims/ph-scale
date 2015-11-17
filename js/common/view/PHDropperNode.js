@@ -14,6 +14,7 @@ define( function( require ) {
   var EyeDropperNode = require( 'SCENERY_PHET/EyeDropperNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
+  var phScale = require( 'PH_SCALE/phScale' );
 
   /**
    * @param {Dropper} dropper
@@ -56,6 +57,8 @@ define( function( require ) {
       modelViewTransform: modelViewTransform
     } ) );
   }
+
+  phScale.register( 'PHDropperNode', PHDropperNode );
 
   return inherit( EyeDropperNode, PHDropperNode );
 } );

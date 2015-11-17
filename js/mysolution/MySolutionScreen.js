@@ -14,6 +14,7 @@ define( function( require ) {
   var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
   var MySolutionModel = require( 'PH_SCALE/mysolution/model/MySolutionModel' );
   var MySolutionView = require( 'PH_SCALE/mysolution/view/MySolutionView' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Screen = require( 'JOIST/Screen' );
 
@@ -24,6 +25,9 @@ define( function( require ) {
   var homeIcon = require( 'image!PH_SCALE/MySolution-home-icon.png' );
   var navbarIcon = require( 'image!PH_SCALE/MySolution-navbar-icon.png' );
 
+  /**
+   * @constructor
+   */
   function MySolutionScreen() {
     Screen.call( this,
       screenMySolutionString,
@@ -36,6 +40,8 @@ define( function( require ) {
       }
     );
   }
+
+  phScale.register( 'MySolutionScreen', MySolutionScreen );
 
   return inherit( Screen, MySolutionScreen );
 } );

@@ -19,6 +19,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var OHNode = require( 'PH_SCALE/common/view/molecules/OHNode' );
   var Path = require( 'SCENERY/nodes/Path' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
@@ -196,6 +197,8 @@ define( function( require ) {
 
     thisNode.mutate( options );
   }
+
+  phScale.register( 'GraphIndicator', GraphIndicator );
 
   return inherit( Node, GraphIndicator, {}, {
 

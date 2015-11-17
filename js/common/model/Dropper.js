@@ -11,6 +11,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Movable = require( 'PH_SCALE/common/model/Movable' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var Property = require( 'AXON/Property' );
 
   /**
@@ -61,6 +62,8 @@ define( function( require ) {
       }
     } );
   }
+
+  phScale.register( 'Dropper', Dropper );
 
   return inherit( Movable, Dropper, {
 

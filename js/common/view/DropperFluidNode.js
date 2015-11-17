@@ -10,6 +10,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
   /**
@@ -50,6 +51,8 @@ define( function( require ) {
       thisNode.setVisible( visible );
     } );
   }
+
+  phScale.register( 'DropperFluidNode', DropperFluidNode );
 
   return inherit( Rectangle, DropperFluidNode );
 } );

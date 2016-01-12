@@ -170,10 +170,10 @@ define( function( require ) {
       valueNode.addChild( downArrowNode );
 
       // touch areas, expanded mostly to the right
-      var expandX = upArrowNode.width / 2;
-      var expandY = 6;
-      upArrowNode.touchArea = upArrowNode.localBounds.dilatedXY( expandX, expandY ).shifted( expandX, -expandY );
-      downArrowNode.touchArea = downArrowNode.localBounds.dilatedXY( expandX, expandY ).shifted( expandX, expandY );
+      var xDilation = upArrowNode.width / 2;
+      var yDilation = 6;
+      upArrowNode.touchArea = upArrowNode.localBounds.dilatedXY( xDilation, yDilation ).shifted( xDilation, -yDilation );
+      downArrowNode.touchArea = downArrowNode.localBounds.dilatedXY( xDilation, yDilation ).shifted( xDilation, yDilation );
 
       /*
        * solution.pHProperty is derived, so we can't change it directly.

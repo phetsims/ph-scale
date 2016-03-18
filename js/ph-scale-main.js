@@ -18,8 +18,6 @@ define( function( require ) {
   // strings
   var phScaleTitleString = require( 'string!PH_SCALE/ph-scale.title' );
 
-  var screens = [ new MacroScreen(), new MicroScreen(), new MySolutionScreen() ];
-
   var simOptions = {
     credits: {
       leadDesign: 'Yuen-ying Carpenter',
@@ -32,6 +30,11 @@ define( function( require ) {
   };
 
   SimLauncher.launch( function() {
+    var screens = [
+      new MacroScreen(),
+      new MicroScreen(),
+      new MySolutionScreen()
+    ];
     var sim = new Sim( phScaleTitleString, screens, simOptions );
     sim.start();
   } );

@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.2.4 Tue Apr 05 2016 14:02:38 GMT-0600 (MDT)",
+  "comment": "# ph-scale 1.2.4 Thu Jun 16 2016 09:48:50 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "3921bc3784dc67e9cbfa31cdec52b582fcfc68e7",
     "branch": "HEAD"
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "1b2defdcecb8b3c8697f72f32933ca9da6a810d5",
+    "sha": "7d3ab5418794b29c73f2cca9de28073a2547349c",
     "branch": "1.2"
   },
   "phet-core": {
@@ -41,8 +41,8 @@
     "branch": "HEAD"
   },
   "phetcommon": {
-    "sha": "d38a40b137e22783ef8303ada228f0fbda462ac3",
-    "branch": "HEAD"
+    "sha": "cf46da6d8699cb3d787de8718a2f7d97575527e8",
+    "branch": "ph-scale-1.2"
   },
   "scenery": {
     "sha": "96a4512762357124e24b726a34daf764084a32b4",

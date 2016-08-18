@@ -174,12 +174,12 @@ define( function( require ) {
 
   // Creates a random {number} x-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
   var createRandomX = function( bounds ) {
-    return Math.floor( bounds.x + ( Math.random() * bounds.getWidth() ) );
+    return Math.floor( bounds.x + ( phet.joist.random.nextDouble() * bounds.getWidth() ) );
   };
 
   // Creates a random {number} y-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
   var createRandomY = function( bounds ) {
-    return Math.floor( bounds.y + ( Math.random() * bounds.getHeight() ) );
+    return Math.floor( bounds.y + ( phet.joist.random.nextDouble() * bounds.getHeight() ) );
   };
 
   // Computes the {number} number of H3O+ molecules for some {number} pH.

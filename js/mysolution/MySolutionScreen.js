@@ -29,15 +29,18 @@ define( function( require ) {
    * @constructor
    */
   function MySolutionScreen() {
+
+    var options = {
+      name: screenMySolutionString,
+      backgroundColor: PHScaleColors.SCREEN_BACKGROUND,
+      homeScreenIcon: new Image( homeIcon ),
+      navigationBarIcon: new Image( navbarIcon )
+    };
+
     Screen.call( this,
-      screenMySolutionString,
-      new Image( homeIcon ),
       function() { return new MySolutionModel(); },
       function( model ) { return new MySolutionView( model, ModelViewTransform2.createIdentity() ); },
-      {
-        backgroundColor: PHScaleColors.SCREEN_BACKGROUND,
-        navigationBarIcon: new Image( navbarIcon )
-      }
+      options
     );
   }
 

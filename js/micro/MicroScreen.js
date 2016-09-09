@@ -29,15 +29,18 @@ define( function( require ) {
    * @constructor
    */
   function MicroScreen() {
+
+    var options = {
+      name: screenMicroString,
+      backgroundColor: PHScaleColors.SCREEN_BACKGROUND,
+      homeScreenIcon: new Image( homeIcon ),
+      navigationBarIcon: new Image( navbarIcon )
+    };
+
     Screen.call( this,
-      screenMicroString,
-      new Image( homeIcon ),
       function() { return new MicroModel(); },
       function( model ) { return new MicroView( model, ModelViewTransform2.createIdentity() ); },
-      {
-        backgroundColor: PHScaleColors.SCREEN_BACKGROUND,
-        navigationBarIcon: new Image( navbarIcon )
-      }
+      options
     );
   }
 

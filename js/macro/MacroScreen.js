@@ -30,15 +30,18 @@ define( function( require ) {
    * @constructor
    */
   function MacroScreen( modelOptions ) {
+
+    var options = {
+      name: screenMacroString,
+      backgroundColor: PHScaleColors.SCREEN_BACKGROUND,
+      homeScreenIcon: new Image( homeIcon ),
+      navigationBarIcon: new Image( navbarIcon )
+    };
+
     Screen.call( this,
-      screenMacroString,
-      new Image( homeIcon ),
       function() { return new MacroModel( modelOptions ); },
       function( model ) { return new MacroView( model, ModelViewTransform2.createIdentity() ); },
-      {
-        backgroundColor: PHScaleColors.SCREEN_BACKGROUND,
-        navigationBarIcon: new Image( navbarIcon )
-      }
+      options
     );
   }
 

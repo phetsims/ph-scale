@@ -58,8 +58,7 @@ define( function( require ) {
       majorTickXSpacing: 5
     }, options );
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     var scaleWidth = options.minScaleWidth;
     var scaleHeight = options.scaleHeight;
@@ -80,7 +79,7 @@ define( function( require ) {
         .close(),
       { fill: options.scaleFill, stroke: options.scaleStroke, lineWidth: options.scaleLineWidth, top: arrowGap }
     );
-    thisNode.addChild( arrowNode );
+    this.addChild( arrowNode );
 
     // scale below the arrow
     var scaleNode = new Path( new Shape()
@@ -91,11 +90,11 @@ define( function( require ) {
         .close(),
       { fill: options.scaleFill, stroke: options.scaleStroke, lineWidth: options.scaleLineWidth }
     );
-    thisNode.addChild( scaleNode );
+    this.addChild( scaleNode );
 
     // 'off scale' label, positioned inside arrow
     var offScaleNode = new Text( offScaleString, { font: new PhetFont( 18 ), fill: 'black', maxWidth: 0.5 * arrowWidth } );
-    thisNode.addChild( offScaleNode );
+    this.addChild( offScaleNode );
     offScaleNode.centerX = arrowNode.centerX;
     offScaleNode.y = arrowNode.top + ( 0.85 * arrowHeadHeight );
 
@@ -117,9 +116,9 @@ define( function( require ) {
         showIntegersAsMantissaOnly: true
       } );
       // rendering order
-      thisNode.addChild( tickLineLeft );
-      thisNode.addChild( tickLineRight );
-      thisNode.addChild( tickLabel );
+      this.addChild( tickLineLeft );
+      this.addChild( tickLineRight );
+      this.addChild( tickLabel );
       // layout
       tickLineLeft.left = scaleNode.left;
       tickLineLeft.centerY = scaleNode.bottom - options.scaleYMargin - ( i * ySpacing );
@@ -146,9 +145,9 @@ define( function( require ) {
       x: scaleNode.right - options.majorTickLength,
       isInteractive: options.isInteractive
     } );
-    thisNode.addChild( h2OIndicatorNode );
-    thisNode.addChild( h3OIndicatorNode );
-    thisNode.addChild( oHIndicatorNode );
+    this.addChild( h2OIndicatorNode );
+    this.addChild( h3OIndicatorNode );
+    this.addChild( oHIndicatorNode );
 
     /*
      * Given a value, compute it's y position relative to the top of the scale.
@@ -198,10 +197,10 @@ define( function( require ) {
     };
 
     // Move the indicators when any of these change.
-    solution.pHProperty.link( updateIndicators.bind( thisNode ) );
-    solution.volumeProperty.link( updateIndicators.bind( thisNode ) );
-    graphUnitsProperty.link( updateIndicators.bind( thisNode ) );
-    exponentProperty.link( updateIndicators.bind( thisNode ) );
+    solution.pHProperty.link( updateIndicators.bind( this ) );
+    solution.volumeProperty.link( updateIndicators.bind( this ) );
+    graphUnitsProperty.link( updateIndicators.bind( this ) );
+    exponentProperty.link( updateIndicators.bind( this ) );
 
     // updates the tick labels to match the exponent
     var updateTickLabels = function( exponent ) {

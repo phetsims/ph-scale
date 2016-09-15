@@ -24,9 +24,9 @@ define( function( require ) {
    */
   function PHDropperNode( dropper, modelViewTransform, options ) {
 
-    var thisNode = this;
+    var self = this;
 
-    EyeDropperNode.call( thisNode, _.extend( {
+    EyeDropperNode.call( this, _.extend( {
       dispensingProperty: dropper.dispensingProperty,
       enabledProperty: dropper.enabledProperty,
       emptyProperty: dropper.emptyProperty
@@ -34,25 +34,25 @@ define( function( require ) {
 
     // location
     dropper.locationProperty.link( function( location ) {
-      thisNode.translation = modelViewTransform.modelToViewPosition( location );
+      self.translation = modelViewTransform.modelToViewPosition( location );
     } );
 
     // visibility
     dropper.visibleProperty.link( function( visible ) {
-      thisNode.visible = visible;
+      self.visible = visible;
       if ( !visible ) { dropper.flowRateProperty.set( 0 ); }
     } );
 
     // change fluid color when the solute changes
     dropper.soluteProperty.link( function( solute ) {
-      thisNode.fluidColor = solute.stockColor;
+      self.fluidColor = solute.stockColor;
     } );
 
     // dilate touch area
-    thisNode.touchArea = thisNode.localBounds.dilatedX( 0.25 * thisNode.width );
+    this.touchArea = this.localBounds.dilatedX( 0.25 * this.width );
 
     // move the dropper
-    thisNode.addInputListener( new MovableDragHandler( dropper.locationProperty, {
+    this.addInputListener( new MovableDragHandler( dropper.locationProperty, {
       dragBounds: dropper.dragBounds,
       modelViewTransform: modelViewTransform
     } ) );

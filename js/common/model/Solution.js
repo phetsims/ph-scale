@@ -32,13 +32,13 @@ define( function( require ) {
   function Solution( soluteProperty, soluteVolume, waterVolume, maxVolume ) {
     assert && assert( soluteVolume + waterVolume <= maxVolume );
 
-    var thisSolution = this;
+    var self = this;
 
     // @public
-    thisSolution.soluteProperty = soluteProperty;
-    thisSolution.soluteVolumeProperty = new Property( soluteVolume );
-    thisSolution.waterVolumeProperty = new Property( waterVolume );
-    thisSolution.maxVolume = maxVolume;
+    this.soluteProperty = soluteProperty;
+    this.soluteVolumeProperty = new Property( soluteVolume );
+    this.waterVolumeProperty = new Property( waterVolume );
+    this.maxVolume = maxVolume;
 
     /*
      * @public
@@ -47,23 +47,23 @@ define( function( require ) {
      * which currently happens only during draining. To prevent bogus intermediate values (for example, pH and total volume),
      * clients who observe both waterVolumeProperty and soluteVolumeProperty should consult the ignoreVolumeUpdate flag before updating.
      */
-    thisSolution.ignoreVolumeUpdate = false;
+    this.ignoreVolumeUpdate = false;
 
     // @public volume
-    thisSolution.volumeProperty = new DerivedProperty( [ thisSolution.soluteVolumeProperty, thisSolution.waterVolumeProperty ],
+    this.volumeProperty = new DerivedProperty( [ this.soluteVolumeProperty, this.waterVolumeProperty ],
       function() {
-        return ( thisSolution.ignoreVolumeUpdate ) ? thisSolution.volumeProperty.get() : thisSolution.computeVolume();
+        return ( self.ignoreVolumeUpdate ) ? self.volumeProperty.get() : self.computeVolume();
       }
     );
 
     // @public pH, null if no value
-    thisSolution.pHProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.waterVolumeProperty ],
+    this.pHProperty = new DerivedProperty( [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
       function() {
-        if ( thisSolution.ignoreVolumeUpdate ) {
-          return thisSolution.pHProperty.get();
+        if ( self.ignoreVolumeUpdate ) {
+          return self.pHProperty.get();
         }
         else {
-          var pH = thisSolution.computePH();
+          var pH = self.computePH();
           if ( pH !== null ) {
             pH = Util.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ); // constrain to the pH meter format, see issue #4
           }
@@ -72,12 +72,12 @@ define( function( require ) {
       } );
 
     // @public color
-    thisSolution.colorProperty = new DerivedProperty( [ thisSolution.soluteProperty, thisSolution.soluteVolumeProperty, thisSolution.waterVolumeProperty ],
+    this.colorProperty = new DerivedProperty( [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
       function( solute, soluteVolume, waterVolume ) {
         if ( soluteVolume + waterVolume === 0 ) {
           return Color.BLACK; // no solution, should never see this color displayed
         }
-        else if ( soluteVolume === 0 || thisSolution.isEquivalentToWater() ) {
+        else if ( soluteVolume === 0 || self.isEquivalentToWater() ) {
           return Water.color;
         }
         else {
@@ -86,10 +86,10 @@ define( function( require ) {
       } );
 
     // solute
-    thisSolution.soluteProperty.link( function() {
+    this.soluteProperty.link( function() {
       // reset to volumes that were specified in the constructor
-      thisSolution.waterVolumeProperty.set( waterVolume );
-      thisSolution.soluteVolumeProperty.set( soluteVolume );
+      self.waterVolumeProperty.set( waterVolume );
+      self.soluteVolumeProperty.set( soluteVolume );
     } );
   }
 

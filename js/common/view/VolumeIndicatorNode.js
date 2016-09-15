@@ -38,8 +38,7 @@ define( function( require ) {
    */
   function VolumeIndicatorNode( volumeProperty, beaker, modelViewTransform ) {
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     // nodes
     var arrowHead = new Path( new Shape()
@@ -55,20 +54,21 @@ define( function( require ) {
     } );
 
     // rendering order
-    thisNode.addChild( valueNode );
-    thisNode.addChild( arrowHead );
+    this.addChild( valueNode );
+    this.addChild( arrowHead );
 
     // x location
-    thisNode.left = modelViewTransform.modelToViewX( beaker.right ) + 3;
+    this.left = modelViewTransform.modelToViewX( beaker.right ) + 3;
 
     // update when the volume changes
+    var self = this;
     volumeProperty.link( function( volume ) {
       // text
       valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( volume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), unitsLitersString );
       valueNode.centerY = arrowHead.centerY;
       // y-location
       var solutionHeight = Util.linear( 0, beaker.volume, 0, beaker.size.height, volume ); // volume -> height, model coordinates
-      thisNode.y = modelViewTransform.modelToViewY( beaker.location.y - solutionHeight );
+      self.y = modelViewTransform.modelToViewY( beaker.location.y - solutionHeight );
     } );
   }
 

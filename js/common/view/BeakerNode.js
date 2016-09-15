@@ -41,8 +41,7 @@ define( function( require ) {
    */
   function BeakerNode( beaker, modelViewTransform ) {
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     // outline of the beaker, starting from upper left
     var beakerWidth = modelViewTransform.modelToViewDeltaX( beaker.size.width );
@@ -54,17 +53,16 @@ define( function( require ) {
       .lineTo( beakerWidth / 2, 0 )
       .lineTo( beakerWidth / 2, -beakerHeight )
       .lineTo( (beakerWidth / 2) + RIM_OFFSET, -beakerHeight - RIM_OFFSET );
-    thisNode.addChild( new Path( outlineShape,
-      {
-        stroke: 'black',
-        lineWidth: 3,
-        lineCap: 'round',
-        lineJoin: 'round'
-      } ) );
+    this.addChild( new Path( outlineShape, {
+      stroke: 'black',
+      lineWidth: 3,
+      lineCap: 'round',
+      lineJoin: 'round'
+    } ) );
 
     // horizontal tick marks on left and right edges, labels on right ticks, from bottom up
     var ticksParent = new Node();
-    thisNode.addChild( ticksParent );
+    this.addChild( ticksParent );
     var numberOfTicks = Math.round( beaker.volume / MINOR_TICK_SPACING );
     var deltaY = beakerHeight / numberOfTicks;
     var beakerLeft = -beakerWidth / 2;
@@ -101,7 +99,7 @@ define( function( require ) {
       }
     }
 
-    thisNode.translation = modelViewTransform.modelToViewPosition( beaker.location );
+    this.translation = modelViewTransform.modelToViewPosition( beaker.location );
   }
 
   phScale.register( 'BeakerNode', BeakerNode );

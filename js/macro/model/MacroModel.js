@@ -32,10 +32,10 @@ define( function( require ) {
       autoFillVolume: 0.5 // L, automatically fill beaker with this much solute when the solute changes
     }, options );
 
-    var thisModel = this;
+    var self = this;
 
     // @public solute choices, in order that they'll appear in the combo box
-    thisModel.solutes = [
+    this.solutes = [
       Solute.DRAIN_CLEANER,
       Solute.HAND_SOAP,
       Solute.BLOOD,
@@ -50,46 +50,46 @@ define( function( require ) {
     ];
 
     // @public Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
-    thisModel.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
+    this.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
 
     // Dropper above the beaker
-    var yDropper = thisModel.beaker.location.y - thisModel.beaker.size.height - 15;
+    var yDropper = this.beaker.location.y - this.beaker.size.height - 15;
     // @public
-    thisModel.dropper = new Dropper( Solute.CHICKEN_SOUP,
-      new Vector2( thisModel.beaker.location.x - 50, yDropper ),
-      new Bounds2( thisModel.beaker.left + 40, yDropper, thisModel.beaker.right - 200, yDropper ) );
+    this.dropper = new Dropper( Solute.CHICKEN_SOUP,
+      new Vector2( this.beaker.location.x - 50, yDropper ),
+      new Bounds2( this.beaker.left + 40, yDropper, this.beaker.right - 200, yDropper ) );
 
     // @public Solution in the beaker
-    thisModel.solution = new Solution( thisModel.dropper.soluteProperty, 0, 0, thisModel.beaker.volume );
+    this.solution = new Solution( this.dropper.soluteProperty, 0, 0, this.beaker.volume );
 
     // @public Water faucet at the beaker's top-right
-    thisModel.waterFaucet = new Faucet( new Vector2( thisModel.beaker.right - 50, thisModel.beaker.location.y - thisModel.beaker.size.height - 45 ),
-      thisModel.beaker.right + 400,
-      { enabled: thisModel.solution.volumeProperty.get() < thisModel.beaker.volume } );
+    this.waterFaucet = new Faucet( new Vector2( this.beaker.right - 50, this.beaker.location.y - this.beaker.size.height - 45 ),
+      this.beaker.right + 400,
+      { enabled: this.solution.volumeProperty.get() < this.beaker.volume } );
 
     // @public Drain faucet at the beaker's bottom-left.
-    thisModel.drainFaucet = new Faucet( new Vector2( thisModel.beaker.left - 75, thisModel.beaker.location.y + 43 ), thisModel.beaker.left,
-      { enabled: thisModel.solution.volumeProperty.get() > 0 } );
+    this.drainFaucet = new Faucet( new Vector2( this.beaker.left - 75, this.beaker.location.y + 43 ), this.beaker.left,
+      { enabled: this.solution.volumeProperty.get() > 0 } );
 
     // pH meter to the left of the drain faucet
-    var pHMeterLocation = new Vector2( thisModel.drainFaucet.location.x - 300, 75 );
-    thisModel.pHMeter = new PHMeter( pHMeterLocation, new Vector2( pHMeterLocation.x + 150, thisModel.beaker.location.y ),
+    var pHMeterLocation = new Vector2( this.drainFaucet.location.x - 300, 75 );
+    this.pHMeter = new PHMeter( pHMeterLocation, new Vector2( pHMeterLocation.x + 150, this.beaker.location.y ),
       PHScaleConstants.SCREEN_VIEW_OPTIONS.layoutBounds );
 
     // auto-fill when the solute changes
     this.autoFillVolume = options.autoFillVolume; // @private
     this.isAutoFilling = false; // @private
-    thisModel.dropper.soluteProperty.link( function() {
+    this.dropper.soluteProperty.link( function() {
       // disable the faucets to cancel any multi-touch interaction that may be in progress, see issue #28
-      thisModel.waterFaucet.enabledProperty.set( false );
-      thisModel.drainFaucet.enabledProperty.set( false );
+      self.waterFaucet.enabledProperty.set( false );
+      self.drainFaucet.enabledProperty.set( false );
       // animate the dropper adding solute to the beaker
-      thisModel.startAutoFill();
+      self.startAutoFill();
     } );
 
     // Enable faucets and dropper based on amount of solution in the beaker.
-    thisModel.solution.volumeProperty.link( function( volume ) {
-      thisModel.updateFaucetsAndDropper();
+    this.solution.volumeProperty.link( function( volume ) {
+      self.updateFaucetsAndDropper();
     } );
   }
 

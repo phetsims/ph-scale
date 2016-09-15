@@ -23,13 +23,13 @@ define( function( require ) {
    */
   function FaucetFluidNode( faucet, colorProperty, height, modelViewTransform ) {
 
-    var thisNode = this;
-    Rectangle.call( thisNode, 0, 0, 0, 0, { lineWidth: 1, pickable: false } );
+    var self = this;
+    Rectangle.call( this, 0, 0, 0, 0, { lineWidth: 1, pickable: false } );
 
     // Set the color of the fluid coming out of the spout.
     colorProperty.link( function( color ) {
-      thisNode.fill = color;
-      thisNode.stroke = color.darkerColor();
+      self.fill = color;
+      self.stroke = color.darkerColor();
     } );
 
     /*
@@ -40,11 +40,11 @@ define( function( require ) {
     var viewHeight = modelViewTransform.modelToViewDeltaY( height );
     faucet.flowRateProperty.link( function( flowRate ) {
       if ( flowRate === 0 ) {
-        thisNode.setRect( -1, -1, 0, 0 ); // empty rectangle, at a location where we won't intersect with it
+        self.setRect( -1, -1, 0, 0 ); // empty rectangle, at a location where we won't intersect with it
       }
       else {
         var viewWidth = modelViewTransform.modelToViewDeltaX( faucet.spoutWidth * flowRate / faucet.maxFlowRate );
-        thisNode.setRect( viewLocation.x - (viewWidth / 2), viewLocation.y, viewWidth, viewHeight );
+        self.setRect( viewLocation.x - (viewWidth / 2), viewLocation.y, viewWidth, viewHeight );
       }
     } );
   }

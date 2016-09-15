@@ -27,8 +27,7 @@ define( function( require ) {
    */
   function MoleculeCountNode( solution, options ) {
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     // margins and spacing
     var xMargin = 10;
@@ -69,15 +68,15 @@ define( function( require ) {
       { fill: PHScaleColors.H2O_BACKGROUND, stroke: backgroundStroke } );
 
     // rendering order
-    thisNode.addChild( backgroundH3O );
-    thisNode.addChild( backgroundOH );
-    thisNode.addChild( backgroundH2O );
-    thisNode.addChild( countH3ONode );
-    thisNode.addChild( countOHNode );
-    thisNode.addChild( countH2ONode );
-    thisNode.addChild( nodeH3O );
-    thisNode.addChild( nodeOH );
-    thisNode.addChild( nodeH2O );
+    this.addChild( backgroundH3O );
+    this.addChild( backgroundOH );
+    this.addChild( backgroundH2O );
+    this.addChild( countH3ONode );
+    this.addChild( countOHNode );
+    this.addChild( countH2ONode );
+    this.addChild( nodeH3O );
+    this.addChild( nodeOH );
+    this.addChild( nodeH2O );
 
     // layout...
     // backgrounds are vertically stacked
@@ -113,11 +112,11 @@ define( function( require ) {
       countOHNode.centerY = backgroundOH.centerY;
       countH2ONode.centerY = backgroundH2O.centerY;
     };
-    solution.pHProperty.link( updateCounts.bind( thisNode ) );
-    solution.waterVolumeProperty.link( updateCounts.bind( thisNode ) );
-    solution.soluteVolumeProperty.link( updateCounts.bind( thisNode ) );
+    solution.pHProperty.link( updateCounts.bind( this ) );
+    solution.waterVolumeProperty.link( updateCounts.bind( this ) );
+    solution.soluteVolumeProperty.link( updateCounts.bind( this ) );
 
-    thisNode.mutate( options );
+    this.mutate( options );
   }
 
   phScale.register( 'MoleculeCountNode', MoleculeCountNode );

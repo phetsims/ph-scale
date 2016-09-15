@@ -26,8 +26,7 @@ define( function( require ) {
    */
   function NeutralIndicator( solution ) {
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     var label = new Text( neutralString, { font: new PhetFont( { size: 30, weight: 'bold' } ), maxWidth: 300 } );
 
@@ -36,16 +35,17 @@ define( function( require ) {
       { fill: 'rgba( 240, 240, 240, 0.6 )' } );
 
     // rendering order
-    thisNode.addChild( background );
-    thisNode.addChild( label );
+    this.addChild( background );
+    this.addChild( label );
 
     // layout
     label.centerX = background.centerX;
     label.centerY = background.centerY;
 
     // make this node visible when the solution is saturated
+    var self = this;
     solution.pHProperty.link( function() {
-      thisNode.setVisible( solution.isEquivalentToWater() );
+      self.setVisible( solution.isEquivalentToWater() );
     } );
   }
 

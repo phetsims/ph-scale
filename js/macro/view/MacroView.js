@@ -37,8 +37,7 @@ define( function( require ) {
    */
   function MacroView( model, modelViewTransform ) {
 
-    var thisView = this;
-    ScreenView.call( thisView, PHScaleConstants.SCREEN_VIEW_OPTIONS );
+    ScreenView.call( this, PHScaleConstants.SCREEN_VIEW_OPTIONS );
 
     // beaker
     var beakerNode = new BeakerNode( model.beaker, modelViewTransform );
@@ -97,7 +96,7 @@ define( function( require ) {
         soluteListParent // last, so that combo box list is on top
       ]
     } );
-    thisView.addChild( rootNode );
+    this.addChild( rootNode );
 
     // Layout of nodes that don't have a location specified in the model
     soluteComboBox.left = modelViewTransform.modelToViewX( model.beaker.left ) - 20; // anchor on left so it grows to the right during i18n

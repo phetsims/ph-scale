@@ -62,8 +62,7 @@ define( function( require ) {
       indicatorXOffset: 10
     }, options );
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     // background for the scale, width sized to fit
     var widestTickLabel = createTickLabel( PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, options.majorTickFont );
@@ -73,7 +72,7 @@ define( function( require ) {
       stroke: options.scaleStroke,
       lineWidth: options.scaleLineWidth
     } );
-    thisNode.addChild( backgroundNode );
+    this.addChild( backgroundNode );
 
     // tick marks
     var numberOfTicks = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.getLength() + 1;
@@ -95,9 +94,9 @@ define( function( require ) {
         tickLabel = createTickLabel( exponent, options.majorTickFont );
 
         // rendering order
-        thisNode.addChild( tickLineLeft );
-        thisNode.addChild( tickLineRight );
-        thisNode.addChild( tickLabel );
+        this.addChild( tickLineLeft );
+        this.addChild( tickLineRight );
+        this.addChild( tickLabel );
 
         // layout
         tickLineLeft.left = backgroundNode.left;
@@ -113,8 +112,8 @@ define( function( require ) {
         tickLineRight = new Line( 0, 0, options.minorTickLength, 0, { stroke: options.minorTickStroke, lineWidth: options.minorTickLineWidth } );
 
         // rendering order
-        thisNode.addChild( tickLineLeft );
-        thisNode.addChild( tickLineRight );
+        this.addChild( tickLineLeft );
+        this.addChild( tickLineRight );
 
         // layout
         tickLineLeft.left = backgroundNode.left;
@@ -139,9 +138,9 @@ define( function( require ) {
       x: backgroundNode.right - options.indicatorXOffset,
       isInteractive: options.isInteractive
     } );
-    thisNode.addChild( h2OIndicatorNode );
-    thisNode.addChild( h3OIndicatorNode );
-    thisNode.addChild( oHIndicatorNode );
+    this.addChild( h2OIndicatorNode );
+    this.addChild( h3OIndicatorNode );
+    this.addChild( oHIndicatorNode );
 
     // Given a value, compute it's y position relative to the top of the scale.
     var valueToY = function( value ) {
@@ -196,9 +195,9 @@ define( function( require ) {
       valueH3OProperty.set( valueH3O );
       valueOHProperty.set( valueOH );
     };
-    solution.pHProperty.link( updateIndicators.bind( thisNode ) );
-    solution.volumeProperty.link( updateIndicators.bind( thisNode ) );
-    graphUnitsProperty.link( updateIndicators.bind( thisNode ) );
+    solution.pHProperty.link( updateIndicators.bind( this ) );
+    solution.volumeProperty.link( updateIndicators.bind( this ) );
+    graphUnitsProperty.link( updateIndicators.bind( this ) );
 
     // Add optional interactivity
     if ( options.isInteractive ) {

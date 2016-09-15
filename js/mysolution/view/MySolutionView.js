@@ -38,8 +38,7 @@ define( function( require ) {
    */
   function MySolutionView( model, modelViewTransform ) {
 
-    var thisView = this;
-    ScreenView.call( thisView, PHScaleConstants.SCREEN_VIEW_OPTIONS );
+    ScreenView.call( this, PHScaleConstants.SCREEN_VIEW_OPTIONS );
 
     // view-specific properties
     var viewProperties = new PropertySet( {
@@ -101,7 +100,7 @@ define( function( require ) {
         resetAllButton
       ]
     } );
-    thisView.addChild( rootNode );
+    this.addChild( rootNode );
 
     // Layout of nodes that don't have a location specified in the model
     pHMeterNode.left = beakerNode.left;

@@ -24,13 +24,11 @@ define( function( require ) {
    */
   function MySolutionModel() {
 
-    var thisModel = this;
-
     // @public Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
-    thisModel.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
+    this.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
 
     // @public Solution in the beaker
-    thisModel.solution = new Solution( new Property( Solute.createCustom( 7 ) ), 0.5, 0, thisModel.beaker.volume );
+    this.solution = new Solution( new Property( Solute.createCustom( 7 ) ), 0.5, 0, this.beaker.volume );
   }
 
   phScale.register( 'MySolutionModel', MySolutionModel );

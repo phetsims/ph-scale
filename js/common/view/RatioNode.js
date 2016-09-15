@@ -50,48 +50,48 @@ define( function( require ) {
    */
   function RatioNode( beaker, solution, modelViewTransform, options ) {
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     // save constructor args
-    thisNode.solution = solution; // @private
+    this.solution = solution; // @private
 
     // current pH
-    thisNode.pH = null; // @private null to force an update
+    this.pH = null; // @private null to force an update
 
     // bounds of the beaker, in view coordinates
     var beakerBounds = modelViewTransform.modelToViewBounds( beaker.bounds );
 
     // parent for all molecules
-    thisNode.moleculesNode = new MoleculesCanvas( beakerBounds ); // @private
-    thisNode.addChild( thisNode.moleculesNode );
+    this.moleculesNode = new MoleculesCanvas( beakerBounds ); // @private
+    this.addChild( this.moleculesNode );
 
     // dev mode, show numbers of molecules at bottom of beaker
     if ( phet.chipper.getQueryParameter( 'dev' ) ) {
-      thisNode.ratioText = new Text( '?', {
+      this.ratioText = new Text( '?', {
         font: new PhetFont( 30 ),
         fill: 'black',
         left: beakerBounds.getCenterX(),
         bottom: beakerBounds.maxY - 20
       } ); // @private
-      thisNode.addChild( thisNode.ratioText );
+      this.addChild( this.ratioText );
     }
 
-    thisNode.mutate( options ); // call before registering for property notifications, because 'visible' significantly affects initialization time
+    this.mutate( options ); // call before registering for property notifications, because 'visible' significantly affects initialization time
 
     // sync view with model
-    solution.pHProperty.link( thisNode.update.bind( thisNode ) );
+    solution.pHProperty.link( this.update.bind( this ) );
 
     // clip to the shape of the solution in the beaker
+    var self = this;
     solution.volumeProperty.link( function( volume ) {
       if ( volume === 0 ) {
-        thisNode.clipArea = null;
+        self.clipArea = null;
       }
       else {
         var solutionHeight = beakerBounds.getHeight() * volume / beaker.volume;
-        thisNode.clipArea = Shape.rectangle( beakerBounds.minX, beakerBounds.maxY - solutionHeight, beakerBounds.getWidth(), solutionHeight );
+        self.clipArea = Shape.rectangle( beakerBounds.minX, beakerBounds.maxY - solutionHeight, beakerBounds.getWidth(), solutionHeight );
       }
-      thisNode.moleculesNode.invalidatePaint(); //WORKAROUND: #25, scenery#200
+      self.moleculesNode.invalidatePaint(); //WORKAROUND: #25, scenery#200
     } );
   }
 
@@ -201,21 +201,22 @@ define( function( require ) {
    */
   function MoleculesCanvas( beakerBounds ) {
 
-    var thisNode = this;
-    CanvasNode.call( thisNode, { canvasBounds: beakerBounds } );
+    var self = this;
 
-    thisNode.beakerBounds = beakerBounds; // @private
-    thisNode.numberOfH3OMolecules = 0; // @private
-    thisNode.numberOfOHMolecules = 0; // @private
+    CanvasNode.call( this, { canvasBounds: beakerBounds } );
+
+    this.beakerBounds = beakerBounds; // @private
+    this.numberOfH3OMolecules = 0; // @private
+    this.numberOfOHMolecules = 0; // @private
 
     // use typed array if available, it will use less memory and be faster
     var ArrayConstructor = window.Float32Array || window.Array;
 
     // pre-allocate arrays for molecule coordinates, to eliminate allocation in critical code
-    thisNode.xH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
-    thisNode.yH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
-    thisNode.xOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
-    thisNode.yOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
+    this.xH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
+    this.yH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
+    this.xOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
+    this.yOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
 
     /*
      * Generate majority and minority images for each molecule.
@@ -223,16 +224,16 @@ define( function( require ) {
      * toImage also takes optional x,y,width,height args, but we'll omit those and let scenery intelligently pick bounds.
      */
     new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA ) } ).toImage( function( image, x, y ) {
-      thisNode.imageH3OMajority = image; // @private
+      self.imageH3OMajority = image; // @private
     } );
     new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MINORITY_ALPHA ) } ).toImage( function( image, x, y ) {
-      thisNode.imageH3OMinority = image; // @private
+      self.imageH3OMinority = image; // @private
     } );
     new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MAJORITY_ALPHA ) } ).toImage( function( image, x, y ) {
-      thisNode.imageOHMajority = image; // @private
+      self.imageOHMajority = image; // @private
     } );
     new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MINORITY_ALPHA ) } ).toImage( function( image, x, y ) {
-      thisNode.imageOHMinority = image; // @private
+      self.imageOHMinority = image; // @private
     } );
   }
 

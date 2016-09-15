@@ -29,20 +29,19 @@ define( function( require ) {
       enabled: true
     }, options );
 
-    var thisFaucet = this;
-
     // @public
-    thisFaucet.location = location;
-    thisFaucet.pipeMinX = pipeMinX;
-    thisFaucet.spoutWidth = options.spoutWidth;
-    thisFaucet.maxFlowRate = options.maxFlowRate;
-    thisFaucet.flowRateProperty = new Property( options.flowRate );
-    thisFaucet.enabledProperty = new Property( options.enabled );
+    this.location = location;
+    this.pipeMinX = pipeMinX;
+    this.spoutWidth = options.spoutWidth;
+    this.maxFlowRate = options.maxFlowRate;
+    this.flowRateProperty = new Property( options.flowRate );
+    this.enabledProperty = new Property( options.enabled );
 
     // when disabled, turn off the faucet.
-    thisFaucet.enabledProperty.link( function( enabled ) {
+    var self = this;
+    this.enabledProperty.link( function( enabled ) {
       if ( !enabled ) {
-        thisFaucet.flowRateProperty.set( 0 );
+        self.flowRateProperty.set( 0 );
       }
     } );
   }

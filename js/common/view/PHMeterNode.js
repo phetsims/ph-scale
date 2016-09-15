@@ -57,16 +57,15 @@ define( function( require ) {
       attachProbe: 'center' // where to attach the probe: 'left'|'center'|'right'
     }, options );
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     // nodes
     var valueNode = new ValueNode( solution, expandedProperty, options.isInteractive );
     var probeNode = new ProbeNode( probeYOffset );
 
     // rendering order
-    thisNode.addChild( probeNode );
-    thisNode.addChild( valueNode );
+    this.addChild( probeNode );
+    this.addChild( valueNode );
 
     // layout
     if ( options.attachProbe === 'center' ) {
@@ -84,7 +83,7 @@ define( function( require ) {
       probeNode.visible = expanded;
     } );
 
-    thisNode.mutate( options );
+    this.mutate( options );
   }
 
   phScale.register( 'PHMeterNode', PHMeterNode );
@@ -103,8 +102,7 @@ define( function( require ) {
    */
   function ValueNode( solution, expandedProperty, isInteractive ) {
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     // pH value
     var valueText = new Text( Util.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
@@ -211,11 +209,11 @@ define( function( require ) {
     var collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, collapsedHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
 
     // rendering order
-    thisNode.addChild( collapsedRectangle );
-    thisNode.addChild( expandedRectangle );
-    thisNode.addChild( labelNode );
-    thisNode.addChild( expandCollapseButton );
-    thisNode.addChild( valueNode );
+    this.addChild( collapsedRectangle );
+    this.addChild( expandedRectangle );
+    this.addChild( labelNode );
+    this.addChild( expandCollapseButton );
+    this.addChild( valueNode );
 
     // layout
     expandCollapseButton.right = expandedRectangle.right - X_MARGIN;

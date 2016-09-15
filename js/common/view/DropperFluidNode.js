@@ -22,33 +22,33 @@ define( function( require ) {
    */
   function DropperFluidNode( dropper, beaker, tipWidth, modelViewTransform ) {
 
-    var thisNode = this;
-    Rectangle.call( thisNode, 0, 0, 0, 0, { lineWidth: 1 } );
+    var self = this;
+    Rectangle.call( this, 0, 0, 0, 0, { lineWidth: 1 } );
 
     // shape and location
     var updateShapeAndLocation = function() {
       // path
       if ( dropper.flowRateProperty.get() > 0 ) {
-        thisNode.setRect( -tipWidth / 2, 0, tipWidth, beaker.location.y - dropper.locationProperty.get().y );
+        self.setRect( -tipWidth / 2, 0, tipWidth, beaker.location.y - dropper.locationProperty.get().y );
       }
       else {
-        thisNode.setRect( 0, 0, 0, 0 );
+        self.setRect( 0, 0, 0, 0 );
       }
       // move this node to the dropper's location
-      thisNode.translation = modelViewTransform.modelToViewPosition( dropper.locationProperty.get() );
+      self.translation = modelViewTransform.modelToViewPosition( dropper.locationProperty.get() );
     };
     dropper.locationProperty.link( updateShapeAndLocation );
     dropper.flowRateProperty.link( updateShapeAndLocation );
 
     // set color to match solute
     dropper.soluteProperty.link( function( solute ) {
-      thisNode.fill = solute.stockColor;
-      thisNode.stroke = solute.stockColor.darkerColor();
+      self.fill = solute.stockColor;
+      self.stroke = solute.stockColor.darkerColor();
     } );
 
     // hide this node when the dropper is invisible
     dropper.visibleProperty.link( function( visible ) {
-      thisNode.setVisible( visible );
+      self.setVisible( visible );
     } );
   }
 

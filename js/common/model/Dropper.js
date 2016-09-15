@@ -32,33 +32,33 @@ define( function( require ) {
       visible: true
     }, options );
 
-    var thisDropper = this;
-    Movable.call( thisDropper, location, dragBounds );
+    var self = this;
+    Movable.call( this, location, dragBounds );
 
     // @public
-    thisDropper.soluteProperty = new Property( solute );
-    thisDropper.visibleProperty = new Property( options.visible );
-    thisDropper.dispensingProperty = new Property( options.dispensing );
-    thisDropper.enabledProperty = new Property( options.enabled );
-    thisDropper.emptyProperty = new Property( options.empty );
-    thisDropper.flowRateProperty = new Property( options.flowRate ); // L/sec
+    this.soluteProperty = new Property( solute );
+    this.visibleProperty = new Property( options.visible );
+    this.dispensingProperty = new Property( options.dispensing );
+    this.enabledProperty = new Property( options.enabled );
+    this.emptyProperty = new Property( options.empty );
+    this.flowRateProperty = new Property( options.flowRate ); // L/sec
 
     // Turn off the dropper when it's disabled.
-    thisDropper.enabledProperty.link( function( enabled ) {
+    this.enabledProperty.link( function( enabled ) {
       if ( !enabled ) {
-        thisDropper.dispensingProperty.set( false );
+        self.dispensingProperty.set( false );
       }
     } );
 
     // Toggle the flow rate when the dropper is turned on/off.
-    thisDropper.dispensingProperty.link( function( dispensing ) {
-      thisDropper.flowRateProperty.set( dispensing ? options.maxFlowRate : 0 );
+    this.dispensingProperty.link( function( dispensing ) {
+      self.flowRateProperty.set( dispensing ? options.maxFlowRate : 0 );
     } );
 
     // When the dropper becomes empty, disable it.
-    thisDropper.emptyProperty.link( function( empty ) {
+    this.emptyProperty.link( function( empty ) {
       if ( empty ) {
-        thisDropper.enabledProperty.set( false );
+        self.enabledProperty.set( false );
       }
     } );
   }

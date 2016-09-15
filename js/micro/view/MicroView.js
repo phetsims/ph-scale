@@ -47,8 +47,7 @@ define( function( require ) {
    */
   function MicroView( model, modelViewTransform ) {
 
-    var thisView = this;
-    ScreenView.call( thisView, PHScaleConstants.SCREEN_VIEW_OPTIONS );
+    ScreenView.call( this, PHScaleConstants.SCREEN_VIEW_OPTIONS );
 
     // view-specific properties
     var viewProperties = new PropertySet( {
@@ -137,7 +136,7 @@ define( function( require ) {
         soluteListParent // last, so that combo box list is on top
       ]
     } );
-    thisView.addChild( rootNode );
+    this.addChild( rootNode );
 
     // Layout of nodes that don't have a location specified in the model
     moleculeCountNode.centerX = beakerNode.centerX;

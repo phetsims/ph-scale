@@ -59,11 +59,10 @@ define( function( require ) {
       graphScale: GraphScale.LOGARITHMIC // initial state of the scale switch, meaningful only if hasLinearFeature === true
     }, options );
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     // @private
-    thisNode.viewProperties = new PropertySet( {
+    this.viewProperties = new PropertySet( {
       graphUnits: options.units
     } );
 
@@ -94,7 +93,7 @@ define( function( require ) {
       } );
 
     // logarithmic graph
-    var logarithmicGraph = new LogarithmicGraph( solution, thisNode.viewProperties.graphUnitsProperty, {
+    var logarithmicGraph = new LogarithmicGraph( solution, this.viewProperties.graphUnitsProperty, {
       scaleHeight: options.logScaleHeight,
       isInteractive: options.isInteractive
     } );
@@ -103,10 +102,10 @@ define( function( require ) {
     var lineToBarNode = new Line( 0, 0, 0, 75, { stroke: 'black' } );
 
     // rendering order
-    thisNode.addChild( expandCollapseBar );
-    thisNode.addChild( graphUnitsSwitch );
+    this.addChild( expandCollapseBar );
+    this.addChild( graphUnitsSwitch );
     var graphNode = new Node();
-    thisNode.addChild( graphNode );
+    this.addChild( graphNode );
     graphNode.addChild( lineToBarNode );
     graphNode.addChild( logarithmicGraph );
 
@@ -122,18 +121,18 @@ define( function( require ) {
     } );
 
     // optional linear graph
-    thisNode.hasLinearFeature = options.hasLinearFeature; // @private
-    if ( thisNode.hasLinearFeature ) {
+    this.hasLinearFeature = options.hasLinearFeature; // @private
+    if ( this.hasLinearFeature ) {
 
       var mantissaRange = PHScaleConstants.LINEAR_MANTISSA_RANGE;
       var exponentRange = PHScaleConstants.LINEAR_EXPONENT_RANGE;
 
       // add view properties related to the linear graph
-      thisNode.viewProperties.addProperty( 'exponent', exponentRange.max );
-      thisNode.viewProperties.addProperty( 'graphScale', options.graphScale );
+      this.viewProperties.addProperty( 'exponent', exponentRange.max );
+      this.viewProperties.addProperty( 'graphScale', options.graphScale );
 
       // linear graph
-      var linearGraph = new LinearGraph( solution, thisNode.viewProperties.graphUnitsProperty, mantissaRange, thisNode.viewProperties.exponentProperty, {
+      var linearGraph = new LinearGraph( solution, this.viewProperties.graphUnitsProperty, mantissaRange, this.viewProperties.exponentProperty, {
         scaleHeight: options.linearScaleHeight
       } );
 
@@ -153,7 +152,7 @@ define( function( require ) {
         font: AB_SWITCH_FONT,
         maxWidth: 125
       };
-      var graphScaleSwitch = new ABSwitch( thisNode.viewProperties.graphScaleProperty,
+      var graphScaleSwitch = new ABSwitch( this.viewProperties.graphScaleProperty,
         GraphScale.LOGARITHMIC, new Text( logarithmicString, textOptions ),
         GraphScale.LINEAR, new Text( linearString, textOptions ),
         { size: new Dimension2( 50, 25 ), centerOnButton: true } );
@@ -180,24 +179,25 @@ define( function( require ) {
       lineToSwitchNode.bottom = graphScaleSwitch.top + 1;
 
       // handle scale changes
-      thisNode.viewProperties.graphScaleProperty.link( function( graphScale ) {
+      this.viewProperties.graphScaleProperty.link( function( graphScale ) {
         logarithmicGraph.visible = ( graphScale === GraphScale.LOGARITHMIC );
         linearGraph.visible = zoomButtons.visible = ( graphScale === GraphScale.LINEAR );
       } );
 
       // enable/disable zoom buttons
-      thisNode.viewProperties.exponentProperty.link( function( exponent ) {
+      this.viewProperties.exponentProperty.link( function( exponent ) {
         assert && assert( exponentRange.contains( exponent ) );
         zoomInButton.enabled = ( exponent > exponentRange.min );
         zoomOutButton.enabled = ( exponent < exponentRange.max );
       } );
 
       // handle zoom of linear graph
+      var self = this;
       zoomInButton.addListener( function() {
-        thisNode.viewProperties.exponentProperty.set( thisNode.viewProperties.exponentProperty.get() - 1 );
+        self.viewProperties.exponentProperty.set( self.viewProperties.exponentProperty.get() - 1 );
       } );
       zoomOutButton.addListener( function() {
-        thisNode.viewProperties.exponentProperty.set( thisNode.viewProperties.exponentProperty.get() + 1 );
+        self.viewProperties.exponentProperty.set( self.viewProperties.exponentProperty.get() + 1 );
       } );
     }
   }

@@ -63,8 +63,7 @@ define( function( require ) {
       arrowXSpacing: 5
     }, options );
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     // Transform shapes to support various orientations of pointer.
     var shapeMatrix;
@@ -128,10 +127,10 @@ define( function( require ) {
     moleculeAndFormula.setScaleMagnitude( 0.7 );
 
     // rendering order
-    thisNode.addChild( backgroundNode );
-    thisNode.addChild( valueBackgroundNode );
-    thisNode.addChild( valueNode );
-    thisNode.addChild( moleculeAndFormula );
+    this.addChild( backgroundNode );
+    this.addChild( valueBackgroundNode );
+    this.addChild( valueNode );
+    this.addChild( moleculeAndFormula );
 
     // layout, relative to backgroundNode
     if ( options.pointerLocation === 'topRight' || options.pointerLocation === 'bottomRight' ) {
@@ -157,7 +156,7 @@ define( function( require ) {
         stroke: 'black',
         lineWidth: 2
       } );
-      thisNode.addChild( arrowNode );
+      this.addChild( arrowNode );
 
       // put the arrow on opposite side of the indicator's pointer
       if ( options.pointerLocation === 'topRight' || options.pointerLocation === 'bottomRight' ) {
@@ -169,7 +168,7 @@ define( function( require ) {
       arrowNode.centerY = backgroundNode.centerY;
 
       // make the entire bounds interactive, so there's no dead space between background and arrows
-      thisNode.mouseArea = thisNode.touchArea = thisNode.localBounds;
+      this.mouseArea = this.touchArea = this.localBounds;
 
       // set pickable false for nodes that don't need to be interactive, to improve performance.
       valueNode.pickable = false;
@@ -178,11 +177,12 @@ define( function( require ) {
     }
 
     // sync with value
+    var self = this;
     valueProperty.link( function( value ) {
       // disabled when value is zero
       var isEnabled = ( value !== 0 );
-      thisNode.opacity = isEnabled ? 1.0 : 0.5;
-      thisNode.cursor = ( isEnabled && options.isInteractive ) ? 'pointer' : 'default';
+      self.opacity = isEnabled ? 1.0 : 0.5;
+      self.cursor = ( isEnabled && options.isInteractive ) ? 'pointer' : 'default';
     } );
 
     /*
@@ -195,7 +195,7 @@ define( function( require ) {
       valueNode.center = valueBackgroundNode.center;
     } );
 
-    thisNode.mutate( options );
+    this.mutate( options );
   }
 
   phScale.register( 'GraphIndicator', GraphIndicator );

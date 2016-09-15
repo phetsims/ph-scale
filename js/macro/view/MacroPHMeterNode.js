@@ -69,8 +69,7 @@ define( function( require ) {
    */
   function MacroPHMeterNode( meter, solution, dropper, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform ) {
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     // pH scale, positioned at meter 'body' location
     var scaleNode = new ScaleNode( { size: SCALE_SIZE } );
@@ -84,10 +83,10 @@ define( function( require ) {
     var wireNode = new WireNode( meter.probe, scaleNode, probeNode );
 
     // rendering order
-    thisNode.addChild( wireNode );
-    thisNode.addChild( probeNode );
-    thisNode.addChild( scaleNode );
-    thisNode.addChild( indicatorNode );
+    this.addChild( wireNode );
+    this.addChild( probeNode );
+    this.addChild( scaleNode );
+    this.addChild( indicatorNode );
 
     // vertical position of the indicator
     meter.valueProperty.link( function( value ) {
@@ -135,7 +134,6 @@ define( function( require ) {
       size: new Dimension2( 75, 450 )
     }, options );
 
-    var thisNode = this;
     Node.call( this );
 
     // gradient background
@@ -148,7 +146,7 @@ define( function( require ) {
       stroke: 'black',
       lineWidth: this.backgroundStrokeWidth
     } );
-    thisNode.addChild( backgroundNode );
+    this.addChild( backgroundNode );
 
     // 'Acidic' label
     var textOptions = { fill: 'white', font: SCALE_LABEL_FONT, maxWidth: 0.45 * options.size.height };
@@ -156,14 +154,14 @@ define( function( require ) {
     acidicNode.rotation = -Math.PI / 2;
     acidicNode.centerX = backgroundNode.centerX;
     acidicNode.centerY = 0.75 * backgroundNode.height;
-    thisNode.addChild( acidicNode );
+    this.addChild( acidicNode );
 
     // 'Basic' label
     var basicNode = new Text( basicString, textOptions );
     basicNode.rotation = -Math.PI / 2;
     basicNode.centerX = backgroundNode.centerX;
     basicNode.centerY = 0.25 * backgroundNode.height;
-    thisNode.addChild( basicNode );
+    this.addChild( basicNode );
 
     // tick marks, labeled at 'even' values, skip 7 (neutral)
     var y = options.size.height;
@@ -174,14 +172,14 @@ define( function( require ) {
         var lineNode = new Line( 0, 0, TICK_LENGTH, 0, { stroke: 'black', lineWidth: 1 } );
         lineNode.right = backgroundNode.left;
         lineNode.centerY = y;
-        thisNode.addChild( lineNode );
+        this.addChild( lineNode );
 
         // tick label
         if ( pH % 2 === 0 ) {
           var tickLabelNode = new Text( pH, { font: TICK_FONT } );
           tickLabelNode.right = lineNode.left - TICK_LABEL_X_SPACING;
           tickLabelNode.centerY = lineNode.centerY;
-          thisNode.addChild( tickLabelNode );
+          this.addChild( tickLabelNode );
         }
       }
       y += dy;
@@ -191,12 +189,12 @@ define( function( require ) {
     var neutralLineNode = new Line( 0, 0, NEUTRAL_TICK_LENGTH, 0, { stroke: 'black', lineWidth: 3 } );
     neutralLineNode.right = backgroundNode.left;
     neutralLineNode.centerY = options.size.height / 2;
-    thisNode.addChild( neutralLineNode );
+    this.addChild( neutralLineNode );
     var neutralLabelNode = new Text( '7', {
       fill: PHScaleColors.NEUTRAL,
       font: new PhetFont( { family: 'Arial black', size: 28, weight: 'bold' } )
     } );
-    thisNode.addChild( neutralLabelNode );
+    this.addChild( neutralLabelNode );
     neutralLabelNode.right = neutralLineNode.left - TICK_LABEL_X_SPACING;
     neutralLabelNode.centerY = neutralLineNode.centerY;
   }
@@ -221,8 +219,7 @@ define( function( require ) {
    */
   function ValueNode( pHProperty, enabledProperty ) {
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     // pH value
     var valueNode = new Text( Util.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
@@ -260,11 +257,11 @@ define( function( require ) {
     var highlight = new Node( { children: [ innerHighlight, outerHighlight ], visible: false } );
 
     // rendering order
-    thisNode.addChild( backgroundRectangle );
-    thisNode.addChild( highlight );
-    thisNode.addChild( valueRectangle );
-    thisNode.addChild( labelNode );
-    thisNode.addChild( valueNode );
+    this.addChild( backgroundRectangle );
+    this.addChild( highlight );
+    this.addChild( valueRectangle );
+    this.addChild( labelNode );
+    this.addChild( valueNode );
 
     // layout
     labelNode.centerX = backgroundRectangle.centerX;
@@ -311,9 +308,9 @@ define( function( require ) {
    */
   function PHProbeNode( probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode ) {
 
-    var thisNode = this;
+    var self = this;
 
-    ProbeNode.call( thisNode, {
+    ProbeNode.call( this, {
       sensorTypeFunction: ProbeNode.crosshairs( {
         intersectionRadius: 6
       } ),
@@ -330,16 +327,16 @@ define( function( require ) {
 
     // probe location
     probe.locationProperty.link( function( location ) {
-      thisNode.translation = modelViewTransform.modelToViewPosition( location );
+      self.translation = modelViewTransform.modelToViewPosition( location );
     } );
 
     // touch area
-    var dx = 0.25 * thisNode.width;
-    var dy = 0.25 * thisNode.height;
-    thisNode.touchArea = Shape.rectangle( thisNode.x - dx, thisNode.y - dy, thisNode.width + dx + dx, thisNode.height + dy + dy );
+    var dx = 0.25 * this.width;
+    var dy = 0.25 * this.height;
+    this.touchArea = Shape.rectangle( this.x - dx, this.y - dy, this.width + dx + dx, this.height + dy + dy );
 
     // drag handler
-    thisNode.addInputListener( new MovableDragHandler( probe.locationProperty, {
+    this.addInputListener( new MovableDragHandler( probe.locationProperty, {
       dragBounds: probe.dragBounds,
       modelViewTransform: modelViewTransform
     } ) );
@@ -348,19 +345,19 @@ define( function( require ) {
       return node.getBounds().containsPoint( probe.locationProperty.get() );
     };
 
-    thisNode.isInSolution = function() {
+    this.isInSolution = function() {
       return isInNode( solutionNode );
     };
 
-    thisNode.isInWater = function() {
+    this.isInWater = function() {
       return isInNode( waterFluidNode );
     };
 
-    thisNode.isInDrainFluid = function() {
+    this.isInDrainFluid = function() {
       return isInNode( drainFluidNode );
     };
 
-    thisNode.isInDropperSolution = function() {
+    this.isInDropperSolution = function() {
       return isInNode( dropperFluidNode );
     };
   }
@@ -376,8 +373,7 @@ define( function( require ) {
    */
   function WireNode( probe, bodyNode, probeNode ) {
 
-    var thisNode = this;
-    Path.call( thisNode, new Shape(), {
+    Path.call( this, new Shape(), {
       stroke: 'rgb(80,80,80)',
       lineWidth: 8,
       lineCap: 'square',
@@ -385,6 +381,7 @@ define( function( require ) {
       pickable: false // no need to drag the wire, and we don't want to do cubic-curve intersection here, or have it get in the way
     } );
 
+    var self = this;
     var updateCurve = function() {
 
       var scaleCenterX = bodyNode.x + ( SCALE_SIZE.width / 2 );
@@ -400,7 +397,7 @@ define( function( require ) {
       var c1 = new Vector2( bodyConnectionPoint.x + c1Offset.x, bodyConnectionPoint.y + c1Offset.y );
       var c2 = new Vector2( probeConnectionPoint.x + c2Offset.x, probeConnectionPoint.y + c2Offset.y );
 
-      thisNode.shape = new Shape()
+      self.shape = new Shape()
         .moveTo( bodyConnectionPoint.x, bodyConnectionPoint.y )
         .cubicCurveTo( c1.x, c1.y, c2.x, c2.y, probeConnectionPoint.x, probeConnectionPoint.y );
     };
@@ -420,8 +417,7 @@ define( function( require ) {
    */
   function IndicatorNode( pHProperty, scaleWidth ) {
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     // dashed line that extends across the scale
     var lineNode = new Line( 0, 0, scaleWidth, 0, {
@@ -444,9 +440,9 @@ define( function( require ) {
       { fill: 'black' } );
 
     // rendering order
-    thisNode.addChild( arrowNode );
-    thisNode.addChild( valueNode );
-    thisNode.addChild( lineNode );
+    this.addChild( arrowNode );
+    this.addChild( valueNode );
+    this.addChild( lineNode );
 
     // layout, origin at arrow tip
     lineNode.left = 0;

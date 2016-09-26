@@ -29,8 +29,8 @@ define( function( require ) {
   var PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  var PHScaleViewProperties = require( 'PH_SCALE/common/view/PHScaleViewProperties' );
   var Property = require( 'AXON/Property' );
-  var PropertySet = require( 'AXON/PropertySet' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
@@ -50,12 +50,7 @@ define( function( require ) {
     ScreenView.call( this, PHScaleConstants.SCREEN_VIEW_OPTIONS );
 
     // view-specific properties
-    var viewProperties = new PropertySet( {
-      ratioVisible: false,
-      moleculeCountVisible: false,
-      pHMeterExpanded: true,
-      graphExpanded: true
-    } );
+    var viewProperties = new PHScaleViewProperties();
 
     // beaker
     var beakerNode = new BeakerNode( model.beaker, modelViewTransform );

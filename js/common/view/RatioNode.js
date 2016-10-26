@@ -24,6 +24,7 @@ define( function( require ) {
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  var PHScaleQueryParameters = require( 'PH_SCALE/common/PHScaleQueryParameters' );
   var RangeWithValue = require( 'DOT/RangeWithValue' );
   var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -66,7 +67,7 @@ define( function( require ) {
     this.addChild( this.moleculesNode );
 
     // dev mode, show numbers of molecules at bottom of beaker
-    if ( phet.chipper.getQueryParameter( 'dev' ) ) {
+    if ( PHScaleQueryParameters.dev ) {
       this.ratioText = new Text( '?', {
         font: new PhetFont( 30 ),
         fill: 'black',

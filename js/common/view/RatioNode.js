@@ -67,11 +67,11 @@ define( function( require ) {
     this.addChild( this.moleculesNode );
 
     // dev mode, show numbers of molecules at bottom of beaker
-    if ( PHScaleQueryParameters.dev ) {
+    if ( PHScaleQueryParameters.showRatio ) {
       this.ratioText = new Text( '?', {
         font: new PhetFont( 30 ),
         fill: 'black',
-        left: beakerBounds.getCenterX(),
+        centerX: beakerBounds.getCenterX(),
         bottom: beakerBounds.maxY - 20
       } ); // @private
       this.addChild( this.ratioText );

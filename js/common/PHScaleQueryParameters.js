@@ -13,8 +13,8 @@ define( function( require ) {
 
   var PHScaleQueryParameters = QueryStringMachine.getAll( {
 
-    // enables developer-only features
-    dev: { type: 'flag' }
+    // shows the ratio (molecule counts) in the bottom of the beaker for the 'ratio' view
+    showRatio: { type: 'flag' }
   } );
 
   phScale.register( 'PHScaleQueryParameters', PHScaleQueryParameters );

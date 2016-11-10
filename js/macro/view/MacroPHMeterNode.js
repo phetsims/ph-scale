@@ -112,10 +112,10 @@ define( function( require ) {
     meter.probe.locationProperty.link( updateValue );
     solution.soluteProperty.link( updateValue );
     solution.pHProperty.link( updateValue );
-    solutionNode.addEventListener( 'bounds', updateValue );
-    dropperFluidNode.addEventListener( 'bounds', updateValue );
-    waterFluidNode.addEventListener( 'bounds', updateValue );
-    drainFluidNode.addEventListener( 'bounds', updateValue );
+    solutionNode.on( 'bounds', updateValue );
+    dropperFluidNode.on( 'bounds', updateValue );
+    waterFluidNode.on( 'bounds', updateValue );
+    drainFluidNode.on( 'bounds', updateValue );
   }
 
   phScale.register( 'MacroPHMeterNode', MacroPHMeterNode );

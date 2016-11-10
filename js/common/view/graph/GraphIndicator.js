@@ -190,7 +190,7 @@ define( function( require ) {
      * Listen for 'childBounds' instead of 'bounds' so we don't get into an infinite bounds listener cycle caused
      * by moving the node whose bounds we're listening to.
      */
-    valueNode.addEventListener( 'childBounds', function() {
+    valueNode.on( 'childBounds', function() {
       // center value in the display
       valueNode.center = valueBackgroundNode.center;
     } );

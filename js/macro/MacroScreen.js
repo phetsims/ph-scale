@@ -17,6 +17,8 @@ define( function( require ) {
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Screen = require( 'JOIST/Screen' );
+  var Property = require( 'AXON/Property' );
+  var Color = require( 'SCENERY/util/Color' );
 
   // strings
   var screenMacroString = require( 'string!PH_SCALE/screen.macro' );
@@ -33,7 +35,7 @@ define( function( require ) {
 
     var options = {
       name: screenMacroString,
-      backgroundColor: PHScaleColors.SCREEN_BACKGROUND,
+      backgroundColorProperty: new Property( Color.toColor( PHScaleColors.SCREEN_BACKGROUND ) ),
       homeScreenIcon: new Image( homeIcon ),
       navigationBarIcon: new Image( navbarIcon )
     };

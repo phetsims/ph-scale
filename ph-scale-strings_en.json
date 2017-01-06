@@ -62,9 +62,6 @@
   "pattern.0value.1units": {
     "value": "{0} {1}"
   },
-  "pattern.0name.1pH": {
-    "value": "{0} (pH {1})"
-  },
   "pH": {
     "value": "pH"
   },

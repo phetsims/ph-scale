@@ -16,9 +16,8 @@ define( function( require ) {
   var MySolutionView = require( 'PH_SCALE/mysolution/view/MySolutionView' );
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var Screen = require( 'JOIST/Screen' );
   var Property = require( 'AXON/Property' );
-  var Color = require( 'SCENERY/util/Color' );
+  var Screen = require( 'JOIST/Screen' );
 
   // strings
   var screenMySolutionString = require( 'string!PH_SCALE/screen.mySolution' );
@@ -34,7 +33,7 @@ define( function( require ) {
 
     var options = {
       name: screenMySolutionString,
-      backgroundColorProperty: new Property( Color.toColor( PHScaleColors.SCREEN_BACKGROUND ) ),
+      backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
       homeScreenIcon: new Image( homeIcon ),
       navigationBarIcon: new Image( navbarIcon )
     };

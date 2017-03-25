@@ -1,16 +1,14 @@
-// Copyright 2013-2015, University of Colorado Boulder
+// Copyright 2013-2017, University of Colorado Boulder
 
 /**
  * pH meter for the 'Macro' screen.
- * <p/>
+ *
  * The probe registers the concentration of all possible fluids that it may contact, including:
- * <ul>
- * <li>solution in the beaker
- * <li>output of the water faucet
- * <li>output of the drain faucet
- * <li>output of the dropper
- * </ul>
- * <p/>
+ * - solution in the beaker
+ * - output of the water faucet
+ * - output of the drain faucet
+ * - output of the dropper
+ *
  * Rather than trying to model the shapes of all of these fluids, we handle 'probe is in fluid'
  * herein via intersection of node shapes.
  *

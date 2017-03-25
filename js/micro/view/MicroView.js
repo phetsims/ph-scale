@@ -1,8 +1,8 @@
-// Copyright 2013-2015, University of Colorado Boulder
+// Copyright 2013-2017, University of Colorado Boulder
 
 /**
  * View for the 'Micro' screen.
- * <p>
+ *
  * NOTE:
  * This view currently consists of a superset of the nodes in the 'My Solution' screen.
  * But some of the common nodes are configured differently, and the screen has different layering and layout requirements.

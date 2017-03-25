@@ -1,8 +1,7 @@
-// Copyright 2014-2015, University of Colorado Boulder
+// Copyright 2014-2017, University of Colorado Boulder
 
 /**
  * Graph with a linear scale, for displaying concentration (mol/L) and quantity (moles).
- * <p>
  * Some of the code related to indicators (initialization and updateIndicators) is similar
  * to LogarithmicGraph. But it was difficult to identify a natural pattern for factoring
  * this out, so I chose to leave it as is. See issue #16.

@@ -1,11 +1,11 @@
-// Copyright 2013-2015, University of Colorado Boulder
+// Copyright 2013-2017, University of Colorado Boulder
 
 /**
  * Visual representation of H3O+/OH- ratio.
  * Molecules are drawn as circles, directly to Canvas for performance.
  * In the pH range close to neutral, the relationship between number of molecules and pH is log.
  * Outside of that range, we can't possibly draw that many molecules, so we fake it using a linear relationship.
- * <p>
+ *
  * Note: The implementation refers to 'majority' or 'minority' species throughout.
  * This is a fancy was of saying 'the molecule that has the larger (or smaller) count'.
  *

@@ -28,7 +28,7 @@ define( function( require ) {
    * @param {number} solutePH
    * @param {number} soluteVolume liters
    * @param {number} waterVolume liters
-   * @return {number|null} pH, null if total volume is zero
+   * @returns {number|null} pH, null if total volume is zero
    */
   PHModel.computePH = function( solutePH, soluteVolume, waterVolume ) {
     var pH;

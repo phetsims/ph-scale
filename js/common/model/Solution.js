@@ -186,7 +186,7 @@ define( function( require ) {
 
     /**
      * Computes total volume for this solution.
-     * @return {number} liters
+     * @returns {number} liters
      * @private Used in internal computations to prevent incorrect intermediate values, see issue #40
      */
     computeVolume: function() {
@@ -195,7 +195,7 @@ define( function( require ) {
 
     /**
      * Compute pH for this solution.
-     * @return {number|null} pH, null if total volume is zero
+     * @returns {number|null} pH, null if total volume is zero
      * @private Used in internal computations to prevent incorrect intermediate values, see issue #40
      */
     computePH: function() {

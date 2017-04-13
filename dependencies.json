@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.2.9 Fri Apr 07 2017 17:36:29 GMT-0600 (MDT)",
+  "comment": "# ph-scale 1.2.9 Thu Apr 13 2017 14:03:19 GMT-0600 (MDT)",
   "assert": {
     "sha": "3921bc3784dc67e9cbfa31cdec52b582fcfc68e7",
     "branch": "HEAD"
@@ -9,12 +9,12 @@
     "branch": "HEAD"
   },
   "brand": {
-    "sha": "5dea60dd79d2fe70fc88d0bc9e99e91f50eff3fc",
-    "branch": "HEAD"
+    "sha": "a229cc4fb03a4d76f6165c52efcfcb033713b824",
+    "branch": "ph-scale-1.2"
   },
   "chipper": {
     "sha": "1c01c62221bbf4ccaeda3d16cfef73cf6903521e",
-    "branch": "HEAD"
+    "branch": "ph-scale-1.2"
   },
   "dot": {
     "sha": "660f42411cdb789b8c6b99326fa82f4d8a83a42d",
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "8f9eaadb26158994584b14d9e3020f5135efbf85",
+    "sha": "b9452734f1226da69e7a884c68ef3c842245cd91",
     "branch": "1.2"
   },
   "phet-core": {
@@ -41,8 +41,8 @@
     "branch": "HEAD"
   },
   "phetcommon": {
-    "sha": "50a518da8d1228abb20f800ba9700f5e414aad83",
-    "branch": "HEAD"
+    "sha": "a46d839df288b867c7236fe5ee01045288f5faa8",
+    "branch": "ph-scale-1.2"
   },
   "scenery": {
     "sha": "6561edbbedd768278cde5d30b2917267892fc7b6",

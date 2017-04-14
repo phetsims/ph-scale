@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.2.9 Thu Apr 13 2017 20:06:21 GMT-0600 (MDT)",
+  "comment": "# ph-scale 1.2.9 Thu Apr 13 2017 21:24:39 GMT-0600 (MDT)",
   "assert": {
     "sha": "3921bc3784dc67e9cbfa31cdec52b582fcfc68e7",
     "branch": "HEAD"
@@ -22,7 +22,7 @@
   },
   "joist": {
     "sha": "efbc4dd454682f0258cfda6c6adb9acabf01fa79",
-    "branch": "ph-scale-1.2"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "5ba9a6bbefea866ccb7493d488fc6b31584af9af",
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "b8ebb0c401ca74e1cd48d10a82793c997d18d067",
+    "sha": "5de15e03d1e57f9a28ad1d03514c9a46d724fdb9",
     "branch": "1.2"
   },
   "phet-core": {
@@ -41,8 +41,8 @@
     "branch": "HEAD"
   },
   "phetcommon": {
-    "sha": "a46d839df288b867c7236fe5ee01045288f5faa8",
-    "branch": "HEAD"
+    "sha": "61a4a313403db748d927933b87a0fe0d408da173",
+    "branch": "ph-scale-1.2"
   },
   "scenery": {
     "sha": "6561edbbedd768278cde5d30b2917267892fc7b6",

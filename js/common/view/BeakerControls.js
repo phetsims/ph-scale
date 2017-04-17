@@ -21,7 +21,7 @@ define( function( require ) {
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Shape = require( 'KITE/Shape' );
-  var SubSupText = require( 'SCENERY_PHET/SubSupText' );
+  var RichText = require( 'SCENERY_PHET/RichText' );
   var Text = require( 'SCENERY/nodes/Text' );
 
   // strings
@@ -47,9 +47,9 @@ define( function( require ) {
     }, options );
 
     // 'H3O+/OH- ratio' check box, with color-coded label, spacing tweaked visually
-    var textH3O = new SubSupText( PHScaleConstants.H3O_FORMULA, { font: FONT, fill: PHScaleColors.H3O_MOLECULES } );
+    var textH3O = new RichText( PHScaleConstants.H3O_FORMULA, { font: FONT, fill: PHScaleColors.H3O_MOLECULES } );
     var textSlash = new Text( '/', { font: FONT, left: textH3O.right + 2 } );
-    var textOH = new SubSupText( PHScaleConstants.OH_FORMULA, {
+    var textOH = new RichText( PHScaleConstants.OH_FORMULA, {
       font: FONT,
       fill: PHScaleColors.OH_MOLECULES,
       left: textSlash.right + 4,

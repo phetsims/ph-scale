@@ -28,7 +28,7 @@ define( function( require ) {
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var SubSupText = require( 'SCENERY_PHET/SubSupText' );
+  var RichText = require( 'SCENERY_PHET/RichText' );
   var Util = require( 'DOT/Util' );
 
   /**
@@ -216,7 +216,7 @@ define( function( require ) {
 
   // Creates a tick label, '10' to some exponent.
   var createTickLabel = function( exponent, font ) {
-    return new SubSupText( '10<sup>' + exponent + '</sup>', { font: font, fill: 'black' } );
+    return new RichText( '10<sup>' + exponent + '</sup>', { font: font, fill: 'black' } );
   };
 
   return inherit( Node, LogarithmicGraph );

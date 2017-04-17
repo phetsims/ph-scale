@@ -26,7 +26,7 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
   var Shape = require( 'KITE/Shape' );
-  var SubSupText = require( 'SCENERY_PHET/SubSupText' );
+  var RichText = require( 'SCENERY_PHET/RichText' );
 
   // constants
   var POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute width of the pointy part of the indicator
@@ -212,7 +212,7 @@ define( function( require ) {
     createH3OIndicator: function( valueProperty, options ) {
       return new GraphIndicator( valueProperty,
         new H3ONode(),
-        new SubSupText( PHScaleConstants.H3O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
+        new RichText( PHScaleConstants.H3O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
         _.extend( {
           backgroundFill: PHScaleColors.ACIDIC,
           pointerLocation: 'topRight'
@@ -229,7 +229,7 @@ define( function( require ) {
     createOHIndicator: function( valueProperty, options ) {
       return new GraphIndicator( valueProperty,
         new OHNode(),
-        new SubSupText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: 'white', supXSpacing: 2 } ),
+        new RichText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: 'white', supXSpacing: 2 } ),
         _.extend( {
           backgroundFill: PHScaleColors.BASIC,
           pointerLocation: 'topLeft'
@@ -246,7 +246,7 @@ define( function( require ) {
     createH2OIndicator: function( valueProperty, options ) {
       return new GraphIndicator( valueProperty,
         new H2ONode(),
-        new SubSupText( PHScaleConstants.H2O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
+        new RichText( PHScaleConstants.H2O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
         _.extend( {
           backgroundFill: PHScaleColors.H2O_BACKGROUND,
           pointerLocation: 'bottomLeft',

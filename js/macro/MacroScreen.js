@@ -9,10 +9,10 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
-  var MacroView = require( 'PH_SCALE/macro/view/MacroView' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
+  var MacroScreenView = require( 'PH_SCALE/macro/view/MacroScreenView' );
   var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
@@ -41,7 +41,7 @@ define( function( require ) {
 
     Screen.call( this,
       function() { return new MacroModel( modelOptions ); },
-      function( model ) { return new MacroView( model, ModelViewTransform2.createIdentity() ); },
+      function( model ) { return new MacroScreenView( model, ModelViewTransform2.createIdentity() ); },
       options
     );
   }

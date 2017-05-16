@@ -13,7 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
   var MySolutionModel = require( 'PH_SCALE/mysolution/model/MySolutionModel' );
-  var MySolutionView = require( 'PH_SCALE/mysolution/view/MySolutionView' );
+  var MySolutionScreenView = require( 'PH_SCALE/mysolution/view/MySolutionScreenView' );
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var Property = require( 'AXON/Property' );
@@ -40,7 +40,7 @@ define( function( require ) {
 
     Screen.call( this,
       function() { return new MySolutionModel(); },
-      function( model ) { return new MySolutionView( model, ModelViewTransform2.createIdentity() ); },
+      function( model ) { return new MySolutionScreenView( model, ModelViewTransform2.createIdentity() ); },
       options
     );
   }

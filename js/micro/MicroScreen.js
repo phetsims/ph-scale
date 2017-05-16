@@ -12,7 +12,7 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MicroModel = require( 'PH_SCALE/micro/model/MicroModel' );
-  var MicroView = require( 'PH_SCALE/micro/view/MicroView' );
+  var MicroScreenView = require( 'PH_SCALE/micro/view/MicroScreenView' );
   var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
@@ -40,7 +40,7 @@ define( function( require ) {
 
     Screen.call( this,
       function() { return new MicroModel(); },
-      function( model ) { return new MicroView( model, ModelViewTransform2.createIdentity() ); },
+      function( model ) { return new MicroScreenView( model, ModelViewTransform2.createIdentity() ); },
       options
     );
   }

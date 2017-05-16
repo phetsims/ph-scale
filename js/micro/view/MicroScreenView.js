@@ -1,10 +1,10 @@
 // Copyright 2013-2017, University of Colorado Boulder
 
 /**
- * View for the 'My Solution' screen.
+ * View for the 'Micro' screen.
  *
  * NOTE:
- * This view currently consists of a subset of the nodes in the 'Micro' screen.
+ * This view currently consists of a superset of the nodes in the 'My Solution' screen.
  * But some of the common nodes are configured differently, and the screen has different layering and layout requirements.
  * So I choose to duplicate some code rather than attempt a refactor that would result in an implementation that
  * was more difficult to understand and maintain.
@@ -17,6 +17,11 @@ define( function( require ) {
   // modules
   var BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
+  var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
+  var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
+  var EyeDropperNode = require( 'SCENERY_PHET/EyeDropperNode' );
+  var PHDropperNode = require( 'PH_SCALE/common/view/PHDropperNode' );
+  var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var GraphNode = require( 'PH_SCALE/common/view/graph/GraphNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
@@ -25,18 +30,22 @@ define( function( require ) {
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PHScaleViewProperties = require( 'PH_SCALE/common/view/PHScaleViewProperties' );
+  var Property = require( 'AXON/Property' );
   var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
+  var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
+  var Water = require( 'PH_SCALE/common/model/Water' );
+  var WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
 
   /**
-   * @param {MySolutionModel} model
+   * @param {MicroModel} model
    * @param {ModelViewTransform2} modelViewTransform
    * @constructor
    */
-  function MySolutionView( model, modelViewTransform ) {
+  function MicroScreenView( model, modelViewTransform ) {
 
     ScreenView.call( this, PHScaleConstants.SCREEN_VIEW_OPTIONS );
 
@@ -47,6 +56,20 @@ define( function( require ) {
     var beakerNode = new BeakerNode( model.beaker, modelViewTransform );
     var solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
     var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform );
+
+    // dropper
+    var DROPPER_SCALE = 0.85;
+    var dropperNode = new PHDropperNode( model.dropper, modelViewTransform );
+    dropperNode.setScaleMagnitude( DROPPER_SCALE );
+    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * EyeDropperNode.TIP_WIDTH, modelViewTransform );
+
+    // faucets
+    var waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform );
+    var drainFaucetNode = new DrainFaucetNode( model.drainFaucet, modelViewTransform );
+    var SOLVENT_FLUID_HEIGHT = model.beaker.location.y - model.waterFaucet.location.y;
+    var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
+    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), SOLVENT_FLUID_HEIGHT, modelViewTransform );
+    var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform );
 
     // 'H3O+/OH- ratio' representation
     var ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, { visible: viewProperties.ratioVisibleProperty.get() } );
@@ -62,14 +85,19 @@ define( function( require ) {
 
     // graph
     var graphNode = new GraphNode( model.solution, viewProperties.graphExpandedProperty, {
-      isInteractive: true,
-      logScaleHeight: 565
+      hasLinearFeature: true,
+      logScaleHeight: 485,
+      linearScaleHeight: 440
     } );
 
     // pH meter
     var pHMeterTop = 15;
     var pHMeterNode = new PHMeterNode( model.solution, modelViewTransform.modelToViewY( model.beaker.location.y ) - pHMeterTop, viewProperties.pHMeterExpandedProperty,
-      { attachProbe: 'right', isInteractive: true } );
+      { attachProbe: 'right' } );
+
+    // solutes combo box
+    var soluteListParent = new Node( { maxWidth: 380 });
+    var soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent, { maxWidth: 400 } );
 
     var resetAllButton = new ResetAllButton( {
       scale: 1.32,
@@ -84,6 +112,12 @@ define( function( require ) {
     var rootNode = new Node( {
       children: [
         // nodes are rendered in this order
+        waterFluidNode,
+        waterFaucetNode,
+        drainFluidNode,
+        drainFaucetNode,
+        dropperFluidNode,
+        dropperNode,
         solutionNode,
         pHMeterNode,
         ratioNode,
@@ -92,25 +126,29 @@ define( function( require ) {
         volumeIndicatorNode,
         beakerControls,
         graphNode,
-        resetAllButton
+        resetAllButton,
+        soluteComboBox,
+        soluteListParent // last, so that combo box list is on top
       ]
     } );
     this.addChild( rootNode );
 
     // Layout of nodes that don't have a location specified in the model
-    pHMeterNode.left = beakerNode.left;
-    pHMeterNode.top = pHMeterTop;
     moleculeCountNode.centerX = beakerNode.centerX;
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.centerX = beakerNode.centerX;
     beakerControls.top = beakerNode.bottom + 10;
-    graphNode.right = beakerNode.left - 70;
+    pHMeterNode.left = modelViewTransform.modelToViewX( model.beaker.left ) - ( 0.4 * pHMeterNode.width );
+    pHMeterNode.top = pHMeterTop;
+    graphNode.right = drainFaucetNode.left - 40;
     graphNode.top = pHMeterNode.top;
+    soluteComboBox.left = pHMeterNode.right + 35;
+    soluteComboBox.top = this.layoutBounds.top + pHMeterTop;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
 
-  phScale.register( 'MySolutionView', MySolutionView );
+  phScale.register( 'MicroScreenView', MicroScreenView );
 
-  return inherit( ScreenView, MySolutionView );
+  return inherit( ScreenView, MicroScreenView );
 } );

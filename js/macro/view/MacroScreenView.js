@@ -35,7 +35,7 @@ define( function( require ) {
    * @param {ModelViewTransform2} modelViewTransform
    * @constructor
    */
-  function MacroView( model, modelViewTransform ) {
+  function MacroScreenView( model, modelViewTransform ) {
 
     ScreenView.call( this, PHScaleConstants.SCREEN_VIEW_OPTIONS );
 
@@ -107,7 +107,7 @@ define( function( require ) {
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
 
-  phScale.register( 'MacroView', MacroView );
+  phScale.register( 'MacroScreenView', MacroScreenView );
 
-  return inherit( ScreenView, MacroView );
+  return inherit( ScreenView, MacroScreenView );
 } );

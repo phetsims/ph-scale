@@ -21,7 +21,7 @@ define( function( require ) {
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Shape = require( 'KITE/Shape' );
-  var RichText = require( 'SCENERY_PHET/RichText' );
+  var RichText = require( 'SCENERY/nodes/RichText' );
   var Text = require( 'SCENERY/nodes/Text' );
 
   // strings

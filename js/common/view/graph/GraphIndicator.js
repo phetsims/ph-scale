@@ -26,7 +26,7 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
   var Shape = require( 'KITE/Shape' );
-  var RichText = require( 'SCENERY_PHET/RichText' );
+  var RichText = require( 'SCENERY/nodes/RichText' );
 
   // constants
   var POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute width of the pointy part of the indicator

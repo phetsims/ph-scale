@@ -28,7 +28,7 @@ define( function( require ) {
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var RichText = require( 'SCENERY_PHET/RichText' );
+  var RichText = require( 'SCENERY/nodes/RichText' );
   var Util = require( 'DOT/Util' );
 
   /**

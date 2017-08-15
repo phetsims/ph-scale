@@ -21,13 +21,13 @@ define( function( require ) {
   var Line = require( 'SCENERY/nodes/Line' );
   var LinearGraph = require( 'PH_SCALE/common/view/graph/LinearGraph' );
   var LogarithmicGraph = require( 'PH_SCALE/common/view/graph/LogarithmicGraph' );
-  var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
+  var RichText = require( 'SCENERY/nodes/RichText' );
   var Text = require( 'SCENERY/nodes/Text' );
   var ZoomButton = require( 'SCENERY_PHET/buttons/ZoomButton' );
 
@@ -82,11 +82,13 @@ define( function( require ) {
 
     // units switch (Concentration vs Quantity)
     var graphUnitsSwitch = new ABSwitch( this.graphUnitsProperty,
-      GraphUnits.MOLES_PER_LITER, new MultiLineText( concentrationString + '\n(' + unitsMolesPerLiterString + ')', {
+      GraphUnits.MOLES_PER_LITER, new RichText( concentrationString + '<br>(' + unitsMolesPerLiterString + ')', {
+        align: 'center',
         font: AB_SWITCH_FONT,
         maxWidth: 125
       } ),
-      GraphUnits.MOLES, new MultiLineText( quantityString + '\n(' + unitsMolesString + ')', {
+      GraphUnits.MOLES, new RichText( quantityString + '<br>(' + unitsMolesString + ')', {
+        align: 'center',
         font: AB_SWITCH_FONT,
         maxWidth: 85
       } ), {

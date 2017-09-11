@@ -20,8 +20,8 @@ define( function( require ) {
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Shape = require( 'KITE/Shape' );
   var RichText = require( 'SCENERY/nodes/RichText' );
+  var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
 
   // strings

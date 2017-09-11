@@ -19,14 +19,14 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var OHNode = require( 'PH_SCALE/common/view/molecules/OHNode' );
   var Path = require( 'SCENERY/nodes/Path' );
-  var phScale = require( 'PH_SCALE/phScale' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var RichText = require( 'SCENERY/nodes/RichText' );
   var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
   var Shape = require( 'KITE/Shape' );
-  var RichText = require( 'SCENERY/nodes/RichText' );
 
   // constants
   var POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute width of the pointy part of the indicator

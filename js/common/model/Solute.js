@@ -18,18 +18,18 @@ define( function( require ) {
   var Water = require( 'PH_SCALE/common/model/Water' );
 
   // strings
-  var choiceDrainCleanerString = require( 'string!PH_SCALE/choice.drainCleaner' );
-  var choiceHandSoapString = require( 'string!PH_SCALE/choice.handSoap' );
+  var choiceBatteryAcidString = require( 'string!PH_SCALE/choice.batteryAcid' );
   var choiceBloodString = require( 'string!PH_SCALE/choice.blood' );
-  var choiceSpitString = require( 'string!PH_SCALE/choice.spit' );
-  var choiceMilkString = require( 'string!PH_SCALE/choice.milk' );
   var choiceChickenSoupString = require( 'string!PH_SCALE/choice.chickenSoup' );
   var choiceCoffeeString = require( 'string!PH_SCALE/choice.coffee' );
+  var choiceCustomString = require( 'string!PH_SCALE/choice.custom' );
+  var choiceDrainCleanerString = require( 'string!PH_SCALE/choice.drainCleaner' );
+  var choiceHandSoapString = require( 'string!PH_SCALE/choice.handSoap' );
+  var choiceMilkString = require( 'string!PH_SCALE/choice.milk' );
   var choiceOrangeJuiceString = require( 'string!PH_SCALE/choice.orangeJuice' );
   var choiceSodaString = require( 'string!PH_SCALE/choice.soda' );
+  var choiceSpitString = require( 'string!PH_SCALE/choice.spit' );
   var choiceVomitString = require( 'string!PH_SCALE/choice.vomit' );
-  var choiceBatteryAcidString = require( 'string!PH_SCALE/choice.batteryAcid' );
-  var choiceCustomString = require( 'string!PH_SCALE/choice.custom' );
 
   /**
    * @param {string} name

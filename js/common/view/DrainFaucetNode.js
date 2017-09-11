@@ -9,8 +9,8 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
   var FaucetNode = require( 'SCENERY_PHET/FaucetNode' );
+  var inherit = require( 'PHET_CORE/inherit' );
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
 

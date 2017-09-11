@@ -12,8 +12,8 @@ define( function( require ) {
   var Color = require( 'SCENERY/util/Color' );
   var DerivedProperty = require( 'AXON/DerivedProperty' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var phScale = require( 'PH_SCALE/phScale' );
   var PHModel = require( 'PH_SCALE/common/model/PHModel' );
+  var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var Property = require( 'AXON/Property' );
   var Util = require( 'DOT/Util' );

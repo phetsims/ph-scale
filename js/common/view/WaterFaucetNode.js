@@ -9,12 +9,12 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
   var FaucetNode = require( 'SCENERY_PHET/FaucetNode' );
+  var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Water = require( 'PH_SCALE/common/model/Water' );
 

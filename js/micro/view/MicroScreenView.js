@@ -20,12 +20,12 @@ define( function( require ) {
   var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var EyeDropperNode = require( 'SCENERY_PHET/EyeDropperNode' );
-  var PHDropperNode = require( 'PH_SCALE/common/view/PHDropperNode' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var GraphNode = require( 'PH_SCALE/common/view/graph/GraphNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PHDropperNode = require( 'PH_SCALE/common/view/PHDropperNode' );
   var PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );

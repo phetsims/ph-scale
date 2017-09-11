@@ -9,9 +9,9 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var MySolutionScreen = require( 'PH_SCALE/mysolution/MySolutionScreen' );
   var MacroScreen = require( 'PH_SCALE/macro/MacroScreen' );
   var MicroScreen = require( 'PH_SCALE/micro/MicroScreen' );
+  var MySolutionScreen = require( 'PH_SCALE/mysolution/MySolutionScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
 

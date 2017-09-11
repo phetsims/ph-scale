@@ -11,9 +11,9 @@ define( function( require ) {
   // modules
   var HydrogenNode = require( 'PH_SCALE/common/view/molecules/HydrogenNode' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
   var OxygenNode = require( 'PH_SCALE/common/view/molecules/OxygenNode' );
   var phScale = require( 'PH_SCALE/phScale' );
-  var Node = require( 'SCENERY/nodes/Node' );
 
   /**
    * @param {Object} options

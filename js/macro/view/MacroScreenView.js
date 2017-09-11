@@ -9,13 +9,13 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var MacroPHMeterNode = require( 'PH_SCALE/macro/view/MacroPHMeterNode' );
   var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
   var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
   var EyeDropperNode = require( 'SCENERY_PHET/EyeDropperNode' );
   var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var MacroPHMeterNode = require( 'PH_SCALE/macro/view/MacroPHMeterNode' );
   var NeutralIndicator = require( 'PH_SCALE/macro/view/NeutralIndicator' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PHDropperNode = require( 'PH_SCALE/common/view/PHDropperNode' );
@@ -26,9 +26,9 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
   var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
-  var WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
   var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
   var Water = require( 'PH_SCALE/common/model/Water' );
+  var WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
 
   /**
    * @param {MacroModel} model

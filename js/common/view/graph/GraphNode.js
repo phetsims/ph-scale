@@ -35,9 +35,9 @@ define( function( require ) {
   var concentrationString = require( 'string!PH_SCALE/concentration' );
   var linearString = require( 'string!PH_SCALE/linear' );
   var logarithmicString = require( 'string!PH_SCALE/logarithmic' );
-  var unitsMolesString = require( 'string!PH_SCALE/units.moles' );
-  var unitsMolesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
   var quantityString = require( 'string!PH_SCALE/quantity' );
+  var unitsMolesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
+  var unitsMolesString = require( 'string!PH_SCALE/units.moles' );
 
   // constants
   var AB_SWITCH_FONT = new PhetFont( { size: 18, weight: 'bold' } );

@@ -2,8 +2,6 @@
 
 All core model computations are in PHModel.
 
-When accessing properties from a PropertySet, I prefer propertySet.fooProperty to propertySet.property( 'foo ' ).
-
 I find that I frequently need to change the rendering order and layout of nodes.
 To make that easier, node constructors typically have this structure:
 

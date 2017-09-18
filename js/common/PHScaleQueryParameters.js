@@ -20,13 +20,7 @@ define( function( require ) {
   phScale.register( 'PHScaleQueryParameters', PHScaleQueryParameters );
 
   // log the values of all sim-specific query parameters
-  if ( phet.log ) {
-    for ( var property in PHScaleQueryParameters ) {
-      if ( PHScaleQueryParameters.hasOwnProperty( property ) ) {
-        phet.log( property + '=' + PHScaleQueryParameters[ property ] );
-      }
-    }
-  }
+  phet.log && phet.log( 'query parameters: ' + JSON.stringify( PHScaleQueryParameters, null, 2 ) );
 
   return PHScaleQueryParameters;
 } );

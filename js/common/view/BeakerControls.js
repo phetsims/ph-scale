@@ -46,7 +46,7 @@ define( function( require ) {
       fill: PHScaleColors.PANEL_FILL
     }, options );
 
-    // 'H3O+/OH- ratio' check box, with color-coded label, spacing tweaked visually
+    // 'H3O+/OH- ratio' checkbox, with color-coded label, spacing tweaked visually
     var textH3O = new RichText( PHScaleConstants.H3O_FORMULA, { font: FONT, fill: PHScaleColors.H3O_MOLECULES } );
     var textSlash = new Text( '/', { font: FONT, left: textH3O.right + 2 } );
     var textOH = new RichText( PHScaleConstants.OH_FORMULA, {
@@ -60,7 +60,7 @@ define( function( require ) {
     var ratioCheckbox = new Checkbox( ratioLabel, ratioVisibleProperty );
     ratioCheckbox.touchArea = Shape.bounds( ratioCheckbox.localBounds.dilatedXY( 10, 8 ) );
 
-    // 'Molecule count' check box
+    // 'Molecule count' checkbox
     var moleculeCountLabel = new Text( moleculeCountString, { font: FONT } );
     var moleculeCountCheckbox = new Checkbox( moleculeCountLabel, moleculeCountVisibleProperty );
     moleculeCountCheckbox.touchArea = Shape.bounds( ratioCheckbox.localBounds.dilatedXY( 10, 8 ) );

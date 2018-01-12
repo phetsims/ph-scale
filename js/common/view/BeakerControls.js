@@ -10,7 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var CheckBox = require( 'SUN/CheckBox' );
+  var Checkbox = require( 'SUN/Checkbox' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LayoutBox = require( 'SCENERY/nodes/LayoutBox' );
   var Line = require( 'SCENERY/nodes/Line' );
@@ -57,18 +57,18 @@ define( function( require ) {
     } );
     var textRatio = new Text( ratioString, { font: FONT, left: textOH.right + 4 } );
     var ratioLabel = new Node( { children: [ textH3O, textSlash, textOH, textRatio ] } );
-    var ratioCheckBox = new CheckBox( ratioLabel, ratioVisibleProperty );
-    ratioCheckBox.touchArea = Shape.bounds( ratioCheckBox.localBounds.dilatedXY( 10, 8 ) );
+    var ratioCheckbox = new Checkbox( ratioLabel, ratioVisibleProperty );
+    ratioCheckbox.touchArea = Shape.bounds( ratioCheckbox.localBounds.dilatedXY( 10, 8 ) );
 
     // 'Molecule count' check box
     var moleculeCountLabel = new Text( moleculeCountString, { font: FONT } );
-    var moleculeCountCheckBox = new CheckBox( moleculeCountLabel, moleculeCountVisibleProperty );
-    moleculeCountCheckBox.touchArea = Shape.bounds( ratioCheckBox.localBounds.dilatedXY( 10, 8 ) );
+    var moleculeCountCheckbox = new Checkbox( moleculeCountLabel, moleculeCountVisibleProperty );
+    moleculeCountCheckbox.touchArea = Shape.bounds( ratioCheckbox.localBounds.dilatedXY( 10, 8 ) );
 
-    var separator = new Line( 0, 0, Math.max( moleculeCountCheckBox.width, ratioCheckBox.width ), 0, { stroke: 'gray' } );
+    var separator = new Line( 0, 0, Math.max( moleculeCountCheckbox.width, ratioCheckbox.width ), 0, { stroke: 'gray' } );
 
     var content = new LayoutBox( {
-      children: [ ratioCheckBox, separator, moleculeCountCheckBox ],
+      children: [ ratioCheckbox, separator, moleculeCountCheckbox ],
       orientation: 'vertical',
       align: 'left',
       spacing: 10

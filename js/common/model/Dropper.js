@@ -15,7 +15,7 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
 
   /**
-   * @param {Solute} default solute
+   * @param {Solute} solute
    * @param {Vector2} location
    * @param {Bounds2} dragBounds
    * @param {Object} [options]

@@ -219,23 +219,23 @@ define( function( require ) {
     this.xOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
     this.yOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
 
-    /*
-     * Generate majority and minority images for each molecule.
-     * We don't care whether the images are in the same position as a scenery.Circle, so ignore x, y args in toImage callbacks.
-     * toImage also takes optional x,y,width,height args, but we'll omit those and let scenery intelligently pick bounds.
-     */
-    new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA ) } ).toImage( function( image, x, y ) {
-      self.imageH3OMajority = image; // @private
-    } );
-    new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MINORITY_ALPHA ) } ).toImage( function( image, x, y ) {
-      self.imageH3OMinority = image; // @private
-    } );
-    new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MAJORITY_ALPHA ) } ).toImage( function( image, x, y ) {
-      self.imageOHMajority = image; // @private
-    } );
-    new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MINORITY_ALPHA ) } ).toImage( function( image, x, y ) {
-      self.imageOHMinority = image; // @private
-    } );
+    // @private Generate majority and minority {HTMLCanvasElement} for each molecule.
+    new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA ) } )
+      .toCanvas( function( canvas, x, y, width, height ) {
+        self.imageH3OMajority = canvas;
+      } );
+    new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MINORITY_ALPHA ) } )
+      .toCanvas( function( canvas, x, y, width, height ) {
+        self.imageH3OMinority = canvas;
+      } );
+    new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MAJORITY_ALPHA ) } )
+      .toCanvas( function( canvas, x, y, width, height ) {
+        self.imageOHMajority = canvas;
+      } );
+    new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MINORITY_ALPHA ) } )
+      .toCanvas( function( canvas, x, y, width, height ) {
+        self.imageOHMinority = canvas;
+      } );
   }
 
   phScale.register( 'RatioNode.MoleculesCanvas', MoleculesCanvas );

@@ -149,7 +149,7 @@ define( function( require ) {
           pHValueProperty.set( Math.min( PHScaleConstants.PH_RANGE.max, solution.pHProperty.get() + SPINNER_DELTA ) );
         },
         _.extend( {
-          left:   valueRectangle.right + SPINNER_X_SPACING,
+          left: valueRectangle.right + SPINNER_X_SPACING,
           bottom: valueRectangle.centerY - ( SPINNER_Y_SPACING / 2 )
         }, arrowButtonOptions )
       );
@@ -177,7 +177,9 @@ define( function( require ) {
        * solution.pHProperty is derived, so we can't change it directly.
        * So when pH changes, create a new custom solution with the desired pH.
        */
-      pHValueProperty = new Property( solution.pHProperty.get() );
+      pHValueProperty = new Property( solution.pHProperty.get(), {
+        reentrant: true
+      } );
       solution.pHProperty.link( function( pH ) {
         pHValueProperty.set( pH );
       } );
@@ -195,7 +197,11 @@ define( function( require ) {
     expandCollapseButton.touchArea = Shape.bounds( expandCollapseButton.localBounds.dilatedXY( 10, 10 ) );
 
     // label above the value
-    var labelNode = new Text( pHString, { fill: 'black', font: new PhetFont( { size: 28, weight: 'bold' } ), maxWidth: 50 } );
+    var labelNode = new Text( pHString, {
+      fill: 'black',
+      font: new PhetFont( { size: 28, weight: 'bold' } ),
+      maxWidth: 50
+    } );
 
     // expanded background
     var backgroundOptions = { fill: PHScaleColors.PANEL_FILL, stroke: 'black', lineWidth: 2 };

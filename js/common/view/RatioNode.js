@@ -25,7 +25,7 @@ define( function( require ) {
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var PHScaleQueryParameters = require( 'PH_SCALE/common/PHScaleQueryParameters' );
-  var RangeWithValue = require( 'DOT/RangeWithValue' );
+  var Range = require( 'DOT/Range' );
   var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
@@ -34,7 +34,7 @@ define( function( require ) {
   var TOTAL_MOLECULES_AT_PH_7 = 100;
   var MAX_MAJORITY_MOLECULES = 3000;
   var MIN_MINORITY_MOLECULES = 5; // any non-zero number of particles will be set to this number
-  var LOG_PH_RANGE = new RangeWithValue( 6, 8 ); // in this range, number of molecule is computed using log
+  var LOG_PH_RANGE = new Range( 6, 8 ); // in this range, number of molecule is computed using log
   var MAJORITY_ALPHA = 0.55; // alpha of the majority species, [0-1], transparent-opaque
   var MINORITY_ALPHA = 1.0; // alpha of the minority species, [0-1], transparent-opaque
   var H3O_RADIUS = 3;

@@ -20,9 +20,9 @@ define( function( require ) {
   /**
    * @param {Solution} solution
    * @param {Property.<GraphUnits>} graphUnitsProperty
-   * @param {function} yToValue function that takes a {number} y coordinate and converts it to a {number} model value
-   * @param {function} concentrationToPH takes {number} concentration, returns pH
-   * @param {function} molesToPH takes {number} moles and {number} volume (L), returns pH
+   * @param {function} yToValue - function that takes a {number} y coordinate and converts it to a {number} model value
+   * @param {function} concentrationToPH - takes {number} concentration, returns pH
+   * @param {function} molesToPH - takes {number} moles and {number} volume (L), returns pH
    * @constructor
    */
   function GraphIndicatorDragHandler( solution, graphUnitsProperty, yToValue, concentrationToPH, molesToPH ) {

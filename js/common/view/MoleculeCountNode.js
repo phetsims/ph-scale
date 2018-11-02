@@ -13,11 +13,11 @@ define( function( require ) {
   var H3ONode = require( 'PH_SCALE/common/view/molecules/H3ONode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var OHNode = require( 'PH_SCALE/common/view/molecules/OHNode' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
 
@@ -43,9 +43,9 @@ define( function( require ) {
     var maxMoleculeHeight = Math.max( nodeH3O.height, Math.max( nodeOH.height, nodeH2O.height ) );
 
     // internal properties for counts
-    var countH3OProperty = new Property( 1e16 );
-    var countOHProperty = new Property( 1e16 );
-    var countH2OProperty = new Property( 1e16 );
+    var countH3OProperty = new NumberProperty( 1e16 );
+    var countOHProperty = new NumberProperty( 1e16 );
+    var countH2OProperty = new NumberProperty( 1e16 );
 
     // count values
     var notationOptions = { font: new PhetFont( 22 ), fill: 'white', mantissaDecimalPlaces: 2 };

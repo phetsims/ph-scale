@@ -18,6 +18,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
@@ -30,7 +31,6 @@ define( function( require ) {
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   var ProbeNode = require( 'SCENERY_PHET/ProbeNode' );
-  var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -425,7 +425,7 @@ define( function( require ) {
     } );
 
     // value
-    var valueEnabled = new Property( true );
+    var valueEnabled = new BooleanProperty( true );
     var valueNode = new ValueNode( pHProperty, valueEnabled );
 
     // arrow head pointing at the scale

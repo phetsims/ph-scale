@@ -9,9 +9,9 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var inherit = require( 'PHET_CORE/inherit' );
   var phScale = require( 'PH_SCALE/phScale' );
-  var Property = require( 'AXON/Property' );
 
   /**
    * @constructor
@@ -19,14 +19,14 @@ define( function( require ) {
   function PHScaleViewProperties() {
 
     // @public
-    this.ratioVisibleProperty = new Property( false );
-    this.moleculeCountVisibleProperty = new Property( false );
-    this.pHMeterExpandedProperty = new Property( true );
-    this.graphExpandedProperty = new Property( true );
+    this.ratioVisibleProperty = new BooleanProperty( false );
+    this.moleculeCountVisibleProperty = new BooleanProperty( false );
+    this.pHMeterExpandedProperty = new BooleanProperty( true );
+    this.graphExpandedProperty = new BooleanProperty( true );
   }
 
   phScale.register( 'PHScaleViewProperties', PHScaleViewProperties );
-  
+
   return inherit( Object, PHScaleViewProperties, {
 
     // @public

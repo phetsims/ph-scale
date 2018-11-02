@@ -9,8 +9,10 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Movable = require( 'PH_SCALE/common/model/Movable' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var phScale = require( 'PH_SCALE/phScale' );
   var Property = require( 'AXON/Property' );
 
@@ -37,11 +39,11 @@ define( function( require ) {
 
     // @public
     this.soluteProperty = new Property( solute );
-    this.visibleProperty = new Property( options.visible );
-    this.dispensingProperty = new Property( options.dispensing );
-    this.enabledProperty = new Property( options.enabled );
-    this.emptyProperty = new Property( options.empty );
-    this.flowRateProperty = new Property( options.flowRate ); // L/sec
+    this.visibleProperty = new BooleanProperty( options.visible );
+    this.dispensingProperty = new BooleanProperty( options.dispensing );
+    this.enabledProperty = new BooleanProperty( options.enabled );
+    this.emptyProperty = new BooleanProperty( options.empty );
+    this.flowRateProperty = new NumberProperty( options.flowRate ); // L/sec
 
     // Turn off the dropper when it's disabled.
     this.enabledProperty.link( function( enabled ) {

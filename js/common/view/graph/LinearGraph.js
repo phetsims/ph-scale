@@ -17,10 +17,10 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var phScale = require( 'PH_SCALE/phScale' );
-  var Property = require( 'AXON/Property' );
   var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
   var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -108,7 +108,7 @@ define( function( require ) {
       // major lines and label
       tickLineLeft = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
       tickLineRight = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
-      tickLabel = new ScientificNotationNode( new Property( i ), {
+      tickLabel = new ScientificNotationNode( new NumberProperty( i ), {
         font: options.majorTickFont,
         fill: 'black',
         mantissaDecimalPlaces: 0,
@@ -130,9 +130,9 @@ define( function( require ) {
     }
 
     // indicators & associated properties
-    var valueH2OProperty = new Property( 0 );
-    var valueH3OProperty = new Property( 0 );
-    var valueOHProperty = new Property( 0 );
+    var valueH2OProperty = new NumberProperty( 0 );
+    var valueH3OProperty = new NumberProperty( 0 );
+    var valueOHProperty = new NumberProperty( 0 );
     var h2OIndicatorNode = new GraphIndicator.createH2OIndicator( valueH2OProperty, {
       x: scaleNode.right - options.majorTickLength
     } );

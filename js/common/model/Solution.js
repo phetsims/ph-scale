@@ -12,10 +12,10 @@ define( function( require ) {
   var Color = require( 'SCENERY/util/Color' );
   var DerivedProperty = require( 'AXON/DerivedProperty' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var PHModel = require( 'PH_SCALE/common/model/PHModel' );
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Property = require( 'AXON/Property' );
   var Util = require( 'DOT/Util' );
   var Water = require( 'PH_SCALE/common/model/Water' );
 
@@ -36,8 +36,8 @@ define( function( require ) {
 
     // @public
     this.soluteProperty = soluteProperty;
-    this.soluteVolumeProperty = new Property( soluteVolume );
-    this.waterVolumeProperty = new Property( waterVolume );
+    this.soluteVolumeProperty = new NumberProperty( soluteVolume );
+    this.waterVolumeProperty = new NumberProperty( waterVolume );
     this.maxVolume = maxVolume;
 
     /*

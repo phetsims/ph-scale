@@ -22,12 +22,13 @@ define( function( require ) {
   var LinearGraph = require( 'PH_SCALE/common/view/graph/LinearGraph' );
   var LogarithmicGraph = require( 'PH_SCALE/common/view/graph/LogarithmicGraph' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Property = require( 'AXON/Property' );
   var RichText = require( 'SCENERY/nodes/RichText' );
+  var StringProperty = require( 'AXON/StringProperty' );
   var Text = require( 'SCENERY/nodes/Text' );
   var ZoomButton = require( 'SCENERY_PHET/buttons/ZoomButton' );
 
@@ -65,9 +66,9 @@ define( function( require ) {
     var exponentRange = PHScaleConstants.LINEAR_EXPONENT_RANGE;
 
     // @private Properties specific to GraphNode
-    this.graphUnitsProperty = new Property( options.units );
-    this.exponentProperty = new Property( exponentRange.max ); // {number} exponent on the linear graph
-    this.graphScaleProperty = new Property( options.graphScale ); // {number} scale on the linear graph
+    this.graphUnitsProperty = new StringProperty( options.units );
+    this.exponentProperty = new NumberProperty( exponentRange.max ); // {number} exponent on the linear graph
+    this.graphScaleProperty = new StringProperty( options.graphScale ); // {number} scale on the linear graph
 
     // expand/collapse bar
     var expandCollapseBar = new ExpandCollapseBar(

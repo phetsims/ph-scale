@@ -17,12 +17,12 @@ define( function( require ) {
   var ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var Solute = require( 'PH_SCALE/common/model/Solute' );
@@ -177,7 +177,7 @@ define( function( require ) {
        * solution.pHProperty is derived, so we can't change it directly.
        * So when pH changes, create a new custom solution with the desired pH.
        */
-      pHValueProperty = new Property( solution.pHProperty.get(), {
+      pHValueProperty = new NumberProperty( solution.pHProperty.get(), {
         reentrant: true
       } );
       solution.pHProperty.link( function( pH ) {

@@ -22,11 +22,11 @@ define( function( require ) {
   var Line = require( 'SCENERY/nodes/Line' );
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PHModel = require( 'PH_SCALE/common/model/PHModel' );
   var phScale = require( 'PH_SCALE/phScale' );
   var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var RichText = require( 'SCENERY/nodes/RichText' );
   var Util = require( 'DOT/Util' );
@@ -124,9 +124,9 @@ define( function( require ) {
     }
 
     // indicators & associated properties
-    var valueH2OProperty = new Property( 0 );
-    var valueH3OProperty = new Property( 0 );
-    var valueOHProperty = new Property( 0 );
+    var valueH2OProperty = new NumberProperty( 0 );
+    var valueH3OProperty = new NumberProperty( 0 );
+    var valueOHProperty = new NumberProperty( 0 );
     var h2OIndicatorNode = new GraphIndicator.createH2OIndicator( valueH2OProperty, {
       x: backgroundNode.right - options.indicatorXOffset
     } );

@@ -10,9 +10,10 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var phScale = require( 'PH_SCALE/phScale' );
-  var Property = require( 'AXON/Property' );
 
   /**
    * @param {Vector2} location center of output pipe
@@ -34,8 +35,8 @@ define( function( require ) {
     this.pipeMinX = pipeMinX;
     this.spoutWidth = options.spoutWidth;
     this.maxFlowRate = options.maxFlowRate;
-    this.flowRateProperty = new Property( options.flowRate );
-    this.enabledProperty = new Property( options.enabled );
+    this.flowRateProperty = new NumberProperty( options.flowRate );
+    this.enabledProperty = new BooleanProperty( options.enabled );
 
     // when disabled, turn off the faucet.
     var self = this;

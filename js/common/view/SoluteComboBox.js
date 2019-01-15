@@ -28,10 +28,11 @@ define( function( require ) {
 
     options = _.extend( {
       listPosition: 'below',
-      itemYMargin: 12,
-      itemHighlightFill: 'rgb(218,255,255)',
+      xMargin: 16,
+      yMargin: 16,
+      highlightFill: 'rgb(218,255,255)',
       buttonLineWidth: 3,
-      buttonCornerRadius: 10
+      cornerRadius: 10
     }, options );
 
     // items

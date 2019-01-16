@@ -16,6 +16,7 @@ define( function( require ) {
   var ArrowButton = require( 'SUN/buttons/ArrowButton' );
   var ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var MathSymbols = require( 'SCENERY_PHET/MathSymbols' );
   var Node = require( 'SCENERY/nodes/Node' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Path = require( 'SCENERY/nodes/Path' );
@@ -31,7 +32,7 @@ define( function( require ) {
 
   // strings
   var pHString = require( 'string!PH_SCALE/pH' );
-  var stringNoValue = '-';
+  var stringNoValue = MathSymbols.NO_VALUE;
 
   // constants
   var X_MARGIN = 14;

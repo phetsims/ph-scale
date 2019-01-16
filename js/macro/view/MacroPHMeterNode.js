@@ -23,6 +23,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Line = require( 'SCENERY/nodes/Line' );
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
+  var MathSymbols = require( 'SCENERY_PHET/MathSymbols' );
   var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
@@ -42,7 +43,7 @@ define( function( require ) {
   var acidicString = require( 'string!PH_SCALE/acidic' );
   var basicString = require( 'string!PH_SCALE/basic' );
   var pHString = require( 'string!PH_SCALE/pH' );
-  var stringNoValue = '-';
+  var stringNoValue = MathSymbols.NO_VALUE;
 
   // constants
   var BACKGROUND_ENABLED_FILL = 'rgb(31,113,2)';

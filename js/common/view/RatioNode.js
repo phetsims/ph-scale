@@ -156,8 +156,8 @@ define( function( require ) {
           }
 
           // convert to integer values
-          numberOfH3O = Math.round( numberOfH3O );
-          numberOfOH = Math.round( numberOfOH );
+          numberOfH3O = Util.roundSymmetric( numberOfH3O );
+          numberOfOH = Util.roundSymmetric( numberOfOH );
         }
 
         // update molecules
@@ -185,12 +185,12 @@ define( function( require ) {
 
   // Computes the {number} number of H3O+ molecules for some {number} pH.
   var computeNumberOfH3O = function( pH ) {
-    return Math.round( PHModel.pHToConcentrationH3O( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
+    return Util.roundSymmetric( PHModel.pHToConcentrationH3O( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
   };
 
   // Computes the {number} number of OH- molecules for some {number} pH.
   var computeNumberOfOH = function( pH ) {
-    return Math.round( PHModel.pHToConcentrationOH( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
+    return Util.roundSymmetric( PHModel.pHToConcentrationOH( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
   };
 
   //-------------------------------------------------------------------------------------

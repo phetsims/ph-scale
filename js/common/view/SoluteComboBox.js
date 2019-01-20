@@ -1,4 +1,4 @@
-// Copyright 2013-2017, University of Colorado Boulder
+// Copyright 2013-2019, University of Colorado Boulder
 
 /**
  * Combo box for choosing a solute (stock solution).
@@ -9,68 +9,69 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var ComboBox = require( 'SUN/ComboBox' );
-  var ComboBoxItem = require( 'SUN/ComboBoxItem' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Text = require( 'SCENERY/nodes/Text' );
+  const ComboBox = require( 'SUN/ComboBox' );
+  const ComboBoxItem = require( 'SUN/ComboBoxItem' );
+  const HBox = require( 'SCENERY/nodes/HBox' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Text = require( 'SCENERY/nodes/Text' );
 
-  /**
-   * @param {Solute[]} solutes
-   * @param {Property.<Solute>} selectedSolute
-   * @param {Node} soluteListParent
-   * @param {Object} [options]
-   * @constructor
-   */
-  function SoluteComboBox( solutes, selectedSolute, soluteListParent, options ) {
+  class SoluteComboBox extends ComboBox {
 
-    options = _.extend( {
-      listPosition: 'below',
-      xMargin: 16,
-      yMargin: 16,
-      highlightFill: 'rgb(218,255,255)',
-      buttonLineWidth: 3,
-      cornerRadius: 10
-    }, options );
+    /**
+     * @param {Solute[]} solutes
+     * @param {Property.<Solute>} selectedSolute
+     * @param {Node} soluteListParent
+     * @param {Object} [options]
+     * @constructor
+     */
+    constructor( solutes, selectedSolute, soluteListParent, options ) {
 
-    // items
-    var items = [];
-    for ( var i = 0; i < solutes.length; i++ ) {
-      var solute = solutes[ i ];
-      items[ i ] = createItem( solute );
+      options = _.extend( {
+        listPosition: 'below',
+        xMargin: 16,
+        yMargin: 16,
+        highlightFill: 'rgb(218,255,255)',
+        buttonLineWidth: 3,
+        cornerRadius: 10
+      }, options );
+
+      // {ComboBoxItem[]}
+      const items = solutes.map( createItem );
+
+      super( items, selectedSolute, soluteListParent, options );
     }
-
-    ComboBox.call( this, items, selectedSolute, soluteListParent, options );
   }
 
   phScale.register( 'SoluteComboBox', SoluteComboBox );
 
   /**
    * Creates an item for the combo box.
-   * @param solute
+   * @param {Solute} solute
    * @returns {ComboBoxItem}
    */
-  var createItem = function( solute ) {
-    var node = new Node();
+  function createItem( solute ) {
 
     // color chip
-    var soluteColor = solute.stockColor;
-    var colorNode = new Rectangle( 0, 0, 20, 20, { fill: soluteColor, stroke: soluteColor.darkerColor() } );
+    const soluteColor = solute.stockColor;
+    const colorNode = new Rectangle( 0, 0, 20, 20, {
+      fill: soluteColor,
+      stroke: soluteColor.darkerColor()
+    } );
 
     // label
-    var textNode = new Text( solute.name, {
+    const textNode = new Text( solute.name, {
       font: new PhetFont( 22 )
     } );
 
-    node.addChild( colorNode );
-    node.addChild( textNode );
-    textNode.left = colorNode.right + 5;
-    textNode.centerY = colorNode.centerY;
-    return new ComboBoxItem( node, solute );
-  };
+    const hBox = new HBox( {
+      spacing: 5,
+      children: [ colorNode, textNode ]
+    } );
 
-  return inherit( ComboBox, SoluteComboBox );
+    return new ComboBoxItem( hBox, solute );
+  }
+
+  return SoluteComboBox;
 } );

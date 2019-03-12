@@ -34,7 +34,7 @@ define( function( require ) {
 
     var self = this;
 
-    // @public solute choices, in order that they'll appear in the combo box
+    // @public solute choices, in order that they'll appear in the combo box (decreasing pH value)
     this.solutes = [
       Solute.DRAIN_CLEANER,
       Solute.HAND_SOAP,

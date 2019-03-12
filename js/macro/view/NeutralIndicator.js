@@ -42,7 +42,7 @@ define( function( require ) {
     label.centerX = background.centerX;
     label.centerY = background.centerY;
 
-    // make this node visible when the solution is saturated
+    // make this node visible when the solution has neutral pH
     var self = this;
     solution.pHProperty.link( function() {
       self.setVisible( solution.isEquivalentToWater() );

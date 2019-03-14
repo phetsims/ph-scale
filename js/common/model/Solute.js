@@ -125,6 +125,8 @@ define( function( require ) {
 
   Solute.SPIT = new Solute( choiceSpitString, 7.4, { stockColor: new Color( 202, 240, 239 ) } );
 
+  Solute.WATER = new Solute( Water.name, Water.pH, { stockColor: Water.color } );
+
   Solute.MILK = new Solute( choiceMilkString, 6.5, { stockColor: new Color( 250, 250, 250 ) } );
 
   Solute.CHICKEN_SOUP = new Solute( choiceChickenSoupString, 5.8, {

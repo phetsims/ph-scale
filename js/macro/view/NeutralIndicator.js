@@ -16,6 +16,7 @@ define( function( require ) {
   var phScale = require( 'PH_SCALE/phScale' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Text = require( 'SCENERY/nodes/Text' );
+  var Water = require( 'PH_SCALE/common/model/Water' );
 
   // strings
   var neutralString = require( 'string!PH_SCALE/neutral' );
@@ -44,8 +45,8 @@ define( function( require ) {
 
     // make this node visible when the solution has neutral pH
     var self = this;
-    solution.pHProperty.link( function() {
-      self.setVisible( solution.isEquivalentToWater() );
+    solution.pHProperty.link( function( pH ) {
+      self.setVisible( pH === Water.pH );
     } );
   }
 

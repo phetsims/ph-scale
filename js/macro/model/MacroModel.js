@@ -40,6 +40,7 @@ define( function( require ) {
       Solute.HAND_SOAP,
       Solute.BLOOD,
       Solute.SPIT,
+      Solute.WATER,
       Solute.MILK,
       Solute.CHICKEN_SOUP,
       Solute.COFFEE,

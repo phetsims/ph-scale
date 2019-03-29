@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.2.17-rc.1 Thu Mar 28 2019 23:21:29 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# ph-scale 1.2.17-rc.2 Fri Mar 29 2019 14:43:26 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "3921bc3784dc67e9cbfa31cdec52b582fcfc68e7",
     "branch": "HEAD"
@@ -10,7 +10,7 @@
   },
   "brand": {
     "sha": "7b96db1ad28ab32e782c96cf08f640ad0b878515",
-    "branch": "ph-scale-1.2"
+    "branch": "HEAD"
   },
   "chipper": {
     "sha": "b6d2bc44a7dbaf8df02333d0a1bdf60fa3d02779",
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "91be81d411565a962890872738fe811d17896b5c",
+    "sha": "634ed00f293e07fdacd6b830477a93dc473f28e0",
     "branch": "1.2"
   },
   "phet-core": {

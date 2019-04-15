@@ -237,8 +237,6 @@ define( function( require ) {
     } );
   }
 
-  phScale.register( 'PHMeterNode.ValueNode', ValueNode );
-
   inherit( Node, ValueNode );
 
   /**
@@ -277,8 +275,6 @@ define( function( require ) {
     tipNode.centerX = shaftNode.centerX;
     tipNode.top = shaftNode.bottom - overlap;
   }
-
-  phScale.register( 'PHMeterNode.ProbeNode', ProbeNode );
 
   inherit( Node, ProbeNode );
 

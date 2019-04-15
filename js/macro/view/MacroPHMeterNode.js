@@ -198,8 +198,6 @@ define( function( require ) {
     neutralLabelNode.centerY = neutralLineNode.centerY;
   }
 
-  phScale.register( 'MacroPHMeterNode.ScaleNode', ScaleNode );
-
   inherit( Node, ScaleNode, {
 
     // @public needed for precise positioning of things that point to values on the scale
@@ -290,8 +288,6 @@ define( function( require ) {
       } );
     }
   }
-
-  phScale.register( 'MacroPHMeterNode.ValueNode', ValueNode );
 
   inherit( Node, ValueNode );
 
@@ -403,8 +399,6 @@ define( function( require ) {
     probe.locationProperty.link( updateCurve );
   }
 
-  phScale.register( 'MacroPHMeterNode.WireNode', WireNode );
-
   inherit( Path, WireNode );
 
   /**
@@ -458,8 +452,6 @@ define( function( require ) {
       arrowNode.visible = lineNode.visible = enabled;
     } );
   }
-
-  phScale.register( 'MacroPHMeterNode.IndicatorNode', IndicatorNode );
 
   inherit( Node, IndicatorNode );
 

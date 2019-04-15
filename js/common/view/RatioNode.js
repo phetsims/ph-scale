@@ -238,8 +238,6 @@ define( function( require ) {
       } );
   }
 
-  phScale.register( 'RatioNode.MoleculesCanvas', MoleculesCanvas );
-
   inherit( CanvasNode, MoleculesCanvas, {
 
     /**

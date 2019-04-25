@@ -326,9 +326,7 @@ define( function( require ) {
     } );
 
     // touch area
-    var dx = 0.25 * this.width;
-    var dy = 0.25 * this.height;
-    this.touchArea = Shape.rectangle( this.x - dx, this.y - dy, this.width + dx + dx, this.height + dy + dy );
+    this.touchArea = this.localBounds.dilated( 20, 20 );
 
     // drag handler
     this.addInputListener( new MovableDragHandler( probe.locationProperty, {

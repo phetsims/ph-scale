@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.2.18-rc.1 Thu Apr 18 2019 10:44:05 GMT-0800 (Alaskan Daylight Time)",
+  "comment": "# ph-scale 1.2.18 Wed Apr 24 2019 16:46:09 GMT-0800 (Alaskan Daylight Time)",
   "assert": {
     "sha": "3921bc3784dc67e9cbfa31cdec52b582fcfc68e7",
     "branch": "HEAD"
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "34e2a300897491e537397ab498e25cf1a9b91751",
+    "sha": "8368ae64738bc1129fc8a449482c79886acd4f7b",
     "branch": "1.2"
   },
   "phet-core": {

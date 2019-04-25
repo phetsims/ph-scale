@@ -56,7 +56,7 @@ define( function( require ) {
     // Dropper above the beaker
     var yDropper = this.beaker.location.y - this.beaker.size.height - 15;
     // @public
-    this.dropper = new Dropper( Solute.CHICKEN_SOUP,
+    this.dropper = new Dropper( Solute.WATER,
       new Vector2( this.beaker.location.x - 50, yDropper ),
       new Bounds2( this.beaker.left + 40, yDropper, this.beaker.right - 200, yDropper ) );
 

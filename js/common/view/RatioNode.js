@@ -152,6 +152,7 @@ define( function( require ) {
             var N = ( MAX_MAJORITY_MOLECULES - computeNumberOfOH( LOG_PH_RANGE.max ) ) / ( PHScaleConstants.PH_RANGE.max - LOG_PH_RANGE.max );
             var pHDiff;
             if ( pH > LOG_PH_RANGE.max ) {
+              
               // strong base
               pHDiff = pH - LOG_PH_RANGE.max;
               numberOfH3O = Math.max( MIN_MINORITY_MOLECULES, ( computeNumberOfH3O( LOG_PH_RANGE.max ) - pHDiff ) );

@@ -256,7 +256,7 @@ define( function( require ) {
      * Called when the solution's pH changes.
      * @param {number} numberOfH3OMolecules
      * @param {number} numberOfOHMolecules
-     * @private
+     * @public
      */
     drawMolecules: function( numberOfH3OMolecules, numberOfOHMolecules ) {
       if ( numberOfH3OMolecules !== this.numberOfH3OMolecules || numberOfOHMolecules !== this.numberOfOHMolecules ) {
@@ -264,8 +264,8 @@ define( function( require ) {
         /*
          * paintCanvas may be called when other things in beakerBounds change,
          * and we don't want the molecule positions to change when the pH remains constant.
-         * So generate and store molecule coordinates here, reusing the array.
-         * See #25.
+         * So generate and store molecule coordinates here, reusing the arrays.
+         * See https://github.com/phetsims/ph-scale/issues/25
          */
         var i;
         for ( i = 0; i < numberOfH3OMolecules; i++ ) {

@@ -293,7 +293,7 @@ define( function( require ) {
 
     /**
      * Paints one species of molecule. Using drawImage is faster than arc.
-     * @param {CanvasContextWrapper} wrapper
+     * @param {CanvasRenderingContext2D} context
      * @param {number} numberOfMolecules
      * @param {Image} image
      * @param {number[]} xCoords

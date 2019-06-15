@@ -140,11 +140,13 @@ define( function( require ) {
 
           // compute number of molecules
           if ( LOG_PH_RANGE.contains( pH ) ) {
+
             // # molecules varies logarithmically in this range
             numberOfH3O = Math.max( MIN_MINORITY_MOLECULES, computeNumberOfH3O( pH ) );
             numberOfOH = Math.max( MIN_MINORITY_MOLECULES, computeNumberOfOH( pH ) );
           }
           else {
+
             // # molecules varies linearly in this range
             // N is the number of molecules to add for each 1 unit of pH above or below the thresholds
             var N = ( MAX_MAJORITY_MOLECULES - computeNumberOfOH( LOG_PH_RANGE.max ) ) / ( PHScaleConstants.PH_RANGE.max - LOG_PH_RANGE.max );
@@ -156,6 +158,7 @@ define( function( require ) {
               numberOfOH = computeNumberOfOH( LOG_PH_RANGE.max ) + ( pHDiff * N );
             }
             else {
+              
               // strong acid
               pHDiff = LOG_PH_RANGE.min - pH;
               numberOfH3O = computeNumberOfH3O( LOG_PH_RANGE.min ) + ( pHDiff * N );

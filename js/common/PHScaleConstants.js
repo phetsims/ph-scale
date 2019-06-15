@@ -1,4 +1,4 @@
-// Copyright 2013-2018, University of Colorado Boulder
+// Copyright 2013-2019, University of Colorado Boulder
 
 /**
  * Constants used throughout this sim.
@@ -18,6 +18,17 @@ define( function( require ) {
 
     // ScreenView
     SCREEN_VIEW_OPTIONS: { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) },
+
+    // Credits, shared by ph-scale and ph-scale-basics
+    CREDITS: {
+      leadDesign: 'Yuen-ying Carpenter',
+      softwareDevelopment: 'Chris Malley (PixelZoom, Inc.)',
+      team: 'Julia Chamberlain, Trish Loeblein, Emily B. Moore, Ariel Paul, Katherine Perkins',
+      graphicArts: 'Sharon Siman-Tov',
+      qualityAssurance: 'Steele Dalton, Bryce Griebenow, Elise Morgan, Liam Mulhall, Oliver Orejola, ' +
+                        'Benjamin Roberts, Ethan Ward, Kathryn Woessner, Bryan Yoelin',
+      thanks: 'Conversion of this simulation to HTML5 was funded in part by the Royal Society of Chemistry.'
+    },
 
     // pH
     PH_RANGE: new RangeWithValue( -1, 15, 7 ),

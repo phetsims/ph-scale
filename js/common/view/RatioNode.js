@@ -227,7 +227,7 @@ define( function( require ) {
     // use typed array if available, it will use less memory and be faster
     var ArrayConstructor = window.Float32Array || window.Array;
 
-    // @private pre-allocate arrays for molecule coordinates, to eliminate allocation in critical code
+    // @private pre-allocate arrays for molecule x and y coordinates, to eliminate allocation in critical code
     this.xH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
     this.yH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
     this.xOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
@@ -290,8 +290,8 @@ define( function( require ) {
     /**
      * Paints molecules to the Canvas.
      * @param {CanvasRenderingContext2D} context
-     * @override
      * @protected
+     * @override
      */
     paintCanvas: function( context ) {
 
@@ -311,16 +311,16 @@ define( function( require ) {
      * @param {CanvasRenderingContext2D} context
      * @param {HTMLCanvasElement} image
      * @param {number} numberOfMolecules
-     * @param {number[]} xCoords
-     * @param {number[]} yCoords
+     * @param {number[]} xCoordinates
+     * @param {number[]} yCoordinates
      * @private
      */
-    drawMolecules: function( context, image, numberOfMolecules, xCoords, yCoords ) {
+    drawMolecules: function( context, image, numberOfMolecules, xCoordinates, yCoordinates ) {
 
       // images are generated asynchronously, so test just in case they aren't available when this is first called
       if ( image ) {
         for ( var i = 0; i < numberOfMolecules; i++ ) {
-          context.drawImage( image, xCoords[ i ], yCoords[ i ] );
+          context.drawImage( image, xCoordinates[ i ], yCoordinates[ i ] );
         }
       }
     }

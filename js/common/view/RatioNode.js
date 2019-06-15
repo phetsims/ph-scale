@@ -174,7 +174,7 @@ define( function( require ) {
         }
 
         // update molecules
-        this.moleculesNode.drawMolecules( numberOfH3O, numberOfOH );
+        this.moleculesNode.setNumberOfMolecules( numberOfH3O, numberOfOH );
 
         // update dev counts
         if ( this.ratioText ) {
@@ -255,12 +255,12 @@ define( function( require ) {
   inherit( CanvasNode, MoleculesCanvas, {
 
     /**
-     * Called when the solution's pH changes.
+     * Sets the number of molecules to display. Called when the solution's pH changes.
      * @param {number} numberOfH3OMolecules
      * @param {number} numberOfOHMolecules
      * @public
      */
-    drawMolecules: function( numberOfH3OMolecules, numberOfOHMolecules ) {
+    setNumberOfMolecules: function( numberOfH3OMolecules, numberOfOHMolecules ) {
       if ( numberOfH3OMolecules !== this.numberOfH3OMolecules || numberOfOHMolecules !== this.numberOfOHMolecules ) {
 
         /*
@@ -288,34 +288,34 @@ define( function( require ) {
     },
 
     /**
-     * Paints both species of molecule to the canvas.
+     * Paints molecules to the Canvas.
+     * @param {CanvasRenderingContext2D} context
      * @override
      * @protected
-     * @param {CanvasRenderingContext2D} context
      */
     paintCanvas: function( context ) {
 
       // draw majority species behind minority species
       if ( this.numberOfH3OMolecules > this.numberOfOHMolecules ) {
-        this.paintMolecules( context, this.numberOfH3OMolecules, this.imageH3OMajority, this.xH3O, this.yH3O );
-        this.paintMolecules( context, this.numberOfOHMolecules, this.imageOHMinority, this.xOH, this.yOH );
+        this.drawMolecules( context, this.imageH3OMajority, this.numberOfH3OMolecules, this.xH3O, this.yH3O );
+        this.drawMolecules( context, this.imageOHMinority, this.numberOfOHMolecules, this.xOH, this.yOH );
       }
       else {
-        this.paintMolecules( context, this.numberOfOHMolecules, this.imageOHMajority, this.xOH, this.yOH );
-        this.paintMolecules( context, this.numberOfH3OMolecules, this.imageH3OMinority, this.xH3O, this.yH3O );
+        this.drawMolecules( context, this.imageOHMajority, this.numberOfOHMolecules, this.xOH, this.yOH );
+        this.drawMolecules( context, this.imageH3OMinority, this.numberOfH3OMolecules, this.xH3O, this.yH3O );
       }
     },
 
     /**
-     * Paints one species of molecule. Using drawImage is faster than arc.
+     * Draws one species of molecule. Using drawImage is faster than arc.
      * @param {CanvasRenderingContext2D} context
-     * @param {number} numberOfMolecules
      * @param {HTMLCanvasElement} image
+     * @param {number} numberOfMolecules
      * @param {number[]} xCoords
      * @param {number[]} yCoords
      * @private
      */
-    paintMolecules: function( context, numberOfMolecules, image, xCoords, yCoords ) {
+    drawMolecules: function( context, image, numberOfMolecules, xCoords, yCoords ) {
 
       // images are generated asynchronously, so test just in case they aren't available when this is first called
       if ( image ) {

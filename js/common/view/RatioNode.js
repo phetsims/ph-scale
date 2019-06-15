@@ -324,7 +324,7 @@ define( function( require ) {
         }
       }
     }
-  }, {} );
+  } );
 
   return RatioNode;
 } );

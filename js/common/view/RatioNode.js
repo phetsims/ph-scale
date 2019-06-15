@@ -105,7 +105,7 @@ define( function( require ) {
 
     /**
      * When this node becomes visible, update it.
-     * @param visible
+     * @param {boolean} visible
      * @public
      * @override
      */
@@ -308,7 +308,7 @@ define( function( require ) {
      * Paints one species of molecule. Using drawImage is faster than arc.
      * @param {CanvasRenderingContext2D} context
      * @param {number} numberOfMolecules
-     * @param {Image} image
+     * @param {HTMLCanvasElement} image
      * @param {number[]} xCoords
      * @param {number[]} yCoords
      * @private

@@ -187,12 +187,12 @@ define( function( require ) {
 
   // Creates a random {number} x-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
   function createRandomX( bounds ) {
-    return Math.floor( bounds.x + ( phet.joist.random.nextDouble() * bounds.getWidth() ) );
+    return phet.joist.random.nextIntBetween( bounds.minX, bounds.maxX );
   }
 
   // Creates a random {number} y-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
   function createRandomY( bounds ) {
-    return Math.floor( bounds.y + ( phet.joist.random.nextDouble() * bounds.getHeight() ) );
+    return phet.joist.random.nextIntBetween( bounds.minY, bounds.maxY );
   }
 
   // Computes the {number} number of H3O+ molecules for some {number} pH.

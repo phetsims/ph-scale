@@ -54,17 +54,17 @@ define( function( require ) {
 
     Node.call( this );
 
-    // save constructor args
-    this.solution = solution; // @private
+    // @private save constructor args
+    this.solution = solution;
 
-    // current pH
-    this.pH = null; // @private null to force an update
+    // @private current pH, null to force an update
+    this.pH = null;
 
     // bounds of the beaker, in view coordinates
     var beakerBounds = modelViewTransform.modelToViewBounds( beaker.bounds );
 
-    // parent for all molecules
-    this.moleculesNode = new MoleculesCanvas( beakerBounds ); // @private
+    // @private parent for all molecules
+    this.moleculesNode = new MoleculesCanvas( beakerBounds );
     this.addChild( this.moleculesNode );
 
     // dev mode, show numbers of molecules at bottom of beaker
@@ -219,18 +219,19 @@ define( function( require ) {
 
     CanvasNode.call( this, { canvasBounds: beakerBounds } );
 
-    this.beakerBounds = beakerBounds; // @private
-    this.numberOfH3OMolecules = 0; // @private
-    this.numberOfOHMolecules = 0; // @private
+    // @private
+    this.beakerBounds = beakerBounds;
+    this.numberOfH3OMolecules = 0;
+    this.numberOfOHMolecules = 0;
 
     // use typed array if available, it will use less memory and be faster
     var ArrayConstructor = window.Float32Array || window.Array;
 
-    // pre-allocate arrays for molecule coordinates, to eliminate allocation in critical code
-    this.xH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
-    this.yH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
-    this.xOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
-    this.yOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES ); // @private
+    // @private pre-allocate arrays for molecule coordinates, to eliminate allocation in critical code
+    this.xH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
+    this.yH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
+    this.xOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
+    this.yOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
 
     // @private Generate majority and minority {HTMLCanvasElement} for each molecule.
     new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA ) } )

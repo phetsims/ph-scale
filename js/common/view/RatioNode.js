@@ -68,16 +68,19 @@ define( function( require ) {
 
     // dev mode, show numbers of molecules at bottom of beaker
     if ( PHScaleQueryParameters.showRatio ) {
+
+      // @private
       this.ratioText = new Text( '?', {
         font: new PhetFont( 30 ),
         fill: 'black',
         centerX: beakerBounds.getCenterX(),
         bottom: beakerBounds.maxY - 20
-      } ); // @private
+      } );
       this.addChild( this.ratioText );
     }
 
-    this.mutate( options ); // call before registering for property notifications, because 'visible' significantly affects initialization time
+    // call before registering for Property notifications, because 'visible' significantly affects initialization time
+    this.mutate( options );
 
     // sync view with model
     solution.pHProperty.link( this.update.bind( this ) );
@@ -100,7 +103,12 @@ define( function( require ) {
 
   inherit( Node, RatioNode, {
 
-    // @override @public When this node becomes visible, update it.
+    /**
+     * When this node becomes visible, update it.
+     * @param visible
+     * @public
+     * @override
+     */
     setVisible: function( visible ) {
       var doUpdate = visible && !this.visible;
       Node.prototype.setVisible.call( this, visible );
@@ -174,30 +182,30 @@ define( function( require ) {
   // @private ----------------------------------------------------------------------------
 
   // Creates a random {number} x-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
-  var createRandomX = function( bounds ) {
+  function createRandomX( bounds ) {
     return Math.floor( bounds.x + ( phet.joist.random.nextDouble() * bounds.getWidth() ) );
-  };
+  }
 
   // Creates a random {number} y-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
-  var createRandomY = function( bounds ) {
+  function createRandomY( bounds ) {
     return Math.floor( bounds.y + ( phet.joist.random.nextDouble() * bounds.getHeight() ) );
-  };
+  }
 
   // Computes the {number} number of H3O+ molecules for some {number} pH.
-  var computeNumberOfH3O = function( pH ) {
+  function computeNumberOfH3O( pH ) {
     return Util.roundSymmetric( PHModel.pHToConcentrationH3O( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
-  };
+  }
 
   // Computes the {number} number of OH- molecules for some {number} pH.
-  var computeNumberOfOH = function( pH ) {
+  function computeNumberOfOH( pH ) {
     return Util.roundSymmetric( PHModel.pHToConcentrationOH( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
-  };
+  }
 
   //-------------------------------------------------------------------------------------
 
   /**
    * Draws all molecules directly to Canvas.
-   * @param {Bounds2} beakerBounds beaker bounds in view coordinate frame
+   * @param {Bounds2} beakerBounds - beaker bounds in view coordinate frame
    * @constructor
    */
   function MoleculesCanvas( beakerBounds ) {
@@ -280,6 +288,7 @@ define( function( require ) {
      * @param {CanvasRenderingContext2D} context
      */
     paintCanvas: function( context ) {
+
       // draw majority species behind minority species
       if ( this.numberOfH3OMolecules > this.numberOfOHMolecules ) {
         this.paintMolecules( context, this.numberOfH3OMolecules, this.imageH3OMajority, this.xH3O, this.yH3O );
@@ -301,7 +310,9 @@ define( function( require ) {
      * @private
      */
     paintMolecules: function( context, numberOfMolecules, image, xCoords, yCoords ) {
-      if ( image ) { // images are generated asynchronously, so test just in case they aren't available when this is first called
+
+      // images are generated asynchronously, so test just in case they aren't available when this is first called
+      if ( image ) {
         for ( var i = 0; i < numberOfMolecules; i++ ) {
           context.drawImage( image, xCoords[ i ], yCoords[ i ] );
         }

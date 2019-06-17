@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.3.0-rc.1 Mon Jun 17 2019 09:55:18 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# ph-scale 1.3.0-rc.1 Mon Jun 17 2019 10:11:03 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "d8a2e8992420327ff72a6fc4bb93ec76549ded0e",
     "branch": "HEAD"
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "9c8cfe51ba11eecf5511623d65121727c2b1bb6d",
+    "sha": "797474c7c5a3a2d7fccae1f4a5a7e52bbe0c564e",
     "branch": "1.3"
   },
   "phet-core": {
@@ -66,15 +66,15 @@
   },
   "scenery-phet": {
     "sha": "c0c71e81444ad6c137b96f03848bc5f932bd3c94",
-    "branch": "ph-scale-1.3"
+    "branch": "HEAD"
   },
   "sherpa": {
     "sha": "2a32165bfe80cf50a85af442ff7073333418bd70",
     "branch": "HEAD"
   },
   "sun": {
-    "sha": "4556554a20c8bf9d44560386bb65ee39091731da",
-    "branch": "HEAD"
+    "sha": "0ac5c8fd76b0db5a521fce494197cc3ebf963f89",
+    "branch": "ph-scale-1.3"
   },
   "tambo": {
     "sha": "ccee8096e75ef4b3776db6c8233205f3566a8929",

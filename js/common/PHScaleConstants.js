@@ -23,7 +23,7 @@ define( function( require ) {
     CREDITS: {
       leadDesign: 'Yuen-ying Carpenter',
       softwareDevelopment: 'Chris Malley (PixelZoom, Inc.)',
-      team: 'Julia Chamberlain, Trish Loeblein, Emily B. Moore, Ariel Paul, Katherine Perkins',
+      team: 'Julia Chamberlain, Trish Loeblein, Emily B. Moore, Ariel Paul, Katherine Perkins, Amy Rouinfar',
       graphicArts: 'Sharon Siman-Tov',
       qualityAssurance: 'Steele Dalton, Bryce Griebenow, Elise Morgan, Liam Mulhall, Oliver Orejola, ' +
                         'Benjamin Roberts, Ethan Ward, Kathryn Woessner, Bryan Yoelin',

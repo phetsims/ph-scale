@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.3.0-rc.1 Wed Jul 17 2019 22:33:07 GMT-0600 (MDT)",
+  "comment": "# ph-scale 1.3.0-rc.1 Tue Jul 23 2019 09:25:19 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "d8a2e8992420327ff72a6fc4bb93ec76549ded0e",
     "branch": "HEAD"
@@ -25,15 +25,15 @@
     "branch": "HEAD"
   },
   "kite": {
-    "sha": "4ec082deba698c64bba483ba6cfb9a6adcf70150",
-    "branch": "HEAD"
+    "sha": "b683411b885ce67323d79220f3b9b452279d247b",
+    "branch": "ph-scale-1.3"
   },
   "nitroglycerin": {
     "sha": "02bb3655bd83d64983ccba41698949f5f6e50981",
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "7ca9b362042c2234412e9469680a14e6e71d5b09",
+    "sha": "619023e5537f71d6dae63c226bcde621a855f3ea",
     "branch": "1.3"
   },
   "phet-core": {
@@ -58,7 +58,7 @@
   },
   "query-string-machine": {
     "sha": "4e56d66c85fd5f296b2f1a480832328e54ee4b93",
-    "branch": "ph-scale-1.3"
+    "branch": "HEAD"
   },
   "scenery": {
     "sha": "d199bce1708a9041a99a23813cbe37a44e36c77f",

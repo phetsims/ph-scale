@@ -10,6 +10,7 @@ define( function( require ) {
 
   // modules
   var Beaker = require( 'PH_SCALE/common/model/Beaker' );
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var Dropper = require( 'PH_SCALE/common/model/Dropper' );
@@ -79,7 +80,10 @@ define( function( require ) {
 
     // auto-fill when the solute changes
     this.autoFillVolume = options.autoFillVolume; // @private
-    this.isAutoFilling = false; // @private
+
+    // @public (read-only)
+    this.isAutoFillingProperty = new BooleanProperty( false );
+
     this.dropper.soluteProperty.link( function() {
       // disable the faucets to cancel any multi-touch interaction that may be in progress, see issue #28
       self.waterFaucet.enabledProperty.set( false );
@@ -126,7 +130,7 @@ define( function( require ) {
      * @public
      */
     step: function( deltaSeconds ) {
-      if ( this.isAutoFilling ) {
+      if ( this.isAutoFillingProperty.value ) {
         this.stepAutoFill( deltaSeconds );
       }
       else {
@@ -141,7 +145,7 @@ define( function( require ) {
      * @private
      */
     startAutoFill: function() {
-      this.isAutoFilling = true;
+      this.isAutoFillingProperty.value = true;
       this.dropper.dispensingProperty.set( true );
       this.dropper.flowRateProperty.set( 0.75 ); // faster than standard flow rate
     },
@@ -163,7 +167,7 @@ define( function( require ) {
      * @private
      */
     stopAutoFill: function() {
-      this.isAutoFilling = false;
+      this.isAutoFillingProperty.value = false;
       this.dropper.dispensingProperty.set( false );
       this.updateFaucetsAndDropper();
     }

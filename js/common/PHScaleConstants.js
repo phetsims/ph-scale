@@ -25,7 +25,7 @@ define( function( require ) {
       softwareDevelopment: 'Chris Malley (PixelZoom, Inc.)',
       team: 'Julia Chamberlain, Trish Loeblein, Emily B. Moore, Ariel Paul, Katherine Perkins, Amy Rouinfar',
       graphicArts: 'Sharon Siman-Tov',
-      qualityAssurance: 'Steele Dalton, Bryce Griebenow, Elise Morgan, Liam Mulhall, Oliver Orejola, ' +
+      qualityAssurance: 'Jaspe Arias, Steele Dalton, Bryce Griebenow, Elise Morgan, Liam Mulhall, Oliver Orejola, ' +
                         'Benjamin Roberts, Ethan Ward, Kathryn Woessner, Bryan Yoelin',
       thanks: 'Conversion of this simulation to HTML5 was funded in part by the Royal Society of Chemistry.'
     },

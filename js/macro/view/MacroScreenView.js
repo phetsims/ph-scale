@@ -105,6 +105,10 @@ define( function( require ) {
     neutralIndicator.bottom = beakerNode.bottom - 30;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
+
+    model.isAutoFillingProperty.link( isAutoFilling => {
+      dropperNode.interruptSubtreeInput();
+    } );
   }
 
   phScale.register( 'MacroScreenView', MacroScreenView );

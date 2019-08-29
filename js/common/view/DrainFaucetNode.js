@@ -28,7 +28,11 @@ define( function( require ) {
       horizontalPipeLength: horizontalPipeLength,
       verticalPipeLength: 5,
       tapToDispenseAmount: PHScaleConstants.TAP_TO_DISPENSE_AMOUNT,
-      tapToDispenseInterval: PHScaleConstants.TAP_TO_DISPENSE_INTERVAL
+      tapToDispenseInterval: PHScaleConstants.TAP_TO_DISPENSE_INTERVAL,
+      shooterOptions: {
+        touchAreaXDilation: 37,
+        touchAreaYDilation: 60
+      }
     } );
     this.translation = modelViewTransform.modelToViewPosition( faucet.location );
     this.setScaleMagnitude( -scale, scale ); // reflect horizontally

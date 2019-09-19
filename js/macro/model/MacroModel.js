@@ -5,23 +5,23 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Beaker = require( 'PH_SCALE/common/model/Beaker' );
-  var BooleanProperty = require( 'AXON/BooleanProperty' );
-  var Bounds2 = require( 'DOT/Bounds2' );
-  var Dimension2 = require( 'DOT/Dimension2' );
-  var Dropper = require( 'PH_SCALE/common/model/Dropper' );
-  var Faucet = require( 'PH_SCALE/common/model/Faucet' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var PHMeter = require( 'PH_SCALE/macro/model/PHMeter' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Solute = require( 'PH_SCALE/common/model/Solute' );
-  var Solution = require( 'PH_SCALE/common/model/Solution' );
-  var Vector2 = require( 'DOT/Vector2' );
+  const Beaker = require( 'PH_SCALE/common/model/Beaker' );
+  const BooleanProperty = require( 'AXON/BooleanProperty' );
+  const Bounds2 = require( 'DOT/Bounds2' );
+  const Dimension2 = require( 'DOT/Dimension2' );
+  const Dropper = require( 'PH_SCALE/common/model/Dropper' );
+  const Faucet = require( 'PH_SCALE/common/model/Faucet' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const PHMeter = require( 'PH_SCALE/macro/model/PHMeter' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const Solute = require( 'PH_SCALE/common/model/Solute' );
+  const Solution = require( 'PH_SCALE/common/model/Solution' );
+  const Vector2 = require( 'DOT/Vector2' );
 
   /**
    * @param {Object} [options]

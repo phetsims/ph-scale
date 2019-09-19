@@ -7,13 +7,13 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var phScale = require( 'PH_SCALE/phScale' );
-  var Util = require( 'DOT/Util' );
-  var Water = require( 'PH_SCALE/common/model/Water' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const Util = require( 'DOT/Util' );
+  const Water = require( 'PH_SCALE/common/model/Water' );
 
   // constants
   var AVOGADROS_NUMBER = 6.023E23; // number of molecules in one mole of solution

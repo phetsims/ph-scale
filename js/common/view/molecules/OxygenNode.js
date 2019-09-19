@@ -5,15 +5,15 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Color = require( 'SCENERY/util/Color' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
+  const Color = require( 'SCENERY/util/Color' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  const ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
 
   /**
    * @constructor

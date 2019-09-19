@@ -6,25 +6,25 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Dimension2 = require( 'DOT/Dimension2' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var Path = require( 'SCENERY/nodes/Path' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Shape = require( 'KITE/Shape' );
-  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Util = require( 'DOT/Util' );
+  const Dimension2 = require( 'DOT/Dimension2' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const Path = require( 'SCENERY/nodes/Path' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const Shape = require( 'KITE/Shape' );
+  const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Util = require( 'DOT/Util' );
 
   // strings
-  var pattern0Value1UnitsString = require( 'string!PH_SCALE/pattern.0value.1units' );
-  var unitsLitersString = require( 'string!PH_SCALE/units.liters' );
+  const pattern0Value1UnitsString = require( 'string!PH_SCALE/pattern.0value.1units' );
+  const unitsLitersString = require( 'string!PH_SCALE/units.liters' );
 
   // constants
   var ARROW_SIZE = new Dimension2( 21, 28 );

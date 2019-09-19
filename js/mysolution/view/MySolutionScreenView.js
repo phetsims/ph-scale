@@ -11,25 +11,25 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
-  var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
-  var GraphNode = require( 'PH_SCALE/common/view/graph/GraphNode' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var PHScaleViewProperties = require( 'PH_SCALE/common/view/PHScaleViewProperties' );
-  var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
-  var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-  var ScreenView = require( 'JOIST/ScreenView' );
-  var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
-  var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
+  const BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
+  const BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
+  const GraphNode = require( 'PH_SCALE/common/view/graph/GraphNode' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const PHScaleViewProperties = require( 'PH_SCALE/common/view/PHScaleViewProperties' );
+  const RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
+  const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
+  const ScreenView = require( 'JOIST/ScreenView' );
+  const SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
+  const VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
   /**
    * @param {MySolutionModel} model

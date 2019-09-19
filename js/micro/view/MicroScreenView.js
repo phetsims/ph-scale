@@ -11,34 +11,34 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
-  var BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
-  var DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
-  var DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
-  var EyeDropperNode = require( 'SCENERY_PHET/EyeDropperNode' );
-  var FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
-  var GraphNode = require( 'PH_SCALE/common/view/graph/GraphNode' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PHDropperNode = require( 'PH_SCALE/common/view/PHDropperNode' );
-  var PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var PHScaleViewProperties = require( 'PH_SCALE/common/view/PHScaleViewProperties' );
-  var Property = require( 'AXON/Property' );
-  var RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
-  var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-  var ScreenView = require( 'JOIST/ScreenView' );
-  var SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
-  var SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
-  var VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
-  var Water = require( 'PH_SCALE/common/model/Water' );
-  var WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
+  const BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
+  const BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
+  const DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
+  const DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
+  const EyeDropperNode = require( 'SCENERY_PHET/EyeDropperNode' );
+  const FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
+  const GraphNode = require( 'PH_SCALE/common/view/graph/GraphNode' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PHDropperNode = require( 'PH_SCALE/common/view/PHDropperNode' );
+  const PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const PHScaleViewProperties = require( 'PH_SCALE/common/view/PHScaleViewProperties' );
+  const Property = require( 'AXON/Property' );
+  const RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
+  const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
+  const ScreenView = require( 'JOIST/ScreenView' );
+  const SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
+  const SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
+  const VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
+  const Water = require( 'PH_SCALE/common/model/Water' );
+  const WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
 
   /**
    * @param {MicroModel} model

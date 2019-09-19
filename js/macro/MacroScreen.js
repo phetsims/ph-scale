@@ -5,26 +5,26 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Image = require( 'SCENERY/nodes/Image' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
-  var MacroScreenView = require( 'PH_SCALE/macro/view/MacroScreenView' );
-  var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var Property = require( 'AXON/Property' );
-  var Screen = require( 'JOIST/Screen' );
+  const Image = require( 'SCENERY/nodes/Image' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
+  const MacroScreenView = require( 'PH_SCALE/macro/view/MacroScreenView' );
+  const ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  const Property = require( 'AXON/Property' );
+  const Screen = require( 'JOIST/Screen' );
 
   // strings
-  var screenMacroString = require( 'string!PH_SCALE/screen.macro' );
+  const screenMacroString = require( 'string!PH_SCALE/screen.macro' );
 
   // images
-  var homeIcon = require( 'image!PH_SCALE/Macro-home-icon.png' );
-  var navbarIcon = require( 'image!PH_SCALE/Macro-navbar-icon.png' );
+  const homeIcon = require( 'image!PH_SCALE/Macro-home-icon.png' );
+  const navbarIcon = require( 'image!PH_SCALE/Macro-navbar-icon.png' );
 
   /**
    * @param {Object} [modelOptions]

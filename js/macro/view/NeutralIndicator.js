@@ -6,20 +6,20 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Water = require( 'PH_SCALE/common/model/Water' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Water = require( 'PH_SCALE/common/model/Water' );
 
   // strings
-  var neutralString = require( 'string!PH_SCALE/neutral' );
+  const neutralString = require( 'string!PH_SCALE/neutral' );
 
   /**
    * @param {Solution} solution

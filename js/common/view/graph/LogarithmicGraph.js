@@ -11,25 +11,25 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var GraphIndicator = require( 'PH_SCALE/common/view/graph/GraphIndicator' );
-  var GraphIndicatorDragHandler = require( 'PH_SCALE/common/view/graph/GraphIndicatorDragHandler' );
-  var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Line = require( 'SCENERY/nodes/Line' );
-  var LinearGradient = require( 'SCENERY/util/LinearGradient' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var PHModel = require( 'PH_SCALE/common/model/PHModel' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var RichText = require( 'SCENERY/nodes/RichText' );
-  var Util = require( 'DOT/Util' );
+  const GraphIndicator = require( 'PH_SCALE/common/view/graph/GraphIndicator' );
+  const GraphIndicatorDragHandler = require( 'PH_SCALE/common/view/graph/GraphIndicatorDragHandler' );
+  const GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Line = require( 'SCENERY/nodes/Line' );
+  const LinearGradient = require( 'SCENERY/util/LinearGradient' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const NumberProperty = require( 'AXON/NumberProperty' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const PHModel = require( 'PH_SCALE/common/model/PHModel' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const RichText = require( 'SCENERY/nodes/RichText' );
+  const Util = require( 'DOT/Util' );
 
   /**
    * @param {Solution} solution

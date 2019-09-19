@@ -5,19 +5,19 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Color = require( 'SCENERY/util/Color' );
-  var DerivedProperty = require( 'AXON/DerivedProperty' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
-  var PHModel = require( 'PH_SCALE/common/model/PHModel' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Util = require( 'DOT/Util' );
-  var Water = require( 'PH_SCALE/common/model/Water' );
+  const Color = require( 'SCENERY/util/Color' );
+  const DerivedProperty = require( 'AXON/DerivedProperty' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const NumberProperty = require( 'AXON/NumberProperty' );
+  const PHModel = require( 'PH_SCALE/common/model/PHModel' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const Util = require( 'DOT/Util' );
+  const Water = require( 'PH_SCALE/common/model/Water' );
 
   // constants
   var MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );

@@ -6,27 +6,27 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Checkbox = require( 'SUN/Checkbox' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var LayoutBox = require( 'SCENERY/nodes/LayoutBox' );
-  var Line = require( 'SCENERY/nodes/Line' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var Panel = require( 'SUN/Panel' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var RichText = require( 'SCENERY/nodes/RichText' );
-  var Shape = require( 'KITE/Shape' );
-  var Text = require( 'SCENERY/nodes/Text' );
+  const Checkbox = require( 'SUN/Checkbox' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const LayoutBox = require( 'SCENERY/nodes/LayoutBox' );
+  const Line = require( 'SCENERY/nodes/Line' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const Panel = require( 'SUN/Panel' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const RichText = require( 'SCENERY/nodes/RichText' );
+  const Shape = require( 'KITE/Shape' );
+  const Text = require( 'SCENERY/nodes/Text' );
 
   // strings
-  var moleculeCountString = require( 'string!PH_SCALE/moleculeCount' );
-  var ratioString = require( 'string!PH_SCALE/ratio' );
+  const moleculeCountString = require( 'string!PH_SCALE/moleculeCount' );
+  const ratioString = require( 'string!PH_SCALE/ratio' );
 
   // constants
   var FONT = new PhetFont( 20 );

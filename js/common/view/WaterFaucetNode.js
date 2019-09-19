@@ -5,18 +5,18 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var FaucetNode = require( 'SCENERY_PHET/FaucetNode' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Water = require( 'PH_SCALE/common/model/Water' );
+  const FaucetNode = require( 'SCENERY_PHET/FaucetNode' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Water = require( 'PH_SCALE/common/model/Water' );
 
   /**
    * @param {Faucet} faucet

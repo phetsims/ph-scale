@@ -5,21 +5,21 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var H2ONode = require( 'PH_SCALE/common/view/molecules/H2ONode' );
-  var H3ONode = require( 'PH_SCALE/common/view/molecules/H3ONode' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
-  var OHNode = require( 'PH_SCALE/common/view/molecules/OHNode' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
+  const H2ONode = require( 'PH_SCALE/common/view/molecules/H2ONode' );
+  const H3ONode = require( 'PH_SCALE/common/view/molecules/H3ONode' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const NumberProperty = require( 'AXON/NumberProperty' );
+  const OHNode = require( 'PH_SCALE/common/view/molecules/OHNode' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
 
   /**
    * @param {Solution} solution

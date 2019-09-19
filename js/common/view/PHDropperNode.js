@@ -7,14 +7,14 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var EyeDropperNode = require( 'SCENERY_PHET/EyeDropperNode' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
-  var phScale = require( 'PH_SCALE/phScale' );
+  const EyeDropperNode = require( 'SCENERY_PHET/EyeDropperNode' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
+  const phScale = require( 'PH_SCALE/phScale' );
 
   /**
    * @param {Dropper} dropper

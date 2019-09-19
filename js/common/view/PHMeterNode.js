@@ -9,29 +9,29 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var ArrowButton = require( 'SUN/buttons/ArrowButton' );
-  var ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var MathSymbols = require( 'SCENERY_PHET/MathSymbols' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
-  var Path = require( 'SCENERY/nodes/Path' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Shape = require( 'KITE/Shape' );
-  var Solute = require( 'PH_SCALE/common/model/Solute' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Util = require( 'DOT/Util' );
+  const ArrowButton = require( 'SUN/buttons/ArrowButton' );
+  const ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const MathSymbols = require( 'SCENERY_PHET/MathSymbols' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const NumberProperty = require( 'AXON/NumberProperty' );
+  const Path = require( 'SCENERY/nodes/Path' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Shape = require( 'KITE/Shape' );
+  const Solute = require( 'PH_SCALE/common/model/Solute' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Util = require( 'DOT/Util' );
 
   // strings
-  var pHString = require( 'string!PH_SCALE/pH' );
+  const pHString = require( 'string!PH_SCALE/pH' );
   var stringNoValue = MathSymbols.NO_VALUE;
 
   // constants

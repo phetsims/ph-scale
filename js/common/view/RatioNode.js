@@ -12,24 +12,24 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var CanvasNode = require( 'SCENERY/nodes/CanvasNode' );
-  var Circle = require( 'SCENERY/nodes/Circle' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var PHModel = require( 'PH_SCALE/common/model/PHModel' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var PHScaleQueryParameters = require( 'PH_SCALE/common/PHScaleQueryParameters' );
-  var Range = require( 'DOT/Range' );
-  var Shape = require( 'KITE/Shape' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Util = require( 'DOT/Util' );
+  const CanvasNode = require( 'SCENERY/nodes/CanvasNode' );
+  const Circle = require( 'SCENERY/nodes/Circle' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const PHModel = require( 'PH_SCALE/common/model/PHModel' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const PHScaleQueryParameters = require( 'PH_SCALE/common/PHScaleQueryParameters' );
+  const Range = require( 'DOT/Range' );
+  const Shape = require( 'KITE/Shape' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Util = require( 'DOT/Util' );
 
   // constants
   var TOTAL_MOLECULES_AT_PH_7 = 100;

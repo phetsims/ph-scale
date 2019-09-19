@@ -5,13 +5,13 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
   /**
    * @param {Dropper} dropper

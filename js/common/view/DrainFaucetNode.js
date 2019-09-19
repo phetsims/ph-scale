@@ -5,14 +5,14 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var FaucetNode = require( 'SCENERY_PHET/FaucetNode' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const FaucetNode = require( 'SCENERY_PHET/FaucetNode' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
 
   /**
    * @param {Faucet} faucet

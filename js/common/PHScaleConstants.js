@@ -5,14 +5,14 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Bounds2 = require( 'DOT/Bounds2' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var Range = require( 'DOT/Range' );
-  var RangeWithValue = require( 'DOT/RangeWithValue' );
+  const Bounds2 = require( 'DOT/Bounds2' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const Range = require( 'DOT/Range' );
+  const RangeWithValue = require( 'DOT/RangeWithValue' );
 
   var PHScaleConstants = {
 

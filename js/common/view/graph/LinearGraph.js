@@ -8,26 +8,26 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var GraphIndicator = require( 'PH_SCALE/common/view/graph/GraphIndicator' );
-  var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Line = require( 'SCENERY/nodes/Line' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
-  var Path = require( 'SCENERY/nodes/Path' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
-  var Shape = require( 'KITE/Shape' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Util = require( 'DOT/Util' );
+  const GraphIndicator = require( 'PH_SCALE/common/view/graph/GraphIndicator' );
+  const GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Line = require( 'SCENERY/nodes/Line' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const NumberProperty = require( 'AXON/NumberProperty' );
+  const Path = require( 'SCENERY/nodes/Path' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
+  const Shape = require( 'KITE/Shape' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Util = require( 'DOT/Util' );
 
   // strings
-  var offScaleString = require( 'string!PH_SCALE/offScale' );
+  const offScaleString = require( 'string!PH_SCALE/offScale' );
 
   /**
    * @param {Solution} solution

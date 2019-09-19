@@ -5,16 +5,16 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BooleanProperty = require( 'AXON/BooleanProperty' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Movable = require( 'PH_SCALE/common/model/Movable' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var Property = require( 'AXON/Property' );
+  const BooleanProperty = require( 'AXON/BooleanProperty' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Movable = require( 'PH_SCALE/common/model/Movable' );
+  const NumberProperty = require( 'AXON/NumberProperty' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const Property = require( 'AXON/Property' );
 
   /**
    * @param {Solute} solute

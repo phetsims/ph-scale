@@ -5,13 +5,13 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Bounds2 = require( 'DOT/Bounds2' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var phScale = require( 'PH_SCALE/phScale' );
+  const Bounds2 = require( 'DOT/Bounds2' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const phScale = require( 'PH_SCALE/phScale' );
 
   /**
    * Constructor

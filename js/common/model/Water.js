@@ -5,15 +5,15 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
 
   // strings
-  var choiceWaterString = require( 'string!PH_SCALE/choice.water' );
+  const choiceWaterString = require( 'string!PH_SCALE/choice.water' );
 
   var Water = Object.freeze( {
     name: choiceWaterString,

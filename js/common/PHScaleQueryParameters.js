@@ -5,11 +5,11 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var phScale = require( 'PH_SCALE/phScale' );
+  const phScale = require( 'PH_SCALE/phScale' );
 
   var PHScaleQueryParameters = QueryStringMachine.getAll( {
 

@@ -10,14 +10,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Movable = require( 'PH_SCALE/common/model/Movable' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var Property = require( 'AXON/Property' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Movable = require( 'PH_SCALE/common/model/Movable' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const Property = require( 'AXON/Property' );
 
   /**
    * @param {Vector2} bodyLocation

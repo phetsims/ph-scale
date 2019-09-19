@@ -8,37 +8,37 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var ABSwitch = require( 'SUN/ABSwitch' );
-  var Dimension2 = require( 'DOT/Dimension2' );
-  var ExpandCollapseBar = require( 'SUN/ExpandCollapseBar' );
-  var GraphScale = require( 'PH_SCALE/common/view/graph/GraphScale' );
-  var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Line = require( 'SCENERY/nodes/Line' );
-  var LinearGraph = require( 'PH_SCALE/common/view/graph/LinearGraph' );
-  var LogarithmicGraph = require( 'PH_SCALE/common/view/graph/LogarithmicGraph' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var RichText = require( 'SCENERY/nodes/RichText' );
-  var StringProperty = require( 'AXON/StringProperty' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var ZoomButton = require( 'SCENERY_PHET/buttons/ZoomButton' );
+  const ABSwitch = require( 'SUN/ABSwitch' );
+  const Dimension2 = require( 'DOT/Dimension2' );
+  const ExpandCollapseBar = require( 'SUN/ExpandCollapseBar' );
+  const GraphScale = require( 'PH_SCALE/common/view/graph/GraphScale' );
+  const GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Line = require( 'SCENERY/nodes/Line' );
+  const LinearGraph = require( 'PH_SCALE/common/view/graph/LinearGraph' );
+  const LogarithmicGraph = require( 'PH_SCALE/common/view/graph/LogarithmicGraph' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const NumberProperty = require( 'AXON/NumberProperty' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const RichText = require( 'SCENERY/nodes/RichText' );
+  const StringProperty = require( 'AXON/StringProperty' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const ZoomButton = require( 'SCENERY_PHET/buttons/ZoomButton' );
 
   // strings
-  var concentrationString = require( 'string!PH_SCALE/concentration' );
-  var linearString = require( 'string!PH_SCALE/linear' );
-  var logarithmicString = require( 'string!PH_SCALE/logarithmic' );
-  var quantityString = require( 'string!PH_SCALE/quantity' );
-  var unitsMolesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
-  var unitsMolesString = require( 'string!PH_SCALE/units.moles' );
+  const concentrationString = require( 'string!PH_SCALE/concentration' );
+  const linearString = require( 'string!PH_SCALE/linear' );
+  const logarithmicString = require( 'string!PH_SCALE/logarithmic' );
+  const quantityString = require( 'string!PH_SCALE/quantity' );
+  const unitsMolesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
+  const unitsMolesString = require( 'string!PH_SCALE/units.moles' );
 
   // constants
   var AB_SWITCH_FONT = new PhetFont( { size: 18, weight: 'bold' } );

@@ -6,18 +6,18 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Beaker = require( 'PH_SCALE/common/model/Beaker' );
-  var Dimension2 = require( 'DOT/Dimension2' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var Property = require( 'AXON/Property' );
-  var Solute = require( 'PH_SCALE/common/model/Solute' );
-  var Solution = require( 'PH_SCALE/common/model/Solution' );
-  var Vector2 = require( 'DOT/Vector2' );
+  const Beaker = require( 'PH_SCALE/common/model/Beaker' );
+  const Dimension2 = require( 'DOT/Dimension2' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const Property = require( 'AXON/Property' );
+  const Solute = require( 'PH_SCALE/common/model/Solute' );
+  const Solution = require( 'PH_SCALE/common/model/Solution' );
+  const Vector2 = require( 'DOT/Vector2' );
 
   /**
    * @constructor

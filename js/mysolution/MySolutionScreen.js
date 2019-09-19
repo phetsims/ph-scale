@@ -5,26 +5,26 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Image = require( 'SCENERY/nodes/Image' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
-  var MySolutionModel = require( 'PH_SCALE/mysolution/model/MySolutionModel' );
-  var MySolutionScreenView = require( 'PH_SCALE/mysolution/view/MySolutionScreenView' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var Property = require( 'AXON/Property' );
-  var Screen = require( 'JOIST/Screen' );
+  const Image = require( 'SCENERY/nodes/Image' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
+  const MySolutionModel = require( 'PH_SCALE/mysolution/model/MySolutionModel' );
+  const MySolutionScreenView = require( 'PH_SCALE/mysolution/view/MySolutionScreenView' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  const Property = require( 'AXON/Property' );
+  const Screen = require( 'JOIST/Screen' );
 
   // strings
-  var screenMySolutionString = require( 'string!PH_SCALE/screen.mySolution' );
+  const screenMySolutionString = require( 'string!PH_SCALE/screen.mySolution' );
 
   // images
-  var homeIcon = require( 'image!PH_SCALE/MySolution-home-icon.png' );
-  var navbarIcon = require( 'image!PH_SCALE/MySolution-navbar-icon.png' );
+  const homeIcon = require( 'image!PH_SCALE/MySolution-home-icon.png' );
+  const navbarIcon = require( 'image!PH_SCALE/MySolution-navbar-icon.png' );
 
   /**
    * @constructor

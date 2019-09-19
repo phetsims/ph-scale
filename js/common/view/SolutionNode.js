@@ -6,15 +6,15 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Util = require( 'DOT/Util' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Util = require( 'DOT/Util' );
 
   /**
    * @param {Solution} solution

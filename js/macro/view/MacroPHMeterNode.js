@@ -14,35 +14,35 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BooleanProperty = require( 'AXON/BooleanProperty' );
-  var Dimension2 = require( 'DOT/Dimension2' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Line = require( 'SCENERY/nodes/Line' );
-  var LinearGradient = require( 'SCENERY/util/LinearGradient' );
-  var MathSymbols = require( 'SCENERY_PHET/MathSymbols' );
-  var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var Path = require( 'SCENERY/nodes/Path' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var ProbeNode = require( 'SCENERY_PHET/ProbeNode' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Shape = require( 'KITE/Shape' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Util = require( 'DOT/Util' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var Water = require( 'PH_SCALE/common/model/Water' );
+  const BooleanProperty = require( 'AXON/BooleanProperty' );
+  const Dimension2 = require( 'DOT/Dimension2' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Line = require( 'SCENERY/nodes/Line' );
+  const LinearGradient = require( 'SCENERY/util/LinearGradient' );
+  const MathSymbols = require( 'SCENERY_PHET/MathSymbols' );
+  const MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const Path = require( 'SCENERY/nodes/Path' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const ProbeNode = require( 'SCENERY_PHET/ProbeNode' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Shape = require( 'KITE/Shape' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Util = require( 'DOT/Util' );
+  const Vector2 = require( 'DOT/Vector2' );
+  const Water = require( 'PH_SCALE/common/model/Water' );
 
   // strings
-  var acidicString = require( 'string!PH_SCALE/acidic' );
-  var basicString = require( 'string!PH_SCALE/basic' );
-  var pHString = require( 'string!PH_SCALE/pH' );
+  const acidicString = require( 'string!PH_SCALE/acidic' );
+  const basicString = require( 'string!PH_SCALE/basic' );
+  const pHString = require( 'string!PH_SCALE/pH' );
   var stringNoValue = MathSymbols.NO_VALUE;
 
   // constants

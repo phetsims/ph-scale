@@ -5,15 +5,15 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var HydrogenNode = require( 'PH_SCALE/common/view/molecules/HydrogenNode' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var OxygenNode = require( 'PH_SCALE/common/view/molecules/OxygenNode' );
-  var phScale = require( 'PH_SCALE/phScale' );
+  const HydrogenNode = require( 'PH_SCALE/common/view/molecules/HydrogenNode' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const OxygenNode = require( 'PH_SCALE/common/view/molecules/OxygenNode' );
+  const phScale = require( 'PH_SCALE/phScale' );
 
   /**
    * @param {Object} options

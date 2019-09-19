@@ -5,17 +5,17 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
-  var Solute = require( 'PH_SCALE/common/model/Solute' );
-  var Util = require( 'DOT/Util' );
+  const GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
+  const Solute = require( 'PH_SCALE/common/model/Solute' );
+  const Util = require( 'DOT/Util' );
 
   /**
    * @param {Solution} solution

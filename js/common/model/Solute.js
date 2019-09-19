@@ -6,30 +6,30 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Color = require( 'SCENERY/util/Color' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Water = require( 'PH_SCALE/common/model/Water' );
+  const Color = require( 'SCENERY/util/Color' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const Water = require( 'PH_SCALE/common/model/Water' );
 
   // strings
-  var choiceBatteryAcidString = require( 'string!PH_SCALE/choice.batteryAcid' );
-  var choiceBloodString = require( 'string!PH_SCALE/choice.blood' );
-  var choiceChickenSoupString = require( 'string!PH_SCALE/choice.chickenSoup' );
-  var choiceCoffeeString = require( 'string!PH_SCALE/choice.coffee' );
-  var choiceCustomString = require( 'string!PH_SCALE/choice.custom' );
-  var choiceDrainCleanerString = require( 'string!PH_SCALE/choice.drainCleaner' );
-  var choiceHandSoapString = require( 'string!PH_SCALE/choice.handSoap' );
-  var choiceMilkString = require( 'string!PH_SCALE/choice.milk' );
-  var choiceOrangeJuiceString = require( 'string!PH_SCALE/choice.orangeJuice' );
-  var choiceSodaString = require( 'string!PH_SCALE/choice.soda' );
-  var choiceSpitString = require( 'string!PH_SCALE/choice.spit' );
-  var choiceVomitString = require( 'string!PH_SCALE/choice.vomit' );
+  const choiceBatteryAcidString = require( 'string!PH_SCALE/choice.batteryAcid' );
+  const choiceBloodString = require( 'string!PH_SCALE/choice.blood' );
+  const choiceChickenSoupString = require( 'string!PH_SCALE/choice.chickenSoup' );
+  const choiceCoffeeString = require( 'string!PH_SCALE/choice.coffee' );
+  const choiceCustomString = require( 'string!PH_SCALE/choice.custom' );
+  const choiceDrainCleanerString = require( 'string!PH_SCALE/choice.drainCleaner' );
+  const choiceHandSoapString = require( 'string!PH_SCALE/choice.handSoap' );
+  const choiceMilkString = require( 'string!PH_SCALE/choice.milk' );
+  const choiceOrangeJuiceString = require( 'string!PH_SCALE/choice.orangeJuice' );
+  const choiceSodaString = require( 'string!PH_SCALE/choice.soda' );
+  const choiceSpitString = require( 'string!PH_SCALE/choice.spit' );
+  const choiceVomitString = require( 'string!PH_SCALE/choice.vomit' );
 
   /**
    * @param {string} name

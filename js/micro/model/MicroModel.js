@@ -7,14 +7,14 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Bounds2 = require( 'DOT/Bounds2' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
-  var phScale = require( 'PH_SCALE/phScale' );
+  const Bounds2 = require( 'DOT/Bounds2' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
+  const phScale = require( 'PH_SCALE/phScale' );
 
   /**
    * @constructor

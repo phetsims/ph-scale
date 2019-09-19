@@ -7,26 +7,26 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
-  var H2ONode = require( 'PH_SCALE/common/view/molecules/H2ONode' );
-  var H3ONode = require( 'PH_SCALE/common/view/molecules/H3ONode' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Matrix3 = require( 'DOT/Matrix3' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var OHNode = require( 'PH_SCALE/common/view/molecules/OHNode' );
-  var Path = require( 'SCENERY/nodes/Path' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var phScale = require( 'PH_SCALE/phScale' );
-  var PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  var PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var RichText = require( 'SCENERY/nodes/RichText' );
-  var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
-  var Shape = require( 'KITE/Shape' );
+  const ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
+  const H2ONode = require( 'PH_SCALE/common/view/molecules/H2ONode' );
+  const H3ONode = require( 'PH_SCALE/common/view/molecules/H3ONode' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Matrix3 = require( 'DOT/Matrix3' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const OHNode = require( 'PH_SCALE/common/view/molecules/OHNode' );
+  const Path = require( 'SCENERY/nodes/Path' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const RichText = require( 'SCENERY/nodes/RichText' );
+  const ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
+  const Shape = require( 'KITE/Shape' );
 
   // constants
   var POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute width of the pointy part of the indicator

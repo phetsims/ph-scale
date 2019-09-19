@@ -5,13 +5,13 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Color = require( 'SCENERY/util/Color' );
-  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
-  var phScale = require( 'PH_SCALE/phScale' );
+  const Color = require( 'SCENERY/util/Color' );
+  const PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  const phScale = require( 'PH_SCALE/phScale' );
 
   var PHScaleColors = {
 

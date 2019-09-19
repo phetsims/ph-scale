@@ -59,15 +59,15 @@ define( require => {
 
     Node.call( this );
 
-    var scaleWidth = options.minScaleWidth;
-    var scaleHeight = options.scaleHeight;
-    var arrowWidth = 1.5 * scaleWidth;
-    var arrowHeight = options.arrowHeight;
-    var arrowHeadHeight = 0.85 * arrowHeight;
-    var arrowGap = -10; // this controls the vertical gap between the arrow and the scale
+    const scaleWidth = options.minScaleWidth;
+    const scaleHeight = options.scaleHeight;
+    const arrowWidth = 1.5 * scaleWidth;
+    const arrowHeight = options.arrowHeight;
+    const arrowHeadHeight = 0.85 * arrowHeight;
+    const arrowGap = -10; // this controls the vertical gap between the arrow and the scale
 
     // arrow above scale, starting from arrow tip and moving clockwise
-    var arrowNode = new Path( new Shape()
+    const arrowNode = new Path( new Shape()
         .moveTo( 0, 0 )
         .lineTo( arrowWidth / 2, arrowHeadHeight )
         .lineTo( scaleWidth / 2, arrowHeadHeight )
@@ -81,7 +81,7 @@ define( require => {
     this.addChild( arrowNode );
 
     // scale below the arrow
-    var scaleNode = new Path( new Shape()
+    const scaleNode = new Path( new Shape()
         .moveTo( -scaleWidth / 2, arrowHeight )
         .cubicCurveTo( scaleWidth / 4, 1.25 * arrowHeight, -scaleWidth / 4, 0.75 * arrowHeight, scaleWidth / 2, arrowHeight )
         .lineTo( scaleWidth / 2, scaleHeight )
@@ -92,19 +92,19 @@ define( require => {
     this.addChild( scaleNode );
 
     // 'off scale' label, positioned inside arrow
-    var offScaleNode = new Text( offScaleString, { font: new PhetFont( 18 ), fill: 'black', maxWidth: 0.5 * arrowWidth } );
+    const offScaleNode = new Text( offScaleString, { font: new PhetFont( 18 ), fill: 'black', maxWidth: 0.5 * arrowWidth } );
     this.addChild( offScaleNode );
     offScaleNode.centerX = arrowNode.centerX;
     offScaleNode.y = arrowNode.top + ( 0.85 * arrowHeadHeight );
 
     // Create the tick marks. Correct labels will be assigned later.
-    var tickLabels = [];
-    var numberOfTicks = mantissaRange.getLength() + 1;
-    var ySpacing = ( scaleHeight - arrowHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
-    var tickLabel;
-    var tickLineLeft;
-    var tickLineRight;
-    for ( var i = 0; i < numberOfTicks; i++ ) {
+    const tickLabels = [];
+    const numberOfTicks = mantissaRange.getLength() + 1;
+    const ySpacing = ( scaleHeight - arrowHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
+    let tickLabel;
+    let tickLineLeft;
+    let tickLineRight;
+    for ( let i = 0; i < numberOfTicks; i++ ) {
       // major lines and label
       tickLineLeft = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
       tickLineRight = new Line( 0, 0, options.majorTickLength, 0, { stroke: options.majorTickStroke, lineWidth: options.majorTickLineWidth } );
@@ -130,17 +130,17 @@ define( require => {
     }
 
     // indicators & associated properties
-    var valueH2OProperty = new NumberProperty( 0 );
-    var valueH3OProperty = new NumberProperty( 0 );
-    var valueOHProperty = new NumberProperty( 0 );
-    var h2OIndicatorNode = new GraphIndicator.createH2OIndicator( valueH2OProperty, {
+    const valueH2OProperty = new NumberProperty( 0 );
+    const valueH3OProperty = new NumberProperty( 0 );
+    const valueOHProperty = new NumberProperty( 0 );
+    const h2OIndicatorNode = new GraphIndicator.createH2OIndicator( valueH2OProperty, {
       x: scaleNode.right - options.majorTickLength
     } );
-    var h3OIndicatorNode = new GraphIndicator.createH3OIndicator( valueH3OProperty, {
+    const h3OIndicatorNode = new GraphIndicator.createH3OIndicator( valueH3OProperty, {
       x: scaleNode.left + options.majorTickLength,
       isInteractive: options.isInteractive
     } );
-    var oHIndicatorNode = new GraphIndicator.createOHIndicator( valueOHProperty, {
+    const oHIndicatorNode = new GraphIndicator.createOHIndicator( valueOHProperty, {
       x: scaleNode.right - options.majorTickLength,
       isInteractive: options.isInteractive
     } );
@@ -154,8 +154,8 @@ define( require => {
      * @param {number} offScaleYOffset optional y-offset added to the position if the value is off the scale
      * @returns {number} y position in view coordinates
      */
-    var valueToY = function( value, offScaleYOffset ) {
-      var topTickValue = mantissaRange.max * Math.pow( 10, exponentProperty.get() );
+    const valueToY = function( value, offScaleYOffset ) {
+      const topTickValue = mantissaRange.max * Math.pow( 10, exponentProperty.get() );
       if ( value > topTickValue ) {
         // values out of range are placed in the arrow
         return arrowNode.top + ( 0.8 * arrowHeadHeight ) + ( offScaleYOffset || 0 );
@@ -166,11 +166,11 @@ define( require => {
     };
 
     // Update the indicators
-    var updateIndicators = function() {
+    const updateIndicators = function() {
 
-      var valueH2O;
-      var valueH3O;
-      var valueOH;
+      let valueH2O;
+      let valueH3O;
+      let valueOH;
       if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
         // concentration
         valueH2O = solution.getConcentrationH2O();
@@ -202,9 +202,9 @@ define( require => {
     exponentProperty.link( updateIndicators.bind( this ) );
 
     // updates the tick labels to match the exponent
-    var updateTickLabels = function( exponent ) {
-      var tickOptions = ( exponent >= 0 ) ? { exponent: 0 } : { exponent: exponent }; // show positive exponents as integers
-      for ( var i = 0; i < tickLabels.length; i++ ) {
+    const updateTickLabels = function( exponent ) {
+      const tickOptions = ( exponent >= 0 ) ? { exponent: 0 } : { exponent: exponent }; // show positive exponents as integers
+      for ( let i = 0; i < tickLabels.length; i++ ) {
         tickLabels[ i ].valueProperty.set( i * Math.pow( 10, exponent ), tickOptions );
         tickLabels[ i ].centerX = scaleNode.centerX;
       }

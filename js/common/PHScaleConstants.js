@@ -14,7 +14,7 @@ define( require => {
   const Range = require( 'DOT/Range' );
   const RangeWithValue = require( 'DOT/RangeWithValue' );
 
-  var PHScaleConstants = {
+  const PHScaleConstants = {
 
     // ScreenView
     SCREEN_VIEW_OPTIONS: { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) },

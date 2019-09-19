@@ -32,7 +32,7 @@ define( require => {
    */
   function MacroScreen( modelOptions ) {
 
-    var options = {
+    const options = {
       name: screenMacroString,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
       homeScreenIcon: new Image( homeIcon ),

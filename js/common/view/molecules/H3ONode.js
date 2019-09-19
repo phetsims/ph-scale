@@ -24,10 +24,10 @@ define( require => {
     Node.call( this );
 
     // atoms
-    var oxygen = new OxygenNode();
-    var hydrogen1 = new HydrogenNode();
-    var hydrogen2 = new HydrogenNode();
-    var hydrogen3 = new HydrogenNode();
+    const oxygen = new OxygenNode();
+    const hydrogen1 = new HydrogenNode();
+    const hydrogen2 = new HydrogenNode();
+    const hydrogen3 = new HydrogenNode();
 
     // rendering order
     this.addChild( hydrogen3 );

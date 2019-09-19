@@ -24,7 +24,7 @@ define( require => {
    */
   function PHDropperNode( dropper, modelViewTransform, options ) {
 
-    var self = this;
+    const self = this;
 
     EyeDropperNode.call( this, _.extend( {
       dispensingProperty: dropper.dispensingProperty,

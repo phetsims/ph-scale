@@ -50,56 +50,56 @@ define( require => {
     ScreenView.call( this, PHScaleConstants.SCREEN_VIEW_OPTIONS );
 
     // view-specific properties
-    var viewProperties = new PHScaleViewProperties();
+    const viewProperties = new PHScaleViewProperties();
 
     // beaker
-    var beakerNode = new BeakerNode( model.beaker, modelViewTransform );
-    var solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
-    var volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform );
+    const beakerNode = new BeakerNode( model.beaker, modelViewTransform );
+    const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
+    const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform );
 
     // dropper
-    var DROPPER_SCALE = 0.85;
-    var dropperNode = new PHDropperNode( model.dropper, modelViewTransform );
+    const DROPPER_SCALE = 0.85;
+    const dropperNode = new PHDropperNode( model.dropper, modelViewTransform );
     dropperNode.setScaleMagnitude( DROPPER_SCALE );
-    var dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * EyeDropperNode.TIP_WIDTH, modelViewTransform );
+    const dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * EyeDropperNode.TIP_WIDTH, modelViewTransform );
 
     // faucets
-    var waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform );
-    var drainFaucetNode = new DrainFaucetNode( model.drainFaucet, modelViewTransform );
-    var SOLVENT_FLUID_HEIGHT = model.beaker.location.y - model.waterFaucet.location.y;
-    var DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
-    var waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), SOLVENT_FLUID_HEIGHT, modelViewTransform );
-    var drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform );
+    const waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform );
+    const drainFaucetNode = new DrainFaucetNode( model.drainFaucet, modelViewTransform );
+    const SOLVENT_FLUID_HEIGHT = model.beaker.location.y - model.waterFaucet.location.y;
+    const DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
+    const waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), SOLVENT_FLUID_HEIGHT, modelViewTransform );
+    const drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform );
 
     // 'H3O+/OH- ratio' representation
-    var ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, { visible: viewProperties.ratioVisibleProperty.get() } );
+    const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, { visible: viewProperties.ratioVisibleProperty.get() } );
     viewProperties.ratioVisibleProperty.linkAttribute( ratioNode, 'visible' );
 
     // 'molecule count' representation
-    var moleculeCountNode = new MoleculeCountNode( model.solution );
+    const moleculeCountNode = new MoleculeCountNode( model.solution );
     viewProperties.moleculeCountVisibleProperty.linkAttribute( moleculeCountNode, 'visible' );
 
     // beaker controls
-    var beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty,
+    const beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty,
       { maxWidth: 0.85 * beakerNode.width } );
 
     // graph
-    var graphNode = new GraphNode( model.solution, viewProperties.graphExpandedProperty, {
+    const graphNode = new GraphNode( model.solution, viewProperties.graphExpandedProperty, {
       hasLinearFeature: true,
       logScaleHeight: 485,
       linearScaleHeight: 440
     } );
 
     // pH meter
-    var pHMeterTop = 15;
-    var pHMeterNode = new PHMeterNode( model.solution, modelViewTransform.modelToViewY( model.beaker.location.y ) - pHMeterTop, viewProperties.pHMeterExpandedProperty,
+    const pHMeterTop = 15;
+    const pHMeterNode = new PHMeterNode( model.solution, modelViewTransform.modelToViewY( model.beaker.location.y ) - pHMeterTop, viewProperties.pHMeterExpandedProperty,
       { attachProbe: 'right' } );
 
     // solutes combo box
-    var soluteListParent = new Node( { maxWidth: 380 });
-    var soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent, { maxWidth: 400 } );
+    const soluteListParent = new Node( { maxWidth: 380 });
+    const soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent, { maxWidth: 400 } );
 
-    var resetAllButton = new ResetAllButton( {
+    const resetAllButton = new ResetAllButton( {
       scale: 1.32,
       listener: function() {
         model.reset();
@@ -109,7 +109,7 @@ define( require => {
     } );
 
     // Parent for all nodes added to this screen
-    var rootNode = new Node( {
+    const rootNode = new Node( {
       children: [
         // nodes are rendered in this order
         waterFluidNode,

@@ -32,17 +32,17 @@ define( require => {
 
   // strings
   const pHString = require( 'string!PH_SCALE/pH' );
-  var stringNoValue = MathSymbols.NO_VALUE;
+  const stringNoValue = MathSymbols.NO_VALUE;
 
   // constants
-  var X_MARGIN = 14;
-  var Y_MARGIN = 10;
-  var CORNER_RADIUS = 12;
-  var SPINNER_DELTA = 0.01;
-  var SPINNER_X_SPACING = 6;
-  var SPINNER_Y_SPACING = 4;
-  var SPINNER_TIMER_INTERVAL = 40; // ms
-  var SPINNER_ARROW_COLOR = 'rgb(0,200,0)';
+  const X_MARGIN = 14;
+  const Y_MARGIN = 10;
+  const CORNER_RADIUS = 12;
+  const SPINNER_DELTA = 0.01;
+  const SPINNER_X_SPACING = 6;
+  const SPINNER_Y_SPACING = 4;
+  const SPINNER_TIMER_INTERVAL = 40; // ms
+  const SPINNER_ARROW_COLOR = 'rgb(0,200,0)';
 
   /**
    * @param {Solution} solution
@@ -61,8 +61,8 @@ define( require => {
     Node.call( this );
 
     // nodes
-    var valueNode = new ValueNode( solution, expandedProperty, options.isInteractive );
-    var probeNode = new ProbeNode( probeYOffset );
+    const valueNode = new ValueNode( solution, expandedProperty, options.isInteractive );
+    const probeNode = new ProbeNode( probeYOffset );
 
     // rendering order
     this.addChild( probeNode );
@@ -106,13 +106,13 @@ define( require => {
     Node.call( this );
 
     // pH value
-    var valueText = new Text( Util.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
+    const valueText = new Text( Util.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
       { fill: 'black', font: new PhetFont( 28 ) } );
 
     // rectangle that the value is displayed in
-    var valueXMargin = 8;
-    var valueYMargin = 5;
-    var valueRectangle = new Rectangle( 0, 0, valueText.width + ( 2 * valueXMargin ), valueText.height + ( 2 * valueYMargin ), CORNER_RADIUS, CORNER_RADIUS,
+    const valueXMargin = 8;
+    const valueYMargin = 5;
+    const valueRectangle = new Rectangle( 0, 0, valueText.width + ( 2 * valueXMargin ), valueText.height + ( 2 * valueYMargin ), CORNER_RADIUS, CORNER_RADIUS,
       { fill: 'white', stroke: 'darkGray' } );
 
     // layout
@@ -120,7 +120,7 @@ define( require => {
     valueText.centerY = valueRectangle.centerY;
 
     // parent for all components related to the value
-    var valueNode = new Node( { children: [ valueRectangle, valueText ] } );
+    const valueNode = new Node( { children: [ valueRectangle, valueText ] } );
 
     // sync with pH value
     solution.pHProperty.link( function( pH ) {
@@ -137,12 +137,12 @@ define( require => {
     // optional spinner arrows
     if ( isInteractive ) {
 
-      var pHValueProperty;
-      var upArrowNode;
-      var downArrowNode;
+      let pHValueProperty;
+      let upArrowNode;
+      let downArrowNode;
 
       // options common to both arrow buttons
-      var arrowButtonOptions = { fireOnHoldInterval: SPINNER_TIMER_INTERVAL, enabledFill: SPINNER_ARROW_COLOR };
+      const arrowButtonOptions = { fireOnHoldInterval: SPINNER_TIMER_INTERVAL, enabledFill: SPINNER_ARROW_COLOR };
 
       // up arrow
       upArrowNode = new ArrowButton( 'up',
@@ -169,8 +169,8 @@ define( require => {
       valueNode.addChild( downArrowNode );
 
       // touch areas, expanded mostly to the right
-      var xDilation = upArrowNode.width / 2;
-      var yDilation = 6;
+      const xDilation = upArrowNode.width / 2;
+      const yDilation = 6;
       upArrowNode.touchArea = upArrowNode.localBounds.dilatedXY( xDilation, yDilation ).shifted( xDilation, -yDilation );
       downArrowNode.touchArea = downArrowNode.localBounds.dilatedXY( xDilation, yDilation ).shifted( xDilation, yDilation );
 
@@ -194,26 +194,26 @@ define( require => {
     }
 
     // expand/collapse button
-    var expandCollapseButton = new ExpandCollapseButton( expandedProperty, { sideLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH } );
+    const expandCollapseButton = new ExpandCollapseButton( expandedProperty, { sideLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH } );
     expandCollapseButton.touchArea = Shape.bounds( expandCollapseButton.localBounds.dilatedXY( 10, 10 ) );
 
     // label above the value
-    var labelNode = new Text( pHString, {
+    const labelNode = new Text( pHString, {
       fill: 'black',
       font: new PhetFont( { size: 28, weight: 'bold' } ),
       maxWidth: 50
     } );
 
     // expanded background
-    var backgroundOptions = { fill: PHScaleColors.PANEL_FILL, stroke: 'black', lineWidth: 2 };
-    var backgroundWidth = Math.max( expandCollapseButton.width + labelNode.width + 10, valueNode.width ) + ( 2 * X_MARGIN );
-    var ySpacing = isInteractive ? 25 : 10;
-    var expandedHeight = expandCollapseButton.height + valueNode.height + ( 2 * Y_MARGIN ) + ySpacing;
-    var expandedRectangle = new Rectangle( 0, 0, backgroundWidth, expandedHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
+    const backgroundOptions = { fill: PHScaleColors.PANEL_FILL, stroke: 'black', lineWidth: 2 };
+    const backgroundWidth = Math.max( expandCollapseButton.width + labelNode.width + 10, valueNode.width ) + ( 2 * X_MARGIN );
+    const ySpacing = isInteractive ? 25 : 10;
+    const expandedHeight = expandCollapseButton.height + valueNode.height + ( 2 * Y_MARGIN ) + ySpacing;
+    const expandedRectangle = new Rectangle( 0, 0, backgroundWidth, expandedHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
 
     // collapsed background
-    var collapsedHeight = expandCollapseButton.height + ( 2 * Y_MARGIN );
-    var collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, collapsedHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
+    const collapsedHeight = expandCollapseButton.height + ( 2 * Y_MARGIN );
+    const collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, collapsedHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
 
     // rendering order
     this.addChild( collapsedRectangle );
@@ -248,15 +248,15 @@ define( require => {
 
     Node.call( this );
 
-    var probeWidth = 20;
-    var tipHeight = 50;
-    var overlap = 10;
+    const probeWidth = 20;
+    const tipHeight = 50;
+    const overlap = 10;
 
-    var shaftNode = new Rectangle( 0, 0, 0.5 * probeWidth, probeHeight - tipHeight + overlap, { fill: 'rgb(140,140,140)' } );
+    const shaftNode = new Rectangle( 0, 0, 0.5 * probeWidth, probeHeight - tipHeight + overlap, { fill: 'rgb(140,140,140)' } );
 
     // clockwise from tip of probe
-    var cornerRadius = 4;
-    var tipNode = new Path( new Shape()
+    const cornerRadius = 4;
+    const tipNode = new Path( new Shape()
         .moveTo( probeWidth / 2, tipHeight )
         .lineTo( 0, 0.6 * tipHeight )
         .lineTo( 0, cornerRadius )

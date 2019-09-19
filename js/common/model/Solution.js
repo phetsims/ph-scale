@@ -20,7 +20,7 @@ define( require => {
   const Water = require( 'PH_SCALE/common/model/Water' );
 
   // constants
-  var MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );
+  const MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );
 
   /**
    * @param {Property.<Solute>} soluteProperty
@@ -32,7 +32,7 @@ define( require => {
   function Solution( soluteProperty, soluteVolume, waterVolume, maxVolume ) {
     assert && assert( soluteVolume + waterVolume <= maxVolume );
 
-    var self = this;
+    const self = this;
 
     // @public
     this.soluteProperty = soluteProperty;
@@ -63,7 +63,7 @@ define( require => {
           return self.pHProperty.get();
         }
         else {
-          var pH = self.computePH();
+          let pH = self.computePH();
           if ( pH !== null ) {
             pH = Util.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ); // constrain to the pH meter format, see issue #4
           }
@@ -110,7 +110,7 @@ define( require => {
      * @public
      */
     isEquivalentToWater: function() {
-      var pHString = Util.toFixed( this.computePH(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      const pHString = Util.toFixed( this.computePH(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
       return ( parseFloat( pHString ) === Water.pH ) && ( this.waterVolumeProperty.get() > 0 );
     },
 
@@ -148,7 +148,7 @@ define( require => {
      */
     drainSolution: function( deltaVolume ) {
       if ( deltaVolume > 0 ) {
-        var totalVolume = this.computeVolume();
+        const totalVolume = this.computeVolume();
         if ( totalVolume > 0 ) {
           if ( totalVolume - deltaVolume < MIN_VOLUME ) {
             // drain the remaining solution
@@ -156,8 +156,8 @@ define( require => {
           }
           else {
             // drain equal percentages of water and solute
-            var waterVolume = this.waterVolumeProperty.get();
-            var soluteVolume = this.soluteVolumeProperty.get();
+            const waterVolume = this.waterVolumeProperty.get();
+            const soluteVolume = this.soluteVolumeProperty.get();
             this.setVolumeAtomic( waterVolume - ( deltaVolume * waterVolume / totalVolume ), soluteVolume - ( deltaVolume * soluteVolume / totalVolume ) );
           }
         }

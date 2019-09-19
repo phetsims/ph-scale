@@ -34,7 +34,7 @@ define( require => {
       visible: true
     }, options );
 
-    var self = this;
+    const self = this;
     Movable.call( this, location, dragBounds );
 
     // @public

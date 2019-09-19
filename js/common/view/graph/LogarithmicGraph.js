@@ -65,9 +65,9 @@ define( require => {
     Node.call( this );
 
     // background for the scale, width sized to fit
-    var widestTickLabel = createTickLabel( PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, options.majorTickFont );
-    var scaleWidth = Math.max( options.minScaleWidth, widestTickLabel.width + ( 2 * options.majorTickXSpacing ) + ( 2 * options.majorTickLength ) );
-    var backgroundNode = new Rectangle( 0, 0, scaleWidth, options.scaleHeight, options.scaleCornerRadius, options.scaleCornerRadius, {
+    const widestTickLabel = createTickLabel( PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, options.majorTickFont );
+    const scaleWidth = Math.max( options.minScaleWidth, widestTickLabel.width + ( 2 * options.majorTickXSpacing ) + ( 2 * options.majorTickLength ) );
+    const backgroundNode = new Rectangle( 0, 0, scaleWidth, options.scaleHeight, options.scaleCornerRadius, options.scaleCornerRadius, {
       fill: new LinearGradient( 0, 0, 0, options.scaleHeight ).addColorStop( 0, 'rgb(200,200,200)' ).addColorStop( 1, 'white' ),
       stroke: options.scaleStroke,
       lineWidth: options.scaleLineWidth
@@ -75,13 +75,13 @@ define( require => {
     this.addChild( backgroundNode );
 
     // tick marks
-    var numberOfTicks = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.getLength() + 1;
-    var ySpacing = ( options.scaleHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
-    var exponent;
-    var tickLabel;
-    var tickLineLeft;
-    var tickLineRight;
-    for ( var i = 0; i < numberOfTicks; i++ ) {
+    const numberOfTicks = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.getLength() + 1;
+    const ySpacing = ( options.scaleHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
+    let exponent;
+    let tickLabel;
+    let tickLineLeft;
+    let tickLineRight;
+    for ( let i = 0; i < numberOfTicks; i++ ) {
 
       exponent = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max - i;
 
@@ -124,17 +124,17 @@ define( require => {
     }
 
     // indicators & associated properties
-    var valueH2OProperty = new NumberProperty( 0 );
-    var valueH3OProperty = new NumberProperty( 0 );
-    var valueOHProperty = new NumberProperty( 0 );
-    var h2OIndicatorNode = new GraphIndicator.createH2OIndicator( valueH2OProperty, {
+    const valueH2OProperty = new NumberProperty( 0 );
+    const valueH3OProperty = new NumberProperty( 0 );
+    const valueOHProperty = new NumberProperty( 0 );
+    const h2OIndicatorNode = new GraphIndicator.createH2OIndicator( valueH2OProperty, {
       x: backgroundNode.right - options.indicatorXOffset
     } );
-    var h3OIndicatorNode = new GraphIndicator.createH3OIndicator( valueH3OProperty, {
+    const h3OIndicatorNode = new GraphIndicator.createH3OIndicator( valueH3OProperty, {
       x: backgroundNode.left + options.indicatorXOffset,
       isInteractive: options.isInteractive
     } );
-    var oHIndicatorNode = new GraphIndicator.createOHIndicator( valueOHProperty, {
+    const oHIndicatorNode = new GraphIndicator.createOHIndicator( valueOHProperty, {
       x: backgroundNode.right - options.indicatorXOffset,
       isInteractive: options.isInteractive
     } );
@@ -143,35 +143,35 @@ define( require => {
     this.addChild( oHIndicatorNode );
 
     // Given a value, compute it's y position relative to the top of the scale.
-    var valueToY = function( value ) {
+    const valueToY = function( value ) {
       if ( value === 0 ) {
         // below the bottom tick
         return options.scaleHeight - ( 0.5 * options.scaleYMargin );
       }
       else {
         // between the top and bottom tick
-        var maxHeight = ( options.scaleHeight - 2 * options.scaleYMargin );
-        var maxExponent = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max;
-        var minExponent = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min;
-        var valueExponent = Util.log10( value );
+        const maxHeight = ( options.scaleHeight - 2 * options.scaleYMargin );
+        const maxExponent = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max;
+        const minExponent = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min;
+        const valueExponent = Util.log10( value );
         return options.scaleYMargin + maxHeight - ( maxHeight * ( valueExponent - minExponent ) / ( maxExponent - minExponent ) );
       }
     };
 
     // Given a y position relative to the top of the scale, compute a value.
-    var yToValue = function( y ) {
-      var yOffset = y - options.scaleYMargin; // distance between indicator's origin and top tick mark
-      var maxHeight = ( options.scaleHeight - 2 * options.scaleYMargin ); // distance between top and bottom tick marks
-      var exponent = Util.linear( 0, maxHeight, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, yOffset );
+    const yToValue = function( y ) {
+      const yOffset = y - options.scaleYMargin; // distance between indicator's origin and top tick mark
+      const maxHeight = ( options.scaleHeight - 2 * options.scaleYMargin ); // distance between top and bottom tick marks
+      const exponent = Util.linear( 0, maxHeight, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, yOffset );
       return Math.pow( 10, exponent );
     };
 
     // Update the indicators
-    var updateIndicators = function() {
+    const updateIndicators = function() {
 
-      var valueH2O;
-      var valueH3O;
-      var valueOH;
+      let valueH2O;
+      let valueH3O;
+      let valueOH;
       if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
         // concentration
         valueH2O = solution.getConcentrationH2O();

@@ -41,7 +41,7 @@ define( require => {
   const unitsMolesString = require( 'string!PH_SCALE/units.moles' );
 
   // constants
-  var AB_SWITCH_FONT = new PhetFont( { size: 18, weight: 'bold' } );
+  const AB_SWITCH_FONT = new PhetFont( { size: 18, weight: 'bold' } );
 
   /**
    * @param {Solution} solution
@@ -62,8 +62,8 @@ define( require => {
 
     Node.call( this );
 
-    var mantissaRange = PHScaleConstants.LINEAR_MANTISSA_RANGE;
-    var exponentRange = PHScaleConstants.LINEAR_EXPONENT_RANGE;
+    const mantissaRange = PHScaleConstants.LINEAR_MANTISSA_RANGE;
+    const exponentRange = PHScaleConstants.LINEAR_EXPONENT_RANGE;
 
     // @private Properties specific to GraphNode
     this.graphUnitsProperty = new StringProperty( options.units );
@@ -71,7 +71,7 @@ define( require => {
     this.graphScaleProperty = new StringProperty( options.graphScale ); // {number} scale on the linear graph
 
     // expand/collapse bar
-    var expandCollapseBar = new ExpandCollapseBar(
+    const expandCollapseBar = new ExpandCollapseBar(
       new Text( '' ),
       expandedProperty, {
         minWidth: 350,
@@ -82,7 +82,7 @@ define( require => {
       } );
 
     // units switch (Concentration vs Quantity)
-    var graphUnitsSwitch = new ABSwitch( this.graphUnitsProperty,
+    const graphUnitsSwitch = new ABSwitch( this.graphUnitsProperty,
       GraphUnits.MOLES_PER_LITER, new RichText( concentrationString + '<br>(' + unitsMolesPerLiterString + ')', {
         align: 'center',
         font: AB_SWITCH_FONT,
@@ -99,18 +99,18 @@ define( require => {
       } );
 
     // logarithmic graph
-    var logarithmicGraph = new LogarithmicGraph( solution, this.graphUnitsProperty, {
+    const logarithmicGraph = new LogarithmicGraph( solution, this.graphUnitsProperty, {
       scaleHeight: options.logScaleHeight,
       isInteractive: options.isInteractive
     } );
 
     // vertical line that connects bottom of expand/collapse bar to top of graph
-    var lineToBarNode = new Line( 0, 0, 0, 75, { stroke: 'black' } );
+    const lineToBarNode = new Line( 0, 0, 0, 75, { stroke: 'black' } );
 
     // rendering order
     this.addChild( expandCollapseBar );
     this.addChild( graphUnitsSwitch );
-    var graphNode = new Node();
+    const graphNode = new Node();
     this.addChild( graphNode );
     graphNode.addChild( lineToBarNode );
     graphNode.addChild( logarithmicGraph );
@@ -131,15 +131,15 @@ define( require => {
     if ( this.hasLinearFeature ) {
 
       // linear graph
-      var linearGraph = new LinearGraph( solution, this.graphUnitsProperty, mantissaRange, this.exponentProperty, {
+      const linearGraph = new LinearGraph( solution, this.graphUnitsProperty, mantissaRange, this.exponentProperty, {
         scaleHeight: options.linearScaleHeight
       } );
 
       // zoom buttons for the linear graph
-      var magnifyingGlassRadius = 13;
-      var zoomOutButton = new ZoomButton( { in: false, radius: magnifyingGlassRadius } );
-      var zoomInButton = new ZoomButton( { in: true, radius: magnifyingGlassRadius } );
-      var zoomButtons = new Node( { children: [ zoomOutButton, zoomInButton ] } );
+      const magnifyingGlassRadius = 13;
+      const zoomOutButton = new ZoomButton( { in: false, radius: magnifyingGlassRadius } );
+      const zoomInButton = new ZoomButton( { in: true, radius: magnifyingGlassRadius } );
+      const zoomButtons = new Node( { children: [ zoomOutButton, zoomInButton ] } );
       zoomInButton.left = zoomOutButton.right + 25;
       zoomInButton.centerY = zoomOutButton.centerY;
       // expand touch area
@@ -147,17 +147,17 @@ define( require => {
       zoomInButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
 
       // scale switch (Logarithmic vs Linear)
-      var textOptions = {
+      const textOptions = {
         font: AB_SWITCH_FONT,
         maxWidth: 125
       };
-      var graphScaleSwitch = new ABSwitch( this.graphScaleProperty,
+      const graphScaleSwitch = new ABSwitch( this.graphScaleProperty,
         GraphScale.LOGARITHMIC, new Text( logarithmicString, textOptions ),
         GraphScale.LINEAR, new Text( linearString, textOptions ),
         { size: new Dimension2( 50, 25 ), centerOnButton: true } );
 
       // vertical line that connects bottom of graph to top of scale switch
-      var lineToSwitchNode = new Line( 0, 0, 0, 200, { stroke: 'black ' } );
+      const lineToSwitchNode = new Line( 0, 0, 0, 200, { stroke: 'black ' } );
 
       // rendering order
       graphNode.addChild( lineToSwitchNode );
@@ -167,7 +167,7 @@ define( require => {
       graphNode.addChild( graphScaleSwitch );
 
       // layout
-      var ySpacing = 15;
+      const ySpacing = 15;
       linearGraph.centerX = logarithmicGraph.centerX;
       linearGraph.y = logarithmicGraph.y; // y, not top
       zoomButtons.centerX = logarithmicGraph.centerX;
@@ -191,7 +191,7 @@ define( require => {
       } );
 
       // handle zoom of linear graph
-      var self = this;
+      const self = this;
       zoomInButton.addListener( function() {
         self.exponentProperty.set( self.exponentProperty.get() - 1 );
       } );

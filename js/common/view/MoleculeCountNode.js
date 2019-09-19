@@ -30,41 +30,41 @@ define( require => {
     Node.call( this );
 
     // margins and spacing
-    var xMargin = 10;
-    var yMargin = 5;
-    var xSpacing = 10;
-    var ySpacing = 6;
+    const xMargin = 10;
+    const yMargin = 5;
+    const xSpacing = 10;
+    const ySpacing = 6;
 
     // molecule icons
-    var nodeH3O = new H3ONode();
-    var nodeOH = new OHNode();
-    var nodeH2O = new H2ONode();
-    var maxMoleculeWidth = Math.max( nodeH3O.width, Math.max( nodeOH.width, nodeH2O.width ) );
-    var maxMoleculeHeight = Math.max( nodeH3O.height, Math.max( nodeOH.height, nodeH2O.height ) );
+    const nodeH3O = new H3ONode();
+    const nodeOH = new OHNode();
+    const nodeH2O = new H2ONode();
+    const maxMoleculeWidth = Math.max( nodeH3O.width, Math.max( nodeOH.width, nodeH2O.width ) );
+    const maxMoleculeHeight = Math.max( nodeH3O.height, Math.max( nodeOH.height, nodeH2O.height ) );
 
     // internal properties for counts
-    var countH3OProperty = new NumberProperty( 1e16 );
-    var countOHProperty = new NumberProperty( 1e16 );
-    var countH2OProperty = new NumberProperty( 1e16 );
+    const countH3OProperty = new NumberProperty( 1e16 );
+    const countOHProperty = new NumberProperty( 1e16 );
+    const countH2OProperty = new NumberProperty( 1e16 );
 
     // count values
-    var notationOptions = { font: new PhetFont( 22 ), fill: 'white', mantissaDecimalPlaces: 2 };
-    var countH3ONode = new ScientificNotationNode( countH3OProperty, notationOptions );
-    var countOHNode = new ScientificNotationNode( countOHProperty, notationOptions );
-    var countH2ONode = new ScientificNotationNode( countH2OProperty, _.extend( { exponent: 25 }, notationOptions ) );
-    var maxCountWidth = countH3ONode.width;
-    var maxCountHeight = countH3ONode.height;
+    const notationOptions = { font: new PhetFont( 22 ), fill: 'white', mantissaDecimalPlaces: 2 };
+    const countH3ONode = new ScientificNotationNode( countH3OProperty, notationOptions );
+    const countOHNode = new ScientificNotationNode( countOHProperty, notationOptions );
+    const countH2ONode = new ScientificNotationNode( countH2OProperty, _.extend( { exponent: 25 }, notationOptions ) );
+    const maxCountWidth = countH3ONode.width;
+    const maxCountHeight = countH3ONode.height;
 
     // backgrounds
-    var backgroundWidth = maxCountWidth + xSpacing + maxMoleculeWidth + ( 2 * xMargin );
-    var backgroundHeight = Math.max( maxCountHeight, maxMoleculeHeight ) + ( 2 * yMargin );
-    var cornerRadius = 5;
-    var backgroundStroke = 'rgb(200,200,200)';
-    var backgroundH3O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
+    const backgroundWidth = maxCountWidth + xSpacing + maxMoleculeWidth + ( 2 * xMargin );
+    const backgroundHeight = Math.max( maxCountHeight, maxMoleculeHeight ) + ( 2 * yMargin );
+    const cornerRadius = 5;
+    const backgroundStroke = 'rgb(200,200,200)';
+    const backgroundH3O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
       { fill: PHScaleColors.ACIDIC, stroke: backgroundStroke } );
-    var backgroundOH = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
+    const backgroundOH = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
       { fill: PHScaleColors.BASIC, stroke: backgroundStroke } );
-    var backgroundH2O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
+    const backgroundH2O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
       { fill: PHScaleColors.H2O_BACKGROUND, stroke: backgroundStroke } );
 
     // rendering order
@@ -94,8 +94,8 @@ define( require => {
     // counts will be dynamically positioned
 
     // update counts when the solution changes
-    var moleculesLeft = Math.min( nodeH3O.left, Math.min( nodeOH.left, nodeH2O.left ) ); // for right justifying counts
-    var updateCounts = function() {
+    const moleculesLeft = Math.min( nodeH3O.left, Math.min( nodeOH.left, nodeH2O.left ) ); // for right justifying counts
+    const updateCounts = function() {
 
       // set counts, which in turn updates values displayed by nodes
       countH3OProperty.set( solution.getMoleculesH3O() );

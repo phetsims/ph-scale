@@ -77,7 +77,7 @@ define( require => {
      */
     computeColor: function( ratio ) {
       assert && assert( ratio >= 0 && ratio <= 1 );
-      var color;
+      let color;
       if ( this.colorStop ) {
         // solute has an optional color-stop
         if ( ratio > this.colorStop.ratio ) {

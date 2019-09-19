@@ -21,9 +21,9 @@ define( require => {
    */
   function DrainFaucetNode( faucet, modelViewTransform ) {
 
-    var scale = 0.6;
+    const scale = 0.6;
 
-    var horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.location.x - faucet.pipeMinX ) ) / scale;
+    const horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.location.x - faucet.pipeMinX ) ) / scale;
     FaucetNode.call( this, faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
       horizontalPipeLength: horizontalPipeLength,
       verticalPipeLength: 5,

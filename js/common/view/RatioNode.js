@@ -32,14 +32,14 @@ define( require => {
   const Util = require( 'DOT/Util' );
 
   // constants
-  var TOTAL_MOLECULES_AT_PH_7 = 100;
-  var MAX_MAJORITY_MOLECULES = 3000;
-  var MIN_MINORITY_MOLECULES = 5; // any non-zero number of particles will be set to this number
-  var LOG_PH_RANGE = new Range( 6, 8 ); // in this range, number of molecule is computed using log
-  var MAJORITY_ALPHA = 0.55; // alpha of the majority species, [0-1], transparent-opaque
-  var MINORITY_ALPHA = 1.0; // alpha of the minority species, [0-1], transparent-opaque
-  var H3O_RADIUS = 3;
-  var OH_RADIUS = H3O_RADIUS;
+  const TOTAL_MOLECULES_AT_PH_7 = 100;
+  const MAX_MAJORITY_MOLECULES = 3000;
+  const MIN_MINORITY_MOLECULES = 5; // any non-zero number of particles will be set to this number
+  const LOG_PH_RANGE = new Range( 6, 8 ); // in this range, number of molecule is computed using log
+  const MAJORITY_ALPHA = 0.55; // alpha of the majority species, [0-1], transparent-opaque
+  const MINORITY_ALPHA = 1.0; // alpha of the minority species, [0-1], transparent-opaque
+  const H3O_RADIUS = 3;
+  const OH_RADIUS = H3O_RADIUS;
 
   //-------------------------------------------------------------------------------------
 
@@ -61,7 +61,7 @@ define( require => {
     this.pH = null;
 
     // bounds of the beaker, in view coordinates
-    var beakerBounds = modelViewTransform.modelToViewBounds( beaker.bounds );
+    const beakerBounds = modelViewTransform.modelToViewBounds( beaker.bounds );
 
     // @private parent for all molecules
     this.moleculesNode = new MoleculesCanvas( beakerBounds );
@@ -87,13 +87,13 @@ define( require => {
     solution.pHProperty.link( this.update.bind( this ) );
 
     // clip to the shape of the solution in the beaker
-    var self = this;
+    const self = this;
     solution.volumeProperty.link( function( volume ) {
       if ( volume === 0 ) {
         self.clipArea = null;
       }
       else {
-        var solutionHeight = beakerBounds.getHeight() * volume / beaker.volume;
+        const solutionHeight = beakerBounds.getHeight() * volume / beaker.volume;
         self.clipArea = Shape.rectangle( beakerBounds.minX, beakerBounds.maxY - solutionHeight, beakerBounds.getWidth(), solutionHeight );
       }
       self.moleculesNode.invalidatePaint(); //WORKAROUND: #25, scenery#200
@@ -111,7 +111,7 @@ define( require => {
      * @override
      */
     setVisible: function( visible ) {
-      var doUpdate = visible && !this.visible;
+      const doUpdate = visible && !this.visible;
       Node.prototype.setVisible.call( this, visible );
       if ( doUpdate ) { this.update(); }
     },
@@ -126,7 +126,7 @@ define( require => {
       // don't update if not visible
       if ( !this.visible ) { return; }
 
-      var pH = this.solution.pHProperty.get();
+      let pH = this.solution.pHProperty.get();
       if ( pH !== null ) {
         pH = Util.toFixedNumber( this.solution.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
       }
@@ -134,8 +134,8 @@ define( require => {
       if ( this.pH !== pH ) {
 
         this.pH = pH;
-        var numberOfH3O = 0;
-        var numberOfOH = 0;
+        let numberOfH3O = 0;
+        let numberOfOH = 0;
 
         if ( pH !== null ) {
 
@@ -150,8 +150,8 @@ define( require => {
 
             // # molecules varies linearly in this range
             // N is the number of molecules to add for each 1 unit of pH above or below the thresholds
-            var N = ( MAX_MAJORITY_MOLECULES - computeNumberOfOH( LOG_PH_RANGE.max ) ) / ( PHScaleConstants.PH_RANGE.max - LOG_PH_RANGE.max );
-            var pHDiff;
+            const N = ( MAX_MAJORITY_MOLECULES - computeNumberOfOH( LOG_PH_RANGE.max ) ) / ( PHScaleConstants.PH_RANGE.max - LOG_PH_RANGE.max );
+            let pHDiff;
             if ( pH > LOG_PH_RANGE.max ) {
               
               // strong base
@@ -215,7 +215,7 @@ define( require => {
    */
   function MoleculesCanvas( beakerBounds ) {
 
-    var self = this;
+    const self = this;
 
     CanvasNode.call( this, { canvasBounds: beakerBounds } );
 
@@ -225,7 +225,7 @@ define( require => {
     this.numberOfOHMolecules = 0;
 
     // use typed array if available, it will use less memory and be faster
-    var ArrayConstructor = window.Float32Array || window.Array;
+    const ArrayConstructor = window.Float32Array || window.Array;
 
     // @private pre-allocate arrays for molecule x and y coordinates, to eliminate allocation in critical code
     this.xH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
@@ -269,7 +269,7 @@ define( require => {
          * So generate and store molecule coordinates here, reusing the arrays.
          * See https://github.com/phetsims/ph-scale/issues/25
          */
-        var i;
+        let i;
         for ( i = 0; i < numberOfH3OMolecules; i++ ) {
           this.xH3O[ i ] = createRandomX( this.beakerBounds );
           this.yH3O[ i ] = createRandomY( this.beakerBounds );
@@ -319,7 +319,7 @@ define( require => {
 
       // images are generated asynchronously, so test just in case they aren't available when this is first called
       if ( image ) {
-        for ( var i = 0; i < numberOfMolecules; i++ ) {
+        for ( let i = 0; i < numberOfMolecules; i++ ) {
           context.drawImage( image, xCoordinates[ i ], yCoordinates[ i ] );
         }
       }

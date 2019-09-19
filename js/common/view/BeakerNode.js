@@ -25,14 +25,14 @@ define( require => {
   const unitsLitersString = require( 'string!PH_SCALE/units.liters' );
 
   // constants
-  var RIM_OFFSET = 20;
-  var MINOR_TICK_SPACING = 0.1; // L
-  var MINOR_TICKS_PER_MAJOR_TICK = 5;
-  var MAJOR_TICK_LENGTH = 30;
-  var MINOR_TICK_LENGTH = 15;
-  var TICK_LABEL_X_SPACING = 8;
-  var MAJOR_TICK_LABELS = [ '\u00bd', '1' ]; // 1/2, 1
-  var MAJOR_TICK_FONT = new PhetFont( 24 );
+  const RIM_OFFSET = 20;
+  const MINOR_TICK_SPACING = 0.1; // L
+  const MINOR_TICKS_PER_MAJOR_TICK = 5;
+  const MAJOR_TICK_LENGTH = 30;
+  const MINOR_TICK_LENGTH = 15;
+  const TICK_LABEL_X_SPACING = 8;
+  const MAJOR_TICK_LABELS = [ '\u00bd', '1' ]; // 1/2, 1
+  const MAJOR_TICK_FONT = new PhetFont( 24 );
 
   /**
    * Constructor
@@ -45,9 +45,9 @@ define( require => {
     Node.call( this );
 
     // outline of the beaker, starting from upper left
-    var beakerWidth = modelViewTransform.modelToViewDeltaX( beaker.size.width );
-    var beakerHeight = modelViewTransform.modelToViewDeltaY( beaker.size.height );
-    var outlineShape = new Shape()
+    const beakerWidth = modelViewTransform.modelToViewDeltaX( beaker.size.width );
+    const beakerHeight = modelViewTransform.modelToViewDeltaY( beaker.size.height );
+    const outlineShape = new Shape()
       .moveTo( -(beakerWidth / 2 ) - RIM_OFFSET, -beakerHeight - RIM_OFFSET )
       .lineTo( -(beakerWidth / 2), -beakerHeight )
       .lineTo( -(beakerWidth / 2), 0 )
@@ -62,17 +62,17 @@ define( require => {
     } ) );
 
     // horizontal tick marks on left and right edges, labels on right ticks, from bottom up
-    var ticksParent = new Node();
+    const ticksParent = new Node();
     this.addChild( ticksParent );
-    var numberOfTicks = Util.roundSymmetric( beaker.volume / MINOR_TICK_SPACING );
-    var deltaY = beakerHeight / numberOfTicks;
-    var beakerLeft = -beakerWidth / 2;
-    var beakerRight = beakerWidth / 2;
-    for ( var i = 1; i <= numberOfTicks; i++ ) {
+    const numberOfTicks = Util.roundSymmetric( beaker.volume / MINOR_TICK_SPACING );
+    const deltaY = beakerHeight / numberOfTicks;
+    const beakerLeft = -beakerWidth / 2;
+    const beakerRight = beakerWidth / 2;
+    for ( let i = 1; i <= numberOfTicks; i++ ) {
 
-      var isMajorTick = ( i % MINOR_TICKS_PER_MAJOR_TICK === 0 );
-      var tickLength = ( isMajorTick ? MAJOR_TICK_LENGTH : MINOR_TICK_LENGTH );
-      var y = -( i * deltaY );
+      const isMajorTick = ( i % MINOR_TICKS_PER_MAJOR_TICK === 0 );
+      const tickLength = ( isMajorTick ? MAJOR_TICK_LENGTH : MINOR_TICK_LENGTH );
+      const y = -( i * deltaY );
 
       // left tick
       ticksParent.addChild( new Path(
@@ -86,9 +86,9 @@ define( require => {
 
       // label on right 'major' tick
       if ( isMajorTick ) {
-        var labelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
+        const labelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
         if ( labelIndex < MAJOR_TICK_LABELS.length ) {
-          var label = StringUtils.format( pattern0Value1UnitsString, MAJOR_TICK_LABELS[ labelIndex ], unitsLitersString );
+          const label = StringUtils.format( pattern0Value1UnitsString, MAJOR_TICK_LABELS[ labelIndex ], unitsLitersString );
           ticksParent.addChild( new Text( label, {
             font: MAJOR_TICK_FONT,
             fill: 'black',

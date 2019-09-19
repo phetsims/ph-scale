@@ -19,17 +19,17 @@ define( require => {
   // strings
   const phScaleTitleString = require( 'string!PH_SCALE/ph-scale.title' );
 
-  var simOptions = {
+  const simOptions = {
     credits: PHScaleConstants.CREDITS
   };
 
   SimLauncher.launch( function() {
-    var screens = [
+    const screens = [
       new MacroScreen(),
       new MicroScreen(),
       new MySolutionScreen()
     ];
-    var sim = new Sim( phScaleTitleString, screens, simOptions );
+    const sim = new Sim( phScaleTitleString, screens, simOptions );
     sim.start();
   } );
 } );

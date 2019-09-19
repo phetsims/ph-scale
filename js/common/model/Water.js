@@ -15,7 +15,7 @@ define( require => {
   // strings
   const choiceWaterString = require( 'string!PH_SCALE/choice.water' );
 
-  var Water = Object.freeze( {
+  const Water = Object.freeze( {
     name: choiceWaterString,
     pH: 7,
     color: PHScaleColors.WATER

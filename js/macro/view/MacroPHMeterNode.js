@@ -43,17 +43,17 @@ define( require => {
   const acidicString = require( 'string!PH_SCALE/acidic' );
   const basicString = require( 'string!PH_SCALE/basic' );
   const pHString = require( 'string!PH_SCALE/pH' );
-  var stringNoValue = MathSymbols.NO_VALUE;
+  const stringNoValue = MathSymbols.NO_VALUE;
 
   // constants
-  var BACKGROUND_ENABLED_FILL = 'rgb(31,113,2)';
-  var BACKGROUND_DISABLED_FILL = 'rgb(178,178,178)';
-  var SCALE_SIZE = new Dimension2( 55, 450 );
-  var SCALE_LABEL_FONT = new PhetFont( { size: 30, weight: 'bold' } );
-  var TICK_LENGTH = 15;
-  var TICK_FONT = new PhetFont( 22 );
-  var NEUTRAL_TICK_LENGTH = 40;
-  var TICK_LABEL_X_SPACING = 5;
+  const BACKGROUND_ENABLED_FILL = 'rgb(31,113,2)';
+  const BACKGROUND_DISABLED_FILL = 'rgb(178,178,178)';
+  const SCALE_SIZE = new Dimension2( 55, 450 );
+  const SCALE_LABEL_FONT = new PhetFont( { size: 30, weight: 'bold' } );
+  const TICK_LENGTH = 15;
+  const TICK_FONT = new PhetFont( 22 );
+  const NEUTRAL_TICK_LENGTH = 40;
+  const TICK_LABEL_X_SPACING = 5;
 
   /**
    * @param {PHMeter} meter
@@ -71,15 +71,15 @@ define( require => {
     Node.call( this );
 
     // pH scale, positioned at meter 'body' location
-    var scaleNode = new ScaleNode( { size: SCALE_SIZE } );
+    const scaleNode = new ScaleNode( { size: SCALE_SIZE } );
     scaleNode.translation = modelViewTransform.modelToViewPosition( meter.bodyLocation );
 
     // indicator that slides vertically along scale
-    var indicatorNode = new IndicatorNode( meter.valueProperty, SCALE_SIZE.width );
+    const indicatorNode = new IndicatorNode( meter.valueProperty, SCALE_SIZE.width );
     indicatorNode.left = scaleNode.x;
 
-    var probeNode = new PHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode );
-    var wireNode = new WireNode( meter.probe, scaleNode, probeNode );
+    const probeNode = new PHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode );
+    const wireNode = new WireNode( meter.probe, scaleNode, probeNode );
 
     // rendering order
     this.addChild( wireNode );
@@ -92,8 +92,8 @@ define( require => {
       indicatorNode.centerY = scaleNode.y + Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
     } );
 
-    var updateValue = function() {
-      var value;
+    const updateValue = function() {
+      let value;
       if ( probeNode.isInSolution() || probeNode.isInDrainFluid() ) {
         value = solution.pHProperty.get();
       }
@@ -137,7 +137,7 @@ define( require => {
 
     // gradient background
     this.backgroundStrokeWidth = 2; // @private
-    var backgroundNode = new Rectangle( 0, 0, options.size.width, options.size.height, {
+    const backgroundNode = new Rectangle( 0, 0, options.size.width, options.size.height, {
       fill: new LinearGradient( 0, 0, 0, options.size.height )
         .addColorStop( 0, PHScaleColors.BASIC )
         .addColorStop( 0.5, PHScaleColors.NEUTRAL )
@@ -148,34 +148,34 @@ define( require => {
     this.addChild( backgroundNode );
 
     // 'Acidic' label
-    var textOptions = { fill: 'white', font: SCALE_LABEL_FONT, maxWidth: 0.45 * options.size.height };
-    var acidicNode = new Text( acidicString, textOptions );
+    const textOptions = { fill: 'white', font: SCALE_LABEL_FONT, maxWidth: 0.45 * options.size.height };
+    const acidicNode = new Text( acidicString, textOptions );
     acidicNode.rotation = -Math.PI / 2;
     acidicNode.centerX = backgroundNode.centerX;
     acidicNode.centerY = 0.75 * backgroundNode.height;
     this.addChild( acidicNode );
 
     // 'Basic' label
-    var basicNode = new Text( basicString, textOptions );
+    const basicNode = new Text( basicString, textOptions );
     basicNode.rotation = -Math.PI / 2;
     basicNode.centerX = backgroundNode.centerX;
     basicNode.centerY = 0.25 * backgroundNode.height;
     this.addChild( basicNode );
 
     // tick marks, labeled at 'even' values, skip 7 (neutral)
-    var y = options.size.height;
-    var dy = -options.size.height / options.range.getLength();
-    for ( var pH = options.range.min; pH <= options.range.max; pH++ ) {
+    let y = options.size.height;
+    const dy = -options.size.height / options.range.getLength();
+    for ( let pH = options.range.min; pH <= options.range.max; pH++ ) {
       if ( pH !== 7 ) {
         // tick mark
-        var lineNode = new Line( 0, 0, TICK_LENGTH, 0, { stroke: 'black', lineWidth: 1 } );
+        const lineNode = new Line( 0, 0, TICK_LENGTH, 0, { stroke: 'black', lineWidth: 1 } );
         lineNode.right = backgroundNode.left;
         lineNode.centerY = y;
         this.addChild( lineNode );
 
         // tick label
         if ( pH % 2 === 0 ) {
-          var tickLabelNode = new Text( pH, { font: TICK_FONT } );
+          const tickLabelNode = new Text( pH, { font: TICK_FONT } );
           tickLabelNode.right = lineNode.left - TICK_LABEL_X_SPACING;
           tickLabelNode.centerY = lineNode.centerY;
           this.addChild( tickLabelNode );
@@ -185,11 +185,11 @@ define( require => {
     }
 
     // 'Neutral' tick mark
-    var neutralLineNode = new Line( 0, 0, NEUTRAL_TICK_LENGTH, 0, { stroke: 'black', lineWidth: 3 } );
+    const neutralLineNode = new Line( 0, 0, NEUTRAL_TICK_LENGTH, 0, { stroke: 'black', lineWidth: 3 } );
     neutralLineNode.right = backgroundNode.left;
     neutralLineNode.centerY = options.size.height / 2;
     this.addChild( neutralLineNode );
-    var neutralLabelNode = new Text( '7', {
+    const neutralLabelNode = new Text( '7', {
       fill: PHScaleColors.NEUTRAL,
       font: new PhetFont( { family: 'Arial black', size: 28, weight: 'bold' } )
     } );
@@ -219,39 +219,39 @@ define( require => {
     Node.call( this );
 
     // pH value
-    var valueNode = new Text( Util.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
+    const valueNode = new Text( Util.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
       { fill: 'black', font: new PhetFont( 28 ) } );
 
     // rectangle that the value is displayed in
-    var valueXMargin = 8;
-    var valueYMargin = 5;
-    var cornerRadius = 12;
-    var valueRectangle = new Rectangle( 0, 0, valueNode.width + ( 2 * valueXMargin ), valueNode.height + ( 2 * valueYMargin ), cornerRadius, cornerRadius,
+    const valueXMargin = 8;
+    const valueYMargin = 5;
+    const cornerRadius = 12;
+    const valueRectangle = new Rectangle( 0, 0, valueNode.width + ( 2 * valueXMargin ), valueNode.height + ( 2 * valueYMargin ), cornerRadius, cornerRadius,
       { fill: 'white' } );
 
     // label above the value
-    var labelNode = new Text( pHString, {
+    const labelNode = new Text( pHString, {
       fill: 'white',
       font: new PhetFont( { size: 28, weight: 'bold' } ),
       maxWidth: 100
     } );
 
     // background
-    var backgroundXMargin = 14;
-    var backgroundYMargin = 10;
-    var backgroundYSpacing = 6;
-    var backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * backgroundXMargin );
-    var backgroundHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * backgroundYMargin );
-    var backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
+    const backgroundXMargin = 14;
+    const backgroundYMargin = 10;
+    const backgroundYSpacing = 6;
+    const backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * backgroundXMargin );
+    const backgroundHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * backgroundYMargin );
+    const backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
       { fill: BACKGROUND_ENABLED_FILL } );
 
     // highlight around the background
-    var highlightLineWidth = 3;
-    var outerHighlight = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
+    const highlightLineWidth = 3;
+    const outerHighlight = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
       { stroke: 'black', lineWidth: highlightLineWidth } );
-    var innerHighlight = new Rectangle( highlightLineWidth, highlightLineWidth, backgroundWidth - ( 2 * highlightLineWidth ), backgroundHeight - ( 2 * highlightLineWidth ), cornerRadius, cornerRadius,
+    const innerHighlight = new Rectangle( highlightLineWidth, highlightLineWidth, backgroundWidth - ( 2 * highlightLineWidth ), backgroundHeight - ( 2 * highlightLineWidth ), cornerRadius, cornerRadius,
       { stroke: 'white', lineWidth: highlightLineWidth } );
-    var highlight = new Node( { children: [ innerHighlight, outerHighlight ], visible: false } );
+    const highlight = new Node( { children: [ innerHighlight, outerHighlight ], visible: false } );
 
     // rendering order
     this.addChild( backgroundRectangle );
@@ -303,7 +303,7 @@ define( require => {
    */
   function PHProbeNode( probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode ) {
 
-    var self = this;
+    const self = this;
 
     ProbeNode.call( this, {
       sensorTypeFunction: ProbeNode.crosshairs( {
@@ -334,7 +334,7 @@ define( require => {
       modelViewTransform: modelViewTransform
     } ) );
 
-    var isInNode = function( node ) {
+    const isInNode = function( node ) {
       return node.getBounds().containsPoint( probe.locationProperty.get() );
     };
 
@@ -374,21 +374,21 @@ define( require => {
       pickable: false // no need to drag the wire, and we don't want to do cubic-curve intersection here, or have it get in the way
     } );
 
-    var self = this;
-    var updateCurve = function() {
+    const self = this;
+    const updateCurve = function() {
 
-      var scaleCenterX = bodyNode.x + ( SCALE_SIZE.width / 2 );
+      const scaleCenterX = bodyNode.x + ( SCALE_SIZE.width / 2 );
 
       // Connect bottom-center of body to right-center of probe.
-      var bodyConnectionPoint = new Vector2( scaleCenterX, bodyNode.bottom - 10 );
-      var probeConnectionPoint = new Vector2( probeNode.left, probeNode.centerY );
+      const bodyConnectionPoint = new Vector2( scaleCenterX, bodyNode.bottom - 10 );
+      const probeConnectionPoint = new Vector2( probeNode.left, probeNode.centerY );
 
       // control points
       // The y coordinate of the body's control point varies with the x distance between the body and probe.
-      var c1Offset = new Vector2( 0, Util.linear( 0, 800, 0, 300, probeNode.left - scaleCenterX ) ); // x distance -> y coordinate
-      var c2Offset = new Vector2( -50, 0 );
-      var c1 = new Vector2( bodyConnectionPoint.x + c1Offset.x, bodyConnectionPoint.y + c1Offset.y );
-      var c2 = new Vector2( probeConnectionPoint.x + c2Offset.x, probeConnectionPoint.y + c2Offset.y );
+      const c1Offset = new Vector2( 0, Util.linear( 0, 800, 0, 300, probeNode.left - scaleCenterX ) ); // x distance -> y coordinate
+      const c2Offset = new Vector2( -50, 0 );
+      const c1 = new Vector2( bodyConnectionPoint.x + c1Offset.x, bodyConnectionPoint.y + c1Offset.y );
+      const c2 = new Vector2( probeConnectionPoint.x + c2Offset.x, probeConnectionPoint.y + c2Offset.y );
 
       self.shape = new Shape()
         .moveTo( bodyConnectionPoint.x, bodyConnectionPoint.y )
@@ -411,19 +411,19 @@ define( require => {
     Node.call( this );
 
     // dashed line that extends across the scale
-    var lineNode = new Line( 0, 0, scaleWidth, 0, {
+    const lineNode = new Line( 0, 0, scaleWidth, 0, {
       stroke: 'black',
       lineDash: [ 5, 5 ],
       lineWidth: 2
     } );
 
     // value
-    var valueEnabled = new BooleanProperty( true );
-    var valueNode = new ValueNode( pHProperty, valueEnabled );
+    const valueEnabled = new BooleanProperty( true );
+    const valueNode = new ValueNode( pHProperty, valueEnabled );
 
     // arrow head pointing at the scale
-    var arrowSize = new Dimension2( 21, 28 );
-    var arrowNode = new Path( new Shape()
+    const arrowSize = new Dimension2( 21, 28 );
+    const arrowNode = new Path( new Shape()
         .moveTo( 0, 0 )
         .lineTo( arrowSize.width, -arrowSize.height / 2 )
         .lineTo( arrowSize.width, arrowSize.height / 2 )
@@ -445,7 +445,7 @@ define( require => {
 
     pHProperty.link( function( pH ) {
       // make the indicator look enabled or disabled
-      var enabled = ( pH !== null );
+      const enabled = ( pH !== null );
       valueEnabled.set( enabled );
       arrowNode.visible = lineNode.visible = enabled;
     } );

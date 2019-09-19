@@ -27,7 +27,7 @@ define( require => {
    */
   function GraphIndicatorDragHandler( solution, graphUnitsProperty, yToValue, concentrationToPH, molesToPH ) {
 
-    var clickYOffset; // y-offset between initial click and indicator's origin
+    let clickYOffset; // y-offset between initial click and indicator's origin
 
     SimpleDragHandler.call( this, {
 
@@ -45,13 +45,13 @@ define( require => {
         if ( solution.volumeProperty.get() !== 0 ) {
 
           // Adjust the y-coordinate for the offset between the pointer and the indicator's origin
-          var y = event.currentTarget.globalToParentPoint( event.pointer.point ).y - clickYOffset;
+          const y = event.currentTarget.globalToParentPoint( event.pointer.point ).y - clickYOffset;
 
           // Convert the y-coordinate to a model value
-          var value = yToValue( y );
+          const value = yToValue( y );
 
           // Map the model value to pH, depending on which units we're using.
-          var pH = ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) ? concentrationToPH( value ) : molesToPH( value, solution.volumeProperty.get() );
+          let pH = ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) ? concentrationToPH( value ) : molesToPH( value, solution.volumeProperty.get() );
 
           // Constrain the pH to the valid range
           pH = Util.clamp( pH, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );

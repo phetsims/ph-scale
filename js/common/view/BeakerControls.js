@@ -29,7 +29,7 @@ define( require => {
   const ratioString = require( 'string!PH_SCALE/ratio' );
 
   // constants
-  var FONT = new PhetFont( 20 );
+  const FONT = new PhetFont( 20 );
 
   /**
    * @param {Property.<boolean>} ratioVisibleProperty
@@ -47,27 +47,27 @@ define( require => {
     }, options );
 
     // 'H3O+/OH- ratio' checkbox, with color-coded label, spacing tweaked visually
-    var textH3O = new RichText( PHScaleConstants.H3O_FORMULA, { font: FONT, fill: PHScaleColors.H3O_MOLECULES } );
-    var textSlash = new Text( '/', { font: FONT, left: textH3O.right + 2 } );
-    var textOH = new RichText( PHScaleConstants.OH_FORMULA, {
+    const textH3O = new RichText( PHScaleConstants.H3O_FORMULA, { font: FONT, fill: PHScaleColors.H3O_MOLECULES } );
+    const textSlash = new Text( '/', { font: FONT, left: textH3O.right + 2 } );
+    const textOH = new RichText( PHScaleConstants.OH_FORMULA, {
       font: FONT,
       fill: PHScaleColors.OH_MOLECULES,
       left: textSlash.right + 4,
       supXSpacing: 2
     } );
-    var textRatio = new Text( ratioString, { font: FONT, left: textOH.right + 4 } );
-    var ratioLabel = new Node( { children: [ textH3O, textSlash, textOH, textRatio ] } );
-    var ratioCheckbox = new Checkbox( ratioLabel, ratioVisibleProperty );
+    const textRatio = new Text( ratioString, { font: FONT, left: textOH.right + 4 } );
+    const ratioLabel = new Node( { children: [ textH3O, textSlash, textOH, textRatio ] } );
+    const ratioCheckbox = new Checkbox( ratioLabel, ratioVisibleProperty );
     ratioCheckbox.touchArea = Shape.bounds( ratioCheckbox.localBounds.dilatedXY( 10, 8 ) );
 
     // 'Molecule count' checkbox
-    var moleculeCountLabel = new Text( moleculeCountString, { font: FONT } );
-    var moleculeCountCheckbox = new Checkbox( moleculeCountLabel, moleculeCountVisibleProperty );
+    const moleculeCountLabel = new Text( moleculeCountString, { font: FONT } );
+    const moleculeCountCheckbox = new Checkbox( moleculeCountLabel, moleculeCountVisibleProperty );
     moleculeCountCheckbox.touchArea = Shape.bounds( ratioCheckbox.localBounds.dilatedXY( 10, 8 ) );
 
-    var separator = new Line( 0, 0, Math.max( moleculeCountCheckbox.width, ratioCheckbox.width ), 0, { stroke: 'gray' } );
+    const separator = new Line( 0, 0, Math.max( moleculeCountCheckbox.width, ratioCheckbox.width ), 0, { stroke: 'gray' } );
 
-    var content = new LayoutBox( {
+    const content = new LayoutBox( {
       children: [ ratioCheckbox, separator, moleculeCountCheckbox ],
       orientation: 'vertical',
       align: 'left',

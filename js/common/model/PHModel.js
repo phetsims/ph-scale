@@ -16,7 +16,7 @@ define( require => {
   const Water = require( 'PH_SCALE/common/model/Water' );
 
   // constants
-  var AVOGADROS_NUMBER = 6.023E23; // number of molecules in one mole of solution
+  const AVOGADROS_NUMBER = 6.023E23; // number of molecules in one mole of solution
 
   function PHModel() {}
 
@@ -31,8 +31,8 @@ define( require => {
    * @returns {number|null} pH, null if total volume is zero
    */
   PHModel.computePH = function( solutePH, soluteVolume, waterVolume ) {
-    var pH;
-    var totalVolume = soluteVolume + waterVolume;
+    let pH;
+    const totalVolume = soluteVolume + waterVolume;
     if ( totalVolume === 0 ) {
       pH = null;
     }

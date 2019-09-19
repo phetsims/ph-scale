@@ -31,7 +31,7 @@ define( require => {
    */
   function MySolutionScreen() {
 
-    var options = {
+    const options = {
       name: screenMySolutionString,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
       homeScreenIcon: new Image( homeIcon ),

@@ -29,8 +29,8 @@ define( require => {
   const Shape = require( 'KITE/Shape' );
 
   // constants
-  var POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute width of the pointy part of the indicator
-  var POINTER_HEIGHT_PERCENTAGE = 0.5; // used to compute height of the pointy part of the indicator
+  const POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute width of the pointy part of the indicator
+  const POINTER_HEIGHT_PERCENTAGE = 0.5; // used to compute height of the pointy part of the indicator
 
   /**
    * @param {Property.<number>} valueProperty
@@ -66,7 +66,7 @@ define( require => {
     Node.call( this );
 
     // Transform shapes to support various orientations of pointer.
-    var shapeMatrix;
+    let shapeMatrix;
     if ( options.pointerLocation === 'topRight' ) {
       shapeMatrix = Matrix3.identity(); // background shape will be drawn with pointer at top-right
     }
@@ -84,7 +84,7 @@ define( require => {
     }
 
     // Background with the pointer at top-right. Proceed clockwise from the tip of the pointer.
-    var backgroundShape = new Shape()
+    const backgroundShape = new Shape()
       .moveTo( 0, 0 )
       .lineTo( -POINTER_WIDTH_PERCENTAGE * options.backgroundWidth, ( POINTER_HEIGHT_PERCENTAGE * options.backgroundHeight ) - options.backgroundCornerRadius )
       .arc( ( -POINTER_WIDTH_PERCENTAGE * options.backgroundWidth ) - options.backgroundCornerRadius, options.backgroundHeight - options.backgroundCornerRadius, options.backgroundCornerRadius, 0, Math.PI / 2, false )
@@ -94,14 +94,14 @@ define( require => {
       .arc( -options.backgroundWidth + options.backgroundCornerRadius, options.backgroundCornerRadius, options.backgroundCornerRadius, Math.PI, 1.5 * Math.PI, false )
       .close()
       .transformed( shapeMatrix );
-    var backgroundNode = new Path( backgroundShape, {
+    const backgroundNode = new Path( backgroundShape, {
       lineWidth: options.backgroundLineWidth,
       stroke: options.backgroundStroke,
       fill: options.backgroundFill
     } );
 
     // Cutout where the value is displayed.
-    var valueBackgroundNode = new Rectangle( 0, 0,
+    const valueBackgroundNode = new Rectangle( 0, 0,
       ( ( 1 - POINTER_WIDTH_PERCENTAGE ) * options.backgroundWidth ) - ( 2 * options.backgroundXMargin ),
       0.5 * options.backgroundHeight - options.backgroundYMargin - ( options.ySpacing / 2 ),
       0.5 * options.backgroundCornerRadius, 0.5 * options.backgroundCornerRadius, {
@@ -110,7 +110,7 @@ define( require => {
       } );
 
     // Value, scaled to fit background height
-    var valueNode = new ScientificNotationNode( valueProperty, {
+    const valueNode = new ScientificNotationNode( valueProperty, {
       font: new PhetFont( 28 ),
       fill: 'black',
       mantissaDecimalPlaces: options.mantissaDecimalPlaces,
@@ -119,7 +119,7 @@ define( require => {
     valueNode.setScaleMagnitude( 0.7 );
 
     // molecule and formula, scaled to fit available height
-    var moleculeAndFormula = new Node();
+    const moleculeAndFormula = new Node();
     moleculeAndFormula.addChild( moleculeNode );
     moleculeAndFormula.addChild( formulaNode );
     formulaNode.left = moleculeNode.right + options.xSpacing;
@@ -147,7 +147,7 @@ define( require => {
     if ( options.isInteractive ) {
 
       // add double-headed arrow
-      var arrowNode = new ArrowNode( 0, 0, 0, 0.75 * options.backgroundHeight, {
+      const arrowNode = new ArrowNode( 0, 0, 0, 0.75 * options.backgroundHeight, {
         doubleHead: true,
         tailWidth: 10,
         headWidth: 28,
@@ -177,10 +177,10 @@ define( require => {
     }
 
     // sync with value
-    var self = this;
+    const self = this;
     valueProperty.link( function( value ) {
       // disabled when value is zero
-      var isEnabled = ( value !== 0 );
+      const isEnabled = ( value !== 0 );
       self.opacity = isEnabled ? 1.0 : 0.5;
       self.cursor = ( isEnabled && options.isInteractive ) ? 'pointer' : 'default';
     } );

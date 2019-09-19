@@ -24,8 +24,8 @@ define( require => {
     Node.call( this );
 
     // atoms
-    var oxygen = new OxygenNode();
-    var hydrogen = new HydrogenNode();
+    const oxygen = new OxygenNode();
+    const hydrogen = new HydrogenNode();
 
     // rendering order
     this.addChild( oxygen );

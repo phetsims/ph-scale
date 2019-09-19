@@ -27,10 +27,10 @@ define( require => {
 
     Node.call( this );
 
-    var scale = 0.6;
+    const scale = 0.6;
 
-    var horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.location.x - faucet.pipeMinX ) ) / scale;
-    var faucetNode = new FaucetNode( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
+    const horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.location.x - faucet.pipeMinX ) ) / scale;
+    const faucetNode = new FaucetNode( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
       horizontalPipeLength: horizontalPipeLength,
       verticalPipeLength: 20,
       tapToDispenseAmount: PHScaleConstants.TAP_TO_DISPENSE_AMOUNT,
@@ -45,7 +45,7 @@ define( require => {
     this.addChild( faucetNode );
 
     // decorate the faucet with the name of the water
-    var labelNode = new Text( Water.name, { font: new PhetFont( 28 ), maxWidth: 85 } );
+    const labelNode = new Text( Water.name, { font: new PhetFont( 28 ), maxWidth: 85 } );
     this.addChild( labelNode );
     labelNode.left = faucetNode.left + 115;
     labelNode.bottom = faucetNode.centerY - 40;

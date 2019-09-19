@@ -13,7 +13,7 @@ define( require => {
   const PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   const phScale = require( 'PH_SCALE/phScale' );
 
-  var PHScaleColors = {
+  const PHScaleColors = {
 
     SCREEN_BACKGROUND: 'white',
     PANEL_FILL: 'rgb(230,230,230)',

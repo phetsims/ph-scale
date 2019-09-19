@@ -29,10 +29,10 @@ define( require => {
 
     Node.call( this );
 
-    var label = new Text( neutralString, { font: new PhetFont( { size: 30, weight: 'bold' } ), maxWidth: 300 } );
+    const label = new Text( neutralString, { font: new PhetFont( { size: 30, weight: 'bold' } ), maxWidth: 300 } );
 
     // translucent light-gray background, so this shows up on all solution colors
-    var background = new Rectangle( 0, 0, 1.4 * label.width, 1.2 * label.height, 8, 8,
+    const background = new Rectangle( 0, 0, 1.4 * label.width, 1.2 * label.height, 8, 8,
       { fill: 'rgba( 240, 240, 240, 0.6 )' } );
 
     // rendering order
@@ -44,7 +44,7 @@ define( require => {
     label.centerY = background.centerY;
 
     // make this node visible when the solution has neutral pH
-    var self = this;
+    const self = this;
     solution.pHProperty.link( function( pH ) {
       self.setVisible( pH === Water.pH );
     } );

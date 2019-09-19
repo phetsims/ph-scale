@@ -11,7 +11,7 @@ define( require => {
   const phScale = require( 'PH_SCALE/phScale' );
 
   // NOTE: enum pattern recommends using {} for each value, but strings are more convenient for debugging
-  var GraphUnits = Object.freeze( {
+  const GraphUnits = Object.freeze( {
     MOLES_PER_LITER: 'molesPerLiter',
     MOLES: 'moles'
   } );

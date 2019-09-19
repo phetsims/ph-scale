@@ -22,11 +22,11 @@ define( require => {
    */
   function DropperFluidNode( dropper, beaker, tipWidth, modelViewTransform ) {
 
-    var self = this;
+    const self = this;
     Rectangle.call( this, 0, 0, 0, 0, { lineWidth: 1 } );
 
     // shape and location
-    var updateShapeAndLocation = function() {
+    const updateShapeAndLocation = function() {
       // path
       if ( dropper.flowRateProperty.get() > 0 ) {
         self.setRect( -tipWidth / 2, 0, tipWidth, beaker.location.y - dropper.locationProperty.get().y );

@@ -27,8 +27,8 @@ define( require => {
   const unitsLitersString = require( 'string!PH_SCALE/units.liters' );
 
   // constants
-  var ARROW_SIZE = new Dimension2( 21, 28 );
-  var VALUE_FONT = new PhetFont( { size: 24, weight: 'bold' } );
+  const ARROW_SIZE = new Dimension2( 21, 28 );
+  const VALUE_FONT = new PhetFont( { size: 24, weight: 'bold' } );
 
   /**
    * @param {Property.<number>} volumeProperty
@@ -41,13 +41,13 @@ define( require => {
     Node.call( this );
 
     // nodes
-    var arrowHead = new Path( new Shape()
+    const arrowHead = new Path( new Shape()
         .moveTo( 0, 0 )
         .lineTo( ARROW_SIZE.width, ARROW_SIZE.height / 2 )
         .lineTo( ARROW_SIZE.width, -ARROW_SIZE.height / 2 )
         .close(),
       { fill: 'black' } );
-    var valueNode = new Text( '0', {
+    const valueNode = new Text( '0', {
       font: VALUE_FONT,
       left: arrowHead.right + 3,
       maxWidth: 75
@@ -61,13 +61,13 @@ define( require => {
     this.left = modelViewTransform.modelToViewX( beaker.right ) + 3;
 
     // update when the volume changes
-    var self = this;
+    const self = this;
     volumeProperty.link( function( volume ) {
       // text
       valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( volume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), unitsLitersString );
       valueNode.centerY = arrowHead.centerY;
       // y-location
-      var solutionHeight = Util.linear( 0, beaker.volume, 0, beaker.size.height, volume ); // volume -> height, model coordinates
+      const solutionHeight = Util.linear( 0, beaker.volume, 0, beaker.size.height, volume ); // volume -> height, model coordinates
       self.y = modelViewTransform.modelToViewY( beaker.location.y - solutionHeight );
     } );
   }

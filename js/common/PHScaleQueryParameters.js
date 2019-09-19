@@ -11,7 +11,7 @@ define( require => {
   // modules
   const phScale = require( 'PH_SCALE/phScale' );
 
-  var PHScaleQueryParameters = QueryStringMachine.getAll( {
+  const PHScaleQueryParameters = QueryStringMachine.getAll( {
 
     // shows the ratio (molecule counts) in the bottom of the beaker for the 'ratio' view
     showRatio: { type: 'flag' }

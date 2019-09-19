@@ -31,7 +31,7 @@ define( require => {
    */
   function MicroScreen() {
 
-    var options = {
+    const options = {
       name: screenMicroString,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
       homeScreenIcon: new Image( homeIcon ),

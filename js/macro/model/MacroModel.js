@@ -33,7 +33,7 @@ define( require => {
       autoFillVolume: 0.5 // L, automatically fill beaker with this much solute when the solute changes
     }, options );
 
-    var self = this;
+    const self = this;
 
     // @public solute choices, in order that they'll appear in the combo box (decreasing pH value)
     this.solutes = [
@@ -55,7 +55,7 @@ define( require => {
     this.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
 
     // Dropper above the beaker
-    var yDropper = this.beaker.location.y - this.beaker.size.height - 15;
+    const yDropper = this.beaker.location.y - this.beaker.size.height - 15;
     // @public
     this.dropper = new Dropper( Solute.WATER,
       new Vector2( this.beaker.location.x - 50, yDropper ),
@@ -74,7 +74,7 @@ define( require => {
       { enabled: this.solution.volumeProperty.get() > 0 } );
 
     // pH meter to the left of the drain faucet
-    var pHMeterLocation = new Vector2( this.drainFaucet.location.x - 300, 75 );
+    const pHMeterLocation = new Vector2( this.drainFaucet.location.x - 300, 75 );
     this.pHMeter = new PHMeter( pHMeterLocation, new Vector2( pHMeterLocation.x + 150, this.beaker.location.y ),
       PHScaleConstants.SCREEN_VIEW_OPTIONS.layoutBounds );
 
@@ -118,7 +118,7 @@ define( require => {
      * @private
      */
     updateFaucetsAndDropper: function() {
-      var volume = this.solution.volumeProperty.get();
+      const volume = this.solution.volumeProperty.get();
       this.waterFaucet.enabledProperty.set( volume < this.beaker.volume );
       this.drainFaucet.enabledProperty.set( volume > 0 );
       this.dropper.enabledProperty.set( volume < this.beaker.volume );

@@ -1,4 +1,4 @@
-// Copyright 2013-2018, University of Colorado Boulder
+// Copyright 2013-2019, University of Colorado Boulder
 
 /**
  * Graph with a logarithmic scale, for displaying concentration (mol/L) and quantity (moles).

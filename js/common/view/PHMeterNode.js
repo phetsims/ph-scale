@@ -137,15 +137,11 @@ define( require => {
     // optional spinner arrows
     if ( isInteractive ) {
 
-      let pHValueProperty;
-      let upArrowNode;
-      let downArrowNode;
-
       // options common to both arrow buttons
       const arrowButtonOptions = { fireOnHoldInterval: SPINNER_TIMER_INTERVAL, enabledFill: SPINNER_ARROW_COLOR };
 
       // up arrow
-      upArrowNode = new ArrowButton( 'up',
+      const upArrowNode = new ArrowButton( 'up',
         function() {
           pHValueProperty.set( Math.min( PHScaleConstants.PH_RANGE.max, solution.pHProperty.get() + SPINNER_DELTA ) );
         },
@@ -157,7 +153,7 @@ define( require => {
       valueNode.addChild( upArrowNode );
 
       // down arrow
-      downArrowNode = new ArrowButton( 'down',
+      const downArrowNode = new ArrowButton( 'down',
         function() {
           pHValueProperty.set( Math.max( PHScaleConstants.PH_RANGE.min, solution.pHProperty.get() - SPINNER_DELTA ) );
         },
@@ -178,7 +174,7 @@ define( require => {
        * solution.pHProperty is derived, so we can't change it directly.
        * So when pH changes, create a new custom solution with the desired pH.
        */
-      pHValueProperty = new NumberProperty( solution.pHProperty.get(), {
+      const pHValueProperty = new NumberProperty( solution.pHProperty.get(), {
         reentrant: true
       } );
       solution.pHProperty.link( function( pH ) {

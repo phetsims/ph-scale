@@ -11,6 +11,7 @@ define( require => {
   // modules
   const Bounds2 = require( 'DOT/Bounds2' );
   const inherit = require( 'PHET_CORE/inherit' );
+  const merge = require( 'PHET_CORE/merge' );
   const phScale = require( 'PH_SCALE/phScale' );
 
   /**
@@ -22,7 +23,7 @@ define( require => {
    */
   function Beaker( location, size, options ) {
 
-    options = _.extend( {
+    options = merge( {
       volume: 1.2 // L
     }, options );
 

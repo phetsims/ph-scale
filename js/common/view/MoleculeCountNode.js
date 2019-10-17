@@ -12,6 +12,7 @@ define( require => {
   const H2ONode = require( 'PH_SCALE/common/view/molecules/H2ONode' );
   const H3ONode = require( 'PH_SCALE/common/view/molecules/H3ONode' );
   const inherit = require( 'PHET_CORE/inherit' );
+  const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
   const NumberProperty = require( 'AXON/NumberProperty' );
   const OHNode = require( 'PH_SCALE/common/view/molecules/OHNode' );
@@ -51,7 +52,7 @@ define( require => {
     const notationOptions = { font: new PhetFont( 22 ), fill: 'white', mantissaDecimalPlaces: 2 };
     const countH3ONode = new ScientificNotationNode( countH3OProperty, notationOptions );
     const countOHNode = new ScientificNotationNode( countOHProperty, notationOptions );
-    const countH2ONode = new ScientificNotationNode( countH2OProperty, _.extend( { exponent: 25 }, notationOptions ) );
+    const countH2ONode = new ScientificNotationNode( countH2OProperty, merge( { exponent: 25 }, notationOptions ) );
     const maxCountWidth = countH3ONode.width;
     const maxCountHeight = countH3ONode.height;
 

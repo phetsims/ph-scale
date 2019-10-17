@@ -12,6 +12,7 @@ define( require => {
   // modules
   const BooleanProperty = require( 'AXON/BooleanProperty' );
   const inherit = require( 'PHET_CORE/inherit' );
+  const merge = require( 'PHET_CORE/merge' );
   const NumberProperty = require( 'AXON/NumberProperty' );
   const phScale = require( 'PH_SCALE/phScale' );
 
@@ -23,7 +24,7 @@ define( require => {
    */
   function Faucet( location, pipeMinX, options ) {
 
-    options = _.extend( {
+    options = merge( {
       spoutWidth: 45, // pixels
       maxFlowRate: 0.25, // L/sec
       flowRate: 0,

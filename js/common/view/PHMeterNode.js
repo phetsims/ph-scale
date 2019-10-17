@@ -17,6 +17,7 @@ define( require => {
   const ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
   const inherit = require( 'PHET_CORE/inherit' );
   const MathSymbols = require( 'SCENERY_PHET/MathSymbols' );
+  const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
   const NumberProperty = require( 'AXON/NumberProperty' );
   const Path = require( 'SCENERY/nodes/Path' );
@@ -53,7 +54,7 @@ define( require => {
    */
   function PHMeterNode( solution, probeYOffset, expandedProperty, options ) {
 
-    options = _.extend( {
+    options = merge( {
       isInteractive: false, // true: pH can be changed, false: pH is read-only
       attachProbe: 'center' // where to attach the probe: 'left'|'center'|'right'
     }, options );
@@ -145,7 +146,7 @@ define( require => {
         function() {
           pHValueProperty.set( Math.min( PHScaleConstants.PH_RANGE.max, solution.pHProperty.get() + SPINNER_DELTA ) );
         },
-        _.extend( {
+        merge( {
           left: valueRectangle.right + SPINNER_X_SPACING,
           bottom: valueRectangle.centerY - ( SPINNER_Y_SPACING / 2 )
         }, arrowButtonOptions )
@@ -157,7 +158,7 @@ define( require => {
         function() {
           pHValueProperty.set( Math.max( PHScaleConstants.PH_RANGE.min, solution.pHProperty.get() - SPINNER_DELTA ) );
         },
-        _.extend( {
+        merge( {
           left: upArrowNode.left,
           top: upArrowNode.bottom + SPINNER_Y_SPACING
         }, arrowButtonOptions )

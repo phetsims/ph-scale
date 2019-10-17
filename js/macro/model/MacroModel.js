@@ -16,6 +16,7 @@ define( require => {
   const Dropper = require( 'PH_SCALE/common/model/Dropper' );
   const Faucet = require( 'PH_SCALE/common/model/Faucet' );
   const inherit = require( 'PHET_CORE/inherit' );
+  const merge = require( 'PHET_CORE/merge' );
   const PHMeter = require( 'PH_SCALE/macro/model/PHMeter' );
   const phScale = require( 'PH_SCALE/phScale' );
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
@@ -29,7 +30,7 @@ define( require => {
    */
   function MacroModel( options ) {
 
-    options = _.extend( {
+    options = merge( {
       autoFillVolume: 0.5 // L, automatically fill beaker with this much solute when the solute changes
     }, options );
 

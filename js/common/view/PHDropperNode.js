@@ -13,6 +13,7 @@ define( require => {
   // modules
   const EyeDropperNode = require( 'SCENERY_PHET/EyeDropperNode' );
   const inherit = require( 'PHET_CORE/inherit' );
+  const merge = require( 'PHET_CORE/merge' );
   const MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
   const phScale = require( 'PH_SCALE/phScale' );
 
@@ -26,7 +27,7 @@ define( require => {
 
     const self = this;
 
-    EyeDropperNode.call( this, _.extend( {
+    EyeDropperNode.call( this, merge( {
       dispensingProperty: dropper.dispensingProperty,
       enabledProperty: dropper.enabledProperty,
       emptyProperty: dropper.emptyProperty

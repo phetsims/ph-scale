@@ -16,6 +16,7 @@ define( require => {
   const GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   const inherit = require( 'PHET_CORE/inherit' );
   const Line = require( 'SCENERY/nodes/Line' );
+  const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
   const NumberProperty = require( 'AXON/NumberProperty' );
   const Path = require( 'SCENERY/nodes/Path' );
@@ -39,7 +40,7 @@ define( require => {
    */
   function LinearGraph( solution, graphUnitsProperty, mantissaRange, exponentProperty, options ) {
 
-    options = _.extend( {
+    options = merge( {
       // scale
       scaleHeight: 100,
       minScaleWidth: 100,

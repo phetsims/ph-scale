@@ -21,6 +21,7 @@ define( require => {
   const inherit = require( 'PHET_CORE/inherit' );
   const Line = require( 'SCENERY/nodes/Line' );
   const LinearGradient = require( 'SCENERY/util/LinearGradient' );
+  const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
   const NumberProperty = require( 'AXON/NumberProperty' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -39,7 +40,7 @@ define( require => {
    */
   function LogarithmicGraph( solution, graphUnitsProperty, options ) {
 
-    options = _.extend( {
+    options = merge( {
       isInteractive: false,
       // scale
       scaleHeight: 100,

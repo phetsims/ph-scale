@@ -12,6 +12,7 @@ define( require => {
   const ComboBox = require( 'SUN/ComboBox' );
   const ComboBoxItem = require( 'SUN/ComboBoxItem' );
   const HBox = require( 'SCENERY/nodes/HBox' );
+  const merge = require( 'PHET_CORE/merge' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const phScale = require( 'PH_SCALE/phScale' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -28,7 +29,7 @@ define( require => {
      */
     constructor( solutes, selectedSolute, soluteListParent, options ) {
 
-      options = _.extend( {
+      options = merge( {
         listPosition: 'below',
         xMargin: 16,
         yMargin: 16,

@@ -11,6 +11,7 @@ define( require => {
   // modules
   const BooleanProperty = require( 'AXON/BooleanProperty' );
   const inherit = require( 'PHET_CORE/inherit' );
+  const merge = require( 'PHET_CORE/merge' );
   const Movable = require( 'PH_SCALE/common/model/Movable' );
   const NumberProperty = require( 'AXON/NumberProperty' );
   const phScale = require( 'PH_SCALE/phScale' );
@@ -25,7 +26,7 @@ define( require => {
    */
   function Dropper( solute, location, dragBounds, options ) {
 
-    options = _.extend( {
+    options = merge( {
       maxFlowRate: 0.05, // L/sec
       flowRate: 0, // L/sec
       dispensing: false, // is the dropper dispensing solute?

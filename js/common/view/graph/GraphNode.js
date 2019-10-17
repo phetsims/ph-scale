@@ -21,6 +21,7 @@ define( require => {
   const Line = require( 'SCENERY/nodes/Line' );
   const LinearGraph = require( 'PH_SCALE/common/view/graph/LinearGraph' );
   const LogarithmicGraph = require( 'PH_SCALE/common/view/graph/LogarithmicGraph' );
+  const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
   const NumberProperty = require( 'AXON/NumberProperty' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -51,7 +52,7 @@ define( require => {
    */
   function GraphNode( solution, expandedProperty, options ) {
 
-    options = _.extend( {
+    options = merge( {
       isInteractive: false, // only the Log scale can be interactive
       logScaleHeight: 500,
       linearScaleHeight: 500,

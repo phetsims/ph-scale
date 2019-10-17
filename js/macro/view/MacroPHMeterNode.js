@@ -24,6 +24,7 @@ define( require => {
   const Line = require( 'SCENERY/nodes/Line' );
   const LinearGradient = require( 'SCENERY/util/LinearGradient' );
   const MathSymbols = require( 'SCENERY_PHET/MathSymbols' );
+  const merge = require( 'PHET_CORE/merge' );
   const MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
   const Node = require( 'SCENERY/nodes/Node' );
   const Path = require( 'SCENERY/nodes/Path' );
@@ -128,7 +129,7 @@ define( require => {
    */
   function ScaleNode( options ) {
 
-    options = _.extend( {
+    options = merge( {
       range: PHScaleConstants.PH_RANGE,
       size: new Dimension2( 75, 450 )
     }, options );

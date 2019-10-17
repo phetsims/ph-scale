@@ -16,6 +16,7 @@ define( require => {
   const H3ONode = require( 'PH_SCALE/common/view/molecules/H3ONode' );
   const inherit = require( 'PHET_CORE/inherit' );
   const Matrix3 = require( 'DOT/Matrix3' );
+  const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
   const OHNode = require( 'PH_SCALE/common/view/molecules/OHNode' );
   const Path = require( 'SCENERY/nodes/Path' );
@@ -41,7 +42,7 @@ define( require => {
    */
   function GraphIndicator( valueProperty, moleculeNode, formulaNode, options ) {
 
-    options = _.extend( {
+    options = merge( {
       scale: 0.75, // specified by design team
       pointerLocation: 'topRight', // values: topLeft, topRight, bottomLeft, bottomRight
       backgroundFill: 'white',
@@ -213,7 +214,7 @@ define( require => {
       return new GraphIndicator( valueProperty,
         new H3ONode(),
         new RichText( PHScaleConstants.H3O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
-        _.extend( {
+        merge( {
           backgroundFill: PHScaleColors.ACIDIC,
           pointerLocation: 'topRight'
         }, options ) );
@@ -230,7 +231,7 @@ define( require => {
       return new GraphIndicator( valueProperty,
         new OHNode(),
         new RichText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: 'white', supXSpacing: 2 } ),
-        _.extend( {
+        merge( {
           backgroundFill: PHScaleColors.BASIC,
           pointerLocation: 'topLeft'
         }, options ) );
@@ -247,7 +248,7 @@ define( require => {
       return new GraphIndicator( valueProperty,
         new H2ONode(),
         new RichText( PHScaleConstants.H2O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
-        _.extend( {
+        merge( {
           backgroundFill: PHScaleColors.H2O_BACKGROUND,
           pointerLocation: 'bottomLeft',
           mantissaDecimalPlaces: 0,

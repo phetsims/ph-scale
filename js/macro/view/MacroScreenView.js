@@ -66,7 +66,7 @@ define( require => {
       solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform );
 
     // solutes combo box
-    const soluteListParent = new Node( { maxWidth: 380 } );
+    const soluteListParent = new Node();
     const soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent, { maxWidth: 400 } );
 
     const resetAllButton = new ResetAllButton( {

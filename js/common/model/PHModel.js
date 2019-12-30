@@ -12,7 +12,7 @@ define( require => {
 
   // modules
   const phScale = require( 'PH_SCALE/phScale' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
   const Water = require( 'PH_SCALE/common/model/Water' );
 
   // constants
@@ -37,10 +37,10 @@ define( require => {
       pH = null;
     }
     else if ( solutePH < 7 ) {
-      pH = -Util.log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -Water.pH ) * waterVolume ) / totalVolume );
+      pH = -Utils.log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -Water.pH ) * waterVolume ) / totalVolume );
     }
     else {
-      pH = 14 + Util.log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, Water.pH - 14 ) * waterVolume ) / totalVolume );
+      pH = 14 + Utils.log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, Water.pH - 14 ) * waterVolume ) / totalVolume );
     }
     return pH;
   };
@@ -52,7 +52,7 @@ define( require => {
    * @returns {number} pH, null if concentration is zero
    */
   PHModel.concentrationH3OToPH = function( concentration ) {
-    return ( concentration === 0 ) ? null : -Util.log10( concentration );
+    return ( concentration === 0 ) ? null : -Utils.log10( concentration );
   };
 
   /**

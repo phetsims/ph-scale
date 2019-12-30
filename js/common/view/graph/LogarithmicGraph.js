@@ -30,7 +30,7 @@ define( require => {
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
   const RichText = require( 'SCENERY/nodes/RichText' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
 
   /**
    * @param {Solution} solution
@@ -154,7 +154,7 @@ define( require => {
         const maxHeight = ( options.scaleHeight - 2 * options.scaleYMargin );
         const maxExponent = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max;
         const minExponent = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min;
-        const valueExponent = Util.log10( value );
+        const valueExponent = Utils.log10( value );
         return options.scaleYMargin + maxHeight - ( maxHeight * ( valueExponent - minExponent ) / ( maxExponent - minExponent ) );
       }
     };
@@ -163,7 +163,7 @@ define( require => {
     const yToValue = function( y ) {
       const yOffset = y - options.scaleYMargin; // distance between indicator's origin and top tick mark
       const maxHeight = ( options.scaleHeight - 2 * options.scaleYMargin ); // distance between top and bottom tick marks
-      const exponent = Util.linear( 0, maxHeight, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, yOffset );
+      const exponent = Utils.linear( 0, maxHeight, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, yOffset );
       return Math.pow( 10, exponent );
     };
 

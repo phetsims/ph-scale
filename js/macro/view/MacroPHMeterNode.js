@@ -36,7 +36,7 @@ define( require => {
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
   const Shape = require( 'KITE/Shape' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
   const Vector2 = require( 'DOT/Vector2' );
   const Water = require( 'PH_SCALE/common/model/Water' );
 
@@ -90,7 +90,7 @@ define( require => {
 
     // vertical position of the indicator
     meter.valueProperty.link( function( value ) {
-      indicatorNode.centerY = scaleNode.y + Util.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
+      indicatorNode.centerY = scaleNode.y + Utils.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
     } );
 
     const updateValue = function() {
@@ -220,7 +220,7 @@ define( require => {
     Node.call( this );
 
     // pH value
-    const valueNode = new Text( Util.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
+    const valueNode = new Text( Utils.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
       { fill: 'black', font: new PhetFont( 28 ) } );
 
     // rectangle that the value is displayed in
@@ -277,7 +277,7 @@ define( require => {
         highlight.visible = false;
       }
       else {
-        valueNode.text = Util.toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+        valueNode.text = Utils.toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES );
         valueNode.right = valueRectangle.right - valueXMargin; // right justified
         highlight.visible = ( parseFloat( valueNode.text ) === 7 );
       }
@@ -386,7 +386,7 @@ define( require => {
 
       // control points
       // The y coordinate of the body's control point varies with the x distance between the body and probe.
-      const c1Offset = new Vector2( 0, Util.linear( 0, 800, 0, 300, probeNode.left - scaleCenterX ) ); // x distance -> y coordinate
+      const c1Offset = new Vector2( 0, Utils.linear( 0, 800, 0, 300, probeNode.left - scaleCenterX ) ); // x distance -> y coordinate
       const c2Offset = new Vector2( -50, 0 );
       const c1 = new Vector2( bodyConnectionPoint.x + c1Offset.x, bodyConnectionPoint.y + c1Offset.y );
       const c2 = new Vector2( probeConnectionPoint.x + c2Offset.x, probeConnectionPoint.y + c2Offset.y );

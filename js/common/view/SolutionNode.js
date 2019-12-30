@@ -14,7 +14,7 @@ define( require => {
   const phScale = require( 'PH_SCALE/phScale' );
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
 
   /**
    * @param {Solution} solution
@@ -52,7 +52,7 @@ define( require => {
       }
 
       // determine dimensions in model coordinates
-      const solutionHeight = Util.linear( 0, beaker.volume, 0, beaker.size.height, volume ); // volume -> height
+      const solutionHeight = Utils.linear( 0, beaker.volume, 0, beaker.size.height, volume ); // volume -> height
 
       // convert to view coordinates and create shape
       const viewHeight = modelViewTransform.modelToViewDeltaY( solutionHeight );

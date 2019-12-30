@@ -29,7 +29,7 @@ define( require => {
   const Shape = require( 'KITE/Shape' );
   const Solute = require( 'PH_SCALE/common/model/Solute' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
 
   // strings
   const pHString = require( 'string!PH_SCALE/pH' );
@@ -107,7 +107,7 @@ define( require => {
     Node.call( this );
 
     // pH value
-    const valueText = new Text( Util.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
+    const valueText = new Text( Utils.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
       { fill: 'black', font: new PhetFont( 28 ) } );
 
     // rectangle that the value is displayed in
@@ -130,7 +130,7 @@ define( require => {
         valueText.centerX = valueRectangle.centerX; // center justified
       }
       else {
-        valueText.text = Util.toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+        valueText.text = Utils.toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES );
         valueText.right = valueRectangle.right - valueXMargin; // right justified
       }
     } );

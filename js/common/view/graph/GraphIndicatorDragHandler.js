@@ -15,7 +15,7 @@ define( require => {
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   const SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   const Solute = require( 'PH_SCALE/common/model/Solute' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
 
   /**
    * @param {Solution} solution
@@ -54,7 +54,7 @@ define( require => {
           let pH = ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) ? concentrationToPH( value ) : molesToPH( value, solution.volumeProperty.get() );
 
           // Constrain the pH to the valid range
-          pH = Util.clamp( pH, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+          pH = Utils.clamp( pH, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
 
           // Instantiate a new 'custom' solute with the desired pH, and use it with the solution.
           solution.soluteProperty.set( Solute.createCustom( pH ) );

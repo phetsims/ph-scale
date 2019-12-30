@@ -16,7 +16,7 @@ define( require => {
   const PHModel = require( 'PH_SCALE/common/model/PHModel' );
   const phScale = require( 'PH_SCALE/phScale' );
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
   const Water = require( 'PH_SCALE/common/model/Water' );
 
   // constants
@@ -65,7 +65,7 @@ define( require => {
         else {
           let pH = self.computePH();
           if ( pH !== null ) {
-            pH = Util.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ); // constrain to the pH meter format, see issue #4
+            pH = Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ); // constrain to the pH meter format, see issue #4
           }
           return pH;
         }
@@ -110,7 +110,7 @@ define( require => {
      * @public
      */
     isEquivalentToWater: function() {
-      const pHString = Util.toFixed( this.computePH(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      const pHString = Utils.toFixed( this.computePH(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
       return ( parseFloat( pHString ) === Water.pH ) && ( this.waterVolumeProperty.get() > 0 );
     },
 

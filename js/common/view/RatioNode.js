@@ -29,7 +29,7 @@ define( require => {
   const Range = require( 'DOT/Range' );
   const Shape = require( 'KITE/Shape' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
 
   // constants
   const TOTAL_MOLECULES_AT_PH_7 = 100;
@@ -128,7 +128,7 @@ define( require => {
 
       let pH = this.solution.pHProperty.get();
       if ( pH !== null ) {
-        pH = Util.toFixedNumber( this.solution.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
+        pH = Utils.toFixedNumber( this.solution.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
       }
 
       if ( this.pH !== pH ) {
@@ -169,8 +169,8 @@ define( require => {
           }
 
           // convert to integer values
-          numberOfH3O = Util.roundSymmetric( numberOfH3O );
-          numberOfOH = Util.roundSymmetric( numberOfOH );
+          numberOfH3O = Utils.roundSymmetric( numberOfH3O );
+          numberOfOH = Utils.roundSymmetric( numberOfOH );
         }
 
         // update molecules
@@ -198,12 +198,12 @@ define( require => {
 
   // Computes the {number} number of H3O+ molecules for some {number} pH.
   function computeNumberOfH3O( pH ) {
-    return Util.roundSymmetric( PHModel.pHToConcentrationH3O( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
+    return Utils.roundSymmetric( PHModel.pHToConcentrationH3O( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
   }
 
   // Computes the {number} number of OH- molecules for some {number} pH.
   function computeNumberOfOH( pH ) {
-    return Util.roundSymmetric( PHModel.pHToConcentrationOH( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
+    return Utils.roundSymmetric( PHModel.pHToConcentrationOH( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
   }
 
   //-------------------------------------------------------------------------------------

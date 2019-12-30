@@ -25,7 +25,7 @@ define( require => {
   const ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
   const Shape = require( 'KITE/Shape' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
 
   // strings
   const offScaleString = require( 'string!PH_SCALE/offScale' );
@@ -162,7 +162,7 @@ define( require => {
         return arrowNode.top + ( 0.8 * arrowHeadHeight ) + ( offScaleYOffset || 0 );
       }
       else {
-        return Util.linear( 0, topTickValue, tickLabels[ 0 ].centerY, tickLabels[ tickLabels.length - 1 ].centerY, value );
+        return Utils.linear( 0, topTickValue, tickLabels[ 0 ].centerY, tickLabels[ tickLabels.length - 1 ].centerY, value );
       }
     };
 

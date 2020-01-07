@@ -20,15 +20,15 @@ define( require => {
   const Property = require( 'AXON/Property' );
 
   /**
-   * @param {Vector2} bodyLocation
-   * @param {Vector2} probeLocation
+   * @param {Vector2} bodyPosition
+   * @param {Vector2} probePosition
    * @param {Bounds2} probeDragBounds
    * @constructor
    */
-  function PHMeter( bodyLocation, probeLocation, probeDragBounds ) {
+  function PHMeter( bodyPosition, probePosition, probeDragBounds ) {
     this.valueProperty = new Property( null ); // @public null if the meter is not reading a value
-    this.bodyLocation = bodyLocation; // @public
-    this.probe = new Movable( probeLocation, probeDragBounds ); // @public
+    this.bodyPosition = bodyPosition; // @public
+    this.probe = new Movable( probePosition, probeDragBounds ); // @public
   }
 
   phScale.register( 'PHMeter', PHMeter );

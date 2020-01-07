@@ -41,7 +41,7 @@ define( require => {
      * Updates the amount of stuff in the beaker, based on solution volume.
      * @param {number} volume
      */
-    const viewLocation = modelViewTransform.modelToViewPosition( beaker.location );
+    const viewPosition = modelViewTransform.modelToViewPosition( beaker.position );
     const viewWidth = modelViewTransform.modelToViewDeltaX( beaker.size.width );
     solution.volumeProperty.link( function( volume ) {
       assert && assert( volume >= 0 );
@@ -58,7 +58,7 @@ define( require => {
       const viewHeight = modelViewTransform.modelToViewDeltaY( solutionHeight );
 
       // shape
-      self.setRect( viewLocation.x - (viewWidth / 2), viewLocation.y - viewHeight, viewWidth, viewHeight );
+      self.setRect( viewPosition.x - (viewWidth / 2), viewPosition.y - viewHeight, viewWidth, viewHeight );
     } );
   }
 

@@ -2,7 +2,7 @@
 
 /**
  * The indicator that points to a value on a graph's vertical scale.
- * Origin is at the indicator's pointer, and the pointer can be attached to any corner of the indicator (see options.pointerLocation).
+ * Origin is at the indicator's pointer, and the pointer can be attached to any corner of the indicator (see options.pointerPosition).
  * Interactive indicators are decorated with a double-headed arrow, indicating the direction of dragging.
  *
  * @author Chris Malley (PixelZoom, Inc.)
@@ -44,7 +44,7 @@ define( require => {
 
     options = merge( {
       scale: 0.75, // specified by design team
-      pointerLocation: 'topRight', // values: topLeft, topRight, bottomLeft, bottomRight
+      pointerPosition: 'topRight', // values: topLeft, topRight, bottomLeft, bottomRight
       backgroundFill: 'white',
       backgroundWidth: 160,
       backgroundHeight: 80,
@@ -68,20 +68,20 @@ define( require => {
 
     // Transform shapes to support various orientations of pointer.
     let shapeMatrix;
-    if ( options.pointerLocation === 'topRight' ) {
+    if ( options.pointerPosition === 'topRight' ) {
       shapeMatrix = Matrix3.identity(); // background shape will be drawn with pointer at top-right
     }
-    else if ( options.pointerLocation === 'topLeft' ) {
+    else if ( options.pointerPosition === 'topLeft' ) {
       shapeMatrix = Matrix3.scaling( -1, 1 );
     }
-    else if ( options.pointerLocation === 'bottomRight' ) {
+    else if ( options.pointerPosition === 'bottomRight' ) {
       shapeMatrix = Matrix3.scaling( 1, -1 );
     }
-    else if ( options.pointerLocation === 'bottomLeft' ) {
+    else if ( options.pointerPosition === 'bottomLeft' ) {
       shapeMatrix = Matrix3.scaling( -1, -1 );
     }
     else {
-      throw new Error( 'unsupported options.pointerLocation: ' + options.pointerLocation );
+      throw new Error( 'unsupported options.pointerPosition: ' + options.pointerPosition );
     }
 
     // Background with the pointer at top-right. Proceed clockwise from the tip of the pointer.
@@ -134,7 +134,7 @@ define( require => {
     this.addChild( moleculeAndFormula );
 
     // layout, relative to backgroundNode
-    if ( options.pointerLocation === 'topRight' || options.pointerLocation === 'bottomRight' ) {
+    if ( options.pointerPosition === 'topRight' || options.pointerPosition === 'bottomRight' ) {
       valueBackgroundNode.left = backgroundNode.left + options.backgroundXMargin;
     }
     else {
@@ -160,7 +160,7 @@ define( require => {
       this.addChild( arrowNode );
 
       // put the arrow on opposite side of the indicator's pointer
-      if ( options.pointerLocation === 'topRight' || options.pointerLocation === 'bottomRight' ) {
+      if ( options.pointerPosition === 'topRight' || options.pointerPosition === 'bottomRight' ) {
         arrowNode.right = backgroundNode.left - options.arrowXSpacing;
       }
       else {
@@ -216,7 +216,7 @@ define( require => {
         new RichText( PHScaleConstants.H3O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
         merge( {
           backgroundFill: PHScaleColors.ACIDIC,
-          pointerLocation: 'topRight'
+          pointerPosition: 'topRight'
         }, options ) );
     },
 
@@ -233,7 +233,7 @@ define( require => {
         new RichText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: 'white', supXSpacing: 2 } ),
         merge( {
           backgroundFill: PHScaleColors.BASIC,
-          pointerLocation: 'topLeft'
+          pointerPosition: 'topLeft'
         }, options ) );
     },
 
@@ -250,7 +250,7 @@ define( require => {
         new RichText( PHScaleConstants.H2O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
         merge( {
           backgroundFill: PHScaleColors.H2O_BACKGROUND,
-          pointerLocation: 'bottomLeft',
+          pointerPosition: 'bottomLeft',
           mantissaDecimalPlaces: 0,
           exponent: 0
         }, options ) );

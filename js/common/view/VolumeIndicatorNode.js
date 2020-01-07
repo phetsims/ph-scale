@@ -57,18 +57,20 @@ define( require => {
     this.addChild( valueNode );
     this.addChild( arrowHead );
 
-    // x location
+    // x position
     this.left = modelViewTransform.modelToViewX( beaker.right ) + 3;
 
     // update when the volume changes
     const self = this;
     volumeProperty.link( function( volume ) {
+
       // text
       valueNode.text = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( volume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), unitsLitersString );
       valueNode.centerY = arrowHead.centerY;
-      // y-location
+
+      // y position
       const solutionHeight = Utils.linear( 0, beaker.volume, 0, beaker.size.height, volume ); // volume -> height, model coordinates
-      self.y = modelViewTransform.modelToViewY( beaker.location.y - solutionHeight );
+      self.y = modelViewTransform.modelToViewY( beaker.position.y - solutionHeight );
     } );
   }
 

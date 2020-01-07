@@ -71,9 +71,9 @@ define( require => {
 
     Node.call( this );
 
-    // pH scale, positioned at meter 'body' location
+    // pH scale, positioned at meter 'body' position
     const scaleNode = new ScaleNode( { size: SCALE_SIZE } );
-    scaleNode.translation = modelViewTransform.modelToViewPosition( meter.bodyLocation );
+    scaleNode.translation = modelViewTransform.modelToViewPosition( meter.bodyPosition );
 
     // indicator that slides vertically along scale
     const indicatorNode = new IndicatorNode( meter.valueProperty, SCALE_SIZE.width );
@@ -109,7 +109,7 @@ define( require => {
       }
       meter.valueProperty.set( value );
     };
-    meter.probe.locationProperty.link( updateValue );
+    meter.probe.positionProperty.link( updateValue );
     solution.soluteProperty.link( updateValue );
     solution.pHProperty.link( updateValue );
     solutionNode.on( 'bounds', updateValue );
@@ -321,22 +321,22 @@ define( require => {
       cursor: 'pointer'
     } );
 
-    // probe location
-    probe.locationProperty.link( function( location ) {
-      self.translation = modelViewTransform.modelToViewPosition( location );
+    // probe position
+    probe.positionProperty.link( function( position ) {
+      self.translation = modelViewTransform.modelToViewPosition( position );
     } );
 
     // touch area
     this.touchArea = this.localBounds.dilated( 20, 20 );
 
     // drag handler
-    this.addInputListener( new MovableDragHandler( probe.locationProperty, {
+    this.addInputListener( new MovableDragHandler( probe.positionProperty, {
       dragBounds: probe.dragBounds,
       modelViewTransform: modelViewTransform
     } ) );
 
     const isInNode = function( node ) {
-      return node.getBounds().containsPoint( probe.locationProperty.get() );
+      return node.getBounds().containsPoint( probe.positionProperty.get() );
     };
 
     this.isInSolution = function() {
@@ -395,7 +395,7 @@ define( require => {
         .moveTo( bodyConnectionPoint.x, bodyConnectionPoint.y )
         .cubicCurveTo( c1.x, c1.y, c2.x, c2.y, probeConnectionPoint.x, probeConnectionPoint.y );
     };
-    probe.locationProperty.link( updateCurve );
+    probe.positionProperty.link( updateCurve );
   }
 
   inherit( Path, WireNode );

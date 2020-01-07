@@ -66,7 +66,7 @@ define( require => {
     // faucets
     const waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform );
     const drainFaucetNode = new DrainFaucetNode( model.drainFaucet, modelViewTransform );
-    const SOLVENT_FLUID_HEIGHT = model.beaker.location.y - model.waterFaucet.location.y;
+    const SOLVENT_FLUID_HEIGHT = model.beaker.position.y - model.waterFaucet.position.y;
     const DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
     const waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), SOLVENT_FLUID_HEIGHT, modelViewTransform );
     const drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform );
@@ -92,8 +92,11 @@ define( require => {
 
     // pH meter
     const pHMeterTop = 15;
-    const pHMeterNode = new PHMeterNode( model.solution, modelViewTransform.modelToViewY( model.beaker.location.y ) - pHMeterTop, viewProperties.pHMeterExpandedProperty,
-      { attachProbe: 'right' } );
+    const pHMeterNode = new PHMeterNode( model.solution,
+      modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop,
+      viewProperties.pHMeterExpandedProperty,
+      { attachProbe: 'right' }
+    );
 
     // solutes combo box
     const soluteListParent = new Node();
@@ -133,7 +136,7 @@ define( require => {
     } );
     this.addChild( rootNode );
 
-    // Layout of nodes that don't have a location specified in the model
+    // Layout of nodes that don't have a position specified in the model
     moleculeCountNode.centerX = beakerNode.centerX;
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControls.centerX = beakerNode.centerX;

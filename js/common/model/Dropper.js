@@ -19,12 +19,12 @@ define( require => {
 
   /**
    * @param {Solute} solute
-   * @param {Vector2} location
+   * @param {Vector2} position
    * @param {Bounds2} dragBounds
    * @param {Object} [options]
    * @constructor
    */
-  function Dropper( solute, location, dragBounds, options ) {
+  function Dropper( solute, position, dragBounds, options ) {
 
     options = merge( {
       maxFlowRate: 0.05, // L/sec
@@ -36,7 +36,7 @@ define( require => {
     }, options );
 
     const self = this;
-    Movable.call( this, location, dragBounds );
+    Movable.call( this, position, dragBounds );
 
     // @public
     this.soluteProperty = new Property( solute );

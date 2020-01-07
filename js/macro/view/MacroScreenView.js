@@ -56,7 +56,7 @@ define( require => {
     // faucets
     const waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform );
     const drainFaucetNode = new DrainFaucetNode( model.drainFaucet, modelViewTransform );
-    const WATER_FLUID_HEIGHT = model.beaker.location.y - model.waterFaucet.location.y;
+    const WATER_FLUID_HEIGHT = model.beaker.position.y - model.waterFaucet.position.y;
     const DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
     const waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), WATER_FLUID_HEIGHT, modelViewTransform );
     const drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform );
@@ -98,7 +98,7 @@ define( require => {
     } );
     this.addChild( rootNode );
 
-    // Layout of nodes that don't have a location specified in the model
+    // Layout of nodes that don't have a position specified in the model
     soluteComboBox.left = modelViewTransform.modelToViewX( model.beaker.left ) - 20; // anchor on left so it grows to the right during i18n
     soluteComboBox.top = this.layoutBounds.top + 15;
     neutralIndicator.centerX = beakerNode.centerX;

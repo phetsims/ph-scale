@@ -15,14 +15,14 @@ define( require => {
   const Property = require( 'AXON/Property' );
 
   /**
-   * @param {Vector2} location
+   * @param {Vector2} position
    * @param {Bounds2} dragBounds optional, undefined if not provided
    * @constructor
    */
-  function Movable( location, dragBounds ) {
+  function Movable( position, dragBounds ) {
 
     // @public
-    this.locationProperty = new Property( location );
+    this.positionProperty = new Property( position );
     this.dragBounds = dragBounds;
   }
 
@@ -32,7 +32,7 @@ define( require => {
 
     // @public
     reset: function() {
-      this.locationProperty.reset();
+      this.positionProperty.reset();
     }
   } );
 } );

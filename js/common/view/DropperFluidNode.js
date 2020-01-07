@@ -25,20 +25,20 @@ define( require => {
     const self = this;
     Rectangle.call( this, 0, 0, 0, 0, { lineWidth: 1 } );
 
-    // shape and location
-    const updateShapeAndLocation = function() {
+    // shape and position
+    const updateShapeAndPosition = function() {
       // path
       if ( dropper.flowRateProperty.get() > 0 ) {
-        self.setRect( -tipWidth / 2, 0, tipWidth, beaker.location.y - dropper.locationProperty.get().y );
+        self.setRect( -tipWidth / 2, 0, tipWidth, beaker.position.y - dropper.positionProperty.get().y );
       }
       else {
         self.setRect( 0, 0, 0, 0 );
       }
-      // move this node to the dropper's location
-      self.translation = modelViewTransform.modelToViewPosition( dropper.locationProperty.get() );
+      // move this node to the dropper's position
+      self.translation = modelViewTransform.modelToViewPosition( dropper.positionProperty.get() );
     };
-    dropper.locationProperty.link( updateShapeAndLocation );
-    dropper.flowRateProperty.link( updateShapeAndLocation );
+    dropper.positionProperty.link( updateShapeAndPosition );
+    dropper.flowRateProperty.link( updateShapeAndPosition );
 
     // set color to match solute
     dropper.soluteProperty.link( function( solute ) {

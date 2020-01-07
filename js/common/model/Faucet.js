@@ -17,12 +17,12 @@ define( require => {
   const phScale = require( 'PH_SCALE/phScale' );
 
   /**
-   * @param {Vector2} location center of output pipe
+   * @param {Vector2} position center of output pipe
    * @param {number} pipeMinX x-coordinate of where the pipe starts
    * @param {Object} [options]
    * @constructor
    */
-  function Faucet( location, pipeMinX, options ) {
+  function Faucet( position, pipeMinX, options ) {
 
     options = merge( {
       spoutWidth: 45, // pixels
@@ -32,7 +32,7 @@ define( require => {
     }, options );
 
     // @public
-    this.location = location;
+    this.position = position;
     this.pipeMinX = pipeMinX;
     this.spoutWidth = options.spoutWidth;
     this.maxFlowRate = options.maxFlowRate;

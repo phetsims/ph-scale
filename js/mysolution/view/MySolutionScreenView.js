@@ -68,8 +68,11 @@ define( require => {
 
     // pH meter
     const pHMeterTop = 15;
-    const pHMeterNode = new PHMeterNode( model.solution, modelViewTransform.modelToViewY( model.beaker.location.y ) - pHMeterTop, viewProperties.pHMeterExpandedProperty,
-      { attachProbe: 'right', isInteractive: true } );
+    const pHMeterNode = new PHMeterNode( model.solution,
+      modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop,
+      viewProperties.pHMeterExpandedProperty,
+      { attachProbe: 'right', isInteractive: true }
+    );
 
     const resetAllButton = new ResetAllButton( {
       scale: 1.32,
@@ -97,7 +100,7 @@ define( require => {
     } );
     this.addChild( rootNode );
 
-    // Layout of nodes that don't have a location specified in the model
+    // Layout of nodes that don't have a position specified in the model
     pHMeterNode.left = beakerNode.left;
     pHMeterNode.top = pHMeterTop;
     moleculeCountNode.centerX = beakerNode.centerX;

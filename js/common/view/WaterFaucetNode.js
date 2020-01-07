@@ -29,7 +29,7 @@ define( require => {
 
     const scale = 0.6;
 
-    const horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.location.x - faucet.pipeMinX ) ) / scale;
+    const horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.position.x - faucet.pipeMinX ) ) / scale;
     const faucetNode = new FaucetNode( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
       horizontalPipeLength: horizontalPipeLength,
       verticalPipeLength: 20,
@@ -40,7 +40,7 @@ define( require => {
         touchAreaYDilation: 60
       }
     } );
-    faucetNode.translation = modelViewTransform.modelToViewPosition( faucet.location );
+    faucetNode.translation = modelViewTransform.modelToViewPosition( faucet.position );
     faucetNode.setScaleMagnitude( -scale, scale ); // reflect horizontally
     this.addChild( faucetNode );
 

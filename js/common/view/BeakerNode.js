@@ -100,7 +100,7 @@ define( require => {
       }
     }
 
-    this.translation = modelViewTransform.modelToViewPosition( beaker.location );
+    this.translation = modelViewTransform.modelToViewPosition( beaker.position );
   }
 
   phScale.register( 'BeakerNode', BeakerNode );

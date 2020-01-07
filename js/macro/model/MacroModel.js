@@ -56,27 +56,27 @@ define( require => {
     this.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
 
     // Dropper above the beaker
-    const yDropper = this.beaker.location.y - this.beaker.size.height - 15;
+    const yDropper = this.beaker.position.y - this.beaker.size.height - 15;
     // @public
     this.dropper = new Dropper( Solute.WATER,
-      new Vector2( this.beaker.location.x - 50, yDropper ),
+      new Vector2( this.beaker.position.x - 50, yDropper ),
       new Bounds2( this.beaker.left + 40, yDropper, this.beaker.right - 200, yDropper ) );
 
     // @public Solution in the beaker
     this.solution = new Solution( this.dropper.soluteProperty, 0, 0, this.beaker.volume );
 
     // @public Water faucet at the beaker's top-right
-    this.waterFaucet = new Faucet( new Vector2( this.beaker.right - 50, this.beaker.location.y - this.beaker.size.height - 45 ),
+    this.waterFaucet = new Faucet( new Vector2( this.beaker.right - 50, this.beaker.position.y - this.beaker.size.height - 45 ),
       this.beaker.right + 400,
       { enabled: this.solution.volumeProperty.get() < this.beaker.volume } );
 
     // @public Drain faucet at the beaker's bottom-left.
-    this.drainFaucet = new Faucet( new Vector2( this.beaker.left - 75, this.beaker.location.y + 43 ), this.beaker.left,
+    this.drainFaucet = new Faucet( new Vector2( this.beaker.left - 75, this.beaker.position.y + 43 ), this.beaker.left,
       { enabled: this.solution.volumeProperty.get() > 0 } );
 
     // pH meter to the left of the drain faucet
-    const pHMeterLocation = new Vector2( this.drainFaucet.location.x - 300, 75 );
-    this.pHMeter = new PHMeter( pHMeterLocation, new Vector2( pHMeterLocation.x + 150, this.beaker.location.y ),
+    const pHMeterPosition = new Vector2( this.drainFaucet.position.x - 300, 75 );
+    this.pHMeter = new PHMeter( pHMeterPosition, new Vector2( pHMeterPosition.x + 150, this.beaker.position.y ),
       PHScaleConstants.SCREEN_VIEW_OPTIONS.layoutBounds );
 
     // auto-fill when the solute changes

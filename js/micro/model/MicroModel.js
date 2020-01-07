@@ -24,7 +24,7 @@ define( require => {
     MacroModel.call( this );
 
     // adjust the drag bounds of the dropper to account for different user-interface constraints
-    const yDropper = this.dropper.locationProperty.get().y;
+    const yDropper = this.dropper.positionProperty.get().y;
     this.dropper.dragBounds = new Bounds2( this.beaker.left + 120, yDropper, this.beaker.right - 170, yDropper );
   }
 

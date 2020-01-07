@@ -33,9 +33,9 @@ define( require => {
       emptyProperty: dropper.emptyProperty
     }, options ) );
 
-    // location
-    dropper.locationProperty.link( function( location ) {
-      self.translation = modelViewTransform.modelToViewPosition( location );
+    // position
+    dropper.positionProperty.link( function( position ) {
+      self.translation = modelViewTransform.modelToViewPosition( position );
     } );
 
     // visibility
@@ -53,7 +53,7 @@ define( require => {
     this.touchArea = this.localBounds.dilatedX( 0.25 * this.width );
 
     // move the dropper
-    this.addInputListener( new MovableDragHandler( dropper.locationProperty, {
+    this.addInputListener( new MovableDragHandler( dropper.positionProperty, {
       dragBounds: dropper.dragBounds,
       modelViewTransform: modelViewTransform
     } ) );

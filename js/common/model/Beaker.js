@@ -16,26 +16,26 @@ define( require => {
 
   /**
    * Constructor
-   * @param {Vector2} location bottom center
+   * @param {Vector2} position bottom center
    * @param {Dimension2} size
    * @param {Object} [options]
    * @constructor
    */
-  function Beaker( location, size, options ) {
+  function Beaker( position, size, options ) {
 
     options = merge( {
       volume: 1.2 // L
     }, options );
 
     // @Public
-    this.location = location;
+    this.position = position;
     this.size = size;
     this.volume = options.volume;
 
     // @public convenience properties
-    this.left = location.x - ( size.width / 2 );
-    this.right = location.x + ( size.width / 2 );
-    this.bounds = new Bounds2( this.left, location.y - size.height, this.right, location.y );
+    this.left = position.x - ( size.width / 2 );
+    this.right = position.x + ( size.width / 2 );
+    this.bounds = new Bounds2( this.left, position.y - size.height, this.right, position.y );
   }
 
   phScale.register( 'Beaker', Beaker );

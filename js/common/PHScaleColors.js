@@ -38,7 +38,5 @@ define( require => {
     OH_MOLECULES: new Color( 0, 0, 255 )
   };
 
-  phScale.register( 'PHScaleColors', PHScaleColors );
-
-  return PHScaleColors;
+  return phScale.register( 'PHScaleColors', PHScaleColors );
 } );

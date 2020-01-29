@@ -10,7 +10,6 @@ define( require => {
 
   // modules
   const Image = require( 'SCENERY/nodes/Image' );
-  const inherit = require( 'PHET_CORE/inherit' );
   const MicroModel = require( 'PH_SCALE/micro/model/MicroModel' );
   const MicroScreenView = require( 'PH_SCALE/micro/view/MicroScreenView' );
   const ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
@@ -26,26 +25,24 @@ define( require => {
   const homeIcon = require( 'image!PH_SCALE/Micro-home-icon.png' );
   const navbarIcon = require( 'image!PH_SCALE/Micro-navbar-icon.png' );
 
-  /**
-   * @constructor
-   */
-  function MicroScreen() {
+  class MicroScreen extends Screen {
 
-    const options = {
-      name: screenMicroString,
-      backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
-      homeScreenIcon: new Image( homeIcon ),
-      navigationBarIcon: new Image( navbarIcon )
-    };
+    constructor() {
 
-    Screen.call( this,
-      function() { return new MicroModel(); },
-      function( model ) { return new MicroScreenView( model, ModelViewTransform2.createIdentity() ); },
-      options
-    );
+      const options = {
+        name: screenMicroString,
+        backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
+        homeScreenIcon: new Image( homeIcon ),
+        navigationBarIcon: new Image( navbarIcon )
+      };
+
+      super(
+        function() { return new MicroModel(); },
+        function( model ) { return new MicroScreenView( model, ModelViewTransform2.createIdentity() ); },
+        options
+      );
+    }
   }
 
-  phScale.register( 'MicroScreen', MicroScreen );
-
-  return inherit( Screen, MicroScreen );
+  return phScale.register( 'MicroScreen', MicroScreen );
 } );

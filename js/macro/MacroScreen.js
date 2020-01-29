@@ -10,7 +10,6 @@ define( require => {
 
   // modules
   const Image = require( 'SCENERY/nodes/Image' );
-  const inherit = require( 'PHET_CORE/inherit' );
   const MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
   const MacroScreenView = require( 'PH_SCALE/macro/view/MacroScreenView' );
   const ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
@@ -26,27 +25,27 @@ define( require => {
   const homeIcon = require( 'image!PH_SCALE/Macro-home-icon.png' );
   const navbarIcon = require( 'image!PH_SCALE/Macro-navbar-icon.png' );
 
-  /**
-   * @param {Object} [modelOptions]
-   * @constructor
-   */
-  function MacroScreen( modelOptions ) {
+  class MacroScreen extends Screen {
 
-    const options = {
-      name: screenMacroString,
-      backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
-      homeScreenIcon: new Image( homeIcon ),
-      navigationBarIcon: new Image( navbarIcon )
-    };
+    /**
+     * @param {Object} [modelOptions]
+     */
+    constructor( modelOptions ) {
 
-    Screen.call( this,
-      function() { return new MacroModel( modelOptions ); },
-      function( model ) { return new MacroScreenView( model, ModelViewTransform2.createIdentity() ); },
-      options
-    );
+      const options = {
+        name: screenMacroString,
+        backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
+        homeScreenIcon: new Image( homeIcon ),
+        navigationBarIcon: new Image( navbarIcon )
+      };
+
+      super(
+        function() { return new MacroModel( modelOptions ); },
+        function( model ) { return new MacroScreenView( model, ModelViewTransform2.createIdentity() ); },
+        options
+      );
+    }
   }
 
-  phScale.register( 'MacroScreen', MacroScreen );
-
-  return inherit( Screen, MacroScreen );
+  return phScale.register( 'MacroScreen', MacroScreen );
 } );

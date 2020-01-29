@@ -18,7 +18,6 @@ define( require => {
   const BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
   const BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   const GraphNode = require( 'PH_SCALE/common/view/graph/GraphNode' );
-  const inherit = require( 'PHET_CORE/inherit' );
   const MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   const Node = require( 'SCENERY/nodes/Node' );
   const PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
@@ -31,89 +30,89 @@ define( require => {
   const SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
   const VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
-  /**
-   * @param {MySolutionModel} model
-   * @param {ModelViewTransform2} modelViewTransform
-   * @constructor
-   */
-  function MySolutionScreenView( model, modelViewTransform ) {
+  class MySolutionScreenView extends ScreenView {
 
-    ScreenView.call( this, PHScaleConstants.SCREEN_VIEW_OPTIONS );
+    /**
+     * @param {MySolutionModel} model
+     * @param {ModelViewTransform2} modelViewTransform
+     */
+    constructor( model, modelViewTransform ) {
 
-    // view-specific properties
-    const viewProperties = new PHScaleViewProperties();
+      super( PHScaleConstants.SCREEN_VIEW_OPTIONS );
 
-    // beaker
-    const beakerNode = new BeakerNode( model.beaker, modelViewTransform );
-    const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
-    const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform );
+      // view-specific properties
+      const viewProperties = new PHScaleViewProperties();
 
-    // 'H3O+/OH- ratio' representation
-    const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, { visible: viewProperties.ratioVisibleProperty.get() } );
-    viewProperties.ratioVisibleProperty.linkAttribute( ratioNode, 'visible' );
+      // beaker
+      const beakerNode = new BeakerNode( model.beaker, modelViewTransform );
+      const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
+      const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform );
 
-    // 'molecule count' representation
-    const moleculeCountNode = new MoleculeCountNode( model.solution );
-    viewProperties.moleculeCountVisibleProperty.linkAttribute( moleculeCountNode, 'visible' );
+      // 'H3O+/OH- ratio' representation
+      const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, { visible: viewProperties.ratioVisibleProperty.get() } );
+      viewProperties.ratioVisibleProperty.linkAttribute( ratioNode, 'visible' );
 
-    // beaker controls
-    const beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty,
-      { maxWidth: 0.85 * beakerNode.width } );
+      // 'molecule count' representation
+      const moleculeCountNode = new MoleculeCountNode( model.solution );
+      viewProperties.moleculeCountVisibleProperty.linkAttribute( moleculeCountNode, 'visible' );
 
-    // graph
-    const graphNode = new GraphNode( model.solution, viewProperties.graphExpandedProperty, {
-      isInteractive: true,
-      logScaleHeight: 565
-    } );
+      // beaker controls
+      const beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty,
+        { maxWidth: 0.85 * beakerNode.width } );
 
-    // pH meter
-    const pHMeterTop = 15;
-    const pHMeterNode = new PHMeterNode( model.solution,
-      modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop,
-      viewProperties.pHMeterExpandedProperty,
-      { attachProbe: 'right', isInteractive: true }
-    );
+      // graph
+      const graphNode = new GraphNode( model.solution, viewProperties.graphExpandedProperty, {
+        isInteractive: true,
+        logScaleHeight: 565
+      } );
 
-    const resetAllButton = new ResetAllButton( {
-      scale: 1.32,
-      listener: function() {
-        model.reset();
-        viewProperties.reset();
-        graphNode.reset();
-      }
-    } );
+      // pH meter
+      const pHMeterTop = 15;
+      const pHMeterNode = new PHMeterNode( model.solution,
+        modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop,
+        viewProperties.pHMeterExpandedProperty,
+        { attachProbe: 'right', isInteractive: true }
+      );
 
-    // Parent for all nodes added to this screen
-    const rootNode = new Node( {
-      children: [
-        // nodes are rendered in this order
-        solutionNode,
-        pHMeterNode,
-        ratioNode,
-        beakerNode,
-        moleculeCountNode,
-        volumeIndicatorNode,
-        beakerControls,
-        graphNode,
-        resetAllButton
-      ]
-    } );
-    this.addChild( rootNode );
+      const resetAllButton = new ResetAllButton( {
+        scale: 1.32,
+        listener: () => {
+          model.reset();
+          viewProperties.reset();
+          graphNode.reset();
+        }
+      } );
 
-    // Layout of nodes that don't have a position specified in the model
-    pHMeterNode.left = beakerNode.left;
-    pHMeterNode.top = pHMeterTop;
-    moleculeCountNode.centerX = beakerNode.centerX;
-    moleculeCountNode.bottom = beakerNode.bottom - 25;
-    beakerControls.centerX = beakerNode.centerX;
-    beakerControls.top = beakerNode.bottom + 10;
-    graphNode.right = beakerNode.left - 70;
-    graphNode.top = pHMeterNode.top;
-    resetAllButton.right = this.layoutBounds.right - 40;
-    resetAllButton.bottom = this.layoutBounds.bottom - 20;
+      // Parent for all nodes added to this screen
+      const rootNode = new Node( {
+        children: [
+          // nodes are rendered in this order
+          solutionNode,
+          pHMeterNode,
+          ratioNode,
+          beakerNode,
+          moleculeCountNode,
+          volumeIndicatorNode,
+          beakerControls,
+          graphNode,
+          resetAllButton
+        ]
+      } );
+      this.addChild( rootNode );
+
+      // Layout of nodes that don't have a position specified in the model
+      pHMeterNode.left = beakerNode.left;
+      pHMeterNode.top = pHMeterTop;
+      moleculeCountNode.centerX = beakerNode.centerX;
+      moleculeCountNode.bottom = beakerNode.bottom - 25;
+      beakerControls.centerX = beakerNode.centerX;
+      beakerControls.top = beakerNode.bottom + 10;
+      graphNode.right = beakerNode.left - 70;
+      graphNode.top = pHMeterNode.top;
+      resetAllButton.right = this.layoutBounds.right - 40;
+      resetAllButton.bottom = this.layoutBounds.bottom - 20;
+    }
   }
 
-  phScale.register( 'MySolutionScreenView', MySolutionScreenView );
-
-  return inherit( ScreenView, MySolutionScreenView );
+  return phScale.register( 'MySolutionScreenView', MySolutionScreenView );
 } );

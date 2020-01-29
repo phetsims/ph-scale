@@ -57,7 +57,5 @@ define( require => {
     H2O_FORMULA: 'H<sub>2</sub>O'
   };
 
-  phScale.register( 'PHScaleConstants', PHScaleConstants );
-
-  return PHScaleConstants;
+  return phScale.register( 'PHScaleConstants', PHScaleConstants );
 } );

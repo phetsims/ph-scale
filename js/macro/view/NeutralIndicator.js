@@ -1,4 +1,4 @@
-// Copyright 2013-2019, University of Colorado Boulder
+// Copyright 2013-2020, University of Colorado Boulder
 
 /**
  * Indicator that the solution is neutral.
@@ -10,7 +10,6 @@ define( require => {
   'use strict';
 
   // modules
-  const inherit = require( 'PHET_CORE/inherit' );
   const Node = require( 'SCENERY/nodes/Node' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const phScale = require( 'PH_SCALE/phScale' );
@@ -21,36 +20,36 @@ define( require => {
   // strings
   const neutralString = require( 'string!PH_SCALE/neutral' );
 
-  /**
-   * @param {Solution} solution
-   * @constructor
-   */
-  function NeutralIndicator( solution ) {
+  class NeutralIndicator extends Node {
 
-    Node.call( this );
+    /**
+     * @param {Solution} solution
+     */
+    constructor( solution ) {
 
-    const label = new Text( neutralString, { font: new PhetFont( { size: 30, weight: 'bold' } ), maxWidth: 300 } );
+      super();
 
-    // translucent light-gray background, so this shows up on all solution colors
-    const background = new Rectangle( 0, 0, 1.4 * label.width, 1.2 * label.height, 8, 8,
-      { fill: 'rgba( 240, 240, 240, 0.6 )' } );
+      const label = new Text( neutralString, { font: new PhetFont( { size: 30, weight: 'bold' } ), maxWidth: 300 } );
 
-    // rendering order
-    this.addChild( background );
-    this.addChild( label );
+      // translucent light-gray background, so this shows up on all solution colors
+      const background = new Rectangle( 0, 0, 1.4 * label.width, 1.2 * label.height, 8, 8,
+        { fill: 'rgba( 240, 240, 240, 0.6 )' } );
 
-    // layout
-    label.centerX = background.centerX;
-    label.centerY = background.centerY;
+      // rendering order
+      this.addChild( background );
+      this.addChild( label );
 
-    // make this node visible when the solution has neutral pH
-    const self = this;
-    solution.pHProperty.link( function( pH ) {
-      self.setVisible( pH === Water.pH );
-    } );
+      // layout
+      label.centerX = background.centerX;
+      label.centerY = background.centerY;
+
+      // make this node visible when the solution has neutral pH
+      const self = this;
+      solution.pHProperty.link( function( pH ) {
+        self.setVisible( pH === Water.pH );
+      } );
+    }
   }
 
-  phScale.register( 'NeutralIndicator', NeutralIndicator );
-
-  return inherit( Node, NeutralIndicator );
+  return phScale.register( 'NeutralIndicator', NeutralIndicator );
 } );

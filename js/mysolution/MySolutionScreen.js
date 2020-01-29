@@ -10,7 +10,6 @@ define( require => {
 
   // modules
   const Image = require( 'SCENERY/nodes/Image' );
-  const inherit = require( 'PHET_CORE/inherit' );
   const ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
   const MySolutionModel = require( 'PH_SCALE/mysolution/model/MySolutionModel' );
   const MySolutionScreenView = require( 'PH_SCALE/mysolution/view/MySolutionScreenView' );
@@ -26,26 +25,24 @@ define( require => {
   const homeIcon = require( 'image!PH_SCALE/MySolution-home-icon.png' );
   const navbarIcon = require( 'image!PH_SCALE/MySolution-navbar-icon.png' );
 
-  /**
-   * @constructor
-   */
-  function MySolutionScreen() {
+  class MySolutionScreen extends Screen {
 
-    const options = {
-      name: screenMySolutionString,
-      backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
-      homeScreenIcon: new Image( homeIcon ),
-      navigationBarIcon: new Image( navbarIcon )
-    };
+    constructor() {
 
-    Screen.call( this,
-      function() { return new MySolutionModel(); },
-      function( model ) { return new MySolutionScreenView( model, ModelViewTransform2.createIdentity() ); },
-      options
-    );
+      const options = {
+        name: screenMySolutionString,
+        backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
+        homeScreenIcon: new Image( homeIcon ),
+        navigationBarIcon: new Image( navbarIcon )
+      };
+
+      super(
+        function() { return new MySolutionModel(); },
+        function( model ) { return new MySolutionScreenView( model, ModelViewTransform2.createIdentity() ); },
+        options
+      );
+    }
   }
 
-  phScale.register( 'MySolutionScreen', MySolutionScreen );
-
-  return inherit( Screen, MySolutionScreen );
+  return phScale.register( 'MySolutionScreen', MySolutionScreen );
 } );

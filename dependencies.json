@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.4.0-dev.3 Wed Jan 29 2020 14:08:39 GMT-0700 (Mountain Standard Time)",
+  "comment": "# ph-scale 1.4.0-dev.4 Wed Jan 29 2020 16:04:36 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "a99a9ce9ee0774bf3ef509bf3e31ca7383f67478",
     "branch": "master"
@@ -33,7 +33,7 @@
     "branch": "master"
   },
   "ph-scale": {
-    "sha": "c52c46042af0358694f0005a37f867496f6206ad",
+    "sha": "e72df95263c1e4c559715d4024d2a686acdd53e9",
     "branch": "master"
   },
   "phet-core": {

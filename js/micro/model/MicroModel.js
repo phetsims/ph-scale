@@ -14,12 +14,17 @@ define( require => {
   const Bounds2 = require( 'DOT/Bounds2' );
   const MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
   const phScale = require( 'PH_SCALE/phScale' );
+  const Tandem = require( 'TANDEM/Tandem' );
 
   class MicroModel extends MacroModel {
 
-    constructor() {
+    /**
+     * @param {Tandem} tandem
+     */
+    constructor( tandem ) {
+      assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
-      super();
+      super( tandem );
 
       // adjust the drag bounds of the dropper to account for different user-interface constraints
       const yDropper = this.dropper.positionProperty.get().y;

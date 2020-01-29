@@ -17,6 +17,7 @@ define( require => {
   const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   const Property = require( 'AXON/Property' );
   const Screen = require( 'JOIST/Screen' );
+  const Tandem = require( 'TANDEM/Tandem' );
 
   // strings
   const screenMySolutionString = require( 'string!PH_SCALE/screen.mySolution' );
@@ -27,7 +28,11 @@ define( require => {
 
   class MySolutionScreen extends Screen {
 
-    constructor() {
+    /**
+     * @param {Tandem} tandem
+     */
+    constructor( tandem ) {
+      assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
       const options = {
         name: screenMySolutionString,
@@ -37,8 +42,8 @@ define( require => {
       };
 
       super(
-        () => new MySolutionModel(),
-        model => new MySolutionScreenView( model, ModelViewTransform2.createIdentity() ),
+        () => new MySolutionModel( tandem.createTandem( 'model') ),
+        model => new MySolutionScreenView( model, ModelViewTransform2.createIdentity(), tandem.createTandem( 'view') ),
         options
       );
     }

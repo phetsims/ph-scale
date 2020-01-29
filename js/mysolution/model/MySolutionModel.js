@@ -16,11 +16,16 @@ define( require => {
   const Property = require( 'AXON/Property' );
   const Solute = require( 'PH_SCALE/common/model/Solute' );
   const Solution = require( 'PH_SCALE/common/model/Solution' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Vector2 = require( 'DOT/Vector2' );
 
   class MySolutionModel {
 
-    constructor() {
+    /**
+     * @param {Tandem} tandem
+     */
+    constructor( tandem ) {
+      assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
       // @public Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
       this.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );

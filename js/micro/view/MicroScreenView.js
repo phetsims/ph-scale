@@ -22,6 +22,8 @@ define( require => {
   const EyeDropperNode = require( 'SCENERY_PHET/EyeDropperNode' );
   const FaucetFluidNode = require( 'PH_SCALE/common/view/FaucetFluidNode' );
   const GraphNode = require( 'PH_SCALE/common/view/graph/GraphNode' );
+  const merge = require( 'PHET_CORE/merge' );
+  const ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
   const MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
   const Node = require( 'SCENERY/nodes/Node' );
   const PHDropperNode = require( 'PH_SCALE/common/view/PHDropperNode' );
@@ -35,6 +37,7 @@ define( require => {
   const ScreenView = require( 'JOIST/ScreenView' );
   const SoluteComboBox = require( 'PH_SCALE/common/view/SoluteComboBox' );
   const SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
   const Water = require( 'PH_SCALE/common/model/Water' );
   const WaterFaucetNode = require( 'PH_SCALE/common/view/WaterFaucetNode' );
@@ -44,10 +47,15 @@ define( require => {
     /**
      * @param {MicroModel} model
      * @param {ModelViewTransform2} modelViewTransform
+     * @param {Tandem} tandem
      */
-    constructor( model, modelViewTransform ) {
+    constructor( model, modelViewTransform, tandem ) {
+      assert && assert( tandem instanceof Tandem, 'invalid tandem' );
+      assert && assert( modelViewTransform instanceof ModelViewTransform2, 'invalid modelViewTransform' );
 
-      super( PHScaleConstants.SCREEN_VIEW_OPTIONS );
+      super( merge( {}, PHScaleConstants.SCREEN_VIEW_OPTIONS, {
+        tandem: tandem
+      } ) );
 
       // view-specific properties
       const viewProperties = new PHScaleViewProperties();

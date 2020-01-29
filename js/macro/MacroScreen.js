@@ -17,6 +17,7 @@ define( require => {
   const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   const Property = require( 'AXON/Property' );
   const Screen = require( 'JOIST/Screen' );
+  const Tandem = require( 'TANDEM/Tandem' );
 
   // strings
   const screenMacroString = require( 'string!PH_SCALE/screen.macro' );
@@ -28,9 +29,11 @@ define( require => {
   class MacroScreen extends Screen {
 
     /**
+     * @param {Tandem} tandem
      * @param {Object} [modelOptions]
      */
-    constructor( modelOptions ) {
+    constructor( tandem, modelOptions ) {
+      assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
       const options = {
         name: screenMacroString,
@@ -40,8 +43,8 @@ define( require => {
       };
 
       super(
-        () => new MacroModel( modelOptions ),
-        model => new MacroScreenView( model, ModelViewTransform2.createIdentity() ),
+        () => new MacroModel( tandem.createTandem( 'model'), modelOptions ),
+        model => new MacroScreenView( model, ModelViewTransform2.createIdentity(), tandem.createTandem( 'view') ),
         options
       );
     }

@@ -21,14 +21,17 @@ define( require => {
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   const Solute = require( 'PH_SCALE/common/model/Solute' );
   const Solution = require( 'PH_SCALE/common/model/Solution' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Vector2 = require( 'DOT/Vector2' );
 
   class MacroModel {
 
     /**
+     * @param {Tandem} tandem
      * @param {Object} [options]
      */
-    constructor( options ) {
+    constructor( tandem, options ) {
+      assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
       options = merge( {
         autoFillVolume: 0.5 // L, automatically fill beaker with this much solute when the solute changes

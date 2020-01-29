@@ -18,7 +18,9 @@ define( require => {
   const BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
   const BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   const GraphNode = require( 'PH_SCALE/common/view/graph/GraphNode' );
+  const merge = require( 'PHET_CORE/merge' );
   const MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
+  const ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
   const Node = require( 'SCENERY/nodes/Node' );
   const PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
   const phScale = require( 'PH_SCALE/phScale' );
@@ -28,6 +30,7 @@ define( require => {
   const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   const ScreenView = require( 'JOIST/ScreenView' );
   const SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
 
   class MySolutionScreenView extends ScreenView {
@@ -35,10 +38,15 @@ define( require => {
     /**
      * @param {MySolutionModel} model
      * @param {ModelViewTransform2} modelViewTransform
+     * @param {Tandem} tandem
      */
-    constructor( model, modelViewTransform ) {
+    constructor( model, modelViewTransform, tandem ) {
+      assert && assert( tandem instanceof Tandem, 'invalid tandem' );
+      assert && assert( modelViewTransform instanceof ModelViewTransform2, 'invalid modelViewTransform' );
 
-      super( PHScaleConstants.SCREEN_VIEW_OPTIONS );
+      super( merge( {}, PHScaleConstants.SCREEN_VIEW_OPTIONS, {
+        tandem: tandem
+      } ) );
 
       // view-specific properties
       const viewProperties = new PHScaleViewProperties();

@@ -9,13 +9,10 @@ define( require => {
   'use strict';
 
   // modules
+  const Enumeration = require( 'PHET_CORE/Enumeration' );
   const phScale = require( 'PH_SCALE/phScale' );
 
-  // NOTE: enum pattern recommends using {} for each value, but strings are more convenient for debugging
-  const GraphScale = Object.freeze( {
-    LOGARITHMIC: 'logarithmic',
-    LINEAR: 'linear'
-  } );
+  const GraphScale = Enumeration.byKeys( [ 'LOGARITHMIC', 'LINEAR' ] );
 
   return phScale.register( 'GraphScale', GraphScale );
 } );

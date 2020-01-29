@@ -14,6 +14,7 @@ define( require => {
   // modules
   const ABSwitch = require( 'SUN/ABSwitch' );
   const Dimension2 = require( 'DOT/Dimension2' );
+  const EnumerationProperty = require( 'AXON/EnumerationProperty' );
   const ExpandCollapseBar = require( 'SUN/ExpandCollapseBar' );
   const GraphScale = require( 'PH_SCALE/common/view/graph/GraphScale' );
   const GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
@@ -69,7 +70,7 @@ define( require => {
       // @private Properties specific to GraphNode
       this.graphUnitsProperty = new StringProperty( options.units );
       this.exponentProperty = new NumberProperty( exponentRange.max ); // {number} exponent on the linear graph
-      this.graphScaleProperty = new StringProperty( options.graphScale ); // {number} scale on the linear graph
+      this.graphScaleProperty = new EnumerationProperty( GraphScale, options.graphScale ); // {number} scale on the linear graph
 
       // expand/collapse bar
       const expandCollapseBar = new ExpandCollapseBar(

@@ -10,39 +10,40 @@ define( require => {
 
   // modules
   const Bounds2 = require( 'DOT/Bounds2' );
-  const inherit = require( 'PHET_CORE/inherit' );
   const merge = require( 'PHET_CORE/merge' );
   const phScale = require( 'PH_SCALE/phScale' );
 
-  /**
-   * Constructor
-   * @param {Vector2} position bottom center
-   * @param {Dimension2} size
-   * @param {Object} [options]
-   * @constructor
-   */
-  function Beaker( position, size, options ) {
+  class Beaker {
 
-    options = merge( {
-      volume: 1.2 // L
-    }, options );
+    /**
+     * @param {Vector2} position bottom center
+     * @param {Dimension2} size
+     * @param {Object} [options]
+     */
+    constructor( position, size, options ) {
 
-    // @Public
-    this.position = position;
-    this.size = size;
-    this.volume = options.volume;
+      options = merge( {
+        volume: 1.2 // L
+      }, options );
 
-    // @public convenience properties
-    this.left = position.x - ( size.width / 2 );
-    this.right = position.x + ( size.width / 2 );
-    this.bounds = new Bounds2( this.left, position.y - size.height, this.right, position.y );
+      // @Public
+      this.position = position;
+      this.size = size;
+      this.volume = options.volume;
+
+      // @public convenience properties
+      this.left = position.x - ( size.width / 2 );
+      this.right = position.x + ( size.width / 2 );
+      this.bounds = new Bounds2( this.left, position.y - size.height, this.right, position.y );
+    }
+
+    /**
+     * @public
+     */
+    reset() {
+      /* currently nothing to reset */
+    }
   }
 
-  phScale.register( 'Beaker', Beaker );
-
-  return inherit( Object, Beaker, {
-
-    // @public
-    reset: function() { /* currently nothing to reset */ }
-  } );
+  return phScale.register( 'Beaker', Beaker );
 } );

@@ -15,7 +15,6 @@ define( require => {
   const Dimension2 = require( 'DOT/Dimension2' );
   const Dropper = require( 'PH_SCALE/common/model/Dropper' );
   const Faucet = require( 'PH_SCALE/common/model/Faucet' );
-  const inherit = require( 'PHET_CORE/inherit' );
   const merge = require( 'PHET_CORE/merge' );
   const PHMeter = require( 'PH_SCALE/macro/model/PHMeter' );
   const phScale = require( 'PH_SCALE/phScale' );
@@ -24,87 +23,86 @@ define( require => {
   const Solution = require( 'PH_SCALE/common/model/Solution' );
   const Vector2 = require( 'DOT/Vector2' );
 
-  /**
-   * @param {Object} [options]
-   * @constructor
-   */
-  function MacroModel( options ) {
+  class MacroModel {
 
-    options = merge( {
-      autoFillVolume: 0.5 // L, automatically fill beaker with this much solute when the solute changes
-    }, options );
+    /**
+     * @param {Object} [options]
+     */
+    constructor( options ) {
 
-    const self = this;
+      options = merge( {
+        autoFillVolume: 0.5 // L, automatically fill beaker with this much solute when the solute changes
+      }, options );
 
-    // @public solute choices, in order that they'll appear in the combo box (decreasing pH value)
-    this.solutes = [
-      Solute.DRAIN_CLEANER,
-      Solute.HAND_SOAP,
-      Solute.BLOOD,
-      Solute.SPIT,
-      Solute.WATER,
-      Solute.MILK,
-      Solute.CHICKEN_SOUP,
-      Solute.COFFEE,
-      Solute.ORANGE_JUICE,
-      Solute.SODA,
-      Solute.VOMIT,
-      Solute.BATTERY_ACID
-    ];
+      // @public solute choices, in order that they'll appear in the combo box (decreasing pH value)
+      this.solutes = [
+        Solute.DRAIN_CLEANER,
+        Solute.HAND_SOAP,
+        Solute.BLOOD,
+        Solute.SPIT,
+        Solute.WATER,
+        Solute.MILK,
+        Solute.CHICKEN_SOUP,
+        Solute.COFFEE,
+        Solute.ORANGE_JUICE,
+        Solute.SODA,
+        Solute.VOMIT,
+        Solute.BATTERY_ACID
+      ];
 
-    // @public Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
-    this.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
+      // @public Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
+      this.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
 
-    // Dropper above the beaker
-    const yDropper = this.beaker.position.y - this.beaker.size.height - 15;
-    // @public
-    this.dropper = new Dropper( Solute.WATER,
-      new Vector2( this.beaker.position.x - 50, yDropper ),
-      new Bounds2( this.beaker.left + 40, yDropper, this.beaker.right - 200, yDropper ) );
+      // Dropper above the beaker
+      const yDropper = this.beaker.position.y - this.beaker.size.height - 15;
+      // @public
+      this.dropper = new Dropper( Solute.WATER,
+        new Vector2( this.beaker.position.x - 50, yDropper ),
+        new Bounds2( this.beaker.left + 40, yDropper, this.beaker.right - 200, yDropper ) );
 
-    // @public Solution in the beaker
-    this.solution = new Solution( this.dropper.soluteProperty, 0, 0, this.beaker.volume );
+      // @public Solution in the beaker
+      this.solution = new Solution( this.dropper.soluteProperty, 0, 0, this.beaker.volume );
 
-    // @public Water faucet at the beaker's top-right
-    this.waterFaucet = new Faucet( new Vector2( this.beaker.right - 50, this.beaker.position.y - this.beaker.size.height - 45 ),
-      this.beaker.right + 400,
-      { enabled: this.solution.volumeProperty.get() < this.beaker.volume } );
+      // @public Water faucet at the beaker's top-right
+      this.waterFaucet = new Faucet( new Vector2( this.beaker.right - 50, this.beaker.position.y - this.beaker.size.height - 45 ),
+        this.beaker.right + 400,
+        { enabled: this.solution.volumeProperty.get() < this.beaker.volume } );
 
-    // @public Drain faucet at the beaker's bottom-left.
-    this.drainFaucet = new Faucet( new Vector2( this.beaker.left - 75, this.beaker.position.y + 43 ), this.beaker.left,
-      { enabled: this.solution.volumeProperty.get() > 0 } );
+      // @public Drain faucet at the beaker's bottom-left.
+      this.drainFaucet = new Faucet( new Vector2( this.beaker.left - 75, this.beaker.position.y + 43 ), this.beaker.left,
+        { enabled: this.solution.volumeProperty.get() > 0 } );
 
-    // pH meter to the left of the drain faucet
-    const pHMeterPosition = new Vector2( this.drainFaucet.position.x - 300, 75 );
-    this.pHMeter = new PHMeter( pHMeterPosition, new Vector2( pHMeterPosition.x + 150, this.beaker.position.y ),
-      PHScaleConstants.SCREEN_VIEW_OPTIONS.layoutBounds );
+      // pH meter to the left of the drain faucet
+      const pHMeterPosition = new Vector2( this.drainFaucet.position.x - 300, 75 );
+      this.pHMeter = new PHMeter( pHMeterPosition, new Vector2( pHMeterPosition.x + 150, this.beaker.position.y ),
+        PHScaleConstants.SCREEN_VIEW_OPTIONS.layoutBounds );
 
-    // auto-fill when the solute changes
-    this.autoFillVolume = options.autoFillVolume; // @private
+      // auto-fill when the solute changes
+      this.autoFillVolume = options.autoFillVolume; // @private
 
-    // @public (read-only)
-    this.isAutoFillingProperty = new BooleanProperty( false );
+      // @public (read-only)
+      this.isAutoFillingProperty = new BooleanProperty( false );
 
-    this.dropper.soluteProperty.link( function() {
-      // disable the faucets to cancel any multi-touch interaction that may be in progress, see issue #28
-      self.waterFaucet.enabledProperty.set( false );
-      self.drainFaucet.enabledProperty.set( false );
-      // animate the dropper adding solute to the beaker
-      self.startAutoFill();
-    } );
+      this.dropper.soluteProperty.link( () => {
 
-    // Enable faucets and dropper based on amount of solution in the beaker.
-    this.solution.volumeProperty.link( function( volume ) {
-      self.updateFaucetsAndDropper();
-    } );
-  }
+        // disable the faucets to cancel any multi-touch interaction that may be in progress, see issue #28
+        this.waterFaucet.enabledProperty.set( false );
+        this.drainFaucet.enabledProperty.set( false );
 
-  phScale.register( 'MacroModel', MacroModel );
+        // animate the dropper adding solute to the beaker
+        this.startAutoFill();
+      } );
 
-  return inherit( Object, MacroModel, {
+      // Enable faucets and dropper based on amount of solution in the beaker.
+      this.solution.volumeProperty.link( volume => {
+        this.updateFaucetsAndDropper();
+      } );
+    }
 
-    // @public
-    reset: function() {
+    /**
+     * @public
+     */
+    reset() {
       this.beaker.reset();
       this.dropper.reset();
       this.solution.reset();
@@ -112,25 +110,25 @@ define( require => {
       this.drainFaucet.reset();
       this.pHMeter.reset();
       this.startAutoFill();
-    },
+    }
 
-    /*
+    /**
      * Enables faucets and dropper based on amount of solution in the beaker.
      * @private
      */
-    updateFaucetsAndDropper: function() {
+    updateFaucetsAndDropper() {
       const volume = this.solution.volumeProperty.get();
       this.waterFaucet.enabledProperty.set( volume < this.beaker.volume );
       this.drainFaucet.enabledProperty.set( volume > 0 );
       this.dropper.enabledProperty.set( volume < this.beaker.volume );
-    },
+    }
 
-    /*
+    /**
      * Moves time forward by the specified amount.
      * @param deltaSeconds clock time change, in seconds.
      * @public
      */
-    step: function( deltaSeconds ) {
+    step( deltaSeconds ) {
       if ( this.isAutoFillingProperty.value ) {
         this.stepAutoFill( deltaSeconds );
       }
@@ -139,38 +137,40 @@ define( require => {
         this.solution.addWater( this.waterFaucet.flowRateProperty.get() * deltaSeconds );
         this.solution.drainSolution( this.drainFaucet.flowRateProperty.get() * deltaSeconds );
       }
-    },
+    }
 
     /**
      * Starts the auto-fill animation.
      * @private
      */
-    startAutoFill: function() {
+    startAutoFill() {
       this.isAutoFillingProperty.value = true;
       this.dropper.dispensingProperty.set( true );
       this.dropper.flowRateProperty.set( 0.75 ); // faster than standard flow rate
-    },
+    }
 
     /**
      * Advances the auto-fill animation.
      * @param deltaSeconds clock time change, in seconds
      * @private
      */
-    stepAutoFill: function( deltaSeconds ) {
+    stepAutoFill( deltaSeconds ) {
       this.solution.addSolute( Math.min( this.dropper.flowRateProperty.get() * deltaSeconds, this.autoFillVolume - this.solution.volumeProperty.get() ) );
       if ( this.solution.volumeProperty.get() === this.autoFillVolume ) {
         this.stopAutoFill();
       }
-    },
+    }
 
     /**
      * Stops the auto-fill animation.
      * @private
      */
-    stopAutoFill: function() {
+    stopAutoFill() {
       this.isAutoFillingProperty.value = false;
       this.dropper.dispensingProperty.set( false );
       this.updateFaucetsAndDropper();
     }
-  } );
+  }
+
+  return phScale.register( 'MacroModel', MacroModel );
 } );

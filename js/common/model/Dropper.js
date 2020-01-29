@@ -10,69 +10,67 @@ define( require => {
 
   // modules
   const BooleanProperty = require( 'AXON/BooleanProperty' );
-  const inherit = require( 'PHET_CORE/inherit' );
   const merge = require( 'PHET_CORE/merge' );
   const Movable = require( 'PH_SCALE/common/model/Movable' );
   const NumberProperty = require( 'AXON/NumberProperty' );
   const phScale = require( 'PH_SCALE/phScale' );
   const Property = require( 'AXON/Property' );
 
-  /**
-   * @param {Solute} solute
-   * @param {Vector2} position
-   * @param {Bounds2} dragBounds
-   * @param {Object} [options]
-   * @constructor
-   */
-  function Dropper( solute, position, dragBounds, options ) {
+  class Dropper extends Movable {
 
-    options = merge( {
-      maxFlowRate: 0.05, // L/sec
-      flowRate: 0, // L/sec
-      dispensing: false, // is the dropper dispensing solute?
-      enabled: true,
-      empty: false,
-      visible: true
-    }, options );
+    /**
+     * @param {Solute} solute
+     * @param {Vector2} position
+     * @param {Bounds2} dragBounds
+     * @param {Object} [options]
+     */
+    constructor( solute, position, dragBounds, options ) {
 
-    const self = this;
-    Movable.call( this, position, dragBounds );
+      options = merge( {
+        maxFlowRate: 0.05, // L/sec
+        flowRate: 0, // L/sec
+        dispensing: false, // is the dropper dispensing solute?
+        enabled: true,
+        empty: false,
+        visible: true
+      }, options );
 
-    // @public
-    this.soluteProperty = new Property( solute );
-    this.visibleProperty = new BooleanProperty( options.visible );
-    this.dispensingProperty = new BooleanProperty( options.dispensing );
-    this.enabledProperty = new BooleanProperty( options.enabled );
-    this.emptyProperty = new BooleanProperty( options.empty );
-    this.flowRateProperty = new NumberProperty( options.flowRate ); // L/sec
+      super( position, dragBounds );
 
-    // Turn off the dropper when it's disabled.
-    this.enabledProperty.link( function( enabled ) {
-      if ( !enabled ) {
-        self.dispensingProperty.set( false );
-      }
-    } );
+      // @public
+      this.soluteProperty = new Property( solute );
+      this.visibleProperty = new BooleanProperty( options.visible );
+      this.dispensingProperty = new BooleanProperty( options.dispensing );
+      this.enabledProperty = new BooleanProperty( options.enabled );
+      this.emptyProperty = new BooleanProperty( options.empty );
+      this.flowRateProperty = new NumberProperty( options.flowRate ); // L/sec
 
-    // Toggle the flow rate when the dropper is turned on/off.
-    this.dispensingProperty.link( function( dispensing ) {
-      self.flowRateProperty.set( dispensing ? options.maxFlowRate : 0 );
-    } );
+      // Turn off the dropper when it's disabled.
+      this.enabledProperty.link( enabled => {
+        if ( !enabled ) {
+          this.dispensingProperty.set( false );
+        }
+      } );
 
-    // When the dropper becomes empty, disable it.
-    this.emptyProperty.link( function( empty ) {
-      if ( empty ) {
-        self.enabledProperty.set( false );
-      }
-    } );
-  }
+      // Toggle the flow rate when the dropper is turned on/off.
+      this.dispensingProperty.link( dispensing => {
+        this.flowRateProperty.set( dispensing ? options.maxFlowRate : 0 );
+      } );
 
-  phScale.register( 'Dropper', Dropper );
+      // When the dropper becomes empty, disable it.
+      this.emptyProperty.link( empty => {
+        if ( empty ) {
+          this.enabledProperty.set( false );
+        }
+      } );
+    }
 
-  return inherit( Movable, Dropper, {
-
-    // @public
-    reset: function() {
-      Movable.prototype.reset.call( this );
+    /**
+     * @public
+     * @override
+     */
+    reset() {
+      super.reset();
       this.soluteProperty.reset();
       this.visibleProperty.reset();
       this.dispensingProperty.reset();
@@ -80,5 +78,7 @@ define( require => {
       this.emptyProperty.reset();
       this.flowRateProperty.reset();
     }
-  } );
+  }
+
+  return phScale.register( 'Dropper', Dropper );
 } );

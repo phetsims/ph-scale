@@ -1,4 +1,4 @@
-// Copyright 2013-2019, University of Colorado Boulder
+// Copyright 2013-2020, University of Colorado Boulder
 
 /**
  * Solution model. Solvent (water) is constant, solute (in stock solution form) is variable.
@@ -11,7 +11,6 @@ define( require => {
   // modules
   const Color = require( 'SCENERY/util/Color' );
   const DerivedProperty = require( 'AXON/DerivedProperty' );
-  const inherit = require( 'PHET_CORE/inherit' );
   const NumberProperty = require( 'AXON/NumberProperty' );
   const PHModel = require( 'PH_SCALE/common/model/PHModel' );
   const phScale = require( 'PH_SCALE/phScale' );
@@ -22,131 +21,127 @@ define( require => {
   // constants
   const MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );
 
-  /**
-   * @param {Property.<Solute>} soluteProperty
-   * @param {number} soluteVolume liters
-   * @param {number} waterVolume liters
-   * @param {number} maxVolume liters
-   * @constructor
-   */
-  function Solution( soluteProperty, soluteVolume, waterVolume, maxVolume ) {
-    assert && assert( soluteVolume + waterVolume <= maxVolume );
-
-    const self = this;
-
-    // @public
-    this.soluteProperty = soluteProperty;
-    this.soluteVolumeProperty = new NumberProperty( soluteVolume );
-    this.waterVolumeProperty = new NumberProperty( waterVolume );
-    this.maxVolume = maxVolume;
-
-    /*
-     * @public
-     * See issue #25.
-     * True when changes to water volume and solute volume should be ignored, because they will both be changing,
-     * which currently happens only during draining. To prevent bogus intermediate values (for example, pH and total volume),
-     * clients who observe both waterVolumeProperty and soluteVolumeProperty should consult the ignoreVolumeUpdate flag before updating.
+  class Solution {
+    /**
+     * @param {Property.<Solute>} soluteProperty
+     * @param {number} soluteVolume liters
+     * @param {number} waterVolume liters
+     * @param {number} maxVolume liters
      */
-    this.ignoreVolumeUpdate = false;
+    constructor( soluteProperty, soluteVolume, waterVolume, maxVolume ) {
+      assert && assert( soluteVolume + waterVolume <= maxVolume );
 
-    // @public volume
-    this.volumeProperty = new DerivedProperty( [ this.soluteVolumeProperty, this.waterVolumeProperty ],
-      function() {
-        return ( self.ignoreVolumeUpdate ) ? self.volumeProperty.get() : self.computeVolume();
-      }
-    );
+      // @public
+      this.soluteProperty = soluteProperty;
+      this.soluteVolumeProperty = new NumberProperty( soluteVolume );
+      this.waterVolumeProperty = new NumberProperty( waterVolume );
+      this.maxVolume = maxVolume;
 
-    // @public pH, null if no value
-    this.pHProperty = new DerivedProperty( [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
-      function() {
-        if ( self.ignoreVolumeUpdate ) {
-          return self.pHProperty.get();
-        }
-        else {
-          let pH = self.computePH();
-          if ( pH !== null ) {
-            pH = Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ); // constrain to the pH meter format, see issue #4
+      /*
+       * @public
+       * See issue #25.
+       * True when changes to water volume and solute volume should be ignored, because they will both be changing,
+       * which currently happens only during draining. To prevent bogus intermediate values (for example, pH and total volume),
+       * clients who observe both waterVolumeProperty and soluteVolumeProperty should consult the ignoreVolumeUpdate flag before updating.
+       */
+      this.ignoreVolumeUpdate = false;
+
+      // @public volume
+      this.volumeProperty = new DerivedProperty( [ this.soluteVolumeProperty, this.waterVolumeProperty ],
+        () => ( this.ignoreVolumeUpdate ) ? this.volumeProperty.get() : this.computeVolume()
+      );
+
+      // @public pH, null if no value
+      this.pHProperty = new DerivedProperty( [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
+        () => {
+          if ( this.ignoreVolumeUpdate ) {
+            return this.pHProperty.get();
           }
-          return pH;
-        }
+          else {
+            let pH = this.computePH();
+            if ( pH !== null ) {
+              pH = Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ); // constrain to the pH meter format, see issue #4
+            }
+            return pH;
+          }
+        } );
+
+      // @public color
+      this.colorProperty = new DerivedProperty(
+        [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
+        ( solute, soluteVolume, waterVolume ) => {
+          if ( soluteVolume + waterVolume === 0 ) {
+            return Color.BLACK; // no solution, should never see this color displayed
+          }
+          else if ( soluteVolume === 0 || this.isEquivalentToWater() ) {
+            return Water.color;
+          }
+          else {
+            return solute.computeColor( soluteVolume / ( soluteVolume + waterVolume ) );
+          }
+        } );
+
+      // solute
+      this.soluteProperty.link( () => {
+
+        // reset to volumes that were specified in the constructor
+        this.waterVolumeProperty.set( waterVolume );
+        this.soluteVolumeProperty.set( soluteVolume );
       } );
+    }
 
-    // @public color
-    this.colorProperty = new DerivedProperty( [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
-      function( solute, soluteVolume, waterVolume ) {
-        if ( soluteVolume + waterVolume === 0 ) {
-          return Color.BLACK; // no solution, should never see this color displayed
-        }
-        else if ( soluteVolume === 0 || self.isEquivalentToWater() ) {
-          return Water.color;
-        }
-        else {
-          return solute.computeColor( soluteVolume / ( soluteVolume + waterVolume ) );
-        }
-      } );
-
-    // solute
-    this.soluteProperty.link( function() {
-      // reset to volumes that were specified in the constructor
-      self.waterVolumeProperty.set( waterVolume );
-      self.soluteVolumeProperty.set( soluteVolume );
-    } );
-  }
-
-  phScale.register( 'Solution', Solution );
-
-  return inherit( Object, Solution, {
-
-    // @public
-    reset: function() {
+    /**
+     * @public
+     */
+    reset() {
       this.soluteProperty.reset();
       this.soluteVolumeProperty.reset();
       this.waterVolumeProperty.reset();
-    },
+    }
 
-    /*
+    /**
      * True if the value displayed by the pH meter has precision that makes it equivalent to the pH of water.
      * Eg, the value displayed to the user is '7.00'.
      * @public
      */
-    isEquivalentToWater: function() {
+    isEquivalentToWater() {
       const pHString = Utils.toFixed( this.computePH(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
       return ( parseFloat( pHString ) === Water.pH ) && ( this.waterVolumeProperty.get() > 0 );
-    },
+    }
 
     //----------------------------------------------------------------------------
     // Volume (Liters)
     //----------------------------------------------------------------------------
 
     // @private
-    isEmpty: function() { return this.computeVolume() === 0; },
+    isEmpty() { return this.computeVolume() === 0; }
 
     // @private
-    isFull: function() { return this.computeVolume() === this.maxVolume; },
+    isFull() { return this.computeVolume() === this.maxVolume; }
 
     // @private Returns the amount of volume that is available to fill.
-    getFreeVolume: function() { return this.maxVolume - this.computeVolume(); },
+    getFreeVolume() { return this.maxVolume - this.computeVolume(); }
 
     // @public Convenience function for adding solute
-    addSolute: function( deltaVolume ) {
+    addSolute( deltaVolume ) {
       if ( deltaVolume > 0 ) {
         this.soluteVolumeProperty.set( Math.max( MIN_VOLUME, this.soluteVolumeProperty.get() + Math.min( deltaVolume, this.getFreeVolume() ) ) );
       }
-    },
+    }
 
     // @public Convenience function for adding water
-    addWater: function( deltaVolume ) {
+    addWater( deltaVolume ) {
       if ( deltaVolume > 0 ) {
         this.waterVolumeProperty.set( Math.max( MIN_VOLUME, this.waterVolumeProperty.get() + Math.min( deltaVolume, this.getFreeVolume() ) ) );
       }
-    },
+    }
 
     /**
      * Drains a specified amount of solution.
      * @param {number} deltaVolume amount of solution to drain, in liters
      * @public
      */
-    drainSolution: function( deltaVolume ) {
+    drainSolution( deltaVolume ) {
       if ( deltaVolume > 0 ) {
         const totalVolume = this.computeVolume();
         if ( totalVolume > 0 ) {
@@ -162,7 +157,7 @@ define( require => {
           }
         }
       }
-    },
+    }
 
     /**
      * Sets volume atomically, to prevent pH value from going through an intermediate state.
@@ -172,13 +167,14 @@ define( require => {
      * @param {number} soluteVolume liters
      * @private
      */
-    setVolumeAtomic: function( waterVolume, soluteVolume ) {
+    setVolumeAtomic( waterVolume, soluteVolume ) {
+
       // ignore the first notification if both volumes are changing
       this.ignoreVolumeUpdate = ( waterVolume !== this.waterVolumeProperty.get() ) && ( soluteVolume !== this.soluteVolumeProperty.get() );
       this.waterVolumeProperty.set( waterVolume );
       this.ignoreVolumeUpdate = false; // don't ignore the second notification, so that observers will update
       this.soluteVolumeProperty.set( soluteVolume );
-    },
+    }
 
     //----------------------------------------------------------------------------
     // Computations for derived properties
@@ -189,74 +185,76 @@ define( require => {
      * @returns {number} liters
      * @private Used in internal computations to prevent incorrect intermediate values, see issue #40
      */
-    computeVolume: function() {
+    computeVolume() {
       return ( this.soluteVolumeProperty.get() + this.waterVolumeProperty.get() );
-    },
+    }
 
     /**
      * Compute pH for this solution.
      * @returns {number|null} pH, null if total volume is zero
      * @private Used in internal computations to prevent incorrect intermediate values, see issue #40
      */
-    computePH: function() {
+    computePH() {
       return PHModel.computePH( this.soluteProperty.get().pH, this.soluteVolumeProperty.get(), this.waterVolumeProperty.get() );
-    },
+    }
 
     //----------------------------------------------------------------------------
     // Concentration (moles/L)
     //----------------------------------------------------------------------------
 
     // @public
-    getConcentrationH3O: function() {
+    getConcentrationH3O() {
       return PHModel.pHToConcentrationH3O( this.computePH() );
-    },
+    }
 
     // @public
-    getConcentrationOH: function() {
+    getConcentrationOH() {
       return PHModel.pHToConcentrationOH( this.computePH() );
-    },
+    }
 
     // @public
-    getConcentrationH2O: function() {
+    getConcentrationH2O() {
       return ( this.isEmpty() ? 0 : 55 );
-    },
+    }
 
     //----------------------------------------------------------------------------
     // Number of molecules
     //----------------------------------------------------------------------------
 
     // @public
-    getMoleculesH3O: function() {
+    getMoleculesH3O() {
       return PHModel.computeMolecules( this.getConcentrationH3O(), this.computeVolume() );
-    },
+    }
 
     // @public
-    getMoleculesOH: function() {
+    getMoleculesOH() {
       return PHModel.computeMolecules( this.getConcentrationOH(), this.computeVolume() );
-    },
+    }
 
     // @public
-    getMoleculesH2O: function() {
+    getMoleculesH2O() {
       return PHModel.computeMolecules( this.getConcentrationH2O(), this.computeVolume() );
-    },
+    }
 
     //----------------------------------------------------------------------------
     // Number of moles
     //----------------------------------------------------------------------------
 
     // @public
-    getMolesH3O: function() {
+    getMolesH3O() {
       return PHModel.computeMoles( this.getConcentrationH3O(), this.computeVolume() );
-    },
+    }
 
     // @public
-    getMolesOH: function() {
+    getMolesOH() {
       return PHModel.computeMoles( this.getConcentrationOH(), this.computeVolume() );
-    },
+    }
 
     // @public
-    getMolesH2O: function() {
+    getMolesH2O() {
       return PHModel.computeMoles( this.getConcentrationH2O(), this.computeVolume() );
     }
-  } );
+  }
+
+  return phScale.register( 'Solution', Solution );
 } );

@@ -1,4 +1,4 @@
-// Copyright 2013-2019, University of Colorado Boulder
+// Copyright 2013-2020, University of Colorado Boulder
 
 /**
  * Solute model, with instances used by this sim.
@@ -11,7 +11,6 @@ define( require => {
 
   // modules
   const Color = require( 'SCENERY/util/Color' );
-  const inherit = require( 'PHET_CORE/inherit' );
   const phScale = require( 'PH_SCALE/phScale' );
   const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
@@ -31,43 +30,45 @@ define( require => {
   const choiceSpitString = require( 'string!PH_SCALE/choice.spit' );
   const choiceVomitString = require( 'string!PH_SCALE/choice.vomit' );
 
-  /**
-   * @param {string} name
-   * @param {number} pH
-   * @param {stockColor:Color, [dilutedColor]:Color, colorStop:{color:{Color}, [ratio]:Number} } colorScheme
-   *
-   * colorScheme is an object literal with these properties:
-   * stockColor: color of the solute in stock solution (no dilution)
-   * dilutedColor: color when the solute is barely present in solution (fully diluted), optional, defaults to Water.color
-   * color: color when soluteVolume/totalVolume === ratio, used to smooth out some color transitions if provided, optional
-   * ratio: ratio for the color-stop, (0,1) exclusive, optional, defaults to 0.25
-   */
-  function Solute( name, pH, colorScheme ) {
+  class Solute {
 
-    if ( !PHScaleConstants.PH_RANGE.contains( pH ) ) {
-      throw new Error( 'Solute constructor, pH value is out of range: ' + pH );
+    /**
+     * @param {string} name
+     * @param {number} pH
+     * @param {stockColor:Color, [dilutedColor]:Color, colorStop:{color:{Color}, [ratio]:Number} } colorScheme
+     *
+     * colorScheme is an object literal with these properties:
+     * stockColor: color of the solute in stock solution (no dilution)
+     * dilutedColor: color when the solute is barely present in solution (fully diluted), optional, defaults to Water.color
+     * color: color when soluteVolume/totalVolume === ratio, used to smooth out some color transitions if provided, optional
+     * ratio: ratio for the color-stop, (0,1) exclusive, optional, defaults to 0.25
+     */
+    constructor( name, pH, colorScheme ) {
+
+      if ( !PHScaleConstants.PH_RANGE.contains( pH ) ) {
+        throw new Error( 'Solute constructor, pH value is out of range: ' + pH );
+      }
+
+      this.name = name; // @public
+      this.pH = pH; // @public
+
+      // unpack the colors to make accessing them more convenient in client code
+      this.stockColor = colorScheme.stockColor; // @public
+      this.dilutedColor = colorScheme.dilutedColor || Water.color; // @private
+      this.colorStop = colorScheme.colorStop; // @private, optional, color computation will ignore it if undefined
+      if ( this.colorStop ) {
+        this.colorStop.ratio = this.colorStop.ratio || 0.25;
+      }
     }
 
-    this.name = name; // @public
-    this.pH = pH; // @public
-
-    // unpack the colors to make accessing them more convenient in client code
-    this.stockColor = colorScheme.stockColor; // @public
-    this.dilutedColor = colorScheme.dilutedColor || Water.color; // @private
-    this.colorStop = colorScheme.colorStop; // @private, optional, color computation will ignore it if undefined
-    if ( this.colorStop ) {
-      this.colorStop.ratio = this.colorStop.ratio || 0.25;
-    }
-  }
-
-  phScale.register( 'Solute', Solute );
-
-  inherit( Object, Solute, {
-
-    // @public
-    toString: function() {
+    /**
+     * String representation of this Solute. For debugging only, do not depend on the format!
+     * @returns {string}
+     * @public
+     */
+    toString() {
       return 'Solution[name:' + this.name + ' pH:' + this.pH + ']';
-    },
+    }
 
     /**
      * Computes the color for a dilution of this solute.
@@ -75,7 +76,7 @@ define( require => {
      * @returns {Color}
      * @public
      */
-    computeColor: function( ratio ) {
+    computeColor( ratio ) {
       assert && assert( ratio >= 0 && ratio <= 1 );
       let color;
       if ( this.colorStop ) {
@@ -92,19 +93,17 @@ define( require => {
       }
       return color;
     }
-  }, {
 
     /**
      * Creates a custom solute.
      * @param {number} pH
      * @returns {Solute}
-     * @static
      * @public
      */
-    createCustom: function( pH ) {
+    static createCustom( pH ) {
       return new Solute( choiceCustomString, pH, { stockColor: PHScaleColors.WATER } );
     }
-  } );
+  }
 
   // 'real world' immutable solutions
 
@@ -159,5 +158,5 @@ define( require => {
     colorStop: { color: new Color( 255, 224, 204 ) }
   } );
 
-  return Solute;
+  return phScale.register( 'Solute', Solute );
 } );

@@ -12,23 +12,20 @@ define( require => {
 
   // modules
   const Bounds2 = require( 'DOT/Bounds2' );
-  const inherit = require( 'PHET_CORE/inherit' );
   const MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
   const phScale = require( 'PH_SCALE/phScale' );
 
-  /**
-   * @constructor
-   */
-  function MicroModel() {
+  class MicroModel extends MacroModel {
 
-    MacroModel.call( this );
+    constructor() {
 
-    // adjust the drag bounds of the dropper to account for different user-interface constraints
-    const yDropper = this.dropper.positionProperty.get().y;
-    this.dropper.dragBounds = new Bounds2( this.beaker.left + 120, yDropper, this.beaker.right - 170, yDropper );
+      super();
+
+      // adjust the drag bounds of the dropper to account for different user-interface constraints
+      const yDropper = this.dropper.positionProperty.get().y;
+      this.dropper.dragBounds = new Bounds2( this.beaker.left + 120, yDropper, this.beaker.right - 170, yDropper );
+    }
   }
 
-  phScale.register( 'MicroModel', MicroModel );
-
-  return inherit( MacroModel, MicroModel );
+  return phScale.register( 'MicroModel', MicroModel );
 } );

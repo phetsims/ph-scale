@@ -1,4 +1,4 @@
-// Copyright 2013-2019, University of Colorado Boulder
+// Copyright 2013-2020, University of Colorado Boulder
 
 /**
  * Water, the solvent in this sim.
@@ -21,7 +21,5 @@ define( require => {
     color: PHScaleColors.WATER
   } );
 
-  phScale.register( 'Water', Water );
-
-  return Water;
+  return phScale.register( 'Water', Water );
 } );

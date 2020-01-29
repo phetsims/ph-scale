@@ -10,29 +10,29 @@ define( require => {
   'use strict';
 
   // modules
-  const inherit = require( 'PHET_CORE/inherit' );
   const phScale = require( 'PH_SCALE/phScale' );
   const Property = require( 'AXON/Property' );
 
-  /**
-   * @param {Vector2} position
-   * @param {Bounds2} dragBounds optional, undefined if not provided
-   * @constructor
-   */
-  function Movable( position, dragBounds ) {
+  class Movable {
 
-    // @public
-    this.positionProperty = new Property( position );
-    this.dragBounds = dragBounds;
-  }
+    /**
+     * @param {Vector2} position
+     * @param {Bounds2} dragBounds optional, undefined if not provided
+     */
+    constructor( position, dragBounds ) {
 
-  phScale.register( 'Movable', Movable );
+      // @public
+      this.positionProperty = new Property( position );
+      this.dragBounds = dragBounds;
+    }
 
-  return inherit( Object, Movable, {
-
-    // @public
-    reset: function() {
+    /**
+     * @public
+     */
+    reset() {
       this.positionProperty.reset();
     }
-  } );
+  }
+
+  return phScale.register( 'Movable', Movable );
 } );

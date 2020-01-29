@@ -9,36 +9,35 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-
 define( require => {
   'use strict';
 
   // modules
-  const inherit = require( 'PHET_CORE/inherit' );
   const Movable = require( 'PH_SCALE/common/model/Movable' );
   const phScale = require( 'PH_SCALE/phScale' );
   const Property = require( 'AXON/Property' );
 
-  /**
-   * @param {Vector2} bodyPosition
-   * @param {Vector2} probePosition
-   * @param {Bounds2} probeDragBounds
-   * @constructor
-   */
-  function PHMeter( bodyPosition, probePosition, probeDragBounds ) {
-    this.valueProperty = new Property( null ); // @public null if the meter is not reading a value
-    this.bodyPosition = bodyPosition; // @public
-    this.probe = new Movable( probePosition, probeDragBounds ); // @public
-  }
+  class PHMeter {
 
-  phScale.register( 'PHMeter', PHMeter );
+    /**
+     * @param {Vector2} bodyPosition
+     * @param {Vector2} probePosition
+     * @param {Bounds2} probeDragBounds
+     */
+    constructor( bodyPosition, probePosition, probeDragBounds ) {
+      this.valueProperty = new Property( null ); // @public null if the meter is not reading a value
+      this.bodyPosition = bodyPosition; // @public
+      this.probe = new Movable( probePosition, probeDragBounds ); // @public
+    }
 
-  return inherit( Object, PHMeter, {
-
-    // @public
-    reset: function() {
+    /**
+     * @public
+     */
+    reset() {
       this.valueProperty.reset();
       this.probe.reset();
     }
-  } );
+  }
+
+  return phScale.register( 'PHMeter', PHMeter );
 } );

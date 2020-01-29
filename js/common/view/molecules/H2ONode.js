@@ -1,4 +1,4 @@
-// Copyright 2013-2019, University of Colorado Boulder
+// Copyright 2013-2020, University of Colorado Boulder
 
 /**
  * H2O (water) molecule.
@@ -10,39 +10,38 @@ define( require => {
 
   // modules
   const HydrogenNode = require( 'PH_SCALE/common/view/molecules/HydrogenNode' );
-  const inherit = require( 'PHET_CORE/inherit' );
   const Node = require( 'SCENERY/nodes/Node' );
   const OxygenNode = require( 'PH_SCALE/common/view/molecules/OxygenNode' );
   const phScale = require( 'PH_SCALE/phScale' );
 
-  /**
-   * @param {Object} options
-   * @constructor
-   */
-  function H2ONode( options ) {
+  class H2ONode extends Node {
 
-    Node.call( this );
+    /**
+     * @param {Object} options
+     */
+    constructor( options ) {
 
-    // atoms
-    const oxygen = new OxygenNode();
-    const hydrogen1 = new HydrogenNode();
-    const hydrogen2 = new HydrogenNode();
+      super();
 
-    // rendering order
-    this.addChild( hydrogen2 );
-    this.addChild( oxygen );
-    this.addChild( hydrogen1 );
+      // atoms
+      const oxygen = new OxygenNode();
+      const hydrogen1 = new HydrogenNode();
+      const hydrogen2 = new HydrogenNode();
 
-    // layout
-    hydrogen1.left = oxygen.right - ( 0.2 * oxygen.width );
-    hydrogen1.centerY = oxygen.centerY - ( 0.1 * oxygen.height );
-    hydrogen2.centerX = oxygen.centerX + ( 0.1 * oxygen.width );
-    hydrogen2.centerY = oxygen.bottom;
+      // rendering order
+      this.addChild( hydrogen2 );
+      this.addChild( oxygen );
+      this.addChild( hydrogen1 );
 
-    this.mutate( options );
+      // layout
+      hydrogen1.left = oxygen.right - ( 0.2 * oxygen.width );
+      hydrogen1.centerY = oxygen.centerY - ( 0.1 * oxygen.height );
+      hydrogen2.centerX = oxygen.centerX + ( 0.1 * oxygen.width );
+      hydrogen2.centerY = oxygen.bottom;
+
+      this.mutate( options );
+    }
   }
 
-  phScale.register( 'H2ONode', H2ONode );
-
-  return inherit( Node, H2ONode );
+  return phScale.register( 'H2ONode', H2ONode );
 } );

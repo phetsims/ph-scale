@@ -121,10 +121,12 @@ define( require => {
 
   phScale.register( 'MacroPHMeterNode', MacroPHMeterNode );
 
+  /**
+   * The meter's vertical scale.
+   */
   class ScaleNode extends Node {
 
     /**
-     * The meter's vertical scale.
      * @param {Object} [options]
      */
     constructor( options ) {
@@ -205,12 +207,13 @@ define( require => {
     }
   }
 
+  /**
+   * Displays pH value inside of a rounded rectangle, which is then placed inside of yet-another rounded rectangle.
+   * It highlights when pH is 7. This is the thing that you see sliding up and down the pH Scale.
+   */
   class ValueNode extends Node {
 
     /**
-     * Displays pH value inside of a rounded rectangle, which is then placed inside of yet-another rounded rectangle.
-     * It highlights when pH is 7.
-     * This is the thing that you see sliding up and down the pH Scale.
      * @param {Property.<number>} pHProperty
      * @param {Property.<boolean>} enabledProperty
      */
@@ -290,10 +293,12 @@ define( require => {
     }
   }
 
+  /**
+   * Meter probe, origin at center of crosshairs.
+   */
   class PHProbeNode extends ProbeNode {
 
     /**
-     * Meter probe, origin at center of crosshairs.
      * @param {Movable} probe
      * @param {ModelViewTransform2} modelViewTransform
      * @param {Node} solutionNode
@@ -340,10 +345,12 @@ define( require => {
     }
   }
 
+  /**
+   * Wire that connects the body and probe.
+   */
   class WireNode extends Path {
 
     /**
-     * Wire that connects the body and probe.
      * @param {Movable} probe
      * @param {Node} bodyNode
      * @param {Node} probeNode
@@ -381,11 +388,13 @@ define( require => {
     }
   }
 
+  /**
+   * pH indicator that slides vertically along scale.
+   * When there is no pH value, it points to 'neutral' but does not display a value.
+   */
   class IndicatorNode extends Node {
 
     /**
-     * pH indicator that slides vertically along scale.
-     * When there is no pH value, it points to 'neutral' but does not display a value.
      * @param {Property.<number>} pHProperty
      * @param {number} scaleWidth
      */

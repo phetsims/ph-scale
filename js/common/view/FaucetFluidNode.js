@@ -10,46 +10,44 @@ define( require => {
   'use strict';
 
   // modules
-  const inherit = require( 'PHET_CORE/inherit' );
   const phScale = require( 'PH_SCALE/phScale' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
-  /**
-   * @param {Faucet} faucet
-   * @param {Property.<Color>} colorProperty
-   * @param {number} height in model coordinates
-   * @param {ModelViewTransform2} modelViewTransform
-   * @constructor
-   */
-  function FaucetFluidNode( faucet, colorProperty, height, modelViewTransform ) {
+  class FaucetFluidNode extends Rectangle {
 
-    const self = this;
-    Rectangle.call( this, 0, 0, 0, 0, { lineWidth: 1, pickable: false } );
-
-    // Set the color of the fluid coming out of the spout.
-    colorProperty.link( function( color ) {
-      self.fill = color;
-      self.stroke = color.darkerColor();
-    } );
-
-    /*
-     * Set the width of the shape to match the flow rate.
-     * @param {number} flowRate
+    /**
+     * @param {Faucet} faucet
+     * @param {Property.<Color>} colorProperty
+     * @param {number} height in model coordinates
+     * @param {ModelViewTransform2} modelViewTransform
      */
-    const viewPosition = modelViewTransform.modelToViewPosition( faucet.position );
-    const viewHeight = modelViewTransform.modelToViewDeltaY( height );
-    faucet.flowRateProperty.link( function( flowRate ) {
-      if ( flowRate === 0 ) {
-        self.setRect( -1, -1, 0, 0 ); // empty rectangle, at a position where we won't intersect with it
-      }
-      else {
-        const viewWidth = modelViewTransform.modelToViewDeltaX( faucet.spoutWidth * flowRate / faucet.maxFlowRate );
-        self.setRect( viewPosition.x - (viewWidth / 2), viewPosition.y, viewWidth, viewHeight );
-      }
-    } );
+    constructor( faucet, colorProperty, height, modelViewTransform ) {
+
+      super( 0, 0, 0, 0, { lineWidth: 1, pickable: false } );
+
+      // Set the color of the fluid coming out of the spout.
+      colorProperty.link( color => {
+        this.fill = color;
+        this.stroke = color.darkerColor();
+      } );
+
+      /*
+       * Set the width of the shape to match the flow rate.
+       * @param {number} flowRate
+       */
+      const viewPosition = modelViewTransform.modelToViewPosition( faucet.position );
+      const viewHeight = modelViewTransform.modelToViewDeltaY( height );
+      faucet.flowRateProperty.link( flowRate => {
+        if ( flowRate === 0 ) {
+          this.setRect( -1, -1, 0, 0 ); // empty rectangle, at a position where we won't intersect with it
+        }
+        else {
+          const viewWidth = modelViewTransform.modelToViewDeltaX( faucet.spoutWidth * flowRate / faucet.maxFlowRate );
+          this.setRect( viewPosition.x - ( viewWidth / 2 ), viewPosition.y, viewWidth, viewHeight );
+        }
+      } );
+    }
   }
 
-  phScale.register( 'FaucetFluidNode', FaucetFluidNode );
-
-  return inherit( Rectangle, FaucetFluidNode );
+  return phScale.register( 'FaucetFluidNode', FaucetFluidNode );
 } );

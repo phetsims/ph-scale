@@ -44,9 +44,8 @@ define( require => {
       label.centerY = background.centerY;
 
       // make this node visible when the solution has neutral pH
-      const self = this;
-      solution.pHProperty.link( function( pH ) {
-        self.setVisible( pH === Water.pH );
+      solution.pHProperty.link( pH => {
+        this.setVisible( pH === Water.pH );
       } );
     }
   }

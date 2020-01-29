@@ -1,4 +1,4 @@
-// Copyright 2013-2019, University of Colorado Boulder
+// Copyright 2013-2020, University of Colorado Boulder
 
 /**
  * Visual representation of H3O+/OH- ratio.
@@ -18,7 +18,6 @@ define( require => {
   // modules
   const CanvasNode = require( 'SCENERY/nodes/CanvasNode' );
   const Circle = require( 'SCENERY/nodes/Circle' );
-  const inherit = require( 'PHET_CORE/inherit' );
   const Node = require( 'SCENERY/nodes/Node' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const PHModel = require( 'PH_SCALE/common/model/PHModel' );
@@ -41,68 +40,62 @@ define( require => {
   const H3O_RADIUS = 3;
   const OH_RADIUS = H3O_RADIUS;
 
-  //-------------------------------------------------------------------------------------
+  class RatioNode extends Node {
 
-  /**
-   * @param {Beaker} beaker
-   * @param {Solution} solution
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {Object} [options]
-   * @constructor
-   */
-  function RatioNode( beaker, solution, modelViewTransform, options ) {
+    /**
+     * @param {Beaker} beaker
+     * @param {Solution} solution
+     * @param {ModelViewTransform2} modelViewTransform
+     * @param {Object} [options]
+     */
+    constructor( beaker, solution, modelViewTransform, options ) {
 
-    Node.call( this );
+      super();
 
-    // @private save constructor args
-    this.solution = solution;
+      // @private save constructor args
+      this.solution = solution;
 
-    // @private current pH, null to force an update
-    this.pH = null;
+      // @private current pH, null to force an update
+      this.pH = null;
 
-    // bounds of the beaker, in view coordinates
-    const beakerBounds = modelViewTransform.modelToViewBounds( beaker.bounds );
+      // bounds of the beaker, in view coordinates
+      const beakerBounds = modelViewTransform.modelToViewBounds( beaker.bounds );
 
-    // @private parent for all molecules
-    this.moleculesNode = new MoleculesCanvas( beakerBounds );
-    this.addChild( this.moleculesNode );
+      // @private parent for all molecules
+      this.moleculesNode = new MoleculesCanvas( beakerBounds );
+      this.addChild( this.moleculesNode );
 
-    // dev mode, show numbers of molecules at bottom of beaker
-    if ( PHScaleQueryParameters.showRatio ) {
+      // dev mode, show numbers of molecules at bottom of beaker
+      if ( PHScaleQueryParameters.showRatio ) {
 
-      // @private
-      this.ratioText = new Text( '?', {
-        font: new PhetFont( 30 ),
-        fill: 'black',
-        centerX: beakerBounds.getCenterX(),
-        bottom: beakerBounds.maxY - 20
+        // @private
+        this.ratioText = new Text( '?', {
+          font: new PhetFont( 30 ),
+          fill: 'black',
+          centerX: beakerBounds.getCenterX(),
+          bottom: beakerBounds.maxY - 20
+        } );
+        this.addChild( this.ratioText );
+      }
+
+      // call before registering for Property notifications, because 'visible' significantly affects initialization time
+      this.mutate( options );
+
+      // sync view with model
+      solution.pHProperty.link( this.update.bind( this ) );
+
+      // clip to the shape of the solution in the beaker
+      solution.volumeProperty.link( volume => {
+        if ( volume === 0 ) {
+          this.clipArea = null;
+        }
+        else {
+          const solutionHeight = beakerBounds.getHeight() * volume / beaker.volume;
+          this.clipArea = Shape.rectangle( beakerBounds.minX, beakerBounds.maxY - solutionHeight, beakerBounds.getWidth(), solutionHeight );
+        }
+        this.moleculesNode.invalidatePaint(); //WORKAROUND: #25, scenery#200
       } );
-      this.addChild( this.ratioText );
     }
-
-    // call before registering for Property notifications, because 'visible' significantly affects initialization time
-    this.mutate( options );
-
-    // sync view with model
-    solution.pHProperty.link( this.update.bind( this ) );
-
-    // clip to the shape of the solution in the beaker
-    const self = this;
-    solution.volumeProperty.link( function( volume ) {
-      if ( volume === 0 ) {
-        self.clipArea = null;
-      }
-      else {
-        const solutionHeight = beakerBounds.getHeight() * volume / beaker.volume;
-        self.clipArea = Shape.rectangle( beakerBounds.minX, beakerBounds.maxY - solutionHeight, beakerBounds.getWidth(), solutionHeight );
-      }
-      self.moleculesNode.invalidatePaint(); //WORKAROUND: #25, scenery#200
-    } );
-  }
-
-  phScale.register( 'RatioNode', RatioNode );
-
-  inherit( Node, RatioNode, {
 
     /**
      * When this node becomes visible, update it.
@@ -110,18 +103,18 @@ define( require => {
      * @public
      * @override
      */
-    setVisible: function( visible ) {
+    setVisible( visible ) {
       const doUpdate = visible && !this.visible;
-      Node.prototype.setVisible.call( this, visible );
+      super.setVisible.call( this, visible );
       if ( doUpdate ) { this.update(); }
-    },
+    }
 
     /**
      * Updates the number of molecules when the pH (as displayed on the meter) changes.
      * If volume changes, we don't create more molecules, we just expose more of them.
      * @private
      */
-    update: function() {
+    update() {
 
       // don't update if not visible
       if ( !this.visible ) { return; }
@@ -153,14 +146,14 @@ define( require => {
             const N = ( MAX_MAJORITY_MOLECULES - computeNumberOfOH( LOG_PH_RANGE.max ) ) / ( PHScaleConstants.PH_RANGE.max - LOG_PH_RANGE.max );
             let pHDiff;
             if ( pH > LOG_PH_RANGE.max ) {
-              
+
               // strong base
               pHDiff = pH - LOG_PH_RANGE.max;
               numberOfH3O = Math.max( MIN_MINORITY_MOLECULES, ( computeNumberOfH3O( LOG_PH_RANGE.max ) - pHDiff ) );
               numberOfOH = computeNumberOfOH( LOG_PH_RANGE.max ) + ( pHDiff * N );
             }
             else {
-              
+
               // strong acid
               pHDiff = LOG_PH_RANGE.min - pH;
               numberOfH3O = computeNumberOfH3O( LOG_PH_RANGE.min ) + ( pHDiff * N );
@@ -182,9 +175,11 @@ define( require => {
         }
       }
     }
-  } );
+  }
 
-  // @private ----------------------------------------------------------------------------
+  phScale.register( 'RatioNode', RatioNode );
+
+  //-------------------------------------------------------------------------------------
 
   // Creates a random {number} x-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
   function createRandomX( bounds ) {
@@ -210,49 +205,48 @@ define( require => {
 
   /**
    * Draws all molecules directly to Canvas.
-   * @param {Bounds2} beakerBounds - beaker bounds in view coordinate frame
-   * @constructor
    */
-  function MoleculesCanvas( beakerBounds ) {
+  class MoleculesCanvas extends CanvasNode {
 
-    const self = this;
+    /**
+     * @param {Bounds2} beakerBounds - beaker bounds in view coordinate frame
+     */
+    constructor( beakerBounds ) {
 
-    CanvasNode.call( this, { canvasBounds: beakerBounds } );
+      super( { canvasBounds: beakerBounds } );
 
-    // @private
-    this.beakerBounds = beakerBounds;
-    this.numberOfH3OMolecules = 0;
-    this.numberOfOHMolecules = 0;
+      // @private
+      this.beakerBounds = beakerBounds;
+      this.numberOfH3OMolecules = 0;
+      this.numberOfOHMolecules = 0;
 
-    // use typed array if available, it will use less memory and be faster
-    const ArrayConstructor = window.Float32Array || window.Array;
+      // use typed array if available, it will use less memory and be faster
+      const ArrayConstructor = window.Float32Array || window.Array;
 
-    // @private pre-allocate arrays for molecule x and y coordinates, to eliminate allocation in critical code
-    this.xH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
-    this.yH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
-    this.xOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
-    this.yOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
+      // @private pre-allocate arrays for molecule x and y coordinates, to eliminate allocation in critical code
+      this.xH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
+      this.yH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
+      this.xOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
+      this.yOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
 
-    // @private Generate majority and minority {HTMLCanvasElement} for each molecule.
-    new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA ) } )
-      .toCanvas( function( canvas, x, y, width, height ) {
-        self.imageH3OMajority = canvas;
-      } );
-    new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MINORITY_ALPHA ) } )
-      .toCanvas( function( canvas, x, y, width, height ) {
-        self.imageH3OMinority = canvas;
-      } );
-    new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MAJORITY_ALPHA ) } )
-      .toCanvas( function( canvas, x, y, width, height ) {
-        self.imageOHMajority = canvas;
-      } );
-    new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MINORITY_ALPHA ) } )
-      .toCanvas( function( canvas, x, y, width, height ) {
-        self.imageOHMinority = canvas;
-      } );
-  }
-
-  inherit( CanvasNode, MoleculesCanvas, {
+      // @private Generate majority and minority {HTMLCanvasElement} for each molecule.
+      new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA ) } )
+        .toCanvas( ( canvas, x, y, width, height ) => {
+          this.imageH3OMajority = canvas;
+        } );
+      new Circle( H3O_RADIUS, { fill: PHScaleColors.H3O_MOLECULES.withAlpha( MINORITY_ALPHA ) } )
+        .toCanvas( ( canvas, x, y, width, height ) => {
+          this.imageH3OMinority = canvas;
+        } );
+      new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MAJORITY_ALPHA ) } )
+        .toCanvas( ( canvas, x, y, width, height ) => {
+          this.imageOHMajority = canvas;
+        } );
+      new Circle( OH_RADIUS, { fill: PHScaleColors.OH_MOLECULES.withAlpha( MINORITY_ALPHA ) } )
+        .toCanvas( ( canvas, x, y, width, height ) => {
+          this.imageOHMinority = canvas;
+        } );
+    }
 
     /**
      * Sets the number of molecules to display. Called when the solution's pH changes.
@@ -260,7 +254,7 @@ define( require => {
      * @param {number} numberOfOHMolecules
      * @public
      */
-    setNumberOfMolecules: function( numberOfH3OMolecules, numberOfOHMolecules ) {
+    setNumberOfMolecules( numberOfH3OMolecules, numberOfOHMolecules ) {
       if ( numberOfH3OMolecules !== this.numberOfH3OMolecules || numberOfOHMolecules !== this.numberOfOHMolecules ) {
 
         /*
@@ -285,7 +279,7 @@ define( require => {
 
         this.invalidatePaint(); // results in paintCanvas being called
       }
-    },
+    }
 
     /**
      * Paints molecules to the Canvas.
@@ -293,7 +287,7 @@ define( require => {
      * @protected
      * @override
      */
-    paintCanvas: function( context ) {
+    paintCanvas( context ) {
 
       // draw majority species behind minority species
       if ( this.numberOfH3OMolecules > this.numberOfOHMolecules ) {
@@ -304,7 +298,7 @@ define( require => {
         this.drawMolecules( context, this.imageOHMajority, this.numberOfOHMolecules, this.xOH, this.yOH );
         this.drawMolecules( context, this.imageH3OMinority, this.numberOfH3OMolecules, this.xH3O, this.yH3O );
       }
-    },
+    }
 
     /**
      * Draws one species of molecule. Using drawImage is faster than arc.
@@ -315,7 +309,7 @@ define( require => {
      * @param {number[]} yCoordinates
      * @private
      */
-    drawMolecules: function( context, image, numberOfMolecules, xCoordinates, yCoordinates ) {
+    drawMolecules( context, image, numberOfMolecules, xCoordinates, yCoordinates ) {
 
       // images are generated asynchronously, so test just in case they aren't available when this is first called
       if ( image ) {
@@ -324,7 +318,7 @@ define( require => {
         }
       }
     }
-  } );
+  }
 
   return RatioNode;
 } );

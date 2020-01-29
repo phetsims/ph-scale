@@ -1,4 +1,4 @@
-// Copyright 2013-2019, University of Colorado Boulder
+// Copyright 2013-2020, University of Colorado Boulder
 
 /**
  * Type of graph (log or linear).
@@ -17,7 +17,5 @@ define( require => {
     LINEAR: 'linear'
   } );
 
-  phScale.register( 'GraphScale', GraphScale );
-
-  return GraphScale;
+  return phScale.register( 'GraphScale', GraphScale );
 } );

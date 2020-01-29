@@ -1,4 +1,4 @@
-// Copyright 2013-2019, University of Colorado Boulder
+// Copyright 2013-2020, University of Colorado Boulder
 
 /**
  * Container for all components related to the graph feature.
@@ -17,7 +17,6 @@ define( require => {
   const ExpandCollapseBar = require( 'SUN/ExpandCollapseBar' );
   const GraphScale = require( 'PH_SCALE/common/view/graph/GraphScale' );
   const GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
-  const inherit = require( 'PHET_CORE/inherit' );
   const Line = require( 'SCENERY/nodes/Line' );
   const LinearGraph = require( 'PH_SCALE/common/view/graph/LinearGraph' );
   const LogarithmicGraph = require( 'PH_SCALE/common/view/graph/LogarithmicGraph' );
@@ -44,173 +43,173 @@ define( require => {
   // constants
   const AB_SWITCH_FONT = new PhetFont( { size: 18, weight: 'bold' } );
 
-  /**
-   * @param {Solution} solution
-   * @param {Property.<boolean>} expandedProperty
-   * @param {Object} [options]
-   * @constructor
-   */
-  function GraphNode( solution, expandedProperty, options ) {
+  class GraphNode extends Node {
 
-    options = merge( {
-      isInteractive: false, // only the Log scale can be interactive
-      logScaleHeight: 500,
-      linearScaleHeight: 500,
-      units: GraphUnits.MOLES_PER_LITER, // initial state of the units switch
-      hasLinearFeature: false, // add the linear graph feature?
-      graphScale: GraphScale.LOGARITHMIC // initial state of the scale switch, meaningful only if hasLinearFeature === true
-    }, options );
+    /**
+     * @param {Solution} solution
+     * @param {Property.<boolean>} expandedProperty
+     * @param {Object} [options]
+     */
+    constructor( solution, expandedProperty, options ) {
 
-    Node.call( this );
+      options = merge( {
+        isInteractive: false, // only the Log scale can be interactive
+        logScaleHeight: 500,
+        linearScaleHeight: 500,
+        units: GraphUnits.MOLES_PER_LITER, // initial state of the units switch
+        hasLinearFeature: false, // add the linear graph feature?
+        graphScale: GraphScale.LOGARITHMIC // initial state of the scale switch, meaningful only if hasLinearFeature === true
+      }, options );
 
-    const mantissaRange = PHScaleConstants.LINEAR_MANTISSA_RANGE;
-    const exponentRange = PHScaleConstants.LINEAR_EXPONENT_RANGE;
+      super();
 
-    // @private Properties specific to GraphNode
-    this.graphUnitsProperty = new StringProperty( options.units );
-    this.exponentProperty = new NumberProperty( exponentRange.max ); // {number} exponent on the linear graph
-    this.graphScaleProperty = new StringProperty( options.graphScale ); // {number} scale on the linear graph
+      const mantissaRange = PHScaleConstants.LINEAR_MANTISSA_RANGE;
+      const exponentRange = PHScaleConstants.LINEAR_EXPONENT_RANGE;
 
-    // expand/collapse bar
-    const expandCollapseBar = new ExpandCollapseBar(
-      new Text( '' ),
-      expandedProperty, {
-        minWidth: 350,
-        minHeight: 55,
-        barFill: PHScaleColors.PANEL_FILL,
-        barLineWidth: 2,
-        buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
+      // @private Properties specific to GraphNode
+      this.graphUnitsProperty = new StringProperty( options.units );
+      this.exponentProperty = new NumberProperty( exponentRange.max ); // {number} exponent on the linear graph
+      this.graphScaleProperty = new StringProperty( options.graphScale ); // {number} scale on the linear graph
+
+      // expand/collapse bar
+      const expandCollapseBar = new ExpandCollapseBar(
+        new Text( '' ),
+        expandedProperty, {
+          minWidth: 350,
+          minHeight: 55,
+          barFill: PHScaleColors.PANEL_FILL,
+          barLineWidth: 2,
+          buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
+        } );
+
+      // units switch (Concentration vs Quantity)
+      const graphUnitsSwitch = new ABSwitch( this.graphUnitsProperty,
+        GraphUnits.MOLES_PER_LITER, new RichText( concentrationString + '<br>(' + unitsMolesPerLiterString + ')', {
+          align: 'center',
+          font: AB_SWITCH_FONT,
+          maxWidth: 125
+        } ),
+        GraphUnits.MOLES, new RichText( quantityString + '<br>(' + unitsMolesString + ')', {
+          align: 'center',
+          font: AB_SWITCH_FONT,
+          maxWidth: 85
+        } ), {
+          size: new Dimension2( 50, 25 ),
+          centerOnButton: true,
+          center: expandCollapseBar.center
+        } );
+
+      // logarithmic graph
+      const logarithmicGraph = new LogarithmicGraph( solution, this.graphUnitsProperty, {
+        scaleHeight: options.logScaleHeight,
+        isInteractive: options.isInteractive
       } );
 
-    // units switch (Concentration vs Quantity)
-    const graphUnitsSwitch = new ABSwitch( this.graphUnitsProperty,
-      GraphUnits.MOLES_PER_LITER, new RichText( concentrationString + '<br>(' + unitsMolesPerLiterString + ')', {
-        align: 'center',
-        font: AB_SWITCH_FONT,
-        maxWidth: 125
-      } ),
-      GraphUnits.MOLES, new RichText( quantityString + '<br>(' + unitsMolesString + ')', {
-        align: 'center',
-        font: AB_SWITCH_FONT,
-        maxWidth: 85
-      } ), {
-        size: new Dimension2( 50, 25 ),
-        centerOnButton: true,
-        center: expandCollapseBar.center
-      } );
-
-    // logarithmic graph
-    const logarithmicGraph = new LogarithmicGraph( solution, this.graphUnitsProperty, {
-      scaleHeight: options.logScaleHeight,
-      isInteractive: options.isInteractive
-    } );
-
-    // vertical line that connects bottom of expand/collapse bar to top of graph
-    const lineToBarNode = new Line( 0, 0, 0, 75, { stroke: 'black' } );
-
-    // rendering order
-    this.addChild( expandCollapseBar );
-    this.addChild( graphUnitsSwitch );
-    const graphNode = new Node();
-    this.addChild( graphNode );
-    graphNode.addChild( lineToBarNode );
-    graphNode.addChild( logarithmicGraph );
-
-    // layout
-    logarithmicGraph.centerX = lineToBarNode.centerX;
-    logarithmicGraph.y = 30; // y, not top
-    graphNode.centerX = expandCollapseBar.centerX;
-    graphNode.y = expandCollapseBar.bottom; // y, not top
-
-    // expand/collapse the graph
-    expandedProperty.link( function( expanded ) {
-      graphNode.visible = expanded;
-    } );
-
-    // optional linear graph
-    this.hasLinearFeature = options.hasLinearFeature; // @private
-    if ( this.hasLinearFeature ) {
-
-      // linear graph
-      const linearGraph = new LinearGraph( solution, this.graphUnitsProperty, mantissaRange, this.exponentProperty, {
-        scaleHeight: options.linearScaleHeight
-      } );
-
-      // zoom buttons for the linear graph
-      const magnifyingGlassRadius = 13;
-      const zoomOutButton = new ZoomButton( { in: false, radius: magnifyingGlassRadius } );
-      const zoomInButton = new ZoomButton( { in: true, radius: magnifyingGlassRadius } );
-      const zoomButtons = new Node( { children: [ zoomOutButton, zoomInButton ] } );
-      zoomInButton.left = zoomOutButton.right + 25;
-      zoomInButton.centerY = zoomOutButton.centerY;
-      // expand touch area
-      zoomOutButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
-      zoomInButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
-
-      // scale switch (Logarithmic vs Linear)
-      const textOptions = {
-        font: AB_SWITCH_FONT,
-        maxWidth: 125
-      };
-      const graphScaleSwitch = new ABSwitch( this.graphScaleProperty,
-        GraphScale.LOGARITHMIC, new Text( logarithmicString, textOptions ),
-        GraphScale.LINEAR, new Text( linearString, textOptions ),
-        { size: new Dimension2( 50, 25 ), centerOnButton: true } );
-
-      // vertical line that connects bottom of graph to top of scale switch
-      const lineToSwitchNode = new Line( 0, 0, 0, 200, { stroke: 'black ' } );
+      // vertical line that connects bottom of expand/collapse bar to top of graph
+      const lineToBarNode = new Line( 0, 0, 0, 75, { stroke: 'black' } );
 
       // rendering order
-      graphNode.addChild( lineToSwitchNode );
-      lineToSwitchNode.moveToBack();
-      graphNode.addChild( linearGraph );
-      graphNode.addChild( zoomButtons );
-      graphNode.addChild( graphScaleSwitch );
+      this.addChild( expandCollapseBar );
+      this.addChild( graphUnitsSwitch );
+      const graphNode = new Node();
+      this.addChild( graphNode );
+      graphNode.addChild( lineToBarNode );
+      graphNode.addChild( logarithmicGraph );
 
       // layout
-      const ySpacing = 15;
-      linearGraph.centerX = logarithmicGraph.centerX;
-      linearGraph.y = logarithmicGraph.y; // y, not top
-      zoomButtons.centerX = logarithmicGraph.centerX;
-      zoomButtons.top = linearGraph.y + options.linearScaleHeight + ( 3 * ySpacing );
-      graphScaleSwitch.centerX = lineToSwitchNode.centerX;
-      graphScaleSwitch.top = zoomButtons.bottom + ySpacing;
-      lineToSwitchNode.centerX = lineToBarNode.centerX;
-      lineToSwitchNode.bottom = graphScaleSwitch.top + 1;
+      logarithmicGraph.centerX = lineToBarNode.centerX;
+      logarithmicGraph.y = 30; // y, not top
+      graphNode.centerX = expandCollapseBar.centerX;
+      graphNode.y = expandCollapseBar.bottom; // y, not top
 
-      // handle scale changes
-      this.graphScaleProperty.link( function( graphScale ) {
-        logarithmicGraph.visible = ( graphScale === GraphScale.LOGARITHMIC );
-        linearGraph.visible = zoomButtons.visible = ( graphScale === GraphScale.LINEAR );
+      // expand/collapse the graph
+      expandedProperty.link( expanded => {
+        graphNode.visible = expanded;
       } );
 
-      // enable/disable zoom buttons
-      this.exponentProperty.link( function( exponent ) {
-        assert && assert( exponentRange.contains( exponent ) );
-        zoomInButton.enabled = ( exponent > exponentRange.min );
-        zoomOutButton.enabled = ( exponent < exponentRange.max );
-      } );
+      // optional linear graph
+      this.hasLinearFeature = options.hasLinearFeature; // @private
+      if ( this.hasLinearFeature ) {
 
-      // handle zoom of linear graph
-      const self = this;
-      zoomInButton.addListener( function() {
-        self.exponentProperty.set( self.exponentProperty.get() - 1 );
-      } );
-      zoomOutButton.addListener( function() {
-        self.exponentProperty.set( self.exponentProperty.get() + 1 );
-      } );
+        // linear graph
+        const linearGraph = new LinearGraph( solution, this.graphUnitsProperty, mantissaRange, this.exponentProperty, {
+          scaleHeight: options.linearScaleHeight
+        } );
+
+        // zoom buttons for the linear graph
+        const magnifyingGlassRadius = 13;
+        const zoomOutButton = new ZoomButton( { in: false, radius: magnifyingGlassRadius } );
+        const zoomInButton = new ZoomButton( { in: true, radius: magnifyingGlassRadius } );
+        const zoomButtons = new Node( { children: [ zoomOutButton, zoomInButton ] } );
+        zoomInButton.left = zoomOutButton.right + 25;
+        zoomInButton.centerY = zoomOutButton.centerY;
+        // expand touch area
+        zoomOutButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
+        zoomInButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
+
+        // scale switch (Logarithmic vs Linear)
+        const textOptions = {
+          font: AB_SWITCH_FONT,
+          maxWidth: 125
+        };
+        const graphScaleSwitch = new ABSwitch( this.graphScaleProperty,
+          GraphScale.LOGARITHMIC, new Text( logarithmicString, textOptions ),
+          GraphScale.LINEAR, new Text( linearString, textOptions ),
+          { size: new Dimension2( 50, 25 ), centerOnButton: true } );
+
+        // vertical line that connects bottom of graph to top of scale switch
+        const lineToSwitchNode = new Line( 0, 0, 0, 200, { stroke: 'black ' } );
+
+        // rendering order
+        graphNode.addChild( lineToSwitchNode );
+        lineToSwitchNode.moveToBack();
+        graphNode.addChild( linearGraph );
+        graphNode.addChild( zoomButtons );
+        graphNode.addChild( graphScaleSwitch );
+
+        // layout
+        const ySpacing = 15;
+        linearGraph.centerX = logarithmicGraph.centerX;
+        linearGraph.y = logarithmicGraph.y; // y, not top
+        zoomButtons.centerX = logarithmicGraph.centerX;
+        zoomButtons.top = linearGraph.y + options.linearScaleHeight + ( 3 * ySpacing );
+        graphScaleSwitch.centerX = lineToSwitchNode.centerX;
+        graphScaleSwitch.top = zoomButtons.bottom + ySpacing;
+        lineToSwitchNode.centerX = lineToBarNode.centerX;
+        lineToSwitchNode.bottom = graphScaleSwitch.top + 1;
+
+        // handle scale changes
+        this.graphScaleProperty.link( graphScale => {
+          logarithmicGraph.visible = ( graphScale === GraphScale.LOGARITHMIC );
+          linearGraph.visible = zoomButtons.visible = ( graphScale === GraphScale.LINEAR );
+        } );
+
+        // enable/disable zoom buttons
+        this.exponentProperty.link( exponent => {
+          assert && assert( exponentRange.contains( exponent ) );
+          zoomInButton.enabled = ( exponent > exponentRange.min );
+          zoomOutButton.enabled = ( exponent < exponentRange.max );
+        } );
+
+        // handle zoom of linear graph
+        zoomInButton.addListener( () => {
+          this.exponentProperty.set( this.exponentProperty.get() - 1 );
+        } );
+        zoomOutButton.addListener( () => {
+          this.exponentProperty.set( this.exponentProperty.get() + 1 );
+        } );
+      }
     }
-  }
 
-  phScale.register( 'GraphNode', GraphNode );
-
-  return inherit( Node, GraphNode, {
-
-    // @public
-    reset: function() {
+    /**
+     * @public
+     */
+    reset() {
       this.graphUnitsProperty.reset();
       this.exponentProperty.reset();
       this.graphScaleProperty.reset();
     }
-  } );
+  }
+
+  return phScale.register( 'GraphNode', GraphNode );
 } );

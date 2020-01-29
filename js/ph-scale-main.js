@@ -23,7 +23,7 @@ define( require => {
     credits: PHScaleConstants.CREDITS
   };
 
-  SimLauncher.launch( function() {
+  SimLauncher.launch( () => {
     const screens = [
       new MacroScreen(),
       new MicroScreen(),

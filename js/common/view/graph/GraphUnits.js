@@ -1,4 +1,4 @@
-// Copyright 2013-2019, University of Colorado Boulder
+// Copyright 2013-2020, University of Colorado Boulder
 
 /**
  * Units used on the graph.
@@ -16,7 +16,5 @@ define( require => {
     MOLES: 'moles'
   } );
 
-  phScale.register( 'GraphUnits', GraphUnits );
-
-  return GraphUnits;
+  return phScale.register( 'GraphUnits', GraphUnits );
 } );

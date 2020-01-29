@@ -10,7 +10,6 @@ define( require => {
   'use strict';
 
   // modules
-  const inherit = require( 'PHET_CORE/inherit' );
   const Node = require( 'SCENERY/nodes/Node' );
   const Path = require( 'SCENERY/nodes/Path' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -34,76 +33,75 @@ define( require => {
   const MAJOR_TICK_LABELS = [ '\u00bd', '1' ]; // 1/2, 1
   const MAJOR_TICK_FONT = new PhetFont( 24 );
 
-  /**
-   * Constructor
-   * @param {Beaker} beaker
-   * @param {ModelViewTransform2} modelViewTransform
-   * @constructor
-   */
-  function BeakerNode( beaker, modelViewTransform ) {
+  class BeakerNode extends Node {
 
-    Node.call( this );
+    /**
+     * @param {Beaker} beaker
+     * @param {ModelViewTransform2} modelViewTransform
+     */
+    constructor( beaker, modelViewTransform ) {
 
-    // outline of the beaker, starting from upper left
-    const beakerWidth = modelViewTransform.modelToViewDeltaX( beaker.size.width );
-    const beakerHeight = modelViewTransform.modelToViewDeltaY( beaker.size.height );
-    const outlineShape = new Shape()
-      .moveTo( -(beakerWidth / 2 ) - RIM_OFFSET, -beakerHeight - RIM_OFFSET )
-      .lineTo( -(beakerWidth / 2), -beakerHeight )
-      .lineTo( -(beakerWidth / 2), 0 )
-      .lineTo( beakerWidth / 2, 0 )
-      .lineTo( beakerWidth / 2, -beakerHeight )
-      .lineTo( (beakerWidth / 2) + RIM_OFFSET, -beakerHeight - RIM_OFFSET );
-    this.addChild( new Path( outlineShape, {
-      stroke: 'black',
-      lineWidth: 3,
-      lineCap: 'round',
-      lineJoin: 'round'
-    } ) );
+      super();
 
-    // horizontal tick marks on left and right edges, labels on right ticks, from bottom up
-    const ticksParent = new Node();
-    this.addChild( ticksParent );
-    const numberOfTicks = Utils.roundSymmetric( beaker.volume / MINOR_TICK_SPACING );
-    const deltaY = beakerHeight / numberOfTicks;
-    const beakerLeft = -beakerWidth / 2;
-    const beakerRight = beakerWidth / 2;
-    for ( let i = 1; i <= numberOfTicks; i++ ) {
+      // outline of the beaker, starting from upper left
+      const beakerWidth = modelViewTransform.modelToViewDeltaX( beaker.size.width );
+      const beakerHeight = modelViewTransform.modelToViewDeltaY( beaker.size.height );
+      const outlineShape = new Shape()
+        .moveTo( -( beakerWidth / 2 ) - RIM_OFFSET, -beakerHeight - RIM_OFFSET )
+        .lineTo( -( beakerWidth / 2 ), -beakerHeight )
+        .lineTo( -( beakerWidth / 2 ), 0 )
+        .lineTo( beakerWidth / 2, 0 )
+        .lineTo( beakerWidth / 2, -beakerHeight )
+        .lineTo( ( beakerWidth / 2 ) + RIM_OFFSET, -beakerHeight - RIM_OFFSET );
+      this.addChild( new Path( outlineShape, {
+        stroke: 'black',
+        lineWidth: 3,
+        lineCap: 'round',
+        lineJoin: 'round'
+      } ) );
 
-      const isMajorTick = ( i % MINOR_TICKS_PER_MAJOR_TICK === 0 );
-      const tickLength = ( isMajorTick ? MAJOR_TICK_LENGTH : MINOR_TICK_LENGTH );
-      const y = -( i * deltaY );
+      // horizontal tick marks on left and right edges, labels on right ticks, from bottom up
+      const ticksParent = new Node();
+      this.addChild( ticksParent );
+      const numberOfTicks = Utils.roundSymmetric( beaker.volume / MINOR_TICK_SPACING );
+      const deltaY = beakerHeight / numberOfTicks;
+      const beakerLeft = -beakerWidth / 2;
+      const beakerRight = beakerWidth / 2;
+      for ( let i = 1; i <= numberOfTicks; i++ ) {
 
-      // left tick
-      ticksParent.addChild( new Path(
-        new Shape().moveTo( beakerLeft, y ).lineTo( beakerLeft + tickLength, y ),
-        { stroke: 'black', lineWidth: 2, lineCap: 'butt', lineJoin: 'bevel' } ) );
+        const isMajorTick = ( i % MINOR_TICKS_PER_MAJOR_TICK === 0 );
+        const tickLength = ( isMajorTick ? MAJOR_TICK_LENGTH : MINOR_TICK_LENGTH );
+        const y = -( i * deltaY );
 
-      // right tick
-      ticksParent.addChild( new Path(
-        new Shape().moveTo( beakerRight, y ).lineTo( beakerRight - tickLength, y ),
-        { stroke: 'black', lineWidth: 2, lineCap: 'butt', lineJoin: 'bevel' } ) );
+        // left tick
+        ticksParent.addChild( new Path(
+          new Shape().moveTo( beakerLeft, y ).lineTo( beakerLeft + tickLength, y ),
+          { stroke: 'black', lineWidth: 2, lineCap: 'butt', lineJoin: 'bevel' } ) );
 
-      // label on right 'major' tick
-      if ( isMajorTick ) {
-        const labelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
-        if ( labelIndex < MAJOR_TICK_LABELS.length ) {
-          const label = StringUtils.format( pattern0Value1UnitsString, MAJOR_TICK_LABELS[ labelIndex ], unitsLitersString );
-          ticksParent.addChild( new Text( label, {
-            font: MAJOR_TICK_FONT,
-            fill: 'black',
-            right: beakerRight - tickLength - TICK_LABEL_X_SPACING,
-            centerY: y,
-            maxWidth: 0.25 * beaker.size.width
-          } ) );
+        // right tick
+        ticksParent.addChild( new Path(
+          new Shape().moveTo( beakerRight, y ).lineTo( beakerRight - tickLength, y ),
+          { stroke: 'black', lineWidth: 2, lineCap: 'butt', lineJoin: 'bevel' } ) );
+
+        // label on right 'major' tick
+        if ( isMajorTick ) {
+          const labelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
+          if ( labelIndex < MAJOR_TICK_LABELS.length ) {
+            const label = StringUtils.format( pattern0Value1UnitsString, MAJOR_TICK_LABELS[ labelIndex ], unitsLitersString );
+            ticksParent.addChild( new Text( label, {
+              font: MAJOR_TICK_FONT,
+              fill: 'black',
+              right: beakerRight - tickLength - TICK_LABEL_X_SPACING,
+              centerY: y,
+              maxWidth: 0.25 * beaker.size.width
+            } ) );
+          }
         }
       }
-    }
 
-    this.translation = modelViewTransform.modelToViewPosition( beaker.position );
+      this.translation = modelViewTransform.modelToViewPosition( beaker.position );
+    }
   }
 
-  phScale.register( 'BeakerNode', BeakerNode );
-
-  return inherit( Node, BeakerNode );
+  return phScale.register( 'BeakerNode', BeakerNode );
 } );

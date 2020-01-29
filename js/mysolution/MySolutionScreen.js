@@ -37,8 +37,8 @@ define( require => {
       };
 
       super(
-        function() { return new MySolutionModel(); },
-        function( model ) { return new MySolutionScreenView( model, ModelViewTransform2.createIdentity() ); },
+        () => new MySolutionModel(),
+        model => new MySolutionScreenView( model, ModelViewTransform2.createIdentity() ),
         options
       );
     }

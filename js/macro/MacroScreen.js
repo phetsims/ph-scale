@@ -40,8 +40,8 @@ define( require => {
       };
 
       super(
-        function() { return new MacroModel( modelOptions ); },
-        function( model ) { return new MacroScreenView( model, ModelViewTransform2.createIdentity() ); },
+        () => new MacroModel( modelOptions ),
+        model => new MacroScreenView( model, ModelViewTransform2.createIdentity() ),
         options
       );
     }

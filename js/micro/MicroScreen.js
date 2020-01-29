@@ -37,8 +37,8 @@ define( require => {
       };
 
       super(
-        function() { return new MicroModel(); },
-        function( model ) { return new MicroScreenView( model, ModelViewTransform2.createIdentity() ); },
+        () => new MicroModel(),
+        model => new MicroScreenView( model, ModelViewTransform2.createIdentity() ),
         options
       );
     }

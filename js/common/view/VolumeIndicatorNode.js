@@ -11,7 +11,6 @@ define( require => {
 
   // modules
   const Dimension2 = require( 'DOT/Dimension2' );
-  const inherit = require( 'PHET_CORE/inherit' );
   const Node = require( 'SCENERY/nodes/Node' );
   const Path = require( 'SCENERY/nodes/Path' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -30,51 +29,49 @@ define( require => {
   const ARROW_SIZE = new Dimension2( 21, 28 );
   const VALUE_FONT = new PhetFont( { size: 24, weight: 'bold' } );
 
-  /**
-   * @param {Property.<number>} volumeProperty
-   * @param {Beaker} beaker
-   * @param {ModelViewTransform2} modelViewTransform
-   * @constructor
-   */
-  function VolumeIndicatorNode( volumeProperty, beaker, modelViewTransform ) {
+  class VolumeIndicatorNode extends Node {
+    /**
+     * @param {Property.<number>} volumeProperty
+     * @param {Beaker} beaker
+     * @param {ModelViewTransform2} modelViewTransform
+     */
+    constructor( volumeProperty, beaker, modelViewTransform ) {
 
-    Node.call( this );
+      super();
 
-    // nodes
-    const arrowHead = new Path( new Shape()
-        .moveTo( 0, 0 )
-        .lineTo( ARROW_SIZE.width, ARROW_SIZE.height / 2 )
-        .lineTo( ARROW_SIZE.width, -ARROW_SIZE.height / 2 )
-        .close(),
-      { fill: 'black' } );
-    const valueNode = new Text( '0', {
-      font: VALUE_FONT,
-      left: arrowHead.right + 3,
-      maxWidth: 75
-    } );
+      // nodes
+      const arrowHead = new Path( new Shape()
+          .moveTo( 0, 0 )
+          .lineTo( ARROW_SIZE.width, ARROW_SIZE.height / 2 )
+          .lineTo( ARROW_SIZE.width, -ARROW_SIZE.height / 2 )
+          .close(),
+        { fill: 'black' } );
+      const valueNode = new Text( '0', {
+        font: VALUE_FONT,
+        left: arrowHead.right + 3,
+        maxWidth: 75
+      } );
 
-    // rendering order
-    this.addChild( valueNode );
-    this.addChild( arrowHead );
+      // rendering order
+      this.addChild( valueNode );
+      this.addChild( arrowHead );
 
-    // x position
-    this.left = modelViewTransform.modelToViewX( beaker.right ) + 3;
+      // x position
+      this.left = modelViewTransform.modelToViewX( beaker.right ) + 3;
 
-    // update when the volume changes
-    const self = this;
-    volumeProperty.link( function( volume ) {
+      // update when the volume changes...
+      volumeProperty.link( volume => {
 
-      // text
-      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( volume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), unitsLitersString );
-      valueNode.centerY = arrowHead.centerY;
+        // text
+        valueNode.text = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( volume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), unitsLitersString );
+        valueNode.centerY = arrowHead.centerY;
 
-      // y position
-      const solutionHeight = Utils.linear( 0, beaker.volume, 0, beaker.size.height, volume ); // volume -> height, model coordinates
-      self.y = modelViewTransform.modelToViewY( beaker.position.y - solutionHeight );
-    } );
+        // y position
+        const solutionHeight = Utils.linear( 0, beaker.volume, 0, beaker.size.height, volume ); // volume -> height, model coordinates
+        this.y = modelViewTransform.modelToViewY( beaker.position.y - solutionHeight );
+      } );
+    }
   }
 
-  phScale.register( 'VolumeIndicatorNode', VolumeIndicatorNode );
-
-  return inherit( Node, VolumeIndicatorNode );
+  return phScale.register( 'VolumeIndicatorNode', VolumeIndicatorNode );
 } );

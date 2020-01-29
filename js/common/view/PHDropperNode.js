@@ -12,54 +12,51 @@ define( require => {
 
   // modules
   const EyeDropperNode = require( 'SCENERY_PHET/EyeDropperNode' );
-  const inherit = require( 'PHET_CORE/inherit' );
   const merge = require( 'PHET_CORE/merge' );
   const MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
   const phScale = require( 'PH_SCALE/phScale' );
 
-  /**
-   * @param {Dropper} dropper
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {Object} [options]
-   * @constructor
-   */
-  function PHDropperNode( dropper, modelViewTransform, options ) {
+  class PHDropperNode extends EyeDropperNode {
 
-    const self = this;
+    /**
+     * @param {Dropper} dropper
+     * @param {ModelViewTransform2} modelViewTransform
+     * @param {Object} [options]
+     */
+    constructor( dropper, modelViewTransform, options ) {
 
-    EyeDropperNode.call( this, merge( {
-      dispensingProperty: dropper.dispensingProperty,
-      enabledProperty: dropper.enabledProperty,
-      emptyProperty: dropper.emptyProperty
-    }, options ) );
+      super( merge( {
+        dispensingProperty: dropper.dispensingProperty,
+        enabledProperty: dropper.enabledProperty,
+        emptyProperty: dropper.emptyProperty
+      }, options ) );
 
-    // position
-    dropper.positionProperty.link( function( position ) {
-      self.translation = modelViewTransform.modelToViewPosition( position );
-    } );
+      // position
+      dropper.positionProperty.link( position => {
+        this.translation = modelViewTransform.modelToViewPosition( position );
+      } );
 
-    // visibility
-    dropper.visibleProperty.link( function( visible ) {
-      self.visible = visible;
-      if ( !visible ) { dropper.flowRateProperty.set( 0 ); }
-    } );
+      // visibility
+      dropper.visibleProperty.link( visible => {
+        this.visible = visible;
+        if ( !visible ) { dropper.flowRateProperty.set( 0 ); }
+      } );
 
-    // change fluid color when the solute changes
-    dropper.soluteProperty.link( function( solute ) {
-      self.fluidColor = solute.stockColor;
-    } );
+      // change fluid color when the solute changes
+      dropper.soluteProperty.link( solute => {
+        this.fluidColor = solute.stockColor;
+      } );
 
-    // dilate touch area
-    this.touchArea = this.localBounds.dilatedX( 0.25 * this.width );
+      // dilate touch area
+      this.touchArea = this.localBounds.dilatedX( 0.25 * this.width );
 
-    // move the dropper
-    this.addInputListener( new MovableDragHandler( dropper.positionProperty, {
-      dragBounds: dropper.dragBounds,
-      modelViewTransform: modelViewTransform
-    } ) );
+      // move the dropper
+      this.addInputListener( new MovableDragHandler( dropper.positionProperty, {
+        dragBounds: dropper.dragBounds,
+        modelViewTransform: modelViewTransform
+      } ) );
+    }
   }
 
-  phScale.register( 'PHDropperNode', PHDropperNode );
-
-  return inherit( EyeDropperNode, PHDropperNode );
+  return phScale.register( 'PHDropperNode', PHDropperNode );
 } );

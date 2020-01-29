@@ -16,7 +16,7 @@ define( require => {
   const PHScaleColors = {
 
     SCREEN_BACKGROUND: 'white',
-    PANEL_FILL: 'rgb(230,230,230)',
+    PANEL_FILL: 'rgb( 230, 230, 230 )',
 
     // pH range
     ACIDIC: new Color( 249, 106, 102 ),

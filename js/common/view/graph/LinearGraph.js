@@ -33,7 +33,7 @@ define( require => {
 
     /**
      * @param {Solution} solution
-     * @param {Property.<GraphUnits>} graphUnitsProperty
+     * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
      * @param {Range} mantissaRange
      * @param {Property.<number>} exponentProperty
      * @param {Object} [options]

@@ -8,13 +8,11 @@
 define( require => {
   'use strict';
 
+  // modules
+  const Enumeration = require( 'PHET_CORE/Enumeration' );
   const phScale = require( 'PH_SCALE/phScale' );
 
-  // NOTE: enum pattern recommends using {} for each value, but strings are more convenient for debugging
-  const GraphUnits = Object.freeze( {
-    MOLES_PER_LITER: 'molesPerLiter',
-    MOLES: 'moles'
-  } );
+  const GraphUnits = Enumeration.byKeys( [ 'MOLES_PER_LITER', 'MOLES' ] );
 
   return phScale.register( 'GraphUnits', GraphUnits );
 } );

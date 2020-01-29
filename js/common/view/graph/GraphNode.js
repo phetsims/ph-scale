@@ -29,7 +29,6 @@ define( require => {
   const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   const RichText = require( 'SCENERY/nodes/RichText' );
-  const StringProperty = require( 'AXON/StringProperty' );
   const Text = require( 'SCENERY/nodes/Text' );
   const ZoomButton = require( 'SCENERY_PHET/buttons/ZoomButton' );
 
@@ -68,7 +67,7 @@ define( require => {
       const exponentRange = PHScaleConstants.LINEAR_EXPONENT_RANGE;
 
       // @private Properties specific to GraphNode
-      this.graphUnitsProperty = new StringProperty( options.units );
+      this.graphUnitsProperty = new EnumerationProperty( GraphUnits, options.units );
       this.exponentProperty = new NumberProperty( exponentRange.max ); // {number} exponent on the linear graph
       this.graphScaleProperty = new EnumerationProperty( GraphScale, options.graphScale ); // {number} scale on the linear graph
 

@@ -35,7 +35,7 @@ define( require => {
 
     /**
      * @param {Solution} solution
-     * @param {Property.<GraphUnits>} graphUnitsProperty
+     * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
      * @param {Object} [options]
      */
     constructor( solution, graphUnitsProperty, options ) {

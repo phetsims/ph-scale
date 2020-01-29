@@ -44,7 +44,7 @@ define( require => {
         // scale
         scaleHeight: 100,
         minScaleWidth: 100,
-        scaleFill: 'rgb(230,230,230)',
+        scaleFill: 'rgb( 230, 230, 230 )',
         scaleStroke: 'black',
         scaleLineWidth: 2,
         scaleYMargin: 30,

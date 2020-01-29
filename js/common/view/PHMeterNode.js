@@ -42,7 +42,7 @@ define( require => {
   const SPINNER_X_SPACING = 6;
   const SPINNER_Y_SPACING = 4;
   const SPINNER_TIMER_INTERVAL = 40; // ms
-  const SPINNER_ARROW_COLOR = 'rgb(0,200,0)';
+  const SPINNER_ARROW_COLOR = 'rgb( 0, 200, 0 )';
 
   class PHMeterNode extends Node {
 
@@ -252,7 +252,9 @@ define( require => {
       const tipHeight = 50;
       const overlap = 10;
 
-      const shaftNode = new Rectangle( 0, 0, 0.5 * probeWidth, probeHeight - tipHeight + overlap, { fill: 'rgb(140,140,140)' } );
+      const shaftNode = new Rectangle( 0, 0, 0.5 * probeWidth, probeHeight - tipHeight + overlap, {
+        fill: 'rgb( 140, 140, 140 )'
+      } );
 
       // clockwise from tip of probe
       const cornerRadius = 4;

@@ -69,7 +69,7 @@ define( require => {
       const widestTickLabel = createTickLabel( PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, options.majorTickFont );
       const scaleWidth = Math.max( options.minScaleWidth, widestTickLabel.width + ( 2 * options.majorTickXSpacing ) + ( 2 * options.majorTickLength ) );
       const backgroundNode = new Rectangle( 0, 0, scaleWidth, options.scaleHeight, options.scaleCornerRadius, options.scaleCornerRadius, {
-        fill: new LinearGradient( 0, 0, 0, options.scaleHeight ).addColorStop( 0, 'rgb(200,200,200)' ).addColorStop( 1, 'white' ),
+        fill: new LinearGradient( 0, 0, 0, options.scaleHeight ).addColorStop( 0, 'rgb( 200, 200, 200 )' ).addColorStop( 1, 'white' ),
         stroke: options.scaleStroke,
         lineWidth: options.scaleLineWidth
       } );

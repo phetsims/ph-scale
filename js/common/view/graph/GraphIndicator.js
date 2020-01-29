@@ -60,7 +60,7 @@ define( require => {
         mantissaDecimalPlaces: 1,
         exponent: null, // use this to request a specific exponent, otherwise the exponent is computed
         isInteractive: false,
-        arrowFill: 'rgb(0,200,0)',
+        arrowFill: 'rgb( 0, 200, 0 )',
         arrowXSpacing: 5
       }, options );
 

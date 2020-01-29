@@ -33,7 +33,7 @@ define( require => {
         listPosition: 'below',
         xMargin: 16,
         yMargin: 16,
-        highlightFill: 'rgb(218,255,255)',
+        highlightFill: 'rgb( 218, 255, 255 )',
         buttonLineWidth: 3,
         cornerRadius: 10
       }, options );

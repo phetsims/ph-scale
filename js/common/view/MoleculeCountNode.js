@@ -59,7 +59,7 @@ define( require => {
       const backgroundWidth = maxCountWidth + xSpacing + maxMoleculeWidth + ( 2 * xMargin );
       const backgroundHeight = Math.max( maxCountHeight, maxMoleculeHeight ) + ( 2 * yMargin );
       const cornerRadius = 5;
-      const backgroundStroke = 'rgb(200,200,200)';
+      const backgroundStroke = 'rgb( 200, 200, 200 )';
       const backgroundH3O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
         { fill: PHScaleColors.ACIDIC, stroke: backgroundStroke } );
       const backgroundOH = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,

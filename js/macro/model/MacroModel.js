@@ -54,6 +54,7 @@ define( require => {
       ];
 
       // @public Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
+      //TODO #92 is there any reason to instrument the Beaker model?
       this.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
 
       // Dropper above the beaker
@@ -61,34 +62,49 @@ define( require => {
       // @public
       this.dropper = new Dropper( Solute.WATER,
         new Vector2( this.beaker.position.x - 50, yDropper ),
-        new Bounds2( this.beaker.left + 40, yDropper, this.beaker.right - 200, yDropper ) );
+        new Bounds2( this.beaker.left + 40, yDropper, this.beaker.right - 200, yDropper ), {
+        tandem: tandem.createTandem( 'dropper' )
+        } );
 
       // @public Solution in the beaker
       this.solution = new Solution( this.dropper.soluteProperty, 0, 0, this.beaker.volume );
 
       // @public Water faucet at the beaker's top-right
-      this.waterFaucet = new Faucet( new Vector2( this.beaker.right - 50, this.beaker.position.y - this.beaker.size.height - 45 ),
-        this.beaker.right + 400,
-        { enabled: this.solution.volumeProperty.get() < this.beaker.volume } );
+      this.waterFaucet = new Faucet(
+        new Vector2( this.beaker.right - 50, this.beaker.position.y - this.beaker.size.height - 45 ),
+        this.beaker.right + 400, {
+          enabled: this.solution.volumeProperty.get() < this.beaker.volume,
+          tandem: tandem.createTandem( 'waterFaucet' )
+        } );
 
       // @public Drain faucet at the beaker's bottom-left.
-      this.drainFaucet = new Faucet( new Vector2( this.beaker.left - 75, this.beaker.position.y + 43 ), this.beaker.left,
-        { enabled: this.solution.volumeProperty.get() > 0 } );
+      this.drainFaucet = new Faucet(
+        new Vector2( this.beaker.left - 75, this.beaker.position.y + 43 ),
+        this.beaker.left, {
+          enabled: this.solution.volumeProperty.get() > 0,
+          tandem: tandem.createTandem( 'drainFaucet' )
+        } );
 
-      // pH meter to the left of the drain faucet
+      // @public pH meter to the left of the drain faucet
       const pHMeterPosition = new Vector2( this.drainFaucet.position.x - 300, 75 );
-      this.pHMeter = new PHMeter( pHMeterPosition, new Vector2( pHMeterPosition.x + 150, this.beaker.position.y ),
-        PHScaleConstants.SCREEN_VIEW_OPTIONS.layoutBounds );
+      this.pHMeter = new PHMeter(
+        pHMeterPosition,
+        new Vector2( pHMeterPosition.x + 150, this.beaker.position.y ),
+        PHScaleConstants.SCREEN_VIEW_OPTIONS.layoutBounds, {
+          tandem: tandem.createTandem( 'pHMeter' )
+        } );
 
-      // auto-fill when the solute changes
-      this.autoFillVolume = options.autoFillVolume; // @private
+      // @private auto-fill when the solute changes
+      this.autoFillVolume = options.autoFillVolume;
 
       // @public (read-only)
+      //TODO #92 any reason to instrument this?
       this.isAutoFillingProperty = new BooleanProperty( false );
 
       this.dropper.soluteProperty.link( () => {
 
         // disable the faucets to cancel any multi-touch interaction that may be in progress, see issue #28
+        //TODO #92 this might be handled better via interruptSubtreeInput
         this.waterFaucet.enabledProperty.set( false );
         this.drainFaucet.enabledProperty.set( false );
 

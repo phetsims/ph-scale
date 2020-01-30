@@ -15,6 +15,7 @@ define( require => {
   const NumberProperty = require( 'AXON/NumberProperty' );
   const phScale = require( 'PH_SCALE/phScale' );
   const Property = require( 'AXON/Property' );
+  const Tandem = require( 'TANDEM/Tandem' );
 
   class Dropper extends Movable {
 
@@ -32,18 +33,50 @@ define( require => {
         dispensing: false, // is the dropper dispensing solute?
         enabled: true,
         empty: false,
-        visible: true
+        visible: true,
+
+        // phet-io
+        tandem: Tandem.REQUIRED
       }, options );
 
       super( position, dragBounds );
 
       // @public
-      this.soluteProperty = new Property( solute );
-      this.visibleProperty = new BooleanProperty( options.visible );
-      this.dispensingProperty = new BooleanProperty( options.dispensing );
-      this.enabledProperty = new BooleanProperty( options.enabled );
-      this.emptyProperty = new BooleanProperty( options.empty );
-      this.flowRateProperty = new NumberProperty( options.flowRate ); // L/sec
+      this.soluteProperty = new Property( solute, {
+        //TODO #92 tandem
+      } );
+
+      // @public
+      //TODO #92 this should interruptSubtreeInput
+      this.visibleProperty = new BooleanProperty( options.visible, {
+        tandem: options.tandem.createTandem( 'visibleProperty' )
+      } );
+
+      // @public
+      this.dispensingProperty = new BooleanProperty( options.dispensing, {
+        tandem: options.tandem.createTandem( 'dispensingProperty' ),
+        phetioReadOnly: true
+      } );
+
+      // @public
+      this.enabledProperty = new BooleanProperty( options.enabled, {
+        tandem: options.tandem.createTandem( 'enabledProperty' ),
+        phetioReadOnly: true
+      } );
+
+      // @public
+      this.emptyProperty = new BooleanProperty( options.empty, {
+        tandem: options.tandem.createTandem( 'emptyProperty' ),
+        phetioReadOnly: true
+      } );
+
+      // @public
+      this.flowRateProperty = new NumberProperty( options.flowRate, {
+        //TODO #93 this is exceeded by MacroModel.startAutoFill range: new Range( 0, options.maxFlowRate ),
+        units: 'L/s',
+        tandem: options.tandem.createTandem( 'flowRateProperty' ),
+        phetioReadOnly: true
+      } ); // L/sec
 
       // Turn off the dropper when it's disabled.
       this.enabledProperty.link( enabled => {

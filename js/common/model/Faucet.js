@@ -14,6 +14,8 @@ define( require => {
   const merge = require( 'PHET_CORE/merge' );
   const NumberProperty = require( 'AXON/NumberProperty' );
   const phScale = require( 'PH_SCALE/phScale' );
+  const Range = require( 'DOT/Range' );
+  const Tandem = require( 'TANDEM/Tandem' );
 
   class Faucet {
 
@@ -29,7 +31,10 @@ define( require => {
         spoutWidth: 45, // pixels
         maxFlowRate: 0.25, // L/sec
         flowRate: 0,
-        enabled: true
+        enabled: true,
+
+        // phet-io
+        tandem: Tandem.REQUIRED
       }, options );
 
       // @public
@@ -37,8 +42,20 @@ define( require => {
       this.pipeMinX = pipeMinX;
       this.spoutWidth = options.spoutWidth;
       this.maxFlowRate = options.maxFlowRate;
-      this.flowRateProperty = new NumberProperty( options.flowRate );
-      this.enabledProperty = new BooleanProperty( options.enabled );
+
+      // @public
+      this.flowRateProperty = new NumberProperty( options.flowRate, {
+        range: new Range( 0, options.maxFlowRate ),
+        units: 'L/s',
+        tandem: options.tandem.createTandem( 'flowRateProperty' ),
+        phetioReadOnly: true
+      } );
+
+      // @public
+      this.enabledProperty = new BooleanProperty( options.enabled, {
+        tandem: options.tandem.createTandem( 'enabledProperty' ),
+        phetioReadOnly: true
+      } );
 
       // when disabled, turn off the faucet.
       this.enabledProperty.link( enabled => {

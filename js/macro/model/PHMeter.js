@@ -13,9 +13,14 @@ define( require => {
   'use strict';
 
   // modules
+  const merge = require( 'PHET_CORE/merge' );
   const Movable = require( 'PH_SCALE/common/model/Movable' );
+  const NullableIO = require( 'TANDEM/types/NullableIO' );
+  const NumberIO = require( 'TANDEM/types/NumberIO' );
   const phScale = require( 'PH_SCALE/phScale' );
   const Property = require( 'AXON/Property' );
+  const PropertyIO = require( 'AXON/PropertyIO' );
+  const Tandem = require( 'TANDEM/Tandem' );
 
   class PHMeter {
 
@@ -23,11 +28,30 @@ define( require => {
      * @param {Vector2} bodyPosition
      * @param {Vector2} probePosition
      * @param {Bounds2} probeDragBounds
+     * @param {Object} [options]
      */
-    constructor( bodyPosition, probePosition, probeDragBounds ) {
-      this.valueProperty = new Property( null ); // @public null if the meter is not reading a value
-      this.bodyPosition = bodyPosition; // @public
-      this.probe = new Movable( probePosition, probeDragBounds ); // @public
+    constructor( bodyPosition, probePosition, probeDragBounds, options ) {
+
+      options = merge( {
+
+        // phet-io
+        tandem: Tandem.REQUIRED
+      }, options );
+
+      // @public null if the meter is not reading a value
+      this.valueProperty = new Property( null, {
+        tandem: options.tandem.createTandem( 'valueProperty' ),
+        phetioType: PropertyIO( NullableIO( NumberIO ) ),
+        phetioReadOnly: true
+      } );
+
+      // @public
+      this.bodyPosition = bodyPosition;
+
+      // @public
+      this.probe = new Movable( probePosition, probeDragBounds, {
+        tandem: options.tandem.createTandem( 'probe' )
+      } );
     }
 
     /**

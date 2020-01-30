@@ -11,10 +11,15 @@ define( require => {
   // modules
   const Color = require( 'SCENERY/util/Color' );
   const DerivedProperty = require( 'AXON/DerivedProperty' );
+  const DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
+  const merge = require( 'PHET_CORE/merge' );
+  const NullableIO = require( 'TANDEM/types/NullableIO' );
+  const NumberIO = require( 'TANDEM/types/NumberIO' );
   const NumberProperty = require( 'AXON/NumberProperty' );
   const PHModel = require( 'PH_SCALE/common/model/PHModel' );
   const phScale = require( 'PH_SCALE/phScale' );
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Utils = require( 'DOT/Utils' );
   const Water = require( 'PH_SCALE/common/model/Water' );
 
@@ -28,14 +33,27 @@ define( require => {
      * @param {number} soluteVolume liters
      * @param {number} waterVolume liters
      * @param {number} maxVolume liters
+     * @param {Object} [options]
      */
-    constructor( soluteProperty, soluteVolume, waterVolume, maxVolume ) {
+    constructor( soluteProperty, soluteVolume, waterVolume, maxVolume, options ) {
       assert && assert( soluteVolume + waterVolume <= maxVolume );
+
+      options = merge( {
+
+        // phet-io
+        tandem: Tandem.REQUIRED
+      }, options );
 
       // @public
       this.soluteProperty = soluteProperty;
-      this.soluteVolumeProperty = new NumberProperty( soluteVolume );
-      this.waterVolumeProperty = new NumberProperty( waterVolume );
+      this.soluteVolumeProperty = new NumberProperty( soluteVolume, {
+        tandem: options.tandem.createTandem( 'soluteVolumeProperty' ),
+        phetioReadOnly: true
+      } );
+      this.waterVolumeProperty = new NumberProperty( waterVolume, {
+        tandem: options.tandem.createTandem( 'waterVolumeProperty' ),
+        phetioReadOnly: true
+      } );
       this.maxVolume = maxVolume;
 
       /*
@@ -49,7 +67,10 @@ define( require => {
 
       // @public volume
       this.volumeProperty = new DerivedProperty( [ this.soluteVolumeProperty, this.waterVolumeProperty ],
-        () => ( this.ignoreVolumeUpdate ) ? this.volumeProperty.get() : this.computeVolume()
+        () => ( this.ignoreVolumeUpdate ) ? this.volumeProperty.get() : this.computeVolume(), {
+          tandem: options.tandem.createTandem( 'waterVolumeProperty' ),
+          phetioType: DerivedPropertyIO( NumberIO )
+        }
       );
 
       // @public pH, null if no value
@@ -65,9 +86,13 @@ define( require => {
             }
             return pH;
           }
-        } );
+        }, {
+          tandem: options.tandem.createTandem( 'pHProperty' ),
+          phetioType: DerivedPropertyIO( NullableIO( NumberIO ) )
+        });
 
       // @public color
+      //TODO #92 does this need to be instrumented?
       this.colorProperty = new DerivedProperty(
         [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
         ( solute, soluteVolume, waterVolume ) => {

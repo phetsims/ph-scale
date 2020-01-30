@@ -44,6 +44,7 @@ define( require => {
       // @public
       this.soluteProperty = new Property( solute, {
         //TODO #92 tandem
+        //TODO #92 phetioType: SoluteIO
       } );
 
       // @public

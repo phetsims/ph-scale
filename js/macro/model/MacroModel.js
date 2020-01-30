@@ -67,7 +67,9 @@ define( require => {
         } );
 
       // @public Solution in the beaker
-      this.solution = new Solution( this.dropper.soluteProperty, 0, 0, this.beaker.volume );
+      this.solution = new Solution( this.dropper.soluteProperty, 0, 0, this.beaker.volume, {
+        tandem: tandem.createTandem( 'solution' )
+      } );
 
       // @public Water faucet at the beaker's top-right
       this.waterFaucet = new Faucet(

@@ -1,5 +1,7 @@
 // Copyright 2013-2020, University of Colorado Boulder
 
+//TODO #92 visibility of this should be controlled via GraphNode.graphScaleProperty
+//TODO #92 instrument subcomponents?
 /**
  * Graph with a logarithmic scale, for displaying concentration (mol/L) and quantity (moles).
  * Assumes that graphing concentration and quantity can be graphed on the same scale.
@@ -29,6 +31,7 @@ define( require => {
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
   const RichText = require( 'SCENERY/nodes/RichText' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Utils = require( 'DOT/Utils' );
 
   class LogarithmicGraph extends Node {
@@ -42,6 +45,7 @@ define( require => {
 
       options = merge( {
         isInteractive: false,
+
         // scale
         scaleHeight: 100,
         minScaleWidth: 100,
@@ -49,18 +53,24 @@ define( require => {
         scaleCornerRadius: 20,
         scaleStroke: 'black',
         scaleLineWidth: 2,
+
         // major ticks
         majorTickFont: new PhetFont( 22 ),
         majorTickLength: 15,
         majorTickStroke: 'black',
         majorTickLineWidth: 1,
         majorTickXSpacing: 5,
+
         // minor ticks
         minorTickLength: 7,
         minorTickStroke: 'black',
         minorTickLineWidth: 1,
+
         // indicators
-        indicatorXOffset: 10
+        indicatorXOffset: 10,
+
+        // phet-io
+        tandem: Tandem.REQUIRED
       }, options );
 
       super();
@@ -223,6 +233,8 @@ define( require => {
         oHIndicatorNode.addInputListener(
           new GraphIndicatorDragHandler( solution, graphUnitsProperty, yToValue, PHModel.concentrationOHToPH, PHModel.molesOHToPH ) );
       }
+
+      this.mutate( options );
     }
   }
 

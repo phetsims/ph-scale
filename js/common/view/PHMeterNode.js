@@ -1,5 +1,6 @@
 // Copyright 2014-2020, University of Colorado Boulder
 
+//TODO #92 instrument pHValueProperty and ExpandCollapseButton, do any other subcomponents need to be instrumented?
 /**
  * pH meter for the 'Micro' and 'My Solution' screens.
  * Origin is at top left.
@@ -27,6 +28,7 @@ define( require => {
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
   const Shape = require( 'KITE/Shape' );
   const Solute = require( 'PH_SCALE/common/model/Solute' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
   const Utils = require( 'DOT/Utils' );
 
@@ -56,7 +58,10 @@ define( require => {
 
       options = merge( {
         isInteractive: false, // true: pH can be changed, false: pH is read-only
-        attachProbe: 'center' // where to attach the probe: 'left'|'center'|'right'
+        attachProbe: 'center', // where to attach the probe: 'left'|'center'|'right'
+
+        // phet-io
+        tandem: Tandem.REQUIRED
       }, options );
 
       super();

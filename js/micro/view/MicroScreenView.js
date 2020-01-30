@@ -15,7 +15,7 @@ define( require => {
   'use strict';
 
   // modules
-  const BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
+  const BeakerControlPanel = require( 'PH_SCALE/common/view/BeakerControlPanel' );
   const BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   const DrainFaucetNode = require( 'PH_SCALE/common/view/DrainFaucetNode' );
   const DropperFluidNode = require( 'PH_SCALE/common/view/DropperFluidNode' );
@@ -58,57 +58,91 @@ define( require => {
       } ) );
 
       // view-specific properties
-      const viewProperties = new PHScaleViewProperties();
+      const viewProperties = new PHScaleViewProperties( tandem.createTandem( 'viewProperties' ) );
 
       // beaker
-      const beakerNode = new BeakerNode( model.beaker, modelViewTransform );
-      const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
-      const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform );
+      const beakerNode = new BeakerNode( model.beaker, modelViewTransform, {
+        tandem: tandem.createTandem( 'beakerNode' )
+      } );
+
+      // solution
+      const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform, {
+        tandem: tandem.createTandem( 'solutionNode' )
+      } );
+
+      // volume indicator on right side of beaker
+      const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform, {
+        tandem: tandem.createTandem( 'volumeIndicatorNode' )
+      } );
 
       // dropper
       const DROPPER_SCALE = 0.85;
-      const dropperNode = new PHDropperNode( model.dropper, modelViewTransform );
+      const dropperNode = new PHDropperNode( model.dropper, modelViewTransform, {
+        tandem: tandem.createTandem( 'dropperNode' )
+      } );
       dropperNode.setScaleMagnitude( DROPPER_SCALE );
       const dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * EyeDropperNode.TIP_WIDTH, modelViewTransform );
 
       // faucets
-      const waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform );
-      const drainFaucetNode = new DrainFaucetNode( model.drainFaucet, modelViewTransform );
+      const waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform, {
+        tandem: tandem.createTandem( 'waterFaucetNode' )
+      } );
+      const drainFaucetNode = new DrainFaucetNode( model.drainFaucet, modelViewTransform, {
+        tandem: tandem.createTandem( 'drainFaucetNode' )
+      } );
       const SOLVENT_FLUID_HEIGHT = model.beaker.position.y - model.waterFaucet.position.y;
       const DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
-      const waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), SOLVENT_FLUID_HEIGHT, modelViewTransform );
-      const drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform );
+      const waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), SOLVENT_FLUID_HEIGHT, modelViewTransform, {
+        tandem: tandem.createTandem( 'waterFluidNode' )
+      } );
+      const drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform, {
+        tandem: tandem.createTandem( 'drainFluidNode' )
+      } );
 
       // 'H3O+/OH- ratio' representation
-      const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, { visible: viewProperties.ratioVisibleProperty.get() } );
+      const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, {
+        visible: viewProperties.ratioVisibleProperty.get(),
+        tandem: tandem.createTandem( 'ratioNode' )
+      } );
       viewProperties.ratioVisibleProperty.linkAttribute( ratioNode, 'visible' );
 
       // 'molecule count' representation
-      const moleculeCountNode = new MoleculeCountNode( model.solution );
+      const moleculeCountNode = new MoleculeCountNode( model.solution, {
+        tandem: tandem.createTandem( 'moleculeCountNode' )
+      } );
       viewProperties.moleculeCountVisibleProperty.linkAttribute( moleculeCountNode, 'visible' );
 
-      // beaker controls
-      const beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty,
-        { maxWidth: 0.85 * beakerNode.width } );
+      // beaker control panel
+      const beakerControlPanel = new BeakerControlPanel(
+        viewProperties.ratioVisibleProperty,
+        viewProperties.moleculeCountVisibleProperty, {
+          maxWidth: 0.85 * beakerNode.width,
+          tandem: tandem.createTandem( 'beakerControlPanel' )
+        } );
 
       // graph
       const graphNode = new GraphNode( model.solution, viewProperties.graphExpandedProperty, {
         hasLinearFeature: true,
         logScaleHeight: 485,
-        linearScaleHeight: 440
+        linearScaleHeight: 440,
+        tandem: tandem.createTandem( 'graphNode' )
       } );
 
       // pH meter
       const pHMeterTop = 15;
       const pHMeterNode = new PHMeterNode( model.solution,
         modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop,
-        viewProperties.pHMeterExpandedProperty,
-        { attachProbe: 'right' }
-      );
+        viewProperties.pHMeterExpandedProperty, {
+          attachProbe: 'right',
+          tandem: tandem.createTandem( 'pHMeterNode' )
+        } );
 
       // solutes combo box
       const soluteListParent = new Node();
-      const soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent, { maxWidth: 400 } );
+      const soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent, {
+        maxWidth: 400,
+        tandem: tandem.createTandem( 'soluteComboBox' )
+      } );
 
       const resetAllButton = new ResetAllButton( {
         scale: 1.32,
@@ -116,7 +150,8 @@ define( require => {
           model.reset();
           viewProperties.reset();
           graphNode.reset();
-        }
+        },
+        tandem: tandem.createTandem( 'resetAllButton' )
       } );
 
       // Parent for all nodes added to this screen
@@ -135,7 +170,7 @@ define( require => {
           beakerNode,
           moleculeCountNode,
           volumeIndicatorNode,
-          beakerControls,
+          beakerControlPanel,
           graphNode,
           resetAllButton,
           soluteComboBox,
@@ -147,8 +182,8 @@ define( require => {
       // Layout of nodes that don't have a position specified in the model
       moleculeCountNode.centerX = beakerNode.centerX;
       moleculeCountNode.bottom = beakerNode.bottom - 25;
-      beakerControls.centerX = beakerNode.centerX;
-      beakerControls.top = beakerNode.bottom + 10;
+      beakerControlPanel.centerX = beakerNode.centerX;
+      beakerControlPanel.top = beakerNode.bottom + 10;
       pHMeterNode.left = modelViewTransform.modelToViewX( model.beaker.left ) - ( 0.4 * pHMeterNode.width );
       pHMeterNode.top = pHMeterTop;
       graphNode.right = drainFaucetNode.left - 40;

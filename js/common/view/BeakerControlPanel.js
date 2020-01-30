@@ -22,6 +22,7 @@ define( require => {
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   const RichText = require( 'SCENERY/nodes/RichText' );
   const Shape = require( 'KITE/Shape' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
 
   // strings
@@ -31,7 +32,7 @@ define( require => {
   // constants
   const FONT = new PhetFont( 20 );
 
-  class BeakerControls extends Panel {
+  class BeakerControlPanel extends Panel {
 
     /**
      * @param {Property.<boolean>} ratioVisibleProperty
@@ -44,7 +45,10 @@ define( require => {
         xMargin: 15,
         yMargin: 10,
         lineWidth: 2,
-        fill: PHScaleColors.PANEL_FILL
+        fill: PHScaleColors.PANEL_FILL,
+
+        // phet-io
+        tandem: Tandem.REQUIRED
       }, options );
 
       // 'H3O+/OH- ratio' checkbox, with color-coded label, spacing tweaked visually
@@ -58,15 +62,22 @@ define( require => {
       } );
       const textRatio = new Text( ratioString, { font: FONT, left: textOH.right + 4 } );
       const ratioLabel = new Node( { children: [ textH3O, textSlash, textOH, textRatio ] } );
-      const ratioCheckbox = new Checkbox( ratioLabel, ratioVisibleProperty );
+      const ratioCheckbox = new Checkbox( ratioLabel, ratioVisibleProperty, {
+        tandem: options.tandem.createTandem( 'ratioCheckbox' )
+      } );
       ratioCheckbox.touchArea = Shape.bounds( ratioCheckbox.localBounds.dilatedXY( 10, 8 ) );
 
       // 'Molecule count' checkbox
       const moleculeCountLabel = new Text( moleculeCountString, { font: FONT } );
-      const moleculeCountCheckbox = new Checkbox( moleculeCountLabel, moleculeCountVisibleProperty );
+      const moleculeCountCheckbox = new Checkbox( moleculeCountLabel, moleculeCountVisibleProperty, {
+        tandem: options.tandem.createTandem( 'moleculeCountCheckbox' )
+      } );
       moleculeCountCheckbox.touchArea = Shape.bounds( ratioCheckbox.localBounds.dilatedXY( 10, 8 ) );
 
-      const separator = new Line( 0, 0, Math.max( moleculeCountCheckbox.width, ratioCheckbox.width ), 0, { stroke: 'gray' } );
+      const separator = new Line( 0, 0, Math.max( moleculeCountCheckbox.width, ratioCheckbox.width ), 0, {
+        stroke: 'gray',
+        tandem: options.tandem.createTandem( 'separator' )
+      } );
 
       const content = new LayoutBox( {
         children: [ ratioCheckbox, separator, moleculeCountCheckbox ],
@@ -79,5 +90,5 @@ define( require => {
     }
   }
 
-  return phScale.register( 'BeakerControls', BeakerControls );
+  return phScale.register( 'BeakerControlPanel', BeakerControlPanel );
 } );

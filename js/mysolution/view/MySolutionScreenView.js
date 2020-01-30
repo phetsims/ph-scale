@@ -15,7 +15,7 @@ define( require => {
   'use strict';
 
   // modules
-  const BeakerControls = require( 'PH_SCALE/common/view/BeakerControls' );
+  const BeakerControlPanel = require( 'PH_SCALE/common/view/BeakerControlPanel' );
   const BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
   const GraphNode = require( 'PH_SCALE/common/view/graph/GraphNode' );
   const merge = require( 'PHET_CORE/merge' );
@@ -49,7 +49,7 @@ define( require => {
       } ) );
 
       // view-specific properties
-      const viewProperties = new PHScaleViewProperties();
+      const viewProperties = new PHScaleViewProperties( tandem.createTandem( 'viewProperties' ) );
 
       // beaker
       const beakerNode = new BeakerNode( model.beaker, modelViewTransform );
@@ -65,7 +65,7 @@ define( require => {
       viewProperties.moleculeCountVisibleProperty.linkAttribute( moleculeCountNode, 'visible' );
 
       // beaker controls
-      const beakerControls = new BeakerControls( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty,
+      const beakerControlPanel = new BeakerControlPanel( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty,
         { maxWidth: 0.85 * beakerNode.width } );
 
       // graph
@@ -101,7 +101,7 @@ define( require => {
           beakerNode,
           moleculeCountNode,
           volumeIndicatorNode,
-          beakerControls,
+          beakerControlPanel,
           graphNode,
           resetAllButton
         ]
@@ -113,8 +113,8 @@ define( require => {
       pHMeterNode.top = pHMeterTop;
       moleculeCountNode.centerX = beakerNode.centerX;
       moleculeCountNode.bottom = beakerNode.bottom - 25;
-      beakerControls.centerX = beakerNode.centerX;
-      beakerControls.top = beakerNode.bottom + 10;
+      beakerControlPanel.centerX = beakerNode.centerX;
+      beakerControlPanel.top = beakerNode.bottom + 10;
       graphNode.right = beakerNode.left - 70;
       graphNode.top = pHMeterNode.top;
       resetAllButton.right = this.layoutBounds.right - 40;

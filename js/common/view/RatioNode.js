@@ -18,6 +18,7 @@ define( require => {
   // modules
   const CanvasNode = require( 'SCENERY/nodes/CanvasNode' );
   const Circle = require( 'SCENERY/nodes/Circle' );
+  const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const PHModel = require( 'PH_SCALE/common/model/PHModel' );
@@ -27,6 +28,7 @@ define( require => {
   const PHScaleQueryParameters = require( 'PH_SCALE/common/PHScaleQueryParameters' );
   const Range = require( 'DOT/Range' );
   const Shape = require( 'KITE/Shape' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
   const Utils = require( 'DOT/Utils' );
 
@@ -49,6 +51,13 @@ define( require => {
      * @param {Object} [options]
      */
     constructor( beaker, solution, modelViewTransform, options ) {
+
+      options = merge( {
+
+        // phet-io
+        tandem: Tandem.REQUIRED,
+        phetioReadOnly: true // controlled by PHScaleViewProperties.ratioVisibleProperty
+      }, options );
 
       super();
 

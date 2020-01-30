@@ -19,6 +19,28 @@ window.phet.phetio.phetioTypes = assert &&
       "supertype": "ObjectIO",
       "typeName": "ActionIO<>"
     },
+    "ActionIO<BooleanIO>": {
+      "documentation": "Executes when an event occurs.",
+      "events": [
+        "emitted"
+      ],
+      "methodOrder": [],
+      "methods": {
+        "execute": {
+          "documentation": "Executes the function the Action is wrapping.",
+          "invocableForReadOnlyElements": false,
+          "parameterTypes": [
+            "BooleanIO"
+          ],
+          "returnType": "VoidIO"
+        }
+      },
+      "parameterTypes": [
+        "BooleanIO"
+      ],
+      "supertype": "ObjectIO",
+      "typeName": "ActionIO<BooleanIO>"
+    },
     "ActionIO<EventIO>": {
       "documentation": "Executes when an event occurs.",
       "events": [
@@ -219,6 +241,20 @@ window.phet.phetio.phetioTypes = assert &&
       "supertype": "ObjectIO",
       "typeName": "BooleanIO"
     },
+    "ButtonListenerIO": {
+      "documentation": "Button listener",
+      "events": [
+        "up",
+        "over",
+        "down",
+        "out",
+        "fire"
+      ],
+      "methodOrder": [],
+      "methods": {},
+      "supertype": "ObjectIO",
+      "typeName": "ButtonListenerIO"
+    },
     "ComboBoxIO": {
       "documentation": "A combo box is composed of a push button and a listbox. The listbox contains items that represent choices. Pressing the button pops up the listbox. Selecting from an item in the listbox sets the value of an associated Property. The button shows the item that is currently selected.",
       "events": [
@@ -314,6 +350,22 @@ window.phet.phetio.phetioTypes = assert &&
       "supertype": "ActionIO<NullableIO<SceneryEventIO>>",
       "typeName": "EmitterIO<NullableIO<SceneryEventIO>>"
     },
+    "EnumerationIO(LOGARITHMIC|LINEAR)": {
+      "documentation": "Possible values: LOGARITHMIC,LINEAR.",
+      "events": [],
+      "methodOrder": [],
+      "methods": {},
+      "supertype": "ObjectIO",
+      "typeName": "EnumerationIO(LOGARITHMIC|LINEAR)"
+    },
+    "EnumerationIO(MOLES_PER_LITER|MOLES)": {
+      "documentation": "Possible values: MOLES_PER_LITER,MOLES.",
+      "events": [],
+      "methodOrder": [],
+      "methods": {},
+      "supertype": "ObjectIO",
+      "typeName": "EnumerationIO(MOLES_PER_LITER|MOLES)"
+    },
     "EventIO": {
       "documentation": "A DOM Event",
       "events": [],
@@ -372,6 +424,32 @@ window.phet.phetio.phetioTypes = assert &&
       ],
       "supertype": "ObjectIO",
       "typeName": "FunctionIO(BooleanIO,NullableIO<BooleanIO>)=>VoidIO"
+    },
+    "FunctionIO(EnumerationIO(LOGARITHMIC|LINEAR),NullableIO<EnumerationIO(LOGARITHMIC|LINEAR)>)=>VoidIO": {
+      "documentation": "Wrapper for the built-in JS function type.<br><strong>Arguments:</strong> EnumerationIO(LOGARITHMIC|LINEAR), NullableIO<EnumerationIO(LOGARITHMIC|LINEAR)><br><strong>Return Type:</strong> VoidIO",
+      "events": [],
+      "methodOrder": [],
+      "methods": {},
+      "parameterTypes": [
+        "EnumerationIO(LOGARITHMIC|LINEAR)",
+        "NullableIO<EnumerationIO(LOGARITHMIC|LINEAR)>",
+        "VoidIO"
+      ],
+      "supertype": "ObjectIO",
+      "typeName": "FunctionIO(EnumerationIO(LOGARITHMIC|LINEAR),NullableIO<EnumerationIO(LOGARITHMIC|LINEAR)>)=>VoidIO"
+    },
+    "FunctionIO(EnumerationIO(MOLES_PER_LITER|MOLES),NullableIO<EnumerationIO(MOLES_PER_LITER|MOLES)>)=>VoidIO": {
+      "documentation": "Wrapper for the built-in JS function type.<br><strong>Arguments:</strong> EnumerationIO(MOLES_PER_LITER|MOLES), NullableIO<EnumerationIO(MOLES_PER_LITER|MOLES)><br><strong>Return Type:</strong> VoidIO",
+      "events": [],
+      "methodOrder": [],
+      "methods": {},
+      "parameterTypes": [
+        "EnumerationIO(MOLES_PER_LITER|MOLES)",
+        "NullableIO<EnumerationIO(MOLES_PER_LITER|MOLES)>",
+        "VoidIO"
+      ],
+      "supertype": "ObjectIO",
+      "typeName": "FunctionIO(EnumerationIO(MOLES_PER_LITER|MOLES),NullableIO<EnumerationIO(MOLES_PER_LITER|MOLES)>)=>VoidIO"
     },
     "FunctionIO(NullableIO<BooleanIO>,NullableIO<NullableIO<BooleanIO>>)=>VoidIO": {
       "documentation": "Wrapper for the built-in JS function type.<br><strong>Arguments:</strong> NullableIO<BooleanIO>, NullableIO<NullableIO<BooleanIO>><br><strong>Return Type:</strong> VoidIO",
@@ -502,6 +580,14 @@ window.phet.phetio.phetioTypes = assert &&
       "supertype": "ObjectIO",
       "typeName": "FunctionIO(Vector2IO,NullableIO<Vector2IO>)=>VoidIO"
     },
+    "LinkedElementIO": {
+      "documentation": "A LinkedElement",
+      "events": [],
+      "methodOrder": [],
+      "methods": {},
+      "supertype": "ObjectIO",
+      "typeName": "LinkedElementIO"
+    },
     "NodeIO": {
       "documentation": "The base type for graphical and potentially interactive objects.  NodeIO has nested PropertyIO values for visibility, pickability and opacity.<br><br>Pickable can take one of three values:<br><ul><li>null: pass-through behavior. Nodes with input listeners are pickable, but nodes without input listeners won't block events for nodes behind it.</li><li>false: The node cannot be interacted with, and it blocks events for nodes behind it.</li><li>true: The node can be interacted with (if it has an input listener).</li></ul>For more about Scenery node pickability, please see <a href=\"http://phetsims.github.io/scenery/doc/implementation-notes#pickability\">http://phetsims.github.io/scenery/doc/implementation-notes#pickability</a>",
       "events": [],
@@ -520,6 +606,28 @@ window.phet.phetio.phetioTypes = assert &&
       ],
       "supertype": "ObjectIO",
       "typeName": "NullableIO<BooleanIO>"
+    },
+    "NullableIO<EnumerationIO(LOGARITHMIC|LINEAR)>": {
+      "documentation": "A wrapper to wrap another IOType, adding support for null.",
+      "events": [],
+      "methodOrder": [],
+      "methods": {},
+      "parameterTypes": [
+        "EnumerationIO(LOGARITHMIC|LINEAR)"
+      ],
+      "supertype": "ObjectIO",
+      "typeName": "NullableIO<EnumerationIO(LOGARITHMIC|LINEAR)>"
+    },
+    "NullableIO<EnumerationIO(MOLES_PER_LITER|MOLES)>": {
+      "documentation": "A wrapper to wrap another IOType, adding support for null.",
+      "events": [],
+      "methodOrder": [],
+      "methods": {},
+      "parameterTypes": [
+        "EnumerationIO(MOLES_PER_LITER|MOLES)"
+      ],
+      "supertype": "ObjectIO",
+      "typeName": "NullableIO<EnumerationIO(MOLES_PER_LITER|MOLES)>"
     },
     "NullableIO<FocusIO>": {
       "documentation": "A wrapper to wrap another IOType, adding support for null.",
@@ -665,6 +773,16 @@ window.phet.phetio.phetioTypes = assert &&
       "methods": {},
       "supertype": null,
       "typeName": "ObjectIO"
+    },
+    "OnOffSwitchIO": {
+      "documentation": "A traditional switch component",
+      "events": [
+        "toggled"
+      ],
+      "methodOrder": [],
+      "methods": {},
+      "supertype": "NodeIO",
+      "typeName": "OnOffSwitchIO"
     },
     "PhetButtonIO": {
       "documentation": "The PhET Button in the bottom right of the screen",
@@ -959,6 +1077,94 @@ window.phet.phetio.phetioTypes = assert &&
       ],
       "supertype": "ObjectIO",
       "typeName": "PropertyIO<BooleanIO>"
+    },
+    "PropertyIO<EnumerationIO(LOGARITHMIC|LINEAR)>": {
+      "documentation": "Observable values that send out notifications when the value changes. This differs from the traditional listener pattern in that added listeners also receive a callback with the current value when the listeners are registered. This is a widely-used pattern in PhET-iO simulations.",
+      "events": [
+        "changed"
+      ],
+      "methodOrder": [
+        "link",
+        "lazyLink"
+      ],
+      "methods": {
+        "getValue": {
+          "documentation": "Gets the current value.",
+          "parameterTypes": [],
+          "returnType": "EnumerationIO(LOGARITHMIC|LINEAR)"
+        },
+        "lazyLink": {
+          "documentation": "Adds a listener which will be called when the value changes. This method is like \"link\", but without the current-value callback on registration. The listener takes two arguments, the new value and the previous value.",
+          "parameterTypes": [
+            "FunctionIO(EnumerationIO(LOGARITHMIC|LINEAR),NullableIO<EnumerationIO(LOGARITHMIC|LINEAR)>)=>VoidIO"
+          ],
+          "returnType": "VoidIO"
+        },
+        "link": {
+          "documentation": "Adds a listener which will be called when the value changes. On registration, the listener is also called with the current value. The listener takes two arguments, the new value and the previous value.",
+          "parameterTypes": [
+            "FunctionIO(EnumerationIO(LOGARITHMIC|LINEAR),NullableIO<EnumerationIO(LOGARITHMIC|LINEAR)>)=>VoidIO"
+          ],
+          "returnType": "VoidIO"
+        },
+        "setValue": {
+          "documentation": "Sets the value of the Property. If the value differs from the previous value, listeners are notified with the new value.",
+          "invocableForReadOnlyElements": false,
+          "parameterTypes": [
+            "EnumerationIO(LOGARITHMIC|LINEAR)"
+          ],
+          "returnType": "VoidIO"
+        }
+      },
+      "parameterTypes": [
+        "EnumerationIO(LOGARITHMIC|LINEAR)"
+      ],
+      "supertype": "ObjectIO",
+      "typeName": "PropertyIO<EnumerationIO(LOGARITHMIC|LINEAR)>"
+    },
+    "PropertyIO<EnumerationIO(MOLES_PER_LITER|MOLES)>": {
+      "documentation": "Observable values that send out notifications when the value changes. This differs from the traditional listener pattern in that added listeners also receive a callback with the current value when the listeners are registered. This is a widely-used pattern in PhET-iO simulations.",
+      "events": [
+        "changed"
+      ],
+      "methodOrder": [
+        "link",
+        "lazyLink"
+      ],
+      "methods": {
+        "getValue": {
+          "documentation": "Gets the current value.",
+          "parameterTypes": [],
+          "returnType": "EnumerationIO(MOLES_PER_LITER|MOLES)"
+        },
+        "lazyLink": {
+          "documentation": "Adds a listener which will be called when the value changes. This method is like \"link\", but without the current-value callback on registration. The listener takes two arguments, the new value and the previous value.",
+          "parameterTypes": [
+            "FunctionIO(EnumerationIO(MOLES_PER_LITER|MOLES),NullableIO<EnumerationIO(MOLES_PER_LITER|MOLES)>)=>VoidIO"
+          ],
+          "returnType": "VoidIO"
+        },
+        "link": {
+          "documentation": "Adds a listener which will be called when the value changes. On registration, the listener is also called with the current value. The listener takes two arguments, the new value and the previous value.",
+          "parameterTypes": [
+            "FunctionIO(EnumerationIO(MOLES_PER_LITER|MOLES),NullableIO<EnumerationIO(MOLES_PER_LITER|MOLES)>)=>VoidIO"
+          ],
+          "returnType": "VoidIO"
+        },
+        "setValue": {
+          "documentation": "Sets the value of the Property. If the value differs from the previous value, listeners are notified with the new value.",
+          "invocableForReadOnlyElements": false,
+          "parameterTypes": [
+            "EnumerationIO(MOLES_PER_LITER|MOLES)"
+          ],
+          "returnType": "VoidIO"
+        }
+      },
+      "parameterTypes": [
+        "EnumerationIO(MOLES_PER_LITER|MOLES)"
+      ],
+      "supertype": "ObjectIO",
+      "typeName": "PropertyIO<EnumerationIO(MOLES_PER_LITER|MOLES)>"
     },
     "PropertyIO<NullableIO<BooleanIO>>": {
       "documentation": "Observable values that send out notifications when the value changes. This differs from the traditional listener pattern in that added listeners also receive a callback with the current value when the listeners are registered. This is a widely-used pattern in PhET-iO simulations.",
@@ -1306,6 +1512,16 @@ window.phet.phetio.phetioTypes = assert &&
       },
       "supertype": "NodeIO",
       "typeName": "TextIO"
+    },
+    "ToggleButtonIO": {
+      "documentation": "A button that toggles state (in/out) when pressed",
+      "events": [
+        "toggled"
+      ],
+      "methodOrder": [],
+      "methods": {},
+      "supertype": "NodeIO",
+      "typeName": "ToggleButtonIO"
     },
     "Vector2IO": {
       "documentation": "A numerical object with x and y properties, like {x:3,y:4}",

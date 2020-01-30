@@ -20,13 +20,22 @@ define( require => {
   const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
   const ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
+  const Tandem = require( 'TANDEM/Tandem' );
 
   class MoleculeCountNode extends Node {
 
     /**
      * @param {Solution} solution
+     * @param {Object} [options]
      */
     constructor( solution, options ) {
+
+      options = merge( {
+
+        // phet-io
+        tandem: Tandem.REQUIRED,
+        phetioReadOnly: true // controlled by PHScaleViewProperties.moleculeCountVisibleProperty
+      }, options );
 
       super();
 

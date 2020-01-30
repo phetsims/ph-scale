@@ -1,5 +1,7 @@
 // Copyright 2014-2020, University of Colorado Boulder
 
+//TODO #92 visibility of this should be controlled via GraphNode.graphScaleProperty
+//TODO #92 instrument subcomponents?
 /**
  * Graph with a linear scale, for displaying concentration (mol/L) and quantity (moles).
  * Some of the code related to indicators (initialization and updateIndicators) is similar
@@ -23,6 +25,7 @@ define( require => {
   const phScale = require( 'PH_SCALE/phScale' );
   const ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
   const Shape = require( 'KITE/Shape' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
   const Utils = require( 'DOT/Utils' );
 
@@ -41,6 +44,7 @@ define( require => {
     constructor( solution, graphUnitsProperty, mantissaRange, exponentProperty, options ) {
 
       options = merge( {
+
         // scale
         scaleHeight: 100,
         minScaleWidth: 100,
@@ -48,14 +52,19 @@ define( require => {
         scaleStroke: 'black',
         scaleLineWidth: 2,
         scaleYMargin: 30,
+
         // arrow at top of scale
         arrowHeight: 75,
+
         // major ticks
         majorTickFont: new PhetFont( 18 ),
         majorTickLength: 10,
         majorTickStroke: 'black',
         majorTickLineWidth: 1,
-        majorTickXSpacing: 5
+        majorTickXSpacing: 5,
+
+        // phet-io
+        tandem: Tandem.REQUIRED
       }, options );
 
       super();
@@ -110,6 +119,7 @@ define( require => {
       let tickLineLeft;
       let tickLineRight;
       for ( let i = 0; i < numberOfTicks; i++ ) {
+
         // major lines and label
         tickLineLeft = new Line( 0, 0, options.majorTickLength, 0, {
           stroke: options.majorTickStroke,
@@ -125,10 +135,12 @@ define( require => {
           mantissaDecimalPlaces: 0,
           showIntegersAsMantissaOnly: true
         } );
+
         // rendering order
         this.addChild( tickLineLeft );
         this.addChild( tickLineRight );
         this.addChild( tickLabel );
+
         // layout
         tickLineLeft.left = scaleNode.left;
         tickLineLeft.centerY = scaleNode.bottom - options.scaleYMargin - ( i * ySpacing );
@@ -136,6 +148,7 @@ define( require => {
         tickLineRight.centerY = tickLineLeft.centerY;
         tickLabel.centerX = scaleNode.centerX;
         tickLabel.centerY = tickLineLeft.centerY;
+
         // save label so we can update it layer
         tickLabels.push( tickLabel );
       }
@@ -223,6 +236,8 @@ define( require => {
 
       // When the exponent changes, relabel the tick marks
       exponentProperty.link( exponent => updateTickLabels( exponent ) );
+
+      this.mutate( options );
     }
   }
 

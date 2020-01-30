@@ -11,16 +11,29 @@ define( require => {
   // modules
   const BooleanProperty = require( 'AXON/BooleanProperty' );
   const phScale = require( 'PH_SCALE/phScale' );
+  const Tandem = require( 'TANDEM/Tandem' );
 
   class PHScaleViewProperties {
 
-    constructor() {
+    /**
+     * @param {Tandem} tandem
+     */
+    constructor( tandem ) {
+      assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
       // @public
-      this.ratioVisibleProperty = new BooleanProperty( false );
-      this.moleculeCountVisibleProperty = new BooleanProperty( false );
-      this.pHMeterExpandedProperty = new BooleanProperty( true );
-      this.graphExpandedProperty = new BooleanProperty( true );
+      this.ratioVisibleProperty = new BooleanProperty( false, {
+        tandem: tandem.createTandem( 'ratioVisibleProperty' )
+      } );
+      this.moleculeCountVisibleProperty = new BooleanProperty( false, {
+        tandem: tandem.createTandem( 'moleculeCountVisibleProperty' )
+      } );
+      this.pHMeterExpandedProperty = new BooleanProperty( true, {
+        tandem: tandem.createTandem( 'pHMeterExpandedProperty' )
+      } );
+      this.graphExpandedProperty = new BooleanProperty( true, {
+        tandem: tandem.createTandem( 'graphExpandedProperty' )
+      } );
     }
 
     /**

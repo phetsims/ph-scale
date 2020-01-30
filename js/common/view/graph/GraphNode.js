@@ -1,5 +1,6 @@
 // Copyright 2013-2020, University of Colorado Boulder
 
+//TODO #92 instrument thin vertical lines?
 /**
  * Container for all components related to the graph feature.
  * It has an expand/collapse bar at the top of it, and can switch between 'concentration' and 'quantity'.
@@ -29,6 +30,7 @@ define( require => {
   const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   const RichText = require( 'SCENERY/nodes/RichText' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
   const ZoomButton = require( 'SCENERY_PHET/buttons/ZoomButton' );
 
@@ -58,7 +60,10 @@ define( require => {
         linearScaleHeight: 500,
         units: GraphUnits.MOLES_PER_LITER, // initial state of the units switch
         hasLinearFeature: false, // add the linear graph feature?
-        graphScale: GraphScale.LOGARITHMIC // initial state of the scale switch, meaningful only if hasLinearFeature === true
+        graphScale: GraphScale.LOGARITHMIC, // initial state of the scale switch, meaningful only if hasLinearFeature === true
+
+        // phet-io
+        tandem: Tandem.REQUIRED
       }, options );
 
       super();
@@ -66,10 +71,23 @@ define( require => {
       const mantissaRange = PHScaleConstants.LINEAR_MANTISSA_RANGE;
       const exponentRange = PHScaleConstants.LINEAR_EXPONENT_RANGE;
 
-      // @private Properties specific to GraphNode
-      this.graphUnitsProperty = new EnumerationProperty( GraphUnits, options.units );
-      this.exponentProperty = new NumberProperty( exponentRange.max ); // {number} exponent on the linear graph
-      this.graphScaleProperty = new EnumerationProperty( GraphScale, options.graphScale ); // {number} scale on the linear graph
+      // @private units
+      this.graphUnitsProperty = new EnumerationProperty( GraphUnits, options.units, {
+        tandem: options.tandem.createTandem( 'graphUnitsProperty' )
+      } );
+
+      // @private
+      //TODO #92 should this be instrumented?
+      this.exponentProperty = new NumberProperty( exponentRange.max, {
+        tandem: options.tandem.createTandem( 'exponentProperty' ),
+        phetioReadOnly: true,
+        phetioDocumentation: 'exponent on the linear scale'
+      } );
+
+      // @private scale (log, linear) of the graph
+      this.graphScaleProperty = new EnumerationProperty( GraphScale, options.graphScale, {
+        tandem: options.tandem.createTandem( 'graphScaleProperty' )
+      } );
 
       // expand/collapse bar
       const expandCollapseBar = new ExpandCollapseBar(
@@ -79,30 +97,36 @@ define( require => {
           minHeight: 55,
           barFill: PHScaleColors.PANEL_FILL,
           barLineWidth: 2,
-          buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH
+          buttonLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH,
+          tandem: options.tandem.createTandem( 'expandCollapseBar' )
         } );
 
       // units switch (Concentration vs Quantity)
+      const concentrationLabel = new RichText( concentrationString + '<br>(' + unitsMolesPerLiterString + ')', {
+        align: 'center',
+        font: AB_SWITCH_FONT,
+        maxWidth: 125
+      } );
+      const quantityLabel = new RichText( quantityString + '<br>(' + unitsMolesString + ')', {
+        align: 'center',
+        font: AB_SWITCH_FONT,
+        maxWidth: 85
+      } );
       const graphUnitsSwitch = new ABSwitch( this.graphUnitsProperty,
-        GraphUnits.MOLES_PER_LITER, new RichText( concentrationString + '<br>(' + unitsMolesPerLiterString + ')', {
-          align: 'center',
-          font: AB_SWITCH_FONT,
-          maxWidth: 125
-        } ),
-        GraphUnits.MOLES, new RichText( quantityString + '<br>(' + unitsMolesString + ')', {
-          align: 'center',
-          font: AB_SWITCH_FONT,
-          maxWidth: 85
-        } ), {
+        GraphUnits.MOLES_PER_LITER, concentrationLabel,
+        GraphUnits.MOLES, quantityLabel, {
           size: new Dimension2( 50, 25 ),
           centerOnButton: true,
-          center: expandCollapseBar.center
+          center: expandCollapseBar.center,
+          tandem: options.tandem.createTandem( 'graphUnitsSwitch' ),
+          phetioDocumentation: 'A/B switch for switching units'
         } );
 
       // logarithmic graph
       const logarithmicGraph = new LogarithmicGraph( solution, this.graphUnitsProperty, {
         scaleHeight: options.logScaleHeight,
-        isInteractive: options.isInteractive
+        isInteractive: options.isInteractive,
+        tandem: options.tandem.createTandem( 'linearGraph' )
       } );
 
       // vertical line that connects bottom of expand/collapse bar to top of graph
@@ -133,13 +157,24 @@ define( require => {
 
         // linear graph
         const linearGraph = new LinearGraph( solution, this.graphUnitsProperty, mantissaRange, this.exponentProperty, {
-          scaleHeight: options.linearScaleHeight
+          scaleHeight: options.linearScaleHeight,
+          tandem: options.tandem.createTandem( 'linearGraph' )
         } );
 
         // zoom buttons for the linear graph
         const magnifyingGlassRadius = 13;
-        const zoomOutButton = new ZoomButton( { in: false, radius: magnifyingGlassRadius } );
-        const zoomInButton = new ZoomButton( { in: true, radius: magnifyingGlassRadius } );
+        const zoomOutButton = new ZoomButton( {
+          in: false,
+          radius: magnifyingGlassRadius,
+          tandem: options.tandem.createTandem( 'zoomOutButton' ),
+          phetioDocumentation: 'zoom out button for the linear scale'
+        } );
+        const zoomInButton = new ZoomButton( {
+          in: true,
+          radius: magnifyingGlassRadius,
+          tandem: options.tandem.createTandem( 'zoomInButton' ),
+          phetioDocumentation: 'zoom in button for the linear scale'
+        } );
         const zoomButtons = new Node( { children: [ zoomOutButton, zoomInButton ] } );
         zoomInButton.left = zoomOutButton.right + 25;
         zoomInButton.centerY = zoomOutButton.centerY;
@@ -154,11 +189,17 @@ define( require => {
         };
         const graphScaleSwitch = new ABSwitch( this.graphScaleProperty,
           GraphScale.LOGARITHMIC, new Text( logarithmicString, textOptions ),
-          GraphScale.LINEAR, new Text( linearString, textOptions ),
-          { size: new Dimension2( 50, 25 ), centerOnButton: true } );
+          GraphScale.LINEAR, new Text( linearString, textOptions ), {
+            size: new Dimension2( 50, 25 ),
+            centerOnButton: true,
+            tandem: options.tandem.createTandem( 'graphScaleSwitch' ),
+            phetioDocumentation: 'A/B switch for switching between logarithmic and linear scales'
+          } );
 
         // vertical line that connects bottom of graph to top of scale switch
-        const lineToSwitchNode = new Line( 0, 0, 0, 200, { stroke: 'black ' } );
+        const lineToSwitchNode = new Line( 0, 0, 0, 200, {
+          stroke: 'black'
+        } );
 
         // rendering order
         graphNode.addChild( lineToSwitchNode );
@@ -199,6 +240,8 @@ define( require => {
           this.exponentProperty.set( this.exponentProperty.get() + 1 );
         } );
       }
+
+      this.mutate( options );
     }
 
     /**

@@ -1,5 +1,6 @@
 // Copyright 2013-2020, University of Colorado Boulder
 
+//TODO #92 which subcomponents need to be instrumented?
 //TODO #92 instrument thin vertical lines?
 /**
  * Container for all components related to the graph feature.

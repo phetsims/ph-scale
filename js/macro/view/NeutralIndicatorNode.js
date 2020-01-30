@@ -1,6 +1,6 @@
 // Copyright 2013-2020, University of Colorado Boulder
 
-//TODO #92 how to totally disable this feature from PhET-iO?
+//TODO #92 how to totally disable this feature from PhET-iO? query parameter? {Boolean} featureEnabledProperty?
 /**
  * Indicator that the solution is neutral.
  * This consists of 'Neutral' on a translucent background.

@@ -39,7 +39,8 @@ define( require => {
         name: screenMacroString,
         backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
         homeScreenIcon: new Image( homeIcon ),
-        navigationBarIcon: new Image( navbarIcon )
+        navigationBarIcon: new Image( navbarIcon ),
+        tandem: tandem
       };
 
       super(

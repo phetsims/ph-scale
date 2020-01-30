@@ -52,35 +52,57 @@ define( require => {
       const viewProperties = new PHScaleViewProperties( tandem.createTandem( 'viewProperties' ) );
 
       // beaker
-      const beakerNode = new BeakerNode( model.beaker, modelViewTransform );
-      const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
-      const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform );
+      const beakerNode = new BeakerNode( model.beaker, modelViewTransform, {
+        tandem: tandem.createTandem( 'beakerNode' )
+      } );
+
+      // solution in the beaker
+      const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform, {
+        tandem: tandem.createTandem( 'solutionNode' )
+      } );
+
+      // volume indicator along the right edge of the beaker
+      const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform, {
+        tandem: tandem.createTandem( 'volumeIndicatorNode' )
+      } );
 
       // 'H3O+/OH- ratio' representation
-      const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, { visible: viewProperties.ratioVisibleProperty.get() } );
+      const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, {
+        visible: viewProperties.ratioVisibleProperty.get(),
+        tandem: tandem.createTandem( 'ratioNode' )
+      } );
       viewProperties.ratioVisibleProperty.linkAttribute( ratioNode, 'visible' );
 
       // 'molecule count' representation
-      const moleculeCountNode = new MoleculeCountNode( model.solution );
+      const moleculeCountNode = new MoleculeCountNode( model.solution, {
+        tandem: tandem.createTandem( 'moleculeCountNode' )
+      } );
       viewProperties.moleculeCountVisibleProperty.linkAttribute( moleculeCountNode, 'visible' );
 
       // beaker controls
-      const beakerControlPanel = new BeakerControlPanel( viewProperties.ratioVisibleProperty, viewProperties.moleculeCountVisibleProperty,
-        { maxWidth: 0.85 * beakerNode.width } );
+      const beakerControlPanel = new BeakerControlPanel(
+        viewProperties.ratioVisibleProperty,
+        viewProperties.moleculeCountVisibleProperty, {
+          maxWidth: 0.85 * beakerNode.width,
+          tandem: tandem.createTandem( 'beakerControlPanel' )
+        } );
 
       // graph
       const graphNode = new GraphNode( model.solution, viewProperties.graphExpandedProperty, {
         isInteractive: true,
-        logScaleHeight: 565
+        logScaleHeight: 565,
+        tandem: tandem.createTandem( 'graphNode' )
       } );
 
       // pH meter
       const pHMeterTop = 15;
       const pHMeterNode = new PHMeterNode( model.solution,
         modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop,
-        viewProperties.pHMeterExpandedProperty,
-        { attachProbe: 'right', isInteractive: true }
-      );
+        viewProperties.pHMeterExpandedProperty, {
+          attachProbe: 'right',
+          isInteractive: true,
+          tandem: tandem.createTandem( 'pHMeterNode' )
+        } );
 
       const resetAllButton = new ResetAllButton( {
         scale: 1.32,
@@ -88,7 +110,8 @@ define( require => {
           model.reset();
           viewProperties.reset();
           graphNode.reset();
-        }
+        },
+        tandem: tandem.createTandem( 'resetAllButton' )
       } );
 
       // Parent for all nodes added to this screen

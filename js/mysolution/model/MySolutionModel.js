@@ -31,7 +31,9 @@ define( require => {
       this.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
 
       // @public Solution in the beaker
-      this.solution = new Solution( new Property( Solute.createCustom( 7 ) ), 0.5, 0, this.beaker.volume );
+      this.solution = new Solution( new Property( Solute.createCustom( 7 ) ), 0.5, 0, this.beaker.volume, {
+        tandem: tandem.createTandem( 'solution' )
+      } );
     }
 
     /**

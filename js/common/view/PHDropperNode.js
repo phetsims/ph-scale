@@ -57,7 +57,8 @@ define( require => {
       // move the dropper
       this.addInputListener( new MovableDragHandler( dropper.positionProperty, {
         dragBounds: dropper.dragBounds,
-        modelViewTransform: modelViewTransform
+        modelViewTransform: modelViewTransform,
+        tandem: options.tandem.createTandem( 'dragHandler' )
       } ) );
     }
   }

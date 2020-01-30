@@ -10,9 +10,11 @@ define( require => {
   'use strict';
 
   // modules
+  const merge = require( 'PHET_CORE/merge' );
   const phScale = require( 'PH_SCALE/phScale' );
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Utils = require( 'DOT/Utils' );
 
   class SolutionNode extends Rectangle {
@@ -21,10 +23,18 @@ define( require => {
      * @param {Solution} solution
      * @param {Beaker} beaker
      * @param {ModelViewTransform2} modelViewTransform
+     * @param {Object} [options]
      */
-    constructor( solution, beaker, modelViewTransform ) {
+    constructor( solution, beaker, modelViewTransform, options ) {
 
-      super( 0, 0, 1, 1, { lineWidth: 1 } ); // size and color set dynamically
+      options = merge( {
+        lineWidth: 1,
+
+        // phet-io
+        tandem: Tandem.REQUIRED
+      }, options );
+
+      super( 0, 0, 1, 1, options ); // correct size will be set below
 
       /*
        * Updates the color of the solution, accounting for saturation.

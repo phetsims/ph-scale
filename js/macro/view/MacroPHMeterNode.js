@@ -1,5 +1,6 @@
 // Copyright 2013-2020, University of Colorado Boulder
 
+//TODO #92 do any subcomponents of this need to be instrumented?
 /**
  * pH meter for the 'Macro' screen.
  *
@@ -34,6 +35,7 @@ define( require => {
   const ProbeNode = require( 'SCENERY_PHET/ProbeNode' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
   const Shape = require( 'KITE/Shape' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
   const Utils = require( 'DOT/Utils' );
   const Vector2 = require( 'DOT/Vector2' );
@@ -66,10 +68,18 @@ define( require => {
      * @param {Node} waterFluidNode
      * @param {Node} drainFluidNode
      * @param {ModelViewTransform2} modelViewTransform
+     * @param {Object} [options]
      */
-    constructor( meter, solution, dropper, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform ) {
+    constructor( meter, solution, dropper, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode,
+                 modelViewTransform, options ) {
 
-      super();
+      options = merge( {
+
+        // phet-io
+        tandem: Tandem.REQUIRED
+      }, options );
+
+      super( options );
 
       // pH scale, positioned at meter 'body' position
       const scaleNode = new ScaleNode( { size: SCALE_SIZE } );

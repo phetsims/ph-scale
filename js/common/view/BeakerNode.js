@@ -10,12 +10,14 @@ define( require => {
   'use strict';
 
   // modules
+  const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
   const Path = require( 'SCENERY/nodes/Path' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const phScale = require( 'PH_SCALE/phScale' );
   const Shape = require( 'KITE/Shape' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
   const Utils = require( 'DOT/Utils' );
 
@@ -38,10 +40,17 @@ define( require => {
     /**
      * @param {Beaker} beaker
      * @param {ModelViewTransform2} modelViewTransform
+     * @param {Object} [options]
      */
-    constructor( beaker, modelViewTransform ) {
+    constructor( beaker, modelViewTransform, options ) {
 
-      super();
+      options = merge( {
+
+        // phet-io
+        tandem: Tandem.REQUIRED
+      }, options );
+
+      super( options );
 
       // outline of the beaker, starting from upper left
       const beakerWidth = modelViewTransform.modelToViewDeltaX( beaker.size.width );
@@ -61,8 +70,18 @@ define( require => {
       } ) );
 
       // horizontal tick marks on left and right edges, labels on right ticks, from bottom up
-      const ticksParent = new Node();
-      this.addChild( ticksParent );
+      const tickMarksTandem = options.tandem.createTandem( 'tickMarks' );
+      const tickMarks = new Node( {
+        tandem: tickMarksTandem
+      } );
+      this.addChild( tickMarks );
+
+      // tickLabels are a child of tickMarks so that hiding tickMarks also hides labels
+      const tickLabels = new Node( {
+        tandem: tickMarksTandem.createTandem( 'tickLabels' )
+      } );
+      tickMarks.addChild( tickLabels );
+
       const numberOfTicks = Utils.roundSymmetric( beaker.volume / MINOR_TICK_SPACING );
       const deltaY = beakerHeight / numberOfTicks;
       const beakerLeft = -beakerWidth / 2;
@@ -74,12 +93,12 @@ define( require => {
         const y = -( i * deltaY );
 
         // left tick
-        ticksParent.addChild( new Path(
+        tickMarks.addChild( new Path(
           new Shape().moveTo( beakerLeft, y ).lineTo( beakerLeft + tickLength, y ),
           { stroke: 'black', lineWidth: 2, lineCap: 'butt', lineJoin: 'bevel' } ) );
 
         // right tick
-        ticksParent.addChild( new Path(
+        tickMarks.addChild( new Path(
           new Shape().moveTo( beakerRight, y ).lineTo( beakerRight - tickLength, y ),
           { stroke: 'black', lineWidth: 2, lineCap: 'butt', lineJoin: 'bevel' } ) );
 
@@ -88,7 +107,7 @@ define( require => {
           const labelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
           if ( labelIndex < MAJOR_TICK_LABELS.length ) {
             const label = StringUtils.format( pattern0Value1UnitsString, MAJOR_TICK_LABELS[ labelIndex ], unitsLitersString );
-            ticksParent.addChild( new Text( label, {
+            tickLabels.addChild( new Text( label, {
               font: MAJOR_TICK_FONT,
               fill: 'black',
               right: beakerRight - tickLength - TICK_LABEL_X_SPACING,

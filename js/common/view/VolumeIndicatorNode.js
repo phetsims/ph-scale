@@ -11,6 +11,7 @@ define( require => {
 
   // modules
   const Dimension2 = require( 'DOT/Dimension2' );
+  const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
   const Path = require( 'SCENERY/nodes/Path' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -18,6 +19,7 @@ define( require => {
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   const Shape = require( 'KITE/Shape' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
   const Utils = require( 'DOT/Utils' );
 
@@ -35,18 +37,27 @@ define( require => {
      * @param {Property.<number>} volumeProperty
      * @param {Beaker} beaker
      * @param {ModelViewTransform2} modelViewTransform
+     * @param {Object} [options]
      */
-    constructor( volumeProperty, beaker, modelViewTransform ) {
+    constructor( volumeProperty, beaker, modelViewTransform, options) {
 
-      super();
+      options = merge( {
 
-      // nodes
-      const arrowHead = new Path( new Shape()
-          .moveTo( 0, 0 )
-          .lineTo( ARROW_SIZE.width, ARROW_SIZE.height / 2 )
-          .lineTo( ARROW_SIZE.width, -ARROW_SIZE.height / 2 )
-          .close(),
-        { fill: 'black' } );
+        // phet-io
+        tandem: Tandem.REQUIRED
+      }, options );
+
+      super( options );
+
+      // arrow head that points to the left
+      const arrowHeadShape = new Shape()
+        .moveTo( 0, 0 )
+        .lineTo( ARROW_SIZE.width, ARROW_SIZE.height / 2 )
+        .lineTo( ARROW_SIZE.width, -ARROW_SIZE.height / 2 )
+        .close();
+      const arrowHead = new Path( arrowHeadShape, { fill: 'black' } );
+
+      // volume value
       const valueNode = new Text( '0', {
         font: VALUE_FONT,
         left: arrowHead.right + 3,

@@ -15,6 +15,7 @@ define( require => {
   const merge = require( 'PHET_CORE/merge' );
   const MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
   const phScale = require( 'PH_SCALE/phScale' );
+  const Tandem = require( 'TANDEM/Tandem' );
 
   class PHDropperNode extends EyeDropperNode {
 
@@ -28,7 +29,10 @@ define( require => {
       super( merge( {
         dispensingProperty: dropper.dispensingProperty,
         enabledProperty: dropper.enabledProperty,
-        emptyProperty: dropper.emptyProperty
+        emptyProperty: dropper.emptyProperty,
+
+        // phet-io
+        tandem: Tandem.REQUIRED
       }, options ) );
 
       // position

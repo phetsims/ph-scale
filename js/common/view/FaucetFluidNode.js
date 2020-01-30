@@ -10,8 +10,10 @@ define( require => {
   'use strict';
 
   // modules
+  const merge = require( 'PHET_CORE/merge' );
   const phScale = require( 'PH_SCALE/phScale' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Tandem = require( 'TANDEM/Tandem' );
 
   class FaucetFluidNode extends Rectangle {
 
@@ -20,10 +22,20 @@ define( require => {
      * @param {Property.<Color>} colorProperty
      * @param {number} height in model coordinates
      * @param {ModelViewTransform2} modelViewTransform
+     * @param {Object} [options]
      */
-    constructor( faucet, colorProperty, height, modelViewTransform ) {
+    constructor( faucet, colorProperty, height, modelViewTransform, options ) {
 
-      super( 0, 0, 0, 0, { lineWidth: 1, pickable: false } );
+      options = merge( {
+
+        lineWidth: 1,
+        pickable: false,
+
+        // phet-io
+        tandem: Tandem.REQUIRED
+      }, options );
+
+      super( 0, 0, 0, 0, options );
 
       // Set the color of the fluid coming out of the spout.
       colorProperty.link( color => {

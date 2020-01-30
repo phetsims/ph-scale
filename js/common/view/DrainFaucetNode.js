@@ -10,22 +10,28 @@ define( require => {
 
   // modules
   const FaucetNode = require( 'SCENERY_PHET/FaucetNode' );
+  const merge = require( 'PHET_CORE/merge' );
   const phScale = require( 'PH_SCALE/phScale' );
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const Tandem = require( 'TANDEM/Tandem' );
+
+  // constants
+  const SCALE = 0.6;
 
   class DrainFaucetNode extends FaucetNode {
 
     /**
      * @param {Faucet} faucet
      * @param {ModelViewTransform2} modelViewTransform
+     * @param {Object} [options]
      */
-    constructor( faucet, modelViewTransform ) {
+    constructor( faucet, modelViewTransform, options ) {
 
-      const scale = 0.6;
+      const horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.position.x - faucet.pipeMinX ) ) / SCALE;
 
-      const horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.position.x - faucet.pipeMinX ) ) / scale;
+      options = merge( {
 
-      super( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
+        // FaucetNode options
         horizontalPipeLength: horizontalPipeLength,
         verticalPipeLength: 5,
         tapToDispenseAmount: PHScaleConstants.TAP_TO_DISPENSE_AMOUNT,
@@ -33,10 +39,15 @@ define( require => {
         shooterOptions: {
           touchAreaXDilation: 37,
           touchAreaYDilation: 60
-        }
-      } );
+        },
+
+        // phet-io
+        tandem: Tandem.REQUIRED
+      }, options );
+
+      super( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, options );
       this.translation = modelViewTransform.modelToViewPosition( faucet.position );
-      this.setScaleMagnitude( -scale, scale ); // reflect horizontally
+      this.setScaleMagnitude( -SCALE, SCALE ); // reflect horizontally
     }
   }
 

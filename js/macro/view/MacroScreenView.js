@@ -17,7 +17,7 @@ define( require => {
   const MacroPHMeterNode = require( 'PH_SCALE/macro/view/MacroPHMeterNode' );
   const merge = require( 'PHET_CORE/merge' );
   const ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
-  const NeutralIndicator = require( 'PH_SCALE/macro/view/NeutralIndicator' );
+  const NeutralIndicatorNode = require( 'PH_SCALE/macro/view/NeutralIndicatorNode' );
   const Node = require( 'SCENERY/nodes/Node' );
   const PHDropperNode = require( 'PH_SCALE/common/view/PHDropperNode' );
   const phScale = require( 'PH_SCALE/phScale' );
@@ -48,40 +48,68 @@ define( require => {
       } ) );
 
       // beaker
-      const beakerNode = new BeakerNode( model.beaker, modelViewTransform );
-      const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
-      const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform );
+      const beakerNode = new BeakerNode( model.beaker, modelViewTransform, {
+        tandem: tandem.createTandem( 'beakerNode' )
+      } );
 
-      // neutral indicator that appears in the bottom of the beaker
-      const neutralIndicator = new NeutralIndicator( model.solution );
+      // solution in the beaker
+      const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform, {
+        tandem: tandem.createTandem( 'solutionNode' )
+      } );
+
+      // volume indicator on the right edge of beaker
+      const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform, {
+        tandem: tandem.createTandem( 'volumeIndicatorNode' )
+      } );
+
+      // Neutral indicator that appears in the bottom of the beaker.
+      const neutralIndicatorNode = new NeutralIndicatorNode( model.solution, {
+        tandem: tandem.createTandem( 'neutralIndicatorNode' )
+      } );
 
       // dropper
       const DROPPER_SCALE = 0.85;
-      const dropperNode = new PHDropperNode( model.dropper, modelViewTransform );
+      const dropperNode = new PHDropperNode( model.dropper, modelViewTransform, {
+        tandem: tandem.createTandem( 'dropperNode' )
+      });
       dropperNode.setScaleMagnitude( DROPPER_SCALE );
       const dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * EyeDropperNode.TIP_WIDTH, modelViewTransform );
 
       // faucets
-      const waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform );
-      const drainFaucetNode = new DrainFaucetNode( model.drainFaucet, modelViewTransform );
+      const waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform, {
+        tandem: tandem.createTandem( 'waterFaucetNode' )
+      } );
+      const drainFaucetNode = new DrainFaucetNode( model.drainFaucet, modelViewTransform, {
+        tandem: tandem.createTandem( 'drainFaucetNode' )
+      } );
       const WATER_FLUID_HEIGHT = model.beaker.position.y - model.waterFaucet.position.y;
       const DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
-      const waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), WATER_FLUID_HEIGHT, modelViewTransform );
-      const drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform );
+      const waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), WATER_FLUID_HEIGHT, modelViewTransform, {
+        tandem: tandem.createTandem( 'waterFluidNode' )
+      } );
+      const drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform, {
+        tandem: tandem.createTandem( 'drainFluidNode' )
+      } );
 
       // pH meter
       const pHMeterNode = new MacroPHMeterNode( model.pHMeter, model.solution, model.dropper,
-        solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform );
+        solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform, {
+          tandem: tandem.createTandem( 'pHMeterNode' )
+        } );
 
       // solutes combo box
       const soluteListParent = new Node();
-      const soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent, { maxWidth: 400 } );
+      const soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent, {
+        maxWidth: 400,
+        tandem: tandem.createTandem( 'soluteComboBox' )
+      } );
 
       const resetAllButton = new ResetAllButton( {
         scale: 1.32,
         listener: () => {
           model.reset();
-        }
+        },
+        tandem: tandem.createTandem( 'resetAllButton' )
       } );
 
       // Parent for all nodes added to this screen
@@ -96,7 +124,7 @@ define( require => {
           dropperNode,
           solutionNode,
           beakerNode,
-          neutralIndicator,
+          neutralIndicatorNode,
           volumeIndicatorNode,
           soluteComboBox,
           resetAllButton,
@@ -109,8 +137,8 @@ define( require => {
       // Layout of nodes that don't have a position specified in the model
       soluteComboBox.left = modelViewTransform.modelToViewX( model.beaker.left ) - 20; // anchor on left so it grows to the right during i18n
       soluteComboBox.top = this.layoutBounds.top + 15;
-      neutralIndicator.centerX = beakerNode.centerX;
-      neutralIndicator.bottom = beakerNode.bottom - 30;
+      neutralIndicatorNode.centerX = beakerNode.centerX;
+      neutralIndicatorNode.bottom = beakerNode.bottom - 30;
       resetAllButton.right = this.layoutBounds.right - 40;
       resetAllButton.bottom = this.layoutBounds.bottom - 20;
 

@@ -30,7 +30,7 @@ define( require => {
       // @public Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
       this.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
 
-      //  TODO #92 this is problematic, we probably do not want to instrument sub-elements soluteVolumeProperty and waterVolumeProperty
+      //TODO #92 this is problematic, we probably do not want to instrument sub-elements soluteVolumeProperty and waterVolumeProperty
       //TODO #92 a new solute is created for every pH change by Solute.createCustom
       // @public Solution in the beaker
       this.solution = new Solution( new Property( Solute.createCustom( 7 ) ), 0.5, 0, this.beaker.volume, {

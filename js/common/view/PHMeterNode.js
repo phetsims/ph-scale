@@ -189,7 +189,7 @@ define( require => {
         } );
         pHValueProperty.link( pH => {
           if ( pH !== null && pH !== solution.pHProperty.get() ) {
-            solution.soluteProperty.set( Solute.createCustom( pH ) );
+            solution.soluteProperty.set( Solute.createCustom( pH ) ); //TODO #92 a new solute is created for every pH change
           }
           upArrowNode.enabled = ( pH < PHScaleConstants.PH_RANGE.max );
           downArrowNode.enabled = ( pH > PHScaleConstants.PH_RANGE.min );

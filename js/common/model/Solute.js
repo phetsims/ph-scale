@@ -16,6 +16,7 @@ define( require => {
   const phScale = require( 'PH_SCALE/phScale' );
   const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
+  const SoluteIO = require( 'PH_SCALE/common/model/SoluteIO' );
   const Tandem = require( 'TANDEM/Tandem' );
   const Water = require( 'PH_SCALE/common/model/Water' );
 
@@ -36,41 +37,45 @@ define( require => {
   class Solute extends PhetioObject {
 
     /**
-     * @param {string} name
-     * @param {number} pH
-     * @param {stockColor:Color, [dilutedColor]:Color, colorStop:{color:{Color}, [ratio]:Number} } colorScheme
+     * @param {string} name - the name of the solute, displayed to the user
+     * @param {number} pH - the pH of the solute
+     * @param {Color} stockColor - color of the solute in stock solution (no dilution)
      * @param {Object} [options]
-     *
-     * colorScheme is an object literal with these properties:
-     * stockColor: color of the solute in stock solution (no dilution)
-     * dilutedColor: color when the solute is barely present in solution (fully diluted), optional, defaults to Water.color
-     * colorStop: color when soluteVolume/totalVolume === ratio, used to smooth out some color transitions if provided, optional
-     * ratio: ratio for the color-stop, (0,1) exclusive, optional, defaults to 0.25
+     * 
      */
-    constructor( name, pH, colorScheme, options ) {
+    constructor( name, pH, stockColor, options ) {
+
+      assert && assert( PHScaleConstants.PH_RANGE.contains( pH ), `invalid pH: ${pH}` );
+      assert && assert( stockColor instanceof Color, 'invalid color' );
 
       options = merge( {
 
+        // {Color} color when the solute is barely present in solution (fully diluted)
+        dilutedColor: Water.color,
+
+        // {Color|null} optional color use to smooth out some color transitions
+        colorStopColor: null,
+        
+        // {number} ratio for the color-stop, (0,1) exclusive, ignored if colorStopColor is null
+        colorStopRatio: 0.25,
+
         // phet-io
-        tandem: Tandem.REQUIRED
+        tandem: Tandem.OPTIONAL, //TODO #92 should be REQUIRED
+        phetioState: false,
+        phetioType: SoluteIO
       }, options );
 
       super( options );
 
-      if ( !PHScaleConstants.PH_RANGE.contains( pH ) ) {
-        throw new Error( 'Solute constructor, pH value is out of range: ' + pH );
-      }
-
-      this.name = name; // @public
-      this.pH = pH; // @public
-
-      // unpack the colors to make accessing them more convenient in client code
-      this.stockColor = colorScheme.stockColor; // @public
-      this.dilutedColor = colorScheme.dilutedColor || Water.color; // @private
-      this.colorStop = colorScheme.colorStop; // @private, optional, color computation will ignore it if undefined
-      if ( this.colorStop ) {
-        this.colorStop.ratio = this.colorStop.ratio || 0.25;
-      }
+      // @public (read-only)
+      this.name = name;
+      this.pH = pH;
+      this.stockColor = stockColor;
+      
+      // @private
+      this.dilutedColor = options.dilutedColor;
+      this.colorStop = options.colorStop;
+      this.colorStopRatio = options.colorStopRatio;
     }
 
     /**
@@ -79,7 +84,7 @@ define( require => {
      * @public
      */
     toString() {
-      return 'Solution[name:' + this.name + ' pH:' + this.pH + ']';
+      return `Solution[name:${this.name}, pH:${this.pH}]`;
     }
 
     /**
@@ -92,12 +97,13 @@ define( require => {
       assert && assert( ratio >= 0 && ratio <= 1 );
       let color;
       if ( this.colorStop ) {
-        // solute has an optional color-stop
-        if ( ratio > this.colorStop.ratio ) {
-          color = Color.interpolateRGBA( this.colorStop.color, this.stockColor, ( ratio - this.colorStop.ratio ) / ( 1 - this.colorStop.ratio) );
+        if ( ratio > this.colorStopRatio ) {
+          color = Color.interpolateRGBA( this.colorStopColor, this.stockColor,
+            ( ratio - this.colorStopRatio ) / ( 1 - this.colorStopRatio) );
         }
         else {
-          color = Color.interpolateRGBA( this.dilutedColor, this.colorStop.color, ratio / this.colorStop.ratio );
+          color = Color.interpolateRGBA( this.dilutedColor, this.colorStopColor,
+            ratio / this.colorStopRatio );
         }
       }
       else {
@@ -113,82 +119,70 @@ define( require => {
      * @public
      */
     static createCustom( pH ) {
-      return new Solute( choiceCustomString, pH, { stockColor: PHScaleColors.WATER } );
+      return new Solute( choiceCustomString, pH, PHScaleColors.WATER );
     }
   }
 
-  // 'real world' immutable solutions
+  // 'real world' immutable solutions -------------------------------------------------------
 
   // tandem for all static instances of Solute, which are used across all screens
-  //TODO #92 what should this be? why is there no global.solutes in the Studio tree?
-  const SOLUTES_TANDEM = Tandem.GLOBAL.createTandem( 'solutes' );
+  //TODO #92 is global.model.solutes the correct place for this?
+  const SOLUTES_TANDEM = Tandem.GLOBAL.createTandem( 'model').createTandem( 'solutes' );
 
-  Solute.DRAIN_CLEANER = new Solute( choiceDrainCleanerString, 13, {
-    stockColor: new Color( 255, 255, 0 ),
-    colorStop: { color: new Color( 255, 255, 204 ) },
+  Solute.DRAIN_CLEANER = new Solute( choiceDrainCleanerString, 13, new Color( 255, 255, 0 ), {
+    colorStopColor: new Color( 255, 255, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'drainCleaner' )
   } );
 
-  Solute.HAND_SOAP = new Solute( choiceHandSoapString, 10, {
-    stockColor: new Color( 224, 141, 242 ),
-    colorStop: { color: new Color( 232, 204, 255 ) },
+  Solute.HAND_SOAP = new Solute( choiceHandSoapString, 10, new Color( 224, 141, 242 ), {
+    colorStopColor: new Color( 232, 204, 255 ),
     tandem: SOLUTES_TANDEM.createTandem( 'handSoap' )
   } );
 
-  Solute.BLOOD = new Solute( choiceBloodString, 7.4, {
-    stockColor: new Color( 211, 79, 68 ),
-    colorStop: { color: new Color( 255, 207, 204 ) },
+  Solute.BLOOD = new Solute( choiceBloodString, 7.4, new Color( 211, 79, 68 ), {
+    colorStopColor: new Color( 255, 207, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'blood' )
   } );
 
-  Solute.SPIT = new Solute( choiceSpitString, 7.4, {
-    stockColor: new Color( 202, 240, 239 ),
-    tandem: SOLUTES_TANDEM.createTandem( 'SPIT' )
+  Solute.SPIT = new Solute( choiceSpitString, 7.4, new Color( 202, 240, 239 ), {
+    tandem: SOLUTES_TANDEM.createTandem( 'spit' )
   } );
 
-  Solute.WATER = new Solute( Water.name, Water.pH, {
-    stockColor: Water.color,
+  Solute.WATER = new Solute( Water.name, Water.pH, Water.color, {
     tandem: SOLUTES_TANDEM.createTandem( 'water' )
   } );
 
-  Solute.MILK = new Solute( choiceMilkString, 6.5, {
-    stockColor: new Color( 250, 250, 250 ),
+  Solute.MILK = new Solute( choiceMilkString, 6.5, new Color( 250, 250, 250 ), {
     tandem: SOLUTES_TANDEM.createTandem( 'milk' )
   } );
 
-  Solute.CHICKEN_SOUP = new Solute( choiceChickenSoupString, 5.8, {
-    stockColor: new Color( 255, 240, 104 ),
-    colorStop: { color: new Color( 255, 250, 204 ) },
+  Solute.CHICKEN_SOUP = new Solute( choiceChickenSoupString, 5.8, new Color( 255, 240, 104 ), {
+    colorStopColor: new Color( 255, 250, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'chickenSoup' )
   } );
 
-  Solute.COFFEE = new Solute( choiceCoffeeString, 5, {
-    stockColor: new Color( 164, 99, 7 ),
-    colorStop: { color: new Color( 255, 240, 204 ) },
+  Solute.COFFEE = new Solute( choiceCoffeeString, 5, new Color( 164, 99, 7 ), {
+    colorStopColor: new Color( 255, 240, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'coffee' )
   } );
 
-  Solute.ORANGE_JUICE = new Solute( choiceOrangeJuiceString, 3.5, {
-    stockColor: new Color( 255, 180, 0 ),
-    colorStop: { color: new Color( 255, 242, 204 ) },
+  Solute.ORANGE_JUICE = new Solute( choiceOrangeJuiceString, 3.5, new Color( 255, 180, 0 ), {
+    colorStopColor: new Color( 255, 242, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'orangeJuice' )
   } );
 
-  Solute.SODA = new Solute( choiceSodaString, 2.5, {
-    stockColor: new Color( 204, 255, 102 ),
-    colorStop: { color: new Color( 238, 255, 204 ) },
+  Solute.SODA = new Solute( choiceSodaString, 2.5, new Color( 204, 255, 102 ), {
+    colorStopColor: new Color( 238, 255, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'soda' )
   } );
 
-  Solute.VOMIT = new Solute( choiceVomitString, 2, {
-    stockColor: new Color( 255, 171, 120 ),
-    colorStop: { color: new Color( 255, 224, 204 ) },
+  Solute.VOMIT = new Solute( choiceVomitString, 2, new Color( 255, 171, 120 ), {
+    colorStopColor: new Color( 255, 224, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'vomit' )
   } );
 
-  Solute.BATTERY_ACID = new Solute( choiceBatteryAcidString, 1, {
-    stockColor: new Color( 255, 255, 0 ),
-    colorStop: { color: new Color( 255, 224, 204 ) },
+  Solute.BATTERY_ACID = new Solute( choiceBatteryAcidString, 1, new Color( 255, 255, 0 ), {
+    colorStopColor: new Color( 255, 224, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'batteryAcid' )
   } );
 

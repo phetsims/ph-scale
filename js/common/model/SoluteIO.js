@@ -12,18 +12,14 @@ define( require => {
   const ObjectIO = require( 'TANDEM/types/ObjectIO' );
   const phScale = require( 'PH_SCALE/phScale' );
   const ReferenceIO = require( 'TANDEM/types/ReferenceIO' );
-  const Solute = require( 'PH_SCALE/common/model/Solute' );
 
   // Objects are statically created, use reference equality to look up instances for toStateObject/fromStateObject
   class SoluteIO extends ReferenceIO {}
 
   SoluteIO.documentation = 'the selected solute';
   SoluteIO.typeName = 'SoluteIO';
-  SoluteIO.validator = { isValidValue: v => v instanceof Solute };
+  SoluteIO.validator = { isValidValue: value => value instanceof Object }; //TODO #92 require(Solute) is cyclic
   ObjectIO.validateSubtype( SoluteIO ); //TODO #92 is this the same info as SoluteIO.validator?
-
-  //TODO #92 why does Studio show all values as "phScale.requiredTandem" ?
 
   return phScale.register( 'SoluteIO', SoluteIO );
 } );
-

@@ -44,7 +44,7 @@ define( require => {
      * colorScheme is an object literal with these properties:
      * stockColor: color of the solute in stock solution (no dilution)
      * dilutedColor: color when the solute is barely present in solution (fully diluted), optional, defaults to Water.color
-     * color: color when soluteVolume/totalVolume === ratio, used to smooth out some color transitions if provided, optional
+     * colorStop: color when soluteVolume/totalVolume === ratio, used to smooth out some color transitions if provided, optional
      * ratio: ratio for the color-stop, (0,1) exclusive, optional, defaults to 0.25
      */
     constructor( name, pH, colorScheme, options ) {

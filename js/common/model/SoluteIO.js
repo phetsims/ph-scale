@@ -18,8 +18,12 @@ define( require => {
 
   SoluteIO.documentation = 'the selected solute';
   SoluteIO.typeName = 'SoluteIO';
-  SoluteIO.validator = { isValidValue: value => value instanceof Object }; //TODO #92 require(Solute) is cyclic
-  ObjectIO.validateSubtype( SoluteIO ); //TODO #92 is this the same info as SoluteIO.validator?
+
+  //TODO #92 should be instanceof Solute, but require(Solute) is cyclic, and phet.phScale.Solute doesn't exist yet
+  SoluteIO.validator = { isValidValue: value => value instanceof Object };
+
+  //TODO #92 is this the same info as SoluteIO.validator?
+  ObjectIO.validateSubtype( SoluteIO );
 
   return phScale.register( 'SoluteIO', SoluteIO );
 } );

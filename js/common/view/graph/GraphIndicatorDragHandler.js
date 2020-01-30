@@ -14,6 +14,7 @@ define( require => {
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   const SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   const Solute = require( 'PH_SCALE/common/model/Solute' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Utils = require( 'DOT/Utils' );
 
   class GraphIndicatorDragHandler extends SimpleDragHandler {
@@ -24,9 +25,10 @@ define( require => {
      * @param {function} yToValue - function that takes a {number} y coordinate and converts it to a {number} model value
      * @param {function} concentrationToPH - takes {number} concentration, returns pH
      * @param {function} molesToPH - takes {number} moles and {number} volume (L), returns pH
-     * @constructor
+     * @param {Tandem} tandem
      */
-    constructor( solution, graphUnitsProperty, yToValue, concentrationToPH, molesToPH ) {
+    constructor( solution, graphUnitsProperty, yToValue, concentrationToPH, molesToPH, tandem ) {
+      assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
       let clickYOffset; // y-offset between initial click and indicator's origin
 
@@ -61,7 +63,10 @@ define( require => {
             //TODO #92 a new solute is created for every pH change
             solution.soluteProperty.set( Solute.createCustom( pH ) );
           }
-        }
+        },
+
+        // phet-io
+        tandem: tandem
       } );
     }
   }

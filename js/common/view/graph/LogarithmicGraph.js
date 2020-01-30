@@ -227,11 +227,17 @@ define( require => {
 
         // H3O+ indicator
         h3OIndicatorNode.addInputListener(
-          new GraphIndicatorDragHandler( solution, graphUnitsProperty, yToValue, PHModel.concentrationH3OToPH, PHModel.molesH3OToPH ) );
+          new GraphIndicatorDragHandler( solution, graphUnitsProperty, yToValue,
+            PHModel.concentrationH3OToPH, PHModel.molesH3OToPH,
+            options.tandem.createTandem( 'h3OIndicatorDragHandler' )
+          ) );
 
         // OH- indicator
         oHIndicatorNode.addInputListener(
-          new GraphIndicatorDragHandler( solution, graphUnitsProperty, yToValue, PHModel.concentrationOHToPH, PHModel.molesOHToPH ) );
+          new GraphIndicatorDragHandler( solution, graphUnitsProperty, yToValue,
+            PHModel.concentrationOHToPH, PHModel.molesOHToPH,
+            options.tandem.createTandem( 'oHIndicatorDragHandler' )
+          ) );
       }
 
       this.mutate( options );

@@ -127,7 +127,7 @@ define( require => {
       const logarithmicGraph = new LogarithmicGraph( solution, this.graphUnitsProperty, {
         scaleHeight: options.logScaleHeight,
         isInteractive: options.isInteractive,
-        tandem: options.tandem.createTandem( 'linearGraph' )
+        tandem: options.tandem.createTandem( 'logarithmicGraph' )
       } );
 
       // vertical line that connects bottom of expand/collapse bar to top of graph

@@ -15,6 +15,8 @@ define( require => {
   const NumberProperty = require( 'AXON/NumberProperty' );
   const phScale = require( 'PH_SCALE/phScale' );
   const Property = require( 'AXON/Property' );
+  const PropertyIO = require( 'AXON/PropertyIO' );
+  const SoluteIO = require( 'PH_SCALE/common/model/SoluteIO' );
   const Tandem = require( 'TANDEM/Tandem' );
 
   class Dropper extends Movable {
@@ -43,12 +45,11 @@ define( require => {
 
       // @public
       this.soluteProperty = new Property( solute, {
-        //TODO #92 tandem
-        //TODO #92 phetioType: SoluteIO
+        tandem: options.tandem.createTandem( 'soluteProperty' ),
+        phetioType: PropertyIO( SoluteIO )
       } );
 
       // @public
-      //TODO #92 this should interruptSubtreeInput
       this.visibleProperty = new BooleanProperty( options.visible, {
         tandem: options.tandem.createTandem( 'visibleProperty' )
       } );

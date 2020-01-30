@@ -16,6 +16,7 @@ define( require => {
   const NullableIO = require( 'TANDEM/types/NullableIO' );
   const NumberIO = require( 'TANDEM/types/NumberIO' );
   const NumberProperty = require( 'AXON/NumberProperty' );
+  const PhetioObject = require( 'TANDEM/PhetioObject' );
   const PHModel = require( 'PH_SCALE/common/model/PHModel' );
   const phScale = require( 'PH_SCALE/phScale' );
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
@@ -26,7 +27,7 @@ define( require => {
   // constants
   const MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );
 
-  class Solution {
+  class Solution extends PhetioObject {
 
     /**
      * @param {Property.<Solute>} soluteProperty
@@ -41,19 +42,36 @@ define( require => {
       options = merge( {
 
         // phet-io
-        tandem: Tandem.REQUIRED
+        tandem: Tandem.REQUIRED,
+        phetioState: false
       }, options );
+
+      super( options );
 
       // @public
       this.soluteProperty = soluteProperty;
+      //TODO #92 does this linked element seem useful?
+      this.addLinkedElement( this.soluteProperty, {
+        tandem: options.tandem.createTandem( 'soluteProperty' )
+      } );
+
+      // @public
       this.soluteVolumeProperty = new NumberProperty( soluteVolume, {
+        units: 'L',
         tandem: options.tandem.createTandem( 'soluteVolumeProperty' ),
-        phetioReadOnly: true
+        phetioReadOnly: true,
+        phetioDocumentation: 'volume of solute in the solution'
       } );
+
+      // @public
       this.waterVolumeProperty = new NumberProperty( waterVolume, {
+        units: 'L',
         tandem: options.tandem.createTandem( 'waterVolumeProperty' ),
-        phetioReadOnly: true
+        phetioReadOnly: true,
+        phetioDocumentation: 'volume of water in the solution'
       } );
+
+      // @public (read-only)
       this.maxVolume = maxVolume;
 
       /*
@@ -68,10 +86,11 @@ define( require => {
       // @public volume
       this.volumeProperty = new DerivedProperty( [ this.soluteVolumeProperty, this.waterVolumeProperty ],
         () => ( this.ignoreVolumeUpdate ) ? this.volumeProperty.get() : this.computeVolume(), {
-          tandem: options.tandem.createTandem( 'waterVolumeProperty' ),
-          phetioType: DerivedPropertyIO( NumberIO )
-        }
-      );
+          units: 'L',
+          tandem: options.tandem.createTandem( 'volumeProperty' ),
+          phetioType: DerivedPropertyIO( NumberIO ),
+          phetioDocumentation: 'total volume of the solution'
+        } );
 
       // @public pH, null if no value
       this.pHProperty = new DerivedProperty( [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],

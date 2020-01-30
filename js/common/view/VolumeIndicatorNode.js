@@ -30,6 +30,7 @@ define( require => {
   const VALUE_FONT = new PhetFont( { size: 24, weight: 'bold' } );
 
   class VolumeIndicatorNode extends Node {
+
     /**
      * @param {Property.<number>} volumeProperty
      * @param {Beaker} beaker

@@ -17,7 +17,7 @@ define( require => {
   class H2ONode extends Node {
 
     /**
-     * @param {Object} options
+     * @param {Object} [options]
      */
     constructor( options ) {
 

@@ -22,6 +22,7 @@ define( require => {
   const MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );
 
   class Solution {
+
     /**
      * @param {Property.<Solute>} soluteProperty
      * @param {number} soluteVolume liters

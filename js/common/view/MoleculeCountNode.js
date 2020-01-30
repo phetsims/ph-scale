@@ -22,6 +22,7 @@ define( require => {
   const ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
 
   class MoleculeCountNode extends Node {
+
     /**
      * @param {Solution} solution
      */

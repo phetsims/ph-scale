@@ -13,6 +13,7 @@ define( require => {
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
   class DropperFluidNode extends Rectangle {
+
     /**
      * @param {Dropper} dropper
      * @param {Beaker} beaker

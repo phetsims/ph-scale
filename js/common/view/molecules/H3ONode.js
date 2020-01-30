@@ -17,7 +17,7 @@ define( require => {
   class H3ONode extends Node {
 
     /**
-     * @param {Object} options
+     * @param {Object} [options]
      */
     constructor( options ) {
 

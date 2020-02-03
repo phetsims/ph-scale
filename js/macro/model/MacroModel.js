@@ -100,7 +100,7 @@ define( require => {
       this.autoFillVolume = options.autoFillVolume;
 
       // @public (read-only)
-      //TODO #92 any reason to instrument this?
+      //TODO #92 any reason to instrument this? do we need a way to disable this feature?
       this.isAutoFillingProperty = new BooleanProperty( false );
 
       this.dropper.soluteProperty.link( () => {

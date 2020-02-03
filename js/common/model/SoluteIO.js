@@ -16,7 +16,7 @@ define( require => {
   // Objects are statically created, use reference equality to look up instances for toStateObject/fromStateObject
   class SoluteIO extends ReferenceIO {}
 
-  //TODO #92 does these need API for getting name, pH, etc?
+  //TODO #92 does this need API for getting name, pH, etc?
 
   SoluteIO.documentation = 'the selected solute';
   SoluteIO.typeName = 'SoluteIO';

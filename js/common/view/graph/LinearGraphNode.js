@@ -23,25 +23,28 @@ define( require => {
   const Path = require( 'SCENERY/nodes/Path' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const phScale = require( 'PH_SCALE/phScale' );
+  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   const ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
   const Shape = require( 'KITE/Shape' );
   const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
   const Utils = require( 'DOT/Utils' );
+  const ZoomButtonGroup = require( 'PH_SCALE/common/view/graph/ZoomButtonGroup' );
 
   // strings
   const offScaleString = require( 'string!PH_SCALE/offScale' );
+
+  // constants
+  const MANTISSA_RANGE = PHScaleConstants.LINEAR_MANTISSA_RANGE;
 
   class LinearGraphNode extends Node {
 
     /**
      * @param {Solution} solution
      * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
-     * @param {Range} mantissaRange
-     * @param {Property.<number>} exponentProperty
      * @param {Object} [options]
      */
-    constructor( solution, graphUnitsProperty, mantissaRange, exponentProperty, options ) {
+    constructor( solution, graphUnitsProperty, options ) {
 
       options = merge( {
 
@@ -68,6 +71,15 @@ define( require => {
       }, options );
 
       super();
+
+      // @private
+      this.exponentProperty = new NumberProperty( PHScaleConstants.LINEAR_EXPONENT_RANGE.max, {
+        numberType: 'Integer',
+        tandem: options.tandem.createTandem( 'exponentProperty' ),
+        range: PHScaleConstants.LINEAR_EXPONENT_RANGE,
+        phetioReadOnly: true,
+        phetioDocumentation: 'exponent on the linear scale'
+      } );
 
       const scaleWidth = options.minScaleWidth;
       const scaleHeight = options.scaleHeight;
@@ -113,7 +125,7 @@ define( require => {
 
       // Create the tick marks. Correct labels will be assigned later.
       const tickLabels = [];
-      const numberOfTicks = mantissaRange.getLength() + 1;
+      const numberOfTicks = MANTISSA_RANGE.getLength() + 1;
       const ySpacing = ( scaleHeight - arrowHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
       let tickLabel;
       let tickLineLeft;
@@ -179,7 +191,7 @@ define( require => {
        * @returns {number} y position in view coordinates
        */
       const valueToY = ( value, offScaleYOffset ) => {
-        const topTickValue = mantissaRange.max * Math.pow( 10, exponentProperty.get() );
+        const topTickValue = MANTISSA_RANGE.max * Math.pow( 10, this.exponentProperty.get() );
         if ( value > topTickValue ) {
           // values out of range are placed in the arrow
           return arrowNode.top + ( 0.8 * arrowHeadHeight ) + ( offScaleYOffset || 0 );
@@ -223,7 +235,7 @@ define( require => {
       solution.pHProperty.link( updateIndicators.bind( this ) );
       solution.volumeProperty.link( updateIndicators.bind( this ) );
       graphUnitsProperty.link( updateIndicators.bind( this ) );
-      exponentProperty.link( updateIndicators.bind( this ) );
+      this.exponentProperty.link( updateIndicators.bind( this ) );
 
       // updates the tick labels to match the exponent
       const updateTickLabels = exponent => {
@@ -235,9 +247,24 @@ define( require => {
       };
 
       // When the exponent changes, relabel the tick marks
-      exponentProperty.link( exponent => updateTickLabels( exponent ) );
+      this.exponentProperty.link( exponent => updateTickLabels( exponent ) );
+
+      // zoom buttons
+      const zoomButtonGroup = new ZoomButtonGroup( this.exponentProperty, {
+        centerX: scaleNode.centerX,
+        top: scaleNode.bottom + 44,
+        tandem: options.tandem.createTandem( 'zoomButtonGroup' )
+      } );
+      this.addChild( zoomButtonGroup );
 
       this.mutate( options );
+    }
+
+    /**
+     * @public
+     */
+    reset() {
+      this.exponentProperty.reset();
     }
   }
 

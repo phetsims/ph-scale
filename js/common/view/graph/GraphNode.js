@@ -25,7 +25,6 @@ define( require => {
   const LogarithmicGraphNode = require( 'PH_SCALE/common/view/graph/LogarithmicGraphNode' );
   const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
-  const NumberProperty = require( 'AXON/NumberProperty' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const phScale = require( 'PH_SCALE/phScale' );
   const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
@@ -33,7 +32,6 @@ define( require => {
   const RichText = require( 'SCENERY/nodes/RichText' );
   const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const ZoomButtonGroup = require( 'PH_SCALE/common/view/graph/ZoomButtonGroup' );
 
   // strings
   const concentrationString = require( 'string!PH_SCALE/concentration' );
@@ -72,15 +70,6 @@ define( require => {
       // @private units
       this.graphUnitsProperty = new EnumerationProperty( GraphUnits, options.units, {
         tandem: options.tandem.createTandem( 'graphUnitsProperty' )
-      } );
-
-      // @private
-      this.exponentProperty = new NumberProperty( PHScaleConstants.LINEAR_EXPONENT_RANGE.max, {
-        numberType: 'Integer',
-        tandem: options.tandem.createTandem( 'exponentProperty' ),
-        range: PHScaleConstants.LINEAR_EXPONENT_RANGE,
-        phetioReadOnly: true,
-        phetioDocumentation: 'exponent on the linear scale'
       } );
 
       // @private scale (log, linear) of the graph
@@ -150,20 +139,14 @@ define( require => {
         graphNode.visible = expanded;
       } );
 
-      // optional linear graph
-      this.hasLinearFeature = options.hasLinearFeature; // @private
-      if ( this.hasLinearFeature ) {
+      // @private {LinearGraphNode|null} optional linear graph
+      this.linearGraphNode = null;
+      if ( options.hasLinearFeature ) {
 
         // linear graph
-        const linearGraphNode = new LinearGraphNode( solution, this.graphUnitsProperty, PHScaleConstants.LINEAR_MANTISSA_RANGE,
-          this.exponentProperty, {
-            scaleHeight: options.linearScaleHeight,
-            tandem: options.tandem.createTandem( 'linearGraphNode' )
-          } );
-
-        // zoom buttons
-        const zoomButtonGroup = new ZoomButtonGroup( this.exponentProperty, {
-          tandem: options.tandem.createTandem( 'zoomButtonGroup' )
+        this.linearGraphNode = new LinearGraphNode( solution, this.graphUnitsProperty, {
+          scaleHeight: options.linearScaleHeight,
+          tandem: options.tandem.createTandem( 'linearGraphNode' )
         } );
 
         // scale switch (Logarithmic vs Linear)
@@ -188,25 +171,22 @@ define( require => {
         // rendering order
         graphNode.addChild( lineToSwitchNode );
         lineToSwitchNode.moveToBack();
-        graphNode.addChild( linearGraphNode );
-        graphNode.addChild( zoomButtonGroup );
+        graphNode.addChild( this.linearGraphNode );
         graphNode.addChild( graphScaleSwitch );
 
         // layout
         const ySpacing = 15;
-        linearGraphNode.centerX = logarithmicGraphNode.centerX;
-        linearGraphNode.y = logarithmicGraphNode.y; // y, not top
-        zoomButtonGroup.centerX = logarithmicGraphNode.centerX;
-        zoomButtonGroup.top = linearGraphNode.y + options.linearScaleHeight + ( 3 * ySpacing );
+        this.linearGraphNode.centerX = logarithmicGraphNode.centerX;
+        this.linearGraphNode.y = logarithmicGraphNode.y; // y, not top
         graphScaleSwitch.centerX = lineToSwitchNode.centerX;
-        graphScaleSwitch.top = zoomButtonGroup.bottom + ySpacing;
+        graphScaleSwitch.top = this.linearGraphNode.bottom + ySpacing;
         lineToSwitchNode.centerX = lineToBarNode.centerX;
         lineToSwitchNode.bottom = graphScaleSwitch.top + 1;
 
         // handle scale changes
         this.graphScaleProperty.link( graphScale => {
           logarithmicGraphNode.visible = ( graphScale === GraphScale.LOGARITHMIC );
-          linearGraphNode.visible = zoomButtonGroup.visible = ( graphScale === GraphScale.LINEAR );
+          this.linearGraphNode.visible = ( graphScale === GraphScale.LINEAR );
         } );
       }
 
@@ -218,8 +198,8 @@ define( require => {
      */
     reset() {
       this.graphUnitsProperty.reset();
-      this.exponentProperty.reset();
       this.graphScaleProperty.reset();
+      this.linearGraphNode && this.linearGraphNode.reset();
     }
   }
 

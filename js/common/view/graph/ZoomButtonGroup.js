@@ -37,7 +37,7 @@ define( require => {
       const zoomOutButton = new ZoomButton( {
         in: false,
         radius: MAGNIFYING_GLASS_RADIUS,
-        listener: () => exponentProperty.set( this.exponentProperty.get() - 1 ),
+        listener: () => exponentProperty.set( exponentProperty.get() + 1 ),
         tandem: options.tandem.createTandem( 'zoomOutButton' ),
         phetioDocumentation: 'zoom out button for the linear scale'
       } );
@@ -45,7 +45,7 @@ define( require => {
       const zoomInButton = new ZoomButton( {
         in: true,
         radius: MAGNIFYING_GLASS_RADIUS,
-        listener: () => this.exponentProperty.set( this.exponentProperty.get() + 1 ),
+        listener: () => exponentProperty.set( exponentProperty.get() - 1 ),
         tandem: options.tandem.createTandem( 'zoomInButton' ),
         phetioDocumentation: 'zoom in button for the linear scale'
       } );

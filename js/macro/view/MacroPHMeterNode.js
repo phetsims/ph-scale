@@ -81,7 +81,7 @@ define( require => {
 
       super( options );
 
-      // pH scale, positioned at meter 'body' position
+      // the vertical scale, positioned at the meter 'body' position
       const scaleNode = new ScaleNode( { size: SCALE_SIZE } );
       scaleNode.translation = modelViewTransform.modelToViewPosition( meter.bodyPosition );
 

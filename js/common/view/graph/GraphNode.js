@@ -33,7 +33,7 @@ define( require => {
   const RichText = require( 'SCENERY/nodes/RichText' );
   const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const ZoomButton = require( 'SCENERY_PHET/buttons/ZoomButton' );
+  const ZoomButtonGroup = require( 'PH_SCALE/common/view/graph/ZoomButtonGroup' );
 
   // strings
   const concentrationString = require( 'string!PH_SCALE/concentration' );
@@ -69,18 +69,16 @@ define( require => {
 
       super();
 
-      const mantissaRange = PHScaleConstants.LINEAR_MANTISSA_RANGE;
-      const exponentRange = PHScaleConstants.LINEAR_EXPONENT_RANGE;
-
       // @private units
       this.graphUnitsProperty = new EnumerationProperty( GraphUnits, options.units, {
         tandem: options.tandem.createTandem( 'graphUnitsProperty' )
       } );
 
       // @private
-      //TODO #92 should this be instrumented?
-      this.exponentProperty = new NumberProperty( exponentRange.max, {
+      this.exponentProperty = new NumberProperty( PHScaleConstants.LINEAR_EXPONENT_RANGE.max, {
+        numberType: 'Integer',
         tandem: options.tandem.createTandem( 'exponentProperty' ),
+        range: PHScaleConstants.LINEAR_EXPONENT_RANGE,
         phetioReadOnly: true,
         phetioDocumentation: 'exponent on the linear scale'
       } );
@@ -157,31 +155,16 @@ define( require => {
       if ( this.hasLinearFeature ) {
 
         // linear graph
-        const linearGraph = new LinearGraph( solution, this.graphUnitsProperty, mantissaRange, this.exponentProperty, {
-          scaleHeight: options.linearScaleHeight,
-          tandem: options.tandem.createTandem( 'linearGraph' )
-        } );
+        const linearGraph = new LinearGraph( solution, this.graphUnitsProperty, PHScaleConstants.LINEAR_MANTISSA_RANGE,
+          this.exponentProperty, {
+            scaleHeight: options.linearScaleHeight,
+            tandem: options.tandem.createTandem( 'linearGraph' )
+          } );
 
-        // zoom buttons for the linear graph
-        const magnifyingGlassRadius = 13;
-        const zoomOutButton = new ZoomButton( {
-          in: false,
-          radius: magnifyingGlassRadius,
-          tandem: options.tandem.createTandem( 'zoomOutButton' ),
-          phetioDocumentation: 'zoom out button for the linear scale'
+        // zoom buttons
+        const zoomButtonGroup = new ZoomButtonGroup( this.exponentProperty, {
+          tandem: options.tandem.createTandem( 'zoomButtonGroup' )
         } );
-        const zoomInButton = new ZoomButton( {
-          in: true,
-          radius: magnifyingGlassRadius,
-          tandem: options.tandem.createTandem( 'zoomInButton' ),
-          phetioDocumentation: 'zoom in button for the linear scale'
-        } );
-        const zoomButtons = new Node( { children: [ zoomOutButton, zoomInButton ] } );
-        zoomInButton.left = zoomOutButton.right + 25;
-        zoomInButton.centerY = zoomOutButton.centerY;
-        // expand touch area
-        zoomOutButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
-        zoomInButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
 
         // scale switch (Logarithmic vs Linear)
         const textOptions = {
@@ -206,39 +189,24 @@ define( require => {
         graphNode.addChild( lineToSwitchNode );
         lineToSwitchNode.moveToBack();
         graphNode.addChild( linearGraph );
-        graphNode.addChild( zoomButtons );
+        graphNode.addChild( zoomButtonGroup );
         graphNode.addChild( graphScaleSwitch );
 
         // layout
         const ySpacing = 15;
         linearGraph.centerX = logarithmicGraph.centerX;
         linearGraph.y = logarithmicGraph.y; // y, not top
-        zoomButtons.centerX = logarithmicGraph.centerX;
-        zoomButtons.top = linearGraph.y + options.linearScaleHeight + ( 3 * ySpacing );
+        zoomButtonGroup.centerX = logarithmicGraph.centerX;
+        zoomButtonGroup.top = linearGraph.y + options.linearScaleHeight + ( 3 * ySpacing );
         graphScaleSwitch.centerX = lineToSwitchNode.centerX;
-        graphScaleSwitch.top = zoomButtons.bottom + ySpacing;
+        graphScaleSwitch.top = zoomButtonGroup.bottom + ySpacing;
         lineToSwitchNode.centerX = lineToBarNode.centerX;
         lineToSwitchNode.bottom = graphScaleSwitch.top + 1;
 
         // handle scale changes
         this.graphScaleProperty.link( graphScale => {
           logarithmicGraph.visible = ( graphScale === GraphScale.LOGARITHMIC );
-          linearGraph.visible = zoomButtons.visible = ( graphScale === GraphScale.LINEAR );
-        } );
-
-        // enable/disable zoom buttons
-        this.exponentProperty.link( exponent => {
-          assert && assert( exponentRange.contains( exponent ) );
-          zoomInButton.enabled = ( exponent > exponentRange.min );
-          zoomOutButton.enabled = ( exponent < exponentRange.max );
-        } );
-
-        // handle zoom of linear graph
-        zoomInButton.addListener( () => {
-          this.exponentProperty.set( this.exponentProperty.get() - 1 );
-        } );
-        zoomOutButton.addListener( () => {
-          this.exponentProperty.set( this.exponentProperty.get() + 1 );
+          linearGraph.visible = zoomButtonGroup.visible = ( graphScale === GraphScale.LINEAR );
         } );
       }
 

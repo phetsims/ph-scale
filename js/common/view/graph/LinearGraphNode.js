@@ -14,7 +14,7 @@ define( require => {
   'use strict';
 
   // modules
-  const GraphIndicator = require( 'PH_SCALE/common/view/graph/GraphIndicator' );
+  const GraphIndicatorNode = require( 'PH_SCALE/common/view/graph/GraphIndicatorNode' );
   const GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   const Line = require( 'SCENERY/nodes/Line' );
   const merge = require( 'PHET_CORE/merge' );
@@ -169,14 +169,14 @@ define( require => {
       const valueH2OProperty = new NumberProperty( 0 );
       const valueH3OProperty = new NumberProperty( 0 );
       const valueOHProperty = new NumberProperty( 0 );
-      const h2OIndicatorNode = GraphIndicator.createH2OIndicator( valueH2OProperty, {
+      const h2OIndicatorNode = GraphIndicatorNode.createH2OIndicator( valueH2OProperty, {
         x: scaleNode.right - options.majorTickLength
       } );
-      const h3OIndicatorNode = GraphIndicator.createH3OIndicator( valueH3OProperty, {
+      const h3OIndicatorNode = GraphIndicatorNode.createH3OIndicator( valueH3OProperty, {
         x: scaleNode.left + options.majorTickLength,
         isInteractive: options.isInteractive
       } );
-      const oHIndicatorNode = GraphIndicator.createOHIndicator( valueOHProperty, {
+      const oHIndicatorNode = GraphIndicatorNode.createOHIndicator( valueOHProperty, {
         x: scaleNode.right - options.majorTickLength,
         isInteractive: options.isInteractive
       } );

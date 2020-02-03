@@ -1,7 +1,7 @@
 // Copyright 2013-2020, University of Colorado Boulder
 
 /**
- * The indicator that points to a value on a graph's vertical scale.
+ * GraphIndicatorNode points to a value on a graph's vertical scale.
  * Origin is at the indicator's pointer, and the pointer can be attached to any corner of the indicator (see options.pointerPosition).
  * Interactive indicators are decorated with a double-headed arrow, indicating the direction of dragging.
  *
@@ -32,7 +32,7 @@ define( require => {
   const POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute width of the pointy part of the indicator
   const POINTER_HEIGHT_PERCENTAGE = 0.5; // used to compute height of the pointy part of the indicator
 
-  class GraphIndicator extends Node {
+  class GraphIndicatorNode extends Node {
 
     /**
      * @param {Property.<number>} valueProperty
@@ -201,11 +201,11 @@ define( require => {
     /**
      * Creates an indicator for H3O+.
      * @param {Property.<number>} valueProperty
-     * @param {Object} [options] see GraphIndicator constructor
+     * @param {Object} [options] see GraphIndicatorNode constructor
      * @public
      */
     static createH3OIndicator( valueProperty, options ) {
-      return new GraphIndicator( valueProperty,
+      return new GraphIndicatorNode( valueProperty,
         new H3ONode(),
         new RichText( PHScaleConstants.H3O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
         merge( {
@@ -217,11 +217,11 @@ define( require => {
     /**
      * Creates an indicator for OH-.
      * @param {Property.<number>} valueProperty
-     * @param {Object} [options] see GraphIndicator constructor
+     * @param {Object} [options] see GraphIndicatorNode constructor
      * @public
      */
     static createOHIndicator( valueProperty, options ) {
-      return new GraphIndicator( valueProperty,
+      return new GraphIndicatorNode( valueProperty,
         new OHNode(),
         new RichText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: 'white', supXSpacing: 2 } ),
         merge( {
@@ -233,11 +233,11 @@ define( require => {
     /**
      * Creates an indicator for H2O.
      * @param {Property.<number>} valueProperty
-     * @param {Object} [options] see GraphIndicator constructor
+     * @param {Object} [options] see GraphIndicatorNode constructor
      * @public
      */
     static createH2OIndicator( valueProperty, options ) {
-      return new GraphIndicator( valueProperty,
+      return new GraphIndicatorNode( valueProperty,
         new H2ONode(),
         new RichText( PHScaleConstants.H2O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
         merge( {
@@ -249,5 +249,5 @@ define( require => {
     }
   }
 
-  return phScale.register( 'GraphIndicator', GraphIndicator );
+  return phScale.register( 'GraphIndicatorNode', GraphIndicatorNode );
 } );

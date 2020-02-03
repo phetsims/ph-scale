@@ -17,8 +17,8 @@ define( require => {
   'use strict';
 
   // modules
-  const GraphIndicator = require( 'PH_SCALE/common/view/graph/GraphIndicator' );
   const GraphIndicatorDragHandler = require( 'PH_SCALE/common/view/graph/GraphIndicatorDragHandler' );
+  const GraphIndicatorNode = require( 'PH_SCALE/common/view/graph/GraphIndicatorNode' );
   const GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   const Line = require( 'SCENERY/nodes/Line' );
   const LinearGradient = require( 'SCENERY/util/LinearGradient' );
@@ -150,14 +150,14 @@ define( require => {
       const valueH2OProperty = new NumberProperty( 0 );
       const valueH3OProperty = new NumberProperty( 0 );
       const valueOHProperty = new NumberProperty( 0 );
-      const h2OIndicatorNode = GraphIndicator.createH2OIndicator( valueH2OProperty, {
+      const h2OIndicatorNode = GraphIndicatorNode.createH2OIndicator( valueH2OProperty, {
         x: backgroundNode.right - options.indicatorXOffset
       } );
-      const h3OIndicatorNode = GraphIndicator.createH3OIndicator( valueH3OProperty, {
+      const h3OIndicatorNode = GraphIndicatorNode.createH3OIndicator( valueH3OProperty, {
         x: backgroundNode.left + options.indicatorXOffset,
         isInteractive: options.isInteractive
       } );
-      const oHIndicatorNode = GraphIndicator.createOHIndicator( valueOHProperty, {
+      const oHIndicatorNode = GraphIndicatorNode.createOHIndicator( valueOHProperty, {
         x: backgroundNode.right - options.indicatorXOffset,
         isInteractive: options.isInteractive
       } );

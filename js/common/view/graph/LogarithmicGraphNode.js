@@ -34,7 +34,7 @@ define( require => {
   const Tandem = require( 'TANDEM/Tandem' );
   const Utils = require( 'DOT/Utils' );
 
-  class LogarithmicGraph extends Node {
+  class LogarithmicGraphNode extends Node {
 
     /**
      * @param {Solution} solution
@@ -256,5 +256,5 @@ define( require => {
     } );
   }
 
-  return phScale.register( 'LogarithmicGraph', LogarithmicGraph );
+  return phScale.register( 'LogarithmicGraphNode', LogarithmicGraphNode );
 } );

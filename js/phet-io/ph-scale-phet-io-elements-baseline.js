@@ -6865,7 +6865,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.microScreen.view.graphNode.linearGraph": {
+    "phScale.microScreen.view.graphNode.linearGraphNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -6878,7 +6878,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.microScreen.view.graphNode.linearGraph.opacityProperty": {
+    "phScale.microScreen.view.graphNode.linearGraphNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -6891,7 +6891,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.microScreen.view.graphNode.linearGraph.pickableProperty": {
+    "phScale.microScreen.view.graphNode.linearGraphNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -6904,7 +6904,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.microScreen.view.graphNode.linearGraph.visibleProperty": {
+    "phScale.microScreen.view.graphNode.linearGraphNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -6917,7 +6917,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.microScreen.view.graphNode.logarithmicGraph": {
+    "phScale.microScreen.view.graphNode.logarithmicGraphNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -6930,7 +6930,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.microScreen.view.graphNode.logarithmicGraph.opacityProperty": {
+    "phScale.microScreen.view.graphNode.logarithmicGraphNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -6943,7 +6943,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.microScreen.view.graphNode.logarithmicGraph.pickableProperty": {
+    "phScale.microScreen.view.graphNode.logarithmicGraphNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -6956,7 +6956,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.microScreen.view.graphNode.logarithmicGraph.visibleProperty": {
+    "phScale.microScreen.view.graphNode.logarithmicGraphNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -9348,7 +9348,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraph": {
+    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -9361,7 +9361,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraph.h3OIndicatorDragHandler": {
+    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.h3OIndicatorDragHandler": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -9374,7 +9374,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ObjectIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraph.h3OIndicatorDragHandler.dragAction": {
+    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.h3OIndicatorDragHandler.dragAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -9387,7 +9387,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraph.h3OIndicatorDragHandler.dragEndAction": {
+    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.h3OIndicatorDragHandler.dragEndAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -9400,7 +9400,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraph.h3OIndicatorDragHandler.dragStartAction": {
+    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.h3OIndicatorDragHandler.dragStartAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -9413,7 +9413,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraph.h3OIndicatorDragHandler.isDraggingProperty": {
+    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.h3OIndicatorDragHandler.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -9426,7 +9426,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraph.oHIndicatorDragHandler": {
+    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.oHIndicatorDragHandler": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -9439,7 +9439,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ObjectIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraph.oHIndicatorDragHandler.dragAction": {
+    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.oHIndicatorDragHandler.dragAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -9452,7 +9452,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraph.oHIndicatorDragHandler.dragEndAction": {
+    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.oHIndicatorDragHandler.dragEndAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -9465,7 +9465,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraph.oHIndicatorDragHandler.dragStartAction": {
+    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.oHIndicatorDragHandler.dragStartAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -9478,7 +9478,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraph.oHIndicatorDragHandler.isDraggingProperty": {
+    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.oHIndicatorDragHandler.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -9491,7 +9491,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraph.opacityProperty": {
+    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -9504,7 +9504,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraph.pickableProperty": {
+    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -9517,7 +9517,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraph.visibleProperty": {
+    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",

@@ -21,8 +21,8 @@ define( require => {
   const GraphScale = require( 'PH_SCALE/common/view/graph/GraphScale' );
   const GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   const Line = require( 'SCENERY/nodes/Line' );
-  const LinearGraph = require( 'PH_SCALE/common/view/graph/LinearGraph' );
-  const LogarithmicGraph = require( 'PH_SCALE/common/view/graph/LogarithmicGraph' );
+  const LinearGraphNode = require( 'PH_SCALE/common/view/graph/LinearGraphNode' );
+  const LogarithmicGraphNode = require( 'PH_SCALE/common/view/graph/LogarithmicGraphNode' );
   const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
   const NumberProperty = require( 'AXON/NumberProperty' );
@@ -122,10 +122,10 @@ define( require => {
         } );
 
       // logarithmic graph
-      const logarithmicGraph = new LogarithmicGraph( solution, this.graphUnitsProperty, {
+      const logarithmicGraphNode = new LogarithmicGraphNode( solution, this.graphUnitsProperty, {
         scaleHeight: options.logScaleHeight,
         isInteractive: options.isInteractive,
-        tandem: options.tandem.createTandem( 'logarithmicGraph' )
+        tandem: options.tandem.createTandem( 'logarithmicGraphNode' )
       } );
 
       // vertical line that connects bottom of expand/collapse bar to top of graph
@@ -137,11 +137,11 @@ define( require => {
       const graphNode = new Node();
       this.addChild( graphNode );
       graphNode.addChild( lineToBarNode );
-      graphNode.addChild( logarithmicGraph );
+      graphNode.addChild( logarithmicGraphNode );
 
       // layout
-      logarithmicGraph.centerX = lineToBarNode.centerX;
-      logarithmicGraph.y = 30; // y, not top
+      logarithmicGraphNode.centerX = lineToBarNode.centerX;
+      logarithmicGraphNode.y = 30; // y, not top
       graphNode.centerX = expandCollapseBar.centerX;
       graphNode.y = expandCollapseBar.bottom; // y, not top
 
@@ -155,10 +155,10 @@ define( require => {
       if ( this.hasLinearFeature ) {
 
         // linear graph
-        const linearGraph = new LinearGraph( solution, this.graphUnitsProperty, PHScaleConstants.LINEAR_MANTISSA_RANGE,
+        const linearGraphNode = new LinearGraphNode( solution, this.graphUnitsProperty, PHScaleConstants.LINEAR_MANTISSA_RANGE,
           this.exponentProperty, {
             scaleHeight: options.linearScaleHeight,
-            tandem: options.tandem.createTandem( 'linearGraph' )
+            tandem: options.tandem.createTandem( 'linearGraphNode' )
           } );
 
         // zoom buttons
@@ -188,16 +188,16 @@ define( require => {
         // rendering order
         graphNode.addChild( lineToSwitchNode );
         lineToSwitchNode.moveToBack();
-        graphNode.addChild( linearGraph );
+        graphNode.addChild( linearGraphNode );
         graphNode.addChild( zoomButtonGroup );
         graphNode.addChild( graphScaleSwitch );
 
         // layout
         const ySpacing = 15;
-        linearGraph.centerX = logarithmicGraph.centerX;
-        linearGraph.y = logarithmicGraph.y; // y, not top
-        zoomButtonGroup.centerX = logarithmicGraph.centerX;
-        zoomButtonGroup.top = linearGraph.y + options.linearScaleHeight + ( 3 * ySpacing );
+        linearGraphNode.centerX = logarithmicGraphNode.centerX;
+        linearGraphNode.y = logarithmicGraphNode.y; // y, not top
+        zoomButtonGroup.centerX = logarithmicGraphNode.centerX;
+        zoomButtonGroup.top = linearGraphNode.y + options.linearScaleHeight + ( 3 * ySpacing );
         graphScaleSwitch.centerX = lineToSwitchNode.centerX;
         graphScaleSwitch.top = zoomButtonGroup.bottom + ySpacing;
         lineToSwitchNode.centerX = lineToBarNode.centerX;
@@ -205,8 +205,8 @@ define( require => {
 
         // handle scale changes
         this.graphScaleProperty.link( graphScale => {
-          logarithmicGraph.visible = ( graphScale === GraphScale.LOGARITHMIC );
-          linearGraph.visible = zoomButtonGroup.visible = ( graphScale === GraphScale.LINEAR );
+          logarithmicGraphNode.visible = ( graphScale === GraphScale.LOGARITHMIC );
+          linearGraphNode.visible = zoomButtonGroup.visible = ( graphScale === GraphScale.LINEAR );
         } );
       }
 

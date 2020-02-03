@@ -32,7 +32,7 @@ define( require => {
   // strings
   const offScaleString = require( 'string!PH_SCALE/offScale' );
 
-  class LinearGraph extends Node {
+  class LinearGraphNode extends Node {
 
     /**
      * @param {Solution} solution
@@ -241,5 +241,5 @@ define( require => {
     }
   }
 
-  return phScale.register( 'LinearGraph', LinearGraph );
+  return phScale.register( 'LinearGraphNode', LinearGraphNode );
 } );

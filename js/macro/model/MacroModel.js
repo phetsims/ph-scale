@@ -165,9 +165,11 @@ define( require => {
      * @private
      */
     startAutoFill() {
-      this.isAutoFillingProperty.value = true;
-      this.dropper.dispensingProperty.set( true );
-      this.dropper.flowRateProperty.set( 0.75 ); // faster than standard flow rate
+      if ( this.autoFillVolume > 0 ) {
+        this.isAutoFillingProperty.value = true;
+        this.dropper.dispensingProperty.set( true );
+        this.dropper.flowRateProperty.set( 0.75 ); // faster than standard flow rate
+      }
     }
 
     /**

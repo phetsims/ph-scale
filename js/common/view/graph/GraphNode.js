@@ -19,6 +19,7 @@ define( require => {
   const EnumerationProperty = require( 'AXON/EnumerationProperty' );
   const ExpandCollapseBar = require( 'SUN/ExpandCollapseBar' );
   const GraphScale = require( 'PH_SCALE/common/view/graph/GraphScale' );
+  const GraphScaleSwitch = require( 'PH_SCALE/common/view/graph/GraphScaleSwitch' );
   const GraphUnits = require( 'PH_SCALE/common/view/graph/GraphUnits' );
   const Line = require( 'SCENERY/nodes/Line' );
   const LinearGraphNode = require( 'PH_SCALE/common/view/graph/LinearGraphNode' );
@@ -35,8 +36,6 @@ define( require => {
 
   // strings
   const concentrationString = require( 'string!PH_SCALE/concentration' );
-  const linearString = require( 'string!PH_SCALE/linear' );
-  const logarithmicString = require( 'string!PH_SCALE/logarithmic' );
   const quantityString = require( 'string!PH_SCALE/quantity' );
   const unitsMolesPerLiterString = require( 'string!PH_SCALE/units.molesPerLiter' );
   const unitsMolesString = require( 'string!PH_SCALE/units.moles' );
@@ -150,18 +149,9 @@ define( require => {
         } );
 
         // scale switch (Logarithmic vs Linear)
-        const textOptions = {
-          font: AB_SWITCH_FONT,
-          maxWidth: 125
-        };
-        const graphScaleSwitch = new ABSwitch( this.graphScaleProperty,
-          GraphScale.LOGARITHMIC, new Text( logarithmicString, textOptions ),
-          GraphScale.LINEAR, new Text( linearString, textOptions ), {
-            size: new Dimension2( 50, 25 ),
-            centerOnButton: true,
-            tandem: options.tandem.createTandem( 'graphScaleSwitch' ),
-            phetioDocumentation: 'A/B switch for switching between logarithmic and linear scales'
-          } );
+        const graphScaleSwitch = new GraphScaleSwitch( this.graphScaleProperty, {
+          tandem: options.tandem.createTandem( 'graphScaleSwitch' )
+        } );
 
         // vertical line that connects bottom of graph to top of scale switch
         const lineToSwitchNode = new Line( 0, 0, 0, 200, {

@@ -10,6 +10,7 @@ define( require => {
 
   // modules
   const Bounds2 = require( 'DOT/Bounds2' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const phScale = require( 'PH_SCALE/phScale' );
   const Range = require( 'DOT/Range' );
   const RangeWithValue = require( 'DOT/RangeWithValue' );
@@ -54,7 +55,10 @@ define( require => {
     // formulas, no i18n required
     H3O_FORMULA: 'H<sub>3</sub>O<sup>+</sup>',
     OH_FORMULA: 'OH<sup>-</sup>',
-    H2O_FORMULA: 'H<sub>2</sub>O'
+    H2O_FORMULA: 'H<sub>2</sub>O',
+
+    // fonts
+    AB_SWITCH_FONT: new PhetFont( { size: 18, weight: 'bold' } )
   };
 
   return phScale.register( 'PHScaleConstants', PHScaleConstants );

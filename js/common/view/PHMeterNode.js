@@ -208,7 +208,10 @@ define( require => {
       }
 
       // expand/collapse button
-      const expandCollapseButton = new ExpandCollapseButton( expandedProperty, { sideLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH } );
+      const expandCollapseButton = new ExpandCollapseButton( expandedProperty, {
+        sideLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH,
+        tandem: options.tandem.createTandem( 'expandCollapseButton' )
+      } );
       expandCollapseButton.touchArea = Shape.bounds( expandCollapseButton.localBounds.dilatedXY( 10, 10 ) );
 
       // label above the value

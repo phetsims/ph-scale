@@ -74,7 +74,8 @@ define( require => {
 
       // @public
       this.flowRateProperty = new NumberProperty( options.flowRate, {
-        //TODO #93 this is exceeded by MacroModel.startAutoFill range: new Range( 0, options.maxFlowRate ),
+        //TODO #92 this is exceeded by MacroModel.startAutoFill
+        //range: new Range( 0, options.maxFlowRate ),
         units: 'L/s',
         tandem: options.tandem.createTandem( 'flowRateProperty' ),
         phetioReadOnly: true

@@ -1,7 +1,5 @@
 // Copyright 2014-2020, University of Colorado Boulder
 
-//TODO #92 instrument pHValueProperty and ExpandCollapseButton, do any other subcomponents need to be instrumented?
-//TODO #92 PHMeterNode probably needs to be restructured to support desired tandem structure
 /**
  * pH meter for the 'Micro' and 'My Solution' screens.
  * Origin is at top left.

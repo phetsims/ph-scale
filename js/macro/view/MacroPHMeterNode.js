@@ -89,7 +89,10 @@ define( require => {
       const indicatorNode = new IndicatorNode( meter.valueProperty, SCALE_SIZE.width );
       indicatorNode.left = scaleNode.x;
 
-      const probeNode = new PHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode );
+      const probeNode = new PHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode,
+        waterFluidNode, drainFluidNode, {
+          tandem: options.tandem.createTandem( 'probeNode' )
+        } );
       const wireNode = new WireNode( meter.probe, scaleNode, probeNode );
 
       // rendering order
@@ -316,9 +319,9 @@ define( require => {
      * @param {Node} waterFluidNode
      * @param {Node} drainFluidNode
      */
-    constructor( probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode ) {
+    constructor( probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, options ) {
 
-      super( {
+      options = merge(  {
         sensorTypeFunction: ProbeNode.crosshairs( {
           intersectionRadius: 6
         } ),
@@ -330,8 +333,13 @@ define( require => {
         lightAngle: 0.85 * Math.PI,
         color: 'rgb( 35, 129, 0 )',
         rotation: Math.PI / 2,
-        cursor: 'pointer'
-      } );
+        cursor: 'pointer',
+
+        // phet-io
+        tandem: Tandem.REQUIRED
+      } , options );
+
+      super( options );
 
       // probe position
       probe.positionProperty.link( position => {
@@ -344,7 +352,8 @@ define( require => {
       // drag handler
       this.addInputListener( new MovableDragHandler( probe.positionProperty, {
         dragBounds: probe.dragBounds,
-        modelViewTransform: modelViewTransform
+        modelViewTransform: modelViewTransform,
+        tandem: options.tandem.createTandem( 'dragHandler' )
       } ) );
 
       const isInNode = node => node.getBounds().containsPoint( probe.positionProperty.get() );

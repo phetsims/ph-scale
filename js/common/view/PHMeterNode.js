@@ -68,7 +68,9 @@ define( require => {
       super();
 
       // nodes
-      const valueNode = new ValueNode( solution, expandedProperty, options.isInteractive );
+      const valueNode = new ValueNode( solution, expandedProperty, options.isInteractive, {
+        tandem: options.tandem.createTandem( 'valueNode' )
+      } );
       const probeNode = new ProbeNode( probeYOffset );
 
       // rendering order
@@ -109,9 +111,15 @@ define( require => {
      * @param {Property.<boolean>} expandedProperty
      * @param {boolean} isInteractive
      */
-    constructor( solution, expandedProperty, isInteractive ) {
+    constructor( solution, expandedProperty, isInteractive, options ) {
 
-      super();
+      options = merge( {
+
+        // phet-io
+        tandem: Tandem.REQUIRED
+      }, options );
+
+      super( options );
 
       // pH value
       const valueText = new Text( Utils.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
@@ -148,35 +156,37 @@ define( require => {
         // options common to both arrow buttons
         const arrowButtonOptions = { fireOnHoldInterval: SPINNER_TIMER_INTERVAL, enabledFill: SPINNER_ARROW_COLOR };
 
-        // up arrow
-        const upArrowNode = new ArrowButton( 'up',
+        // button to increment value
+        const incrementButton = new ArrowButton( 'up',
           () => {
             pHValueProperty.set( Math.min( PHScaleConstants.PH_RANGE.max, solution.pHProperty.get() + SPINNER_DELTA ) );
           },
           merge( {
             left: valueRectangle.right + SPINNER_X_SPACING,
-            bottom: valueRectangle.centerY - ( SPINNER_Y_SPACING / 2 )
+            bottom: valueRectangle.centerY - ( SPINNER_Y_SPACING / 2 ),
+            tandem: options.tandem.createTandem( 'incrementButton' )
           }, arrowButtonOptions )
         );
-        valueNode.addChild( upArrowNode );
+        valueNode.addChild( incrementButton );
 
-        // down arrow
-        const downArrowNode = new ArrowButton( 'down',
+        // button to decrement value
+        const decrementButton = new ArrowButton( 'down',
           () => {
             pHValueProperty.set( Math.max( PHScaleConstants.PH_RANGE.min, solution.pHProperty.get() - SPINNER_DELTA ) );
           },
           merge( {
-            left: upArrowNode.left,
-            top: upArrowNode.bottom + SPINNER_Y_SPACING
+            left: incrementButton.left,
+            top: incrementButton.bottom + SPINNER_Y_SPACING,
+            tandem: options.tandem.createTandem( 'decrementButton' )
           }, arrowButtonOptions )
         );
-        valueNode.addChild( downArrowNode );
+        valueNode.addChild( decrementButton );
 
         // touch areas, expanded mostly to the right
-        const xDilation = upArrowNode.width / 2;
+        const xDilation = incrementButton.width / 2;
         const yDilation = 6;
-        upArrowNode.touchArea = upArrowNode.localBounds.dilatedXY( xDilation, yDilation ).shifted( xDilation, -yDilation );
-        downArrowNode.touchArea = downArrowNode.localBounds.dilatedXY( xDilation, yDilation ).shifted( xDilation, yDilation );
+        incrementButton.touchArea = incrementButton.localBounds.dilatedXY( xDilation, yDilation ).shifted( xDilation, -yDilation );
+        decrementButton.touchArea = decrementButton.localBounds.dilatedXY( xDilation, yDilation ).shifted( xDilation, yDilation );
 
         /*
          * solution.pHProperty is derived, so we can't change it directly.
@@ -192,8 +202,8 @@ define( require => {
           if ( pH !== null && pH !== solution.pHProperty.get() ) {
             solution.soluteProperty.set( Solute.createCustom( pH ) ); //TODO #92 a new solute is created for every pH change
           }
-          upArrowNode.enabled = ( pH < PHScaleConstants.PH_RANGE.max );
-          downArrowNode.enabled = ( pH > PHScaleConstants.PH_RANGE.min );
+          incrementButton.enabled = ( pH < PHScaleConstants.PH_RANGE.max );
+          decrementButton.enabled = ( pH > PHScaleConstants.PH_RANGE.min );
         } );
       }
 

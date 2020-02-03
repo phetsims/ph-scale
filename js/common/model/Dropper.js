@@ -41,7 +41,7 @@ define( require => {
         tandem: Tandem.REQUIRED
       }, options );
 
-      super( position, dragBounds );
+      super( position, dragBounds, options );
 
       // @public
       this.soluteProperty = new Property( solute, {

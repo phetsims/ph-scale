@@ -111,7 +111,7 @@ define( require => {
         });
 
       // @public color
-      //TODO #92 does this need to be instrumented?
+      //TODO #92 does solution color need to be instrumented?
       this.colorProperty = new DerivedProperty(
         [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
         ( solute, soluteVolume, waterVolume ) => {

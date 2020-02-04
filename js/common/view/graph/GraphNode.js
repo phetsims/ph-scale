@@ -108,6 +108,7 @@ define( require => {
           tandem: options.tandem.createTandem( 'graphUnitsSwitch' ),
           phetioDocumentation: 'A/B switch for switching units'
         } );
+      expandCollapseBar.addChild( graphUnitsSwitch );
 
       // logarithmic graph
       const logarithmicGraphNode = new LogarithmicGraphNode( solution, this.graphUnitsProperty, {
@@ -118,10 +119,12 @@ define( require => {
 
       // vertical line that connects bottom of expand/collapse bar to top of graph
       const lineToBarNode = new Line( 0, 0, 0, 75, { stroke: 'black' } );
+      expandCollapseBar.on( 'visibility', () => {
+        lineToBarNode.visible = expandCollapseBar.visible;
+      } );
 
       // rendering order
       this.addChild( expandCollapseBar );
-      this.addChild( graphUnitsSwitch );
       const graphNode = new Node();
       this.addChild( graphNode );
       graphNode.addChild( lineToBarNode );
@@ -156,6 +159,9 @@ define( require => {
         // vertical line that connects bottom of graph to top of scale switch
         const lineToSwitchNode = new Line( 0, 0, 0, 200, {
           stroke: 'black'
+        } );
+        graphScaleSwitch.on( 'visibility', () => {
+          lineToSwitchNode.visible = graphScaleSwitch.visible;
         } );
 
         // rendering order

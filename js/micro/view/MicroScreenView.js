@@ -121,7 +121,7 @@ define( require => {
         } );
 
       // graph
-      const graphNode = new GraphNode( model.solution, viewProperties.graphExpandedProperty, {
+      const graphNode = new GraphNode( model.solution, {
         hasLinearFeature: true,
         logScaleHeight: 485,
         linearScaleHeight: 440,

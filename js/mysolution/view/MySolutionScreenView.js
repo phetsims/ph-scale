@@ -88,7 +88,7 @@ define( require => {
         } );
 
       // graph
-      const graphNode = new GraphNode( model.solution, viewProperties.graphExpandedProperty, {
+      const graphNode = new GraphNode( model.solution, {
         isInteractive: true,
         logScaleHeight: 565,
         tandem: tandem.createTandem( 'graphNode' )

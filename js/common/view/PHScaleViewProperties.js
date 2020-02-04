@@ -31,9 +31,6 @@ define( require => {
       this.pHMeterExpandedProperty = new BooleanProperty( true, {
         tandem: tandem.createTandem( 'pHMeterExpandedProperty' )
       } );
-      this.graphExpandedProperty = new BooleanProperty( true, {
-        tandem: tandem.createTandem( 'graphExpandedProperty' )
-      } );
     }
 
     /**
@@ -43,7 +40,6 @@ define( require => {
       this.ratioVisibleProperty.reset();
       this.moleculeCountVisibleProperty.reset();
       this.pHMeterExpandedProperty.reset();
-      this.graphExpandedProperty.reset();
     }
   }
 

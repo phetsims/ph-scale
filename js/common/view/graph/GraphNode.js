@@ -1,7 +1,6 @@
 // Copyright 2013-2020, University of Colorado Boulder
 
 //TODO #92 which subcomponents need to be instrumented?
-//TODO #92 instrument thin vertical lines?
 /**
  * Container for all components related to the graph feature.
  * It has an expand/collapse bar at the top of it, and can switch between 'concentration' and 'quantity'.
@@ -14,6 +13,7 @@ define( require => {
   'use strict';
 
   // modules
+  const BooleanProperty = require( 'AXON/BooleanProperty' );
   const EnumerationProperty = require( 'AXON/EnumerationProperty' );
   const GraphControlPanel = require( 'PH_SCALE/common/view/graph/GraphControlPanel' );
   const GraphScale = require( 'PH_SCALE/common/view/graph/GraphScale' );
@@ -31,10 +31,9 @@ define( require => {
 
     /**
      * @param {Solution} solution
-     * @param {Property.<boolean>} expandedProperty
      * @param {Object} [options]
      */
-    constructor( solution, expandedProperty, options ) {
+    constructor( solution, options ) {
 
       options = merge( {
         isInteractive: false, // only the Log scale can be interactive
@@ -50,6 +49,11 @@ define( require => {
 
       super();
 
+      // @private
+      this.expandedProperty = new BooleanProperty( true, {
+        tandem: options.tandem.createTandem( 'expandedProperty' )
+      } );
+
       // @private units
       this.graphUnitsProperty = new EnumerationProperty( GraphUnits, options.units, {
         tandem: options.tandem.createTandem( 'graphUnitsProperty' )
@@ -61,7 +65,7 @@ define( require => {
       } );
 
       // control panel above the graph
-      const graphControlPanel = new GraphControlPanel( this.graphUnitsProperty, expandedProperty, {
+      const graphControlPanel = new GraphControlPanel( this.graphUnitsProperty, this.expandedProperty, {
         tandem: options.tandem.createTandem( 'graphControlPanel' )
       } );
 
@@ -92,7 +96,7 @@ define( require => {
       graphNode.y = graphControlPanel.bottom; // y, not top
 
       // expand/collapse the graph
-      expandedProperty.link( expanded => {
+      this.expandedProperty.link( expanded => {
         graphNode.visible = expanded;
       } );
 
@@ -148,6 +152,7 @@ define( require => {
      * @public
      */
     reset() {
+      this.expandedProperty.reset();
       this.graphUnitsProperty.reset();
       this.graphScaleProperty.reset();
       this.linearGraphNode && this.linearGraphNode.reset();

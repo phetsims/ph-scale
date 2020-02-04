@@ -14,6 +14,7 @@ define( require => {
 
   // modules
   const ArrowButton = require( 'SUN/buttons/ArrowButton' );
+  const BooleanProperty = require( 'AXON/BooleanProperty' );
   const ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
   const MathSymbols = require( 'SCENERY_PHET/MathSymbols' );
   const merge = require( 'PHET_CORE/merge' );
@@ -65,8 +66,13 @@ define( require => {
 
       super();
 
+      // @public
+      this.expandedProperty = new BooleanProperty( true, {
+        tandem: options.tandem.createTandem( 'pHMeterExpandedProperty' )
+      } );
+
       // nodes
-      const valueNode = new ValueNode( solution, expandedProperty, options.isInteractive, {
+      const valueNode = new ValueNode( solution, this.expandedProperty, options.isInteractive, {
         tandem: options.tandem.createTandem( 'valueNode' )
       } );
       const probeNode = new ProbeNode( probeYOffset );
@@ -87,11 +93,18 @@ define( require => {
       }
       probeNode.top = valueNode.top;
 
-      expandedProperty.link( expanded => {
+      this.expandedProperty.link( expanded => {
         probeNode.visible = expanded;
       } );
 
       this.mutate( options );
+    }
+
+    /**
+     * @public
+     */
+    reset() {
+      this.expandedProperty.reset();
     }
   }
 

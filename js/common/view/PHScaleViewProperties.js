@@ -28,9 +28,6 @@ define( require => {
       this.moleculeCountVisibleProperty = new BooleanProperty( false, {
         tandem: tandem.createTandem( 'moleculeCountVisibleProperty' )
       } );
-      this.pHMeterExpandedProperty = new BooleanProperty( true, {
-        tandem: tandem.createTandem( 'pHMeterExpandedProperty' )
-      } );
     }
 
     /**
@@ -39,7 +36,6 @@ define( require => {
     reset() {
       this.ratioVisibleProperty.reset();
       this.moleculeCountVisibleProperty.reset();
-      this.pHMeterExpandedProperty.reset();
     }
   }
 

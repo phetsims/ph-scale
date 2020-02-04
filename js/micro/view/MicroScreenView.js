@@ -131,8 +131,7 @@ define( require => {
       // pH meter
       const pHMeterTop = 15;
       const pHMeterNode = new PHMeterNode( model.solution,
-        modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop,
-        viewProperties.pHMeterExpandedProperty, {
+        modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
           attachProbe: 'right',
           tandem: tandem.createTandem( 'pHMeterNode' )
         } );
@@ -150,6 +149,7 @@ define( require => {
           model.reset();
           viewProperties.reset();
           graphNode.reset();
+          pHMeterNode.reset();
         },
         tandem: tandem.createTandem( 'resetAllButton' )
       } );

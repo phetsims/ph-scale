@@ -1,6 +1,5 @@
 // Copyright 2013-2020, University of Colorado Boulder
 
-//TODO #92 do any subcomponents of this need to be instrumented?
 /**
  * pH meter for the 'Macro' screen.
  *
@@ -86,7 +85,9 @@ define( require => {
       scaleNode.translation = modelViewTransform.modelToViewPosition( meter.bodyPosition );
 
       // indicator that slides vertically along scale
-      const indicatorNode = new IndicatorNode( meter.valueProperty, SCALE_SIZE.width );
+      const indicatorNode = new IndicatorNode( meter.valueProperty, SCALE_SIZE.width, {
+        tandem: options.tandem.createTandem( 'indicatorNode' )
+      } );
       indicatorNode.left = scaleNode.x;
 
       const probeNode = new PHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode,
@@ -417,9 +418,13 @@ define( require => {
      * @param {Property.<number>} pHProperty
      * @param {number} scaleWidth
      */
-    constructor( pHProperty, scaleWidth ) {
+    constructor( pHProperty, scaleWidth, options ) {
 
-      super();
+      options = merge( {
+        tandem: Tandem.REQUIRED
+      }, options );
+
+      super( options );
 
       // dashed line that extends across the scale
       const lineNode = new Line( 0, 0, scaleWidth, 0, {

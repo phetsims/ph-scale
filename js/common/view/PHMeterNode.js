@@ -210,7 +210,7 @@ define( require => {
         sideLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH,
         tandem: options.tandem.createTandem( 'expandCollapseButton' )
       } );
-      expandCollapseButton.touchArea = Shape.bounds( expandCollapseButton.localBounds.dilatedXY( 10, 10 ) );
+      expandCollapseButton.touchArea = expandCollapseButton.localBounds.dilatedXY( 10, 10 );
 
       // label above the value
       const labelNode = new Text( pHString, {

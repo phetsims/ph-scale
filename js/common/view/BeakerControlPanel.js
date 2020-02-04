@@ -21,7 +21,6 @@ define( require => {
   const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   const RichText = require( 'SCENERY/nodes/RichText' );
-  const Shape = require( 'KITE/Shape' );
   const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
 
@@ -65,14 +64,14 @@ define( require => {
       const ratioCheckbox = new Checkbox( ratioLabel, ratioVisibleProperty, {
         tandem: options.tandem.createTandem( 'ratioCheckbox' )
       } );
-      ratioCheckbox.touchArea = Shape.bounds( ratioCheckbox.localBounds.dilatedXY( 10, 8 ) );
+      ratioCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );
 
       // 'Molecule count' checkbox
       const moleculeCountLabel = new Text( moleculeCountString, { font: FONT } );
       const moleculeCountCheckbox = new Checkbox( moleculeCountLabel, moleculeCountVisibleProperty, {
         tandem: options.tandem.createTandem( 'moleculeCountCheckbox' )
       } );
-      moleculeCountCheckbox.touchArea = Shape.bounds( ratioCheckbox.localBounds.dilatedXY( 10, 8 ) );
+      moleculeCountCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );
 
       const separator = new Line( 0, 0, Math.max( moleculeCountCheckbox.width, ratioCheckbox.width ), 0, {
         stroke: 'gray',

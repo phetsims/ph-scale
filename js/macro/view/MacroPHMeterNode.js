@@ -90,10 +90,13 @@ define( require => {
       } );
       indicatorNode.left = scaleNode.x;
 
+      // interactive probe
       const probeNode = new PHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode,
         waterFluidNode, drainFluidNode, {
           tandem: options.tandem.createTandem( 'probeNode' )
         } );
+
+      // wire that connects the probe to the meter
       const wireNode = new WireNode( meter.probe, scaleNode, probeNode );
 
       // rendering order

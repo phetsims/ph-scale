@@ -1,5 +1,6 @@
 // Copyright 2020, University of Colorado Boulder
 
+//TODO #92 ABSwitch has structural problems, see https://github.com/phetsims/sun/issues/559
 /**
  *
  * @author Chris Malley (PixelZoom, Inc.)

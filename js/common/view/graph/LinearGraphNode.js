@@ -169,20 +169,23 @@ define( require => {
       const valueH2OProperty = new NumberProperty( 0 );
       const valueH3OProperty = new NumberProperty( 0 );
       const valueOHProperty = new NumberProperty( 0 );
-      const h2OIndicatorNode = GraphIndicatorNode.createH2OIndicator( valueH2OProperty, {
-        x: scaleNode.right - options.majorTickLength
-      } );
-      const h3OIndicatorNode = GraphIndicatorNode.createH3OIndicator( valueH3OProperty, {
-        x: scaleNode.left + options.majorTickLength,
-        isInteractive: options.isInteractive
-      } );
-      const oHIndicatorNode = GraphIndicatorNode.createOHIndicator( valueOHProperty, {
+      const indicatorH2ONode = GraphIndicatorNode.createH2OIndicator( valueH2OProperty, {
         x: scaleNode.right - options.majorTickLength,
-        isInteractive: options.isInteractive
+        tandem: options.tandem.createTandem( 'indicatorH2ONode' )
       } );
-      this.addChild( h2OIndicatorNode );
-      this.addChild( h3OIndicatorNode );
-      this.addChild( oHIndicatorNode );
+      const indicatorH3ONode = GraphIndicatorNode.createH3OIndicator( valueH3OProperty, {
+        x: scaleNode.left + options.majorTickLength,
+        isInteractive: options.isInteractive,
+        tandem: options.tandem.createTandem( 'indicatorH3ONode' )
+      } );
+      const indicatorOHNode = GraphIndicatorNode.createOHIndicator( valueOHProperty, {
+        x: scaleNode.right - options.majorTickLength,
+        isInteractive: options.isInteractive,
+        tandem: options.tandem.createTandem( 'indicatorOHNode' )
+      } );
+      this.addChild( indicatorH2ONode );
+      this.addChild( indicatorH3ONode );
+      this.addChild( indicatorOHNode );
 
       /*
        * Given a value, compute it's y position relative to the top of the scale.
@@ -221,9 +224,9 @@ define( require => {
         }
 
         // move indicators
-        h2OIndicatorNode.y = valueToY( valueH2O, -4 ); // offset the H2O indicator when off scale, so it doesn't butt up again OH indicator
-        h3OIndicatorNode.y = valueToY( valueH3O );
-        oHIndicatorNode.y = valueToY( valueOH );
+        indicatorH2ONode.y = valueToY( valueH2O, -4 ); // offset the H2O indicator when off scale, so it doesn't butt up again OH indicator
+        indicatorH3ONode.y = valueToY( valueH3O );
+        indicatorOHNode.y = valueToY( valueOH );
 
         // update indicator values
         valueH2OProperty.set( valueH2O );

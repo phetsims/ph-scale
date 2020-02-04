@@ -150,20 +150,23 @@ define( require => {
       const valueH2OProperty = new NumberProperty( 0 );
       const valueH3OProperty = new NumberProperty( 0 );
       const valueOHProperty = new NumberProperty( 0 );
-      const h2OIndicatorNode = GraphIndicatorNode.createH2OIndicator( valueH2OProperty, {
-        x: backgroundNode.right - options.indicatorXOffset
-      } );
-      const h3OIndicatorNode = GraphIndicatorNode.createH3OIndicator( valueH3OProperty, {
-        x: backgroundNode.left + options.indicatorXOffset,
-        isInteractive: options.isInteractive
-      } );
-      const oHIndicatorNode = GraphIndicatorNode.createOHIndicator( valueOHProperty, {
+      const indicatorH2ONode = GraphIndicatorNode.createH2OIndicator( valueH2OProperty, {
         x: backgroundNode.right - options.indicatorXOffset,
-        isInteractive: options.isInteractive
+        tandem: options.tandem.createTandem( 'indicatorH2ONode' )
       } );
-      this.addChild( h2OIndicatorNode );
-      this.addChild( h3OIndicatorNode );
-      this.addChild( oHIndicatorNode );
+      const indicatorH3ONode = GraphIndicatorNode.createH3OIndicator( valueH3OProperty, {
+        x: backgroundNode.left + options.indicatorXOffset,
+        isInteractive: options.isInteractive,
+        tandem: options.tandem.createTandem( 'indicatorH3ONode' )
+      } );
+      const indicatorOHNode = GraphIndicatorNode.createOHIndicator( valueOHProperty, {
+        x: backgroundNode.right - options.indicatorXOffset,
+        isInteractive: options.isInteractive,
+        tandem: options.tandem.createTandem( 'indicatorOHNode' )
+      } );
+      this.addChild( indicatorH2ONode );
+      this.addChild( indicatorH3ONode );
+      this.addChild( indicatorOHNode );
 
       // Given a value, compute it's y position relative to the top of the scale.
       const valueToY = value => {
@@ -209,9 +212,9 @@ define( require => {
         }
 
         // move indicators
-        h2OIndicatorNode.y = valueToY( valueH2O );
-        h3OIndicatorNode.y = valueToY( valueH3O );
-        oHIndicatorNode.y = valueToY( valueOH );
+        indicatorH2ONode.y = valueToY( valueH2O );
+        indicatorH3ONode.y = valueToY( valueH3O );
+        indicatorOHNode.y = valueToY( valueOH );
 
         // update indicator values
         valueH2OProperty.set( valueH2O );
@@ -226,17 +229,17 @@ define( require => {
       if ( options.isInteractive ) {
 
         // H3O+ indicator
-        h3OIndicatorNode.addInputListener(
+        indicatorH3ONode.addInputListener(
           new GraphIndicatorDragHandler( solution, graphUnitsProperty, yToValue,
             PHModel.concentrationH3OToPH, PHModel.molesH3OToPH,
-            options.tandem.createTandem( 'h3OIndicatorDragHandler' )
+            options.tandem.createTandem( 'indicatorH3ODragHandler' )
           ) );
 
         // OH- indicator
-        oHIndicatorNode.addInputListener(
+        indicatorOHNode.addInputListener(
           new GraphIndicatorDragHandler( solution, graphUnitsProperty, yToValue,
             PHModel.concentrationOHToPH, PHModel.molesOHToPH,
-            options.tandem.createTandem( 'oHIndicatorDragHandler' )
+            options.tandem.createTandem( 'indicatorOHDragHandler' )
           ) );
       }
 

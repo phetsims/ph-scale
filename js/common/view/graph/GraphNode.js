@@ -68,36 +68,34 @@ define( require => {
       const graphControlPanel = new GraphControlPanel( this.graphUnitsProperty, this.expandedProperty, {
         tandem: options.tandem.createTandem( 'graphControlPanel' )
       } );
+      this.addChild( graphControlPanel );
+
+      // vertical line that connects bottom of graphControlPanel to top of graph
+      const lineToPanel = new Line( 0, 0, 0, 75, { stroke: 'black' } );
+      graphControlPanel.on( 'visibility', () => {
+        lineToPanel.visible = graphControlPanel.visible;
+      } );
 
       // logarithmic graph
       const logarithmicGraphNode = new LogarithmicGraphNode( solution, this.graphUnitsProperty, {
         scaleHeight: options.logScaleHeight,
         isInteractive: options.isInteractive,
+        centerX: lineToPanel.centerX,
+        y: 30, // y, not top
         tandem: options.tandem.createTandem( 'logarithmicGraphNode' )
       } );
 
-      // vertical line that connects bottom of expand/collapse bar to top of graph
-      const lineToBarNode = new Line( 0, 0, 0, 75, { stroke: 'black' } );
-      graphControlPanel.on( 'visibility', () => {
-        lineToBarNode.visible = graphControlPanel.visible;
+      // parent for things whose visibility will be controlled by expandProperty
+      const parentNode = new Node( {
+        children: [ lineToPanel, logarithmicGraphNode ],
+        centerX: graphControlPanel.centerX,
+        y: graphControlPanel.bottom // y, not top
       } );
+      this.addChild( parentNode );
 
-      // rendering order
-      this.addChild( graphControlPanel );
-      const graphNode = new Node();
-      this.addChild( graphNode );
-      graphNode.addChild( lineToBarNode );
-      graphNode.addChild( logarithmicGraphNode );
-
-      // layout
-      logarithmicGraphNode.centerX = lineToBarNode.centerX;
-      logarithmicGraphNode.y = 30; // y, not top
-      graphNode.centerX = graphControlPanel.centerX;
-      graphNode.y = graphControlPanel.bottom; // y, not top
-
-      // expand/collapse the graph
+      // controls the visibility of parentNode
       this.expandedProperty.link( expanded => {
-        graphNode.visible = expanded;
+        parentNode.visible = expanded;
       } );
 
       // @private {LinearGraphNode|null} optional linear graph
@@ -107,36 +105,34 @@ define( require => {
         // linear graph
         this.linearGraphNode = new LinearGraphNode( solution, this.graphUnitsProperty, {
           scaleHeight: options.linearScaleHeight,
+          y: logarithmicGraphNode.y, // y, not top
+          centerX: logarithmicGraphNode.centerX,
           tandem: options.tandem.createTandem( 'linearGraphNode' )
         } );
 
         // scale switch (Logarithmic vs Linear)
         const graphScaleSwitch = new GraphScaleSwitch( this.graphScaleProperty, {
+          centerX: lineToPanel.centerX,
+          top: this.linearGraphNode.bottom + 15,
           tandem: options.tandem.createTandem( 'graphScaleSwitch' )
         } );
 
         // vertical line that connects bottom of graph to top of scale switch
         const lineToSwitchNode = new Line( 0, 0, 0, 200, {
-          stroke: 'black'
+          stroke: 'black',
+          centerX: lineToPanel.centerX,
+          bottom: graphScaleSwitch.top + 1
         } );
+
         graphScaleSwitch.on( 'visibility', () => {
           lineToSwitchNode.visible = graphScaleSwitch.visible;
         } );
 
-        // rendering order
-        graphNode.addChild( lineToSwitchNode );
+        // add everything to parentNode, since their visibility is controlled by expandedProperty
+        parentNode.addChild( lineToSwitchNode );
         lineToSwitchNode.moveToBack();
-        graphNode.addChild( this.linearGraphNode );
-        graphNode.addChild( graphScaleSwitch );
-
-        // layout
-        const ySpacing = 15;
-        this.linearGraphNode.centerX = logarithmicGraphNode.centerX;
-        this.linearGraphNode.y = logarithmicGraphNode.y; // y, not top
-        graphScaleSwitch.centerX = lineToSwitchNode.centerX;
-        graphScaleSwitch.top = this.linearGraphNode.bottom + ySpacing;
-        lineToSwitchNode.centerX = lineToBarNode.centerX;
-        lineToSwitchNode.bottom = graphScaleSwitch.top + 1;
+        parentNode.addChild( this.linearGraphNode );
+        parentNode.addChild( graphScaleSwitch );
 
         // handle scale changes
         this.graphScaleProperty.link( graphScale => {

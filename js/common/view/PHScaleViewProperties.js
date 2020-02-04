@@ -23,10 +23,14 @@ define( require => {
 
       // @public
       this.ratioVisibleProperty = new BooleanProperty( false, {
-        tandem: tandem.createTandem( 'ratioVisibleProperty' )
+        tandem: tandem.createTandem( 'ratioVisibleProperty' ),
+        phetioDocumentation: 'controls visibility of the H3O+/OH- Ratio view'
       } );
+
+      // @public
       this.moleculeCountVisibleProperty = new BooleanProperty( false, {
-        tandem: tandem.createTandem( 'moleculeCountVisibleProperty' )
+        tandem: tandem.createTandem( 'moleculeCountVisibleProperty' ),
+        phetioDocumentation: 'controls visibility of the Molecule Count view'
       } );
     }
 

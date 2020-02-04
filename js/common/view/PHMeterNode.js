@@ -51,10 +51,9 @@ define( require => {
     /**
      * @param {Solution} solution
      * @param {number} probeYOffset distance from top of meter to tip of probe, in view coordinate frame
-     * @param {Property.<boolean>} expandedProperty
      * @param {Object} [options]
      */
-    constructor( solution, probeYOffset, expandedProperty, options ) {
+    constructor( solution, probeYOffset, options ) {
 
       options = merge( {
         isInteractive: false, // true: pH can be changed, false: pH is read-only
@@ -68,7 +67,7 @@ define( require => {
 
       // @public
       this.expandedProperty = new BooleanProperty( true, {
-        tandem: options.tandem.createTandem( 'pHMeterExpandedProperty' )
+        tandem: options.tandem.createTandem( 'expandedProperty' )
       } );
 
       // nodes

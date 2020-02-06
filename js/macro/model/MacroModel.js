@@ -39,18 +39,18 @@ define( require => {
 
       // @public solute choices, in order that they'll appear in the combo box (decreasing pH value)
       this.solutes = [
-        Solute.DRAIN_CLEANER,
-        Solute.HAND_SOAP,
+        Solute.BATTERY_ACID,
         Solute.BLOOD,
-        Solute.SPIT,
-        Solute.WATER,
-        Solute.MILK,
         Solute.CHICKEN_SOUP,
         Solute.COFFEE,
+        Solute.DRAIN_CLEANER,
+        Solute.HAND_SOAP,
+        Solute.MILK,
         Solute.ORANGE_JUICE,
         Solute.SODA,
+        Solute.SPIT,
         Solute.VOMIT,
-        Solute.BATTERY_ACID
+        Solute.WATER
       ];
 
       // @public Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.

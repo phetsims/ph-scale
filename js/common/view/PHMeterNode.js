@@ -97,7 +97,8 @@ define( require => {
           backgroundFill: 'white',
           backgroundStroke: 'darkGray',
           xMargin: 8,
-          yMargin: 5
+          yMargin: 5,
+          tandem: options.tandem.createTandem( 'numberDisplay' )
         } );
       }
 

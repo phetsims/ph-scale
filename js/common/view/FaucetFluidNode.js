@@ -13,7 +13,6 @@ define( require => {
   const merge = require( 'PHET_CORE/merge' );
   const phScale = require( 'PH_SCALE/phScale' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  const Tandem = require( 'TANDEM/Tandem' );
 
   class FaucetFluidNode extends Rectangle {
 
@@ -29,10 +28,7 @@ define( require => {
       options = merge( {
 
         lineWidth: 1,
-        pickable: false,
-
-        // phet-io
-        tandem: Tandem.REQUIRED
+        pickable: false
       }, options );
 
       super( 0, 0, 0, 0, options );

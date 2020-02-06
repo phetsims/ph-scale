@@ -92,13 +92,8 @@ define( require => {
       } );
       const SOLVENT_FLUID_HEIGHT = model.beaker.position.y - model.waterFaucet.position.y;
       const DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
-      //TODO #92 should fluid nodes be children of faucet nodes? should fluid nodes be instrumented?
-      const waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), SOLVENT_FLUID_HEIGHT, modelViewTransform, {
-        tandem: tandem.createTandem( 'waterFluidNode' )
-      } );
-      const drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform, {
-        tandem: tandem.createTandem( 'drainFluidNode' )
-      } );
+      const waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), SOLVENT_FLUID_HEIGHT, modelViewTransform );
+      const drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform );
 
       // 'H3O+/OH- ratio' representation
       const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, {

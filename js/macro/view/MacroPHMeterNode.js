@@ -85,10 +85,10 @@ define( require => {
       scaleNode.translation = modelViewTransform.modelToViewPosition( meter.bodyPosition );
 
       // indicator that slides vertically along scale
-      const indicatorNode = new IndicatorNode( meter.valueProperty, SCALE_SIZE.width, {
-        tandem: options.tandem.createTandem( 'indicatorNode' )
+      const pHIndicatorNode = new PHIndicatorNode( meter.valueProperty, SCALE_SIZE.width, {
+        tandem: options.tandem.createTandem( 'pHIndicatorNode' )
       } );
-      indicatorNode.left = scaleNode.x;
+      pHIndicatorNode.left = scaleNode.x;
 
       // interactive probe
       const probeNode = new PHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode,
@@ -103,11 +103,11 @@ define( require => {
       this.addChild( wireNode );
       this.addChild( probeNode );
       this.addChild( scaleNode );
-      this.addChild( indicatorNode );
+      this.addChild( pHIndicatorNode );
 
       // vertical position of the indicator
       meter.valueProperty.link( value => {
-        indicatorNode.centerY = scaleNode.y + Utils.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
+        pHIndicatorNode.centerY = scaleNode.y + Utils.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
       } );
 
       const updateValue = () => {
@@ -416,7 +416,7 @@ define( require => {
    * pH indicator that slides vertically along scale.
    * When there is no pH value, it points to 'neutral' but does not display a value.
    */
-  class IndicatorNode extends Node {
+  class PHIndicatorNode extends Node {
 
     /**
      * @param {Property.<number>} pHProperty

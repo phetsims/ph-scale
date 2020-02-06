@@ -224,7 +224,7 @@ define( require => {
     }
   }
 
-  //TODO #96 use NumberDisplay and Panel here
+  //TODO #96 use NumberDisplay, HBox, and Panel here
   /**
    * Displays pH value inside of a rounded rectangle, which is then placed inside of yet-another rounded rectangle.
    * It highlights when pH is 7. This is the thing that you see sliding up and down the pH Scale.

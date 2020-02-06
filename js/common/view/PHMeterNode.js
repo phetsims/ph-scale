@@ -5,7 +5,7 @@
  * Origin is at top left.
  * The meter can be expanded and collapsed.
  * By default, the meter displays pH but does not allow you to change it.
- * pH can be optionally changed (using a picker) for custom solutions.
+ * pH can be optionally changed (using a spinner) for custom solutions.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

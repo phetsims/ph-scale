@@ -98,7 +98,6 @@ define( require => {
       const pHMeterTop = 15;
       const pHMeterNode = new PHMeterNode( model.solution,
         modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
-          attachProbe: 'right',
           isInteractive: true,
           tandem: tandem.createTandem( 'pHMeterNode' )
         } );

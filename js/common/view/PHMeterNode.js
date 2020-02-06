@@ -57,7 +57,6 @@ define( require => {
 
       options = merge( {
         isInteractive: false, // true: pH can be changed, false: pH is read-only
-        attachProbe: 'center', // where to attach the probe: 'left'|'center'|'right'
 
         // phet-io
         tandem: Tandem.REQUIRED
@@ -81,15 +80,7 @@ define( require => {
       this.addChild( valueNode );
 
       // layout
-      if ( options.attachProbe === 'center' ) {
-        probeNode.centerX = valueNode.centerX;
-      }
-      else if ( options.attachProbe === 'right' ) {
-        probeNode.centerX = valueNode.left + ( 0.75 * valueNode.width );
-      }
-      else {
-        probeNode.centerX = valueNode.left + ( 0.25 * valueNode.width );
-      }
+      probeNode.centerX = valueNode.left + ( 0.75 * valueNode.width );
       probeNode.top = valueNode.top;
 
       this.expandedProperty.link( expanded => {
@@ -132,31 +123,37 @@ define( require => {
       super( options );
 
       // pH value
-      const valueText = new Text( Utils.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
-        { fill: 'black', font: new PhetFont( 28 ) } );
+      const pH = Utils.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      const pHText = new Text( pH, {
+        fill: 'black',
+        font: new PhetFont( 28 )
+      } );
 
       // rectangle that the value is displayed in
       const valueXMargin = 8;
       const valueYMargin = 5;
-      const valueRectangle = new Rectangle( 0, 0, valueText.width + ( 2 * valueXMargin ), valueText.height + ( 2 * valueYMargin ), CORNER_RADIUS, CORNER_RADIUS,
-        { fill: 'white', stroke: 'darkGray' } );
+      const valueRectangle = new Rectangle( 0, 0, pHText.width + ( 2 * valueXMargin ), pHText.height + ( 2 * valueYMargin ), {
+        cornerRadius: CORNER_RADIUS,
+        fill: 'white',
+        stroke: 'darkGray'
+      } );
 
       // layout
-      valueText.right = valueRectangle.right - valueXMargin;
-      valueText.centerY = valueRectangle.centerY;
+      pHText.right = valueRectangle.right - valueXMargin;
+      pHText.centerY = valueRectangle.centerY;
 
       // parent for all components related to the value
-      const valueNode = new Node( { children: [ valueRectangle, valueText ] } );
+      const valueNode = new Node( { children: [ valueRectangle, pHText ] } );
 
       // sync with pH value
       solution.pHProperty.link( pH => {
         if ( pH === null ) {
-          valueText.text = stringNoValue;
-          valueText.centerX = valueRectangle.centerX; // center justified
+          pHText.text = stringNoValue;
+          pHText.centerX = valueRectangle.centerX; // center justified
         }
         else {
-          valueText.text = Utils.toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES );
-          valueText.right = valueRectangle.right - valueXMargin; // right justified
+          pHText.text = Utils.toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+          pHText.right = valueRectangle.right - valueXMargin; // right justified
         }
       } );
 
@@ -272,39 +269,41 @@ define( require => {
 
     /**
      * @param {number} probeHeight
+     * @param {Object} [options]
      */
-    constructor( probeHeight ) {
+    constructor( probeHeight, options ) {
 
-      super();
+      options = options || {};
 
-      const probeWidth = 20;
-      const tipHeight = 50;
-      const overlap = 10;
+      const PROBE_WIDTH = 20;
+      const TIP_HEIGHT = 50;
+      const OVERLAP = 10;
 
-      const shaftNode = new Rectangle( 0, 0, 0.5 * probeWidth, probeHeight - tipHeight + overlap, {
+      const shaftNode = new Rectangle( 0, 0, 0.5 * PROBE_WIDTH, probeHeight - TIP_HEIGHT + OVERLAP, {
         fill: 'rgb( 140, 140, 140 )'
       } );
 
       // clockwise from tip of probe
       const cornerRadius = 4;
       const tipNode = new Path( new Shape()
-          .moveTo( probeWidth / 2, tipHeight )
-          .lineTo( 0, 0.6 * tipHeight )
+          .moveTo( PROBE_WIDTH / 2, TIP_HEIGHT )
+          .lineTo( 0, 0.6 * TIP_HEIGHT )
           .lineTo( 0, cornerRadius )
           .arc( cornerRadius, cornerRadius, cornerRadius, Math.PI, 1.5 * Math.PI )
           .lineTo( cornerRadius, 0 )
-          .lineTo( probeWidth - cornerRadius, 0 )
-          .arc( probeWidth - cornerRadius, cornerRadius, cornerRadius, -0.5 * Math.PI, 0 )
-          .lineTo( probeWidth, 0.6 * tipHeight )
-          .close(),
-        { fill: 'black' }
-      );
+          .lineTo( PROBE_WIDTH - cornerRadius, 0 )
+          .arc( PROBE_WIDTH - cornerRadius, cornerRadius, cornerRadius, -0.5 * Math.PI, 0 )
+          .lineTo( PROBE_WIDTH, 0.6 * TIP_HEIGHT )
+          .close(), {
+        fill: 'black',
+        centerX: shaftNode.centerX,
+        top: shaftNode.bottom - OVERLAP
+      } );
 
-      this.addChild( shaftNode );
-      this.addChild( tipNode );
-
-      tipNode.centerX = shaftNode.centerX;
-      tipNode.top = shaftNode.bottom - overlap;
+      assert && assert( !options.children, 'ProbeNode sets children' );
+      options.children = [ shaftNode, tipNode ];
+      
+      super( options );
     }
   }
 

@@ -47,17 +47,20 @@ define( require => {
         fill: 'rgba( 240, 240, 240, 0.6 )'
       } );
 
-      // rendering order
-      this.addChild( background );
-      this.addChild( label );
-
-      // layout
+      // Center the label
       label.centerX = background.centerX;
       label.centerY = background.centerY;
 
-      // make this node visible when the solution has neutral pH
+      // Wrap things in a parentNode, so that this feature can be permanently disabled via PhET-iO by setting
+      // this.visibleProperty.value = false. See https://github.com/phetsims/ph-scale/issues/102
+      const parentNode = new Node( {
+        children: [ background, label ]
+      });
+      this.addChild( parentNode );
+
+      // Make parentNode node visible when the solution has neutral pH.
       solution.pHProperty.link( pH => {
-        this.setVisible( pH === Water.pH );
+        parentNode.setVisible( pH === Water.pH );
       } );
     }
   }

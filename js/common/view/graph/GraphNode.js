@@ -49,23 +49,23 @@ define( require => {
 
       super();
 
-      // @private
-      this.expandedProperty = new BooleanProperty( true, {
+      // whether the graph is expanded or collapsed
+      const expandedProperty = new BooleanProperty( true, {
         tandem: options.tandem.createTandem( 'expandedProperty' )
       } );
 
-      // @private units
-      this.graphUnitsProperty = new EnumerationProperty( GraphUnits, options.units, {
+      // units used for the graph
+      const graphUnitsProperty = new EnumerationProperty( GraphUnits, options.units, {
         tandem: options.tandem.createTandem( 'graphUnitsProperty' )
       } );
 
-      // @private scale (log, linear) of the graph
-      this.graphScaleProperty = new EnumerationProperty( GraphScale, options.graphScale, {
+      // scale (log, linear) of the graph
+      const graphScaleProperty = new EnumerationProperty( GraphScale, options.graphScale, {
         tandem: options.tandem.createTandem( 'graphScaleProperty' )
       } );
 
       // control panel above the graph
-      const graphControlPanel = new GraphControlPanel( this.graphUnitsProperty, this.expandedProperty, {
+      const graphControlPanel = new GraphControlPanel( graphUnitsProperty, expandedProperty, {
         tandem: options.tandem.createTandem( 'graphControlPanel' )
       } );
       this.addChild( graphControlPanel );
@@ -77,7 +77,7 @@ define( require => {
       } );
 
       // logarithmic graph
-      const logarithmicGraphNode = new LogarithmicGraphNode( solution, this.graphUnitsProperty, {
+      const logarithmicGraphNode = new LogarithmicGraphNode( solution, graphUnitsProperty, {
         scaleHeight: options.logScaleHeight,
         isInteractive: options.isInteractive,
         centerX: lineToPanel.centerX,
@@ -94,16 +94,16 @@ define( require => {
       this.addChild( parentNode );
 
       // controls the visibility of parentNode
-      this.expandedProperty.link( expanded => {
+      expandedProperty.link( expanded => {
         parentNode.visible = expanded;
       } );
 
       // @private {LinearGraphNode|null} optional linear graph
-      this.linearGraphNode = null;
+      let linearGraphNode = null;
       if ( options.hasLinearFeature ) {
 
         // linear graph
-        this.linearGraphNode = new LinearGraphNode( solution, this.graphUnitsProperty, {
+        linearGraphNode = new LinearGraphNode( solution, graphUnitsProperty, {
           scaleHeight: options.linearScaleHeight,
           y: logarithmicGraphNode.y, // y, not top
           centerX: logarithmicGraphNode.centerX,
@@ -111,9 +111,9 @@ define( require => {
         } );
 
         // scale switch (Logarithmic vs Linear)
-        const graphScaleSwitch = new GraphScaleSwitch( this.graphScaleProperty, {
+        const graphScaleSwitch = new GraphScaleSwitch( graphScaleProperty, {
           centerX: lineToPanel.centerX,
-          top: this.linearGraphNode.bottom + 15,
+          top: linearGraphNode.bottom + 15,
           tandem: options.tandem.createTandem( 'graphScaleSwitch' )
         } );
 
@@ -131,27 +131,32 @@ define( require => {
         // add everything to parentNode, since their visibility is controlled by expandedProperty
         parentNode.addChild( lineToSwitchNode );
         lineToSwitchNode.moveToBack();
-        parentNode.addChild( this.linearGraphNode );
+        parentNode.addChild( linearGraphNode );
         parentNode.addChild( graphScaleSwitch );
 
         // handle scale changes
-        this.graphScaleProperty.link( graphScale => {
+        graphScaleProperty.link( graphScale => {
           logarithmicGraphNode.visible = ( graphScale === GraphScale.LOGARITHMIC );
-          this.linearGraphNode.visible = ( graphScale === GraphScale.LINEAR );
+          linearGraphNode.visible = ( graphScale === GraphScale.LINEAR );
         } );
       }
 
       this.mutate( options );
+
+      // @private
+      this.resetGraphNode = () => {
+        expandedProperty.reset();
+        graphUnitsProperty.reset();
+        graphScaleProperty.reset();
+        linearGraphNode && linearGraphNode.reset();
+      };
     }
 
     /**
      * @public
      */
     reset() {
-      this.expandedProperty.reset();
-      this.graphUnitsProperty.reset();
-      this.graphScaleProperty.reset();
-      this.linearGraphNode && this.linearGraphNode.reset();
+      this.resetGraphNode();
     }
   }
 

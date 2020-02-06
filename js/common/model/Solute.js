@@ -17,6 +17,7 @@ define( require => {
   const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   const SoluteIO = require( 'PH_SCALE/common/model/SoluteIO' );
+  const StringProperty = require( 'AXON/StringProperty' );
   const Tandem = require( 'TANDEM/Tandem' );
   const Water = require( 'PH_SCALE/common/model/Water' );
 
@@ -68,7 +69,9 @@ define( require => {
       super( options );
 
       // @public (read-only)
-      this.name = name;
+      this.nameProperty = new StringProperty( name, {
+        tandem: options.tandem.createTandem( 'nameProperty' )
+      } );
       this.pH = pH;
       this.stockColor = stockColor;
       
@@ -85,6 +88,14 @@ define( require => {
      */
     toString() {
       return `Solution[name:${this.name}, pH:${this.pH}]`;
+    }
+
+    /**
+     * Gets the solute's name.
+     * @returns {string}
+     */
+    get name() {
+      return this.nameProperty.value;
     }
 
     /**

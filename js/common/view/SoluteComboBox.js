@@ -42,43 +42,51 @@ define( require => {
         tandem: Tandem.REQUIRED
       }, options );
 
-      // {ComboBoxItem[]}
-      const items = solutes.map( createItem );
+      const items = []; // {ComboBoxItem[]}
+      let maxWidth = 0; // max width of Text nodes
+      const textNodes = []; // {Text[]}
+
+      // Create items for the listbox
+      solutes.forEach( solute => {
+
+        // color chip
+        const colorNode = new Rectangle( 0, 0, 20, 20, {
+          fill: solute.stockColor,
+          stroke: solute.stockColor.darkerColor()
+        } );
+
+        // label
+        const textNode = new Text( solute.nameProperty.value, {
+          font: new PhetFont( 22 )
+        } );
+        textNodes.push( textNode );
+        maxWidth = Math.max( maxWidth, textNode.width );
+
+        // If the solute name changes, update the item.
+        // See https://github.com/phetsims/ph-scale/issues/110
+        solute.nameProperty.link( name => {
+          textNode.text = name;
+        } );
+
+        const hBox = new HBox( {
+          spacing: 5,
+          children: [ colorNode, textNode ]
+        } );
+
+        items.push( new ComboBoxItem( hBox, solute, {
+          tandemName: _.camelCase( solute.name )
+        } ) );
+      } );
+
+      // ComboBox does not dynamically resize. So if a solution name does change, constrain the listbox item width.
+      // See https://github.com/phetsims/ph-scale/issues/110
+      textNodes.forEach( textNode => {
+        textNode.maxWidth = maxWidth;
+      } );
 
       super( items, selectedSolute, soluteListParent, options );
     }
   }
 
-  phScale.register( 'SoluteComboBox', SoluteComboBox );
-
-  /**
-   * Creates an item for the combo box.
-   * @param {Solute} solute
-   * @returns {ComboBoxItem}
-   */
-  function createItem( solute ) {
-
-    // color chip
-    const soluteColor = solute.stockColor;
-    const colorNode = new Rectangle( 0, 0, 20, 20, {
-      fill: soluteColor,
-      stroke: soluteColor.darkerColor()
-    } );
-
-    // label
-    const textNode = new Text( solute.name, {
-      font: new PhetFont( 22 )
-    } );
-
-    const hBox = new HBox( {
-      spacing: 5,
-      children: [ colorNode, textNode ]
-    } );
-
-    return new ComboBoxItem( hBox, solute, {
-      tandemName: _.camelCase( solute.name ) //TODO #92 it this too clever?
-    } );
-  }
-
-  return SoluteComboBox;
+  return phScale.register( 'SoluteComboBox', SoluteComboBox );
 } );

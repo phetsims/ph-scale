@@ -322,6 +322,7 @@ define( require => {
      * @param {Node} dropperFluidNode
      * @param {Node} waterFluidNode
      * @param {Node} drainFluidNode
+     * @param {Object} [options]
      */
     constructor( probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, options ) {
 
@@ -420,6 +421,7 @@ define( require => {
     /**
      * @param {Property.<number>} pHProperty
      * @param {number} scaleWidth
+     * @param {Object} [options]
      */
     constructor( pHProperty, scaleWidth, options ) {
 

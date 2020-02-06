@@ -85,11 +85,15 @@ define( require => {
 
       let contentNode = null;
       if ( options.isInteractive ) {
+
+        // the meter is interactive, the pH value can be changed with a spinner
         contentNode = new PHSpinnerNode( solution, {
           tandem: options.tandem.createTandem( 'valueNode' )
         } );
       }
       else {
+
+        // the meter is not interactive, just display the pH value
         contentNode = new NumberDisplay( solution.pHProperty, PHScaleConstants.PH_RANGE, {
           decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
           cornerRadius: CORNER_RADIUS,

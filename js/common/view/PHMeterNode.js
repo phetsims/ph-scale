@@ -62,32 +62,31 @@ define( require => {
         tandem: Tandem.REQUIRED
       }, options );
 
-      super();
-
-      // @public
-      this.expandedProperty = new BooleanProperty( true, {
+      const expandedProperty = new BooleanProperty( true, {
         tandem: options.tandem.createTandem( 'expandedProperty' )
       } );
 
-      // nodes
-      const valueNode = new ValueNode( solution, this.expandedProperty, options.isInteractive, {
+      const valueNode = new ValueNode( solution, expandedProperty, options.isInteractive, {
         tandem: options.tandem.createTandem( 'valueNode' )
       } );
-      const probeNode = new ProbeNode( probeYOffset );
 
-      // rendering order
-      this.addChild( probeNode );
-      this.addChild( valueNode );
+      const probeNode = new ProbeNode( probeYOffset, {
+        centerX: valueNode.left + ( 0.75 * valueNode.width ),
+        top: valueNode.top
+      } );
 
-      // layout
-      probeNode.centerX = valueNode.left + ( 0.75 * valueNode.width );
-      probeNode.top = valueNode.top;
+      assert && assert( !options.children, 'PHMeterNode sets children' );
+      options.children = [ probeNode, valueNode ];
 
-      this.expandedProperty.link( expanded => {
+      super( options );
+
+      // Hide the probe when the pH meter is collapsed
+      expandedProperty.link( expanded => {
         probeNode.visible = expanded;
       } );
 
-      this.mutate( options );
+      // @private
+      this.expandedProperty = expandedProperty;
     }
 
     /**
@@ -111,6 +110,7 @@ define( require => {
      * @param {Solution} solution
      * @param {Property.<boolean>} expandedProperty
      * @param {boolean} isInteractive
+     * @param {Object} [options]
      */
     constructor( solution, expandedProperty, isInteractive, options ) {
 

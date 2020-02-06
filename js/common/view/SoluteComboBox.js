@@ -16,6 +16,7 @@ define( require => {
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const phScale = require( 'PH_SCALE/phScale' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
 
   class SoluteComboBox extends ComboBox {
@@ -35,7 +36,10 @@ define( require => {
         yMargin: 16,
         highlightFill: 'rgb( 218, 255, 255 )',
         buttonLineWidth: 3,
-        cornerRadius: 10
+        cornerRadius: 10,
+
+        // phet-io
+        tandem: Tandem.REQUIRED
       }, options );
 
       // {ComboBoxItem[]}
@@ -71,7 +75,9 @@ define( require => {
       children: [ colorNode, textNode ]
     } );
 
-    return new ComboBoxItem( hBox, solute );
+    return new ComboBoxItem( hBox, solute, {
+      tandemName: _.camelCase( solute.name ) //TODO #92 it this too clever?
+    } );
   }
 
   return SoluteComboBox;

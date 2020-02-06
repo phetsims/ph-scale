@@ -82,10 +82,20 @@ define( require => {
       const drainFaucetNode = new DrainFaucetNode( model.drainFaucet, modelViewTransform, {
         tandem: tandem.createTandem( 'drainFaucetNode' )
       } );
+
+      // fluids coming out of faucets
       const WATER_FLUID_HEIGHT = model.beaker.position.y - model.waterFaucet.position.y;
       const DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
       const waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), WATER_FLUID_HEIGHT, modelViewTransform );
       const drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform );
+
+      // Hide fluids when their faucets are hidden. See https://github.com/phetsims/ph-scale/issues/107
+      waterFaucetNode.on( 'visibility', () => {
+        waterFaucetNode.visibile = waterFaucetNode.visible;
+      } );
+      drainFluidNode.on( 'visibility', () => {
+        waterFaucetNode.visibile = drainFluidNode.visible;
+      } );
 
       // pH meter
       const pHMeterNode = new MacroPHMeterNode( model.pHMeter, model.solution, model.dropper,

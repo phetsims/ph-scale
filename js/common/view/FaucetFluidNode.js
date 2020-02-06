@@ -31,6 +31,9 @@ define( require => {
         pickable: false
       }, options );
 
+      // See https://github.com/phetsims/ph-scale/issues/107
+      assert && assert( !options.tandem, 'do not instrument FaucetFluidNode' );
+
       super( 0, 0, 0, 0, options );
 
       // Set the color of the fluid coming out of the spout.

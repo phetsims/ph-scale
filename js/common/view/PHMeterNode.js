@@ -13,9 +13,8 @@ define( require => {
   'use strict';
 
   // modules
+  const AccordionBox = require( 'SUN/AccordionBox' );
   const ArrowButton = require( 'SUN/buttons/ArrowButton' );
-  const BooleanProperty = require( 'AXON/BooleanProperty' );
-  const ExpandCollapseButton = require( 'SUN/ExpandCollapseButton' );
   const MathSymbols = require( 'SCENERY_PHET/MathSymbols' );
   const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
@@ -46,7 +45,7 @@ define( require => {
   const SPINNER_TIMER_INTERVAL = 40; // ms
   const SPINNER_ARROW_COLOR = 'rgb( 0, 200, 0 )';
 
-  class PHMeterNode extends Node {
+  class PHMeterNode extends AccordionBox {
 
     /**
      * @param {Solution} solution
@@ -56,37 +55,50 @@ define( require => {
     constructor( solution, probeYOffset, options ) {
 
       options = merge( {
-        isInteractive: false, // true: pH can be changed, false: pH is read-only
+        isInteractive: false, // {boolean} true: pH can be changed, false: pH is read-only
+
+        // AccordionBox options
+        fill: PHScaleColors.PANEL_FILL,
+        lineWidth: 2,
+        cornerRadius: CORNER_RADIUS,
+        titleAlignX: 'left',
+        contentYSpacing: 10,
+        titleNode:  new Text( pHString, {
+          fill: 'black',
+          font: new PhetFont( { size: 28, weight: 'bold' } ),
+          maxWidth: 50
+        } ),
+        buttonAlign: 'right',
+        buttonXMargin: X_MARGIN,
+        buttonYMargin: Y_MARGIN,
+        expandCollapseButtonOptions: {
+          sideLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH,
+          touchAreaXDilation: 10,
+          touchAreaYDilation: 10
+        },
+        contentYMargin: Y_MARGIN,
 
         // phet-io
         tandem: Tandem.REQUIRED
       }, options );
 
-      const expandedProperty = new BooleanProperty( true, {
-        tandem: options.tandem.createTandem( 'expandedProperty' )
-      } );
-
-      const valueNode = new ValueNode( solution, expandedProperty, options.isInteractive, {
+      const valueNode = new ValueNode( solution, options.isInteractive, {
         tandem: options.tandem.createTandem( 'valueNode' )
       } );
 
+      super( valueNode, options );
+
+      // Decorate the AccordionBox with a probe, which is hidden when the AccordionBox is collapsed.
       const probeNode = new ProbeNode( probeYOffset, {
         centerX: valueNode.left + ( 0.75 * valueNode.width ),
-        top: valueNode.top
+        top: this.top
       } );
+      this.addChild( probeNode );
+      probeNode.moveToBack( probeNode );
 
-      assert && assert( !options.children, 'PHMeterNode sets children' );
-      options.children = [ probeNode, valueNode ];
-
-      super( options );
-
-      // Hide the probe when the pH meter is collapsed
-      expandedProperty.link( expanded => {
+      this.expandedProperty.link( expanded => {
         probeNode.visible = expanded;
       } );
-
-      // @private
-      this.expandedProperty = expandedProperty;
     }
 
     /**
@@ -108,11 +120,10 @@ define( require => {
 
     /**
      * @param {Solution} solution
-     * @param {Property.<boolean>} expandedProperty
      * @param {boolean} isInteractive
      * @param {Object} [options]
      */
-    constructor( solution, expandedProperty, isInteractive, options ) {
+    constructor( solution, isInteractive, options ) {
 
       options = merge( {
 
@@ -143,7 +154,9 @@ define( require => {
       pHText.centerY = valueRectangle.centerY;
 
       // parent for all components related to the value
-      const valueNode = new Node( { children: [ valueRectangle, pHText ] } );
+      const valueNode = new Node( {
+        children: [ valueRectangle, pHText ]
+      } );
 
       // sync with pH value
       solution.pHProperty.link( pH => {
@@ -214,51 +227,8 @@ define( require => {
         } );
       }
 
-      // expand/collapse button
-      const expandCollapseButton = new ExpandCollapseButton( expandedProperty, {
-        sideLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH,
-        tandem: options.tandem.createTandem( 'expandCollapseButton' )
-      } );
-      expandCollapseButton.touchArea = expandCollapseButton.localBounds.dilatedXY( 10, 10 );
-
-      // label above the value
-      const labelNode = new Text( pHString, {
-        fill: 'black',
-        font: new PhetFont( { size: 28, weight: 'bold' } ),
-        maxWidth: 50
-      } );
-
-      // expanded background
-      const backgroundOptions = { fill: PHScaleColors.PANEL_FILL, stroke: 'black', lineWidth: 2 };
-      const backgroundWidth = Math.max( expandCollapseButton.width + labelNode.width + 10, valueNode.width ) + ( 2 * X_MARGIN );
-      const ySpacing = isInteractive ? 25 : 10;
-      const expandedHeight = expandCollapseButton.height + valueNode.height + ( 2 * Y_MARGIN ) + ySpacing;
-      const expandedRectangle = new Rectangle( 0, 0, backgroundWidth, expandedHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
-
-      // collapsed background
-      const collapsedHeight = expandCollapseButton.height + ( 2 * Y_MARGIN );
-      const collapsedRectangle = new Rectangle( 0, 0, backgroundWidth, collapsedHeight, CORNER_RADIUS, CORNER_RADIUS, backgroundOptions );
-
       // rendering order
-      this.addChild( collapsedRectangle );
-      this.addChild( expandedRectangle );
-      this.addChild( labelNode );
-      this.addChild( expandCollapseButton );
       this.addChild( valueNode );
-
-      // layout
-      expandCollapseButton.right = expandedRectangle.right - X_MARGIN;
-      expandCollapseButton.top = expandedRectangle.top + Y_MARGIN;
-      labelNode.left = X_MARGIN;
-      labelNode.centerY = expandCollapseButton.centerY;
-      valueNode.centerX = expandedRectangle.centerX;
-      valueNode.top = expandCollapseButton.bottom + ySpacing;
-
-      // expand/collapse
-      expandedProperty.link( expanded => {
-        expandedRectangle.visible = valueNode.visible = expanded;
-        collapsedRectangle.visible = !expanded;
-      } );
     }
   }
 

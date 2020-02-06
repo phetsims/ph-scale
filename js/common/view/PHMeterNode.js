@@ -131,6 +131,7 @@ define( require => {
 
   phScale.register( 'PHMeterNode', PHMeterNode );
 
+  //TOD #95 use NumberSpinner here, and maybe DynamicProperty
   /**
    * Spinner for pH value.
    */

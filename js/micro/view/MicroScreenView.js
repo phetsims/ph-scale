@@ -92,6 +92,7 @@ define( require => {
       } );
       const SOLVENT_FLUID_HEIGHT = model.beaker.position.y - model.waterFaucet.position.y;
       const DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
+      //TODO #92 should fluid nodes be children of faucet nodes? should fluid nodes be instrumented?
       const waterFluidNode = new FaucetFluidNode( model.waterFaucet, new Property( Water.color ), SOLVENT_FLUID_HEIGHT, modelViewTransform, {
         tandem: tandem.createTandem( 'waterFluidNode' )
       } );

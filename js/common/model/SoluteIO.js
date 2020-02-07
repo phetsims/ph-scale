@@ -12,11 +12,37 @@ define( require => {
   const ObjectIO = require( 'TANDEM/types/ObjectIO' );
   const phScale = require( 'PH_SCALE/phScale' );
   const ReferenceIO = require( 'TANDEM/types/ReferenceIO' );
+  const validate = require( 'AXON/validate' );
 
   // Objects are statically created, use reference equality to look up instances for toStateObject/fromStateObject
-  class SoluteIO extends ReferenceIO {}
+  class SoluteIO extends ReferenceIO {
 
-  //TODO #92 does this need API for getting name, pH, etc?
+    /**
+     * Serializes to a state object.
+     * @param {PhetioObject} o
+     * @returns {*}
+     * @public
+     * @override
+     */
+    static toStateObject( o ) {
+      validate( o, this.validator );
+      return {
+        phetioID: o.tandem.phetioID,
+        name: o.name,
+        pH: o.pH
+      };
+    }
+
+    /**
+     * Deserializes from a state object.
+     * @param {*} o
+     * @returns {PhetioObject}
+     * @public
+     */
+    static fromStateObject( o ) {
+      return ReferenceIO.fromStateObject( o.phetioID);
+    }
+  }
 
   SoluteIO.documentation = 'the selected solute';
   SoluteIO.typeName = 'SoluteIO';

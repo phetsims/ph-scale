@@ -18,7 +18,6 @@ define( require => {
   'use strict';
 
   // modules
-  const BooleanProperty = require( 'AXON/BooleanProperty' );
   const Dimension2 = require( 'DOT/Dimension2' );
   const Line = require( 'SCENERY/nodes/Line' );
   const LinearGradient = require( 'SCENERY/util/LinearGradient' );
@@ -54,6 +53,7 @@ define( require => {
   const TICK_FONT = new PhetFont( 22 );
   const NEUTRAL_TICK_LENGTH = 40;
   const TICK_LABEL_X_SPACING = 5;
+  const CORNER_RADIUS = 12;
 
   class MacroPHMeterNode extends Node {
 
@@ -224,104 +224,6 @@ define( require => {
   }
 
   /**
-   * Displays pH value inside of a rounded rectangle, which is then placed inside of yet-another rounded rectangle.
-   * It highlights when pH is 7. This is the thing that you see sliding up and down the pH Scale.
-   */
-  class ValueNode extends Node {
-
-    /**
-     * @param {Property.<number>} pHProperty
-     * @param {Property.<boolean>} enabledProperty
-     * @param {Object} [options]
-     */
-    constructor( pHProperty, enabledProperty, options ) {
-
-      options = merge( {
-        tandem: Tandem.REQUIRED
-      }, options );
-
-      super( options );
-
-      const cornerRadius = 12;
-
-      // pH display
-      const numberDisplay = new NumberDisplay( pHProperty, PHScaleConstants.PH_RANGE, {
-        font: new PhetFont( 28 ),
-        decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
-        align: 'right',
-        noValueAlign: 'center',
-        cornerRadius: cornerRadius,
-        xMargin: 8,
-        yMargin: 5,
-        tandem: options.tandem.createTandem( 'numberDisplay' )
-      } );
-
-      // label above the value
-      const labelNode = new Text( pHString, {
-        fill: 'white',
-        font: new PhetFont( { size: 28, weight: 'bold' } ),
-        maxWidth: 100
-      } );
-
-      // background
-      const backgroundXMargin = 14;
-      const backgroundYMargin = 10;
-      const backgroundYSpacing = 6;
-      const backgroundWidth = Math.max( labelNode.width, numberDisplay.width ) + ( 2 * backgroundXMargin );
-      const backgroundHeight = labelNode.height + numberDisplay.height + backgroundYSpacing + ( 2 * backgroundYMargin );
-      const backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, {
-        cornerRadius: cornerRadius,
-        fill: BACKGROUND_ENABLED_FILL
-      } );
-
-      // highlight around the background
-      const highlightLineWidth = 3;
-      const outerHighlight = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, {
-        cornerRadius: cornerRadius,
-        stroke: 'black',
-        lineWidth: highlightLineWidth
-      } );
-      const innerHighlight = new Rectangle( highlightLineWidth, highlightLineWidth,
-        backgroundWidth - ( 2 * highlightLineWidth ), backgroundHeight - ( 2 * highlightLineWidth ), {
-          cornerRadius: cornerRadius,
-          stroke: 'white', lineWidth: highlightLineWidth
-        } );
-      const highlight = new Node( {
-        children: [ innerHighlight, outerHighlight ],
-        visible: false
-      } );
-
-      // rendering order
-      this.addChild( backgroundRectangle );
-      this.addChild( highlight );
-      this.addChild( labelNode );
-      this.addChild( numberDisplay );
-
-      // layout
-      labelNode.centerX = backgroundRectangle.centerX;
-      labelNode.top = backgroundRectangle.top + backgroundYMargin;
-      numberDisplay.centerX = backgroundRectangle.centerX;
-      numberDisplay.top = labelNode.bottom + backgroundYSpacing;
-
-      // Highlight the indicator when pH === 7
-      pHProperty.link( pH => {
-        highlight.visible = ( pH === 7 );
-      } );
-
-      if ( enabledProperty ) {
-        enabledProperty.link( enabled => {
-          backgroundRectangle.fill = enabled ? BACKGROUND_ENABLED_FILL : BACKGROUND_DISABLED_FILL;
-        } );
-      }
-
-      // Link to pHProperty, so it's easier to find in Studio.
-      this.addLinkedElement( pHProperty, {
-        tandem: options.tandem.createTandem( 'pHProperty' )
-      } );
-    }
-  }
-
-  /**
    * Meter probe, origin at center of crosshairs.
    */
   class PHProbeNode extends ProbeNode {
@@ -449,24 +351,68 @@ define( require => {
         lineWidth: 2
       } );
 
-      // value
-      const valueEnabled = new BooleanProperty( true );
-      const valueNode = new ValueNode( pHProperty, valueEnabled, {
-        tandem: options.tandem.createTandem( 'valueNode' )
+      // pH display
+      const numberDisplay = new NumberDisplay( pHProperty, PHScaleConstants.PH_RANGE, {
+        font: new PhetFont( 28 ),
+        decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
+        align: 'right',
+        noValueAlign: 'center',
+        cornerRadius: CORNER_RADIUS,
+        xMargin: 8,
+        yMargin: 5,
+        tandem: options.tandem.createTandem( 'numberDisplay' )
+      } );
+
+      // label above the value
+      const labelNode = new Text( pHString, {
+        fill: 'white',
+        font: new PhetFont( { size: 28, weight: 'bold' } ),
+        maxWidth: 100
+      } );
+
+      // background
+      const backgroundXMargin = 14;
+      const backgroundYMargin = 10;
+      const backgroundYSpacing = 6;
+      const backgroundWidth = Math.max( labelNode.width, numberDisplay.width ) + ( 2 * backgroundXMargin );
+      const backgroundHeight = labelNode.height + numberDisplay.height + backgroundYSpacing + ( 2 * backgroundYMargin );
+      const backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, {
+        cornerRadius: CORNER_RADIUS,
+        fill: BACKGROUND_ENABLED_FILL
+      } );
+
+      // highlight around the background
+      const highlightLineWidth = 3;
+      const outerHighlight = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, {
+        cornerRadius: CORNER_RADIUS,
+        stroke: 'black',
+        lineWidth: highlightLineWidth
+      } );
+      const innerHighlight = new Rectangle( highlightLineWidth, highlightLineWidth,
+        backgroundWidth - ( 2 * highlightLineWidth ), backgroundHeight - ( 2 * highlightLineWidth ), {
+          cornerRadius: CORNER_RADIUS,
+          stroke: 'white', lineWidth: highlightLineWidth
+        } );
+      const highlight = new Node( {
+        children: [ innerHighlight, outerHighlight ],
+        visible: false
       } );
 
       // arrow head pointing at the scale
       const arrowSize = new Dimension2( 21, 28 );
-      const arrowNode = new Path( new Shape()
-          .moveTo( 0, 0 )
-          .lineTo( arrowSize.width, -arrowSize.height / 2 )
-          .lineTo( arrowSize.width, arrowSize.height / 2 )
-          .close(),
-        { fill: 'black' } );
+      const arrowShape = new Shape()
+        .moveTo( 0, 0 )
+        .lineTo( arrowSize.width, -arrowSize.height / 2 )
+        .lineTo( arrowSize.width, arrowSize.height / 2 )
+        .close();
+      const arrowNode = new Path( arrowShape, { fill: 'black' } );
 
       // rendering order
       this.addChild( arrowNode );
-      this.addChild( valueNode );
+      this.addChild( backgroundRectangle );
+      this.addChild( highlight );
+      this.addChild( labelNode );
+      this.addChild( numberDisplay );
       this.addChild( lineNode );
 
       // layout, origin at arrow tip
@@ -474,14 +420,28 @@ define( require => {
       lineNode.centerY = 0;
       arrowNode.left = lineNode.right;
       arrowNode.centerY = lineNode.centerY;
-      valueNode.left = arrowNode.right - 1; // overlap to hide seam
-      valueNode.centerY = arrowNode.centerY;
+      backgroundRectangle.left = arrowNode.right - 1; // overlap to hide seam
+      backgroundRectangle.centerY = arrowNode.centerY;
+      highlight.center = backgroundRectangle.center;
+      labelNode.centerX = backgroundRectangle.centerX;
+      labelNode.top = backgroundRectangle.top + backgroundYMargin;
+      numberDisplay.centerX = backgroundRectangle.centerX;
+      numberDisplay.top = labelNode.bottom + backgroundYSpacing;
 
-      // make the indicator look enabled or disabled
       pHProperty.link( pH => {
+
+        // make the indicator look enabled or disabled
         const enabled = ( pH !== null );
-        valueEnabled.set( enabled );
+        backgroundRectangle.fill = enabled ? BACKGROUND_ENABLED_FILL : BACKGROUND_DISABLED_FILL;
         arrowNode.visible = lineNode.visible = enabled;
+
+        // Highlight the indicator when pH === 7
+        highlight.visible = ( pH === 7 );
+      } );
+
+      // Link to pHProperty, so it's easier to find in Studio.
+      this.addLinkedElement( pHProperty, {
+        tandem: options.tandem.createTandem( 'pHProperty' )
       } );
     }
   }

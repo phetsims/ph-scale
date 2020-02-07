@@ -42,6 +42,7 @@ define( require => {
       options = merge( {
 
         // If solute is not relevant, then some Properties will not be PhET-iO instrumented.
+        // This is the case in the My Solution screen, where we are changing the pH of a magic solution.
         // See https://github.com/phetsims/ph-scale/issues/109
         hasSolute: true,
 

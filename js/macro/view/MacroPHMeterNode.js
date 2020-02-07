@@ -22,10 +22,10 @@ define( require => {
   const Dimension2 = require( 'DOT/Dimension2' );
   const Line = require( 'SCENERY/nodes/Line' );
   const LinearGradient = require( 'SCENERY/util/LinearGradient' );
-  const MathSymbols = require( 'SCENERY_PHET/MathSymbols' );
   const merge = require( 'PHET_CORE/merge' );
   const MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
   const Node = require( 'SCENERY/nodes/Node' );
+  const NumberDisplay = require( 'SCENERY_PHET/NumberDisplay' );
   const Path = require( 'SCENERY/nodes/Path' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const phScale = require( 'PH_SCALE/phScale' );
@@ -44,7 +44,6 @@ define( require => {
   const acidicString = require( 'string!PH_SCALE/acidic' );
   const basicString = require( 'string!PH_SCALE/basic' );
   const pHString = require( 'string!PH_SCALE/pH' );
-  const stringNoValue = MathSymbols.NO_VALUE;
 
   // constants
   const BACKGROUND_ENABLED_FILL = 'rgb( 31, 113, 2 )';
@@ -224,7 +223,6 @@ define( require => {
     }
   }
 
-  //TODO #96 use NumberDisplay, HBox, and Panel here
   /**
    * Displays pH value inside of a rounded rectangle, which is then placed inside of yet-another rounded rectangle.
    * It highlights when pH is 7. This is the thing that you see sliding up and down the pH Scale.
@@ -234,21 +232,29 @@ define( require => {
     /**
      * @param {Property.<number>} pHProperty
      * @param {Property.<boolean>} enabledProperty
+     * @param {Object} [options]
      */
-    constructor( pHProperty, enabledProperty ) {
+    constructor( pHProperty, enabledProperty, options ) {
 
-      super();
+      options = merge( {
+        tandem: Tandem.REQUIRED
+      }, options );
 
-      // pH value
-      const valueNode = new Text( Utils.toFixed( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
-        { fill: 'black', font: new PhetFont( 28 ) } );
+      super( options );
 
-      // rectangle that the value is displayed in
-      const valueXMargin = 8;
-      const valueYMargin = 5;
       const cornerRadius = 12;
-      const valueRectangle = new Rectangle( 0, 0, valueNode.width + ( 2 * valueXMargin ), valueNode.height + ( 2 * valueYMargin ), cornerRadius, cornerRadius,
-        { fill: 'white' } );
+
+      // pH display
+      const numberDisplay = new NumberDisplay( pHProperty, PHScaleConstants.PH_RANGE, {
+        font: new PhetFont( 28 ),
+        decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
+        align: 'right',
+        noValueAlign: 'center',
+        cornerRadius: cornerRadius,
+        xMargin: 8,
+        yMargin: 5,
+        tandem: options.tandem.createTandem( 'numberDisplay' )
+      } );
 
       // label above the value
       const labelNode = new Text( pHString, {
@@ -261,46 +267,45 @@ define( require => {
       const backgroundXMargin = 14;
       const backgroundYMargin = 10;
       const backgroundYSpacing = 6;
-      const backgroundWidth = Math.max( labelNode.width, valueRectangle.width ) + ( 2 * backgroundXMargin );
-      const backgroundHeight = labelNode.height + valueRectangle.height + backgroundYSpacing + ( 2 * backgroundYMargin );
-      const backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-        { fill: BACKGROUND_ENABLED_FILL } );
+      const backgroundWidth = Math.max( labelNode.width, numberDisplay.width ) + ( 2 * backgroundXMargin );
+      const backgroundHeight = labelNode.height + numberDisplay.height + backgroundYSpacing + ( 2 * backgroundYMargin );
+      const backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, {
+        cornerRadius: cornerRadius,
+        fill: BACKGROUND_ENABLED_FILL
+      } );
 
       // highlight around the background
       const highlightLineWidth = 3;
-      const outerHighlight = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-        { stroke: 'black', lineWidth: highlightLineWidth } );
-      const innerHighlight = new Rectangle( highlightLineWidth, highlightLineWidth, backgroundWidth - ( 2 * highlightLineWidth ), backgroundHeight - ( 2 * highlightLineWidth ), cornerRadius, cornerRadius,
-        { stroke: 'white', lineWidth: highlightLineWidth } );
-      const highlight = new Node( { children: [ innerHighlight, outerHighlight ], visible: false } );
+      const outerHighlight = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, {
+        cornerRadius: cornerRadius,
+        stroke: 'black',
+        lineWidth: highlightLineWidth
+      } );
+      const innerHighlight = new Rectangle( highlightLineWidth, highlightLineWidth,
+        backgroundWidth - ( 2 * highlightLineWidth ), backgroundHeight - ( 2 * highlightLineWidth ), {
+          cornerRadius: cornerRadius,
+          stroke: 'white', lineWidth: highlightLineWidth
+        } );
+      const highlight = new Node( {
+        children: [ innerHighlight, outerHighlight ],
+        visible: false
+      } );
 
       // rendering order
       this.addChild( backgroundRectangle );
       this.addChild( highlight );
-      this.addChild( valueRectangle );
       this.addChild( labelNode );
-      this.addChild( valueNode );
+      this.addChild( numberDisplay );
 
       // layout
       labelNode.centerX = backgroundRectangle.centerX;
       labelNode.top = backgroundRectangle.top + backgroundYMargin;
-      valueRectangle.centerX = backgroundRectangle.centerX;
-      valueRectangle.top = labelNode.bottom + backgroundYSpacing;
-      valueNode.right = valueRectangle.right - valueXMargin; // right justified
-      valueNode.centerY = valueRectangle.centerY;
+      numberDisplay.centerX = backgroundRectangle.centerX;
+      numberDisplay.top = labelNode.bottom + backgroundYSpacing;
 
-      // pH value
+      // Highlight the indicator when pH === 7
       pHProperty.link( pH => {
-        if ( pH === null ) {
-          valueNode.text = stringNoValue;
-          valueNode.centerX = valueRectangle.centerX; // center justified
-          highlight.visible = false;
-        }
-        else {
-          valueNode.text = Utils.toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES );
-          valueNode.right = valueRectangle.right - valueXMargin; // right justified
-          highlight.visible = ( parseFloat( valueNode.text ) === 7 );
-        }
+        highlight.visible = ( pH === 7 );
       } );
 
       if ( enabledProperty ) {
@@ -308,6 +313,11 @@ define( require => {
           backgroundRectangle.fill = enabled ? BACKGROUND_ENABLED_FILL : BACKGROUND_DISABLED_FILL;
         } );
       }
+
+      // Link to pHProperty, so it's easier to find in Studio.
+      this.addLinkedElement( pHProperty, {
+        tandem: options.tandem.createTandem( 'pHProperty' )
+      } );
     }
   }
 
@@ -327,7 +337,7 @@ define( require => {
      */
     constructor( probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, options ) {
 
-      options = merge(  {
+      options = merge( {
         sensorTypeFunction: ProbeNode.crosshairs( {
           intersectionRadius: 6
         } ),
@@ -343,7 +353,7 @@ define( require => {
 
         // phet-io
         tandem: Tandem.REQUIRED
-      } , options );
+      }, options );
 
       super( options );
 
@@ -441,7 +451,9 @@ define( require => {
 
       // value
       const valueEnabled = new BooleanProperty( true );
-      const valueNode = new ValueNode( pHProperty, valueEnabled );
+      const valueNode = new ValueNode( pHProperty, valueEnabled, {
+        tandem: options.tandem.createTandem( 'valueNode' )
+      } );
 
       // arrow head pointing at the scale
       const arrowSize = new Dimension2( 21, 28 );

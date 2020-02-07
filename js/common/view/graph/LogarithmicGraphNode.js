@@ -70,7 +70,12 @@ define( require => {
         indicatorXOffset: 10,
 
         // phet-io
-        tandem: Tandem.REQUIRED
+        tandem: Tandem.REQUIRED,
+        phetioComponentOptions: {
+          visibleProperty: {
+            phetioReadOnly: true
+          }
+        }
       }, options );
 
       super();

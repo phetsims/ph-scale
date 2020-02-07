@@ -34,7 +34,11 @@ define( require => {
 
         // phet-io
         tandem: Tandem.REQUIRED,
-        phetioReadOnly: true // controlled by PHScaleViewProperties.moleculeCountVisibleProperty
+        phetioComponentOptions: {
+          visibleProperty: {
+            phetioReadOnly: true
+          }
+        }
       }, options );
 
       super();

@@ -39,7 +39,12 @@ define( require => {
         radius: MAGNIFYING_GLASS_RADIUS,
         listener: () => exponentProperty.set( exponentProperty.get() + 1 ),
         tandem: options.tandem.createTandem( 'zoomOutButton' ),
-        phetioDocumentation: 'zoom out button for the linear scale'
+        phetioDocumentation: 'zoom out button for the linear scale',
+        phetioComponentOptions: {
+          visibleProperty: {
+            phetioReadOnly: true
+          }
+        }
       } );
 
       const zoomInButton = new ZoomButton( {
@@ -47,7 +52,12 @@ define( require => {
         radius: MAGNIFYING_GLASS_RADIUS,
         listener: () => exponentProperty.set( exponentProperty.get() - 1 ),
         tandem: options.tandem.createTandem( 'zoomInButton' ),
-        phetioDocumentation: 'zoom in button for the linear scale'
+        phetioDocumentation: 'zoom in button for the linear scale',
+        phetioComponentOptions: {
+          visibleProperty: {
+            phetioReadOnly: true
+          }
+        }
       } );
 
       // expand touch areas

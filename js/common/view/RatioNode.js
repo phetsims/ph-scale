@@ -56,7 +56,11 @@ define( require => {
 
         // phet-io
         tandem: Tandem.REQUIRED,
-        phetioReadOnly: true // controlled by PHScaleViewProperties.ratioVisibleProperty
+        phetioComponentOptions: {
+          visibleProperty: {
+            phetioReadOnly: true
+          }
+        }
       }, options );
 
       super();

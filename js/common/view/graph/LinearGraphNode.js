@@ -67,7 +67,12 @@ define( require => {
         majorTickXSpacing: 5,
 
         // phet-io
-        tandem: Tandem.REQUIRED
+        tandem: Tandem.REQUIRED,
+        phetioComponentOptions: {
+          visibleProperty: {
+            phetioReadOnly: true
+          }
+        }
       }, options );
 
       super();

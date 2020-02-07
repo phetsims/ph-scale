@@ -235,7 +235,7 @@ define( require => {
       } );
       pHValueProperty.link( pH => {
         if ( pH !== null && pH !== solution.pHProperty.get() ) {
-          solution.soluteProperty.set( Solute.createCustom( pH ) ); //TODO #92 a new solute is created for every pH change
+          solution.soluteProperty.set( Solute.createCustom( pH ) );
         }
         incrementButton.enabled = ( pH < PHScaleConstants.PH_RANGE.max );
         decrementButton.enabled = ( pH > PHScaleConstants.PH_RANGE.min );

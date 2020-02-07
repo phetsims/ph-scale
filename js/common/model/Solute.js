@@ -61,7 +61,7 @@ define( require => {
         colorStopRatio: 0.25,
 
         // phet-io
-        tandem: Tandem.OPTIONAL, //TODO #92 should be REQUIRED
+        tandem: Tandem.OPTIONAL, // this is optional because in MySolutions, a new Solute is created for each pH change
         phetioState: false,
         phetioType: SoluteIO
       }, options );
@@ -137,7 +137,6 @@ define( require => {
   // 'real world' immutable solutions -------------------------------------------------------
 
   // tandem for all static instances of Solute, which are used across all screens
-  //TODO #92 is global.model.solutes the correct place for this?
   const SOLUTES_TANDEM = Tandem.GLOBAL.createTandem( 'model').createTandem( 'solutes' );
 
   Solute.DRAIN_CLEANER = new Solute( choiceDrainCleanerString, 13, new Color( 255, 255, 0 ), {

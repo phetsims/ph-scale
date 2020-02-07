@@ -55,7 +55,6 @@ define( require => {
       ];
 
       // @public Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
-      //TODO #92 is there any reason to instrument the Beaker model?
       this.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
 
       // Dropper above the beaker
@@ -107,7 +106,6 @@ define( require => {
       this.autoFillVolume = options.autoFillVolume;
 
       // @public (read-only)
-      //TODO #92 any reason to instrument this? do we need a way to disable this feature?
       this.isAutoFillingProperty = new BooleanProperty( false );
 
       this.dropper.soluteProperty.link( () => {

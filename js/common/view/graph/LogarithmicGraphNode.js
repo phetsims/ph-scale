@@ -1,7 +1,5 @@
 // Copyright 2013-2020, University of Colorado Boulder
 
-//TODO #92 visibility of this should be controlled via GraphNode.graphScaleProperty
-//TODO #92 instrument subcomponents?
 /**
  * Graph with a logarithmic scale, for displaying concentration (mol/L) and quantity (moles).
  * Assumes that graphing concentration and quantity can be graphed on the same scale.

@@ -1,6 +1,5 @@
 // Copyright 2013-2020, University of Colorado Boulder
 
-//TODO #92 which subcomponents need to be instrumented?
 /**
  * Container for all components related to the graph feature.
  * It has an expand/collapse bar at the top of it, and can switch between 'concentration' and 'quantity'.

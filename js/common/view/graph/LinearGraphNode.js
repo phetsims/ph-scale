@@ -1,7 +1,5 @@
 // Copyright 2014-2020, University of Colorado Boulder
 
-//TODO #92 visibility of this should be controlled via GraphNode.graphScaleProperty
-//TODO #92 instrument subcomponents?
 /**
  * Graph with a linear scale, for displaying concentration (mol/L) and quantity (moles).
  * Some of the code related to indicators (initialization and updateIndicators) is similar

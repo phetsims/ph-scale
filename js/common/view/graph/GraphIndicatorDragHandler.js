@@ -60,7 +60,6 @@ define( require => {
             pH = Utils.clamp( pH, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
 
             // Instantiate a new 'custom' solute with the desired pH, and use it with the solution.
-            //TODO #92 a new solute is created for every pH change
             solution.soluteProperty.set( Solute.createCustom( pH ) );
           }
         },

@@ -41,6 +41,10 @@ define( require => {
 
       options = merge( {
 
+        // If solute is not relevant, then some Properties will not be PhET-iO instrumented.
+        // See https://github.com/phetsims/ph-scale/issues/109
+        hasSolute: true,
+
         // phet-io
         tandem: Tandem.REQUIRED,
         phetioState: false
@@ -50,15 +54,19 @@ define( require => {
 
       // @public
       this.soluteProperty = soluteProperty;
-      //TODO #92 does this linked element seem useful?
-      this.addLinkedElement( this.soluteProperty, {
-        tandem: options.tandem.createTandem( 'soluteProperty' )
-      } );
+
+      // Create a PhET-iO linked element that points to where soluteProperty lives (in Dropper).
+      // This makes it easer to find soluteProperty in the Studio tree.
+      if ( options.hasSolute ) {
+        this.addLinkedElement( this.soluteProperty, {
+          tandem: options.tandem.createTandem( 'soluteProperty' )
+        } );
+      }
 
       // @public
       this.soluteVolumeProperty = new NumberProperty( soluteVolume, {
         units: 'L',
-        tandem: options.tandem.createTandem( 'soluteVolumeProperty' ),
+        tandem: options.hasSolute ? options.tandem.createTandem( 'soluteVolumeProperty' ) : Tandem.OPTIONAL,
         phetioReadOnly: true,
         phetioDocumentation: 'volume of solute in the solution'
       } );
@@ -66,7 +74,7 @@ define( require => {
       // @public
       this.waterVolumeProperty = new NumberProperty( waterVolume, {
         units: 'L',
-        tandem: options.tandem.createTandem( 'waterVolumeProperty' ),
+        tandem: options.hasSolute ? options.tandem.createTandem( 'waterVolumeProperty' ) : Tandem.OPTIONAL,
         phetioReadOnly: true,
         phetioDocumentation: 'volume of water in the solution'
       } );
@@ -111,7 +119,6 @@ define( require => {
         });
 
       // @public color
-      //TODO #92 does solution color need to be instrumented?
       this.colorProperty = new DerivedProperty(
         [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
         ( solute, soluteVolume, waterVolume ) => {

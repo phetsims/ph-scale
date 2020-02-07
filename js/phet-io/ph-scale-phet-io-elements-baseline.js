@@ -10206,19 +10206,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NullableIO<NumberIO>>"
     },
-    "phScale.mySolutionsScreen.model.solution.soluteVolumeProperty": {
-      "phetioDocumentation": "volume of solute in the solution",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "NumberPropertyIO"
-    },
     "phScale.mySolutionsScreen.model.solution.volumeProperty": {
       "phetioDocumentation": "total volume of the solution",
       "phetioDynamicElement": false,
@@ -10231,19 +10218,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
-    },
-    "phScale.mySolutionsScreen.model.solution.waterVolumeProperty": {
-      "phetioDocumentation": "volume of water in the solution",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "NumberPropertyIO"
     },
     "phScale.mySolutionsScreen.view": {
       "phetioDocumentation": "",

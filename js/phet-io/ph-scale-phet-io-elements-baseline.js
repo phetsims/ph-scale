@@ -8319,7 +8319,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "NumberPropertyIO"
+      "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
     "phScale.microScreen.view.moleculeCountNode.countH3OProperty": {
       "phetioDocumentation": "",
@@ -8332,7 +8332,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "NumberPropertyIO"
+      "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
     "phScale.microScreen.view.moleculeCountNode.countOHProperty": {
       "phetioDocumentation": "",
@@ -8345,7 +8345,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "NumberPropertyIO"
+      "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
     "phScale.microScreen.view.moleculeCountNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
@@ -11439,7 +11439,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "NumberPropertyIO"
+      "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
     "phScale.mySolutionsScreen.view.moleculeCountNode.countH3OProperty": {
       "phetioDocumentation": "",
@@ -11452,7 +11452,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "NumberPropertyIO"
+      "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
     "phScale.mySolutionsScreen.view.moleculeCountNode.countOHProperty": {
       "phetioDocumentation": "",
@@ -11465,7 +11465,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "NumberPropertyIO"
+      "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
     "phScale.mySolutionsScreen.view.moleculeCountNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",

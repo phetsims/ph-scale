@@ -9,15 +9,18 @@ define( require => {
   'use strict';
 
   // modules
+  const DerivedProperty = require( 'AXON/DerivedProperty' );
+  const DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
   const H2ONode = require( 'PH_SCALE/common/view/molecules/H2ONode' );
   const H3ONode = require( 'PH_SCALE/common/view/molecules/H3ONode' );
   const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
-  const NumberProperty = require( 'AXON/NumberProperty' );
+  const NumberIO = require( 'TANDEM/types/NumberIO' );
   const OHNode = require( 'PH_SCALE/common/view/molecules/OHNode' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const phScale = require( 'PH_SCALE/phScale' );
   const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
+  const Property = require( 'AXON/Property' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
   const ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
   const Tandem = require( 'TANDEM/Tandem' );
@@ -41,13 +44,44 @@ define( require => {
         }
       }, options );
 
-      super();
-
       // margins and spacing
       const xMargin = 10;
       const yMargin = 5;
       const xSpacing = 10;
       const ySpacing = 6;
+
+      const countH3OProperty = new DerivedProperty(
+        [ solution.pHProperty, solution.waterVolumeProperty, solution.soluteVolumeProperty ],
+        ( pH, waterVolume, soluteVolume ) => solution.getMoleculesH3O(), {
+          tandem: options.tandem.createTandem( 'countH3OProperty' ),
+          phetioType: DerivedPropertyIO( NumberIO )
+        } );
+
+      const countOHProperty = new DerivedProperty(
+        [ solution.pHProperty, solution.waterVolumeProperty, solution.soluteVolumeProperty ],
+        ( pH, waterVolume, soluteVolume ) => solution.getMoleculesOH(), {
+          tandem: options.tandem.createTandem( 'countOHProperty' ),
+          phetioType: DerivedPropertyIO( NumberIO )
+        } );
+
+      const countH2OProperty = new DerivedProperty(
+        [ solution.pHProperty, solution.waterVolumeProperty, solution.soluteVolumeProperty ],
+        ( pH, waterVolume, soluteVolume ) => solution.getMoleculesH2O(), {
+          tandem: options.tandem.createTandem( 'countH2OProperty' ),
+          phetioType: DerivedPropertyIO( NumberIO )
+        } );
+
+      // count values
+      const notationOptions = {
+        font: new PhetFont( 22 ),
+        fill: 'white',
+        mantissaDecimalPlaces: 2
+      };
+      const countH3ONode = new ScientificNotationNode( countH3OProperty, notationOptions );
+      const countOHNode = new ScientificNotationNode( countOHProperty, notationOptions );
+      const countH2ONode = new ScientificNotationNode( countH2OProperty, merge( { exponent: 25 }, notationOptions ) );
+      const maxCountWidth = new ScientificNotationNode( new Property( 1e16 ), notationOptions ).width;
+      const maxCountHeight = countH3ONode.height;
 
       // molecule icons
       const nodeH3O = new H3ONode();
@@ -56,50 +90,30 @@ define( require => {
       const maxMoleculeWidth = Math.max( nodeH3O.width, Math.max( nodeOH.width, nodeH2O.width ) );
       const maxMoleculeHeight = Math.max( nodeH3O.height, Math.max( nodeOH.height, nodeH2O.height ) );
 
-      // internal properties for counts
-      const countH3OProperty = new NumberProperty( 1e16, {
-        tandem: options.tandem.createTandem( 'countH3OProperty' ),
-        phetioReadOnly: true
-      } );
-      const countOHProperty = new NumberProperty( 1e16, {
-        tandem: options.tandem.createTandem( 'countOHProperty' ),
-        phetioReadOnly: true
-      } );
-      const countH2OProperty = new NumberProperty( 1e16, {
-        tandem: options.tandem.createTandem( 'countH2OProperty' ),
-        phetioReadOnly: true
-      } );
-
-      // count values
-      const notationOptions = { font: new PhetFont( 22 ), fill: 'white', mantissaDecimalPlaces: 2 };
-      const countH3ONode = new ScientificNotationNode( countH3OProperty, notationOptions );
-      const countOHNode = new ScientificNotationNode( countOHProperty, notationOptions );
-      const countH2ONode = new ScientificNotationNode( countH2OProperty, merge( { exponent: 25 }, notationOptions ) );
-      const maxCountWidth = countH3ONode.width;
-      const maxCountHeight = countH3ONode.height;
-
       // backgrounds
       const backgroundWidth = maxCountWidth + xSpacing + maxMoleculeWidth + ( 2 * xMargin );
       const backgroundHeight = Math.max( maxCountHeight, maxMoleculeHeight ) + ( 2 * yMargin );
-      const cornerRadius = 5;
-      const backgroundStroke = 'rgb( 200, 200, 200 )';
-      const backgroundH3O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-        { fill: PHScaleColors.ACIDIC, stroke: backgroundStroke } );
-      const backgroundOH = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-        { fill: PHScaleColors.BASIC, stroke: backgroundStroke } );
-      const backgroundH2O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius,
-        { fill: PHScaleColors.H2O_BACKGROUND, stroke: backgroundStroke } );
+      const backgroundOptions = {
+        cornerRadius: 5,
+        backgroundStroke: 'rgb( 200, 200, 200 )'
+      };
+      const backgroundH3O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, merge( {
+        fill: PHScaleColors.ACIDIC
+      }, backgroundOptions ) );
+      const backgroundOH = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, merge( {
+        fill: PHScaleColors.BASIC
+      }, backgroundOptions ) );
+      const backgroundH2O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, merge( {
+        fill: PHScaleColors.H2O_BACKGROUND
+      }, backgroundOptions ) );
 
-      // rendering order
-      this.addChild( backgroundH3O );
-      this.addChild( backgroundOH );
-      this.addChild( backgroundH2O );
-      this.addChild( countH3ONode );
-      this.addChild( countOHNode );
-      this.addChild( countH2ONode );
-      this.addChild( nodeH3O );
-      this.addChild( nodeOH );
-      this.addChild( nodeH2O );
+      assert && assert( !options.children, 'MoleculeCountsNode sets children' );
+      options.children = [
+        backgroundH3O, backgroundOH, backgroundH2O,
+        countH3ONode, countOHNode, countH2ONode,
+        nodeH3O, nodeOH, nodeH2O
+      ];
+      super( options );
 
       // layout...
       // backgrounds are vertically stacked
@@ -114,32 +128,21 @@ define( require => {
       nodeOH.centerY = backgroundOH.centerY;
       nodeH2O.centerX = backgroundH2O.right - xMargin - ( maxMoleculeWidth / 2 );
       nodeH2O.centerY = backgroundH2O.centerY;
-      // counts will be dynamically positioned
 
-      // update counts when the solution changes
-      const moleculesLeft = Math.min( nodeH3O.left, Math.min( nodeOH.left, nodeH2O.left ) ); // for right justifying counts
-      const updateCounts = () => {
-
-        // set counts, which in turn updates values displayed by nodes
-        countH3OProperty.set( solution.getMoleculesH3O() );
-        countOHProperty.set( solution.getMoleculesOH() );
-        countH2OProperty.set( solution.getMoleculesH2O() );
-
-        // right justified
-        countH3ONode.right = moleculesLeft - xSpacing;
-        countOHNode.right = moleculesLeft - xSpacing;
-        countH2ONode.right = moleculesLeft - xSpacing;
-
-        // vertically centered
+      // reposition counts when they change: right justified, vertically centered
+      const countRight = Math.min( nodeH3O.left, Math.min( nodeOH.left, nodeH2O.left ) ) - xSpacing;
+      countH3OProperty.link( () => {
+        countH3ONode.right = countRight;
         countH3ONode.centerY = backgroundH3O.centerY;
+      } );
+      countOHProperty.link( () => {
+        countOHNode.right = countRight;
         countOHNode.centerY = backgroundOH.centerY;
+      } );
+      countH2OProperty.link( () => {
+        countH2ONode.right = countRight;
         countH2ONode.centerY = backgroundH2O.centerY;
-      };
-      solution.pHProperty.link( updateCounts.bind( this ) );
-      solution.waterVolumeProperty.link( updateCounts.bind( this ) );
-      solution.soluteVolumeProperty.link( updateCounts.bind( this ) );
-
-      this.mutate( options );
+      } );
     }
   }
 

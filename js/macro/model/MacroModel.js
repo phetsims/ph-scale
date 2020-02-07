@@ -34,6 +34,7 @@ define( require => {
       assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
       options = merge( {
+        autoFillEnabled: true, // whether autoFill is enabled
         autoFillVolume: 0.5 // L, automatically fill beaker with this much solute when the solute changes
       }, options );
 
@@ -95,6 +96,12 @@ define( require => {
         PHScaleConstants.SCREEN_VIEW_OPTIONS.layoutBounds, {
           tandem: tandem.createTandem( 'pHMeter' )
         } );
+
+      // @private whether the auto-fill feature is enabled.
+      // See https://github.com/phetsims/ph-scale/issues/104
+      this.autoFillEnabledProperty = new BooleanProperty( options.autoFillEnabled, {
+        tandem: tandem.createTandem( 'autoFillEnabledProperty' )
+      } );
 
       // @private auto-fill when the solute changes
       this.autoFillVolume = options.autoFillVolume;
@@ -165,7 +172,7 @@ define( require => {
      * @private
      */
     startAutoFill() {
-      if ( this.autoFillVolume > 0 ) {
+      if ( this.autoFillEnabledProperty.value && this.autoFillVolume > 0 ) {
         this.isAutoFillingProperty.value = true;
         this.dropper.dispensingProperty.set( true );
         this.dropper.flowRateProperty.set( 0.75 ); // faster than standard flow rate

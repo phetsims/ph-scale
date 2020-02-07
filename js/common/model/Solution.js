@@ -57,7 +57,7 @@ define( require => {
       this.soluteProperty = soluteProperty;
 
       // Create a PhET-iO linked element that points to where soluteProperty lives (in Dropper).
-      // This makes it easer to find soluteProperty in the Studio tree.
+      // This makes it easier to find soluteProperty in the Studio tree.
       if ( options.hasSolute ) {
         this.addLinkedElement( this.soluteProperty, {
           tandem: options.tandem.createTandem( 'soluteProperty' )

@@ -111,7 +111,6 @@ define( require => {
       this.dropper.soluteProperty.link( () => {
 
         // disable the faucets to cancel any multi-touch interaction that may be in progress, see issue #28
-        //TODO #92 this might be handled better via interruptSubtreeInput
         this.waterFaucet.enabledProperty.set( false );
         this.drainFaucet.enabledProperty.set( false );
 

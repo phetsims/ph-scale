@@ -111,6 +111,7 @@ define( require => {
       const resetAllButton = new ResetAllButton( {
         scale: 1.32,
         listener: () => {
+          this.interruptSubtreeInput();
           model.reset();
         },
         tandem: tandem.createTandem( 'resetAllButton' )

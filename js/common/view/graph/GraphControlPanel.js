@@ -40,7 +40,8 @@ define( require => {
         align: 'right',
 
         // phet-io
-        tandem: Tandem.REQUIRED
+        tandem: Tandem.REQUIRED,
+        phetioDocumentation: 'control panel that appears above the graph'
       }, options );
 
       const graphUnitsSwitch = new GraphUnitsSwitch( graphUnitsProperty, {

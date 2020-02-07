@@ -2173,7 +2173,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "phScale.global.model.solutes.batteryAcid.nameProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "name of the solute, as displayed in the user interface",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -2199,7 +2199,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "phScale.global.model.solutes.blood.nameProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "name of the solute, as displayed in the user interface",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -2225,7 +2225,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "phScale.global.model.solutes.chickenSoup.nameProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "name of the solute, as displayed in the user interface",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -2251,7 +2251,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "phScale.global.model.solutes.coffee.nameProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "name of the solute, as displayed in the user interface",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -2277,7 +2277,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "phScale.global.model.solutes.drainCleaner.nameProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "name of the solute, as displayed in the user interface",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -2303,7 +2303,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "phScale.global.model.solutes.handSoap.nameProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "name of the solute, as displayed in the user interface",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -2329,7 +2329,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "phScale.global.model.solutes.milk.nameProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "name of the solute, as displayed in the user interface",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -2355,7 +2355,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "phScale.global.model.solutes.orangeJuice.nameProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "name of the solute, as displayed in the user interface",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -2381,7 +2381,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "phScale.global.model.solutes.soda.nameProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "name of the solute, as displayed in the user interface",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -2407,7 +2407,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "phScale.global.model.solutes.spit.nameProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "name of the solute, as displayed in the user interface",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -2433,7 +2433,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "phScale.global.model.solutes.vomit.nameProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "name of the solute, as displayed in the user interface",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -2459,7 +2459,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "phScale.global.model.solutes.water.nameProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "name of the solute, as displayed in the user interface",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -3551,7 +3551,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.macroScreen.model.autoFillEnabledProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "whether solute is automatically added to the beaker when the solute is changed",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -3564,7 +3564,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.macroScreen.model.drainFaucet.enabledProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "whether the faucet is enabled",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -3577,7 +3577,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.macroScreen.model.drainFaucet.flowRateProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "the flow rate of solution coming out of the faucet",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -3590,7 +3590,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "phScale.macroScreen.model.dropper.dispensingProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "whether solute is currently flowing out of the dropper",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -3603,7 +3603,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.macroScreen.model.dropper.emptyProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "whether the dropper is empty",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -3616,7 +3616,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.macroScreen.model.dropper.enabledProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "whether the button on the dropper is enabled",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -3629,7 +3629,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.macroScreen.model.dropper.flowRateProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "the flow rate of solute coming out of the dropper",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -3655,7 +3655,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<Vector2IO>"
     },
     "phScale.macroScreen.model.dropper.soluteProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "the solute dispensed by the dropper",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -3668,7 +3668,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<SoluteIO>"
     },
     "phScale.macroScreen.model.dropper.visibleProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "whether the dropper is visible",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -3707,7 +3707,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<NumberIO>>"
     },
     "phScale.macroScreen.model.solution": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "solution in the beaker",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -3720,7 +3720,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "phScale.macroScreen.model.solution.pHProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "the pH of the solution",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -3785,7 +3785,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "phScale.macroScreen.model.waterFaucet.enabledProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "whether the faucet is enabled",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -3798,7 +3798,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.macroScreen.model.waterFaucet.flowRateProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "the flow rate of solution coming out of the faucet",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -4305,7 +4305,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.macroScreen.view.neutralIndicatorNode": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "becomes visible when the solution has neutral pH",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -5748,7 +5748,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.macroScreen.view.volumeIndicatorNode": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "indicates the volume of the solution in the beaker",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6047,7 +6047,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.microScreen.model.autoFillEnabledProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "whether solute is automatically added to the beaker when the solute is changed",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6060,7 +6060,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.microScreen.model.drainFaucet.enabledProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "whether the faucet is enabled",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6073,7 +6073,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.microScreen.model.drainFaucet.flowRateProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "the flow rate of solution coming out of the faucet",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6086,7 +6086,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "phScale.microScreen.model.dropper.dispensingProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "whether solute is currently flowing out of the dropper",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6099,7 +6099,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.microScreen.model.dropper.emptyProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "whether the dropper is empty",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6112,7 +6112,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.microScreen.model.dropper.enabledProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "whether the button on the dropper is enabled",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6125,7 +6125,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.microScreen.model.dropper.flowRateProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "the flow rate of solute coming out of the dropper",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6151,7 +6151,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<Vector2IO>"
     },
     "phScale.microScreen.model.dropper.soluteProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "the solute dispensed by the dropper",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6164,7 +6164,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<SoluteIO>"
     },
     "phScale.microScreen.model.dropper.visibleProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "whether the dropper is visible",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6203,7 +6203,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<NumberIO>>"
     },
     "phScale.microScreen.model.solution": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "solution in the beaker",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6216,7 +6216,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "phScale.microScreen.model.solution.pHProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "the pH of the solution",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6281,7 +6281,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "phScale.microScreen.model.waterFaucet.enabledProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "whether the faucet is enabled",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6294,7 +6294,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.microScreen.model.waterFaucet.flowRateProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "the flow rate of solution coming out of the faucet",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6320,7 +6320,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "phScale.microScreen.view.beakerControlPanel": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "control panel that appears below the beaker",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -7113,7 +7113,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.microScreen.view.graphNode.graphControlPanel": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "control panel that appears above the graph",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -8504,7 +8504,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.microScreen.view.moleculeCountNode": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "displays the number of molecules in the solution",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -10012,7 +10012,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.microScreen.view.volumeIndicatorNode": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "indicates the volume of the solution in the beaker",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -10311,7 +10311,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.mySolutionsScreen.model.solution": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "solution in the beaker",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -10324,7 +10324,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "phScale.mySolutionsScreen.model.solution.pHProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "the pH of the solution",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -10363,7 +10363,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "phScale.mySolutionsScreen.view.beakerControlPanel": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "control panel that appears below the beaker",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -10831,7 +10831,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.mySolutionsScreen.view.graphNode.graphControlPanel": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "control panel that appears above the graph",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -11637,7 +11637,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.mySolutionsScreen.view.moleculeCountNode": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "displays the number of molecules in the solution",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -12404,7 +12404,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.mySolutionsScreen.view.volumeIndicatorNode": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "indicates the volume of the solution in the beaker",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,

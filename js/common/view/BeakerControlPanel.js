@@ -47,7 +47,8 @@ define( require => {
         fill: PHScaleColors.PANEL_FILL,
 
         // phet-io
-        tandem: Tandem.REQUIRED
+        tandem: Tandem.REQUIRED,
+        phetioDocumentation: 'control panel that appears below the beaker'
       }, options );
 
       // 'H3O+/OH- ratio' checkbox, with color-coded label, spacing tweaked visually

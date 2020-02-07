@@ -70,7 +70,8 @@ define( require => {
 
       // @public (read-only)
       this.nameProperty = new StringProperty( name, {
-        tandem: options.tandem.createTandem( 'nameProperty' )
+        tandem: options.tandem.createTandem( 'nameProperty' ),
+        phetioDocumentation: 'name of the solute, as displayed in the user interface'
       } );
       this.pH = pH;
       this.stockColor = stockColor;

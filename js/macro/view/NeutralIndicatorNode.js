@@ -33,7 +33,8 @@ define( require => {
       options = merge( {
 
         // phet-io
-        tandem: Tandem.REQUIRED
+        tandem: Tandem.REQUIRED,
+        phetioDocumentation: 'becomes visible when the solution has neutral pH'
       }, options );
 
       super( options );

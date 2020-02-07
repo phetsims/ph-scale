@@ -48,13 +48,15 @@ define( require => {
         range: new Range( 0, options.maxFlowRate ),
         units: 'L/s',
         tandem: options.tandem.createTandem( 'flowRateProperty' ),
-        phetioReadOnly: true
+        phetioReadOnly: true,
+        phetioDocumentation: 'the flow rate of solution coming out of the faucet'
       } );
 
       // @public
       this.enabledProperty = new BooleanProperty( options.enabled, {
         tandem: options.tandem.createTandem( 'enabledProperty' ),
-        phetioReadOnly: true
+        phetioReadOnly: true,
+        phetioDocumentation: 'whether the faucet is enabled'
       } );
 
       // when disabled, turn off the faucet.

@@ -44,7 +44,8 @@ define( require => {
       options = merge( {
 
         // phet-io
-        tandem: Tandem.REQUIRED
+        tandem: Tandem.REQUIRED,
+        phetioDocumentation: 'indicates the volume of the solution in the beaker'
       }, options );
 
       super( options );

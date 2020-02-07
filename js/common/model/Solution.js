@@ -48,7 +48,8 @@ define( require => {
 
         // phet-io
         tandem: Tandem.REQUIRED,
-        phetioState: false
+        phetioState: false,
+        phetioDocumentation: 'solution in the beaker'
       }, options );
 
       super( options );
@@ -116,7 +117,8 @@ define( require => {
           }
         }, {
           tandem: options.tandem.createTandem( 'pHProperty' ),
-          phetioType: DerivedPropertyIO( NullableIO( NumberIO ) )
+          phetioType: DerivedPropertyIO( NullableIO( NumberIO ) ),
+          phetioDocumentation: 'the pH of the solution'
         });
 
       // @public color

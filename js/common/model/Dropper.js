@@ -46,30 +46,35 @@ define( require => {
       // @public
       this.soluteProperty = new Property( solute, {
         tandem: options.tandem.createTandem( 'soluteProperty' ),
-        phetioType: PropertyIO( SoluteIO )
+        phetioType: PropertyIO( SoluteIO ),
+        phetioDocumentation: 'the solute dispensed by the dropper'
       } );
 
       // @public
       this.visibleProperty = new BooleanProperty( options.visible, {
-        tandem: options.tandem.createTandem( 'visibleProperty' )
+        tandem: options.tandem.createTandem( 'visibleProperty' ),
+        phetioDocumentation: 'whether the dropper is visible'
       } );
 
       // @public
       this.dispensingProperty = new BooleanProperty( options.dispensing, {
         tandem: options.tandem.createTandem( 'dispensingProperty' ),
-        phetioReadOnly: true
+        phetioReadOnly: true,
+        phetioDocumentation: 'whether solute is currently flowing out of the dropper'
       } );
 
       // @public
       this.enabledProperty = new BooleanProperty( options.enabled, {
         tandem: options.tandem.createTandem( 'enabledProperty' ),
-        phetioReadOnly: true
+        phetioReadOnly: true,
+        phetioDocumentation: 'whether the button on the dropper is enabled'
       } );
 
       // @public
       this.emptyProperty = new BooleanProperty( options.empty, {
         tandem: options.tandem.createTandem( 'emptyProperty' ),
-        phetioReadOnly: true
+        phetioReadOnly: true,
+        phetioDocumentation: 'whether the dropper is empty'
       } );
 
       // @public
@@ -77,7 +82,8 @@ define( require => {
         units: 'L/s',
         isValidValue: value => ( value >= 0 ),
         tandem: options.tandem.createTandem( 'flowRateProperty' ),
-        phetioReadOnly: true
+        phetioReadOnly: true,
+        phetioDocumentation: 'the flow rate of solute coming out of the dropper'
       } ); // L/sec
 
       // Turn off the dropper when it's disabled.

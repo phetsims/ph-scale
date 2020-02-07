@@ -41,7 +41,8 @@ define( require => {
           visibleProperty: {
             phetioReadOnly: true
           }
-        }
+        },
+        phetioDocumentation: 'displays the number of molecules in the solution'
       }, options );
 
       // margins and spacing

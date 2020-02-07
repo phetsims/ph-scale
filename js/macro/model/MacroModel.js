@@ -99,7 +99,8 @@ define( require => {
       // @private whether the auto-fill feature is enabled.
       // See https://github.com/phetsims/ph-scale/issues/104
       this.autoFillEnabledProperty = new BooleanProperty( options.autoFillEnabled, {
-        tandem: tandem.createTandem( 'autoFillEnabledProperty' )
+        tandem: tandem.createTandem( 'autoFillEnabledProperty' ),
+        phetioDocumentation: 'whether solute is automatically added to the beaker when the solute is changed'
       } );
 
       // @private auto-fill when the solute changes

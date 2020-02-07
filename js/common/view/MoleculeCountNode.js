@@ -57,9 +57,18 @@ define( require => {
       const maxMoleculeHeight = Math.max( nodeH3O.height, Math.max( nodeOH.height, nodeH2O.height ) );
 
       // internal properties for counts
-      const countH3OProperty = new NumberProperty( 1e16 );
-      const countOHProperty = new NumberProperty( 1e16 );
-      const countH2OProperty = new NumberProperty( 1e16 );
+      const countH3OProperty = new NumberProperty( 1e16, {
+        tandem: options.tandem.createTandem( 'countH3OProperty' ),
+        phetioReadOnly: true
+      } );
+      const countOHProperty = new NumberProperty( 1e16, {
+        tandem: options.tandem.createTandem( 'countOHProperty' ),
+        phetioReadOnly: true
+      } );
+      const countH2OProperty = new NumberProperty( 1e16, {
+        tandem: options.tandem.createTandem( 'countH2OProperty' ),
+        phetioReadOnly: true
+      } );
 
       // count values
       const notationOptions = { font: new PhetFont( 22 ), fill: 'white', mantissaDecimalPlaces: 2 };

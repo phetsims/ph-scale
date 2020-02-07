@@ -53,9 +53,7 @@ define( require => {
       } );
 
       // solution in the beaker
-      const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform, {
-        tandem: tandem.createTandem( 'solutionNode' )
-      } );
+      const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
 
       // volume indicator on the right edge of beaker
       const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform, {

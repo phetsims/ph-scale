@@ -14,7 +14,6 @@ define( require => {
   const phScale = require( 'PH_SCALE/phScale' );
   const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  const Tandem = require( 'TANDEM/Tandem' );
   const Utils = require( 'DOT/Utils' );
 
   class SolutionNode extends Rectangle {
@@ -28,11 +27,11 @@ define( require => {
     constructor( solution, beaker, modelViewTransform, options ) {
 
       options = merge( {
-        lineWidth: 1,
-
-        // phet-io
-        tandem: Tandem.REQUIRED
+        lineWidth: 1
       }, options );
+
+      // See https://github.com/phetsims/ph-scale/issues/108
+      assert && assert( !options.tandem, 'do not instrument SolutionNode' );
 
       super( 0, 0, 1, 1, options ); // correct size will be set below
 

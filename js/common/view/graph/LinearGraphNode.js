@@ -170,10 +170,21 @@ define( require => {
         tickLabels.push( tickLabel );
       }
 
-      // indicators & associated properties
-      const valueH2OProperty = new NumberProperty( 0 );
-      const valueH3OProperty = new NumberProperty( 0 );
-      const valueOHProperty = new NumberProperty( 0 );
+      // Properties
+      const valueH2OProperty = new NumberProperty( 0, {
+        tandem: options.tandem.createTandem( 'valueH2OProperty' ),
+        phetioReadOnly: true
+      } );
+      const valueH3OProperty = new NumberProperty( 0, {
+        tandem: options.tandem.createTandem( 'valueH3OProperty' ),
+        phetioReadOnly: true
+      } );
+      const valueOHProperty = new NumberProperty( 0, {
+        tandem: options.tandem.createTandem( 'valueOHProperty' ),
+        phetioReadOnly: true
+      } );
+
+      // indicators
       const indicatorH2ONode = GraphIndicatorNode.createH2OIndicator( valueH2OProperty, {
         x: scaleNode.right - options.majorTickLength,
         tandem: options.tandem.createTandem( 'indicatorH2ONode' )

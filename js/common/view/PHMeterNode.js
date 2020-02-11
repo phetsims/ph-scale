@@ -191,6 +191,7 @@ define( require => {
 
       const PROBE_WIDTH = 20;
       const TIP_HEIGHT = 50;
+      const TIP_CORNER_RADIUS = 4;
       const OVERLAP = 10;
 
       const shaftNode = new Rectangle( 0, 0, 0.5 * PROBE_WIDTH, probeHeight - TIP_HEIGHT + OVERLAP, {
@@ -198,15 +199,14 @@ define( require => {
       } );
 
       // clockwise from tip of probe
-      const cornerRadius = 4;
       const tipNode = new Path( new Shape()
         .moveTo( PROBE_WIDTH / 2, TIP_HEIGHT )
         .lineTo( 0, 0.6 * TIP_HEIGHT )
-        .lineTo( 0, cornerRadius )
-        .arc( cornerRadius, cornerRadius, cornerRadius, Math.PI, 1.5 * Math.PI )
-        .lineTo( cornerRadius, 0 )
-        .lineTo( PROBE_WIDTH - cornerRadius, 0 )
-        .arc( PROBE_WIDTH - cornerRadius, cornerRadius, cornerRadius, -0.5 * Math.PI, 0 )
+        .lineTo( 0, TIP_CORNER_RADIUS )
+        .arc( TIP_CORNER_RADIUS, TIP_CORNER_RADIUS, TIP_CORNER_RADIUS, Math.PI, 1.5 * Math.PI )
+        .lineTo( TIP_CORNER_RADIUS, 0 )
+        .lineTo( PROBE_WIDTH - TIP_CORNER_RADIUS, 0 )
+        .arc( PROBE_WIDTH - TIP_CORNER_RADIUS, TIP_CORNER_RADIUS, TIP_CORNER_RADIUS, -0.5 * Math.PI, 0 )
         .lineTo( PROBE_WIDTH, 0.6 * TIP_HEIGHT )
         .close(), {
         fill: 'black',

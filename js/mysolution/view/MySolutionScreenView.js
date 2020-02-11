@@ -65,17 +65,15 @@ define( require => {
       } );
 
       // 'H3O+/OH- ratio' representation
-      const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, {
+      const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, viewProperties.ratioVisibleProperty, {
         visible: viewProperties.ratioVisibleProperty.get(),
         tandem: tandem.createTandem( 'ratioNode' )
       } );
-      viewProperties.ratioVisibleProperty.linkAttribute( ratioNode, 'visible' );
 
       // 'molecule count' representation
-      const moleculeCountNode = new MoleculeCountNode( model.solution, {
+      const moleculeCountNode = new MoleculeCountNode( model.solution, viewProperties.moleculeCountVisibleProperty, {
         tandem: tandem.createTandem( 'moleculeCountNode' )
       } );
-      viewProperties.moleculeCountVisibleProperty.linkAttribute( moleculeCountNode, 'visible' );
 
       // beaker controls
       const beakerControlPanel = new BeakerControlPanel(

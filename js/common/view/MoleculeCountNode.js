@@ -29,9 +29,10 @@ define( require => {
 
     /**
      * @param {Solution} solution
+     * @param {Property.<boolean>} moleculeCountVisibleProperty
      * @param {Object} [options]
      */
-    constructor( solution, options ) {
+    constructor( solution, moleculeCountVisibleProperty, options ) {
 
       options = merge( {
 
@@ -143,6 +144,13 @@ define( require => {
       countH2OProperty.link( () => {
         countH2ONode.right = countRight;
         countH2ONode.centerY = backgroundH2O.centerY;
+      } );
+
+      moleculeCountVisibleProperty.linkAttribute( this, 'visible' );
+
+      // Create a link to moleculeCountVisibleProperty, so it's easier to find in Studio.
+      this.addLinkedElement( moleculeCountVisibleProperty, {
+        tandem: options.tandem.createTandem( 'moleculeCountVisibleProperty' )
       } );
     }
   }

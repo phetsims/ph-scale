@@ -48,9 +48,10 @@ define( require => {
      * @param {Beaker} beaker
      * @param {Solution} solution
      * @param {ModelViewTransform2} modelViewTransform
+     * @param {Property.<boolean>} ratioVisibleProperty
      * @param {Object} [options]
      */
-    constructor( beaker, solution, modelViewTransform, options ) {
+    constructor( beaker, solution, modelViewTransform, ratioVisibleProperty, options ) {
 
       options = merge( {
 
@@ -107,6 +108,13 @@ define( require => {
           this.clipArea = Shape.rectangle( beakerBounds.minX, beakerBounds.maxY - solutionHeight, beakerBounds.getWidth(), solutionHeight );
         }
         this.moleculesNode.invalidatePaint(); //WORKAROUND: #25, scenery#200
+      } );
+
+      ratioVisibleProperty.linkAttribute( this, 'visible' );
+
+      // Create a link to ratioVisibleProperty, so it's easier to find in Studio.
+      this.addLinkedElement( ratioVisibleProperty, {
+        tandem: options.tandem.createTandem( 'ratioVisibleProperty' )
       } );
     }
 

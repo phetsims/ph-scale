@@ -156,22 +156,23 @@ define( require => {
       }, options );
 
       /**
-       * solution.pHProperty is derived, so we can't change it directly.
-       * So when pH changes, create a new custom solute with the desired pH.
+       * solution.pHProperty is a DerivedProperty, so we can't change it directly. Associate this adapter Property
+       * with the spinner.  When it's changed by the spinner, create a new custom solute with the desired pH, and
+       * put it in the solution.
        */
-      const pHValueProperty = new NumberProperty( solution.pHProperty.get(), {
+      const spinnerProperty = new NumberProperty( solution.pHProperty.get(), {
         reentrant: true //TODO see https://github.com/phetsims/ph-scale/issues/72
       } );
-      pHValueProperty.link( pH => {
-        if ( pH !== null && pH !== solution.pHProperty.get() ) {
+      spinnerProperty.link( pH => {
+        if ( pH !== solution.pHProperty.get() ) {
           solution.soluteProperty.set( Solute.createCustom( pH ) );
         }
       } );
       solution.pHProperty.link( pH => {
-        pHValueProperty.set( pH );
+        spinnerProperty.set( pH );
       } );
 
-      super( pHValueProperty, new Property( PHScaleConstants.PH_RANGE ), options );
+      super( spinnerProperty, new Property( PHScaleConstants.PH_RANGE ), options );
     }
   }
 

@@ -38,7 +38,7 @@ define( require => {
         autoFillVolume: 0.5 // L, automatically fill beaker with this much solute when the solute changes
       }, options );
 
-      // @public solute choices, in order that they'll appear in the combo box (decreasing pH value)
+      // @public solute choices, in order that they'll appear in the combo box (alphabetical English names)
       this.solutes = [
         Solute.BATTERY_ACID,
         Solute.BLOOD,

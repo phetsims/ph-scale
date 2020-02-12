@@ -38,7 +38,8 @@ define( require => {
         autoFillVolume: 0.5 // L, automatically fill beaker with this much solute when the solute changes
       }, options );
 
-      // @public solute choices, in order that they'll appear in the combo box (alphabetical English names)
+      // @public solute choices, in order that they'll appear in the combo box
+      // The order is alphabetical (English names), see https://github.com/phetsims/ph-scale/issues/101
       this.solutes = [
         Solute.BATTERY_ACID,
         Solute.BLOOD,

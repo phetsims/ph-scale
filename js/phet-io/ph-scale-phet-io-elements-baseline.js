@@ -8971,6 +8971,19 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
+    "phScale.microScreen.view.ratioNode.ratioProperty": {
+      "phetioDocumentation": "the H<sub>3</sub>O<sup>+</sup>/OH<sup>-</sup> ratio of the solution in the beaker, null if the beaker is empty",
+      "phetioDynamicElement": false,
+      "phetioEventType": "MODEL",
+      "phetioFeatured": false,
+      "phetioHighFrequency": false,
+      "phetioIsArchetype": false,
+      "phetioPlayback": false,
+      "phetioReadOnly": true,
+      "phetioState": true,
+      "phetioStudioControl": true,
+      "phetioTypeName": "DerivedPropertyIO<NullableIO<NumberIO>>"
+    },
     "phScale.microScreen.view.ratioNode.ratioVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
@@ -12272,6 +12285,19 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
+    },
+    "phScale.mySolutionsScreen.view.ratioNode.ratioProperty": {
+      "phetioDocumentation": "the H<sub>3</sub>O<sup>+</sup>/OH<sup>-</sup> ratio of the solution in the beaker, null if the beaker is empty",
+      "phetioDynamicElement": false,
+      "phetioEventType": "MODEL",
+      "phetioFeatured": false,
+      "phetioHighFrequency": false,
+      "phetioIsArchetype": false,
+      "phetioPlayback": false,
+      "phetioReadOnly": true,
+      "phetioState": true,
+      "phetioStudioControl": true,
+      "phetioTypeName": "DerivedPropertyIO<NullableIO<NumberIO>>"
     },
     "phScale.mySolutionsScreen.view.ratioNode.ratioVisibleProperty": {
       "phetioDocumentation": "",

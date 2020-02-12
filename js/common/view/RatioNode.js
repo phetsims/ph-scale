@@ -18,8 +18,12 @@ define( require => {
   // modules
   const CanvasNode = require( 'SCENERY/nodes/CanvasNode' );
   const Circle = require( 'SCENERY/nodes/Circle' );
+  const DerivedProperty = require( 'AXON/DerivedProperty' );
+  const DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
   const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
+  const NumberIO = require( 'TANDEM/types/NumberIO' );
+  const NullableIO = require( 'TANDEM/types/NullableIO' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const PHModel = require( 'PH_SCALE/common/model/PHModel' );
   const phScale = require( 'PH_SCALE/phScale' );
@@ -97,6 +101,23 @@ define( require => {
 
       // sync view with model
       solution.pHProperty.link( this.update.bind( this ) );
+
+      // This Property was added for PhET-iO, to show the actual H3O+/OH- ratio of the solution. It is not used
+      // elsewhere, hence the eslint-disable comment below. See https://github.com/phetsims/ph-scale/issues/112
+      // eslint-disable-next-line no-new
+      new DerivedProperty( [ solution.pHProperty ],
+        pH => {
+         if ( pH === null ) {
+           return null;
+         }
+         else {
+           return PHModel.pHToConcentrationH3O( pH ) / PHModel.pHToConcentrationOH( pH );
+         }
+        }, {
+          tandem: options.tandem.createTandem( 'ratioProperty' ),
+          phetioType: DerivedPropertyIO( NullableIO( NumberIO ) ),
+          phetioDocumentation: 'the H<sub>3</sub>O<sup>+</sup>/OH<sup>-</sup> ratio of the solution in the beaker, null if the beaker is empty'
+        } );
 
       // clip to the shape of the solution in the beaker
       solution.volumeProperty.link( volume => {

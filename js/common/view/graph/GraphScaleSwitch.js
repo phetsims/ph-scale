@@ -45,8 +45,15 @@ define( require => {
         maxWidth: 125
       };
 
-      const logarithmicText = new Text( logarithmicString, textOptions );
-      const linearText = new Text( linearString, textOptions );
+      // Logarithmic label
+      const logarithmicText = new Text( logarithmicString, merge( {
+        tandem: options.tandem.createTandem( 'logarithmicText' )
+      }, textOptions ) );
+
+      // Linear label
+      const linearText = new Text( linearString, merge( {
+        tandem: options.tandem.createTandem( 'linearText' )
+      }, textOptions ) );
 
       super( graphScaleProperty, GraphScale.LOGARITHMIC, logarithmicText, GraphScale.LINEAR, linearText, options );
     }

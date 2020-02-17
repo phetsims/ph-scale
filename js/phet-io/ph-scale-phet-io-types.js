@@ -252,20 +252,6 @@ window.phet.phetio.phetioTypes = assert &&
       "supertype": "ObjectIO",
       "typeName": "BooleanIO"
     },
-    "ButtonListenerIO": {
-      "documentation": "Button listener",
-      "events": [
-        "up",
-        "over",
-        "down",
-        "out",
-        "fire"
-      ],
-      "methodOrder": [],
-      "methods": {},
-      "supertype": "ObjectIO",
-      "typeName": "ButtonListenerIO"
-    },
     "ComboBoxIO": {
       "documentation": "A combo box is composed of a push button and a listbox. The listbox contains items that represent choices. Pressing the button pops up the listbox. Selecting from an item in the listbox sets the value of an associated Property. The button shows the item that is currently selected.",
       "events": [

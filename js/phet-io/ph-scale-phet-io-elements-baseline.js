@@ -109,7 +109,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioDocumentation": "Indicates whether the browser tab containing the simulation is currently visible",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
@@ -1314,7 +1314,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.termsPrivacyAndLicensingText": {
+    "phScale.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.termsPrivacyAndLicensingLinkText": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1327,7 +1327,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "RichTextIO"
     },
-    "phScale.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.termsPrivacyAndLicensingText.opacityProperty": {
+    "phScale.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.termsPrivacyAndLicensingLinkText.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1340,7 +1340,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.termsPrivacyAndLicensingText.pickableProperty": {
+    "phScale.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.termsPrivacyAndLicensingLinkText.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1353,7 +1353,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.termsPrivacyAndLicensingText.textProperty": {
+    "phScale.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.termsPrivacyAndLicensingLinkText.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1366,7 +1366,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<StringIO>"
     },
-    "phScale.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.termsPrivacyAndLicensingText.visibleProperty": {
+    "phScale.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.termsPrivacyAndLicensingLinkText.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1695,7 +1695,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
@@ -2095,7 +2095,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PhetioCommandProcessorIO"
     },
     "phScale.general.resizeAction": {
-      "phetioDocumentation": "Executes when the sim is resized The arguments are:<br/><ol><li>width: NumberIO</li><br/><li>height: NumberIO</li></ol>",
+      "phetioDocumentation": "Executes when the sim is resized. Values are in CSS pixels. The arguments are:<br/><ol><li>width: NumberIO</li><br/><li>height: NumberIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -2124,7 +2124,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioDocumentation": "If the sim contains sound, then this Property will toggle whether sound is enabled or disabled.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
@@ -2134,7 +2134,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.general.stepSimulationAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>dt: NumberIO</li></ol>",
+      "phetioDocumentation": "A function that steps time forward. The arguments are:<br/><ol><li>dt: NumberIO - The amount of time stepped in each call, in seconds.</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -4032,7 +4032,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "phScale.macroScreen.view.drainFaucetNode.inputListener.dragAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -4045,7 +4045,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.macroScreen.view.drainFaucetNode.inputListener.dragEndAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -4058,7 +4058,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.macroScreen.view.drainFaucetNode.inputListener.dragStartAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -4240,7 +4240,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "phScale.macroScreen.view.dropperNode.dragHandler.dragAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -4253,7 +4253,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.macroScreen.view.dropperNode.dragHandler.dragEndAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -4266,7 +4266,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.macroScreen.view.dropperNode.dragHandler.dragStartAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -4643,7 +4643,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "phScale.macroScreen.view.pHMeterNode.probeNode.dragHandler.dragAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -4656,7 +4656,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.macroScreen.view.pHMeterNode.probeNode.dragHandler.dragEndAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -4669,7 +4669,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.macroScreen.view.pHMeterNode.probeNode.dragHandler.dragStartAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -5865,7 +5865,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "phScale.macroScreen.view.waterFaucetNode.faucetNode.inputListener.dragAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -5878,7 +5878,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.macroScreen.view.waterFaucetNode.faucetNode.inputListener.dragEndAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -5891,7 +5891,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.macroScreen.view.waterFaucetNode.faucetNode.inputListener.dragStartAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6827,7 +6827,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "phScale.microScreen.view.drainFaucetNode.inputListener.dragAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6840,7 +6840,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.microScreen.view.drainFaucetNode.inputListener.dragEndAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -6853,7 +6853,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.microScreen.view.drainFaucetNode.inputListener.dragStartAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -7035,7 +7035,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "phScale.microScreen.view.dropperNode.dragHandler.dragAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -7048,7 +7048,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.microScreen.view.dropperNode.dragHandler.dragEndAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -7061,7 +7061,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.microScreen.view.dropperNode.dragHandler.dragStartAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -10467,7 +10467,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "phScale.microScreen.view.waterFaucetNode.faucetNode.inputListener.dragAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -10480,7 +10480,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.microScreen.view.waterFaucetNode.faucetNode.inputListener.dragEndAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -10493,7 +10493,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.microScreen.view.waterFaucetNode.faucetNode.inputListener.dragStartAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -11819,7 +11819,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH3ODragHandler.dragAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -11832,7 +11832,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH3ODragHandler.dragEndAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -11845,7 +11845,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH3ODragHandler.dragStartAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -11936,7 +11936,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorOHDragHandler.dragAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -11949,7 +11949,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorOHDragHandler.dragEndAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -11962,7 +11962,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorOHDragHandler.dragStartAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,

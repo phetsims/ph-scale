@@ -2155,7 +2155,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioIsArchetype": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
-      "phetioState": false,
+      "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "SoluteIO"
     },
@@ -2181,7 +2181,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioIsArchetype": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
-      "phetioState": false,
+      "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "SoluteIO"
     },
@@ -2207,7 +2207,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioIsArchetype": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
-      "phetioState": false,
+      "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "SoluteIO"
     },
@@ -2233,7 +2233,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioIsArchetype": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
-      "phetioState": false,
+      "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "SoluteIO"
     },
@@ -2259,7 +2259,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioIsArchetype": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
-      "phetioState": false,
+      "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "SoluteIO"
     },
@@ -2285,7 +2285,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioIsArchetype": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
-      "phetioState": false,
+      "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "SoluteIO"
     },
@@ -2311,7 +2311,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioIsArchetype": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
-      "phetioState": false,
+      "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "SoluteIO"
     },
@@ -2337,7 +2337,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioIsArchetype": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
-      "phetioState": false,
+      "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "SoluteIO"
     },
@@ -2363,7 +2363,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioIsArchetype": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
-      "phetioState": false,
+      "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "SoluteIO"
     },
@@ -2389,7 +2389,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioIsArchetype": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
-      "phetioState": false,
+      "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "SoluteIO"
     },
@@ -2415,7 +2415,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioIsArchetype": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
-      "phetioState": false,
+      "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "SoluteIO"
     },
@@ -2441,7 +2441,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioIsArchetype": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
-      "phetioState": false,
+      "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "SoluteIO"
     },

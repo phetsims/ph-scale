@@ -62,7 +62,6 @@ define( require => {
 
         // phet-io
         tandem: Tandem.OPTIONAL, // this is optional because in MySolutions, a new Solute is created for each pH change
-        phetioState: false,
         phetioType: SoluteIO
       }, options );
 

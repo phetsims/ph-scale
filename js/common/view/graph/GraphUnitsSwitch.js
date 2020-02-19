@@ -32,7 +32,7 @@ define( require => {
     constructor( graphUnitsProperty, options ) {
 
       options = merge( {
-        size: new Dimension2( 50, 25 ),
+        toggleSwitchOptions: { size: new Dimension2( 50, 25 ) },
 
         // phet-io
         tandem: options.tandem.createTandem( 'graphUnitsSwitch' ),
@@ -42,13 +42,15 @@ define( require => {
       const concentrationLabel = new RichText( concentrationString + '<br>(' + unitsMolesPerLiterString + ')', {
         align: 'center',
         font: PHScaleConstants.AB_SWITCH_FONT,
-        maxWidth: 125
+        maxWidth: 125,
+        tandem: options.tandem.createTandem( 'concentrationLabel' )
       } );
 
       const quantityLabel = new RichText( quantityString + '<br>(' + unitsMolesString + ')', {
         align: 'center',
         font: PHScaleConstants.AB_SWITCH_FONT,
-        maxWidth: 85
+        maxWidth: 85,
+        tandem: options.tandem.createTandem( 'quantityLabel' )
       } );
 
       super( graphUnitsProperty, GraphUnits.MOLES_PER_LITER, concentrationLabel, GraphUnits.MOLES, quantityLabel, options );

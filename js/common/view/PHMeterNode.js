@@ -161,7 +161,9 @@ define( require => {
        * put it in the solution.
        */
       const spinnerProperty = new NumberProperty( solution.pHProperty.get(), {
-        reentrant: true //TODO see https://github.com/phetsims/ph-scale/issues/72
+        reentrant: true
+        // DO NOT INSTRUMENT for PhET-IO, it will result in intermediate values in the data stream.
+        // See https://github.com/phetsims/ph-scale/issues/72
       } );
       spinnerProperty.link( pH => {
         if ( pH !== solution.pHProperty.get() ) {

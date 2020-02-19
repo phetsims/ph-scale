@@ -32,7 +32,7 @@ define( require => {
     constructor( graphScaleProperty, options ) {
 
       options = merge( {
-        size: new Dimension2( 50, 25 ),
+        toggleSwitchOptions: { size: new Dimension2( 50, 25 ) },
         centerOnButton: true,
 
         // phet-io

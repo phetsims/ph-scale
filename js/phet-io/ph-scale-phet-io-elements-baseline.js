@@ -7513,7 +7513,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ToggleSwitchIO"
+      "phetioTypeName": "NodeIO"
     },
     "phScale.microScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.dragListener.dragAction": {
       "phetioDocumentation": "Emits whenever a drag occurs with an SceneryEventIO argument. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
@@ -7594,7 +7594,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "LinkedElementIO"
     },
     "phScale.microScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.toggleAction": {
-      "phetioDocumentation": "Occurs when the switch is toggled via user interaction The arguments are:<br/><ol><li>oldValue: EnumerationIO(MOLES_PER_LITER|MOLES)</li><br/><li>newValue: EnumerationIO(MOLES_PER_LITER|MOLES)</li></ol>",
+      "phetioDocumentation": "Occurs when the switch is toggled via user interaction No arguments.",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
@@ -7604,7 +7604,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO<EnumerationIO(MOLES_PER_LITER|MOLES), EnumerationIO(MOLES_PER_LITER|MOLES)>"
+      "phetioTypeName": "ActionIO<>"
     },
     "phScale.microScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -7916,7 +7916,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ToggleSwitchIO"
+      "phetioTypeName": "NodeIO"
     },
     "phScale.microScreen.view.graphNode.graphScaleSwitch.toggleSwitch.dragListener.dragAction": {
       "phetioDocumentation": "Emits whenever a drag occurs with an SceneryEventIO argument. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
@@ -7997,7 +7997,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "LinkedElementIO"
     },
     "phScale.microScreen.view.graphNode.graphScaleSwitch.toggleSwitch.toggleAction": {
-      "phetioDocumentation": "Occurs when the switch is toggled via user interaction The arguments are:<br/><ol><li>oldValue: EnumerationIO(LOGARITHMIC|LINEAR)</li><br/><li>newValue: EnumerationIO(LOGARITHMIC|LINEAR)</li></ol>",
+      "phetioDocumentation": "Occurs when the switch is toggled via user interaction No arguments.",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
@@ -8007,7 +8007,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO<EnumerationIO(LOGARITHMIC|LINEAR), EnumerationIO(LOGARITHMIC|LINEAR)>"
+      "phetioTypeName": "ActionIO<>"
     },
     "phScale.microScreen.view.graphNode.graphScaleSwitch.toggleSwitch.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -11595,7 +11595,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ToggleSwitchIO"
+      "phetioTypeName": "NodeIO"
     },
     "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.dragListener.dragAction": {
       "phetioDocumentation": "Emits whenever a drag occurs with an SceneryEventIO argument. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
@@ -11676,7 +11676,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "LinkedElementIO"
     },
     "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.toggleAction": {
-      "phetioDocumentation": "Occurs when the switch is toggled via user interaction The arguments are:<br/><ol><li>oldValue: EnumerationIO(MOLES_PER_LITER|MOLES)</li><br/><li>newValue: EnumerationIO(MOLES_PER_LITER|MOLES)</li></ol>",
+      "phetioDocumentation": "Occurs when the switch is toggled via user interaction No arguments.",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
@@ -11686,7 +11686,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO<EnumerationIO(MOLES_PER_LITER|MOLES), EnumerationIO(MOLES_PER_LITER|MOLES)>"
+      "phetioTypeName": "ActionIO<>"
     },
     "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",

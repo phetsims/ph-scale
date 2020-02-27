@@ -5,50 +5,46 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const Image = require( 'SCENERY/nodes/Image' );
-  const MicroModel = require( 'PH_SCALE/micro/model/MicroModel' );
-  const MicroScreenView = require( 'PH_SCALE/micro/view/MicroScreenView' );
-  const ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
-  const phScale = require( 'PH_SCALE/phScale' );
-  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  const Property = require( 'AXON/Property' );
-  const Screen = require( 'JOIST/Screen' );
-  const Tandem = require( 'TANDEM/Tandem' );
+import Property from '../../../axon/js/Property.js';
+import Screen from '../../../joist/js/Screen.js';
+import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
+import Image from '../../../scenery/js/nodes/Image.js';
+import Tandem from '../../../tandem/js/Tandem.js';
+import homeIcon from '../../images/Micro-home-icon_png.js';
+import navbarIcon from '../../images/Micro-navbar-icon_png.js';
+import PHScaleColors from '../common/PHScaleColors.js';
+import phScaleStrings from '../ph-scale-strings.js';
+import phScale from '../phScale.js';
+import MicroModel from './model/MicroModel.js';
+import MicroScreenView from './view/MicroScreenView.js';
 
-  // strings
-  const screenMicroString = require( 'string!PH_SCALE/screen.micro' );
+const screenMicroString = phScaleStrings.screen.micro;
 
-  // images
-  const homeIcon = require( 'image!PH_SCALE/Micro-home-icon.png' );
-  const navbarIcon = require( 'image!PH_SCALE/Micro-navbar-icon.png' );
 
-  class MicroScreen extends Screen {
+class MicroScreen extends Screen {
 
-    /**
-     * @param {Tandem} tandem
-     */
-    constructor( tandem ) {
-      assert && assert( tandem instanceof Tandem, 'invalid tandem' );
+  /**
+   * @param {Tandem} tandem
+   */
+  constructor( tandem ) {
+    assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
-      const options = {
-        name: screenMicroString,
-        backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
-        homeScreenIcon: new Image( homeIcon ),
-        navigationBarIcon: new Image( navbarIcon ),
-        tandem: tandem
-      };
+    const options = {
+      name: screenMicroString,
+      backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
+      homeScreenIcon: new Image( homeIcon ),
+      navigationBarIcon: new Image( navbarIcon ),
+      tandem: tandem
+    };
 
-      super(
-        () => new MicroModel( tandem.createTandem( 'model') ),
-        model => new MicroScreenView( model, ModelViewTransform2.createIdentity(), tandem.createTandem( 'view' ) ),
-        options
-      );
-    }
+    super(
+      () => new MicroModel( tandem.createTandem( 'model' ) ),
+      model => new MicroScreenView( model, ModelViewTransform2.createIdentity(), tandem.createTandem( 'view' ) ),
+      options
+    );
   }
+}
 
-  return phScale.register( 'MicroScreen', MicroScreen );
-} );
+phScale.register( 'MicroScreen', MicroScreen );
+export default MicroScreen;

@@ -5,43 +5,40 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const HydrogenNode = require( 'PH_SCALE/common/view/molecules/HydrogenNode' );
-  const Node = require( 'SCENERY/nodes/Node' );
-  const OxygenNode = require( 'PH_SCALE/common/view/molecules/OxygenNode' );
-  const phScale = require( 'PH_SCALE/phScale' );
+import Node from '../../../../../scenery/js/nodes/Node.js';
+import phScale from '../../../phScale.js';
+import HydrogenNode from './HydrogenNode.js';
+import OxygenNode from './OxygenNode.js';
 
-  class H2ONode extends Node {
+class H2ONode extends Node {
 
-    /**
-     * @param {Object} [options]
-     */
-    constructor( options ) {
+  /**
+   * @param {Object} [options]
+   */
+  constructor( options ) {
 
-      super();
+    super();
 
-      // atoms
-      const oxygen = new OxygenNode();
-      const hydrogen1 = new HydrogenNode();
-      const hydrogen2 = new HydrogenNode();
+    // atoms
+    const oxygen = new OxygenNode();
+    const hydrogen1 = new HydrogenNode();
+    const hydrogen2 = new HydrogenNode();
 
-      // rendering order
-      this.addChild( hydrogen2 );
-      this.addChild( oxygen );
-      this.addChild( hydrogen1 );
+    // rendering order
+    this.addChild( hydrogen2 );
+    this.addChild( oxygen );
+    this.addChild( hydrogen1 );
 
-      // layout
-      hydrogen1.left = oxygen.right - ( 0.2 * oxygen.width );
-      hydrogen1.centerY = oxygen.centerY - ( 0.1 * oxygen.height );
-      hydrogen2.centerX = oxygen.centerX + ( 0.1 * oxygen.width );
-      hydrogen2.centerY = oxygen.bottom;
+    // layout
+    hydrogen1.left = oxygen.right - ( 0.2 * oxygen.width );
+    hydrogen1.centerY = oxygen.centerY - ( 0.1 * oxygen.height );
+    hydrogen2.centerX = oxygen.centerX + ( 0.1 * oxygen.width );
+    hydrogen2.centerY = oxygen.bottom;
 
-      this.mutate( options );
-    }
+    this.mutate( options );
   }
+}
 
-  return phScale.register( 'H2ONode', H2ONode );
-} );
+phScale.register( 'H2ONode', H2ONode );
+export default H2ONode;

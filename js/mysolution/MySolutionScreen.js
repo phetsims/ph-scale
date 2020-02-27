@@ -5,50 +5,46 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const Image = require( 'SCENERY/nodes/Image' );
-  const ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
-  const MySolutionModel = require( 'PH_SCALE/mysolution/model/MySolutionModel' );
-  const MySolutionScreenView = require( 'PH_SCALE/mysolution/view/MySolutionScreenView' );
-  const phScale = require( 'PH_SCALE/phScale' );
-  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  const Property = require( 'AXON/Property' );
-  const Screen = require( 'JOIST/Screen' );
-  const Tandem = require( 'TANDEM/Tandem' );
+import Property from '../../../axon/js/Property.js';
+import Screen from '../../../joist/js/Screen.js';
+import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
+import Image from '../../../scenery/js/nodes/Image.js';
+import Tandem from '../../../tandem/js/Tandem.js';
+import homeIcon from '../../images/MySolution-home-icon_png.js';
+import navbarIcon from '../../images/MySolution-navbar-icon_png.js';
+import PHScaleColors from '../common/PHScaleColors.js';
+import phScaleStrings from '../ph-scale-strings.js';
+import phScale from '../phScale.js';
+import MySolutionModel from './model/MySolutionModel.js';
+import MySolutionScreenView from './view/MySolutionScreenView.js';
 
-  // strings
-  const screenMySolutionString = require( 'string!PH_SCALE/screen.mySolution' );
+const screenMySolutionString = phScaleStrings.screen.mySolution;
 
-  // images
-  const homeIcon = require( 'image!PH_SCALE/MySolution-home-icon.png' );
-  const navbarIcon = require( 'image!PH_SCALE/MySolution-navbar-icon.png' );
 
-  class MySolutionScreen extends Screen {
+class MySolutionScreen extends Screen {
 
-    /**
-     * @param {Tandem} tandem
-     */
-    constructor( tandem ) {
-      assert && assert( tandem instanceof Tandem, 'invalid tandem' );
+  /**
+   * @param {Tandem} tandem
+   */
+  constructor( tandem ) {
+    assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
-      const options = {
-        name: screenMySolutionString,
-        backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
-        homeScreenIcon: new Image( homeIcon ),
-        navigationBarIcon: new Image( navbarIcon ),
-        tandem: tandem
-      };
+    const options = {
+      name: screenMySolutionString,
+      backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
+      homeScreenIcon: new Image( homeIcon ),
+      navigationBarIcon: new Image( navbarIcon ),
+      tandem: tandem
+    };
 
-      super(
-        () => new MySolutionModel( tandem.createTandem( 'model') ),
-        model => new MySolutionScreenView( model, ModelViewTransform2.createIdentity(), tandem.createTandem( 'view') ),
-        options
-      );
-    }
+    super(
+      () => new MySolutionModel( tandem.createTandem( 'model' ) ),
+      model => new MySolutionScreenView( model, ModelViewTransform2.createIdentity(), tandem.createTandem( 'view' ) ),
+      options
+    );
   }
+}
 
-  return phScale.register( 'MySolutionScreen', MySolutionScreen );
-} );
+phScale.register( 'MySolutionScreen', MySolutionScreen );
+export default MySolutionScreen;

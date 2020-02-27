@@ -5,121 +5,118 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const BooleanProperty = require( 'AXON/BooleanProperty' );
-  const merge = require( 'PHET_CORE/merge' );
-  const Movable = require( 'PH_SCALE/common/model/Movable' );
-  const NumberProperty = require( 'AXON/NumberProperty' );
-  const phScale = require( 'PH_SCALE/phScale' );
-  const Property = require( 'AXON/Property' );
-  const PropertyIO = require( 'AXON/PropertyIO' );
-  const SoluteIO = require( 'PH_SCALE/common/model/SoluteIO' );
-  const Tandem = require( 'TANDEM/Tandem' );
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import Property from '../../../../axon/js/Property.js';
+import PropertyIO from '../../../../axon/js/PropertyIO.js';
+import merge from '../../../../phet-core/js/merge.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import phScale from '../../phScale.js';
+import Movable from './Movable.js';
+import SoluteIO from './SoluteIO.js';
 
-  class Dropper extends Movable {
+class Dropper extends Movable {
 
-    /**
-     * @param {Solute} solute
-     * @param {Vector2} position
-     * @param {Bounds2} dragBounds
-     * @param {Object} [options]
-     */
-    constructor( solute, position, dragBounds, options ) {
+  /**
+   * @param {Solute} solute
+   * @param {Vector2} position
+   * @param {Bounds2} dragBounds
+   * @param {Object} [options]
+   */
+  constructor( solute, position, dragBounds, options ) {
 
-      options = merge( {
-        maxFlowRate: 0.05, // L/sec
-        flowRate: 0, // L/sec
-        dispensing: false, // is the dropper dispensing solute?
-        enabled: true,
-        empty: false,
-        visible: true,
+    options = merge( {
+      maxFlowRate: 0.05, // L/sec
+      flowRate: 0, // L/sec
+      dispensing: false, // is the dropper dispensing solute?
+      enabled: true,
+      empty: false,
+      visible: true,
 
-        // phet-io
-        tandem: Tandem.REQUIRED
-      }, options );
+      // phet-io
+      tandem: Tandem.REQUIRED
+    }, options );
 
-      super( position, dragBounds, options );
+    super( position, dragBounds, options );
 
-      // @public
-      this.soluteProperty = new Property( solute, {
-        tandem: options.tandem.createTandem( 'soluteProperty' ),
-        phetioType: PropertyIO( SoluteIO ),
-        phetioDocumentation: 'the solute dispensed by the dropper'
-      } );
+    // @public
+    this.soluteProperty = new Property( solute, {
+      tandem: options.tandem.createTandem( 'soluteProperty' ),
+      phetioType: PropertyIO( SoluteIO ),
+      phetioDocumentation: 'the solute dispensed by the dropper'
+    } );
 
-      // @public
-      this.visibleProperty = new BooleanProperty( options.visible, {
-        tandem: options.tandem.createTandem( 'visibleProperty' ),
-        phetioDocumentation: 'whether the dropper is visible'
-      } );
+    // @public
+    this.visibleProperty = new BooleanProperty( options.visible, {
+      tandem: options.tandem.createTandem( 'visibleProperty' ),
+      phetioDocumentation: 'whether the dropper is visible'
+    } );
 
-      // @public
-      this.dispensingProperty = new BooleanProperty( options.dispensing, {
-        tandem: options.tandem.createTandem( 'dispensingProperty' ),
-        phetioReadOnly: true,
-        phetioDocumentation: 'whether solute is currently flowing out of the dropper'
-      } );
+    // @public
+    this.dispensingProperty = new BooleanProperty( options.dispensing, {
+      tandem: options.tandem.createTandem( 'dispensingProperty' ),
+      phetioReadOnly: true,
+      phetioDocumentation: 'whether solute is currently flowing out of the dropper'
+    } );
 
-      // @public
-      this.enabledProperty = new BooleanProperty( options.enabled, {
-        tandem: options.tandem.createTandem( 'enabledProperty' ),
-        phetioReadOnly: true,
-        phetioDocumentation: 'whether the button on the dropper is enabled'
-      } );
+    // @public
+    this.enabledProperty = new BooleanProperty( options.enabled, {
+      tandem: options.tandem.createTandem( 'enabledProperty' ),
+      phetioReadOnly: true,
+      phetioDocumentation: 'whether the button on the dropper is enabled'
+    } );
 
-      // @public
-      this.emptyProperty = new BooleanProperty( options.empty, {
-        tandem: options.tandem.createTandem( 'emptyProperty' ),
-        phetioReadOnly: true,
-        phetioDocumentation: 'whether the dropper is empty'
-      } );
+    // @public
+    this.emptyProperty = new BooleanProperty( options.empty, {
+      tandem: options.tandem.createTandem( 'emptyProperty' ),
+      phetioReadOnly: true,
+      phetioDocumentation: 'whether the dropper is empty'
+    } );
 
-      // @public
-      this.flowRateProperty = new NumberProperty( options.flowRate, {
-        units: 'L/s',
-        isValidValue: value => ( value >= 0 ),
-        tandem: options.tandem.createTandem( 'flowRateProperty' ),
-        phetioReadOnly: true,
-        phetioDocumentation: 'the flow rate of solute coming out of the dropper'
-      } ); // L/sec
+    // @public
+    this.flowRateProperty = new NumberProperty( options.flowRate, {
+      units: 'L/s',
+      isValidValue: value => ( value >= 0 ),
+      tandem: options.tandem.createTandem( 'flowRateProperty' ),
+      phetioReadOnly: true,
+      phetioDocumentation: 'the flow rate of solute coming out of the dropper'
+    } ); // L/sec
 
-      // Turn off the dropper when it's disabled.
-      this.enabledProperty.link( enabled => {
-        if ( !enabled ) {
-          this.dispensingProperty.set( false );
-        }
-      } );
+    // Turn off the dropper when it's disabled.
+    this.enabledProperty.link( enabled => {
+      if ( !enabled ) {
+        this.dispensingProperty.set( false );
+      }
+    } );
 
-      // Toggle the flow rate when the dropper is turned on/off.
-      this.dispensingProperty.link( dispensing => {
-        this.flowRateProperty.set( dispensing ? options.maxFlowRate : 0 );
-      } );
+    // Toggle the flow rate when the dropper is turned on/off.
+    this.dispensingProperty.link( dispensing => {
+      this.flowRateProperty.set( dispensing ? options.maxFlowRate : 0 );
+    } );
 
-      // When the dropper becomes empty, disable it.
-      this.emptyProperty.link( empty => {
-        if ( empty ) {
-          this.enabledProperty.set( false );
-        }
-      } );
-    }
-
-    /**
-     * @public
-     * @override
-     */
-    reset() {
-      super.reset();
-      this.soluteProperty.reset();
-      this.visibleProperty.reset();
-      this.dispensingProperty.reset();
-      this.enabledProperty.reset();
-      this.emptyProperty.reset();
-      this.flowRateProperty.reset();
-    }
+    // When the dropper becomes empty, disable it.
+    this.emptyProperty.link( empty => {
+      if ( empty ) {
+        this.enabledProperty.set( false );
+      }
+    } );
   }
 
-  return phScale.register( 'Dropper', Dropper );
-} );
+  /**
+   * @public
+   * @override
+   */
+  reset() {
+    super.reset();
+    this.soluteProperty.reset();
+    this.visibleProperty.reset();
+    this.dispensingProperty.reset();
+    this.enabledProperty.reset();
+    this.emptyProperty.reset();
+    this.flowRateProperty.reset();
+  }
+}
+
+phScale.register( 'Dropper', Dropper );
+export default Dropper;

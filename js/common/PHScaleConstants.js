@@ -5,61 +5,58 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const Bounds2 = require( 'DOT/Bounds2' );
-  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  const phScale = require( 'PH_SCALE/phScale' );
-  const Range = require( 'DOT/Range' );
-  const RangeWithValue = require( 'DOT/RangeWithValue' );
+import Bounds2 from '../../../dot/js/Bounds2.js';
+import Range from '../../../dot/js/Range.js';
+import RangeWithValue from '../../../dot/js/RangeWithValue.js';
+import PhetFont from '../../../scenery-phet/js/PhetFont.js';
+import phScale from '../phScale.js';
 
-  const PHScaleConstants = {
+const PHScaleConstants = {
 
-    // ScreenView
-    SCREEN_VIEW_OPTIONS: { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) },
+  // ScreenView
+  SCREEN_VIEW_OPTIONS: { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) },
 
-    // Credits, shared by ph-scale and ph-scale-basics
-    CREDITS: {
-      leadDesign: 'Yuen-ying Carpenter',
-      softwareDevelopment: 'Chris Malley (PixelZoom, Inc.)',
-      team: 'Julia Chamberlain, Trish Loeblein, Emily B. Moore, Ariel Paul, Katherine Perkins, Amy Rouinfar',
-      graphicArts: 'Sharon Siman-Tov',
-      qualityAssurance: 'Jaspe Arias, Steele Dalton, Bryce Griebenow, Elise Morgan, Liam Mulhall, Oliver Orejola, ' +
-                        'Benjamin Roberts, Ethan Ward, Kathryn Woessner, Bryan Yoelin',
-      thanks: 'Conversion of this simulation to HTML5 was funded in part by the Royal Society of Chemistry.'
-    },
+  // Credits, shared by ph-scale and ph-scale-basics
+  CREDITS: {
+    leadDesign: 'Yuen-ying Carpenter',
+    softwareDevelopment: 'Chris Malley (PixelZoom, Inc.)',
+    team: 'Julia Chamberlain, Trish Loeblein, Emily B. Moore, Ariel Paul, Katherine Perkins, Amy Rouinfar',
+    graphicArts: 'Sharon Siman-Tov',
+    qualityAssurance: 'Jaspe Arias, Steele Dalton, Bryce Griebenow, Elise Morgan, Liam Mulhall, Oliver Orejola, ' +
+                      'Benjamin Roberts, Ethan Ward, Kathryn Woessner, Bryan Yoelin',
+    thanks: 'Conversion of this simulation to HTML5 was funded in part by the Royal Society of Chemistry.'
+  },
 
-    // pH
-    PH_RANGE: new RangeWithValue( -1, 15, 7 ),
-    PH_METER_DECIMAL_PLACES: 2,
-    PH_COMBO_BOX_DECIMAL_PLACES: 1,
+  // pH
+  PH_RANGE: new RangeWithValue( -1, 15, 7 ),
+  PH_METER_DECIMAL_PLACES: 2,
+  PH_COMBO_BOX_DECIMAL_PLACES: 1,
 
-    // volume
-    VOLUME_DECIMAL_PLACES: 2,
-    MIN_SOLUTION_VOLUME: 0.015,  // L, minimum non-zero volume for solution, so it's visible and measurable
+  // volume
+  VOLUME_DECIMAL_PLACES: 2,
+  MIN_SOLUTION_VOLUME: 0.015,  // L, minimum non-zero volume for solution, so it's visible and measurable
 
-    // logarithmic graph
-    LOGARITHMIC_EXPONENT_RANGE: new Range( -16, 2 ),
-    LINEAR_EXPONENT_RANGE: new Range( -14, 1 ),
-    LINEAR_MANTISSA_RANGE: new Range( 0, 8 ),
+  // logarithmic graph
+  LOGARITHMIC_EXPONENT_RANGE: new Range( -16, 2 ),
+  LINEAR_EXPONENT_RANGE: new Range( -14, 1 ),
+  LINEAR_MANTISSA_RANGE: new Range( 0, 8 ),
 
-    // expand/collapse buttons
-    EXPAND_COLLAPSE_BUTTON_LENGTH: 30,
+  // expand/collapse buttons
+  EXPAND_COLLAPSE_BUTTON_LENGTH: 30,
 
-    // tap-to-dispense feature for faucets
-    TAP_TO_DISPENSE_AMOUNT: 0.05, // L
-    TAP_TO_DISPENSE_INTERVAL: 333, // ms
+  // tap-to-dispense feature for faucets
+  TAP_TO_DISPENSE_AMOUNT: 0.05, // L
+  TAP_TO_DISPENSE_INTERVAL: 333, // ms
 
-    // formulas, no i18n required
-    H3O_FORMULA: 'H<sub>3</sub>O<sup>+</sup>',
-    OH_FORMULA: 'OH<sup>-</sup>',
-    H2O_FORMULA: 'H<sub>2</sub>O',
+  // formulas, no i18n required
+  H3O_FORMULA: 'H<sub>3</sub>O<sup>+</sup>',
+  OH_FORMULA: 'OH<sup>-</sup>',
+  H2O_FORMULA: 'H<sub>2</sub>O',
 
-    // fonts
-    AB_SWITCH_FONT: new PhetFont( { size: 18, weight: 'bold' } )
-  };
+  // fonts
+  AB_SWITCH_FONT: new PhetFont( { size: 18, weight: 'bold' } )
+};
 
-  return phScale.register( 'PHScaleConstants', PHScaleConstants );
-} );
+phScale.register( 'PHScaleConstants', PHScaleConstants );
+export default PHScaleConstants;

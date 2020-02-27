@@ -6,46 +6,43 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const merge = require( 'PHET_CORE/merge' );
-  const phScale = require( 'PH_SCALE/phScale' );
-  const Tandem = require( 'TANDEM/Tandem' );
-  const Vector2Property = require( 'DOT/Vector2Property' );
+import Vector2Property from '../../../../dot/js/Vector2Property.js';
+import merge from '../../../../phet-core/js/merge.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import phScale from '../../phScale.js';
 
-  class Movable {
+class Movable {
 
-    /**
-     * @param {Vector2} position
-     * @param {Bounds2} dragBounds optional, undefined if not provided
-     * @param {Object} [options]
-     */
-    constructor( position, dragBounds, options ) {
+  /**
+   * @param {Vector2} position
+   * @param {Bounds2} dragBounds optional, undefined if not provided
+   * @param {Object} [options]
+   */
+  constructor( position, dragBounds, options ) {
 
-      options = merge( {
+    options = merge( {
 
-        // phet-io
-        tandem: Tandem.REQUIRED
-      }, options );
+      // phet-io
+      tandem: Tandem.REQUIRED
+    }, options );
 
-      // @public
-      this.positionProperty = new Vector2Property( position, {
-        tandem: options.tandem.createTandem( 'positionProperty' )
-      } );
+    // @public
+    this.positionProperty = new Vector2Property( position, {
+      tandem: options.tandem.createTandem( 'positionProperty' )
+    } );
 
-      // @public
-      this.dragBounds = dragBounds;
-    }
-
-    /**
-     * @public
-     */
-    reset() {
-      this.positionProperty.reset();
-    }
+    // @public
+    this.dragBounds = dragBounds;
   }
 
-  return phScale.register( 'Movable', Movable );
-} );
+  /**
+   * @public
+   */
+  reset() {
+    this.positionProperty.reset();
+  }
+}
+
+phScale.register( 'Movable', Movable );
+export default Movable;

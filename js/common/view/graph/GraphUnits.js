@@ -5,14 +5,11 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const Enumeration = require( 'PHET_CORE/Enumeration' );
-  const phScale = require( 'PH_SCALE/phScale' );
+import Enumeration from '../../../../../phet-core/js/Enumeration.js';
+import phScale from '../../../phScale.js';
 
-  const GraphUnits = Enumeration.byKeys( [ 'MOLES_PER_LITER', 'MOLES' ] );
+const GraphUnits = Enumeration.byKeys( [ 'MOLES_PER_LITER', 'MOLES' ] );
 
-  return phScale.register( 'GraphUnits', GraphUnits );
-} );
+phScale.register( 'GraphUnits', GraphUnits );
+export default GraphUnits;

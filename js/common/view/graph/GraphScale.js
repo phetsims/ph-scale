@@ -5,14 +5,11 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const Enumeration = require( 'PHET_CORE/Enumeration' );
-  const phScale = require( 'PH_SCALE/phScale' );
+import Enumeration from '../../../../../phet-core/js/Enumeration.js';
+import phScale from '../../../phScale.js';
 
-  const GraphScale = Enumeration.byKeys( [ 'LOGARITHMIC', 'LINEAR' ] );
+const GraphScale = Enumeration.byKeys( [ 'LOGARITHMIC', 'LINEAR' ] );
 
-  return phScale.register( 'GraphScale', GraphScale );
-} );
+phScale.register( 'GraphScale', GraphScale );
+export default GraphScale;

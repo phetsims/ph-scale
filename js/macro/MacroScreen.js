@@ -5,51 +5,47 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const Image = require( 'SCENERY/nodes/Image' );
-  const MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
-  const MacroScreenView = require( 'PH_SCALE/macro/view/MacroScreenView' );
-  const ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
-  const phScale = require( 'PH_SCALE/phScale' );
-  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  const Property = require( 'AXON/Property' );
-  const Screen = require( 'JOIST/Screen' );
-  const Tandem = require( 'TANDEM/Tandem' );
+import Property from '../../../axon/js/Property.js';
+import Screen from '../../../joist/js/Screen.js';
+import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
+import Image from '../../../scenery/js/nodes/Image.js';
+import Tandem from '../../../tandem/js/Tandem.js';
+import homeIcon from '../../images/Macro-home-icon_png.js';
+import navbarIcon from '../../images/Macro-navbar-icon_png.js';
+import PHScaleColors from '../common/PHScaleColors.js';
+import phScaleStrings from '../ph-scale-strings.js';
+import phScale from '../phScale.js';
+import MacroModel from './model/MacroModel.js';
+import MacroScreenView from './view/MacroScreenView.js';
 
-  // strings
-  const screenMacroString = require( 'string!PH_SCALE/screen.macro' );
+const screenMacroString = phScaleStrings.screen.macro;
 
-  // images
-  const homeIcon = require( 'image!PH_SCALE/Macro-home-icon.png' );
-  const navbarIcon = require( 'image!PH_SCALE/Macro-navbar-icon.png' );
 
-  class MacroScreen extends Screen {
+class MacroScreen extends Screen {
 
-    /**
-     * @param {Tandem} tandem
-     * @param {Object} [modelOptions]
-     */
-    constructor( tandem, modelOptions ) {
-      assert && assert( tandem instanceof Tandem, 'invalid tandem' );
+  /**
+   * @param {Tandem} tandem
+   * @param {Object} [modelOptions]
+   */
+  constructor( tandem, modelOptions ) {
+    assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
-      const options = {
-        name: screenMacroString,
-        backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
-        homeScreenIcon: new Image( homeIcon ),
-        navigationBarIcon: new Image( navbarIcon ),
-        tandem: tandem
-      };
+    const options = {
+      name: screenMacroString,
+      backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
+      homeScreenIcon: new Image( homeIcon ),
+      navigationBarIcon: new Image( navbarIcon ),
+      tandem: tandem
+    };
 
-      super(
-        () => new MacroModel( tandem.createTandem( 'model'), modelOptions ),
-        model => new MacroScreenView( model, ModelViewTransform2.createIdentity(), tandem.createTandem( 'view') ),
-        options
-      );
-    }
+    super(
+      () => new MacroModel( tandem.createTandem( 'model' ), modelOptions ),
+      model => new MacroScreenView( model, ModelViewTransform2.createIdentity(), tandem.createTandem( 'view' ) ),
+      options
+    );
   }
+}
 
-  return phScale.register( 'MacroScreen', MacroScreen );
-} );
+phScale.register( 'MacroScreen', MacroScreen );
+export default MacroScreen;

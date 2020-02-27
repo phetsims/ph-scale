@@ -5,77 +5,74 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const HBox = require( 'SCENERY/nodes/HBox' );
-  const merge = require( 'PHET_CORE/merge' );
-  const phScale = require( 'PH_SCALE/phScale' );
-  const Tandem = require( 'TANDEM/Tandem' );
-  const ZoomButton = require( 'SCENERY_PHET/buttons/ZoomButton' );
+import merge from '../../../../../phet-core/js/merge.js';
+import ZoomButton from '../../../../../scenery-phet/js/buttons/ZoomButton.js';
+import HBox from '../../../../../scenery/js/nodes/HBox.js';
+import Tandem from '../../../../../tandem/js/Tandem.js';
+import phScale from '../../../phScale.js';
 
-  // constants
-  const MAGNIFYING_GLASS_RADIUS = 13;
+// constants
+const MAGNIFYING_GLASS_RADIUS = 13;
 
-  class ZoomButtonGroup extends HBox {
+class ZoomButtonGroup extends HBox {
 
-    /**
-     * @param {NumberProperty} exponentProperty - exponent for the linear graph
-     * @param {Object} [options]
-     */
-    constructor( exponentProperty, options ) {
-      assert && assert( exponentProperty.range, 'exponentProperty must have range' );
+  /**
+   * @param {NumberProperty} exponentProperty - exponent for the linear graph
+   * @param {Object} [options]
+   */
+  constructor( exponentProperty, options ) {
+    assert && assert( exponentProperty.range, 'exponentProperty must have range' );
 
-      options = merge( {
-        spacing: 25,
+    options = merge( {
+      spacing: 25,
 
-        // phet-io
-        tandem: Tandem.REQUIRED
-      }, options );
+      // phet-io
+      tandem: Tandem.REQUIRED
+    }, options );
 
-      const zoomOutButton = new ZoomButton( {
-        in: false,
-        radius: MAGNIFYING_GLASS_RADIUS,
-        listener: () => exponentProperty.set( exponentProperty.get() + 1 ),
-        tandem: options.tandem.createTandem( 'zoomOutButton' ),
-        phetioDocumentation: 'zoom out button for the linear scale',
-        phetioComponentOptions: {
-          visibleProperty: {
-            phetioReadOnly: true
-          }
+    const zoomOutButton = new ZoomButton( {
+      in: false,
+      radius: MAGNIFYING_GLASS_RADIUS,
+      listener: () => exponentProperty.set( exponentProperty.get() + 1 ),
+      tandem: options.tandem.createTandem( 'zoomOutButton' ),
+      phetioDocumentation: 'zoom out button for the linear scale',
+      phetioComponentOptions: {
+        visibleProperty: {
+          phetioReadOnly: true
         }
-      } );
+      }
+    } );
 
-      const zoomInButton = new ZoomButton( {
-        in: true,
-        radius: MAGNIFYING_GLASS_RADIUS,
-        listener: () => exponentProperty.set( exponentProperty.get() - 1 ),
-        tandem: options.tandem.createTandem( 'zoomInButton' ),
-        phetioDocumentation: 'zoom in button for the linear scale',
-        phetioComponentOptions: {
-          visibleProperty: {
-            phetioReadOnly: true
-          }
+    const zoomInButton = new ZoomButton( {
+      in: true,
+      radius: MAGNIFYING_GLASS_RADIUS,
+      listener: () => exponentProperty.set( exponentProperty.get() - 1 ),
+      tandem: options.tandem.createTandem( 'zoomInButton' ),
+      phetioDocumentation: 'zoom in button for the linear scale',
+      phetioComponentOptions: {
+        visibleProperty: {
+          phetioReadOnly: true
         }
-      } );
+      }
+    } );
 
-      // expand touch areas
-      zoomOutButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
-      zoomInButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
+    // expand touch areas
+    zoomOutButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
+    zoomInButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
 
-      assert && assert( !options.children, 'ZoomButtonGroup sets children' );
-      options.children = [ zoomOutButton, zoomInButton ];
+    assert && assert( !options.children, 'ZoomButtonGroup sets children' );
+    options.children = [ zoomOutButton, zoomInButton ];
 
-      super( options );
+    super( options );
 
-      // enable/disable buttons
-      exponentProperty.link( exponent => {
-        zoomInButton.enabled = ( exponent > exponentProperty.range.min );
-        zoomOutButton.enabled = ( exponent < exponentProperty.range.max );
-      } );
-    }
+    // enable/disable buttons
+    exponentProperty.link( exponent => {
+      zoomInButton.enabled = ( exponent > exponentProperty.range.min );
+      zoomOutButton.enabled = ( exponent < exponentProperty.range.max );
+    } );
   }
+}
 
-  return phScale.register( 'ZoomButtonGroup', ZoomButtonGroup );
-} );
+phScale.register( 'ZoomButtonGroup', ZoomButtonGroup );
+export default ZoomButtonGroup;

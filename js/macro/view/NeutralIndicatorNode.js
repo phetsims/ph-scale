@@ -6,64 +6,61 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const merge = require( 'PHET_CORE/merge' );
-  const Node = require( 'SCENERY/nodes/Node' );
-  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  const phScale = require( 'PH_SCALE/phScale' );
-  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  const Tandem = require( 'TANDEM/Tandem' );
-  const Text = require( 'SCENERY/nodes/Text' );
-  const Water = require( 'PH_SCALE/common/model/Water' );
+import merge from '../../../../phet-core/js/merge.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
+import Text from '../../../../scenery/js/nodes/Text.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import Water from '../../common/model/Water.js';
+import phScaleStrings from '../../ph-scale-strings.js';
+import phScale from '../../phScale.js';
 
-  // strings
-  const neutralString = require( 'string!PH_SCALE/neutral' );
+const neutralString = phScaleStrings.neutral;
 
-  class NeutralIndicatorNode extends Node {
+class NeutralIndicatorNode extends Node {
 
-    /**
-     * @param {Solution} solution
-     * @param {Object} [options]
-     */
-    constructor( solution, options ) {
+  /**
+   * @param {Solution} solution
+   * @param {Object} [options]
+   */
+  constructor( solution, options ) {
 
-      options = merge( {
+    options = merge( {
 
-        // phet-io
-        tandem: Tandem.REQUIRED,
-        phetioDocumentation: 'becomes visible when the solution has neutral pH'
-      }, options );
+      // phet-io
+      tandem: Tandem.REQUIRED,
+      phetioDocumentation: 'becomes visible when the solution has neutral pH'
+    }, options );
 
-      super( options );
+    super( options );
 
-      const label = new Text( neutralString, { font: new PhetFont( { size: 30, weight: 'bold' } ), maxWidth: 300 } );
+    const label = new Text( neutralString, { font: new PhetFont( { size: 30, weight: 'bold' } ), maxWidth: 300 } );
 
-      // translucent light-gray background, so this shows up on all solution colors
-      const background = new Rectangle( 0, 0, 1.4 * label.width, 1.2 * label.height, {
-        cornerRadius: 8,
-        fill: 'rgba( 240, 240, 240, 0.6 )'
-      } );
+    // translucent light-gray background, so this shows up on all solution colors
+    const background = new Rectangle( 0, 0, 1.4 * label.width, 1.2 * label.height, {
+      cornerRadius: 8,
+      fill: 'rgba( 240, 240, 240, 0.6 )'
+    } );
 
-      // Center the label
-      label.centerX = background.centerX;
-      label.centerY = background.centerY;
+    // Center the label
+    label.centerX = background.centerX;
+    label.centerY = background.centerY;
 
-      // Wrap things in a parentNode, so that this feature can be permanently disabled via PhET-iO by setting
-      // this.visibleProperty.value = false. See https://github.com/phetsims/ph-scale/issues/102
-      const parentNode = new Node( {
-        children: [ background, label ]
-      });
-      this.addChild( parentNode );
+    // Wrap things in a parentNode, so that this feature can be permanently disabled via PhET-iO by setting
+    // this.visibleProperty.value = false. See https://github.com/phetsims/ph-scale/issues/102
+    const parentNode = new Node( {
+      children: [ background, label ]
+    } );
+    this.addChild( parentNode );
 
-      // Make parentNode node visible when the solution has neutral pH.
-      solution.pHProperty.link( pH => {
-        parentNode.setVisible( pH === Water.pH );
-      } );
-    }
+    // Make parentNode node visible when the solution has neutral pH.
+    solution.pHProperty.link( pH => {
+      parentNode.setVisible( pH === Water.pH );
+    } );
   }
+}
 
-  return phScale.register( 'NeutralIndicatorNode', NeutralIndicatorNode );
-} );
+phScale.register( 'NeutralIndicatorNode', NeutralIndicatorNode );
+export default NeutralIndicatorNode;

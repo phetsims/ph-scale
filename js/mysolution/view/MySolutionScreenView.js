@@ -11,135 +11,132 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const BeakerControlPanel = require( 'PH_SCALE/common/view/BeakerControlPanel' );
-  const BeakerNode = require( 'PH_SCALE/common/view/BeakerNode' );
-  const GraphNode = require( 'PH_SCALE/common/view/graph/GraphNode' );
-  const merge = require( 'PHET_CORE/merge' );
-  const MoleculeCountNode = require( 'PH_SCALE/common/view/MoleculeCountNode' );
-  const ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
-  const Node = require( 'SCENERY/nodes/Node' );
-  const PHMeterNode = require( 'PH_SCALE/common/view/PHMeterNode' );
-  const phScale = require( 'PH_SCALE/phScale' );
-  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  const PHScaleViewProperties = require( 'PH_SCALE/common/view/PHScaleViewProperties' );
-  const RatioNode = require( 'PH_SCALE/common/view/RatioNode' );
-  const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-  const ScreenView = require( 'JOIST/ScreenView' );
-  const SolutionNode = require( 'PH_SCALE/common/view/SolutionNode' );
-  const Tandem = require( 'TANDEM/Tandem' );
-  const VolumeIndicatorNode = require( 'PH_SCALE/common/view/VolumeIndicatorNode' );
+import ScreenView from '../../../../joist/js/ScreenView.js';
+import merge from '../../../../phet-core/js/merge.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
+import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import PHScaleConstants from '../../common/PHScaleConstants.js';
+import BeakerControlPanel from '../../common/view/BeakerControlPanel.js';
+import BeakerNode from '../../common/view/BeakerNode.js';
+import GraphNode from '../../common/view/graph/GraphNode.js';
+import MoleculeCountNode from '../../common/view/MoleculeCountNode.js';
+import PHMeterNode from '../../common/view/PHMeterNode.js';
+import PHScaleViewProperties from '../../common/view/PHScaleViewProperties.js';
+import RatioNode from '../../common/view/RatioNode.js';
+import SolutionNode from '../../common/view/SolutionNode.js';
+import VolumeIndicatorNode from '../../common/view/VolumeIndicatorNode.js';
+import phScale from '../../phScale.js';
 
-  class MySolutionScreenView extends ScreenView {
+class MySolutionScreenView extends ScreenView {
 
-    /**
-     * @param {MySolutionModel} model
-     * @param {ModelViewTransform2} modelViewTransform
-     * @param {Tandem} tandem
-     */
-    constructor( model, modelViewTransform, tandem ) {
-      assert && assert( tandem instanceof Tandem, 'invalid tandem' );
-      assert && assert( modelViewTransform instanceof ModelViewTransform2, 'invalid modelViewTransform' );
+  /**
+   * @param {MySolutionModel} model
+   * @param {ModelViewTransform2} modelViewTransform
+   * @param {Tandem} tandem
+   */
+  constructor( model, modelViewTransform, tandem ) {
+    assert && assert( tandem instanceof Tandem, 'invalid tandem' );
+    assert && assert( modelViewTransform instanceof ModelViewTransform2, 'invalid modelViewTransform' );
 
-      super( merge( {}, PHScaleConstants.SCREEN_VIEW_OPTIONS, {
-        tandem: tandem
-      } ) );
+    super( merge( {}, PHScaleConstants.SCREEN_VIEW_OPTIONS, {
+      tandem: tandem
+    } ) );
 
-      // view-specific properties
-      const viewProperties = new PHScaleViewProperties( tandem.createTandem( 'viewProperties' ) );
+    // view-specific properties
+    const viewProperties = new PHScaleViewProperties( tandem.createTandem( 'viewProperties' ) );
 
-      // beaker
-      const beakerNode = new BeakerNode( model.beaker, modelViewTransform, {
-        tandem: tandem.createTandem( 'beakerNode' )
+    // beaker
+    const beakerNode = new BeakerNode( model.beaker, modelViewTransform, {
+      tandem: tandem.createTandem( 'beakerNode' )
+    } );
+
+    // solution in the beaker
+    const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
+
+    // volume indicator along the right edge of the beaker
+    const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform, {
+      tandem: tandem.createTandem( 'volumeIndicatorNode' )
+    } );
+
+    // 'H3O+/OH- ratio' representation
+    const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, viewProperties.ratioVisibleProperty, {
+      visible: viewProperties.ratioVisibleProperty.get(),
+      tandem: tandem.createTandem( 'ratioNode' )
+    } );
+
+    // 'molecule count' representation
+    const moleculeCountNode = new MoleculeCountNode( model.solution, viewProperties.moleculeCountVisibleProperty, {
+      tandem: tandem.createTandem( 'moleculeCountNode' )
+    } );
+
+    // beaker controls
+    const beakerControlPanel = new BeakerControlPanel(
+      viewProperties.ratioVisibleProperty,
+      viewProperties.moleculeCountVisibleProperty, {
+        maxWidth: 0.85 * beakerNode.width,
+        tandem: tandem.createTandem( 'beakerControlPanel' )
       } );
 
-      // solution in the beaker
-      const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
+    // graph
+    const graphNode = new GraphNode( model.solution, {
+      isInteractive: true,
+      logScaleHeight: 565,
+      tandem: tandem.createTandem( 'graphNode' )
+    } );
 
-      // volume indicator along the right edge of the beaker
-      const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform, {
-        tandem: tandem.createTandem( 'volumeIndicatorNode' )
-      } );
-
-      // 'H3O+/OH- ratio' representation
-      const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, viewProperties.ratioVisibleProperty, {
-        visible: viewProperties.ratioVisibleProperty.get(),
-        tandem: tandem.createTandem( 'ratioNode' )
-      } );
-
-      // 'molecule count' representation
-      const moleculeCountNode = new MoleculeCountNode( model.solution, viewProperties.moleculeCountVisibleProperty, {
-        tandem: tandem.createTandem( 'moleculeCountNode' )
-      } );
-
-      // beaker controls
-      const beakerControlPanel = new BeakerControlPanel(
-        viewProperties.ratioVisibleProperty,
-        viewProperties.moleculeCountVisibleProperty, {
-          maxWidth: 0.85 * beakerNode.width,
-          tandem: tandem.createTandem( 'beakerControlPanel' )
-        } );
-
-      // graph
-      const graphNode = new GraphNode( model.solution, {
+    // pH meter
+    const pHMeterTop = 15;
+    const pHMeterNode = new PHMeterNode( model.solution,
+      modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
         isInteractive: true,
-        logScaleHeight: 565,
-        tandem: tandem.createTandem( 'graphNode' )
+        tandem: tandem.createTandem( 'pHMeterNode' )
       } );
 
-      // pH meter
-      const pHMeterTop = 15;
-      const pHMeterNode = new PHMeterNode( model.solution,
-        modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
-          isInteractive: true,
-          tandem: tandem.createTandem( 'pHMeterNode' )
-        } );
+    const resetAllButton = new ResetAllButton( {
+      scale: 1.32,
+      listener: () => {
+        this.interruptSubtreeInput();
+        model.reset();
+        viewProperties.reset();
+        graphNode.reset();
+        pHMeterNode.reset();
+      },
+      tandem: tandem.createTandem( 'resetAllButton' )
+    } );
 
-      const resetAllButton = new ResetAllButton( {
-        scale: 1.32,
-        listener: () => {
-          this.interruptSubtreeInput();
-          model.reset();
-          viewProperties.reset();
-          graphNode.reset();
-          pHMeterNode.reset();
-        },
-        tandem: tandem.createTandem( 'resetAllButton' )
-      } );
+    // Parent for all nodes added to this screen
+    const rootNode = new Node( {
+      children: [
+        // nodes are rendered in this order
+        solutionNode,
+        pHMeterNode,
+        ratioNode,
+        beakerNode,
+        moleculeCountNode,
+        volumeIndicatorNode,
+        beakerControlPanel,
+        graphNode,
+        resetAllButton
+      ]
+    } );
+    this.addChild( rootNode );
 
-      // Parent for all nodes added to this screen
-      const rootNode = new Node( {
-        children: [
-          // nodes are rendered in this order
-          solutionNode,
-          pHMeterNode,
-          ratioNode,
-          beakerNode,
-          moleculeCountNode,
-          volumeIndicatorNode,
-          beakerControlPanel,
-          graphNode,
-          resetAllButton
-        ]
-      } );
-      this.addChild( rootNode );
-
-      // Layout of nodes that don't have a position specified in the model
-      pHMeterNode.left = beakerNode.left;
-      pHMeterNode.top = pHMeterTop;
-      moleculeCountNode.centerX = beakerNode.centerX;
-      moleculeCountNode.bottom = beakerNode.bottom - 25;
-      beakerControlPanel.centerX = beakerNode.centerX;
-      beakerControlPanel.top = beakerNode.bottom + 10;
-      graphNode.right = beakerNode.left - 70;
-      graphNode.top = pHMeterNode.top;
-      resetAllButton.right = this.layoutBounds.right - 40;
-      resetAllButton.bottom = this.layoutBounds.bottom - 20;
-    }
+    // Layout of nodes that don't have a position specified in the model
+    pHMeterNode.left = beakerNode.left;
+    pHMeterNode.top = pHMeterTop;
+    moleculeCountNode.centerX = beakerNode.centerX;
+    moleculeCountNode.bottom = beakerNode.bottom - 25;
+    beakerControlPanel.centerX = beakerNode.centerX;
+    beakerControlPanel.top = beakerNode.bottom + 10;
+    graphNode.right = beakerNode.left - 70;
+    graphNode.top = pHMeterNode.top;
+    resetAllButton.right = this.layoutBounds.right - 40;
+    resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }
+}
 
-  return phScale.register( 'MySolutionScreenView', MySolutionScreenView );
-} );
+phScale.register( 'MySolutionScreenView', MySolutionScreenView );
+export default MySolutionScreenView;

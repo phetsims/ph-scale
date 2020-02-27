@@ -5,51 +5,48 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const ObjectIO = require( 'TANDEM/types/ObjectIO' );
-  const phScale = require( 'PH_SCALE/phScale' );
-  const ReferenceIO = require( 'TANDEM/types/ReferenceIO' );
-  const validate = require( 'AXON/validate' );
+import validate from '../../../../axon/js/validate.js';
+import ObjectIO from '../../../../tandem/js/types/ObjectIO.js';
+import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
+import phScale from '../../phScale.js';
 
-  // Objects are statically created, use reference equality to look up instances for toStateObject/fromStateObject
-  class SoluteIO extends ReferenceIO {
+// Objects are statically created, use reference equality to look up instances for toStateObject/fromStateObject
+class SoluteIO extends ReferenceIO {
 
-    /**
-     * Serializes to a state object.
-     * @param {PhetioObject} o
-     * @returns {*}
-     * @public
-     * @override
-     */
-    static toStateObject( o ) {
-      validate( o, this.validator );
-      return {
-        phetioID: o.tandem.phetioID,
-        name: o.name,
-        pH: o.pH
-      };
-    }
-
-    /**
-     * Deserializes from a state object.
-     * @param {*} o
-     * @returns {PhetioObject}
-     * @public
-     */
-    static fromStateObject( o ) {
-      return ReferenceIO.fromStateObject( o.phetioID);
-    }
+  /**
+   * Serializes to a state object.
+   * @param {PhetioObject} o
+   * @returns {*}
+   * @public
+   * @override
+   */
+  static toStateObject( o ) {
+    validate( o, this.validator );
+    return {
+      phetioID: o.tandem.phetioID,
+      name: o.name,
+      pH: o.pH
+    };
   }
 
-  SoluteIO.documentation = 'the selected solute';
-  SoluteIO.typeName = 'SoluteIO';
+  /**
+   * Deserializes from a state object.
+   * @param {*} o
+   * @returns {PhetioObject}
+   * @public
+   */
+  static fromStateObject( o ) {
+    return ReferenceIO.fromStateObject( o.phetioID );
+  }
+}
 
-  //TODO #92 should be instanceof Solute, but require(Solute) is cyclic, and phet.phScale.Solute doesn't exist yet
-  SoluteIO.validator = { isValidValue: value => value instanceof Object };
-  ObjectIO.validateSubtype( SoluteIO );
+SoluteIO.documentation = 'the selected solute';
+SoluteIO.typeName = 'SoluteIO';
 
-  return phScale.register( 'SoluteIO', SoluteIO );
-} );
+//TODO #92 should be instanceof Solute, but require(Solute) is cyclic, and phet.phScale.Solute doesn't exist yet
+SoluteIO.validator = { isValidValue: value => value instanceof Object };
+ObjectIO.validateSubtype( SoluteIO );
+
+phScale.register( 'SoluteIO', SoluteIO );
+export default SoluteIO;

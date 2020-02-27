@@ -5,58 +5,55 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const ABSwitch = require( 'SUN/ABSwitch' );
-  const Dimension2 = require( 'DOT/Dimension2' );
-  const GraphScale = require( 'PH_SCALE/common/view/graph/GraphScale' );
-  const merge = require( 'PHET_CORE/merge' );
-  const phScale = require( 'PH_SCALE/phScale' );
-  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  const Tandem = require( 'TANDEM/Tandem' );
-  const Text = require( 'SCENERY/nodes/Text' );
+import Dimension2 from '../../../../../dot/js/Dimension2.js';
+import merge from '../../../../../phet-core/js/merge.js';
+import Text from '../../../../../scenery/js/nodes/Text.js';
+import ABSwitch from '../../../../../sun/js/ABSwitch.js';
+import Tandem from '../../../../../tandem/js/Tandem.js';
+import phScaleStrings from '../../../ph-scale-strings.js';
+import phScale from '../../../phScale.js';
+import PHScaleConstants from '../../PHScaleConstants.js';
+import GraphScale from './GraphScale.js';
 
-  // strings
-  const linearString = require( 'string!PH_SCALE/linear' );
-  const logarithmicString = require( 'string!PH_SCALE/logarithmic' );
+const linearString = phScaleStrings.linear;
+const logarithmicString = phScaleStrings.logarithmic;
 
-  class GraphScaleSwitch extends ABSwitch {
+class GraphScaleSwitch extends ABSwitch {
 
-    /**
-     * @param {EnumerationProperty.<GraphScale>} graphScaleProperty
-     * @param {Object} [options]
-     */
-    constructor( graphScaleProperty, options ) {
+  /**
+   * @param {EnumerationProperty.<GraphScale>} graphScaleProperty
+   * @param {Object} [options]
+   */
+  constructor( graphScaleProperty, options ) {
 
-      options = merge( {
-        toggleSwitchOptions: { size: new Dimension2( 50, 25 ) },
-        centerOnButton: true,
+    options = merge( {
+      toggleSwitchOptions: { size: new Dimension2( 50, 25 ) },
+      centerOnButton: true,
 
-        // phet-io
-        tandem: Tandem.REQUIRED,
-        phetioDocumentation: 'A/B switch for switching between logarithmic and linear scales'
-      }, options );
+      // phet-io
+      tandem: Tandem.REQUIRED,
+      phetioDocumentation: 'A/B switch for switching between logarithmic and linear scales'
+    }, options );
 
-      const textOptions = {
-        font: PHScaleConstants.AB_SWITCH_FONT,
-        maxWidth: 125
-      };
+    const textOptions = {
+      font: PHScaleConstants.AB_SWITCH_FONT,
+      maxWidth: 125
+    };
 
-      // Logarithmic label
-      const logarithmicText = new Text( logarithmicString, merge( {
-        tandem: options.tandem.createTandem( 'logarithmicText' )
-      }, textOptions ) );
+    // Logarithmic label
+    const logarithmicText = new Text( logarithmicString, merge( {
+      tandem: options.tandem.createTandem( 'logarithmicText' )
+    }, textOptions ) );
 
-      // Linear label
-      const linearText = new Text( linearString, merge( {
-        tandem: options.tandem.createTandem( 'linearText' )
-      }, textOptions ) );
+    // Linear label
+    const linearText = new Text( linearString, merge( {
+      tandem: options.tandem.createTandem( 'linearText' )
+    }, textOptions ) );
 
-      super( graphScaleProperty, GraphScale.LOGARITHMIC, logarithmicText, GraphScale.LINEAR, linearText, options );
-    }
+    super( graphScaleProperty, GraphScale.LOGARITHMIC, logarithmicText, GraphScale.LINEAR, linearText, options );
   }
+}
 
-  return phScale.register( 'GraphScaleSwitch', GraphScaleSwitch );
-} );
+phScale.register( 'GraphScaleSwitch', GraphScaleSwitch );
+export default GraphScaleSwitch;

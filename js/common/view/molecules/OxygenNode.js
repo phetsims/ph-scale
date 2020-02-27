@@ -5,24 +5,21 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const Color = require( 'SCENERY/util/Color' );
-  const phScale = require( 'PH_SCALE/phScale' );
-  const PHScaleColors = require( 'PH_SCALE/common/PHScaleColors' );
-  const ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
+import ShadedSphereNode from '../../../../../scenery-phet/js/ShadedSphereNode.js';
+import Color from '../../../../../scenery/js/util/Color.js';
+import phScale from '../../../phScale.js';
+import PHScaleColors from '../../PHScaleColors.js';
 
-  class OxygenNode extends ShadedSphereNode {
+class OxygenNode extends ShadedSphereNode {
 
-    constructor() {
-      super( 30, {
-        mainColor: PHScaleColors.OXYGEN,
-        highlightColor: new Color( 255, 255, 255 )
-      } );
-    }
+  constructor() {
+    super( 30, {
+      mainColor: PHScaleColors.OXYGEN,
+      highlightColor: new Color( 255, 255, 255 )
+    } );
   }
+}
 
-  return phScale.register( 'OxygenNode', OxygenNode );
-} );
+phScale.register( 'OxygenNode', OxygenNode );
+export default OxygenNode;

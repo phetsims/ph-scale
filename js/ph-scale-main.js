@@ -5,32 +5,28 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const MacroScreen = require( 'PH_SCALE/macro/MacroScreen' );
-  const MicroScreen = require( 'PH_SCALE/micro/MicroScreen' );
-  const MySolutionScreen = require( 'PH_SCALE/mysolution/MySolutionScreen' );
-  const PHScaleConstants = require( 'PH_SCALE/common/PHScaleConstants' );
-  const Sim = require( 'JOIST/Sim' );
-  const SimLauncher = require( 'JOIST/SimLauncher' );
-  const Tandem = require( 'TANDEM/Tandem' );
+import Sim from '../../joist/js/Sim.js';
+import SimLauncher from '../../joist/js/SimLauncher.js';
+import Tandem from '../../tandem/js/Tandem.js';
+import PHScaleConstants from './common/PHScaleConstants.js';
+import MacroScreen from './macro/MacroScreen.js';
+import MicroScreen from './micro/MicroScreen.js';
+import MySolutionScreen from './mysolution/MySolutionScreen.js';
+import phScaleStrings from './ph-scale-strings.js';
 
-  // strings
-  const phScaleTitleString = require( 'string!PH_SCALE/ph-scale.title' );
+const phScaleTitleString = phScaleStrings[ 'ph-scale' ].title;
 
-  const simOptions = {
-    credits: PHScaleConstants.CREDITS
-  };
+const simOptions = {
+  credits: PHScaleConstants.CREDITS
+};
 
-  SimLauncher.launch( () => {
-    const screens = [
-      new MacroScreen( Tandem.ROOT.createTandem( 'macroScreen' ) ),
-      new MicroScreen( Tandem.ROOT.createTandem( 'microScreen' ) ),
-      new MySolutionScreen( Tandem.ROOT.createTandem( 'mySolutionsScreen' ) )
-    ];
-    const sim = new Sim( phScaleTitleString, screens, simOptions );
-    sim.start();
-  } );
+SimLauncher.launch( () => {
+  const screens = [
+    new MacroScreen( Tandem.ROOT.createTandem( 'macroScreen' ) ),
+    new MicroScreen( Tandem.ROOT.createTandem( 'microScreen' ) ),
+    new MySolutionScreen( Tandem.ROOT.createTandem( 'mySolutionsScreen' ) )
+  ];
+  const sim = new Sim( phScaleTitleString, screens, simOptions );
+  sim.start();
 } );

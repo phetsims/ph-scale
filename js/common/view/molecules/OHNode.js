@@ -5,39 +5,36 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const HydrogenNode = require( 'PH_SCALE/common/view/molecules/HydrogenNode' );
-  const Node = require( 'SCENERY/nodes/Node' );
-  const OxygenNode = require( 'PH_SCALE/common/view/molecules/OxygenNode' );
-  const phScale = require( 'PH_SCALE/phScale' );
+import Node from '../../../../../scenery/js/nodes/Node.js';
+import phScale from '../../../phScale.js';
+import HydrogenNode from './HydrogenNode.js';
+import OxygenNode from './OxygenNode.js';
 
-  class OHNode extends Node {
+class OHNode extends Node {
 
-    /**
-     * @param {Object} [options]
-     */
-    constructor( options ) {
+  /**
+   * @param {Object} [options]
+   */
+  constructor( options ) {
 
-      super();
+    super();
 
-      // atoms
-      const oxygen = new OxygenNode();
-      const hydrogen = new HydrogenNode();
+    // atoms
+    const oxygen = new OxygenNode();
+    const hydrogen = new HydrogenNode();
 
-      // rendering order
-      this.addChild( oxygen );
-      this.addChild( hydrogen );
+    // rendering order
+    this.addChild( oxygen );
+    this.addChild( hydrogen );
 
-      // layout
-      hydrogen.left = oxygen.right - ( 0.2 * oxygen.width );
-      hydrogen.centerY = oxygen.centerY - ( 0.1 * oxygen.height );
+    // layout
+    hydrogen.left = oxygen.right - ( 0.2 * oxygen.width );
+    hydrogen.centerY = oxygen.centerY - ( 0.1 * oxygen.height );
 
-      this.mutate( options );
-    }
+    this.mutate( options );
   }
+}
 
-  return phScale.register( 'OHNode', OHNode );
-} );
+phScale.register( 'OHNode', OHNode );
+export default OHNode;

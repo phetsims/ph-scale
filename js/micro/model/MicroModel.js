@@ -7,30 +7,27 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const Bounds2 = require( 'DOT/Bounds2' );
-  const MacroModel = require( 'PH_SCALE/macro/model/MacroModel' );
-  const phScale = require( 'PH_SCALE/phScale' );
-  const Tandem = require( 'TANDEM/Tandem' );
+import Bounds2 from '../../../../dot/js/Bounds2.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import MacroModel from '../../macro/model/MacroModel.js';
+import phScale from '../../phScale.js';
 
-  class MicroModel extends MacroModel {
+class MicroModel extends MacroModel {
 
-    /**
-     * @param {Tandem} tandem
-     */
-    constructor( tandem ) {
-      assert && assert( tandem instanceof Tandem, 'invalid tandem' );
+  /**
+   * @param {Tandem} tandem
+   */
+  constructor( tandem ) {
+    assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
-      super( tandem );
+    super( tandem );
 
-      // adjust the drag bounds of the dropper to account for different user-interface constraints
-      const yDropper = this.dropper.positionProperty.get().y;
-      this.dropper.dragBounds = new Bounds2( this.beaker.left + 120, yDropper, this.beaker.right - 170, yDropper );
-    }
+    // adjust the drag bounds of the dropper to account for different user-interface constraints
+    const yDropper = this.dropper.positionProperty.get().y;
+    this.dropper.dragBounds = new Bounds2( this.beaker.left + 120, yDropper, this.beaker.right - 170, yDropper );
   }
+}
 
-  return phScale.register( 'MicroModel', MicroModel );
-} );
+phScale.register( 'MicroModel', MicroModel );
+export default MicroModel;

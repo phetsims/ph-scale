@@ -5,43 +5,40 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const BooleanProperty = require( 'AXON/BooleanProperty' );
-  const phScale = require( 'PH_SCALE/phScale' );
-  const Tandem = require( 'TANDEM/Tandem' );
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import phScale from '../../phScale.js';
 
-  class PHScaleViewProperties {
+class PHScaleViewProperties {
 
-    /**
-     * @param {Tandem} tandem
-     */
-    constructor( tandem ) {
-      assert && assert( tandem instanceof Tandem, 'invalid tandem' );
+  /**
+   * @param {Tandem} tandem
+   */
+  constructor( tandem ) {
+    assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
-      // @public
-      this.ratioVisibleProperty = new BooleanProperty( false, {
-        tandem: tandem.createTandem( 'ratioVisibleProperty' ),
-        phetioDocumentation: 'controls visibility of the H3O+/OH- Ratio view'
-      } );
+    // @public
+    this.ratioVisibleProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'ratioVisibleProperty' ),
+      phetioDocumentation: 'controls visibility of the H3O+/OH- Ratio view'
+    } );
 
-      // @public
-      this.moleculeCountVisibleProperty = new BooleanProperty( false, {
-        tandem: tandem.createTandem( 'moleculeCountVisibleProperty' ),
-        phetioDocumentation: 'controls visibility of the Molecule Count view'
-      } );
-    }
-
-    /**
-     * @public
-     */
-    reset() {
-      this.ratioVisibleProperty.reset();
-      this.moleculeCountVisibleProperty.reset();
-    }
+    // @public
+    this.moleculeCountVisibleProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'moleculeCountVisibleProperty' ),
+      phetioDocumentation: 'controls visibility of the Molecule Count view'
+    } );
   }
 
-  return phScale.register( 'PHScaleViewProperties', PHScaleViewProperties );
-} );
+  /**
+   * @public
+   */
+  reset() {
+    this.ratioVisibleProperty.reset();
+    this.moleculeCountVisibleProperty.reset();
+  }
+}
+
+phScale.register( 'PHScaleViewProperties', PHScaleViewProperties );
+export default PHScaleViewProperties;

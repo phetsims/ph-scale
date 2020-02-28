@@ -35,6 +35,7 @@ class ZoomButtonGroup extends HBox {
       in: false,
       radius: MAGNIFYING_GLASS_RADIUS,
       listener: () => exponentProperty.set( exponentProperty.get() + 1 ),
+      enabledPropertyOptions: { phetioReadOnly: true },
       tandem: options.tandem.createTandem( 'zoomOutButton' ),
       phetioDocumentation: 'zoom out button for the linear scale',
       phetioComponentOptions: {
@@ -48,6 +49,7 @@ class ZoomButtonGroup extends HBox {
       in: true,
       radius: MAGNIFYING_GLASS_RADIUS,
       listener: () => exponentProperty.set( exponentProperty.get() - 1 ),
+      enabledPropertyOptions: { phetioReadOnly: true },
       tandem: options.tandem.createTandem( 'zoomInButton' ),
       phetioDocumentation: 'zoom in button for the linear scale',
       phetioComponentOptions: {

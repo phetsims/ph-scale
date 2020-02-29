@@ -26,7 +26,6 @@ class PHDropperNode extends EyeDropperNode {
     super( merge( {
       dispensingProperty: dropper.dispensingProperty,
       enabledProperty: dropper.enabledProperty,
-      emptyProperty: dropper.emptyProperty,
 
       // phet-io
       tandem: Tandem.REQUIRED

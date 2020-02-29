@@ -68,13 +68,6 @@ class Dropper extends Movable {
     } );
 
     // @public
-    this.emptyProperty = new BooleanProperty( options.empty, {
-      tandem: options.tandem.createTandem( 'emptyProperty' ),
-      phetioReadOnly: true,
-      phetioDocumentation: 'whether the dropper is empty'
-    } );
-
-    // @public
     this.flowRateProperty = new NumberProperty( options.flowRate, {
       units: 'L/s',
       isValidValue: value => ( value >= 0 ),
@@ -94,13 +87,6 @@ class Dropper extends Movable {
     this.dispensingProperty.link( dispensing => {
       this.flowRateProperty.set( dispensing ? options.maxFlowRate : 0 );
     } );
-
-    // When the dropper becomes empty, disable it.
-    this.emptyProperty.link( empty => {
-      if ( empty ) {
-        this.enabledProperty.set( false );
-      }
-    } );
   }
 
   /**
@@ -113,7 +99,6 @@ class Dropper extends Movable {
     this.visibleProperty.reset();
     this.dispensingProperty.reset();
     this.enabledProperty.reset();
-    this.emptyProperty.reset();
     this.flowRateProperty.reset();
   }
 }

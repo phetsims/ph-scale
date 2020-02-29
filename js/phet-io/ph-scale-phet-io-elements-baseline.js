@@ -3173,19 +3173,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.macroScreen.model.dropper.emptyProperty": {
-      "phetioDocumentation": "whether the dropper is empty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<BooleanIO>"
-    },
     "phScale.macroScreen.model.dropper.enabledProperty": {
       "phetioDocumentation": "whether the button on the dropper is enabled",
       "phetioDynamicElement": false,
@@ -5671,19 +5658,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     },
     "phScale.microScreen.model.dropper.dispensingProperty": {
       "phetioDocumentation": "whether solute is currently flowing out of the dropper",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<BooleanIO>"
-    },
-    "phScale.microScreen.model.dropper.emptyProperty": {
-      "phetioDocumentation": "whether the dropper is empty",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,

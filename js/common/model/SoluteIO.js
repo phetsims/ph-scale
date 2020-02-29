@@ -41,7 +41,7 @@ class SoluteIO extends ReferenceIO {
   }
 }
 
-SoluteIO.documentation = 'the selected solute';
+SoluteIO.documentation = 'a solute';
 SoluteIO.typeName = 'SoluteIO';
 
 //TODO #120 should be instanceof Solute, but require(Solute) is cyclic, and phet.phScale.Solute doesn't exist yet

@@ -190,6 +190,24 @@ class GraphIndicatorNode extends Node {
   }
 
   /**
+   * Creates an indicator for H2O.
+   * @param {Property.<number>} valueProperty
+   * @param {Object} [options] see GraphIndicatorNode constructor
+   * @public
+   */
+  static createH2OIndicator( valueProperty, options ) {
+    return new GraphIndicatorNode( valueProperty,
+      new H2ONode(),
+      new RichText( PHScaleConstants.H2O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
+      merge( {
+        backgroundFill: PHScaleColors.H2O_BACKGROUND,
+        pointerPosition: 'bottomLeft',
+        mantissaDecimalPlaces: 0,
+        exponent: 0
+      }, options ) );
+  }
+
+  /**
    * Creates an indicator for H3O+.
    * @param {Property.<number>} valueProperty
    * @param {Object} [options] see GraphIndicatorNode constructor
@@ -218,24 +236,6 @@ class GraphIndicatorNode extends Node {
       merge( {
         backgroundFill: PHScaleColors.BASIC,
         pointerPosition: 'topLeft'
-      }, options ) );
-  }
-
-  /**
-   * Creates an indicator for H2O.
-   * @param {Property.<number>} valueProperty
-   * @param {Object} [options] see GraphIndicatorNode constructor
-   * @public
-   */
-  static createH2OIndicator( valueProperty, options ) {
-    return new GraphIndicatorNode( valueProperty,
-      new H2ONode(),
-      new RichText( PHScaleConstants.H2O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
-      merge( {
-        backgroundFill: PHScaleColors.H2O_BACKGROUND,
-        pointerPosition: 'bottomLeft',
-        mantissaDecimalPlaces: 0,
-        exponent: 0
       }, options ) );
   }
 }

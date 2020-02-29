@@ -18,6 +18,7 @@ import Faucet from '../../common/model/Faucet.js';
 import Solute from '../../common/model/Solute.js';
 import Solution from '../../common/model/Solution.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
+import PHScaleQueryParameters from '../../common/PHScaleQueryParameters.js';
 import phScale from '../../phScale.js';
 import PHMeter from './PHMeter.js';
 
@@ -31,7 +32,6 @@ class MacroModel {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
     options = merge( {
-      autoFillEnabled: true, // whether autoFill is enabled
       autoFillVolume: 0.5 // L, automatically fill beaker with this much solute when the solute changes
     }, options );
 
@@ -96,7 +96,7 @@ class MacroModel {
 
     // @private whether the auto-fill feature is enabled.
     // See https://github.com/phetsims/ph-scale/issues/104
-    this.autoFillEnabledProperty = new BooleanProperty( options.autoFillEnabled, {
+    this.autoFillEnabledProperty = new BooleanProperty( PHScaleQueryParameters.autoFill, {
       tandem: tandem.createTandem( 'autoFillEnabledProperty' ),
       phetioDocumentation: 'whether solute is automatically added to the beaker when the solute is changed'
     } );

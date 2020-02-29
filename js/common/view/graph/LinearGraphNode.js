@@ -9,7 +9,9 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import NumberProperty from '../../../../../axon/js/NumberProperty.js';
+import Property from '../../../../../axon/js/Property.js';
 import Utils from '../../../../../dot/js/Utils.js';
 import Shape from '../../../../../kite/js/Shape.js';
 import merge from '../../../../../phet-core/js/merge.js';
@@ -36,10 +38,11 @@ class LinearGraphNode extends Node {
 
   /**
    * @param {Solution} solution
+   * @param {Graph} graph
    * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
    * @param {Object} [options]
    */
-  constructor( solution, graphUnitsProperty, options ) {
+  constructor( solution, graph, graphUnitsProperty, options ) {
 
     options = merge( {
 
@@ -165,19 +168,22 @@ class LinearGraphNode extends Node {
       tickLabels.push( tickLabel );
     }
 
-    // Properties
-    const valueH2OProperty = new NumberProperty( 0, {
-      tandem: options.tandem.createTandem( 'valueH2OProperty' ),
-      phetioReadOnly: true
-    } );
-    const valueH3OProperty = new NumberProperty( 0, {
-      tandem: options.tandem.createTandem( 'valueH3OProperty' ),
-      phetioReadOnly: true
-    } );
-    const valueOHProperty = new NumberProperty( 0, {
-      tandem: options.tandem.createTandem( 'valueOHProperty' ),
-      phetioReadOnly: true
-    } );
+    // Values displayed on the indicators
+    const valueH2OProperty = new DerivedProperty(
+      [ graph.concentrationH2OProperty, graph.quantityH2OProperty, graphUnitsProperty ],
+      ( concentration, quantity, graphUnits ) =>
+        ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
+    );
+    const valueH3OProperty = new DerivedProperty(
+      [ graph.concentrationH3OProperty, graph.quantityH3OProperty, graphUnitsProperty ],
+      ( concentration, quantity, graphUnits ) =>
+        ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
+    );
+    const valueOHProperty = new DerivedProperty(
+      [ graph.concentrationOHProperty, graph.quantityOHProperty, graphUnitsProperty ],
+      ( concentration, quantity, graphUnits ) =>
+        ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
+    );
 
     // indicators
     const indicatorH2ONode = GraphIndicatorNode.createH2OIndicator( valueH2OProperty, {
@@ -215,42 +221,6 @@ class LinearGraphNode extends Node {
       }
     };
 
-    // Update the indicators
-    const updateIndicators = () => {
-
-      let valueH2O;
-      let valueH3O;
-      let valueOH;
-      if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
-        // concentration
-        valueH2O = solution.getConcentrationH2O();
-        valueH3O = solution.getConcentrationH3O();
-        valueOH = solution.getConcentrationOH();
-      }
-      else {
-        // quantity
-        valueH2O = solution.getMolesH2O();
-        valueH3O = solution.getMolesH3O();
-        valueOH = solution.getMolesOH();
-      }
-
-      // move indicators
-      indicatorH2ONode.y = valueToY( valueH2O, -4 ); // offset the H2O indicator when off scale, so it doesn't butt up again OH indicator
-      indicatorH3ONode.y = valueToY( valueH3O );
-      indicatorOHNode.y = valueToY( valueOH );
-
-      // update indicator values
-      valueH2OProperty.set( valueH2O );
-      valueH3OProperty.set( valueH3O );
-      valueOHProperty.set( valueOH );
-    };
-
-    // Move the indicators when any of these change.
-    solution.pHProperty.link( updateIndicators.bind( this ) );
-    solution.volumeProperty.link( updateIndicators.bind( this ) );
-    graphUnitsProperty.link( updateIndicators.bind( this ) );
-    this.exponentProperty.link( updateIndicators.bind( this ) );
-
     // updates the tick labels to match the exponent
     const updateTickLabels = exponent => {
       const tickOptions = ( exponent >= 0 ) ? { exponent: 0 } : { exponent: exponent }; // show positive exponents as integers
@@ -271,7 +241,27 @@ class LinearGraphNode extends Node {
     } );
     this.addChild( zoomButtonGroup );
 
+    // Move the indicators
+    Property.multilink( [ valueH2OProperty, graphUnitsProperty, this.exponentProperty ],
+      ( valueH2O, graphUnits, exponent )  => {
+        // offset the H2O indicator when off scale, so it doesn't butt up again OH indicator
+        indicatorH2ONode.y = valueToY( valueH2O, -4  );
+      } );
+    Property.multilink( [ valueH3OProperty, graphUnitsProperty, this.exponentProperty ],
+      ( valueH3O, graphUnits, exponent ) => {
+        indicatorH3ONode.y = valueToY( valueH3O );
+      } );
+    Property.multilink( [ valueOHProperty, graphUnitsProperty, this.exponentProperty ],
+      ( valueOH, graphUnits, exponent ) => {
+        indicatorOHNode.y = valueToY( valueOH );
+      } );
+
     this.mutate( options );
+
+    // to make the associated model element easy to find in Studio
+    this.addLinkedElement( graph, {
+      tandem: options.tandem.createTandem( 'graph' )
+    } );
   }
 
   /**

@@ -12,7 +12,8 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import NumberProperty from '../../../../../axon/js/NumberProperty.js';
+import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
+import Property from '../../../../../axon/js/Property.js';
 import Utils from '../../../../../dot/js/Utils.js';
 import merge from '../../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
@@ -33,10 +34,11 @@ class LogarithmicGraphNode extends Node {
 
   /**
    * @param {Solution} solution
+   * @param {Graph} graph
    * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
    * @param {Object} [options]
    */
-  constructor( solution, graphUnitsProperty, options ) {
+  constructor( solution, graph, graphUnitsProperty, options ) {
 
     options = merge( {
       isInteractive: false,
@@ -146,19 +148,22 @@ class LogarithmicGraphNode extends Node {
       }
     }
 
-    // Properties
-    const valueH2OProperty = new NumberProperty( 0, {
-      tandem: options.tandem.createTandem( 'valueH2OProperty' ),
-      phetioReadOnly: true
-    } );
-    const valueH3OProperty = new NumberProperty( 0, {
-      tandem: options.tandem.createTandem( 'valueH3OProperty' ),
-      phetioReadOnly: true
-    } );
-    const valueOHProperty = new NumberProperty( 0, {
-      tandem: options.tandem.createTandem( 'valueOHProperty' ),
-      phetioReadOnly: true
-    } );
+    // Values displayed on the indicators
+    const valueH2OProperty = new DerivedProperty(
+      [ graph.concentrationH2OProperty, graph.quantityH2OProperty, graphUnitsProperty ],
+      ( concentration, quantity, graphUnits ) =>
+        ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
+    );
+    const valueH3OProperty = new DerivedProperty(
+      [ graph.concentrationH3OProperty, graph.quantityH3OProperty, graphUnitsProperty ],
+      ( concentration, quantity, graphUnits ) =>
+        ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
+    );
+    const valueOHProperty = new DerivedProperty(
+      [ graph.concentrationOHProperty, graph.quantityOHProperty, graphUnitsProperty ],
+      ( concentration, quantity, graphUnits ) =>
+        ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
+    );
 
     // indicators
     const indicatorH2ONode = GraphIndicatorNode.createH2OIndicator( valueH2OProperty, {
@@ -203,38 +208,20 @@ class LogarithmicGraphNode extends Node {
       return Math.pow( 10, exponent );
     };
 
-    // Update the indicators
-    const updateIndicators = () => {
-
-      let valueH2O;
-      let valueH3O;
-      let valueOH;
-      if ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) {
-        // concentration
-        valueH2O = solution.getConcentrationH2O();
-        valueH3O = solution.getConcentrationH3O();
-        valueOH = solution.getConcentrationOH();
-      }
-      else {
-        // quantity
-        valueH2O = solution.getMolesH2O();
-        valueH3O = solution.getMolesH3O();
-        valueOH = solution.getMolesOH();
-      }
-
-      // move indicators
-      indicatorH2ONode.y = valueToY( valueH2O );
-      indicatorH3ONode.y = valueToY( valueH3O );
-      indicatorOHNode.y = valueToY( valueOH );
-
-      // update indicator values
-      valueH2OProperty.set( valueH2O );
-      valueH3OProperty.set( valueH3O );
-      valueOHProperty.set( valueOH );
-    };
-    solution.pHProperty.link( updateIndicators.bind( this ) );
-    solution.volumeProperty.link( updateIndicators.bind( this ) );
-    graphUnitsProperty.link( updateIndicators.bind( this ) );
+    // Move the indicators
+    Property.multilink( [ valueH2OProperty, graphUnitsProperty ],
+      ( valueH2O, graphUnits ) => {
+        // offset the H2O indicator when off scale, so it doesn't butt up again OH indicator
+        indicatorH2ONode.y = valueToY( valueH2O, -4  );
+      } );
+    Property.multilink( [ valueH3OProperty, graphUnitsProperty ],
+      ( valueH3O, graphUnits )  => {
+        indicatorH3ONode.y = valueToY( valueH3O );
+      } );
+    Property.multilink( [ valueOHProperty, graphUnitsProperty ],
+      ( valueOH, graphUnits )  => {
+        indicatorOHNode.y = valueToY( valueOH );
+      } );
 
     // Add optional interactivity
     if ( options.isInteractive ) {
@@ -255,6 +242,11 @@ class LogarithmicGraphNode extends Node {
     }
 
     this.mutate( options );
+
+    // to make the associated model element easy to find in Studio
+    this.addLinkedElement( graph, {
+      tandem: options.tandem.createTandem( 'graph' )
+    } );
   }
 }
 

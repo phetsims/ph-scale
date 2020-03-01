@@ -27,9 +27,10 @@ class GraphNode extends Node {
 
   /**
    * @param {Solution} solution
+   * @param {Graph} graph
    * @param {Object} [options]
    */
-  constructor( solution, options ) {
+  constructor( solution, graph, options ) {
 
     options = merge( {
       isInteractive: false, // only the Log scale can be interactive
@@ -73,7 +74,7 @@ class GraphNode extends Node {
     } );
 
     // logarithmic graph
-    const logarithmicGraphNode = new LogarithmicGraphNode( solution, graphUnitsProperty, {
+    const logarithmicGraphNode = new LogarithmicGraphNode( solution, graph, graphUnitsProperty, {
       scaleHeight: options.logScaleHeight,
       isInteractive: options.isInteractive,
       centerX: lineToPanel.centerX,
@@ -99,7 +100,7 @@ class GraphNode extends Node {
     if ( options.hasLinearFeature ) {
 
       // linear graph
-      linearGraphNode = new LinearGraphNode( solution, graphUnitsProperty, {
+      linearGraphNode = new LinearGraphNode( solution, graph, graphUnitsProperty, {
         scaleHeight: options.linearScaleHeight,
         y: logarithmicGraphNode.y, // y, not top
         centerX: logarithmicGraphNode.centerX,

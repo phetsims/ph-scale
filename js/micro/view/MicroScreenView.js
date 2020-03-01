@@ -110,7 +110,7 @@ class MicroScreenView extends ScreenView {
       } );
 
     // graph
-    const graphNode = new GraphNode( model.solution, {
+    const graphNode = new GraphNode( model.solution, model.graph, {
       hasLinearFeature: true,
       logScaleHeight: 485,
       linearScaleHeight: 440,

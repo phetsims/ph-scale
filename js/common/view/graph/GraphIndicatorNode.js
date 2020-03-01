@@ -176,23 +176,35 @@ class GraphIndicatorNode extends Node {
 
     // sync with value
     valueProperty.link( value => {
+
       // disabled when value is zero
       const isEnabled = ( value !== 0 );
       this.opacity = isEnabled ? 1.0 : 0.5;
       this.cursor = ( isEnabled && options.isInteractive ) ? 'pointer' : 'default';
-    } );
 
-    /*
-     * Don't do this by observing valueProperty, since we need to be certain that valueNode has updated its display.
-     * Listen for 'childBounds' instead of 'bounds' so we don't get into an infinite bounds listener cycle caused
-     * by moving the node whose bounds we're listening to.
-     */
-    valueNode.on( 'childBounds', () => {
-      // center value in the display
+      // center on the background
       valueNode.center = valueBackgroundNode.center;
     } );
 
     this.mutate( options );
+  }
+
+  /**
+   * Creates an indicator for H2O.
+   * @param {Property.<number>} valueProperty
+   * @param {Object} [options] see GraphIndicatorNode constructor
+   * @public
+   */
+  static createH2OIndicator( valueProperty, options ) {
+    return new GraphIndicatorNode( valueProperty,
+      new H2ONode(),
+      new RichText( PHScaleConstants.H2O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
+      merge( {
+        backgroundFill: PHScaleColors.H2O_BACKGROUND,
+        pointerPosition: 'bottomLeft',
+        mantissaDecimalPlaces: 0,
+        exponent: 0
+      }, options ) );
   }
 
   /**
@@ -224,24 +236,6 @@ class GraphIndicatorNode extends Node {
       merge( {
         backgroundFill: PHScaleColors.BASIC,
         pointerPosition: 'topLeft'
-      }, options ) );
-  }
-
-  /**
-   * Creates an indicator for H2O.
-   * @param {Property.<number>} valueProperty
-   * @param {Object} [options] see GraphIndicatorNode constructor
-   * @public
-   */
-  static createH2OIndicator( valueProperty, options ) {
-    return new GraphIndicatorNode( valueProperty,
-      new H2ONode(),
-      new RichText( PHScaleConstants.H2O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
-      merge( {
-        backgroundFill: PHScaleColors.H2O_BACKGROUND,
-        pointerPosition: 'bottomLeft',
-        mantissaDecimalPlaces: 0,
-        exponent: 0
       }, options ) );
   }
 }

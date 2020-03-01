@@ -10,6 +10,7 @@
 
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import Graph from '../../common/model/Graph.js';
 import MacroModel from '../../macro/model/MacroModel.js';
 import phScale from '../../phScale.js';
 
@@ -22,6 +23,11 @@ class MicroModel extends MacroModel {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
     super( tandem );
+
+    // @public
+    this.graph = new Graph( this.solution, {
+      tandem: tandem.createTandem( 'graph' )
+    } );
 
     // adjust the drag bounds of the dropper to account for different user-interface constraints
     const yDropper = this.dropper.positionProperty.get().y;

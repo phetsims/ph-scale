@@ -81,7 +81,7 @@ class MySolutionScreenView extends ScreenView {
       } );
 
     // graph
-    const graphNode = new GraphNode( model.solution, {
+    const graphNode = new GraphNode( model.solution, model.graph, {
       isInteractive: true,
       logScaleHeight: 565,
       tandem: tandem.createTandem( 'graphNode' )

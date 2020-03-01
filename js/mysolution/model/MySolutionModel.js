@@ -12,6 +12,7 @@ import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import Beaker from '../../common/model/Beaker.js';
+import Graph from '../../common/model/Graph.js';
 import Solute from '../../common/model/Solute.js';
 import Solution from '../../common/model/Solution.js';
 import phScale from '../../phScale.js';
@@ -31,6 +32,11 @@ class MySolutionModel {
     this.solution = new Solution( new Property( Solute.createCustom( 7 ) ), 0.5, 0, this.beaker.volume, {
       hasSolute: false,
       tandem: tandem.createTandem( 'solution' )
+    } );
+
+    // @public
+    this.graph = new Graph( this.solution, {
+      tandem: tandem.createTandem( 'graph' )
     } );
   }
 

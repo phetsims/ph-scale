@@ -19,18 +19,8 @@ import PHScaleConstants from '../PHScaleConstants.js';
 import SoluteIO from './SoluteIO.js';
 import Water from './Water.js';
 
-const choiceBatteryAcidString = phScaleStrings.choice.batteryAcid;
-const choiceBloodString = phScaleStrings.choice.blood;
-const choiceChickenSoupString = phScaleStrings.choice.chickenSoup;
-const choiceCoffeeString = phScaleStrings.choice.coffee;
+// strings
 const choiceCustomString = phScaleStrings.choice.custom;
-const choiceDrainCleanerString = phScaleStrings.choice.drainCleaner;
-const choiceHandSoapString = phScaleStrings.choice.handSoap;
-const choiceMilkString = phScaleStrings.choice.milk;
-const choiceOrangeJuiceString = phScaleStrings.choice.orangeJuice;
-const choiceSodaString = phScaleStrings.choice.soda;
-const choiceSpitString = phScaleStrings.choice.spit;
-const choiceVomitString = phScaleStrings.choice.vomit;
 
 class Solute extends PhetioObject {
 
@@ -39,7 +29,6 @@ class Solute extends PhetioObject {
    * @param {number} pH - the pH of the solute
    * @param {Color} stockColor - color of the solute in stock solution (no dilution)
    * @param {Object} [options]
-   *
    */
   constructor( name, pH, stockColor, options ) {
 
@@ -130,68 +119,6 @@ class Solute extends PhetioObject {
     return new Solute( choiceCustomString, pH, PHScaleColors.WATER );
   }
 }
-
-// 'real world' immutable solutions -------------------------------------------------------
-
-// tandem for all static instances of Solute, which are used across all screens
-const SOLUTES_TANDEM = Tandem.GLOBAL.createTandem( 'model' ).createTandem( 'solutes' );
-
-Solute.DRAIN_CLEANER = new Solute( choiceDrainCleanerString, 13, new Color( 255, 255, 0 ), {
-  colorStopColor: new Color( 255, 255, 204 ),
-  tandem: SOLUTES_TANDEM.createTandem( 'drainCleaner' )
-} );
-
-Solute.HAND_SOAP = new Solute( choiceHandSoapString, 10, new Color( 224, 141, 242 ), {
-  colorStopColor: new Color( 232, 204, 255 ),
-  tandem: SOLUTES_TANDEM.createTandem( 'handSoap' )
-} );
-
-Solute.BLOOD = new Solute( choiceBloodString, 7.4, new Color( 211, 79, 68 ), {
-  colorStopColor: new Color( 255, 207, 204 ),
-  tandem: SOLUTES_TANDEM.createTandem( 'blood' )
-} );
-
-Solute.SPIT = new Solute( choiceSpitString, 7.4, new Color( 202, 240, 239 ), {
-  tandem: SOLUTES_TANDEM.createTandem( 'spit' )
-} );
-
-Solute.WATER = new Solute( Water.name, Water.pH, Water.color, {
-  tandem: SOLUTES_TANDEM.createTandem( 'water' )
-} );
-
-Solute.MILK = new Solute( choiceMilkString, 6.5, new Color( 250, 250, 250 ), {
-  tandem: SOLUTES_TANDEM.createTandem( 'milk' )
-} );
-
-Solute.CHICKEN_SOUP = new Solute( choiceChickenSoupString, 5.8, new Color( 255, 240, 104 ), {
-  colorStopColor: new Color( 255, 250, 204 ),
-  tandem: SOLUTES_TANDEM.createTandem( 'chickenSoup' )
-} );
-
-Solute.COFFEE = new Solute( choiceCoffeeString, 5, new Color( 164, 99, 7 ), {
-  colorStopColor: new Color( 255, 240, 204 ),
-  tandem: SOLUTES_TANDEM.createTandem( 'coffee' )
-} );
-
-Solute.ORANGE_JUICE = new Solute( choiceOrangeJuiceString, 3.5, new Color( 255, 180, 0 ), {
-  colorStopColor: new Color( 255, 242, 204 ),
-  tandem: SOLUTES_TANDEM.createTandem( 'orangeJuice' )
-} );
-
-Solute.SODA = new Solute( choiceSodaString, 2.5, new Color( 204, 255, 102 ), {
-  colorStopColor: new Color( 238, 255, 204 ),
-  tandem: SOLUTES_TANDEM.createTandem( 'soda' )
-} );
-
-Solute.VOMIT = new Solute( choiceVomitString, 2, new Color( 255, 171, 120 ), {
-  colorStopColor: new Color( 255, 224, 204 ),
-  tandem: SOLUTES_TANDEM.createTandem( 'vomit' )
-} );
-
-Solute.BATTERY_ACID = new Solute( choiceBatteryAcidString, 1, new Color( 255, 255, 0 ), {
-  colorStopColor: new Color( 255, 224, 204 ),
-  tandem: SOLUTES_TANDEM.createTandem( 'batteryAcid' )
-} );
 
 phScale.register( 'Solute', Solute );
 export default Solute;

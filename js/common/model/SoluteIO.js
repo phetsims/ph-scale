@@ -10,6 +10,7 @@ import validate from '../../../../axon/js/validate.js';
 import ObjectIO from '../../../../tandem/js/types/ObjectIO.js';
 import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
 import phScale from '../../phScale.js';
+import Solute from './Solute.js';
 
 // Objects are statically created, use reference equality to look up instances for toStateObject/fromStateObject
 class SoluteIO extends ReferenceIO {
@@ -43,9 +44,7 @@ class SoluteIO extends ReferenceIO {
 
 SoluteIO.documentation = 'a solute';
 SoluteIO.typeName = 'SoluteIO';
-
-//TODO #120 should be instanceof Solute, but require(Solute) is cyclic, and phet.phScale.Solute doesn't exist yet
-SoluteIO.validator = { isValidValue: value => value instanceof Object };
+SoluteIO.validator = { isValidValue: value => value instanceof Solute };
 ObjectIO.validateSubtype( SoluteIO );
 
 phScale.register( 'SoluteIO', SoluteIO );

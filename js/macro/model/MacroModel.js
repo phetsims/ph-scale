@@ -15,7 +15,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import Beaker from '../../common/model/Beaker.js';
 import Dropper from '../../common/model/Dropper.js';
 import Faucet from '../../common/model/Faucet.js';
-import Solute from '../../common/model/Solute.js';
+import SoluteInstances from '../../common/model/SoluteInstances.js';
 import Solution from '../../common/model/Solution.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import PHScaleQueryParameters from '../../common/PHScaleQueryParameters.js';
@@ -38,18 +38,18 @@ class MacroModel {
     // @public solute choices, in order that they'll appear in the combo box
     // The order is alphabetical (English names), see https://github.com/phetsims/ph-scale/issues/101
     this.solutes = [
-      Solute.BATTERY_ACID,
-      Solute.BLOOD,
-      Solute.CHICKEN_SOUP,
-      Solute.COFFEE,
-      Solute.DRAIN_CLEANER,
-      Solute.HAND_SOAP,
-      Solute.MILK,
-      Solute.ORANGE_JUICE,
-      Solute.SODA,
-      Solute.SPIT,
-      Solute.VOMIT,
-      Solute.WATER
+      SoluteInstances.BATTERY_ACID,
+      SoluteInstances.BLOOD,
+      SoluteInstances.CHICKEN_SOUP,
+      SoluteInstances.COFFEE,
+      SoluteInstances.DRAIN_CLEANER,
+      SoluteInstances.HAND_SOAP,
+      SoluteInstances.MILK,
+      SoluteInstances.ORANGE_JUICE,
+      SoluteInstances.SODA,
+      SoluteInstances.SPIT,
+      SoluteInstances.VOMIT,
+      SoluteInstances.WATER
     ];
 
     // @public Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
@@ -58,7 +58,7 @@ class MacroModel {
     // Dropper above the beaker
     const yDropper = this.beaker.position.y - this.beaker.size.height - 15;
     // @public
-    this.dropper = new Dropper( Solute.WATER,
+    this.dropper = new Dropper( SoluteInstances.WATER,
       new Vector2( this.beaker.position.x - 50, yDropper ),
       new Bounds2( this.beaker.left + 40, yDropper, this.beaker.right - 200, yDropper ), {
         tandem: tandem.createTandem( 'dropper' )

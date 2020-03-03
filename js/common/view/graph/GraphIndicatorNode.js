@@ -172,6 +172,12 @@ class GraphIndicatorNode extends Node {
       valueNode.pickable = false;
       valueBackgroundNode.pickable = false;
       moleculeAndFormula.pickable = false;
+
+      // Hide the arrow if the indicator is not pickable.
+      // See https://github.com/phetsims/ph-scale/issues/126
+      this.on( 'pickability', () => {
+        arrowNode.visible = ( this.pickable !== false ); // pickable may be true, false, or null
+      } );
     }
 
     // sync with value

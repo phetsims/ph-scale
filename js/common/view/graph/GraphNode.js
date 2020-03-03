@@ -56,11 +56,6 @@ class GraphNode extends Node {
       tandem: options.tandem.createTandem( 'graphUnitsProperty' )
     } );
 
-    // scale (log, linear) of the graph
-    const graphScaleProperty = new EnumerationProperty( GraphScale, options.graphScale, {
-      tandem: options.tandem.createTandem( 'graphScaleProperty' )
-    } );
-
     // control panel above the graph
     const graphControlPanel = new GraphControlPanel( graphUnitsProperty, expandedProperty, {
       tandem: options.tandem.createTandem( 'graphControlPanel' )
@@ -98,6 +93,11 @@ class GraphNode extends Node {
     // @private {LinearGraphNode|null} optional linear graph
     let linearGraphNode = null;
     if ( options.hasLinearFeature ) {
+
+      // scale (log, linear) of the graph
+      const graphScaleProperty = new EnumerationProperty( GraphScale, options.graphScale, {
+        tandem: options.tandem.createTandem( 'graphScaleProperty' )
+      } );
 
       // linear graph
       linearGraphNode = new LinearGraphNode( solution, graph, graphUnitsProperty, {

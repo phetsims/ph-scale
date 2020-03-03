@@ -11532,19 +11532,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionScreen.view.graphNode.graphScaleProperty": {
-      "phetioDocumentation": "",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": false,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<EnumerationIO(LOGARITHMIC|LINEAR)>"
-    },
     "phScale.mySolutionScreen.view.graphNode.graphUnitsProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,

@@ -92,10 +92,11 @@ class GraphNode extends Node {
 
     // @private {LinearGraphNode|null} optional linear graph
     let linearGraphNode = null;
+    let graphScaleProperty = null;
     if ( options.hasLinearFeature ) {
 
       // scale (log, linear) of the graph
-      const graphScaleProperty = new EnumerationProperty( GraphScale, options.graphScale, {
+      graphScaleProperty = new EnumerationProperty( GraphScale, options.graphScale, {
         tandem: options.tandem.createTandem( 'graphScaleProperty' )
       } );
 
@@ -144,7 +145,7 @@ class GraphNode extends Node {
     this.resetGraphNode = () => {
       expandedProperty.reset();
       graphUnitsProperty.reset();
-      graphScaleProperty.reset();
+      graphScaleProperty && graphScaleProperty.reset();
       linearGraphNode && linearGraphNode.reset();
     };
   }

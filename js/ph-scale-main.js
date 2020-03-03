@@ -25,7 +25,7 @@ SimLauncher.launch( () => {
   const screens = [
     new MacroScreen( Tandem.ROOT.createTandem( 'macroScreen' ) ),
     new MicroScreen( Tandem.ROOT.createTandem( 'microScreen' ) ),
-    new MySolutionScreen( Tandem.ROOT.createTandem( 'mySolutionsScreen' ) )
+    new MySolutionScreen( Tandem.ROOT.createTandem( 'mySolutionScreen' ) )
   ];
   const sim = new Sim( phScaleTitleString, screens, simOptions );
   sim.start();

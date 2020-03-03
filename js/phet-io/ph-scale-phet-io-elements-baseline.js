@@ -950,8 +950,8 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton": {
-      "phetioDocumentation": "Button in the navigation bar that selects the 'mySolutionsScreen' screen",
+    "phScale.general.view.navigationBar.mySolutionScreenButton": {
+      "phetioDocumentation": "Button in the navigation bar that selects the 'mySolutionScreen' screen",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -963,7 +963,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.enabledProperty": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -976,7 +976,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.firedEmitter": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired No arguments.",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -989,7 +989,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "EmitterIO<>"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.icon": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.icon": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1002,7 +1002,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.icon.opacityProperty": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.icon.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1015,7 +1015,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.icon.pickableProperty": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.icon.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1028,7 +1028,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.icon.visibleProperty": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.icon.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1041,7 +1041,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.opacityProperty": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1054,7 +1054,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.pickableProperty": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1067,7 +1067,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.pressListener.pressAction": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -1080,7 +1080,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<SceneryEventIO>"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.pressListener.releaseAction": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<SceneryEventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -1093,7 +1093,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<NullableIO<SceneryEventIO>>"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.text": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.text": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1106,7 +1106,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "TextIO"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.text.opacityProperty": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.text.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1119,7 +1119,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.text.pickableProperty": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.text.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1132,7 +1132,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.text.textProperty": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.text.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1145,7 +1145,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<StringIO>"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.text.visibleProperty": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.text.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -1158,7 +1158,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.general.view.navigationBar.mySolutionsScreenButton.visibleProperty": {
+    "phScale.general.view.navigationBar.mySolutionScreenButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -2835,7 +2835,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.homeScreen.view.buttonGroup.mySolutionsScreenButton": {
+    "phScale.homeScreen.view.buttonGroup.mySolutionScreenButton": {
       "phetioDocumentation": "A button on the home screen for choosing a simulation screen",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -2848,7 +2848,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.homeScreen.view.buttonGroup.mySolutionsScreenButton.inputListener.firedEmitter": {
+    "phScale.homeScreen.view.buttonGroup.mySolutionScreenButton.inputListener.firedEmitter": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>event: NullableIO<SceneryEventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -2861,7 +2861,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "EmitterIO<NullableIO<SceneryEventIO>>"
     },
-    "phScale.homeScreen.view.buttonGroup.mySolutionsScreenButton.inputListener.pressAction": {
+    "phScale.homeScreen.view.buttonGroup.mySolutionScreenButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -2874,7 +2874,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<SceneryEventIO>"
     },
-    "phScale.homeScreen.view.buttonGroup.mySolutionsScreenButton.inputListener.releaseAction": {
+    "phScale.homeScreen.view.buttonGroup.mySolutionScreenButton.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<SceneryEventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -2887,7 +2887,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<NullableIO<SceneryEventIO>>"
     },
-    "phScale.homeScreen.view.buttonGroup.mySolutionsScreenButton.opacityProperty": {
+    "phScale.homeScreen.view.buttonGroup.mySolutionScreenButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -2900,7 +2900,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.homeScreen.view.buttonGroup.mySolutionsScreenButton.pickableProperty": {
+    "phScale.homeScreen.view.buttonGroup.mySolutionScreenButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -2913,7 +2913,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.homeScreen.view.buttonGroup.mySolutionsScreenButton.text": {
+    "phScale.homeScreen.view.buttonGroup.mySolutionScreenButton.text": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -2926,7 +2926,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "TextIO"
     },
-    "phScale.homeScreen.view.buttonGroup.mySolutionsScreenButton.text.opacityProperty": {
+    "phScale.homeScreen.view.buttonGroup.mySolutionScreenButton.text.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -2939,7 +2939,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.homeScreen.view.buttonGroup.mySolutionsScreenButton.text.pickableProperty": {
+    "phScale.homeScreen.view.buttonGroup.mySolutionScreenButton.text.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -2952,7 +2952,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.homeScreen.view.buttonGroup.mySolutionsScreenButton.text.textProperty": {
+    "phScale.homeScreen.view.buttonGroup.mySolutionScreenButton.text.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -2965,7 +2965,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<StringIO>"
     },
-    "phScale.homeScreen.view.buttonGroup.mySolutionsScreenButton.text.visibleProperty": {
+    "phScale.homeScreen.view.buttonGroup.mySolutionScreenButton.text.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -2978,7 +2978,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.homeScreen.view.buttonGroup.mySolutionsScreenButton.visibleProperty": {
+    "phScale.homeScreen.view.buttonGroup.mySolutionScreenButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10349,7 +10349,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen": {
+    "phScale.mySolutionScreen": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10362,7 +10362,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ScreenIO"
     },
-    "phScale.mySolutionsScreen.activeProperty": {
+    "phScale.mySolutionScreen.activeProperty": {
       "phetioDocumentation": "Indicates whether the screen is currently displayed in the simulation.  For single-screen simulations, there is only one screen and it is always active.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10375,7 +10375,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.model.graph": {
+    "phScale.mySolutionScreen.model.graph": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10388,7 +10388,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ObjectIO"
     },
-    "phScale.mySolutionsScreen.model.graph.concentrationH2OProperty": {
+    "phScale.mySolutionScreen.model.graph.concentrationH2OProperty": {
       "phetioDocumentation": "H<sub>2</sub>O concentration",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10401,7 +10401,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
-    "phScale.mySolutionsScreen.model.graph.concentrationH3OProperty": {
+    "phScale.mySolutionScreen.model.graph.concentrationH3OProperty": {
       "phetioDocumentation": "H<sub>3</sub>O<sup>+</sup> concentration",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10414,7 +10414,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
-    "phScale.mySolutionsScreen.model.graph.concentrationOHProperty": {
+    "phScale.mySolutionScreen.model.graph.concentrationOHProperty": {
       "phetioDocumentation": "OH<sup>-</sup> concentration",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10427,7 +10427,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
-    "phScale.mySolutionsScreen.model.graph.quantityH2OProperty": {
+    "phScale.mySolutionScreen.model.graph.quantityH2OProperty": {
       "phetioDocumentation": "H<sub>2</sub>O quantity",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10440,7 +10440,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
-    "phScale.mySolutionsScreen.model.graph.quantityH3OProperty": {
+    "phScale.mySolutionScreen.model.graph.quantityH3OProperty": {
       "phetioDocumentation": "H<sub>3</sub>O<sup>+</sup> quantity",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10453,7 +10453,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
-    "phScale.mySolutionsScreen.model.graph.quantityOHProperty": {
+    "phScale.mySolutionScreen.model.graph.quantityOHProperty": {
       "phetioDocumentation": "OH<sup>-</sup> quantity",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10466,7 +10466,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
-    "phScale.mySolutionsScreen.model.solution": {
+    "phScale.mySolutionScreen.model.solution": {
       "phetioDocumentation": "solution in the beaker",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10479,7 +10479,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ObjectIO"
     },
-    "phScale.mySolutionsScreen.model.solution.pHProperty": {
+    "phScale.mySolutionScreen.model.solution.pHProperty": {
       "phetioDocumentation": "the pH of the solution",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10492,7 +10492,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NullableIO<NumberIO>>"
     },
-    "phScale.mySolutionsScreen.model.solution.volumeProperty": {
+    "phScale.mySolutionScreen.model.solution.volumeProperty": {
       "phetioDocumentation": "total volume of the solution",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10505,7 +10505,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
-    "phScale.mySolutionsScreen.view": {
+    "phScale.mySolutionScreen.view": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10518,7 +10518,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel": {
+    "phScale.mySolutionScreen.view.beakerControlPanel": {
       "phetioDocumentation": "control panel that appears below the beaker",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10531,7 +10531,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.moleculeCountCheckbox": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.moleculeCountCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -10544,7 +10544,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.moleculeCountCheckbox.enabledProperty": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.moleculeCountCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10557,7 +10557,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.moleculeCountCheckbox.opacityProperty": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.moleculeCountCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10570,7 +10570,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.moleculeCountCheckbox.pickableProperty": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.moleculeCountCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10583,7 +10583,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.moleculeCountCheckbox.property": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.moleculeCountCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10596,7 +10596,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "LinkedElementIO"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.moleculeCountCheckbox.toggleAction": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.moleculeCountCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state. The arguments are:<br/><ol><li>isChecked: BooleanIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -10609,7 +10609,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.moleculeCountCheckbox.visibleProperty": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.moleculeCountCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10622,7 +10622,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.opacityProperty": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10635,7 +10635,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.pickableProperty": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10648,7 +10648,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.ratioCheckbox": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.ratioCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -10661,7 +10661,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.ratioCheckbox.enabledProperty": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.ratioCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10674,7 +10674,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.ratioCheckbox.opacityProperty": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.ratioCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10687,7 +10687,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.ratioCheckbox.pickableProperty": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.ratioCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10700,7 +10700,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.ratioCheckbox.property": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.ratioCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10713,7 +10713,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "LinkedElementIO"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.ratioCheckbox.toggleAction": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.ratioCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state. The arguments are:<br/><ol><li>isChecked: BooleanIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -10726,7 +10726,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.ratioCheckbox.visibleProperty": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.ratioCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10739,7 +10739,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.separator": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.separator": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10752,7 +10752,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.separator.opacityProperty": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.separator.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10765,7 +10765,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.separator.pickableProperty": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.separator.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10778,7 +10778,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.separator.visibleProperty": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.separator.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10791,7 +10791,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.beakerControlPanel.visibleProperty": {
+    "phScale.mySolutionScreen.view.beakerControlPanel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10804,7 +10804,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.beakerNode": {
+    "phScale.mySolutionScreen.view.beakerNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10817,7 +10817,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.beakerNode.opacityProperty": {
+    "phScale.mySolutionScreen.view.beakerNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10830,7 +10830,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.beakerNode.pickableProperty": {
+    "phScale.mySolutionScreen.view.beakerNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10843,7 +10843,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.beakerNode.tickMarks": {
+    "phScale.mySolutionScreen.view.beakerNode.tickMarks": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10856,7 +10856,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.beakerNode.tickMarks.opacityProperty": {
+    "phScale.mySolutionScreen.view.beakerNode.tickMarks.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10869,7 +10869,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.beakerNode.tickMarks.pickableProperty": {
+    "phScale.mySolutionScreen.view.beakerNode.tickMarks.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10882,7 +10882,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.beakerNode.tickMarks.tickLabels": {
+    "phScale.mySolutionScreen.view.beakerNode.tickMarks.tickLabels": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10895,7 +10895,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.beakerNode.tickMarks.tickLabels.opacityProperty": {
+    "phScale.mySolutionScreen.view.beakerNode.tickMarks.tickLabels.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10908,7 +10908,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.beakerNode.tickMarks.tickLabels.pickableProperty": {
+    "phScale.mySolutionScreen.view.beakerNode.tickMarks.tickLabels.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10921,7 +10921,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.beakerNode.tickMarks.tickLabels.visibleProperty": {
+    "phScale.mySolutionScreen.view.beakerNode.tickMarks.tickLabels.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10934,7 +10934,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.beakerNode.tickMarks.visibleProperty": {
+    "phScale.mySolutionScreen.view.beakerNode.tickMarks.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10947,7 +10947,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.beakerNode.visibleProperty": {
+    "phScale.mySolutionScreen.view.beakerNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10960,7 +10960,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode": {
+    "phScale.mySolutionScreen.view.graphNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10973,7 +10973,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.expandedProperty": {
+    "phScale.mySolutionScreen.view.graphNode.expandedProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10986,7 +10986,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel": {
       "phetioDocumentation": "control panel that appears above the graph",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10999,7 +10999,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.expandCollapseButton": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.expandCollapseButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11012,7 +11012,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ToggleButtonIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.expandCollapseButton.enabledProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.expandCollapseButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11025,7 +11025,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.expandCollapseButton.opacityProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.expandCollapseButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11038,7 +11038,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.expandCollapseButton.pickableProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.expandCollapseButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11051,7 +11051,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.expandCollapseButton.pressListener.pressAction": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.expandCollapseButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -11064,7 +11064,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<SceneryEventIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.expandCollapseButton.pressListener.releaseAction": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.expandCollapseButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<SceneryEventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -11077,7 +11077,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<NullableIO<SceneryEventIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.expandCollapseButton.property": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.expandCollapseButton.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11090,7 +11090,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "LinkedElementIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.expandCollapseButton.toggledEmitter": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.expandCollapseButton.toggledEmitter": {
       "phetioDocumentation": "Emits when the button is toggled No arguments.",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -11103,7 +11103,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "EmitterIO<>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.expandCollapseButton.visibleProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.expandCollapseButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11116,7 +11116,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch": {
       "phetioDocumentation": "A/B switch for switching units",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11129,7 +11129,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11142,7 +11142,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "RichTextIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel.opacityProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11155,7 +11155,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel.pickableProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11168,7 +11168,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel.pressListener.pressAction": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -11181,7 +11181,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<SceneryEventIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel.pressListener.releaseAction": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<SceneryEventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -11194,7 +11194,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<NullableIO<SceneryEventIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel.textProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11207,7 +11207,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<StringIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel.visibleProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11220,7 +11220,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.enabledProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.enabledProperty": {
       "phetioDocumentation": "When disabled, the component is grayed out and cannot be interacted with.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11233,7 +11233,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.opacityProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11246,7 +11246,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.pickableProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11259,7 +11259,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11272,7 +11272,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "RichTextIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel.opacityProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11285,7 +11285,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel.pickableProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11298,7 +11298,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel.pressListener.pressAction": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -11311,7 +11311,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<SceneryEventIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel.pressListener.releaseAction": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<SceneryEventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -11324,7 +11324,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<NullableIO<SceneryEventIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel.textProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11337,7 +11337,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<StringIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel.visibleProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11350,7 +11350,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -11363,7 +11363,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.dragListener.dragAction": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.dragListener.dragAction": {
       "phetioDocumentation": "Emits whenever a drag occurs with an SceneryEventIO argument. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -11376,7 +11376,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<SceneryEventIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.dragListener.pressAction": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.dragListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -11389,7 +11389,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<SceneryEventIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.dragListener.releaseAction": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.dragListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<SceneryEventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -11402,7 +11402,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<NullableIO<SceneryEventIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.enabledProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.enabledProperty": {
       "phetioDocumentation": "When disabled, the component is grayed out and cannot be interacted with.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11415,7 +11415,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.opacityProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11428,7 +11428,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.pickableProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11441,7 +11441,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.property": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11454,7 +11454,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "LinkedElementIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.toggleAction": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.toggleAction": {
       "phetioDocumentation": "Occurs when the switch is toggled via user interaction No arguments.",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -11467,7 +11467,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.visibleProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.toggleSwitch.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11480,7 +11480,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.visibleProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11493,7 +11493,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.opacityProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11506,7 +11506,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.pickableProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11519,7 +11519,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphControlPanel.visibleProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11532,7 +11532,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphScaleProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphScaleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11545,7 +11545,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<EnumerationIO(LOGARITHMIC|LINEAR)>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.graphUnitsProperty": {
+    "phScale.mySolutionScreen.view.graphNode.graphUnitsProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11558,7 +11558,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<EnumerationIO(MOLES_PER_LITER|MOLES)>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11571,7 +11571,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.graph": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.graph": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11584,7 +11584,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "LinkedElementIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH2ONode": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH2ONode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11597,7 +11597,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH2ONode.opacityProperty": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH2ONode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11610,7 +11610,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH2ONode.pickableProperty": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH2ONode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11623,7 +11623,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH2ONode.visibleProperty": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH2ONode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11636,7 +11636,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH3ODragHandler": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH3ODragHandler": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -11649,7 +11649,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ObjectIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH3ODragHandler.dragAction": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH3ODragHandler.dragAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11662,7 +11662,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH3ODragHandler.dragEndAction": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH3ODragHandler.dragEndAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11675,7 +11675,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH3ODragHandler.dragStartAction": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH3ODragHandler.dragStartAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11688,7 +11688,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH3ODragHandler.isDraggingProperty": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH3ODragHandler.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11701,7 +11701,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH3ONode": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH3ONode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11714,7 +11714,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH3ONode.opacityProperty": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH3ONode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11727,7 +11727,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH3ONode.pickableProperty": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH3ONode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11740,7 +11740,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorH3ONode.visibleProperty": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH3ONode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11753,7 +11753,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorOHDragHandler": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorOHDragHandler": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -11766,7 +11766,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ObjectIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorOHDragHandler.dragAction": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorOHDragHandler.dragAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11779,7 +11779,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorOHDragHandler.dragEndAction": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorOHDragHandler.dragEndAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11792,7 +11792,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorOHDragHandler.dragStartAction": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorOHDragHandler.dragStartAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11805,7 +11805,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorOHDragHandler.isDraggingProperty": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorOHDragHandler.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11818,7 +11818,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorOHNode": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorOHNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11831,7 +11831,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorOHNode.opacityProperty": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorOHNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11844,7 +11844,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorOHNode.pickableProperty": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorOHNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11857,7 +11857,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.indicatorOHNode.visibleProperty": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorOHNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11870,7 +11870,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.opacityProperty": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11883,7 +11883,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.pickableProperty": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11896,7 +11896,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.logarithmicGraphNode.visibleProperty": {
+    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11909,7 +11909,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.opacityProperty": {
+    "phScale.mySolutionScreen.view.graphNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11922,7 +11922,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.graphNode.pickableProperty": {
+    "phScale.mySolutionScreen.view.graphNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11935,7 +11935,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.graphNode.visibleProperty": {
+    "phScale.mySolutionScreen.view.graphNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11948,7 +11948,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.moleculeCountNode": {
+    "phScale.mySolutionScreen.view.moleculeCountNode": {
       "phetioDocumentation": "displays the number of molecules in the solution",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11961,7 +11961,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.moleculeCountNode.countH2OProperty": {
+    "phScale.mySolutionScreen.view.moleculeCountNode.countH2OProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11974,7 +11974,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
-    "phScale.mySolutionsScreen.view.moleculeCountNode.countH3OProperty": {
+    "phScale.mySolutionScreen.view.moleculeCountNode.countH3OProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -11987,7 +11987,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
-    "phScale.mySolutionsScreen.view.moleculeCountNode.countOHProperty": {
+    "phScale.mySolutionScreen.view.moleculeCountNode.countOHProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12000,7 +12000,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
-    "phScale.mySolutionsScreen.view.moleculeCountNode.moleculeCountVisibleProperty": {
+    "phScale.mySolutionScreen.view.moleculeCountNode.moleculeCountVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12013,7 +12013,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "LinkedElementIO"
     },
-    "phScale.mySolutionsScreen.view.moleculeCountNode.opacityProperty": {
+    "phScale.mySolutionScreen.view.moleculeCountNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12026,7 +12026,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.moleculeCountNode.pickableProperty": {
+    "phScale.mySolutionScreen.view.moleculeCountNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12039,7 +12039,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.moleculeCountNode.visibleProperty": {
+    "phScale.mySolutionScreen.view.moleculeCountNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12052,7 +12052,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.opacityProperty": {
+    "phScale.mySolutionScreen.view.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12065,7 +12065,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode": {
+    "phScale.mySolutionScreen.view.pHMeterNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12078,7 +12078,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "AccordionBoxIO"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.expandCollapseButton": {
+    "phScale.mySolutionScreen.view.pHMeterNode.expandCollapseButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12091,7 +12091,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ToggleButtonIO"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.expandCollapseButton.enabledProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.expandCollapseButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12104,7 +12104,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.expandCollapseButton.opacityProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.expandCollapseButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12117,7 +12117,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.expandCollapseButton.pickableProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.expandCollapseButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12130,7 +12130,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.expandCollapseButton.pressListener.pressAction": {
+    "phScale.mySolutionScreen.view.pHMeterNode.expandCollapseButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12143,7 +12143,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<SceneryEventIO>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.expandCollapseButton.pressListener.releaseAction": {
+    "phScale.mySolutionScreen.view.pHMeterNode.expandCollapseButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<SceneryEventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12156,7 +12156,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<NullableIO<SceneryEventIO>>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.expandCollapseButton.property": {
+    "phScale.mySolutionScreen.view.pHMeterNode.expandCollapseButton.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12169,7 +12169,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "LinkedElementIO"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.expandCollapseButton.toggledEmitter": {
+    "phScale.mySolutionScreen.view.pHMeterNode.expandCollapseButton.toggledEmitter": {
       "phetioDocumentation": "Emits when the button is toggled No arguments.",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12182,7 +12182,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "EmitterIO<>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.expandCollapseButton.visibleProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.expandCollapseButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12195,7 +12195,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.expandedProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.expandedProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12208,7 +12208,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.opacityProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12221,7 +12221,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.pickableProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12234,7 +12234,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12247,7 +12247,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.decrementButton": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12260,7 +12260,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.decrementButton.enabledProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12273,7 +12273,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.decrementButton.firedEmitter": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired No arguments.",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12286,7 +12286,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "EmitterIO<>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.decrementButton.opacityProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12299,7 +12299,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.decrementButton.pickableProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12312,7 +12312,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.decrementButton.pressListener.pressAction": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12325,7 +12325,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<SceneryEventIO>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.decrementButton.pressListener.releaseAction": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<SceneryEventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12338,7 +12338,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<NullableIO<SceneryEventIO>>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.decrementButton.visibleProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12351,7 +12351,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.incrementButton": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12364,7 +12364,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.incrementButton.enabledProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12377,7 +12377,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.incrementButton.firedEmitter": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired No arguments.",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12390,7 +12390,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "EmitterIO<>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.incrementButton.opacityProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12403,7 +12403,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.incrementButton.pickableProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12416,7 +12416,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.incrementButton.pressListener.pressAction": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12429,7 +12429,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<SceneryEventIO>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.incrementButton.pressListener.releaseAction": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<SceneryEventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12442,7 +12442,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<NullableIO<SceneryEventIO>>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.incrementButton.visibleProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12455,7 +12455,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.opacityProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12468,7 +12468,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.pickableProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12481,7 +12481,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.valueNode.visibleProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12494,7 +12494,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.pHMeterNode.visibleProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12507,7 +12507,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.pickableProperty": {
+    "phScale.mySolutionScreen.view.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12520,7 +12520,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.ratioNode": {
+    "phScale.mySolutionScreen.view.ratioNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12533,7 +12533,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.ratioNode.opacityProperty": {
+    "phScale.mySolutionScreen.view.ratioNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12546,7 +12546,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.ratioNode.pickableProperty": {
+    "phScale.mySolutionScreen.view.ratioNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12559,7 +12559,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.ratioNode.ratioProperty": {
+    "phScale.mySolutionScreen.view.ratioNode.ratioProperty": {
       "phetioDocumentation": "the H<sub>3</sub>O<sup>+</sup>/OH<sup>-</sup> ratio of the solution in the beaker, null if the beaker is empty",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12572,7 +12572,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NullableIO<NumberIO>>"
     },
-    "phScale.mySolutionsScreen.view.ratioNode.ratioVisibleProperty": {
+    "phScale.mySolutionScreen.view.ratioNode.ratioVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12585,7 +12585,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "LinkedElementIO"
     },
-    "phScale.mySolutionsScreen.view.ratioNode.visibleProperty": {
+    "phScale.mySolutionScreen.view.ratioNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12598,7 +12598,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.resetAllButton": {
+    "phScale.mySolutionScreen.view.resetAllButton": {
       "phetioDocumentation": "The orange, round button that can be used to restore the initial state",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12611,7 +12611,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ResetAllButtonIO"
     },
-    "phScale.mySolutionsScreen.view.resetAllButton.enabledProperty": {
+    "phScale.mySolutionScreen.view.resetAllButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12624,7 +12624,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.resetAllButton.firedEmitter": {
+    "phScale.mySolutionScreen.view.resetAllButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired No arguments.",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12637,7 +12637,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "EmitterIO<>"
     },
-    "phScale.mySolutionsScreen.view.resetAllButton.isFiringProperty": {
+    "phScale.mySolutionScreen.view.resetAllButton.isFiringProperty": {
       "phetioDocumentation": "Temporarily becomes true while the Reset All button is firing.  Commonly used to disable audio effects during reset.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12650,7 +12650,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.resetAllButton.opacityProperty": {
+    "phScale.mySolutionScreen.view.resetAllButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12663,7 +12663,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.resetAllButton.pickableProperty": {
+    "phScale.mySolutionScreen.view.resetAllButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12676,7 +12676,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.resetAllButton.pressListener.pressAction": {
+    "phScale.mySolutionScreen.view.resetAllButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12689,7 +12689,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<SceneryEventIO>"
     },
-    "phScale.mySolutionsScreen.view.resetAllButton.pressListener.releaseAction": {
+    "phScale.mySolutionScreen.view.resetAllButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<SceneryEventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12702,7 +12702,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<NullableIO<SceneryEventIO>>"
     },
-    "phScale.mySolutionsScreen.view.resetAllButton.visibleProperty": {
+    "phScale.mySolutionScreen.view.resetAllButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12715,7 +12715,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.viewProperties.moleculeCountVisibleProperty": {
+    "phScale.mySolutionScreen.view.viewProperties.moleculeCountVisibleProperty": {
       "phetioDocumentation": "controls visibility of the Molecule Count view",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12728,7 +12728,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.viewProperties.ratioVisibleProperty": {
+    "phScale.mySolutionScreen.view.viewProperties.ratioVisibleProperty": {
       "phetioDocumentation": "controls visibility of the H3O+/OH- Ratio view",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12741,7 +12741,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.visibleProperty": {
+    "phScale.mySolutionScreen.view.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12754,7 +12754,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionsScreen.view.volumeIndicatorNode": {
+    "phScale.mySolutionScreen.view.volumeIndicatorNode": {
       "phetioDocumentation": "indicates the volume of the solution in the beaker",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12767,7 +12767,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionsScreen.view.volumeIndicatorNode.opacityProperty": {
+    "phScale.mySolutionScreen.view.volumeIndicatorNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12780,7 +12780,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionsScreen.view.volumeIndicatorNode.pickableProperty": {
+    "phScale.mySolutionScreen.view.volumeIndicatorNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12793,7 +12793,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionsScreen.view.volumeIndicatorNode.visibleProperty": {
+    "phScale.mySolutionScreen.view.volumeIndicatorNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",

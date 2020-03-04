@@ -136,9 +136,14 @@ class Solution extends PhetioObject {
     // solute
     this.soluteProperty.link( () => {
 
-      // reset to volumes that were specified in the constructor
-      this.waterVolumeProperty.set( waterVolume );
-      this.soluteVolumeProperty.set( soluteVolume );
+      // This is short-circuited while PhET-iO state is being restored. Otherwise the restored state would be changed.
+      // See https://github.com/phetsims/ph-scale/issues/132
+      if ( !phet.joist.sim.isSettingPhetioStateProperty.value ) {
+
+        // reset to volumes that were specified in the constructor
+        this.waterVolumeProperty.set( waterVolume );
+        this.soluteVolumeProperty.set( soluteVolume );
+      }
     } );
   }
 

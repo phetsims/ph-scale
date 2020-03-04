@@ -168,7 +168,10 @@ class MacroModel {
    * @private
    */
   startAutoFill() {
-    if ( this.autoFillEnabledProperty.value && this.autoFillVolume > 0 ) {
+
+    // This is short-circuited while PhET-iO state is being restored. Otherwise autoFill would activate and change
+    // the restored state. See https://github.com/phetsims/ph-scale/issues/132
+    if ( this.autoFillEnabledProperty.value && this.autoFillVolume > 0 && !phet.joist.sim.isSettingPhetioStateProperty.value ) {
       this.isAutoFillingProperty.value = true;
       this.dropper.dispensingProperty.set( true );
       this.dropper.flowRateProperty.set( 0.75 ); // faster than standard flow rate

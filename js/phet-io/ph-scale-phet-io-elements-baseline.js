@@ -12221,7 +12221,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12234,7 +12234,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.decrementButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12247,7 +12247,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton.enabledProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.decrementButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12260,7 +12260,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton.firedEmitter": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.decrementButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired No arguments.",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12273,7 +12273,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "EmitterIO<>"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton.opacityProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.decrementButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12286,7 +12286,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton.pickableProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.decrementButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12299,7 +12299,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton.pressListener.pressAction": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.decrementButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12312,7 +12312,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<SceneryEventIO>"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton.pressListener.releaseAction": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.decrementButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<SceneryEventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12325,7 +12325,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<NullableIO<SceneryEventIO>>"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.decrementButton.visibleProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.decrementButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12338,7 +12338,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.incrementButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12351,7 +12351,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton.enabledProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.incrementButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12364,7 +12364,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton.firedEmitter": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.incrementButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired No arguments.",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12377,7 +12377,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "EmitterIO<>"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton.opacityProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.incrementButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12390,7 +12390,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton.pickableProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.incrementButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12403,7 +12403,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton.pressListener.pressAction": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.incrementButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12416,7 +12416,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<SceneryEventIO>"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton.pressListener.releaseAction": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.incrementButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<SceneryEventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
@@ -12429,7 +12429,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO<NullableIO<SceneryEventIO>>"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.incrementButton.visibleProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.incrementButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12442,7 +12442,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.opacityProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12455,7 +12455,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.pickableProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -12468,7 +12468,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
-    "phScale.mySolutionScreen.view.pHMeterNode.valueNode.visibleProperty": {
+    "phScale.mySolutionScreen.view.pHMeterNode.spinner.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",

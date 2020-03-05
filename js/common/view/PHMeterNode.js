@@ -78,7 +78,7 @@ class PHMeterNode extends AccordionBox {
 
       // the meter is interactive, the pH value can be changed with a spinner
       contentNode = new PHSpinnerNode( solution, {
-        tandem: options.tandem.createTandem( 'valueNode' )
+        tandem: options.tandem.createTandem( 'spinner' )
       } );
     }
     else {

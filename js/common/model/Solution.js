@@ -170,12 +170,6 @@ class Solution extends PhetioObject {
   // Volume (Liters)
   //----------------------------------------------------------------------------
 
-  // @private
-  isEmpty() { return this.computeVolume() === 0; }
-
-  // @private
-  isFull() { return this.computeVolume() === this.maxVolume; }
-
   // @private Returns the amount of volume that is available to fill.
   getFreeVolume() { return this.maxVolume - this.computeVolume(); }
 
@@ -271,7 +265,7 @@ class Solution extends PhetioObject {
 
   // @public
   getConcentrationH2O() {
-    return ( this.isEmpty() ? 0 : PHScaleConstants.WATER_CONCENTRATION );
+    return ( ( this.volumeProperty.value === 0 ) ? 0 : PHScaleConstants.WATER_CONCENTRATION );
   }
 
   //----------------------------------------------------------------------------

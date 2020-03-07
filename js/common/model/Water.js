@@ -15,6 +15,7 @@ const choiceWaterString = phScaleStrings.choice.water;
 const Water = Object.freeze( {
   name: choiceWaterString,
   pH: 7,
+  concentration: 55, // mol/L
   color: PHScaleColors.WATER
 } );
 

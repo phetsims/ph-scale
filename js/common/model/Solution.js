@@ -156,16 +156,6 @@ class Solution extends PhetioObject {
     this.waterVolumeProperty.reset();
   }
 
-  /**
-   * True if the value displayed by the pH meter has precision that makes it equivalent to the pH of water.
-   * Eg, the value displayed to the user is '7.00'.
-   * @public
-   */
-  isEquivalentToWater() {
-    const pHString = Utils.toFixed( this.computePH(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
-    return ( parseFloat( pHString ) === Water.pH ) && ( this.waterVolumeProperty.get() > 0 );
-  }
-
   //----------------------------------------------------------------------------
   // Volume (Liters)
   //----------------------------------------------------------------------------
@@ -232,6 +222,15 @@ class Solution extends PhetioObject {
   //----------------------------------------------------------------------------
 
   /**
+   * True if the value displayed by the pH meter has precision that makes it equivalent to the pH of water.
+   * Eg, the value displayed to the user is '7.00'.
+   * @private
+   */
+  isEquivalentToWater() {
+    return Utils.toFixedNumber( this.computePH(), PHScaleConstants.PH_METER_DECIMAL_PLACES ) === Water.pH;
+  }
+
+  /**
    * Computes total volume for this solution.
    * @returns {number} liters
    * @private Used in internal computations to prevent incorrect intermediate values, see issue #40
@@ -265,7 +264,7 @@ class Solution extends PhetioObject {
 
   // @public
   getConcentrationH2O() {
-    return ( ( this.volumeProperty.value === 0 ) ? 0 : PHScaleConstants.WATER_CONCENTRATION );
+    return ( ( this.volumeProperty.value === 0 ) ? 0 : Water.concentration );
   }
 
   //----------------------------------------------------------------------------

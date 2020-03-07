@@ -44,7 +44,6 @@ class MySolutionModel {
    * @public
    */
   reset() {
-    this.beaker.reset();
     this.solution.reset();
   }
 }

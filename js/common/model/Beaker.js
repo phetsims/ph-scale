@@ -33,13 +33,6 @@ class Beaker {
     this.right = position.x + ( size.width / 2 );
     this.bounds = new Bounds2( this.left, position.y - size.height, this.right, position.y );
   }
-
-  /**
-   * @public
-   */
-  reset() {
-    /* currently nothing to reset */
-  }
 }
 
 phScale.register( 'Beaker', Beaker );

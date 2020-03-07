@@ -127,7 +127,6 @@ class MacroModel {
    * @public
    */
   reset() {
-    this.beaker.reset();
     this.dropper.reset();
     this.solution.reset();
     this.waterFaucet.reset();

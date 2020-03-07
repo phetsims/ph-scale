@@ -271,7 +271,7 @@ class Solution extends PhetioObject {
 
   // @public
   getConcentrationH2O() {
-    return ( this.isEmpty() ? 0 : 55 );
+    return ( this.isEmpty() ? 0 : PHScaleConstants.WATER_CONCENTRATION );
   }
 
   //----------------------------------------------------------------------------

@@ -33,6 +33,9 @@ const PHScaleConstants = {
   PH_METER_DECIMAL_PLACES: 2,
   PH_COMBO_BOX_DECIMAL_PLACES: 1,
 
+  // water
+  WATER_CONCENTRATION: 55, // mol/L
+
   // volume
   VOLUME_DECIMAL_PLACES: 2,
   MIN_SOLUTION_VOLUME: 0.015,  // L, minimum non-zero volume for solution, so it's visible and measurable

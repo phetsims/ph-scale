@@ -7,8 +7,10 @@
  */
 
 import Bounds2 from '../../../dot/js/Bounds2.js';
+import Dimension2 from '../../../dot/js/Dimension2.js';
 import Range from '../../../dot/js/Range.js';
 import RangeWithValue from '../../../dot/js/RangeWithValue.js';
+import Vector2 from '../../../dot/js/Vector2.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import phScale from '../phScale.js';
 
@@ -27,6 +29,11 @@ const PHScaleConstants = {
                       'Benjamin Roberts, Ethan Ward, Kathryn Woessner, Bryan Yoelin',
     thanks: 'Conversion of this simulation to HTML5 was funded in part by the Royal Society of Chemistry.'
   },
+
+  // beaker
+  BEAKER_VOLUME: 1.2, // L
+  BEAKER_POSITION: new Vector2( 750, 580 ),
+  BEAKER_SIZE: new Dimension2( 450, 300 ),
 
   // pH
   PH_RANGE: new RangeWithValue( -1, 15, 7 ),

@@ -33,12 +33,11 @@ import GraphUnits from './GraphUnits.js';
 class LogarithmicGraphNode extends Node {
 
   /**
-   * @param {Solution} solution
    * @param {Graph} graph
    * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
    * @param {Object} [options]
    */
-  constructor( solution, graph, graphUnitsProperty, options ) {
+  constructor( graph, graphUnitsProperty, options ) {
 
     options = merge( {
       isInteractive: false,
@@ -228,14 +227,14 @@ class LogarithmicGraphNode extends Node {
 
       // H3O+ indicator
       indicatorH3ONode.addInputListener(
-        new GraphIndicatorDragHandler( solution, graphUnitsProperty, yToValue,
+        new GraphIndicatorDragHandler( graph.pHProperty, graph.volumeProperty, graphUnitsProperty, yToValue,
           PHModel.concentrationH3OToPH, PHModel.molesH3OToPH,
           indicatorH3ONode.tandem.createTandem( 'dragHandler' )
         ) );
 
       // OH- indicator
       indicatorOHNode.addInputListener(
-        new GraphIndicatorDragHandler( solution, graphUnitsProperty, yToValue,
+        new GraphIndicatorDragHandler( graph.pHProperty, graph.volumeProperty, graphUnitsProperty, yToValue,
           PHModel.concentrationOHToPH, PHModel.molesOHToPH,
           indicatorOHNode.tandem.createTandem( 'dragHandler' )
         ) );

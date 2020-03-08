@@ -37,12 +37,11 @@ const MANTISSA_RANGE = PHScaleConstants.LINEAR_MANTISSA_RANGE;
 class LinearGraphNode extends Node {
 
   /**
-   * @param {Solution} solution
    * @param {Graph} graph
    * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
    * @param {Object} [options]
    */
-  constructor( solution, graph, graphUnitsProperty, options ) {
+  constructor( graph, graphUnitsProperty, options ) {
 
     options = merge( {
 

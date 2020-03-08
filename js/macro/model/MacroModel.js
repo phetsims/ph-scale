@@ -8,7 +8,6 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
-import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -52,8 +51,8 @@ class MacroModel {
       SoluteInstances.WATER
     ];
 
-    // @public Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
-    this.beaker = new Beaker( new Vector2( 750, 580 ), new Dimension2( 450, 300 ) );
+    // @public Beaker, everything else is positioned relative to it
+    this.beaker = new Beaker( PHScaleConstants.BEAKER_POSITION );
 
     // Dropper above the beaker
     const yDropper = this.beaker.position.y - this.beaker.size.height - 15;
@@ -65,7 +64,8 @@ class MacroModel {
       } );
 
     // @public Solution in the beaker
-    this.solution = new Solution( this.dropper.soluteProperty, 0, 0, this.beaker.volume, {
+    this.solution = new Solution( this.dropper.soluteProperty, {
+      maxVolume: this.beaker.volume,
       tandem: tandem.createTandem( 'solution' )
     } );
 

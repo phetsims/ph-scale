@@ -28,26 +28,23 @@ class Solution extends PhetioObject {
 
   /**
    * @param {Property.<Solute>} soluteProperty
-   * @param {number} soluteVolume liters
-   * @param {number} waterVolume liters
-   * @param {number} maxVolume liters
    * @param {Object} [options]
    */
-  constructor( soluteProperty, soluteVolume, waterVolume, maxVolume, options ) {
-    assert && assert( soluteVolume + waterVolume <= maxVolume );
+  constructor( soluteProperty, options ) {
 
     options = merge( {
 
-      // If solute is not relevant, then some Properties will not be PhET-iO instrumented.
-      // This is the case in the My Solution screen, where we are changing the pH of a magic solution.
-      // See https://github.com/phetsims/ph-scale/issues/109
-      hasSolute: true,
+      soluteVolume: 0, // initial volume of solute, in L
+      waterVolume: 0, // initial volume of water, in L
+      maxVolume: 1, // maximum total volume (solute + water), in L
 
       // phet-io
-      tandem: Tandem.REQUIRED,
+      tandem: Tandem.OPTIONAL, //TODO #119 make this Tandem.REQUIRED
       phetioState: false,
       phetioDocumentation: 'solution in the beaker'
     }, options );
+
+    assert && assert( options.soluteVolume + options.waterVolume <= options.maxVolume );
 
     super( options );
 
@@ -56,30 +53,28 @@ class Solution extends PhetioObject {
 
     // Create a PhET-iO linked element that points to where soluteProperty lives (in Dropper).
     // This makes it easier to find soluteProperty in the Studio tree.
-    if ( options.hasSolute ) {
-      this.addLinkedElement( this.soluteProperty, {
-        tandem: options.tandem.createTandem( 'soluteProperty' )
-      } );
-    }
+    this.addLinkedElement( this.soluteProperty, {
+      tandem: options.tandem.createTandem( 'soluteProperty' )
+    } );
 
     // @public
-    this.soluteVolumeProperty = new NumberProperty( soluteVolume, {
+    this.soluteVolumeProperty = new NumberProperty( options.soluteVolume, {
       units: 'L',
-      tandem: options.hasSolute ? options.tandem.createTandem( 'soluteVolumeProperty' ) : Tandem.OPTIONAL,
+      tandem: options.tandem.createTandem( 'soluteVolumeProperty' ),
       phetioReadOnly: true,
       phetioDocumentation: 'volume of solute in the solution'
     } );
 
     // @public
-    this.waterVolumeProperty = new NumberProperty( waterVolume, {
+    this.waterVolumeProperty = new NumberProperty( options.waterVolume, {
       units: 'L',
-      tandem: options.hasSolute ? options.tandem.createTandem( 'waterVolumeProperty' ) : Tandem.OPTIONAL,
+      tandem: options.tandem.createTandem( 'waterVolumeProperty' ),
       phetioReadOnly: true,
       phetioDocumentation: 'volume of water in the solution'
     } );
 
     // @public (read-only)
-    this.maxVolume = maxVolume;
+    this.maxVolume = options.maxVolume;
 
     /*
      * @public
@@ -91,7 +86,8 @@ class Solution extends PhetioObject {
     this.ignoreVolumeUpdate = false;
 
     // @public volume
-    this.volumeProperty = new DerivedProperty( [ this.soluteVolumeProperty, this.waterVolumeProperty ],
+    this.volumeProperty = new DerivedProperty(
+      [ this.soluteVolumeProperty, this.waterVolumeProperty ],
       () => ( this.ignoreVolumeUpdate ) ? this.volumeProperty.get() : this.computeVolume(), {
         units: 'L',
         tandem: options.tandem.createTandem( 'volumeProperty' ),
@@ -100,7 +96,8 @@ class Solution extends PhetioObject {
       } );
 
     // @public pH, null if no value
-    this.pHProperty = new DerivedProperty( [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
+    this.pHProperty = new DerivedProperty(
+      [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
       () => {
         if ( this.ignoreVolumeUpdate ) {
           return this.pHProperty.get();
@@ -133,16 +130,13 @@ class Solution extends PhetioObject {
         }
       } );
 
-    // solute
+    // When the solute changes, reset to initial volumes.
+    // This is short-circuited while PhET-iO state is being restored. Otherwise the restored state would be changed.
+    // See https://github.com/phetsims/ph-scale/issues/132
     this.soluteProperty.link( () => {
-
-      // This is short-circuited while PhET-iO state is being restored. Otherwise the restored state would be changed.
-      // See https://github.com/phetsims/ph-scale/issues/132
       if ( !phet.joist.sim.isSettingPhetioStateProperty.value ) {
-
-        // reset to volumes that were specified in the constructor
-        this.waterVolumeProperty.set( waterVolume );
-        this.soluteVolumeProperty.set( soluteVolume );
+        this.waterVolumeProperty.reset();
+        this.soluteVolumeProperty.reset();
       }
     } );
   }
@@ -161,7 +155,9 @@ class Solution extends PhetioObject {
   //----------------------------------------------------------------------------
 
   // @private Returns the amount of volume that is available to fill.
-  getFreeVolume() { return this.maxVolume - this.computeVolume(); }
+  getFreeVolume() {
+    return this.maxVolume - this.computeVolume();
+  }
 
   // @public Convenience function for adding solute
   addSolute( deltaVolume ) {
@@ -249,60 +245,22 @@ class Solution extends PhetioObject {
   }
 
   //----------------------------------------------------------------------------
-  // Concentration (moles/L)
-  //----------------------------------------------------------------------------
-
-  // @public
-  getConcentrationH3O() {
-    return PHModel.pHToConcentrationH3O( this.computePH() );
-  }
-
-  // @public
-  getConcentrationOH() {
-    return PHModel.pHToConcentrationOH( this.computePH() );
-  }
-
-  // @public
-  getConcentrationH2O() {
-    return ( ( this.volumeProperty.value === 0 ) ? 0 : Water.concentration );
-  }
-
-  //----------------------------------------------------------------------------
   // Number of molecules
   //----------------------------------------------------------------------------
 
   // @public
   getMoleculesH3O() {
-    return PHModel.computeMolecules( this.getConcentrationH3O(), this.computeVolume() );
+    return PHModel.computeMolecules( PHModel.pHToConcentrationH3O( this.computePH() ), this.computeVolume() );
   }
 
   // @public
   getMoleculesOH() {
-    return PHModel.computeMolecules( this.getConcentrationOH(), this.computeVolume() );
+    return PHModel.computeMolecules( PHModel.pHToConcentrationOH( this.computePH() ), this.computeVolume() );
   }
 
   // @public
   getMoleculesH2O() {
-    return PHModel.computeMolecules( this.getConcentrationH2O(), this.computeVolume() );
-  }
-
-  //----------------------------------------------------------------------------
-  // Number of moles
-  //----------------------------------------------------------------------------
-
-  // @public
-  getMolesH3O() {
-    return PHModel.computeMoles( this.getConcentrationH3O(), this.computeVolume() );
-  }
-
-  // @public
-  getMolesOH() {
-    return PHModel.computeMoles( this.getConcentrationOH(), this.computeVolume() );
-  }
-
-  // @public
-  getMolesH2O() {
-    return PHModel.computeMoles( this.getConcentrationH2O(), this.computeVolume() );
+    return PHModel.computeMolecules( PHModel.volumeToConcentrationH20( this.volumeProperty.value ), this.computeVolume() );
   }
 }
 

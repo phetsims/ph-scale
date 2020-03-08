@@ -9,29 +9,30 @@
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import merge from '../../../../phet-core/js/merge.js';
 import phScale from '../../phScale.js';
+import PHScaleConstants from '../PHScaleConstants.js';
 
 class Beaker {
 
   /**
-   * @param {Vector2} position bottom center
-   * @param {Dimension2} size
+   * @param {Vector2} position
    * @param {Object} [options]
    */
-  constructor( position, size, options ) {
+  constructor( position, options ) {
 
     options = merge( {
-      volume: 1.2 // L
+      volume: PHScaleConstants.BEAKER_VOLUME, // L
+      size: PHScaleConstants.BEAKER_SIZE
     }, options );
 
-    // @Public
+    // @public (read-only)
     this.position = position;
-    this.size = size;
+    this.size = options.size;
     this.volume = options.volume;
 
-    // @public convenience properties
-    this.left = position.x - ( size.width / 2 );
-    this.right = position.x + ( size.width / 2 );
-    this.bounds = new Bounds2( this.left, position.y - size.height, this.right, position.y );
+    // @public (read-only) convenience properties
+    this.left = this.position.x - ( this.size.width / 2 );
+    this.right = this.position.x + ( this.size.width / 2 );
+    this.bounds = new Bounds2( this.left, this.position.y - this.size.height, this.right, this.position.y );
   }
 }
 

@@ -10479,8 +10479,8 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
-    "phScale.mySolutionScreen.model.solution": {
-      "phetioDocumentation": "solution in the beaker",
+    "phScale.mySolutionScreen.model.solution.pHProperty": {
+      "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -10488,35 +10488,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioIsArchetype": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
-      "phetioState": false,
-      "phetioStudioControl": true,
-      "phetioTypeName": "ObjectIO"
-    },
-    "phScale.mySolutionScreen.model.solution.pHProperty": {
-      "phetioDocumentation": "the pH of the solution",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "DerivedPropertyIO<NullableIO<NumberIO>>"
-    },
-    "phScale.mySolutionScreen.model.solution.volumeProperty": {
-      "phetioDocumentation": "total volume of the solution",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "DerivedPropertyIO<NumberIO>"
+      "phetioTypeName": "NumberPropertyIO"
     },
     "phScale.mySolutionScreen.view": {
       "phetioDocumentation": "",

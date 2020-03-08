@@ -10,7 +10,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Shape from '../../../../kite/js/Shape.js';
 import merge from '../../../../phet-core/js/merge.js';
@@ -25,7 +24,6 @@ import NumberSpinner from '../../../../sun/js/NumberSpinner.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import phScaleStrings from '../../ph-scale-strings.js';
 import phScale from '../../phScale.js';
-import Solute from '../model/Solute.js';
 import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 
@@ -38,11 +36,11 @@ const CORNER_RADIUS = 12;
 class PHMeterNode extends AccordionBox {
 
   /**
-   * @param {Solution} solution
+   * @param {Property.<number>} pHProperty - pH of the solution
    * @param {number} probeYOffset distance from top of meter to tip of probe, in view coordinate frame
    * @param {Object} [options]
    */
-  constructor( solution, probeYOffset, options ) {
+  constructor( pHProperty, probeYOffset, options ) {
 
     options = merge( {
       isInteractive: false, // {boolean} true: pH can be changed, false: pH is read-only
@@ -77,14 +75,14 @@ class PHMeterNode extends AccordionBox {
     if ( options.isInteractive ) {
 
       // the meter is interactive, the pH value can be changed with a spinner
-      contentNode = new PHSpinnerNode( solution, {
+      contentNode = new PHSpinnerNode( pHProperty, {
         tandem: options.tandem.createTandem( 'spinner' )
       } );
     }
     else {
 
       // the meter is not interactive, just display the pH value
-      contentNode = new NumberDisplay( solution.pHProperty, PHScaleConstants.PH_RANGE, {
+      contentNode = new NumberDisplay( pHProperty, PHScaleConstants.PH_RANGE, {
         decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
         cornerRadius: CORNER_RADIUS,
         font: new PhetFont( 28 ),
@@ -127,10 +125,10 @@ phScale.register( 'PHMeterNode', PHMeterNode );
 class PHSpinnerNode extends NumberSpinner {
 
   /**
-   * @param {Solution} solution
+   * @param {Property.<number>} pHProperty
    * @param {Object} [options]
    */
-  constructor( solution, options ) {
+  constructor( pHProperty, options ) {
 
     options = merge( {
 
@@ -152,26 +150,7 @@ class PHSpinnerNode extends NumberSpinner {
       tandem: Tandem.REQUIRED
     }, options );
 
-    /**
-     * solution.pHProperty is a DerivedProperty, so we can't change it directly. Associate this adapter Property
-     * with the spinner.  When it's changed by the spinner, create a new custom solute with the desired pH, and
-     * put it in the solution.
-     */
-    const spinnerProperty = new NumberProperty( solution.pHProperty.get(), {
-      reentrant: true
-      // DO NOT INSTRUMENT for PhET-IO, it will result in intermediate values in the data stream.
-      // See https://github.com/phetsims/ph-scale/issues/72
-    } );
-    spinnerProperty.link( pH => {
-      if ( pH !== solution.pHProperty.get() ) {
-        solution.soluteProperty.set( Solute.createCustom( pH ) );
-      }
-    } );
-    solution.pHProperty.link( pH => {
-      spinnerProperty.set( pH );
-    } );
-
-    super( spinnerProperty, new Property( PHScaleConstants.PH_RANGE ), options );
+    super( pHProperty, new Property( PHScaleConstants.PH_RANGE ), options );
   }
 }
 

@@ -110,7 +110,7 @@ class MicroScreenView extends ScreenView {
       } );
 
     // graph
-    const graphNode = new GraphNode( model.solution, model.graph, {
+    const graphNode = new GraphNode( model.graph, {
       hasLinearFeature: true,
       logScaleHeight: 485,
       linearScaleHeight: 440,
@@ -119,7 +119,7 @@ class MicroScreenView extends ScreenView {
 
     // pH meter
     const pHMeterTop = 15;
-    const pHMeterNode = new PHMeterNode( model.solution,
+    const pHMeterNode = new PHMeterNode( model.solution.pHProperty,
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
         tandem: tandem.createTandem( 'pHMeterNode' )
       } );

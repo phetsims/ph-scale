@@ -25,7 +25,7 @@ class MicroModel extends MacroModel {
     super( tandem );
 
     // @public
-    this.graph = new Graph( this.solution, {
+    this.graph = new Graph( this.solution.pHProperty, this.solution.volumeProperty, {
       tandem: tandem.createTandem( 'graph' )
     } );
 

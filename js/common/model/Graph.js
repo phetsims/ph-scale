@@ -14,74 +14,85 @@ import PhetioObject from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import phScale from '../../phScale.js';
+import PHModel from './PHModel.js';
+import Water from './Water.js';
 
 class Graph extends PhetioObject {
 
   /**
-   * @param {Solution} solution
+   * @param {Property.<number>} pHProperty - pH of the solution
+   * @param {Property.<number>} volumeProperty - volume of the solution
    * @param {Object} [options]
    */
-  constructor( solution, options ) {
+  constructor( pHProperty, volumeProperty, options ) {
 
     super( merge( {
       tandem: Tandem.REQUIRED,
       phetioState: false
     }, options ) );
 
+    // @public
+    this.pHProperty = pHProperty;
+    this.volumeProperty = volumeProperty;
+
+    // Concentration (mol/L) ------------------------------------------------
+
     // The concentration (mol/L) of H2O in the solution
     this.concentrationH2OProperty = new DerivedProperty(
-      [ solution.pHProperty, solution.volumeProperty ],
-      ( pH, volume ) => solution.getConcentrationH2O(), {
+      [ volumeProperty ],
+      volume => PHModel.volumeToConcentrationH20( volume ), {
         tandem: options.tandem.createTandem( 'concentrationH2OProperty' ),
         phetioType: DerivedPropertyIO( NumberIO ),
         units: 'mol/L',
         phetioDocumentation: 'H<sub>2</sub>O concentration'
       } );
 
-    // The quantity (mol) of H2O in the solution
-    this.quantityH2OProperty = new DerivedProperty(
-      [ solution.pHProperty, solution.volumeProperty ],
-      ( pH, volume ) => solution.getMolesH2O(), {
-        tandem: options.tandem.createTandem( 'quantityH2OProperty' ),
-        phetioType: DerivedPropertyIO( NumberIO ),
-        units: 'mol',
-        phetioDocumentation: 'H<sub>2</sub>O quantity'
-      } );
-
     // The concentration (mol/L) of H3O+ in the solution
     this.concentrationH3OProperty = new DerivedProperty(
-      [ solution.pHProperty, solution.volumeProperty ],
-      ( pH, volume ) => solution.getConcentrationH3O(), {
+      [ pHProperty ],
+      pH => PHModel.pHToConcentrationH3O( pH ), {
         tandem: options.tandem.createTandem( 'concentrationH3OProperty' ),
         phetioType: DerivedPropertyIO( NumberIO ),
         units: 'mol/L',
         phetioDocumentation: 'H<sub>3</sub>O<sup>+</sup> concentration'
       } );
 
-    // The quantity (mol) of H3O+ in the solution
-    this.quantityH3OProperty = new DerivedProperty(
-      [ solution.pHProperty, solution.volumeProperty ],
-      ( pH, volume ) => solution.getMolesH3O(), {
-        tandem: options.tandem.createTandem( 'quantityH3OProperty' ),
-        phetioType: DerivedPropertyIO( NumberIO ),
-        units: 'mol',
-        phetioDocumentation: 'H<sub>3</sub>O<sup>+</sup> quantity'
-      } );
-
     // The concentration (mol/L) of OH- in the solution
     this.concentrationOHProperty = new DerivedProperty(
-      [ solution.pHProperty, solution.volumeProperty ],
-      ( pH, volume ) => solution.getConcentrationOH(), {
+      [ pHProperty ],
+      pH => PHModel.pHToConcentrationOH( pH ), {
         tandem: options.tandem.createTandem( 'concentrationOHProperty' ),
         phetioType: DerivedPropertyIO( NumberIO ),
         units: 'mol/L',
         phetioDocumentation: 'OH<sup>-</sup> concentration'
       } );
 
+    // Quantity (mol) ------------------------------------------------
+
+    // The quantity (mol) of H2O in the solution
+    this.quantityH2OProperty = new DerivedProperty(
+      [ this.concentrationH2OProperty, volumeProperty ],
+      ( concentrationH2O, volume ) => concentrationH2O * volume, {
+        tandem: options.tandem.createTandem( 'quantityH2OProperty' ),
+        phetioType: DerivedPropertyIO( NumberIO ),
+        units: 'mol',
+        phetioDocumentation: 'H<sub>2</sub>O quantity'
+      } );
+
+    // The quantity (mol) of H3O+ in the solution
+    this.quantityH3OProperty = new DerivedProperty(
+      [ this.concentrationH3OProperty, volumeProperty ],
+      ( concentrationH3O, volume ) => concentrationH3O * volume, {
+        tandem: options.tandem.createTandem( 'quantityH3OProperty' ),
+        phetioType: DerivedPropertyIO( NumberIO ),
+        units: 'mol',
+        phetioDocumentation: 'H<sub>3</sub>O<sup>+</sup> quantity'
+      } );
+
     // The quantity (mol) of OH- in the solution
     this.quantityOHProperty = new DerivedProperty(
-      [ solution.pHProperty, solution.volumeProperty ],
-      ( pH, volume ) => solution.getMolesOH(), {
+      [ this.concentrationOHProperty, volumeProperty ],
+      ( concentrationOH, volume ) => concentrationOH * volume, {
         tandem: options.tandem.createTandem( 'quantityOHProperty' ),
         phetioType: DerivedPropertyIO( NumberIO ),
         units: 'mol',

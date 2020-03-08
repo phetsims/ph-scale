@@ -88,6 +88,17 @@ const PHModel = {
   },
 
   /**
+   * Computes concentration of H20 from volume.
+   *
+   * @param {number} volume
+   * @returns {number} concentration in moles/L
+   * @public
+   */
+  volumeToConcentrationH20( volume ) {
+    return ( volume === 0 ) ? 0 : Water.concentration;
+  },
+
+  /**
    * Computes concentration of H3O+ from pH.
    *
    * @param {number} pH null mean 'no value'

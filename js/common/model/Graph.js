@@ -15,7 +15,6 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import phScale from '../../phScale.js';
 import PHModel from './PHModel.js';
-import Water from './Water.js';
 
 class Graph extends PhetioObject {
 

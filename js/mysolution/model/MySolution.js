@@ -7,7 +7,6 @@
  */
 
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import Range from '../../../../dot/js/Range.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
@@ -38,7 +37,6 @@ class MySolution {
     this.pHProperty.reset();
   }
 }
-
 
 phScale.register( 'MySolution', MySolution );
 export default MySolution;

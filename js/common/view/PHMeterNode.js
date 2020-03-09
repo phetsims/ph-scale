@@ -107,6 +107,11 @@ class PHMeterNode extends AccordionBox {
     this.expandedProperty.link( expanded => {
       probeNode.visible = expanded;
     } );
+
+    // Create a link to pHProperty, so it's easier to find in Studio.
+    this.addLinkedElement( pHProperty, {
+      tandem: options.tandem.createTandem( 'pHProperty' )
+    } );
   }
 
   /**

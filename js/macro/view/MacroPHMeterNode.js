@@ -129,6 +129,11 @@ class MacroPHMeterNode extends Node {
     dropperFluidNode.on( 'bounds', updateValue );
     waterFluidNode.on( 'bounds', updateValue );
     drainFluidNode.on( 'bounds', updateValue );
+
+    // Create a link to pHProperty, so it's easier to find in Studio.
+    this.addLinkedElement( solution.pHProperty, {
+      tandem: options.tandem.createTandem( 'pHProperty' )
+    } );
   }
 }
 
@@ -439,11 +444,6 @@ class PHIndicatorNode extends Node {
 
       // Highlight the indicator when pH === 7
       highlight.visible = ( pH === 7 );
-    } );
-
-    // Link to pHProperty, so it's easier to find in Studio.
-    this.addLinkedElement( pHProperty, {
-      tandem: options.tandem.createTandem( 'pHProperty' )
     } );
   }
 }

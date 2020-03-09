@@ -47,7 +47,7 @@ class MySolution extends PhetioObject {
       isValidValue: volume => ( volume > 0 && volume <= options.maxVolume ),
       units: 'L',
       tandem: options.tandem.createTandem( 'totalVolumeProperty' ),
-      phetioReadOnly: true,
+      phetioStudioControl: false,
       phetioDocumentation: 'total volume of the solution'
     } );
 

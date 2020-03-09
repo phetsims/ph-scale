@@ -65,7 +65,7 @@ class Solution extends PhetioObject {
     this.soluteVolumeProperty = new NumberProperty( options.soluteVolume, {
       units: 'L',
       tandem: options.tandem.createTandem( 'soluteVolumeProperty' ),
-      phetioReadOnly: true,
+      phetioStudioControl: false,
       phetioDocumentation: 'volume of solute in the solution'
     } );
 
@@ -73,7 +73,7 @@ class Solution extends PhetioObject {
     this.waterVolumeProperty = new NumberProperty( options.waterVolume, {
       units: 'L',
       tandem: options.tandem.createTandem( 'waterVolumeProperty' ),
-      phetioReadOnly: true,
+      phetioStudioControl: false,
       phetioDocumentation: 'volume of water in the solution'
     } );
 

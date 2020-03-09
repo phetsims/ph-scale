@@ -3324,9 +3324,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
-      "phetioReadOnly": true,
+      "phetioReadOnly": false,
       "phetioState": true,
-      "phetioStudioControl": true,
+      "phetioStudioControl": false,
       "phetioTypeName": "NumberPropertyIO"
     },
     "phScale.macroScreen.model.solution.totalVolumeProperty": {
@@ -3350,9 +3350,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
-      "phetioReadOnly": true,
+      "phetioReadOnly": false,
       "phetioState": true,
-      "phetioStudioControl": true,
+      "phetioStudioControl": false,
       "phetioTypeName": "NumberPropertyIO"
     },
     "phScale.macroScreen.model.waterFaucet.enabledProperty": {
@@ -5963,9 +5963,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
-      "phetioReadOnly": true,
+      "phetioReadOnly": false,
       "phetioState": true,
-      "phetioStudioControl": true,
+      "phetioStudioControl": false,
       "phetioTypeName": "NumberPropertyIO"
     },
     "phScale.microScreen.model.solution.totalVolumeProperty": {
@@ -5989,9 +5989,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
-      "phetioReadOnly": true,
+      "phetioReadOnly": false,
       "phetioState": true,
-      "phetioStudioControl": true,
+      "phetioStudioControl": false,
       "phetioTypeName": "NumberPropertyIO"
     },
     "phScale.microScreen.model.waterFaucet.enabledProperty": {
@@ -10513,9 +10513,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
-      "phetioReadOnly": true,
+      "phetioReadOnly": false,
       "phetioState": true,
-      "phetioStudioControl": true,
+      "phetioStudioControl": false,
       "phetioTypeName": "NumberPropertyIO"
     },
     "phScale.mySolutionScreen.view": {

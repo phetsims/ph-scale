@@ -35,17 +35,17 @@ class PHMeter {
       tandem: Tandem.REQUIRED
     }, options );
 
-    // @public null if the meter is not reading a value
-    this.valueProperty = new Property( null, {
-      tandem: options.tandem.createTandem( 'valueProperty' ),
+    // @public value displayed by the meter, null if the meter is not reading a value
+    this.pHProperty = new Property( null, {
+      tandem: options.tandem.createTandem( 'pHProperty' ),
       phetioType: PropertyIO( NullableIO( NumberIO ) ),
       phetioReadOnly: true
     } );
 
-    // @public
+    // @public fix position of the meter's body
     this.bodyPosition = bodyPosition;
 
-    // @public
+    // @public position of the meter's movable probe
     this.probe = new Movable( probePosition, probeDragBounds, {
       tandem: options.tandem.createTandem( 'probe' )
     } );
@@ -55,7 +55,7 @@ class PHMeter {
    * @public
    */
   reset() {
-    this.valueProperty.reset();
+    this.pHProperty.reset();
     this.probe.reset();
   }
 }

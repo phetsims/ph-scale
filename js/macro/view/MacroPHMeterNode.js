@@ -81,7 +81,7 @@ class MacroPHMeterNode extends Node {
     scaleNode.translation = modelViewTransform.modelToViewPosition( meter.bodyPosition );
 
     // indicator that slides vertically along scale
-    const pHIndicatorNode = new PHIndicatorNode( meter.valueProperty, SCALE_SIZE.width, {
+    const pHIndicatorNode = new PHIndicatorNode( meter.pHProperty, SCALE_SIZE.width, {
       tandem: options.tandem.createTandem( 'pHIndicatorNode' )
     } );
     pHIndicatorNode.left = scaleNode.x;
@@ -102,25 +102,25 @@ class MacroPHMeterNode extends Node {
     this.addChild( pHIndicatorNode );
 
     // vertical position of the indicator
-    meter.valueProperty.link( value => {
-      pHIndicatorNode.centerY = scaleNode.y + Utils.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, value || 7 );
+    meter.pHProperty.link( pH => {
+      pHIndicatorNode.centerY = scaleNode.y + Utils.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, pH || 7 );
     } );
 
     const updateValue = () => {
-      let value;
+      let pH;
       if ( probeNode.isInSolution() || probeNode.isInDrainFluid() ) {
-        value = solution.pHProperty.get();
+        pH = solution.pHProperty.get();
       }
       else if ( probeNode.isInWater() ) {
-        value = Water.pH;
+        pH = Water.pH;
       }
       else if ( probeNode.isInDropperSolution() ) {
-        value = dropper.soluteProperty.get().pH;
+        pH = dropper.soluteProperty.get().pH;
       }
       else {
-        value = null;
+        pH = null;
       }
-      meter.valueProperty.set( value );
+      meter.pHProperty.set( pH );
     };
     meter.probe.positionProperty.link( updateValue );
     solution.soluteProperty.link( updateValue );
@@ -131,7 +131,7 @@ class MacroPHMeterNode extends Node {
     drainFluidNode.on( 'bounds', updateValue );
 
     // Create a link to pHProperty, so it's easier to find in Studio.
-    this.addLinkedElement( solution.pHProperty, {
+    this.addLinkedElement( meter.pHProperty, {
       tandem: options.tandem.createTandem( 'pHProperty' )
     } );
   }

@@ -18,6 +18,7 @@ import Node from '../../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../../scenery/js/nodes/Rectangle.js';
 import RichText from '../../../../../scenery/js/nodes/RichText.js';
+import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import PHScaleColors from '../../PHScaleColors.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
@@ -58,7 +59,10 @@ class GraphIndicatorNode extends Node {
       exponent: null, // use this to request a specific exponent, otherwise the exponent is computed
       isInteractive: false,
       arrowFill: 'rgb( 0, 200, 0 )',
-      arrowXSpacing: 5
+      arrowXSpacing: 5,
+
+      // phet-io
+      tandem: Tandem.REQUIRED
     }, options );
 
     super();

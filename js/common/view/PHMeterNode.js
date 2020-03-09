@@ -43,7 +43,7 @@ class PHMeterNode extends AccordionBox {
   constructor( pHProperty, probeYOffset, options ) {
 
     options = merge( {
-      isInteractive: false, // {boolean} true: pH can be changed, false: pH is read-only
+      isInteractive: false, // {boolean} true: pHProperty can be changed, false: pHProperty is read-only
 
       // AccordionBox options
       fill: PHScaleColors.PANEL_FILL,

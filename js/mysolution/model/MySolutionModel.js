@@ -10,7 +10,6 @@
 import Property from '../../../../axon/js/Property.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import Beaker from '../../common/model/Beaker.js';
-import Graph from '../../common/model/Graph.js';
 import Solute from '../../common/model/Solute.js';
 import Solution from '../../common/model/Solution.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
@@ -60,11 +59,6 @@ class MySolutionModel {
 
     this.solution.volumeProperty.lazyLink( () => {
       throw new Error( 'volume is not mutable in My Solution screen' );
-    } );
-
-    // @public
-    this.graph = new Graph( this.mutableSolution.pHProperty, this.solution.volumeProperty, {
-      tandem: tandem.createTandem( 'graph' )
     } );
   }
 

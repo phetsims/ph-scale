@@ -81,7 +81,8 @@ class MySolutionScreenView extends ScreenView {
       } );
 
     // graph
-    const graphNode = new GraphNode( model.graph, {
+    const graphNode = new GraphNode( model.solution, {
+      mutablePHProperty: model.mutableSolution.pHProperty,
       isInteractive: true,
       logScaleHeight: 565,
       tandem: tandem.createTandem( 'graphNode' )
@@ -91,7 +92,7 @@ class MySolutionScreenView extends ScreenView {
     const pHMeterTop = 15;
     const pHMeterNode = new PHMeterNode( model.mutableSolution.pHProperty,
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
-        isInteractive: true,
+        isInteractive: true, // add spinner to change pH
         tandem: tandem.createTandem( 'pHMeterNode' )
       } );
 

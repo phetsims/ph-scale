@@ -33,14 +33,14 @@ import GraphUnits from './GraphUnits.js';
 class LogarithmicGraphNode extends Node {
 
   /**
-   * @param {Graph} graph
+   * @param {Solution} solution
    * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
    * @param {Object} [options]
    */
-  constructor( graph, graphUnitsProperty, options ) {
+  constructor( solution, graphUnitsProperty, options ) {
 
     options = merge( {
-      isInteractive: false,
+      mutablePHProperty: null, // {null|Property.<number>}
 
       // scale
       scaleHeight: 100,
@@ -149,17 +149,17 @@ class LogarithmicGraphNode extends Node {
 
     // Values displayed on the indicators
     const valueH2OProperty = new DerivedProperty(
-      [ graph.concentrationH2OProperty, graph.quantityH2OProperty, graphUnitsProperty ],
+      [ solution.concentrationH2OProperty, solution.quantityH2OProperty, graphUnitsProperty ],
       ( concentration, quantity, graphUnits ) =>
         ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
     );
     const valueH3OProperty = new DerivedProperty(
-      [ graph.concentrationH3OProperty, graph.quantityH3OProperty, graphUnitsProperty ],
+      [ solution.concentrationH3OProperty, solution.quantityH3OProperty, graphUnitsProperty ],
       ( concentration, quantity, graphUnits ) =>
         ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
     );
     const valueOHProperty = new DerivedProperty(
-      [ graph.concentrationOHProperty, graph.quantityOHProperty, graphUnitsProperty ],
+      [ solution.concentrationOHProperty, solution.quantityOHProperty, graphUnitsProperty ],
       ( concentration, quantity, graphUnits ) =>
         ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
     );
@@ -171,12 +171,12 @@ class LogarithmicGraphNode extends Node {
     } );
     const indicatorH3ONode = GraphIndicatorNode.createH3OIndicator( valueH3OProperty, {
       x: backgroundNode.left + options.indicatorXOffset,
-      isInteractive: options.isInteractive,
+      isInteractive: !!options.mutablePHProperty,
       tandem: options.tandem.createTandem( 'indicatorH3ONode' )
     } );
     const indicatorOHNode = GraphIndicatorNode.createOHIndicator( valueOHProperty, {
       x: backgroundNode.right - options.indicatorXOffset,
-      isInteractive: options.isInteractive,
+      isInteractive: !!options.mutablePHProperty,
       tandem: options.tandem.createTandem( 'indicatorOHNode' )
     } );
     this.addChild( indicatorH2ONode );
@@ -222,30 +222,25 @@ class LogarithmicGraphNode extends Node {
         indicatorOHNode.y = valueToY( valueOH );
       } );
 
-    // Add optional interactivity
-    if ( options.isInteractive ) {
+    // If we have a mutablePHProperty, then add drag handlers for H3O+ and OH-
+    if ( options.mutablePHProperty ) {
 
       // H3O+ indicator
       indicatorH3ONode.addInputListener(
-        new GraphIndicatorDragHandler( graph.pHProperty, graph.volumeProperty, graphUnitsProperty, yToValue,
+        new GraphIndicatorDragHandler( options.mutablePHProperty, solution.volumeProperty, graphUnitsProperty, yToValue,
           PHModel.concentrationH3OToPH, PHModel.molesH3OToPH,
           indicatorH3ONode.tandem.createTandem( 'dragHandler' )
         ) );
 
       // OH- indicator
       indicatorOHNode.addInputListener(
-        new GraphIndicatorDragHandler( graph.pHProperty, graph.volumeProperty, graphUnitsProperty, yToValue,
+        new GraphIndicatorDragHandler( options.mutablePHProperty, solution.volumeProperty, graphUnitsProperty, yToValue,
           PHModel.concentrationOHToPH, PHModel.molesOHToPH,
           indicatorOHNode.tandem.createTandem( 'dragHandler' )
         ) );
     }
 
     this.mutate( options );
-
-    // to make the associated model element easy to find in Studio
-    this.addLinkedElement( graph, {
-      tandem: options.tandem.createTandem( 'graph' )
-    } );
   }
 }
 

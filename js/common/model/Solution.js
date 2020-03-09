@@ -39,9 +39,10 @@ class Solution extends PhetioObject {
       maxVolume: 1, // maximum total volume (solute + water), in L
 
       // phet-io
-      tandem: Tandem.OPTIONAL, //TODO #119 make this Tandem.REQUIRED
+      tandem: Tandem.OPTIONAL, // because Solution is not instrumented in MySolutionModel
       phetioState: false,
       phetioDocumentation: 'solution in the beaker'
+
     }, options );
 
     assert && assert( options.soluteVolume + options.waterVolume <= options.maxVolume );
@@ -56,6 +57,9 @@ class Solution extends PhetioObject {
     this.addLinkedElement( this.soluteProperty, {
       tandem: options.tandem.createTandem( 'soluteProperty' )
     } );
+
+    // @public (read-only)
+    this.maxVolume = options.maxVolume;
 
     // @public
     this.soluteVolumeProperty = new NumberProperty( options.soluteVolume, {
@@ -73,22 +77,14 @@ class Solution extends PhetioObject {
       phetioDocumentation: 'volume of water in the solution'
     } );
 
-    // @public (read-only)
-    this.maxVolume = options.maxVolume;
-
-    /*
-     * @public
-     * See issue #25.
-     * True when changes to water volume and solute volume should be ignored, because they will both be changing,
-     * which currently happens only during draining. To prevent bogus intermediate values (for example, pH and total volume),
-     * clients who observe both waterVolumeProperty and soluteVolumeProperty should consult the ignoreVolumeUpdate flag before updating.
-     */
+    // @private
+    // Used to update total volume atomically when draining solution, see https://github.com/phetsims/ph-scale/issues/25
     this.ignoreVolumeUpdate = false;
 
     // @public volume
     this.volumeProperty = new DerivedProperty(
       [ this.soluteVolumeProperty, this.waterVolumeProperty ],
-      () => ( this.ignoreVolumeUpdate ) ? this.volumeProperty.get() : this.computeVolume(), {
+      ( soluteVolume, waterVolume ) => ( this.ignoreVolumeUpdate ) ? this.volumeProperty.get() : ( soluteVolume + waterVolume ), {
         units: 'L',
         tandem: options.tandem.createTandem( 'volumeProperty' ),
         phetioType: DerivedPropertyIO( NumberIO ),
@@ -98,12 +94,12 @@ class Solution extends PhetioObject {
     // @public pH, null if no value
     this.pHProperty = new DerivedProperty(
       [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
-      () => {
+      ( solute, soluteVolume, waterVolume ) => {
         if ( this.ignoreVolumeUpdate ) {
           return this.pHProperty.get();
         }
         else {
-          let pH = this.computePH();
+          let pH = PHModel.computePH( solute.pH, soluteVolume, waterVolume );
           if ( pH !== null ) {
             pH = Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ); // constrain to the pH meter format, see issue #4
           }
@@ -119,7 +115,10 @@ class Solution extends PhetioObject {
     this.colorProperty = new DerivedProperty(
       [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
       ( solute, soluteVolume, waterVolume ) => {
-        if ( soluteVolume + waterVolume === 0 ) {
+        if ( this.ignoreVolumeUpdate ) {
+          return this.colorProperty.value;
+        }
+        else if ( soluteVolume + waterVolume === 0 ) {
           return Color.BLACK; // no solution, should never see this color displayed
         }
         else if ( soluteVolume === 0 || this.isEquivalentToWater() ) {
@@ -139,13 +138,105 @@ class Solution extends PhetioObject {
         this.soluteVolumeProperty.reset();
       }
     } );
+
+    // Concentration (mol/L) ------------------------------------------------
+
+    // The concentration (mol/L) of H2O in the solution
+    this.concentrationH2OProperty = new DerivedProperty(
+      [ this.volumeProperty ],
+      volume => PHModel.volumeToConcentrationH20( volume ), {
+        tandem: options.tandem.createTandem( 'concentrationH2OProperty' ),
+        phetioType: DerivedPropertyIO( NumberIO ),
+        units: 'mol/L',
+        phetioDocumentation: 'concentration of H<sub>2</sub>O in the solution'
+      } );
+
+    // The concentration (mol/L) of H3O+ in the solution
+    this.concentrationH3OProperty = new DerivedProperty(
+      [ this.pHProperty ],
+      pH => PHModel.pHToConcentrationH3O( pH ), {
+        tandem: options.tandem.createTandem( 'concentrationH3OProperty' ),
+        phetioType: DerivedPropertyIO( NumberIO ),
+        units: 'mol/L',
+        phetioDocumentation: 'concentration of H<sub>3</sub>O<sup>+</sup> in the solution'
+      } );
+
+    // The concentration (mol/L) of OH- in the solution
+    this.concentrationOHProperty = new DerivedProperty(
+      [ this.pHProperty ],
+      pH => PHModel.pHToConcentrationOH( pH ), {
+        tandem: options.tandem.createTandem( 'concentrationOHProperty' ),
+        phetioType: DerivedPropertyIO( NumberIO ),
+        units: 'mol/L',
+        phetioDocumentation: 'concentration of OH<sup>-</sup> in the solution'
+      } );
+
+    // Quantity (mol) ------------------------------------------------
+
+    // The quantity (mol) of H2O in the solution
+    this.quantityH2OProperty = new DerivedProperty(
+      [ this.concentrationH2OProperty, this.volumeProperty ],
+      ( concentrationH2O, volume ) => PHModel.computeMoles( concentrationH2O, volume ), {
+        tandem: options.tandem.createTandem( 'quantityH2OProperty' ),
+        phetioType: DerivedPropertyIO( NumberIO ),
+        units: 'mol',
+        phetioDocumentation: 'quantity of H<sub>2</sub>O in the solution'
+      } );
+
+    // The quantity (mol) of H3O+ in the solution
+    this.quantityH3OProperty = new DerivedProperty(
+      [ this.concentrationH3OProperty, this.volumeProperty ],
+      ( concentrationH3O, volume ) => PHModel.computeMoles( concentrationH3O, volume ), {
+        tandem: options.tandem.createTandem( 'quantityH3OProperty' ),
+        phetioType: DerivedPropertyIO( NumberIO ),
+        units: 'mol',
+        phetioDocumentation: 'quantity of H<sub>3</sub>O<sup>+</sup> in the solution'
+      } );
+
+    // The quantity (mol) of OH- in the solution
+    this.quantityOHProperty = new DerivedProperty(
+      [ this.concentrationOHProperty, this.volumeProperty ],
+      ( concentrationOH, volume ) => PHModel.computeMoles( concentrationOH, volume ), {
+        tandem: options.tandem.createTandem( 'quantityOHProperty' ),
+        phetioType: DerivedPropertyIO( NumberIO ),
+        units: 'mol',
+        phetioDocumentation: 'quantity of OH<sup>-</sup> in the solution'
+      } );
+
+    // Molecule counts ------------------------------------------------
+
+    // @public number of H2O molecules in the solution
+    this.numberOfH2OMoleculesProperty = new DerivedProperty(
+      [ this.concentrationH2OProperty, this.volumeProperty ],
+      ( concentrationH2O, volume ) => PHModel.computeMolecules( concentrationH2O, volume ), {
+        tandem: options.tandem.createTandem( 'numberOfH2OMoleculesProperty' ),
+        phetioType: DerivedPropertyIO( NumberIO ),
+        phetioDocumentation: 'number of H<sub>2</sub>O molecules in the solution'
+      } );
+
+    // @public number of H3O+ molecules in the solution
+    this.numberOfH3OMoleculesProperty = new DerivedProperty(
+      [ this.concentrationH3OProperty, this.volumeProperty ],
+      ( concentrationH3O, volume ) => PHModel.computeMolecules( concentrationH3O, volume ), {
+        tandem: options.tandem.createTandem( 'numberOfH3OMoleculesProperty' ),
+        phetioType: DerivedPropertyIO( NumberIO ),
+        phetioDocumentation: 'number of H<sub>3</sub>O<sup>+</sup> molecules in the solution'
+      } );
+
+    // @public number of OH- molecules in the solution
+    this.numberOfOHMoleculesProperty = new DerivedProperty(
+      [ this.concentrationOHProperty, this.volumeProperty ],
+      ( concentrationOH, volume ) => PHModel.computeMolecules( concentrationOH, volume ), {
+        tandem: options.tandem.createTandem( 'numberOfOHMoleculesProperty' ),
+        phetioType: DerivedPropertyIO( NumberIO ),
+        phetioDocumentation: 'number of OH<sup>-</sup> molecules in the solution'
+      } );
   }
 
   /**
    * @public
    */
   reset() {
-    this.soluteProperty.reset();
     this.soluteVolumeProperty.reset();
     this.waterVolumeProperty.reset();
   }
@@ -156,7 +247,7 @@ class Solution extends PhetioObject {
 
   // @private Returns the amount of volume that is available to fill.
   getFreeVolume() {
-    return this.maxVolume - this.computeVolume();
+    return this.maxVolume - this.volumeProperty.value;
   }
 
   // @public Convenience function for adding solute
@@ -180,7 +271,7 @@ class Solution extends PhetioObject {
    */
   drainSolution( deltaVolume ) {
     if ( deltaVolume > 0 ) {
-      const totalVolume = this.computeVolume();
+      const totalVolume = this.volumeProperty.value;
       if ( totalVolume > 0 ) {
         if ( totalVolume - deltaVolume < MIN_VOLUME ) {
           // drain the remaining solution
@@ -198,7 +289,8 @@ class Solution extends PhetioObject {
 
   /**
    * Sets volume atomically, to prevent pH value from going through an intermediate state.
-   * See documentation of ignoreVolumeUpdate above.
+   * This is used when draining solution, so that equal parts of solute and water are removed atomically.
+   * See documentation of ignoreVolumeUpdate above, and https://github.com/phetsims/ph-scale/issues/25.
    *
    * @param {number} waterVolume liters
    * @param {number} soluteVolume liters
@@ -213,54 +305,13 @@ class Solution extends PhetioObject {
     this.soluteVolumeProperty.set( soluteVolume );
   }
 
-  //----------------------------------------------------------------------------
-  // Computations for derived properties
-  //----------------------------------------------------------------------------
-
   /**
    * True if the value displayed by the pH meter has precision that makes it equivalent to the pH of water.
    * Eg, the value displayed to the user is '7.00'.
    * @private
    */
   isEquivalentToWater() {
-    return Utils.toFixedNumber( this.computePH(), PHScaleConstants.PH_METER_DECIMAL_PLACES ) === Water.pH;
-  }
-
-  /**
-   * Computes total volume for this solution.
-   * @returns {number} liters
-   * @private Used in internal computations to prevent incorrect intermediate values, see issue #40
-   */
-  computeVolume() {
-    return ( this.soluteVolumeProperty.get() + this.waterVolumeProperty.get() );
-  }
-
-  /**
-   * Compute pH for this solution.
-   * @returns {number|null} pH, null if total volume is zero
-   * @private Used in internal computations to prevent incorrect intermediate values, see issue #40
-   */
-  computePH() {
-    return PHModel.computePH( this.soluteProperty.get().pH, this.soluteVolumeProperty.get(), this.waterVolumeProperty.get() );
-  }
-
-  //----------------------------------------------------------------------------
-  // Number of molecules
-  //----------------------------------------------------------------------------
-
-  // @public
-  getMoleculesH3O() {
-    return PHModel.computeMolecules( PHModel.pHToConcentrationH3O( this.computePH() ), this.computeVolume() );
-  }
-
-  // @public
-  getMoleculesOH() {
-    return PHModel.computeMolecules( PHModel.pHToConcentrationOH( this.computePH() ), this.computeVolume() );
-  }
-
-  // @public
-  getMoleculesH2O() {
-    return PHModel.computeMolecules( PHModel.volumeToConcentrationH20( this.volumeProperty.value ), this.computeVolume() );
+    return Utils.toFixedNumber( this.pHProperty.value, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === Water.pH;
   }
 }
 

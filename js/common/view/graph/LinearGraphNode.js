@@ -37,11 +37,11 @@ const MANTISSA_RANGE = PHScaleConstants.LINEAR_MANTISSA_RANGE;
 class LinearGraphNode extends Node {
 
   /**
-   * @param {Graph} graph
+   * @param {Solution} solution
    * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
    * @param {Object} [options]
    */
-  constructor( graph, graphUnitsProperty, options ) {
+  constructor( solution, graphUnitsProperty, options ) {
 
     options = merge( {
 
@@ -169,17 +169,17 @@ class LinearGraphNode extends Node {
 
     // Values displayed on the indicators
     const valueH2OProperty = new DerivedProperty(
-      [ graph.concentrationH2OProperty, graph.quantityH2OProperty, graphUnitsProperty ],
+      [ solution.concentrationH2OProperty, solution.quantityH2OProperty, graphUnitsProperty ],
       ( concentration, quantity, graphUnits ) =>
         ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
     );
     const valueH3OProperty = new DerivedProperty(
-      [ graph.concentrationH3OProperty, graph.quantityH3OProperty, graphUnitsProperty ],
+      [ solution.concentrationH3OProperty, solution.quantityH3OProperty, graphUnitsProperty ],
       ( concentration, quantity, graphUnits ) =>
         ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
     );
     const valueOHProperty = new DerivedProperty(
-      [ graph.concentrationOHProperty, graph.quantityOHProperty, graphUnitsProperty ],
+      [ solution.concentrationOHProperty, solution.quantityOHProperty, graphUnitsProperty ],
       ( concentration, quantity, graphUnits ) =>
         ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
     );
@@ -191,12 +191,10 @@ class LinearGraphNode extends Node {
     } );
     const indicatorH3ONode = GraphIndicatorNode.createH3OIndicator( valueH3OProperty, {
       x: scaleNode.left + options.majorTickLength,
-      isInteractive: options.isInteractive,
       tandem: options.tandem.createTandem( 'indicatorH3ONode' )
     } );
     const indicatorOHNode = GraphIndicatorNode.createOHIndicator( valueOHProperty, {
       x: scaleNode.right - options.majorTickLength,
-      isInteractive: options.isInteractive,
       tandem: options.tandem.createTandem( 'indicatorOHNode' )
     } );
     this.addChild( indicatorH2ONode );
@@ -256,11 +254,6 @@ class LinearGraphNode extends Node {
       } );
 
     this.mutate( options );
-
-    // to make the associated model element easy to find in Studio
-    this.addLinkedElement( graph, {
-      tandem: options.tandem.createTandem( 'graph' )
-    } );
   }
 
   /**

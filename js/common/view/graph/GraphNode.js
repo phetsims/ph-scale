@@ -26,13 +26,13 @@ import LogarithmicGraphNode from './LogarithmicGraphNode.js';
 class GraphNode extends Node {
 
   /**
-   * @param {Graph} graph
+   * @param {Solution} solution
    * @param {Object} [options]
    */
-  constructor( graph, options ) {
+  constructor( solution, options ) {
 
     options = merge( {
-      isInteractive: false, // only the Log scale can be interactive
+      mutablePHProperty: null, // {null|Property.<number>}
       logScaleHeight: 500,
       linearScaleHeight: 500,
       units: GraphUnits.MOLES_PER_LITER, // initial state of the units switch
@@ -68,9 +68,9 @@ class GraphNode extends Node {
     } );
 
     // logarithmic graph
-    const logarithmicGraphNode = new LogarithmicGraphNode( graph, graphUnitsProperty, {
+    const logarithmicGraphNode = new LogarithmicGraphNode( solution, graphUnitsProperty, {
       scaleHeight: options.logScaleHeight,
-      isInteractive: options.isInteractive,
+      mutablePHProperty: options.mutablePHProperty,
       centerX: lineToPanel.centerX,
       y: 30, // y, not top
       tandem: options.tandem.createTandem( 'logarithmicGraphNode' )
@@ -100,7 +100,7 @@ class GraphNode extends Node {
       } );
 
       // linear graph
-      linearGraphNode = new LinearGraphNode( graph, graphUnitsProperty, {
+      linearGraphNode = new LinearGraphNode( solution, graphUnitsProperty, {
         scaleHeight: options.linearScaleHeight,
         y: logarithmicGraphNode.y, // y, not top
         centerX: logarithmicGraphNode.centerX,

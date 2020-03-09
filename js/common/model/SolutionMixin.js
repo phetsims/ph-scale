@@ -11,6 +11,7 @@
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import DerivedPropertyIO from '../../../../axon/js/DerivedPropertyIO.js';
+import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import phScale from '../../phScale.js';
 import PHModel from './PHModel.js';
@@ -34,7 +35,7 @@ const SolutionMixin = {
       [ solution.totalVolumeProperty ],
       totalVolume => PHModel.volumeToConcentrationH20( totalVolume ), {
         tandem: solution.tandem.createTandem( 'concentrationH2OProperty' ),
-        phetioType: DerivedPropertyIO( NumberIO ),
+        phetioType: DerivedPropertyIO( NullableIO( NumberIO ) ),
         units: 'mol/L',
         phetioDocumentation: 'concentration of H<sub>2</sub>O in the solution'
       } );
@@ -44,7 +45,7 @@ const SolutionMixin = {
       [ solution.pHProperty ],
       pH => PHModel.pHToConcentrationH3O( pH ), {
         tandem: solution.tandem.createTandem( 'concentrationH3OProperty' ),
-        phetioType: DerivedPropertyIO( NumberIO ),
+        phetioType: DerivedPropertyIO( NullableIO( NumberIO ) ),
         units: 'mol/L',
         phetioDocumentation: 'concentration of H<sub>3</sub>O<sup>+</sup> in the solution'
       } );
@@ -54,7 +55,7 @@ const SolutionMixin = {
       [ solution.pHProperty ],
       pH => PHModel.pHToConcentrationOH( pH ), {
         tandem: solution.tandem.createTandem( 'concentrationOHProperty' ),
-        phetioType: DerivedPropertyIO( NumberIO ),
+        phetioType: DerivedPropertyIO( NullableIO( NumberIO ) ),
         units: 'mol/L',
         phetioDocumentation: 'concentration of OH<sup>-</sup> in the solution'
       } );

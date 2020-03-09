@@ -203,12 +203,13 @@ class LinearGraphNode extends Node {
 
     /*
      * Given a value, compute it's y position relative to the top of the scale.
-     * @param {number} value in model coordinates
+     * @param {number|null} value in model coordinates
      * @param {number} offScaleYOffset optional y-offset added to the position if the value is off the scale
      * @returns {number} y position in view coordinates
      */
     const valueToY = ( value, offScaleYOffset ) => {
       const topTickValue = MANTISSA_RANGE.max * Math.pow( 10, this.exponentProperty.get() );
+      value = value || 0;
       if ( value > topTickValue ) {
         // values out of range are placed in the arrow
         return arrowNode.top + ( 0.8 * arrowHeadHeight ) + ( offScaleYOffset || 0 );

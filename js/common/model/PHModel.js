@@ -95,7 +95,7 @@ const PHModel = {
    * @public
    */
   volumeToConcentrationH20( volume ) {
-    return ( volume === 0 ) ? 0 : Water.concentration;
+    return ( volume === 0 ) ? null : Water.concentration;
   },
 
   /**
@@ -106,7 +106,7 @@ const PHModel = {
    * @public
    */
   pHToConcentrationH3O( pH ) {
-    return ( pH === null ) ? 0 : Math.pow( 10, -pH );
+    return ( pH === null ) ? null : Math.pow( 10, -pH );
   },
 
   /**
@@ -117,7 +117,7 @@ const PHModel = {
    * @public
    */
   pHToConcentrationOH( pH ) {
-    return ( pH === null ) ? 0 : PHModel.pHToConcentrationH3O( 14 - pH );
+    return ( pH === null ) ? null : PHModel.pHToConcentrationH3O( 14 - pH );
   },
 
   /**

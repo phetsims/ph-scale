@@ -183,9 +183,13 @@ class LogarithmicGraphNode extends Node {
     this.addChild( indicatorH3ONode );
     this.addChild( indicatorOHNode );
 
-    // Given a value, compute it's y position relative to the top of the scale.
+    /**
+     * Given a value, compute it's y position relative to the top of the scale.
+     * @param {number|null} value
+     * @returns {number}
+     */
     const valueToY = value => {
-      if ( value === 0 ) {
+      if ( value === 0 || value === null ) {
         // below the bottom tick
         return options.scaleHeight - ( 0.5 * options.scaleYMargin );
       }

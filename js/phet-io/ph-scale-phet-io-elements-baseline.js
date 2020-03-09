@@ -5823,7 +5823,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "DerivedPropertyIO<NumberIO>"
+      "phetioTypeName": "DerivedPropertyIO<NullableIO<NumberIO>>"
     },
     "phScale.microScreen.model.solution.concentrationH3OProperty": {
       "phetioDocumentation": "concentration of H<sub>3</sub>O<sup>+</sup> in the solution",
@@ -5836,7 +5836,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "DerivedPropertyIO<NumberIO>"
+      "phetioTypeName": "DerivedPropertyIO<NullableIO<NumberIO>>"
     },
     "phScale.microScreen.model.solution.concentrationOHProperty": {
       "phetioDocumentation": "concentration of OH<sup>-</sup> in the solution",
@@ -5849,7 +5849,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "DerivedPropertyIO<NumberIO>"
+      "phetioTypeName": "DerivedPropertyIO<NullableIO<NumberIO>>"
     },
     "phScale.microScreen.model.solution.numberOfH2OMoleculesProperty": {
       "phetioDocumentation": "number of H<sub>2</sub>O molecules in the solution",
@@ -10386,7 +10386,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "DerivedPropertyIO<NumberIO>"
+      "phetioTypeName": "DerivedPropertyIO<NullableIO<NumberIO>>"
     },
     "phScale.mySolutionScreen.model.solution.concentrationH3OProperty": {
       "phetioDocumentation": "concentration of H<sub>3</sub>O<sup>+</sup> in the solution",
@@ -10399,7 +10399,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "DerivedPropertyIO<NumberIO>"
+      "phetioTypeName": "DerivedPropertyIO<NullableIO<NumberIO>>"
     },
     "phScale.mySolutionScreen.model.solution.concentrationOHProperty": {
       "phetioDocumentation": "concentration of OH<sup>-</sup> in the solution",
@@ -10412,7 +10412,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "DerivedPropertyIO<NumberIO>"
+      "phetioTypeName": "DerivedPropertyIO<NullableIO<NumberIO>>"
     },
     "phScale.mySolutionScreen.model.solution.numberOfH2OMoleculesProperty": {
       "phetioDocumentation": "number of H<sub>2</sub>O molecules in the solution",

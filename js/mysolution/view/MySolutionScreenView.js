@@ -82,15 +82,14 @@ class MySolutionScreenView extends ScreenView {
 
     // graph
     const graphNode = new GraphNode( model.solution, {
-      mutablePHProperty: model.mutableSolution.pHProperty,
-      isInteractive: true,
+      isInteractive: true, // add drag handlers for changing H3O+ and OH- on the Logarithmic graph
       logScaleHeight: 565,
       tandem: tandem.createTandem( 'graphNode' )
     } );
 
     // pH meter
     const pHMeterTop = 15;
-    const pHMeterNode = new PHMeterNode( model.mutableSolution.pHProperty,
+    const pHMeterNode = new PHMeterNode( model.solution.pHProperty,
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
         isInteractive: true, // add spinner to change pH
         tandem: tandem.createTandem( 'pHMeterNode' )

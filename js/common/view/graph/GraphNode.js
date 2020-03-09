@@ -32,7 +32,7 @@ class GraphNode extends Node {
   constructor( solution, options ) {
 
     options = merge( {
-      mutablePHProperty: null, // {null|Property.<number>}
+      isInteractive: false, // if true, add drag handlers for changing H3O+ and OH- on the Logarithmic graph
       logScaleHeight: 500,
       linearScaleHeight: 500,
       units: GraphUnits.MOLES_PER_LITER, // initial state of the units switch
@@ -70,7 +70,7 @@ class GraphNode extends Node {
     // logarithmic graph
     const logarithmicGraphNode = new LogarithmicGraphNode( solution, graphUnitsProperty, {
       scaleHeight: options.logScaleHeight,
-      mutablePHProperty: options.mutablePHProperty,
+      isInteractive: options.isInteractive,
       centerX: lineToPanel.centerX,
       y: 30, // y, not top
       tandem: options.tandem.createTandem( 'logarithmicGraphNode' )

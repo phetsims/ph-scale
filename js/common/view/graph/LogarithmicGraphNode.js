@@ -40,7 +40,7 @@ class LogarithmicGraphNode extends Node {
   constructor( solution, graphUnitsProperty, options ) {
 
     options = merge( {
-      mutablePHProperty: null, // {null|Property.<number>}
+      isInteractive: false, // if true, add drag handlers for changing H3O+ and OH-
 
       // scale
       scaleHeight: 100,
@@ -171,12 +171,12 @@ class LogarithmicGraphNode extends Node {
     } );
     const indicatorH3ONode = GraphIndicatorNode.createH3OIndicator( valueH3OProperty, {
       x: backgroundNode.left + options.indicatorXOffset,
-      isInteractive: !!options.mutablePHProperty,
+      isInteractive: options.isInteractive,
       tandem: options.tandem.createTandem( 'indicatorH3ONode' )
     } );
     const indicatorOHNode = GraphIndicatorNode.createOHIndicator( valueOHProperty, {
       x: backgroundNode.right - options.indicatorXOffset,
-      isInteractive: !!options.mutablePHProperty,
+      isInteractive: options.isInteractive,
       tandem: options.tandem.createTandem( 'indicatorOHNode' )
     } );
     this.addChild( indicatorH2ONode );
@@ -222,19 +222,19 @@ class LogarithmicGraphNode extends Node {
         indicatorOHNode.y = valueToY( valueOH );
       } );
 
-    // If we have a mutablePHProperty, then add drag handlers for H3O+ and OH-
-    if ( options.mutablePHProperty ) {
+    // Add drag handlers for H3O+ and OH-
+    if ( options.isInteractive ) {
 
       // H3O+ indicator
       indicatorH3ONode.addInputListener(
-        new GraphIndicatorDragHandler( options.mutablePHProperty, solution.volumeProperty, graphUnitsProperty, yToValue,
+        new GraphIndicatorDragHandler( solution.pHProperty, solution.volumeProperty, graphUnitsProperty, yToValue,
           PHModel.concentrationH3OToPH, PHModel.molesH3OToPH,
           indicatorH3ONode.tandem.createTandem( 'dragHandler' )
         ) );
 
       // OH- indicator
       indicatorOHNode.addInputListener(
-        new GraphIndicatorDragHandler( options.mutablePHProperty, solution.volumeProperty, graphUnitsProperty, yToValue,
+        new GraphIndicatorDragHandler( solution.pHProperty, solution.volumeProperty, graphUnitsProperty, yToValue,
           PHModel.concentrationOHToPH, PHModel.molesOHToPH,
           indicatorOHNode.tandem.createTandem( 'dragHandler' )
         ) );

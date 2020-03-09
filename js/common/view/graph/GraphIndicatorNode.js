@@ -187,11 +187,6 @@ class GraphIndicatorNode extends Node {
     // sync with value
     valueProperty.link( value => {
 
-      // disabled when value is zero
-      const isEnabled = ( value !== 0 );
-      this.opacity = isEnabled ? 1.0 : 0.5;
-      this.cursor = ( isEnabled && options.isInteractive ) ? 'pointer' : 'default';
-
       // center on the background
       valueNode.center = valueBackgroundNode.center;
     } );

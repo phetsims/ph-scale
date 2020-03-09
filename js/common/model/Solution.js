@@ -127,6 +127,8 @@ class Solution extends PhetioObject {
         else {
           return solute.computeColor( soluteVolume / ( soluteVolume + waterVolume ) );
         }
+      }, {
+        // DO NOT INSTRUMENT FOR PhET-iO
       } );
 
     // When the solute changes, reset to initial volumes.

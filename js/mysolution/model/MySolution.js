@@ -8,6 +8,7 @@
 
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
+import Range from '../../../../dot/js/Range.js';
 import merge from '../../../../phet-core/js/merge.js';
 import PhetioObject from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -44,10 +45,9 @@ class MySolution extends PhetioObject {
 
     // @public total volume of the solution in the beaker
     this.totalVolumeProperty = new NumberProperty( options.volume, {
-      isValidValue: volume => ( volume > 0 && volume <= options.maxVolume ),
       units: 'L',
       tandem: options.tandem.createTandem( 'totalVolumeProperty' ),
-      phetioStudioControl: false, // see https://github.com/phetsims/ph-scale/issues/119#issuecomment-595450329
+      range: new Range( 0.01, options.maxVolume ), // must be > 0 !!
       phetioDocumentation: 'total volume of the solution'
     } );
 

@@ -10515,7 +10515,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioPlayback": false,
       "phetioReadOnly": false,
       "phetioState": true,
-      "phetioStudioControl": false,
+      "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
     "phScale.mySolutionScreen.view": {

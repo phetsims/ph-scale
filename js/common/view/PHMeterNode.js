@@ -109,9 +109,12 @@ class PHMeterNode extends AccordionBox {
     } );
 
     // Create a link to pHProperty, so it's easier to find in Studio.
-    this.addLinkedElement( pHProperty, {
-      tandem: options.tandem.createTandem( 'pHProperty' )
-    } );
+    // This is not necessary for the interactive probe, since its NumberSpinner links to the Property.
+    if ( !options.isInteractive ) {
+      this.addLinkedElement( pHProperty, {
+        tandem: options.tandem.createTandem( 'pHProperty' )
+      } );
+    }
   }
 
   /**

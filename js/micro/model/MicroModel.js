@@ -23,6 +23,9 @@ class MicroModel extends MacroModel {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
     super( tandem, {
+
+      // pHMeter is not needed in the Micro screen, because it has no moving parts and it's always measuring the
+      // pH of the solution. See https://github.com/phetsims/ph-scale/issues/137
       includePHMeter: false
     } );
 

@@ -55,7 +55,7 @@ const CORNER_RADIUS = 12;
 class MacroPHMeterNode extends Node {
 
   /**
-   * @param {PHMeter} meter
+   * @param {MacroPHMeter} meter
    * @param {Solution} solution
    * @param {Dropper} dropper
    * @param {Node} solutionNode

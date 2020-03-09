@@ -19,7 +19,7 @@ import Solution from '../../common/model/Solution.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import PHScaleQueryParameters from '../../common/PHScaleQueryParameters.js';
 import phScale from '../../phScale.js';
-import PHMeter from './PHMeter.js';
+import MacroPHMeter from './MacroPHMeter.js';
 
 class MacroModel {
 
@@ -87,7 +87,7 @@ class MacroModel {
 
     // @public pH meter to the left of the drain faucet
     const pHMeterPosition = new Vector2( this.drainFaucet.position.x - 300, 75 );
-    this.pHMeter = new PHMeter(
+    this.pHMeter = new MacroPHMeter(
       pHMeterPosition,
       new Vector2( pHMeterPosition.x + 150, this.beaker.position.y ),
       PHScaleConstants.SCREEN_VIEW_OPTIONS.layoutBounds, {

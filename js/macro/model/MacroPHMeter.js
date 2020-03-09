@@ -19,7 +19,7 @@ import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import Movable from '../../common/model/Movable.js';
 import phScale from '../../phScale.js';
 
-class PHMeter {
+class MacroPHMeter {
 
   /**
    * @param {Vector2} bodyPosition
@@ -60,5 +60,5 @@ class PHMeter {
   }
 }
 
-phScale.register( 'PHMeter', PHMeter );
-export default PHMeter;
+phScale.register( 'PHMeter', MacroPHMeter );
+export default MacroPHMeter;

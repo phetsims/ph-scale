@@ -42,21 +42,21 @@ class SolutionNode extends Rectangle {
     } );
 
     /*
-     * Updates the amount of stuff in the beaker, based on solution volume.
+     * Updates the amount of stuff in the beaker, based on solution total volume.
      * @param {number} volume
      */
     const viewPosition = modelViewTransform.modelToViewPosition( beaker.position );
     const viewWidth = modelViewTransform.modelToViewDeltaX( beaker.size.width );
-    solution.volumeProperty.link( volume => {
-      assert && assert( volume >= 0 );
+    solution.totalVolumeProperty.link( totalVolume => {
+      assert && assert( totalVolume >= 0 );
 
       // min non-zero volume, so that the solution is visible to the user and detectable by the concentration probe
-      if ( volume !== 0 && volume < PHScaleConstants.MIN_SOLUTION_VOLUME ) {
-        volume = PHScaleConstants.MIN_SOLUTION_VOLUME;
+      if ( totalVolume !== 0 && totalVolume < PHScaleConstants.MIN_SOLUTION_VOLUME ) {
+        totalVolume = PHScaleConstants.MIN_SOLUTION_VOLUME;
       }
 
       // determine dimensions in model coordinates
-      const solutionHeight = Utils.linear( 0, beaker.volume, 0, beaker.size.height, volume ); // volume -> height
+      const solutionHeight = Utils.linear( 0, beaker.volume, 0, beaker.size.height, totalVolume ); // totalVolume -> height
 
       // convert to view coordinates and create shape
       const viewHeight = modelViewTransform.modelToViewDeltaY( solutionHeight );

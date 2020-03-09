@@ -227,14 +227,14 @@ class LogarithmicGraphNode extends Node {
 
       // H3O+ indicator
       indicatorH3ONode.addInputListener(
-        new GraphIndicatorDragHandler( solution.pHProperty, solution.volumeProperty, graphUnitsProperty, yToValue,
+        new GraphIndicatorDragHandler( solution.pHProperty, solution.totalVolumeProperty, graphUnitsProperty, yToValue,
           PHModel.concentrationH3OToPH, PHModel.molesH3OToPH,
           indicatorH3ONode.tandem.createTandem( 'dragHandler' )
         ) );
 
       // OH- indicator
       indicatorOHNode.addInputListener(
-        new GraphIndicatorDragHandler( solution.pHProperty, solution.volumeProperty, graphUnitsProperty, yToValue,
+        new GraphIndicatorDragHandler( solution.pHProperty, solution.totalVolumeProperty, graphUnitsProperty, yToValue,
           PHModel.concentrationOHToPH, PHModel.molesOHToPH,
           indicatorOHNode.tandem.createTandem( 'dragHandler' )
         ) );

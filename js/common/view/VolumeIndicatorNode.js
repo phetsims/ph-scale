@@ -31,12 +31,12 @@ const VALUE_FONT = new PhetFont( { size: 24, weight: 'bold' } );
 class VolumeIndicatorNode extends Node {
 
   /**
-   * @param {Property.<number>} volumeProperty
+   * @param {Property.<number>} totalVolumeProperty
    * @param {Beaker} beaker
    * @param {ModelViewTransform2} modelViewTransform
    * @param {Object} [options]
    */
-  constructor( volumeProperty, beaker, modelViewTransform, options ) {
+  constructor( totalVolumeProperty, beaker, modelViewTransform, options ) {
 
     options = merge( {
 
@@ -69,15 +69,15 @@ class VolumeIndicatorNode extends Node {
     // x position
     this.left = modelViewTransform.modelToViewX( beaker.right ) + 3;
 
-    // update when the volume changes...
-    volumeProperty.link( volume => {
+    // update when the total volume of the solution changes...
+    totalVolumeProperty.link( totalVolume => {
 
       // text
-      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( volume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), unitsLitersString );
+      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( totalVolume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), unitsLitersString );
       valueNode.centerY = arrowHead.centerY;
 
       // y position
-      const solutionHeight = Utils.linear( 0, beaker.volume, 0, beaker.size.height, volume ); // volume -> height, model coordinates
+      const solutionHeight = Utils.linear( 0, beaker.volume, 0, beaker.size.height, totalVolume ); // volume -> height, model coordinates
       this.y = modelViewTransform.modelToViewY( beaker.position.y - solutionHeight );
     } );
   }

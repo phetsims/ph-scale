@@ -81,12 +81,12 @@ class Solution extends PhetioObject {
     // Used to update total volume atomically when draining solution, see https://github.com/phetsims/ph-scale/issues/25
     this.ignoreVolumeUpdate = false;
 
-    // @public volume
-    this.volumeProperty = new DerivedProperty(
+    // @public total volume
+    this.totalVolumeProperty = new DerivedProperty(
       [ this.soluteVolumeProperty, this.waterVolumeProperty ],
-      ( soluteVolume, waterVolume ) => ( this.ignoreVolumeUpdate ) ? this.volumeProperty.get() : ( soluteVolume + waterVolume ), {
+      ( soluteVolume, waterVolume ) => ( this.ignoreVolumeUpdate ) ? this.totalVolumeProperty.get() : ( soluteVolume + waterVolume ), {
         units: 'L',
-        tandem: options.tandem.createTandem( 'volumeProperty' ),
+        tandem: options.tandem.createTandem( 'totalVolumeProperty' ),
         phetioType: DerivedPropertyIO( NumberIO ),
         phetioDocumentation: 'total volume of the solution'
       } );
@@ -108,7 +108,7 @@ class Solution extends PhetioObject {
       }, {
         tandem: options.tandem.createTandem( 'pHProperty' ),
         phetioType: DerivedPropertyIO( NullableIO( NumberIO ) ),
-        phetioDocumentation: 'the pH of the solution'
+        phetioDocumentation: 'pH of the solution'
       } );
 
     // @public color
@@ -116,7 +116,7 @@ class Solution extends PhetioObject {
       [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
       ( solute, soluteVolume, waterVolume ) => {
         if ( this.ignoreVolumeUpdate ) {
-          return this.colorProperty.value;
+          return this.colorProperty.get();
         }
         else if ( soluteVolume + waterVolume === 0 ) {
           return Color.BLACK; // no solution, should never see this color displayed
@@ -133,7 +133,7 @@ class Solution extends PhetioObject {
     // This is short-circuited while PhET-iO state is being restored. Otherwise the restored state would be changed.
     // See https://github.com/phetsims/ph-scale/issues/132
     this.soluteProperty.link( () => {
-      if ( !phet.joist.sim.isSettingPhetioStateProperty.value ) {
+      if ( !phet.joist.sim.isSettingPhetioStateProperty.get() ) {
         this.waterVolumeProperty.reset();
         this.soluteVolumeProperty.reset();
       }
@@ -154,7 +154,7 @@ class Solution extends PhetioObject {
 
   // @private Returns the amount of volume that is available to fill.
   getFreeVolume() {
-    return this.maxVolume - this.volumeProperty.value;
+    return this.maxVolume - this.totalVolumeProperty.get();
   }
 
   // @public Convenience function for adding solute
@@ -178,7 +178,7 @@ class Solution extends PhetioObject {
    */
   drainSolution( deltaVolume ) {
     if ( deltaVolume > 0 ) {
-      const totalVolume = this.volumeProperty.value;
+      const totalVolume = this.totalVolumeProperty.get();
       if ( totalVolume > 0 ) {
         if ( totalVolume - deltaVolume < MIN_VOLUME ) {
           // drain the remaining solution
@@ -218,7 +218,7 @@ class Solution extends PhetioObject {
    * @private
    */
   isEquivalentToWater() {
-    return Utils.toFixedNumber( this.pHProperty.value, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === Water.pH;
+    return Utils.toFixedNumber( this.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES ) === Water.pH;
   }
 }
 

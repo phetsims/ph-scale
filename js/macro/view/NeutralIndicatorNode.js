@@ -49,7 +49,7 @@ class NeutralIndicatorNode extends Node {
     label.centerY = background.centerY;
 
     // Wrap things in a parentNode, so that this feature can be permanently disabled via PhET-iO by setting
-    // this.visibleProperty.value = false. See https://github.com/phetsims/ph-scale/issues/102
+    // this.visibleProperty.get() = false. See https://github.com/phetsims/ph-scale/issues/102
     const parentNode = new Node( {
       children: [ background, label ]
     } );

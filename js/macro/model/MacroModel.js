@@ -73,7 +73,7 @@ class MacroModel {
     this.waterFaucet = new Faucet(
       new Vector2( this.beaker.right - 50, this.beaker.position.y - this.beaker.size.height - 45 ),
       this.beaker.right + 400, {
-        enabled: this.solution.volumeProperty.get() < this.beaker.volume,
+        enabled: this.solution.totalVolumeProperty.get() < this.beaker.volume,
         tandem: tandem.createTandem( 'waterFaucet' )
       } );
 
@@ -81,7 +81,7 @@ class MacroModel {
     this.drainFaucet = new Faucet(
       new Vector2( this.beaker.left - 75, this.beaker.position.y + 43 ),
       this.beaker.left, {
-        enabled: this.solution.volumeProperty.get() > 0,
+        enabled: this.solution.totalVolumeProperty.get() > 0,
         tandem: tandem.createTandem( 'drainFaucet' )
       } );
 
@@ -118,7 +118,7 @@ class MacroModel {
     } );
 
     // Enable faucets and dropper based on amount of solution in the beaker.
-    this.solution.volumeProperty.link( volume => {
+    this.solution.totalVolumeProperty.link( volume => {
       this.updateFaucetsAndDropper();
     } );
   }
@@ -140,7 +140,7 @@ class MacroModel {
    * @private
    */
   updateFaucetsAndDropper() {
-    const volume = this.solution.volumeProperty.get();
+    const volume = this.solution.totalVolumeProperty.get();
     this.waterFaucet.enabledProperty.set( volume < this.beaker.volume );
     this.drainFaucet.enabledProperty.set( volume > 0 );
     this.dropper.enabledProperty.set( volume < this.beaker.volume );
@@ -152,7 +152,7 @@ class MacroModel {
    * @public
    */
   step( deltaSeconds ) {
-    if ( this.isAutoFillingProperty.value ) {
+    if ( this.isAutoFillingProperty.get() ) {
       this.stepAutoFill( deltaSeconds );
     }
     else {
@@ -170,8 +170,8 @@ class MacroModel {
 
     // This is short-circuited while PhET-iO state is being restored. Otherwise autoFill would activate and change
     // the restored state. See https://github.com/phetsims/ph-scale/issues/132
-    if ( this.autoFillEnabledProperty.value && this.autoFillVolume > 0 && !phet.joist.sim.isSettingPhetioStateProperty.value ) {
-      this.isAutoFillingProperty.value = true;
+    if ( this.autoFillEnabledProperty.get() && this.autoFillVolume > 0 && !phet.joist.sim.isSettingPhetioStateProperty.get() ) {
+      this.isAutoFillingProperty.set( true );
       this.dropper.dispensingProperty.set( true );
       this.dropper.flowRateProperty.set( 0.75 ); // faster than standard flow rate
     }
@@ -183,8 +183,8 @@ class MacroModel {
    * @private
    */
   stepAutoFill( deltaSeconds ) {
-    this.solution.addSolute( Math.min( this.dropper.flowRateProperty.get() * deltaSeconds, this.autoFillVolume - this.solution.volumeProperty.get() ) );
-    if ( this.solution.volumeProperty.get() === this.autoFillVolume ) {
+    this.solution.addSolute( Math.min( this.dropper.flowRateProperty.get() * deltaSeconds, this.autoFillVolume - this.solution.totalVolumeProperty.get() ) );
+    if ( this.solution.totalVolumeProperty.get() === this.autoFillVolume ) {
       this.stopAutoFill();
     }
   }
@@ -194,7 +194,7 @@ class MacroModel {
    * @private
    */
   stopAutoFill() {
-    this.isAutoFillingProperty.value = false;
+    this.isAutoFillingProperty.set( false );
     this.dropper.dispensingProperty.set( false );
     this.updateFaucetsAndDropper();
   }

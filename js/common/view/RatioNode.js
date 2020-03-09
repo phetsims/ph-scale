@@ -117,12 +117,12 @@ class RatioNode extends Node {
       } );
 
     // clip to the shape of the solution in the beaker
-    solution.volumeProperty.link( volume => {
-      if ( volume === 0 ) {
+    solution.totalVolumeProperty.link( totalVolume => {
+      if ( totalVolume === 0 ) {
         this.clipArea = null;
       }
       else {
-        const solutionHeight = beakerBounds.getHeight() * volume / beaker.volume;
+        const solutionHeight = beakerBounds.getHeight() * totalVolume / beaker.volume;
         this.clipArea = Shape.rectangle( beakerBounds.minX, beakerBounds.maxY - solutionHeight, beakerBounds.getWidth(), solutionHeight );
       }
       this.moleculesNode.invalidatePaint(); //WORKAROUND: #25, scenery#200
@@ -150,7 +150,7 @@ class RatioNode extends Node {
 
   /**
    * Updates the number of molecules when the pH (as displayed on the meter) changes.
-   * If volume changes, we don't create more molecules, we just expose more of them.
+   * If total volume changes, we don't create more molecules, we just expose more of them.
    * @private
    */
   update() {

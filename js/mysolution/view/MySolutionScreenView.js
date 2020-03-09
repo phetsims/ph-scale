@@ -57,7 +57,7 @@ class MySolutionScreenView extends ScreenView {
     const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
 
     // volume indicator along the right edge of the beaker
-    const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.volumeProperty, model.beaker, modelViewTransform, {
+    const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.totalVolumeProperty, model.beaker, modelViewTransform, {
       tandem: tandem.createTandem( 'volumeIndicatorNode' )
     } );
 

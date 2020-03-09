@@ -17,14 +17,14 @@ class GraphIndicatorDragHandler extends SimpleDragHandler {
 
   /**
    * @param {Property.<number>} pHProperty - pH of the solution
-   * @param {Property.<number>} volumeProperty - volume of the solution
+   * @param {Property.<number>} totalVolumeProperty - volume of the solution
    * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
    * @param {function} yToValue - function that takes a {number} y coordinate and converts it to a {number} model value
    * @param {function} concentrationToPH - takes {number} concentration, returns pH
    * @param {function} molesToPH - takes {number} moles and {number} volume (L), returns pH
    * @param {Tandem} tandem
    */
-  constructor( pHProperty, volumeProperty, graphUnitsProperty, yToValue, concentrationToPH, molesToPH, tandem ) {
+  constructor( pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue, concentrationToPH, molesToPH, tandem ) {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
     let clickYOffset; // y-offset between initial click and indicator's origin
@@ -42,7 +42,7 @@ class GraphIndicatorDragHandler extends SimpleDragHandler {
       drag: event => {
 
         // If the solution volume is zero (empty beaker), then we have no solution, and therefore no pH, so do nothing.
-        if ( volumeProperty.get() !== 0 ) {
+        if ( totalVolumeProperty.get() !== 0 ) {
 
           // Adjust the y-coordinate for the offset between the pointer and the indicator's origin
           const y = event.currentTarget.globalToParentPoint( event.pointer.point ).y - clickYOffset;
@@ -51,7 +51,7 @@ class GraphIndicatorDragHandler extends SimpleDragHandler {
           const value = yToValue( y );
 
           // Map the model value to pH, depending on which units we're using.
-          let pH = ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) ? concentrationToPH( value ) : molesToPH( value, volumeProperty.get() );
+          let pH = ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) ? concentrationToPH( value ) : molesToPH( value, totalVolumeProperty.get() );
 
           // Constrain the pH to the valid range
           pH = Utils.clamp( pH, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );

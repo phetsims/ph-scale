@@ -3291,7 +3291,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "phScale.macroScreen.model.solution.pHProperty": {
-      "phetioDocumentation": "the pH of the solution",
+      "phetioDocumentation": "pH of the solution",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -3329,7 +3329,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.macroScreen.model.solution.volumeProperty": {
+    "phScale.macroScreen.model.solution.totalVolumeProperty": {
       "phetioDocumentation": "total volume of the solution",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -5891,7 +5891,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
     "phScale.microScreen.model.solution.pHProperty": {
-      "phetioDocumentation": "the pH of the solution",
+      "phetioDocumentation": "pH of the solution",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -5968,7 +5968,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "phScale.microScreen.model.solution.volumeProperty": {
+    "phScale.microScreen.model.solution.totalVolumeProperty": {
       "phetioDocumentation": "total volume of the solution",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -10454,7 +10454,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
     "phScale.mySolutionScreen.model.solution.pHProperty": {
-      "phetioDocumentation": "",
+      "phetioDocumentation": "pH of the solution",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -10505,8 +10505,8 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
-    "phScale.mySolutionScreen.model.solution.volumeProperty": {
-      "phetioDocumentation": "",
+    "phScale.mySolutionScreen.model.solution.totalVolumeProperty": {
+      "phetioDocumentation": "total volume of the solution",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,

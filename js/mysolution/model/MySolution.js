@@ -38,15 +38,17 @@ class MySolution extends PhetioObject {
     // @public pH of the solution in the beaker
     this.pHProperty = new NumberProperty( options.pH, {
       range: PHScaleConstants.PH_RANGE,
-      tandem: options.tandem.createTandem( 'pHProperty' )
+      tandem: options.tandem.createTandem( 'pHProperty' ),
+      phetioDocumentation: 'pH of the solution'
     } );
 
-    // @public volume of the solution in the beaker
-    this.volumeProperty = new NumberProperty( options.volume, {
+    // @public total volume of the solution in the beaker
+    this.totalVolumeProperty = new NumberProperty( options.volume, {
       isValidValue: volume => ( volume > 0 && volume <= options.maxVolume ),
       units: 'L',
-      tandem: options.tandem.createTandem( 'volumeProperty' ),
-      phetioReadOnly: true
+      tandem: options.tandem.createTandem( 'totalVolumeProperty' ),
+      phetioReadOnly: true,
+      phetioDocumentation: 'total volume of the solution'
     } );
 
     // @public
@@ -62,7 +64,7 @@ class MySolution extends PhetioObject {
    */
   reset() {
     this.pHProperty.reset();
-    this.volumeProperty.reset();
+    this.totalVolumeProperty.reset();
   }
 }
 

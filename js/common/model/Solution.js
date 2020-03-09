@@ -65,7 +65,7 @@ class Solution extends PhetioObject {
     this.soluteVolumeProperty = new NumberProperty( options.soluteVolume, {
       units: 'L',
       tandem: options.tandem.createTandem( 'soluteVolumeProperty' ),
-      phetioStudioControl: false,
+      phetioStudioControl: false, // https://github.com/phetsims/ph-scale/issues/119#issuecomment-595450329
       phetioDocumentation: 'volume of solute in the solution'
     } );
 
@@ -73,7 +73,7 @@ class Solution extends PhetioObject {
     this.waterVolumeProperty = new NumberProperty( options.waterVolume, {
       units: 'L',
       tandem: options.tandem.createTandem( 'waterVolumeProperty' ),
-      phetioStudioControl: false,
+      phetioStudioControl: false, // https://github.com/phetsims/ph-scale/issues/119#issuecomment-595450329
       phetioDocumentation: 'volume of water in the solution'
     } );
 

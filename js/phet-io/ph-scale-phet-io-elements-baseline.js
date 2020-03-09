@@ -3317,7 +3317,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "LinkedElementIO"
     },
     "phScale.macroScreen.model.solution.soluteVolumeProperty": {
-      "phetioDocumentation": "volume of solute in the solution",
+      "phetioDocumentation": "Volume of solute in the solution. soluteVolumeProperty + waterVolumeProperty should be <= 1.2",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -3343,7 +3343,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
     "phScale.macroScreen.model.solution.waterVolumeProperty": {
-      "phetioDocumentation": "volume of water in the solution",
+      "phetioDocumentation": "Volume of water in the solution. waterVolumeProperty + soluteVolumeProperty should be <= 1.2",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -5930,7 +5930,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "LinkedElementIO"
     },
     "phScale.microScreen.model.solution.soluteVolumeProperty": {
-      "phetioDocumentation": "volume of solute in the solution",
+      "phetioDocumentation": "Volume of solute in the solution. soluteVolumeProperty + waterVolumeProperty should be <= 1.2",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
@@ -5956,7 +5956,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
     "phScale.microScreen.model.solution.waterVolumeProperty": {
-      "phetioDocumentation": "volume of water in the solution",
+      "phetioDocumentation": "Volume of water in the solution. waterVolumeProperty + soluteVolumeProperty should be <= 1.2",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,

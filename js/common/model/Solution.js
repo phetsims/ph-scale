@@ -66,7 +66,7 @@ class Solution extends PhetioObject {
       units: 'L',
       tandem: options.tandem.createTandem( 'soluteVolumeProperty' ),
       phetioStudioControl: false, // https://github.com/phetsims/ph-scale/issues/119#issuecomment-595450329
-      phetioDocumentation: 'volume of solute in the solution'
+      phetioDocumentation: `Volume of solute in the solution. soluteVolumeProperty + waterVolumeProperty should be <= ${options.maxVolume}`
     } );
 
     // @public
@@ -74,7 +74,7 @@ class Solution extends PhetioObject {
       units: 'L',
       tandem: options.tandem.createTandem( 'waterVolumeProperty' ),
       phetioStudioControl: false, // https://github.com/phetsims/ph-scale/issues/119#issuecomment-595450329
-      phetioDocumentation: 'volume of water in the solution'
+      phetioDocumentation: `Volume of water in the solution. waterVolumeProperty + soluteVolumeProperty should be <= ${options.maxVolume}`
     } );
 
     // @private

@@ -39,7 +39,7 @@ class MacroPHMeter {
     this.pHProperty = new Property( null, {
       tandem: options.tandem.createTandem( 'pHProperty' ),
       phetioType: PropertyIO( NullableIO( NumberIO ) ),
-      phetioReadOnly: true
+      phetioReadOnly: true // because this depends on where the probe is positioned
     } );
 
     // @public fix position of the meter's body

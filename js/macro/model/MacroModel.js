@@ -31,7 +31,8 @@ class MacroModel {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
     options = merge( {
-      autoFillVolume: 0.5 // L, automatically fill beaker with this much solute when the solute changes
+      autoFillVolume: 0.5, // L, automatically fill beaker with this much solute when the solute changes
+      includePHMeter: true // whether to instantiate this.pHMeter
     }, options );
 
     // @public solute choices, in order that they'll appear in the combo box
@@ -85,14 +86,17 @@ class MacroModel {
         tandem: tandem.createTandem( 'drainFaucet' )
       } );
 
-    // @public pH meter to the left of the drain faucet
-    const pHMeterPosition = new Vector2( this.drainFaucet.position.x - 300, 75 );
-    this.pHMeter = new MacroPHMeter(
-      pHMeterPosition,
-      new Vector2( pHMeterPosition.x + 150, this.beaker.position.y ),
-      PHScaleConstants.SCREEN_VIEW_OPTIONS.layoutBounds, {
-        tandem: tandem.createTandem( 'pHMeter' )
-      } );
+    // @public optional pH meter to the left of the drain faucet
+    this.pHMeter = null;
+    if ( options.includePHMeter) {
+      const pHMeterPosition = new Vector2( this.drainFaucet.position.x - 300, 75 );
+      this.pHMeter = new MacroPHMeter(
+        pHMeterPosition,
+        new Vector2( pHMeterPosition.x + 150, this.beaker.position.y ),
+        PHScaleConstants.SCREEN_VIEW_OPTIONS.layoutBounds, {
+          tandem: tandem.createTandem( 'pHMeter' )
+        } );
+    }
 
     // @private whether the auto-fill feature is enabled.
     // See https://github.com/phetsims/ph-scale/issues/104
@@ -131,7 +135,7 @@ class MacroModel {
     this.solution.reset();
     this.waterFaucet.reset();
     this.drainFaucet.reset();
-    this.pHMeter.reset();
+    this.pHMeter && this.pHMeter.reset();
     this.startAutoFill();
   }
 

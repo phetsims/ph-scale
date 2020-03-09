@@ -22,7 +22,9 @@ class MicroModel extends MacroModel {
   constructor( tandem ) {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
-    super( tandem );
+    super( tandem, {
+      includePHMeter: false
+    } );
 
     SolutionMixin.mixInto( this.solution );
 

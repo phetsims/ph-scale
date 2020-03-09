@@ -134,6 +134,18 @@ class MoleculeCountNode extends Node {
     this.addLinkedElement( moleculeCountVisibleProperty, {
       tandem: options.tandem.createTandem( 'moleculeCountVisibleProperty' )
     } );
+
+    // Links to the count Properties
+    this.addLinkedElement( solution.numberOfH3OMoleculesProperty, {
+      tandem: options.tandem.createTandem( 'numberOfH3OMoleculesProperty' )
+    } );
+    this.addLinkedElement( solution.numberOfOHMoleculesProperty, {
+      tandem: options.tandem.createTandem( 'numberOfOHMoleculesProperty' )
+    } );
+    this.addLinkedElement( solution.numberOfH2OMoleculesProperty, {
+      tandem: options.tandem.createTandem( 'numberOfH2OMoleculesProperty' )
+    } );
+
   }
 }
 

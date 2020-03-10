@@ -19,6 +19,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
+import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
 import AccordionBox from '../../../../sun/js/AccordionBox.js';
 import NumberSpinner from '../../../../sun/js/NumberSpinner.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -180,8 +181,13 @@ class ProbeNode extends Node {
     const TIP_CORNER_RADIUS = 4;
     const OVERLAP = 10;
 
-    const shaftNode = new Rectangle( 0, 0, 0.5 * PROBE_WIDTH, probeHeight - TIP_HEIGHT + OVERLAP, {
-      fill: 'rgb( 140, 140, 140 )'
+    const shaftWidth = 0.5 * PROBE_WIDTH;
+    const shaftHeight = probeHeight - TIP_HEIGHT + OVERLAP;
+    const shaftNode = new Rectangle( 0, 0, shaftWidth, shaftHeight, {
+      fill: new LinearGradient( 0, 0, shaftWidth, 0 )
+        .addColorStop( 0, 'rgb( 100, 100, 100 )' )
+        .addColorStop( 0.35, 'rgb( 220, 220, 220 )' )
+        .addColorStop( 1, 'rgb( 100, 100, 100 )' )
     } );
 
     // clockwise from tip of probe

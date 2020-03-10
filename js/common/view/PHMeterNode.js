@@ -31,7 +31,7 @@ const pHString = phScaleStrings.pH;
 
 // constants
 const Y_MARGIN = 10;
-const CORNER_RADIUS = 12;
+const CORNER_RADIUS = 8;
 
 class PHMeterNode extends AccordionBox {
 

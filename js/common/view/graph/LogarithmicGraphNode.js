@@ -235,6 +235,7 @@ class LogarithmicGraphNode extends Node {
           PHModel.concentrationH3OToPH, PHModel.molesH3OToPH,
           indicatorH3ONode.tandem.createTandem( 'dragHandler' )
         ) );
+      indicatorH3ONode.cursor = 'pointer';
 
       // OH- indicator
       indicatorOHNode.addInputListener(
@@ -242,6 +243,7 @@ class LogarithmicGraphNode extends Node {
           PHModel.concentrationOHToPH, PHModel.molesOHToPH,
           indicatorOHNode.tandem.createTandem( 'dragHandler' )
         ) );
+      indicatorOHNode.cursor = 'pointer';
     }
 
     this.mutate( options );

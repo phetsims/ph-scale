@@ -185,9 +185,9 @@ class ProbeNode extends Node {
     const shaftHeight = probeHeight - TIP_HEIGHT + OVERLAP;
     const shaftNode = new Rectangle( 0, 0, shaftWidth, shaftHeight, {
       fill: new LinearGradient( 0, 0, shaftWidth, 0 )
-        .addColorStop( 0, 'rgb( 100, 100, 100 )' )
+        .addColorStop( 0, 'rgb( 120, 120, 120 )' )
         .addColorStop( 0.35, 'rgb( 220, 220, 220 )' )
-        .addColorStop( 1, 'rgb( 100, 100, 100 )' )
+        .addColorStop( 1, 'rgb( 120, 120, 120 )' )
     } );
 
     // clockwise from tip of probe

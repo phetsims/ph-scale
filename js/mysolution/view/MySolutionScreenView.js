@@ -110,7 +110,6 @@ class MySolutionScreenView extends ScreenView {
     // Parent for all nodes added to this screen
     const rootNode = new Node( {
       children: [
-        // nodes are rendered in this order
         solutionNode,
         pHMeterNode,
         ratioNode,

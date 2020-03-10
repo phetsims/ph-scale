@@ -32,7 +32,7 @@ class SoluteComboBox extends ComboBox {
       xMargin: 16,
       yMargin: 16,
       highlightFill: 'rgb( 218, 255, 255 )',
-      buttonLineWidth: 3,
+      buttonLineWidth: 2,
       cornerRadius: 10,
 
       // phet-io

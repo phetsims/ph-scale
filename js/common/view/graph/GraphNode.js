@@ -147,6 +147,28 @@ class GraphNode extends Node {
       graphScaleProperty && graphScaleProperty.reset();
       linearGraphNode && linearGraphNode.reset();
     };
+
+    // Link to concentration Properties, see https://github.com/phetsims/ph-scale/issues/125
+    this.addLinkedElement( solution.concentrationH2OProperty, {
+      tandem: options.tandem.createTandem( 'concentrationH2OProperty' )
+    } );
+    this.addLinkedElement( solution.concentrationH3OProperty, {
+      tandem: options.tandem.createTandem( 'concentrationH3OProperty' )
+    } );
+    this.addLinkedElement( solution.concentrationOHProperty, {
+      tandem: options.tandem.createTandem( 'concentrationOHProperty' )
+    } );
+
+    // Link to quantity Properties, see https://github.com/phetsims/ph-scale/issues/125
+    this.addLinkedElement( solution.quantityH2OProperty, {
+      tandem: options.tandem.createTandem( 'quantityH2OProperty' )
+    } );
+    this.addLinkedElement( solution.quantityH3OProperty, {
+      tandem: options.tandem.createTandem( 'quantityH3OProperty' )
+    } );
+    this.addLinkedElement( solution.quantityOHProperty, {
+      tandem: options.tandem.createTandem( 'quantityOHProperty' )
+    } );
   }
 
   /**

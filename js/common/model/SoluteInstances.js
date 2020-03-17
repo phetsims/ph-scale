@@ -33,31 +33,14 @@ const SOLUTES_TANDEM = Tandem.GLOBAL.createTandem( 'model' ).createTandem( 'solu
 
 const SoluteInstances = {
 
-  DRAIN_CLEANER: new Solute( choiceDrainCleanerString, 13, new Color( 255, 255, 0 ), {
-    colorStopColor: new Color( 255, 255, 204 ),
-    tandem: SOLUTES_TANDEM.createTandem( 'drainCleaner' )
-  } ),
-
-  HAND_SOAP: new Solute( choiceHandSoapString, 10, new Color( 224, 141, 242 ), {
-    colorStopColor: new Color( 232, 204, 255 ),
-    tandem: SOLUTES_TANDEM.createTandem( 'handSoap' )
+  BATTERY_ACID: new Solute( choiceBatteryAcidString, 1, new Color( 255, 255, 0 ), {
+    colorStopColor: new Color( 255, 224, 204 ),
+    tandem: SOLUTES_TANDEM.createTandem( 'batteryAcid' )
   } ),
 
   BLOOD: new Solute( choiceBloodString, 7.4, new Color( 211, 79, 68 ), {
     colorStopColor: new Color( 255, 207, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'blood' )
-  } ),
-
-  SPIT: new Solute( choiceSpitString, 7.4, new Color( 202, 240, 239 ), {
-    tandem: SOLUTES_TANDEM.createTandem( 'spit' )
-  } ),
-
-  WATER: new Solute( Water.name, Water.pH, Water.color, {
-    tandem: SOLUTES_TANDEM.createTandem( 'water' )
-  } ),
-
-  MILK: new Solute( choiceMilkString, 6.5, new Color( 250, 250, 250 ), {
-    tandem: SOLUTES_TANDEM.createTandem( 'milk' )
   } ),
 
   CHICKEN_SOUP: new Solute( choiceChickenSoupString, 5.8, new Color( 255, 240, 104 ), {
@@ -70,6 +53,20 @@ const SoluteInstances = {
     tandem: SOLUTES_TANDEM.createTandem( 'coffee' )
   } ),
 
+  DRAIN_CLEANER: new Solute( choiceDrainCleanerString, 13, new Color( 255, 255, 0 ), {
+    colorStopColor: new Color( 255, 255, 204 ),
+    tandem: SOLUTES_TANDEM.createTandem( 'drainCleaner' )
+  } ),
+
+  HAND_SOAP: new Solute( choiceHandSoapString, 10, new Color( 224, 141, 242 ), {
+    colorStopColor: new Color( 232, 204, 255 ),
+    tandem: SOLUTES_TANDEM.createTandem( 'handSoap' )
+  } ),
+
+  MILK: new Solute( choiceMilkString, 6.5, new Color( 250, 250, 250 ), {
+    tandem: SOLUTES_TANDEM.createTandem( 'milk' )
+  } ),
+
   ORANGE_JUICE: new Solute( choiceOrangeJuiceString, 3.5, new Color( 255, 180, 0 ), {
     colorStopColor: new Color( 255, 242, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'orangeJuice' )
@@ -80,14 +77,17 @@ const SoluteInstances = {
     tandem: SOLUTES_TANDEM.createTandem( 'soda' )
   } ),
 
+  SPIT: new Solute( choiceSpitString, 7.4, new Color( 202, 240, 239 ), {
+    tandem: SOLUTES_TANDEM.createTandem( 'spit' )
+  } ),
+
   VOMIT: new Solute( choiceVomitString, 2, new Color( 255, 171, 120 ), {
     colorStopColor: new Color( 255, 224, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'vomit' )
   } ),
 
-  BATTERY_ACID: new Solute( choiceBatteryAcidString, 1, new Color( 255, 255, 0 ), {
-    colorStopColor: new Color( 255, 224, 204 ),
-    tandem: SOLUTES_TANDEM.createTandem( 'batteryAcid' )
+  WATER: new Solute( Water.name, Water.pH, Water.color, {
+    tandem: SOLUTES_TANDEM.createTandem( 'water' )
   } )
 };
 

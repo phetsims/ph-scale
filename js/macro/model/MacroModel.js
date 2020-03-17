@@ -33,7 +33,9 @@ class MacroModel {
     options = merge( {
       autoFillVolume: 0.5, // L, automatically fill beaker with this much solute when the solute changes
       includePHMeter: true, // whether to instantiate this.pHMeter
-      SolutionConstructor: MacroSolution // {function(Property:soluteProperty, options)} solution constructor
+
+      // {function(solutionProperty:Property,Object:options)} used to instantiate the solution
+      createSolution: ( solutionProperty, options ) => new MacroSolution( solutionProperty, options )
     }, options );
 
     // @public solute choices, in order that they'll appear in the combo box
@@ -66,7 +68,7 @@ class MacroModel {
       } );
 
     // @public Solution in the beaker
-    this.solution = new options.SolutionConstructor( this.dropper.soluteProperty, {
+    this.solution = options.createSolution( this.dropper.soluteProperty, {
       maxVolume: this.beaker.volume,
       tandem: tandem.createTandem( 'solution' )
     } );

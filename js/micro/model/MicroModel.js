@@ -23,10 +23,12 @@ class MicroModel extends MacroModel {
 
     super( tandem, {
 
+      // Creates the solution needed by the Micro screen
+      createSolution: ( solutionProperty, options ) => new MicroSolution( solutionProperty, options ),
+
       // pHMeter is not needed in the Micro screen, because it has no moving parts and it's always measuring the
       // pH of the solution. See https://github.com/phetsims/ph-scale/issues/137
-      includePHMeter: false,
-      SolutionConstructor: MicroSolution
+      includePHMeter: false
     } );
 
     // adjust the drag bounds of the dropper to account for different user-interface constraints

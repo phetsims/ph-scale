@@ -1,8 +1,7 @@
 // Copyright 2013-2020, University of Colorado Boulder
 
 /**
- * Model for the 'My Solution' screen.
- * The solution in the beaker is 100% solute (stock solution).
+ * MySolutionModel is the model for the 'My Solution' screen.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

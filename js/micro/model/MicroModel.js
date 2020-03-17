@@ -1,9 +1,8 @@
 // Copyright 2013-2020, University of Colorado Boulder
 
 /**
- * Model for the 'Micro' screen.
- * This is essentially the 'Macro' model with a different user-interface on it.
- * The 'Macro' model also has a pHMeter model element, which we'll simply ignore.
+ * MicroModel is the model for the 'Micro' screen.  It extends the MacroModel, substituting a different solution
+ * model, and omitting the pH meter.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

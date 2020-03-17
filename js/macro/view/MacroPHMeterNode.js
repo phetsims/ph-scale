@@ -367,7 +367,10 @@ class PHIndicatorNode extends Node {
       cornerRadius: CORNER_RADIUS,
       xMargin: 8,
       yMargin: 5,
-      tandem: options.tandem.createTandem( 'numberDisplay' )
+      tandem: options.tandem.createTandem( 'numberDisplay' ),
+      textOptions: {
+        phetioComponentOptions: { textProperty: { phetioHighFrequency: true } }
+      }
     } );
 
     // label above the value

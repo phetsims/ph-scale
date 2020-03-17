@@ -4075,7 +4075,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
-      "phetioHighFrequency": false,
+      "phetioHighFrequency": true,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
       "phetioReadOnly": true,

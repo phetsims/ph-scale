@@ -32,6 +32,12 @@ const PHModel = {
     if ( totalVolume === 0 ) {
       pH = null;
     }
+    else if ( waterVolume === 0 ) {
+      pH = solutePH; // to prevent floating-point error in log10 computations
+    }
+    else if ( soluteVolume === 0 ) {
+      pH = Water.pH; // to prevent floating-point error in log10 computations
+    }
     else if ( solutePH < 7 ) {
       pH = -Utils.log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -Water.pH ) * waterVolume ) / totalVolume );
     }

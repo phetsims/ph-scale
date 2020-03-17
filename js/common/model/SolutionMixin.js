@@ -37,7 +37,8 @@ const SolutionMixin = {
         tandem: solution.tandem.createTandem( 'concentrationH2OProperty' ),
         phetioType: DerivedPropertyIO( NullableIO( NumberIO ) ),
         units: 'mol/L',
-        phetioDocumentation: 'concentration of H<sub>2</sub>O in the solution'
+        phetioDocumentation: 'concentration of H<sub>2</sub>O in the solution',
+        phetioHighFrequency: true
       } );
 
     // The concentration (mol/L) of H3O+ in the solution
@@ -47,7 +48,8 @@ const SolutionMixin = {
         tandem: solution.tandem.createTandem( 'concentrationH3OProperty' ),
         phetioType: DerivedPropertyIO( NullableIO( NumberIO ) ),
         units: 'mol/L',
-        phetioDocumentation: 'concentration of H<sub>3</sub>O<sup>+</sup> in the solution'
+        phetioDocumentation: 'concentration of H<sub>3</sub>O<sup>+</sup> in the solution',
+        phetioHighFrequency: true
       } );
 
     // The concentration (mol/L) of OH- in the solution
@@ -57,7 +59,8 @@ const SolutionMixin = {
         tandem: solution.tandem.createTandem( 'concentrationOHProperty' ),
         phetioType: DerivedPropertyIO( NullableIO( NumberIO ) ),
         units: 'mol/L',
-        phetioDocumentation: 'concentration of OH<sup>-</sup> in the solution'
+        phetioDocumentation: 'concentration of OH<sup>-</sup> in the solution',
+        phetioHighFrequency: true
       } );
 
     // Quantity (mol) ------------------------------------------------
@@ -69,7 +72,8 @@ const SolutionMixin = {
         tandem: solution.tandem.createTandem( 'quantityH2OProperty' ),
         phetioType: DerivedPropertyIO( NumberIO ),
         units: 'mol',
-        phetioDocumentation: 'quantity of H<sub>2</sub>O in the solution'
+        phetioDocumentation: 'quantity of H<sub>2</sub>O in the solution',
+        phetioHighFrequency: true
       } );
 
     // The quantity (mol) of H3O+ in the solution
@@ -79,7 +83,8 @@ const SolutionMixin = {
         tandem: solution.tandem.createTandem( 'quantityH3OProperty' ),
         phetioType: DerivedPropertyIO( NumberIO ),
         units: 'mol',
-        phetioDocumentation: 'quantity of H<sub>3</sub>O<sup>+</sup> in the solution'
+        phetioDocumentation: 'quantity of H<sub>3</sub>O<sup>+</sup> in the solution',
+        phetioHighFrequency: true
       } );
 
     // The quantity (mol) of OH- in the solution
@@ -89,7 +94,8 @@ const SolutionMixin = {
         tandem: solution.tandem.createTandem( 'quantityOHProperty' ),
         phetioType: DerivedPropertyIO( NumberIO ),
         units: 'mol',
-        phetioDocumentation: 'quantity of OH<sup>-</sup> in the solution'
+        phetioDocumentation: 'quantity of OH<sup>-</sup> in the solution',
+        phetioHighFrequency: true
       } );
 
     // Molecule counts ------------------------------------------------
@@ -100,7 +106,8 @@ const SolutionMixin = {
       ( concentrationH2O, totalVolume ) => PHModel.computeMolecules( concentrationH2O, totalVolume ), {
         tandem: solution.tandem.createTandem( 'numberOfH2OMoleculesProperty' ),
         phetioType: DerivedPropertyIO( NumberIO ),
-        phetioDocumentation: 'number of H<sub>2</sub>O molecules in the solution'
+        phetioDocumentation: 'number of H<sub>2</sub>O molecules in the solution',
+        phetioHighFrequency: true
       } );
 
     // @public number of H3O+ molecules in the solution
@@ -109,7 +116,8 @@ const SolutionMixin = {
       ( concentrationH3O, totalVolume ) => PHModel.computeMolecules( concentrationH3O, totalVolume ), {
         tandem: solution.tandem.createTandem( 'numberOfH3OMoleculesProperty' ),
         phetioType: DerivedPropertyIO( NumberIO ),
-        phetioDocumentation: 'number of H<sub>3</sub>O<sup>+</sup> molecules in the solution'
+        phetioDocumentation: 'number of H<sub>3</sub>O<sup>+</sup> molecules in the solution',
+        phetioHighFrequency: true
       } );
 
     // @public number of OH- molecules in the solution
@@ -118,7 +126,8 @@ const SolutionMixin = {
       ( concentrationOH, totalVolume ) => PHModel.computeMolecules( concentrationOH, totalVolume ), {
         tandem: solution.tandem.createTandem( 'numberOfOHMoleculesProperty' ),
         phetioType: DerivedPropertyIO( NumberIO ),
-        phetioDocumentation: 'number of OH<sup>-</sup> molecules in the solution'
+        phetioDocumentation: 'number of OH<sup>-</sup> molecules in the solution',
+        phetioHighFrequency: true
       } );
   }
 };

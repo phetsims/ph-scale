@@ -66,7 +66,8 @@ class Solution extends PhetioObject {
       units: 'L',
       tandem: options.tandem.createTandem( 'soluteVolumeProperty' ),
       phetioStudioControl: false, // https://github.com/phetsims/ph-scale/issues/119#issuecomment-595450329
-      phetioDocumentation: `Volume of solute in the solution. soluteVolumeProperty + waterVolumeProperty should be <= ${options.maxVolume}`
+      phetioDocumentation: `Volume of solute in the solution. soluteVolumeProperty + waterVolumeProperty should be <= ${options.maxVolume}`,
+      phetioHighFrequency: true
     } );
 
     // @public
@@ -74,7 +75,8 @@ class Solution extends PhetioObject {
       units: 'L',
       tandem: options.tandem.createTandem( 'waterVolumeProperty' ),
       phetioStudioControl: false, // https://github.com/phetsims/ph-scale/issues/119#issuecomment-595450329
-      phetioDocumentation: `Volume of water in the solution. waterVolumeProperty + soluteVolumeProperty should be <= ${options.maxVolume}`
+      phetioDocumentation: `Volume of water in the solution. waterVolumeProperty + soluteVolumeProperty should be <= ${options.maxVolume}`,
+      phetioHighFrequency: true
     } );
 
     // @private
@@ -88,7 +90,8 @@ class Solution extends PhetioObject {
         units: 'L',
         tandem: options.tandem.createTandem( 'totalVolumeProperty' ),
         phetioType: DerivedPropertyIO( NumberIO ),
-        phetioDocumentation: 'total volume of the solution'
+        phetioDocumentation: 'total volume of the solution',
+        phetioHighFrequency: true
       } );
 
     // @public pH, null if no value
@@ -104,7 +107,8 @@ class Solution extends PhetioObject {
       }, {
         tandem: options.tandem.createTandem( 'pHProperty' ),
         phetioType: DerivedPropertyIO( NullableIO( NumberIO ) ),
-        phetioDocumentation: 'pH of the solution'
+        phetioDocumentation: 'pH of the solution',
+        phetioHighFrequency: true
       } );
 
     // @public color

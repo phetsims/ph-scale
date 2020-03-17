@@ -35,7 +35,10 @@ class Dropper extends Movable {
       visible: true,
 
       // phet-io
-      tandem: Tandem.REQUIRED
+      tandem: Tandem.REQUIRED,
+      positionPropertyOptions: {
+        phetioHighFrequency: true
+      }
     }, options );
 
     super( position, dragBounds, options );

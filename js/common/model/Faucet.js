@@ -46,7 +46,8 @@ class Faucet {
       units: 'L/s',
       tandem: options.tandem.createTandem( 'flowRateProperty' ),
       phetioReadOnly: true,
-      phetioDocumentation: 'the flow rate of solution coming out of the faucet'
+      phetioDocumentation: 'the flow rate of solution coming out of the faucet',
+      phetioHighFrequency: true
     } );
 
     // @public

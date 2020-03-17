@@ -23,14 +23,17 @@ class Movable {
 
     options = merge( {
 
+      // options passed to positionProperty
+      positionPropertyOptions: null,
+
       // phet-io
       tandem: Tandem.REQUIRED
     }, options );
 
     // @public
-    this.positionProperty = new Vector2Property( position, {
+    this.positionProperty = new Vector2Property( position, merge( {}, options.positionPropertyOptions, {
       tandem: options.tandem.createTandem( 'positionProperty' )
-    } );
+    } ) );
 
     // @public
     this.dragBounds = dragBounds;

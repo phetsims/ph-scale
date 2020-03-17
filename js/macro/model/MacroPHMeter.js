@@ -47,7 +47,10 @@ class MacroPHMeter {
 
     // @public position of the meter's movable probe
     this.probe = new Movable( probePosition, probeDragBounds, {
-      tandem: options.tandem.createTandem( 'probe' )
+      tandem: options.tandem.createTandem( 'probe' ),
+      positionPropertyOptions: {
+        phetioHighFrequency: true
+      }
     } );
   }
 

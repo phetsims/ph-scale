@@ -1,11 +1,16 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * SolutionMixin adds DerivedProperties for concentration, quantity, and number of molecules.
+ * SolutionMixin adds DerivedProperties for concentration, quantity, and number of molecules to a host class.
  * These Properties are needed by the Micro and My Solution screens, but not by the Macro screen, and they must be
  * PhET-iO instrumented when present.  Subclassing would be preferred to mixin, but subclassing wasn't possible
  * because there is no common base class.  In Macro and Micro screens both have a solute, pH and total volume are
  * DerivedProperties. In My Solution screen, there is no solute, and pH and totalVolume are not derived.
+ *
+ * I believe it's appropriate to call this a mixin, vs a trait. The main difference between a trait and a mixin is
+ * that a trait can reference properties or methods from the class that it's being mixed into, while a mixin does not.
+ * I interpret "reference" to mean "reference directly via this".  `SolutionMixin` gets everything it needs passed
+ * in via `initializeSolutionMixin`, so it does not reach into the host class via this.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

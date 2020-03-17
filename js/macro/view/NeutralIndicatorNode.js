@@ -22,7 +22,7 @@ const neutralString = phScaleStrings.neutral;
 class NeutralIndicatorNode extends Node {
 
   /**
-   * @param {Solution} solution
+   * @param {MacroSolution|MicroSolution|MySolution} solution
    * @param {Object} [options]
    */
   constructor( solution, options ) {

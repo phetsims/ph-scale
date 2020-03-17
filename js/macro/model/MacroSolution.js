@@ -1,7 +1,8 @@
 // Copyright 2013-2020, University of Colorado Boulder
 
 /**
- * Solution model. Solvent (water) is constant, solute (in stock solution form) is variable.
+ * MacroSolution is the solution model used in the Macro screen.
+ * Solvent (water) is constant, solute (in stock solution form) is variable.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -16,15 +17,15 @@ import PhetioObject from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
+import PHModel from '../../common/model/PHModel.js';
+import Water from '../../common/model/Water.js';
+import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
-import PHScaleConstants from '../PHScaleConstants.js';
-import PHModel from './PHModel.js';
-import Water from './Water.js';
 
 // constants
 const MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );
 
-class Solution extends PhetioObject {
+class MacroSolution extends PhetioObject {
 
   /**
    * @param {Property.<Solute>} soluteProperty
@@ -224,5 +225,5 @@ class Solution extends PhetioObject {
   }
 }
 
-phScale.register( 'Solution', Solution );
-export default Solution;
+phScale.register( 'Solution', MacroSolution );
+export default MacroSolution;

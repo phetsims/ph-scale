@@ -58,7 +58,7 @@ class MySolution extends PhetioObject {
       // DO NOT INSTRUMENT FOR PhET-iO
     } );
 
-    SolutionMixin.mixInto( this );
+    this.initializeSolutionMixin( this.pHProperty, this.totalVolumeProperty, this.tandem );
   }
 
   /**
@@ -69,6 +69,8 @@ class MySolution extends PhetioObject {
     this.totalVolumeProperty.reset();
   }
 }
+
+SolutionMixin.mixInto( MySolution );
 
 phScale.register( 'MySolution', MySolution );
 export default MySolution;

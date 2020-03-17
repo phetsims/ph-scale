@@ -10,9 +10,9 @@
 
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import SolutionMixin from '../../common/model/SolutionMixin.js';
 import MacroModel from '../../macro/model/MacroModel.js';
 import phScale from '../../phScale.js';
+import MicroSolution from './MicroSolution.js';
 
 class MicroModel extends MacroModel {
 
@@ -26,10 +26,9 @@ class MicroModel extends MacroModel {
 
       // pHMeter is not needed in the Micro screen, because it has no moving parts and it's always measuring the
       // pH of the solution. See https://github.com/phetsims/ph-scale/issues/137
-      includePHMeter: false
+      includePHMeter: false,
+      SolutionConstructor: MicroSolution
     } );
-
-    SolutionMixin.mixInto( this.solution );
 
     // adjust the drag bounds of the dropper to account for different user-interface constraints
     const yDropper = this.dropper.positionProperty.get().y;

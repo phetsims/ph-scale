@@ -33,7 +33,7 @@ import GraphUnits from './GraphUnits.js';
 class LogarithmicGraphNode extends Node {
 
   /**
-   * @param {Solution} solution
+   * @param {MicroSolution|MySolution} solution
    * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
    * @param {Object} [options]
    */

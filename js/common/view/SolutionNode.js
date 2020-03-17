@@ -16,7 +16,7 @@ import PHScaleConstants from '../PHScaleConstants.js';
 class SolutionNode extends Rectangle {
 
   /**
-   * @param {Solution} solution
+   * @param {MacroSolution|MicroSolution|MySolution} solution
    * @param {Beaker} beaker
    * @param {ModelViewTransform2} modelViewTransform
    * @param {Object} [options]

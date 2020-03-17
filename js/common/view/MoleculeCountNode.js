@@ -25,7 +25,7 @@ import OHNode from './molecules/OHNode.js';
 class MoleculeCountNode extends Node {
 
   /**
-   * @param {Solution} solution
+   * @param {MicroSolution|MySolution} solution
    * @param {Property.<boolean>} moleculeCountVisibleProperty
    * @param {Object} [options]
    */

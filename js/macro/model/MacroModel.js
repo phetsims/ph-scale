@@ -15,11 +15,11 @@ import Beaker from '../../common/model/Beaker.js';
 import Dropper from '../../common/model/Dropper.js';
 import Faucet from '../../common/model/Faucet.js';
 import SoluteInstances from '../../common/model/SoluteInstances.js';
-import Solution from '../../common/model/Solution.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import PHScaleQueryParameters from '../../common/PHScaleQueryParameters.js';
 import phScale from '../../phScale.js';
 import MacroPHMeter from './MacroPHMeter.js';
+import MacroSolution from './MacroSolution.js';
 
 class MacroModel {
 
@@ -32,7 +32,8 @@ class MacroModel {
 
     options = merge( {
       autoFillVolume: 0.5, // L, automatically fill beaker with this much solute when the solute changes
-      includePHMeter: true // whether to instantiate this.pHMeter
+      includePHMeter: true, // whether to instantiate this.pHMeter
+      SolutionConstructor: MacroSolution
     }, options );
 
     // @public solute choices, in order that they'll appear in the combo box
@@ -65,7 +66,7 @@ class MacroModel {
       } );
 
     // @public Solution in the beaker
-    this.solution = new Solution( this.dropper.soluteProperty, {
+    this.solution = new options.SolutionConstructor( this.dropper.soluteProperty, {
       maxVolume: this.beaker.volume,
       tandem: tandem.createTandem( 'solution' )
     } );

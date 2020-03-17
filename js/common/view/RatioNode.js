@@ -47,7 +47,7 @@ class RatioNode extends Node {
 
   /**
    * @param {Beaker} beaker
-   * @param {Solution} solution
+   * @param {MicroSolution|MySolution} solution
    * @param {ModelViewTransform2} modelViewTransform
    * @param {Property.<boolean>} ratioVisibleProperty
    * @param {Object} [options]

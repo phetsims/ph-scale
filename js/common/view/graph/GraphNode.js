@@ -26,7 +26,7 @@ import LogarithmicGraphNode from './LogarithmicGraphNode.js';
 class GraphNode extends Node {
 
   /**
-   * @param {Solution} solution
+   * @param {MicroSolution|MySolution} solution
    * @param {Object} [options]
    */
   constructor( solution, options ) {

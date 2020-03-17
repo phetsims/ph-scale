@@ -56,7 +56,7 @@ class MacroPHMeterNode extends Node {
 
   /**
    * @param {MacroPHMeter} meter
-   * @param {Solution} solution
+   * @param {MicroSolution|MySolution} solution
    * @param {Dropper} dropper
    * @param {Node} solutionNode
    * @param {Node} dropperFluidNode

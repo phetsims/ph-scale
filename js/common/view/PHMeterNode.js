@@ -11,6 +11,7 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
+import Utils from '../../../../dot/js/Utils.js';
 import Shape from '../../../../kite/js/Shape.js';
 import merge from '../../../../phet-core/js/merge.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
@@ -139,12 +140,29 @@ class PHSpinnerNode extends NumberSpinner {
    */
   constructor( pHProperty, options ) {
 
+    const pHDelta = 1 / Math.pow( 10, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+
+    // When using the spinner to change pH, constrain pHProperty to be exactly the value displayed by the spinner.
+    // See https://github.com/phetsims/ph-scale/issues/143
+    const incrementFunction = () => {
+      const oldValue = Utils.toFixedNumber( pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      const newValue = Utils.toFixedNumber( oldValue + pHDelta, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      pHProperty.set( newValue );
+    };
+
+    const decrementFunction = () => {
+      const oldValue = Utils.toFixedNumber( pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      const newValue = Utils.toFixedNumber( oldValue - pHDelta, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      pHProperty.set( newValue );
+    };
+
     options = merge( {
 
       // NumberSpinner options
-      valueAlign: 'right',
+      incrementFunction: incrementFunction,
+      decrementFunction: decrementFunction,
       decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
-      deltaValue: 0.01,
+      valueAlign: 'right',
       cornerRadius: CORNER_RADIUS,
       arrowsScale: 1.5,
       xMargin: 10,

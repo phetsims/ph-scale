@@ -99,11 +99,7 @@ class Solution extends PhetioObject {
           return this.pHProperty.get();
         }
         else {
-          let pH = PHModel.computePH( solute.pH, soluteVolume, waterVolume );
-          if ( pH !== null ) {
-            pH = Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ); // constrain to the pH meter format, see issue #4
-          }
-          return pH;
+          return PHModel.computePH( solute.pH, soluteVolume, waterVolume );
         }
       }, {
         tandem: options.tandem.createTandem( 'pHProperty' ),

@@ -14,7 +14,7 @@ All core model computations are in [PHModel.js](https://github.com/phetsims/ph-s
 
 ## Mixin Design Pattern
 
-See [SolutionMixin](https://github.com/phetsims/ph-scale/blob/master/js/common/model/SolutionMixin.js) for details about
+See [SolutionMixin.js](https://github.com/phetsims/ph-scale/blob/master/js/common/model/SolutionMixin.js) for details about
 how the mixin design pattern is used in this sim.  It adds Properties related to concentration and quantities to solution classes. The solution model class hierachy looks like this:
 
 ```

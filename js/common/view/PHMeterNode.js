@@ -62,11 +62,7 @@ class PHMeterNode extends AccordionBox {
       buttonAlign: 'right',
       buttonXMargin: 14,
       buttonYMargin: Y_MARGIN,
-      expandCollapseButtonOptions: {
-        sideLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH,
-        touchAreaXDilation: 10,
-        touchAreaYDilation: 10
-      },
+      expandCollapseButtonOptions: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_OPTIONS,
       contentYMargin: Y_MARGIN,
 
       // phet-io

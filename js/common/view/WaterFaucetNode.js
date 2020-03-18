@@ -38,17 +38,12 @@ class WaterFaucetNode extends Node {
 
     const horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.position.x - faucet.pipeMinX ) ) / SCALE;
 
-    const faucetNode = new FaucetNode( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, {
-      horizontalPipeLength: horizontalPipeLength,
-      verticalPipeLength: 20,
-      tapToDispenseAmount: PHScaleConstants.TAP_TO_DISPENSE_AMOUNT,
-      tapToDispenseInterval: PHScaleConstants.TAP_TO_DISPENSE_INTERVAL,
-      shooterOptions: {
-        touchAreaXDilation: 37,
-        touchAreaYDilation: 60
-      },
-      tandem: options.tandem.createTandem( 'faucetNode' )
-    } );
+    const faucetNode = new FaucetNode( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty,
+      merge( {}, PHScaleConstants.FAUCET_OPTIONS, {
+        horizontalPipeLength: horizontalPipeLength,
+        verticalPipeLength: 20,
+        tandem: options.tandem.createTandem( 'faucetNode' )
+      } ) );
     faucetNode.translation = modelViewTransform.modelToViewPosition( faucet.position );
     faucetNode.setScaleMagnitude( -SCALE, SCALE ); // reflect horizontally
     this.addChild( faucetNode );

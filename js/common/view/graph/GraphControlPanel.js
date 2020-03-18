@@ -45,11 +45,10 @@ class GraphControlPanel extends Panel {
       tandem: options.tandem.createTandem( 'graphUnitsSwitch' )
     } );
 
-    const expandCollapseButton = new ExpandCollapseButton( expandedProperty, {
-      sideLength: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_LENGTH,
-      tandem: options.tandem.createTandem( 'expandCollapseButton' )
-    } );
-    expandCollapseButton.touchArea = expandCollapseButton.localBounds.dilatedXY( 10, 10 );
+    const expandCollapseButton = new ExpandCollapseButton( expandedProperty,
+      merge( {}, PHScaleConstants.EXPAND_COLLAPSE_BUTTON_OPTIONS, {
+        tandem: options.tandem.createTandem( 'expandCollapseButton' )
+      } ) );
 
     const content = new HBox( {
       spacing: 24,

@@ -38,7 +38,6 @@ const PHScaleConstants = {
   // pH
   PH_RANGE: new RangeWithValue( -1, 15, 7 ),
   PH_METER_DECIMAL_PLACES: 2,
-  PH_COMBO_BOX_DECIMAL_PLACES: 1,
 
   // volume
   VOLUME_DECIMAL_PLACES: 2,
@@ -50,11 +49,21 @@ const PHScaleConstants = {
   LINEAR_MANTISSA_RANGE: new Range( 0, 8 ),
 
   // expand/collapse buttons
-  EXPAND_COLLAPSE_BUTTON_LENGTH: 30,
+  EXPAND_COLLAPSE_BUTTON_OPTIONS: {
+    sideLength: 30,
+    touchAreaXDilation: 10,
+    touchAreaYDilation: 10
+  },
 
-  // tap-to-dispense feature for faucets
-  TAP_TO_DISPENSE_AMOUNT: 0.05, // L
-  TAP_TO_DISPENSE_INTERVAL: 333, // ms
+  // faucets
+  FAUCET_OPTIONS: {
+    tapToDispenseAmount: 0.05, // L
+    tapToDispenseInterval: 333, // ms
+    shooterOptions: {
+      touchAreaXDilation: 37,
+      touchAreaYDilation: 60
+    }
+  },
 
   // formulas, no i18n required
   H3O_FORMULA: 'H<sub>3</sub>O<sup>+</sup>',

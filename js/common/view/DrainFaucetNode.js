@@ -26,17 +26,11 @@ class DrainFaucetNode extends FaucetNode {
 
     const horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.position.x - faucet.pipeMinX ) ) / SCALE;
 
-    options = merge( {
+    options = merge( {}, PHScaleConstants.FAUCET_OPTIONS, {
 
       // FaucetNode options
       horizontalPipeLength: horizontalPipeLength,
       verticalPipeLength: 5,
-      tapToDispenseAmount: PHScaleConstants.TAP_TO_DISPENSE_AMOUNT,
-      tapToDispenseInterval: PHScaleConstants.TAP_TO_DISPENSE_INTERVAL,
-      shooterOptions: {
-        touchAreaXDilation: 37,
-        touchAreaYDilation: 60
-      },
 
       // phet-io
       tandem: Tandem.REQUIRED

@@ -25,7 +25,7 @@ See [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/mode
 
 If two volumes of liquid 1 & 2 are added, the total volume is V<sub>T</sub> = V<sub>1</sub> + V<sub>2</sub>
 
-#### Concentrations
+#### Concentration
 
 Concentration of hydronium is [H<sub>3</sub>O<sup>+</sup>] = 10<sup>-pH</sup>
 
@@ -33,7 +33,7 @@ Concentration of hydroxide is [OH] = 10<sup>pH-14</sup>
 
 Concentration of water is [H<sub>2</sub>O] = 55
 
-#### Quantities
+#### Quantity
 
 Number of moles of _X_ = [_X_] * V<sub>T</sub>
 

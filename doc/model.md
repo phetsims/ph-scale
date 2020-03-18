@@ -22,15 +22,15 @@ See [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/mode
 
 Given a volume of liquid with some pH...
 
-Concentration of H<sub>3</sub>O<sup>+</sup> = 10<sup>-pH</sup>.
+Concentration of H<sub>3</sub>O<sup>+</sup> = 10<sup>-pH</sup>
 
-Concentration of OH = 10<sup>-pOH</sup>, where pOH = 14 - pH.
+Concentration of OH = 10<sup>pH-14</sup>
 
 Concentration of H<sub>2</sub>O = 55 / V
 
 Number of molecules of H<sub>3</sub>O<sup>+</sup> = 10<sup>-pH</sup> * A * V
 
-Number of molecules of OH = 10<sup>-pOH</sup> *A * V or 10<sup>pH-14</sup> * A * V
+Number of molecules of OH = 10<sup>pH-14</sup> * A * V
 
 Number of molecules of H<sub>2</sub>O = 55 * A * V
 

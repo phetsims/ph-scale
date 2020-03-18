@@ -9,7 +9,7 @@ See [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/mode
 * H<sub>2</sub>O = water
 * H<sub>3</sub>O<sup>+</sup> = hydronium
 * OH<sup>-</sup> = hydroxide
-* A = Avogadro's number, 6.023 x 10<sup>23</sup>
+* A = Avogadro's constant, 6.023 x 10<sup>23</sup>
 * V = volume
 
 ## Units

@@ -11,7 +11,7 @@ See [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/mode
 * OH<sup>-</sup> = hydroxide
 * N<sub>A</sub> = Avogadro's constant, 6.023 x 10<sup>23</sup>
 * V = volume
-* [<i>O</i>] = the concentration of <i>O</i>
+* [<i>X</i>] = the concentration of <i>X</i>
 
 ## Units
 
@@ -35,17 +35,9 @@ Concentration of water is [H<sub>2</sub>O] = 55
 
 #### Quantities
 
-Number of moles of H<sub>3</sub>O<sup>+</sup> = [H<sub>3</sub>O<sup>+</sup>] * V<sub>T</sub>
+Number of moles of _X_ = [_X_] * V<sub>T</sub>
 
-Number of moles of OH = [OH] * V<sub>T</sub>
-
-Number of moles of H<sub>2</sub>O = [H<sub>2</sub>O] * V<sub>T</sub>
-
-Number of molecules of H<sub>3</sub>O<sup>+</sup> = [H<sub>3</sub>O<sup>+</sup>] * V<sub>T</sub> * N<sub>A</sub>
-
-Number of molecules of OH = [OH] * V<sub>T</sub> * N<sub>A</sub>
-
-Number of molecules of H<sub>2</sub>O = [H<sub>2</sub>O] * V<sub>T</sub> * N<sub>A</sub>
+Number of molecules of _X_ = ( Number of moles of _X_ ) * N<sub>A</sub>
 
 #### pH
 

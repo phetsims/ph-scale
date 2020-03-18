@@ -36,14 +36,14 @@ Number of molecules of H<sub>2</sub>O = 55 * A * V
 
 If two volumes of liquid 1 & 2 are added, the total volume V<sub>T</sub> = V<sub>1</sub> + V<sub>2</sub>
 
-If combining 2 acids (or acid and water), pH = -log(((10^-pH1)*V<sub>1</sub> + (10^-pH2)*V<sub>2</sub>) / (V<sub>1</sub> + V<sub>2</sub>))
+If combining 2 acids (or acid and water), pH = -log(((10^-pH1)*V<sub>1</sub> + (10^-pH2)*V<sub>2</sub>) / V<sub>T</sub>)
 
-If combining 2 bases (or base and water), pH = 14 + log(((10^(pH1 - 14)*V<sub>1</sub>)+(10^(14-pH2)*V<sub>2</sub>)) / (V<sub>1</sub> + V<sub>2</sub>))
+If combining 2 bases (or base and water), pH = 14 + log(((10^(pH1 - 14)*V<sub>1</sub>)+(10^(14-pH2)*V<sub>2</sub>)) / V<sub>T</sub>)
 
 If concentration of H<sub>3</sub>O<sup>+</sup> is changed, volume is unchanged, and pH = -log(concentration of H<sub>3</sub>O<sup>+</sup>)
 
 If concentration of OH is changed, volume is unchanged, and pH = 14 - (-log(concentration of OH))
 
-If #moles of H<sub>3</sub>O<sup>+</sup> is changed, volume is unchanged, and pH = -log ((new #moles H<sub>3</sub>O<sup>+</sup>) / V)
+If #moles of H<sub>3</sub>O<sup>+</sup> is changed, volume is unchanged, and pH = -log ((new #moles H<sub>3</sub>O<sup>+</sup>) / V<sub>T</sub>)
 
-If #moles of OH is changed,, volume is unchanged, and pH = 14 - (-log((new # moles OH) / V))
+If #moles of OH is changed,, volume is unchanged, and pH = 14 - (-log((new # moles OH) / V<sub>T</sub>))

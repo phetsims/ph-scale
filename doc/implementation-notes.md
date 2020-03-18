@@ -16,7 +16,9 @@ See [SolutionMixin](https://github.com/phetsims/ph-scale/blob/master/js/common/m
 how the mixin design pattern is used in this sim.  It adds Properties related to concentration and quantities to solution classes. The solution model class hierachy looks like this:
 
 ```
-MacroModel
-  MicroModel, mixes SolutionMixin
-MySolution, mixes SolutionMixin
+class MacroModel
+
+class MicroModel extends MacroModel mixes SolutionMixin
+
+class MySolution mixes SolutionMixin
 ```

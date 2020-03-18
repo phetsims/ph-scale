@@ -40,9 +40,9 @@ Number of molecules of OH = [OH] * V<sub>T</sub> * A
 
 Number of molecules of H<sub>2</sub>O = [H<sub>2</sub>O] * V<sub>T</sub> * A
 
-If combining 2 acids (or acid and water), then pH = -log( ( (10<sup>-pH<sub>1</sub></sup> * V<sub>1</sub> ) + ( 10<sup>-pH<sub>2</sub></sup> * V<sub>2</sub>) ) / V<sub>T</sub>)
+If combining 2 acids (or acid and water), then pH = -log( ( 10<sup>-pH<sub>1</sub></sup> * V<sub>1</sub> + 10<sup>-pH<sub>2</sub></sup> * V<sub>2</sub> ) / V<sub>T</sub>)
 
-If combining 2 bases (or base and water), then pH = 14 + log( ( (10<sup>pH<sub>1</sub>-14</sup> * V<sub>1</sub> ) + ( 10<sup>14-pH<sub>2</sub></sup> *V <sub>2</sub> ) ) / V<sub>T</sub> )
+If combining 2 bases (or base and water), then pH = 14 + log( ( 10<sup>pH<sub>1</sub>-14</sup> * V<sub>1</sub> + 10<sup>14-pH<sub>2</sub></sup> *V <sub>2</sub> ) / V<sub>T</sub> )
 
 If concentration of H<sub>3</sub>O<sup>+</sup> is changed, then pH = -log( [H<sub>3</sub>O<sup>+</sup>] )
 

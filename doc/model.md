@@ -6,8 +6,8 @@ See [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/mode
 
 ## Limits
 
-pH range = [-1,15]
-volume range = [0,1.2] L
+* pH range = [-1,15]
+* volume range = [0,1.2] L
 
 ## Definitions
 
@@ -22,17 +22,17 @@ volume range = [0,1.2] L
 
 Given a volume of liquid with some pH...
 
-Concentration of H3O = 10^-pH.
+Concentration of H3O = 10<sup>-pH</sup>.
 
-Concentration of OH = 10^-pOH, where pOH=14-pH.
+Concentration of OH = 10<sup>-pOH</sup>, where pOH = 14 - pH.
 
 Concentration of H2O = 55 / V
 
-Number of molecules of H3O = (10^-pH)*A*V
+Number of molecules of H3O = 10<sup>-pHM</sup> * A * V
 
-Number of molecules of OH = (10^-pOH)*A*V or 10^(pH-14)*A*V
+Number of molecules of OH = 10<sup>-pOH</sup> *A * V or 10<sup>pH-14</sup> * A * V
 
-Number of molecules of H2O = 55*A*V
+Number of molecules of H2O = 55 * A * V
 
 If two volumes of liquid 1 & 2 are added, the new volume = V1 + V2
 

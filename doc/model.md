@@ -1,6 +1,6 @@
 pH Scale model
 
-See PHModel for implementation.
+See [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/model/PHModel.js) for implementation.
 
 Limits:
 

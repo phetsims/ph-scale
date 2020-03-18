@@ -40,10 +40,10 @@ If combining 2 acids (or acid and water), pH = -log(((10^-pH1)*V<sub>1</sub> + (
 
 If combining 2 bases (or base and water), pH = 14 + log(((10^(pH1 - 14)*V<sub>1</sub>)+(10^(14-pH2)*V<sub>2</sub>)) / V<sub>T</sub>)
 
-If concentration of H<sub>3</sub>O<sup>+</sup> is changed, volume is unchanged, and pH = -log(concentration of H<sub>3</sub>O<sup>+</sup>)
+If concentration of H<sub>3</sub>O<sup>+</sup> is changed, then pH = -log(concentration of H<sub>3</sub>O<sup>+</sup>)
 
-If concentration of OH is changed, volume is unchanged, and pH = 14 - (-log(concentration of OH))
+If concentration of OH is changed, then pH = 14 - (-log(concentration of OH))
 
-If #moles of H<sub>3</sub>O<sup>+</sup> is changed, volume is unchanged, and pH = -log ((new #moles H<sub>3</sub>O<sup>+</sup>) / V<sub>T</sub>)
+If #moles of H<sub>3</sub>O<sup>+</sup> is changed, then pH = -log ((#moles H<sub>3</sub>O<sup>+</sup>) / V<sub>T</sub>)
 
-If #moles of OH is changed,, volume is unchanged, and pH = 14 - (-log((new # moles OH) / V<sub>T</sub>))
+If #moles of OH is changed,, then pH = 14 - (-log((#moles OH) / V<sub>T</sub>))

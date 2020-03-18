@@ -4,11 +4,6 @@ This document is a high-level description of the model used in PhET's _pH Scale_
 
 See [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/model/PHModel.js) for implementation.
 
-## Limits
-
-* pH range = [-1,15]
-* volume range = [0,1.2] L
-
 ## Definitions
 
 * H<sub>2</sub>O = water
@@ -58,3 +53,8 @@ If concentration of OH is changed, then pH = 14 + log( [OH] )
 If #moles of H<sub>3</sub>O<sup>+</sup> is changed, then pH = -log( (#moles H<sub>3</sub>O<sup>+</sup>) / V<sub>T</sub> )
 
 If #moles of OH is changed,, then pH = 14 + log( (#moles OH) / V<sub>T</sub>))
+
+## Limits
+
+* pH range = [-1,15]
+* volume range = [0,1.2] L

@@ -23,11 +23,15 @@ See [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/mode
 
 If two volumes of liquid 1 & 2 are added, the total volume is V<sub>T</sub> = V<sub>1</sub> + V<sub>2</sub>
 
+#### Concentrations
+
 Concentration of hydronium is [H<sub>3</sub>O<sup>+</sup>] = 10<sup>-pH</sup>
 
 Concentration of hydroxide is [OH] = 10<sup>pH-14</sup>
 
 Concentration of water is [H<sub>2</sub>O] = 55
+
+#### Quantities
 
 Number of moles of H<sub>3</sub>O<sup>+</sup> = [H<sub>3</sub>O<sup>+</sup>] * V<sub>T</sub>
 
@@ -40,6 +44,8 @@ Number of molecules of H<sub>3</sub>O<sup>+</sup> = [H<sub>3</sub>O<sup>+</sup>]
 Number of molecules of OH = [OH] * V<sub>T</sub> * N<sub>A</sub>
 
 Number of molecules of H<sub>2</sub>O = [H<sub>2</sub>O] * V<sub>T</sub> * N<sub>A</sub>
+
+#### pH
 
 If combining 2 acids (or acid and water), then pH = -log( ( 10<sup>-pH<sub>1</sub></sup> * V<sub>1</sub> + 10<sup>-pH<sub>2</sub></sup> * V<sub>2</sub> ) / V<sub>T</sub>)
 

@@ -11,6 +11,7 @@ See [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/mode
 * OH<sup>-</sup> = hydroxide
 * N<sub>A</sub> = Avogadro's constant, 6.023 x 10<sup>23</sup>
 * V = volume
+* [<i>O</i>] = the concentration of <i>O</i>
 
 ## Units
 

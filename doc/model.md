@@ -34,11 +34,11 @@ Number of molecules of OH = 10<sup>pH-14</sup> * A * V
 
 Number of molecules of H<sub>2</sub>O = 55 * A * V
 
-If two volumes of liquid 1 & 2 are added, the new volume = V1 + V2
+If two volumes of liquid 1 & 2 are added, the total volume V<sub>T</sub> = V<sub>1</sub> + V<sub>2</sub>
 
-If combining 2 acids (or acid and water), pH = -log(((10^-pH1)*V1 + (10^-pH2)*V2) / (V1 + V2))
+If combining 2 acids (or acid and water), pH = -log(((10^-pH1)*V<sub>1</sub> + (10^-pH2)*V<sub>2</sub>) / (V<sub>1</sub> + V<sub>2</sub>))
 
-If combining 2 bases (or base and water), pH = 14 + log(((10^(pH1 - 14)*V1)+(10^(14-pH2)*V2)) / (V1 + V2))
+If combining 2 bases (or base and water), pH = 14 + log(((10^(pH1 - 14)*V<sub>1</sub>)+(10^(14-pH2)*V<sub>2</sub>)) / (V<sub>1</sub> + V<sub>2</sub>))
 
 If concentration of H<sub>3</sub>O<sup>+</sup> is changed, volume is unchanged, and pH = -log(concentration of H<sub>3</sub>O<sup>+</sup>)
 

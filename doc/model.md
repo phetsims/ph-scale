@@ -11,9 +11,9 @@ See [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/mode
 
 ## Definitions
 
-* H2O = water
-* H3O = hydronium (H3O+)
-* OH = hydroxide (OH-)
+* H<sub>2</sub>O = water
+* H3O<sup>+</sup> = hydronium
+* OH<sup>-</sup> = hydroxide
 * A = Avogadro's number (6.023E23)
 * V = volume in liters (L)
 * N = number of molecules

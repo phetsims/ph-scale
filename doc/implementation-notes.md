@@ -8,6 +8,8 @@ to provide a high-level overview, and to supplement the internal documentation
 Before reading this document, please read:
 * [model.md](https://github.com/phetsims/ph-scale/blob/master/doc/model.md), a high-level description of the simulation model
  
+## Core Model
+
 All core model computations are in [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/model/PHModel.js).
 
 ## Mixin Design Pattern

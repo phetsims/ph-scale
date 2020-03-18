@@ -15,8 +15,7 @@ See [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/mode
 * H<sub>3</sub>O<sup>+</sup> = hydronium
 * OH<sup>-</sup> = hydroxide
 * A = Avogadro's number (6.023E23)
-* V = volume in liters (L)
-* N = number of molecules
+* V = volume
 
 ## Units
 

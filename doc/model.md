@@ -1,20 +1,24 @@
-pH Scale model
+# pH Scale - model description
+
+This document is a high-level description of the model used in PhET's _pH Scale_ simulation.
 
 See [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/model/PHModel.js) for implementation.
 
-Limits:
+## Limits
 
 pH range = [-1,15]
 volume range = [0,1.2] L
 
-Definitions:
+## Definitions
 
-H2O = water
-H3O = hydronium (H3O+)
-OH = hydroxide (OH-)
-A = Avogadro's number (6.023E23)
-V = volume in liters (L)
-N = number of molecules
+* H2O = water
+* H3O = hydronium (H3O+)
+* OH = hydroxide (OH-)
+* A = Avogadro's number (6.023E23)
+* V = volume in liters (L)
+* N = number of molecules
+
+## Computations
 
 Given a volume of liquid with some pH...
 

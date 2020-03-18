@@ -56,5 +56,5 @@ If #moles of OH is changed,, then pH = 14 + log( (#moles OH) / V<sub>T</sub>))
 
 ## Limits
 
-* pH range = [-1,15]
-* volume range = [0,1.2] L
+* pH range = [-1, 15]
+* volume range = [0, 1.2] L

@@ -84,7 +84,8 @@ class PHMeterNode extends AccordionBox {
         decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
         cornerRadius: CORNER_RADIUS,
         textOptions: {
-          font: new PhetFont( 28 )
+          font: new PhetFont( 28 ),
+          phetioComponentOptions: { textProperty: { phetioHighFrequency: true } }
         },
         backgroundFill: 'white',
         backgroundStroke: 'darkGray',

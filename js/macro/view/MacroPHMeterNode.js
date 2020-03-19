@@ -360,17 +360,17 @@ class PHIndicatorNode extends Node {
 
     // pH display
     const numberDisplay = new NumberDisplay( pHProperty, PHScaleConstants.PH_RANGE, {
-      font: new PhetFont( 28 ),
       decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
       align: 'right',
       noValueAlign: 'center',
       cornerRadius: CORNER_RADIUS,
       xMargin: 8,
       yMargin: 5,
-      tandem: options.tandem.createTandem( 'numberDisplay' ),
       textOptions: {
+        font: new PhetFont( 28 ),
         phetioComponentOptions: { textProperty: { phetioHighFrequency: true } }
-      }
+      },
+      tandem: options.tandem.createTandem( 'numberDisplay' )
     } );
 
     // label above the value

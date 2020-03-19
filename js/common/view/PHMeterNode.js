@@ -83,7 +83,9 @@ class PHMeterNode extends AccordionBox {
       contentNode = new NumberDisplay( pHProperty, PHScaleConstants.PH_RANGE, {
         decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
         cornerRadius: CORNER_RADIUS,
-        font: new PhetFont( 28 ),
+        textOptions: {
+          font: new PhetFont( 28 )
+        },
         backgroundFill: 'white',
         backgroundStroke: 'darkGray',
         xMargin: 8,

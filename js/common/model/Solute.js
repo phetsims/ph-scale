@@ -48,6 +48,10 @@ class Solute extends PhetioObject {
 
     super( options );
 
+    assert && assert( options.dilutedColor === null || options.dilutedColor instanceof Color, `invalid dilutedColor: ${options.dilutedColor}` );
+    assert && assert( options.colorStopColor === null || options.colorStopColor instanceof Color, `invalid colorStopColor: ${options.colorStopColor}` );
+    assert && assert( options.colorStopRatio >= 0 && options.colorStopRatio <= 1, `invalid colorStopRatio: ${options.colorStopRatio}` );
+
     // @public (read-only)
     this.nameProperty = new StringProperty( name, {
       tandem: options.tandem.createTandem( 'nameProperty' ),
@@ -58,7 +62,7 @@ class Solute extends PhetioObject {
 
     // @private
     this.dilutedColor = options.dilutedColor;
-    this.colorStop = options.colorStop;
+    this.colorStopColor = options.colorStopColor;
     this.colorStopRatio = options.colorStopRatio;
   }
 
@@ -88,7 +92,7 @@ class Solute extends PhetioObject {
   computeColor( ratio ) {
     assert && assert( ratio >= 0 && ratio <= 1 );
     let color;
-    if ( this.colorStop ) {
+    if ( this.colorStopColor ) {
       if ( ratio > this.colorStopRatio ) {
         color = Color.interpolateRGBA( this.colorStopColor, this.stockColor,
           ( ratio - this.colorStopRatio ) / ( 1 - this.colorStopRatio ) );

@@ -40,7 +40,7 @@ class Solute extends PhetioObject {
       // {Color} color when the solute is barely present in solution (fully diluted)
       dilutedColor: Water.color,
 
-      // {Color|null} optional color use to smooth out some color transitions
+      // {Color|null} optional color used to smooth out some color transitions
       colorStopColor: null,
 
       // {number} ratio for the color-stop, (0,1) exclusive, ignored if colorStopColor is null

@@ -53,10 +53,16 @@ class Solute extends PhetioObject {
     assert && assert( options.colorStopRatio > 0 && options.colorStopRatio < 1, `invalid colorStopRatio: ${options.colorStopRatio}` );
 
     // @public (read-only)
+    // Name is a Property solely for PhET-iO. A use-case is when the client wants to replace the solute name with
+    // something like '?' as part of an exercise where the student needs to guess a solute's identity.  This Property
+    // should definitely not be used to make a solute look like some other solute, but there's nothing to prevent that
+    // abuse. See https://github.com/phetsims/ph-scale/issues/110
     this.nameProperty = new StringProperty( name, {
       tandem: options.tandem.createTandem( 'nameProperty' ),
       phetioDocumentation: 'name of the solute, as displayed in the user interface'
     } );
+
+    // @public (read-only)
     this.pH = pH;
     this.stockColor = stockColor;
 

@@ -38,7 +38,8 @@ class Solute extends PhetioObject {
       // {Color|null} optional color used to smooth out some color transitions
       colorStopColor: null,
 
-      // {number} ratio for the color-stop, (0,1) exclusive, ignored if colorStopColor is null
+      // {number} dilution ratio at which colorStopColor will be applied, ignored if colorStop is null
+      // (0,1) exclusive, where 0 is no solute, 1 is all solute
       colorStopRatio: 0.25,
 
       // phet-io

@@ -12,15 +12,10 @@ import merge from '../../../../phet-core/js/merge.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import PhetioObject from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import phScaleStrings from '../../ph-scale-strings.js';
 import phScale from '../../phScale.js';
-import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import SoluteIO from './SoluteIO.js';
 import Water from './Water.js';
-
-// strings
-const choiceCustomString = phScaleStrings.choice.custom;
 
 class Solute extends PhetioObject {
 
@@ -107,16 +102,6 @@ class Solute extends PhetioObject {
       color = Color.interpolateRGBA( this.dilutedColor, this.stockColor, ratio );
     }
     return color;
-  }
-
-  /**
-   * Creates a custom solute.
-   * @param {number} pH
-   * @returns {Solute}
-   * @public
-   */
-  static createCustom( pH ) {
-    return new Solute( choiceCustomString, pH, PHScaleColors.WATER );
   }
 }
 

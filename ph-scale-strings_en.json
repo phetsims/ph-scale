@@ -47,9 +47,6 @@
   "choice.drainCleaner": {
     "value": "Drain Cleaner"
   },
-  "choice.custom": {
-    "value": "Custom"
-  },
   "units.liters": {
     "value": "L"
   },

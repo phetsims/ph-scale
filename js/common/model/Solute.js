@@ -43,7 +43,7 @@ class Solute extends PhetioObject {
       colorStopRatio: 0.25,
 
       // phet-io
-      tandem: Tandem.OPTIONAL, // this is optional because in MySolutions, a new Solute is created for each pH change
+      tandem: Tandem.REQUIRED,
       phetioType: SoluteIO
     }, options );
 

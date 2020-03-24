@@ -48,7 +48,7 @@ class Solute extends PhetioObject {
 
     super( options );
 
-    assert && assert( options.dilutedColor === null || options.dilutedColor instanceof Color, `invalid dilutedColor: ${options.dilutedColor}` );
+    assert && assert( options.dilutedColor instanceof Color, `invalid dilutedColor: ${options.dilutedColor}` );
     assert && assert( options.colorStopColor === null || options.colorStopColor instanceof Color, `invalid colorStopColor: ${options.colorStopColor}` );
     assert && assert( options.colorStopRatio > 0 && options.colorStopRatio < 1, `invalid colorStopRatio: ${options.colorStopRatio}` );
 

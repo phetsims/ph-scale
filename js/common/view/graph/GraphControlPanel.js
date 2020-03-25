@@ -6,7 +6,8 @@
  */
 
 import merge from '../../../../../phet-core/js/merge.js';
-import HBox from '../../../../../scenery/js/nodes/HBox.js';
+import Node from '../../../../../scenery/js/nodes/Node.js';
+import Rectangle from '../../../../../scenery/js/nodes/Rectangle.js';
 import ExpandCollapseButton from '../../../../../sun/js/ExpandCollapseButton.js';
 import Panel from '../../../../../sun/js/Panel.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
@@ -32,8 +33,8 @@ class GraphControlPanel extends Panel {
       cornerRadius: 6,
       xMargin: 8,
       yMargin: 8,
-      minWidth: 350,
-      minHeight: 55,
+      minWidth: 330,
+      minHeight: 50,
       align: 'right',
 
       // phet-io
@@ -41,18 +42,24 @@ class GraphControlPanel extends Panel {
       phetioDocumentation: 'control panel that appears above the graph'
     }, options );
 
+    const rectangle = new Rectangle( 0, 0, options.minWidth, options.minHeight, {
+      stroke: 'red'
+    });
+
     const graphUnitsSwitch = new GraphUnitsSwitch( graphUnitsProperty, {
+      center: rectangle.center,
       tandem: options.tandem.createTandem( 'graphUnitsSwitch' )
     } );
 
     const expandCollapseButton = new ExpandCollapseButton( expandedProperty,
       merge( {}, PHScaleConstants.EXPAND_COLLAPSE_BUTTON_OPTIONS, {
+        right: rectangle.right,
+        top: rectangle.top,
         tandem: options.tandem.createTandem( 'expandCollapseButton' )
       } ) );
 
-    const content = new HBox( {
-      spacing: 24,
-      children: [ graphUnitsSwitch, expandCollapseButton ]
+    const content = new Node( {
+      children: [ rectangle, graphUnitsSwitch, expandCollapseButton ]
     } );
 
     super( content, options );

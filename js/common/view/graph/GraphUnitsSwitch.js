@@ -30,6 +30,7 @@ class GraphUnitsSwitch extends ABSwitch {
 
     options = merge( {
       toggleSwitchOptions: { size: new Dimension2( 50, 25 ) },
+      centerOnButton: true,
 
       // phet-io
       tandem: options.tandem.createTandem( 'graphUnitsSwitch' ),
@@ -46,7 +47,7 @@ class GraphUnitsSwitch extends ABSwitch {
     const quantityLabel = new RichText( quantityString + '<br>(' + unitsMolesString + ')', {
       align: 'center',
       font: PHScaleConstants.AB_SWITCH_FONT,
-      maxWidth: 85,
+      maxWidth: 90,
       tandem: options.tandem.createTandem( 'quantityLabel' )
     } );
 

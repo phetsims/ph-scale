@@ -282,7 +282,7 @@ class MoleculesCanvas extends CanvasNode {
       lineWidth: H3O_LINE_WIDTH
     } )
       .toCanvas( ( canvas, x, y, width, height ) => {
-        this.imageH3OMajority = canvas; // @private
+        this.imageH3OMajority = canvas; // @private {HTMLCanvasElement}
       } );
 
     new Circle( H3O_RADIUS, {
@@ -291,7 +291,7 @@ class MoleculesCanvas extends CanvasNode {
       lineWidth: H3O_LINE_WIDTH
     } )
       .toCanvas( ( canvas, x, y, width, height ) => {
-        this.imageH3OMinority = canvas; // @private
+        this.imageH3OMinority = canvas; // @private {HTMLCanvasElement}
       } );
 
     new Circle( OH_RADIUS, {
@@ -300,7 +300,7 @@ class MoleculesCanvas extends CanvasNode {
       lineWidth: OH_LINE_WIDTH
     } )
       .toCanvas( ( canvas, x, y, width, height ) => {
-        this.imageOHMajority = canvas; // @private
+        this.imageOHMajority = canvas; // @private {HTMLCanvasElement}
       } );
 
     new Circle( OH_RADIUS, {
@@ -309,7 +309,7 @@ class MoleculesCanvas extends CanvasNode {
       lineWidth: OH_LINE_WIDTH
     } )
       .toCanvas( ( canvas, x, y, width, height ) => {
-        this.imageOHMinority = canvas; // @private
+        this.imageOHMinority = canvas; // @private {HTMLCanvasElement}
       } );
   }
 

@@ -67,6 +67,9 @@ class Solute extends PhetioObject {
     this.pH = pH;
     this.stockColor = stockColor;
 
+    // @public (read-only) used to other make tandems that pertain to this solute, e.g. combo box items
+    this.tandemName = options.tandem.name;
+
     // @private
     this.dilutedColor = options.dilutedColor;
     this.colorStopColor = options.colorStopColor;

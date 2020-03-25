@@ -71,7 +71,7 @@ class SoluteComboBox extends ComboBox {
       } );
 
       items.push( new ComboBoxItem( hBox, solute, {
-        tandemName: _.camelCase( solute.name )
+        tandemName: solute.tandemName
       } ) );
     } );
 

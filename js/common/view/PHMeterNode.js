@@ -143,16 +143,14 @@ class PHSpinnerNode extends NumberSpinner {
 
     // When using the spinner to change pH, constrain pHProperty to be exactly the value displayed by the spinner.
     // See https://github.com/phetsims/ph-scale/issues/143
-    const incrementFunction = () => {
-      const oldValue = Utils.toFixedNumber( pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
-      const newValue = Utils.toFixedNumber( oldValue + pHDelta, PHScaleConstants.PH_METER_DECIMAL_PLACES );
-      pHProperty.set( newValue );
+    const incrementFunction = value => {
+      value = Utils.toFixedNumber( value, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      return Utils.toFixedNumber( value + pHDelta, PHScaleConstants.PH_METER_DECIMAL_PLACES );
     };
 
-    const decrementFunction = () => {
-      const oldValue = Utils.toFixedNumber( pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
-      const newValue = Utils.toFixedNumber( oldValue - pHDelta, PHScaleConstants.PH_METER_DECIMAL_PLACES );
-      pHProperty.set( newValue );
+    const decrementFunction = value => {
+      value = Utils.toFixedNumber( value, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      return Utils.toFixedNumber( value - pHDelta, PHScaleConstants.PH_METER_DECIMAL_PLACES );
     };
 
     options = merge( {

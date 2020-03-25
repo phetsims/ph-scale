@@ -44,8 +44,10 @@ const OH_RADIUS = H3O_RADIUS;
 
 const MAJORITY_ALPHA = 0.55; // alpha of the majority species, [0-1], transparent-opaque
 const MINORITY_ALPHA = 1.0; // alpha of the minority species, [0-1], transparent-opaque
-const MOLECULES_STROKE = null; // optional stroke around molecules
-const MOLECULES_LINE_WIDTH = 0.25; // width of stroke around molecules, ignored if MOLECULES_STROKE is null
+const H3O_STROKE = null; // optional stroke around H3O+ molecules
+const H3O_LINE_WIDTH = 0.25; // width of stroke around H3O+ molecules, ignored if MOLECULES_STROKE is null
+const OH_STROKE = null; // optional stroke around OH- molecules
+const OH_LINE_WIDTH = 0.25; // width of stroke around OH- molecules, ignored if MOLECULES_STROKE is null
 
 class RatioNode extends Node {
 
@@ -276,8 +278,8 @@ class MoleculesCanvas extends CanvasNode {
     // @private Generate majority and minority {HTMLCanvasElement} for each molecule.
     new Circle( H3O_RADIUS, {
       fill: PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA ),
-      stroke: MOLECULES_STROKE,
-      lineWidth: MOLECULES_LINE_WIDTH
+      stroke: H3O_STROKE,
+      lineWidth: H3O_LINE_WIDTH
     } )
       .toCanvas( ( canvas, x, y, width, height ) => {
         this.imageH3OMajority = canvas; // @private
@@ -285,8 +287,8 @@ class MoleculesCanvas extends CanvasNode {
 
     new Circle( H3O_RADIUS, {
       fill: PHScaleColors.H3O_MOLECULES.withAlpha( MINORITY_ALPHA ),
-      stroke: MOLECULES_STROKE,
-      lineWidth: MOLECULES_LINE_WIDTH
+      stroke: H3O_STROKE,
+      lineWidth: H3O_LINE_WIDTH
     } )
       .toCanvas( ( canvas, x, y, width, height ) => {
         this.imageH3OMinority = canvas; // @private
@@ -294,8 +296,8 @@ class MoleculesCanvas extends CanvasNode {
 
     new Circle( OH_RADIUS, {
       fill: PHScaleColors.OH_MOLECULES.withAlpha( MAJORITY_ALPHA ),
-      stroke: MOLECULES_STROKE,
-      lineWidth: MOLECULES_LINE_WIDTH
+      stroke: OH_STROKE,
+      lineWidth: OH_LINE_WIDTH
     } )
       .toCanvas( ( canvas, x, y, width, height ) => {
         this.imageOHMajority = canvas; // @private
@@ -303,8 +305,8 @@ class MoleculesCanvas extends CanvasNode {
 
     new Circle( OH_RADIUS, {
       fill: PHScaleColors.OH_MOLECULES.withAlpha( MINORITY_ALPHA ),
-      stroke: MOLECULES_STROKE,
-      lineWidth: MOLECULES_LINE_WIDTH
+      stroke: OH_STROKE,
+      lineWidth: OH_LINE_WIDTH
     } )
       .toCanvas( ( canvas, x, y, width, height ) => {
         this.imageOHMinority = canvas; // @private

@@ -42,7 +42,7 @@ class GraphControlPanel extends Panel {
       phetioDocumentation: 'control panel that appears above the graph'
     }, options );
 
-    // Invisible rectangle, for layout of switch and buttons.
+    // Invisible rectangle, for layout of switch and button.
     const rectangle = new Rectangle( 0, 0, options.minWidth, options.minHeight );
 
     const graphUnitsSwitch = new GraphUnitsSwitch( graphUnitsProperty, {

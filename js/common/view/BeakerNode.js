@@ -118,7 +118,7 @@ class BeakerNode extends Node {
             fill: 'black',
             right: beakerRight - tickLength - TICK_LABEL_X_SPACING,
             centerY: y,
-            maxWidth: 0.25 * beaker.size.width
+            maxWidth: 80 // determined empirically
           } ) );
         }
       }

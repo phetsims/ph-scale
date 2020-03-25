@@ -42,9 +42,7 @@ class GraphControlPanel extends Panel {
       phetioDocumentation: 'control panel that appears above the graph'
     }, options );
 
-    const rectangle = new Rectangle( 0, 0, options.minWidth, options.minHeight, {
-      stroke: 'red'
-    });
+    const rectangle = new Rectangle( 0, 0, options.minWidth, options.minHeight );
 
     const graphUnitsSwitch = new GraphUnitsSwitch( graphUnitsProperty, {
       center: rectangle.center,

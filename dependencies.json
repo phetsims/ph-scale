@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.4.0-dev.15 Mon Mar 23 2020 15:08:03 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# ph-scale 1.4.0-dev.16 Wed Mar 25 2020 22:35:00 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "a99a9ce9ee0774bf3ef509bf3e31ca7383f67478",
     "branch": "master"
@@ -13,15 +13,15 @@
     "branch": "master"
   },
   "chipper": {
-    "sha": "0bcad286fd9e6f6f8df5f6be15b07de48df09709",
+    "sha": "ba9e3144023f86d10f41bc75e354773343e9c7c6",
     "branch": "master"
   },
   "dot": {
-    "sha": "c5c7732cb6cc60ab66e1c1c1ff76d169c488ab25",
+    "sha": "667d6fc4fd9fcedc5a89d5b458d8525ad0095ea1",
     "branch": "master"
   },
   "joist": {
-    "sha": "aea0c31912c96d5f871af616b547ca3b472257fd",
+    "sha": "f820eee0cc719e8d722f6d93a9ed15d240b6acd6",
     "branch": "master"
   },
   "kite": {
@@ -33,15 +33,15 @@
     "branch": "master"
   },
   "ph-scale": {
-    "sha": "7e57b771b7ef293963ee6b6a1964a6363012efcf",
+    "sha": "e5d6a0c605da2179962dbb2c619b1a6e9b94893d",
     "branch": "master"
   },
   "phet-core": {
-    "sha": "e486375bfff79651b514344a79e91b6df12aec73",
+    "sha": "ac0c07935a2fdc7da46eb9b9c21b227291d8b4d8",
     "branch": "master"
   },
   "phet-io": {
-    "sha": "0c6c877b1772d835c8c7bb1c139d1dc7e9ed3ebb",
+    "sha": "0bdc097b076eb6c5bf4e3620e0a551c12e98aad5",
     "branch": "master"
   },
   "phet-io-wrappers": {
@@ -65,7 +65,7 @@
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "6cb31d80e99193ebbeeeea6bed4641dd17782974",
+    "sha": "158c41648d5c7dad626f22f5f02629cddfa01527",
     "branch": "master"
   },
   "sherpa": {
@@ -77,7 +77,7 @@
     "branch": "master"
   },
   "sun": {
-    "sha": "81e1f1b6a1ee3112827f27c1794615139031c410",
+    "sha": "32751225c9d079defe715ee661cc2c771f9ff38a",
     "branch": "master"
   },
   "tambo": {
@@ -85,7 +85,7 @@
     "branch": "master"
   },
   "tandem": {
-    "sha": "a59c8abdabe95418282dafbdb2be6fb85a6b0824",
+    "sha": "20911a18d39616c1ccd88d1b3283baf83a796488",
     "branch": "master"
   },
   "utterance-queue": {

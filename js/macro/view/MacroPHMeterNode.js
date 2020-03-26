@@ -445,8 +445,8 @@ class PHIndicatorNode extends Node {
       backgroundRectangle.fill = enabled ? BACKGROUND_ENABLED_FILL : BACKGROUND_DISABLED_FILL;
       arrowNode.visible = lineNode.visible = enabled;
 
-      // Highlight the indicator when pH === 7
-      highlight.visible = ( pH === 7 );
+      // Highlight the indicator when displayed pH === 7
+      highlight.visible = ( Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === 7 );
     } );
   }
 }

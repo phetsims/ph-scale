@@ -13,7 +13,6 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import Water from '../../common/model/Water.js';
 import phScaleStrings from '../../ph-scale-strings.js';
 import phScale from '../../phScale.js';
 
@@ -57,7 +56,7 @@ class NeutralIndicatorNode extends Node {
 
     // Make parentNode node visible when the solution has neutral pH.
     solution.pHProperty.link( pH => {
-      parentNode.setVisible( pH === Water.pH );
+      parentNode.setVisible( solution.isEquivalentToWater() );
     } );
   }
 }

@@ -15,8 +15,8 @@
  *
  * I believe it's appropriate to call this a mixin, vs a trait. The main difference between a trait and a mixin is
  * that a trait can reference properties or methods from the class that it's being mixed into, while a mixin does not.
- * I interpret "reference" to mean "reference directly via this".  `SolutionMixin` gets everything it needs passed
- * in via `initializeSolutionMixin`, so it does not reach into the host class via this.
+ * I interpret "reference" to mean "reference directly via this".  SolutionMixin gets everything it needs passed
+ * in via initializeSolutionMixin, so it does not reach into the host class via 'this'.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

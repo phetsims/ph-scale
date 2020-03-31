@@ -21,14 +21,20 @@ const PHScaleConstants = {
 
   // Credits, shared by ph-scale and ph-scale-basics
   CREDITS: {
-    leadDesign: 'Yuen-ying Carpenter, Archie Paulson',
-    softwareDevelopment: 'Chris Malley (PixelZoom, Inc.)',
-    team: 'Wendy Adams, Jack Barbera, Julia Chamberlain, Laurie Langdon, Trish Loeblein, Emily B. Moore, Ariel Paul, ' +
-          'Katherine Perkins, Amy Rouinfar',
-    graphicArts: 'Sharon Siman-Tov',
-    qualityAssurance: 'Jaspe Arias, Steele Dalton, Bryce Griebenow, Elise Morgan, Liam Mulhall, Oliver Orejola, ' +
-                      'Benjamin Roberts, Ethan Ward, Kathryn Woessner, Bryan Yoelin',
-    thanks: 'Conversion of this simulation to HTML5 was funded in part by the Royal Society of Chemistry.'
+    leadDesign:
+      'Yuen-ying Carpenter, Archie Paulson',
+    softwareDevelopment:
+      'Chris Malley (PixelZoom, Inc.)',
+    team:
+      'Wendy Adams, Jack Barbera, Julia Chamberlain, Laurie Langdon, Trish Loeblein, Emily B. Moore, Ariel Paul, ' +
+      'Katherine Perkins, Amy Rouinfar',
+    graphicArts:
+      'Sharon Siman-Tov',
+    qualityAssurance:
+      'Jaspe Arias, Logan Bray, Steele Dalton, Bryce Griebenow, Elise Morgan, Liam Mulhall, Oliver Orejola, ' +
+      'Benjamin Roberts, Jacob Romero, Ethan Ward, Kathryn Woessner, Bryan Yoelin',
+    thanks:
+      'Conversion of this simulation to HTML5 was funded in part by the Royal Society of Chemistry.'
   },
 
   // beaker

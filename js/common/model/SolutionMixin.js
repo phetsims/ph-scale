@@ -6,8 +6,8 @@
  * PhET-iO instrumented when present.
  *
  * Subclassing would be preferred to mixin, but subclassing wasn't possible because there is no common base class.
- * In Macro and Micro screens both have a solute, pH and total volume are DerivedProperties. In My Solution screen,
- * there is no solute, and pH and totalVolume are not derived.  So the solution class hierarchy has this structure:
+ * Macro and Micro screens have a solute, and pH and total volume are DerivedProperties. My Solution screen has
+ * no solute, and pH and totalVolume are not derived.  So the solution class hierarchy has this structure:
  *
  * class MacroSolution
  * class MicroSolution extends MacroSolution mixes SolutionMixin

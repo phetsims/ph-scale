@@ -21,6 +21,7 @@ class MySolution extends PhetioObject {
 
   /**
    * @param {Object} [options]
+   * @mixes SolutionMixin
    */
   constructor( options ) {
 

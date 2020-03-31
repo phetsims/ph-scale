@@ -15,6 +15,7 @@ class MicroSolution extends MacroSolution {
   /**
    * @param {Property.<Solute>} soluteProperty
    * @param {Object} [options]
+   * @mixes SolutionMixin
    */
   constructor( soluteProperty, options ) {
     super( soluteProperty, options );

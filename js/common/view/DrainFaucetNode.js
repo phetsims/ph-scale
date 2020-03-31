@@ -37,6 +37,7 @@ class DrainFaucetNode extends FaucetNode {
     }, options );
 
     super( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, options );
+
     this.translation = modelViewTransform.modelToViewPosition( faucet.position );
     this.setScaleMagnitude( -SCALE, SCALE ); // reflect horizontally
   }

@@ -21,9 +21,10 @@ const PHScaleConstants = {
 
   // Credits, shared by ph-scale and ph-scale-basics
   CREDITS: {
-    leadDesign: 'Yuen-ying Carpenter',
+    leadDesign: 'Yuen-ying Carpenter, Archie Paulson',
     softwareDevelopment: 'Chris Malley (PixelZoom, Inc.)',
-    team: 'Julia Chamberlain, Trish Loeblein, Emily B. Moore, Ariel Paul, Katherine Perkins, Amy Rouinfar',
+    team: 'Wendy Adams, Jack Barbera, Julia Chamberlain, Laurie Langdon, Trish Loeblein, Emily B. Moore, Ariel Paul, ' +
+          'Katherine Perkins, Amy Rouinfar',
     graphicArts: 'Sharon Siman-Tov',
     qualityAssurance: 'Jaspe Arias, Steele Dalton, Bryce Griebenow, Elise Morgan, Liam Mulhall, Oliver Orejola, ' +
                       'Benjamin Roberts, Ethan Ward, Kathryn Woessner, Bryan Yoelin',

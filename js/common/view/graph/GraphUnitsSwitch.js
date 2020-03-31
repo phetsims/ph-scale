@@ -10,7 +10,7 @@ import Dimension2 from '../../../../../dot/js/Dimension2.js';
 import merge from '../../../../../phet-core/js/merge.js';
 import RichText from '../../../../../scenery/js/nodes/RichText.js';
 import ABSwitch from '../../../../../sun/js/ABSwitch.js';
-import phScaleStrings from '../../../ph-scale-strings.js';
+import phScaleStrings from '../../../phScaleStrings.js';
 import phScale from '../../../phScale.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphUnits from './GraphUnits.js';

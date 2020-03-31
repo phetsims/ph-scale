@@ -11,7 +11,7 @@ import merge from '../../../../../phet-core/js/merge.js';
 import Text from '../../../../../scenery/js/nodes/Text.js';
 import ABSwitch from '../../../../../sun/js/ABSwitch.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
-import phScaleStrings from '../../../ph-scale-strings.js';
+import phScaleStrings from '../../../phScaleStrings.js';
 import phScale from '../../../phScale.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphScale from './GraphScale.js';

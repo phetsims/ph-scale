@@ -17,7 +17,7 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import Panel from '../../../../sun/js/Panel.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import phScaleStrings from '../../ph-scale-strings.js';
+import phScaleStrings from '../../phScaleStrings.js';
 import phScale from '../../phScale.js';
 import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';

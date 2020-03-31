@@ -6,7 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import phScaleStrings from '../../ph-scale-strings.js';
+import phScaleStrings from '../../phScaleStrings.js';
 import phScale from '../../phScale.js';
 import PHScaleColors from '../PHScaleColors.js';
 

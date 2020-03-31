@@ -14,7 +14,7 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import homeIcon from '../../images/MySolution-home-icon_png.js';
 import navbarIcon from '../../images/MySolution-navbar-icon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
-import phScaleStrings from '../ph-scale-strings.js';
+import phScaleStrings from '../phScaleStrings.js';
 import phScale from '../phScale.js';
 import MySolutionModel from './model/MySolutionModel.js';
 import MySolutionScreenView from './view/MySolutionScreenView.js';

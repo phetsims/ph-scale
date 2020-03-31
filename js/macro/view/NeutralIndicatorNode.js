@@ -13,7 +13,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import phScaleStrings from '../../ph-scale-strings.js';
+import phScaleStrings from '../../phScaleStrings.js';
 import phScale from '../../phScale.js';
 
 const neutralString = phScaleStrings.neutral;

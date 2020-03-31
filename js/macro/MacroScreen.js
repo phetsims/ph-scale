@@ -14,7 +14,7 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import homeIcon from '../../images/Macro-home-icon_png.js';
 import navbarIcon from '../../images/Macro-navbar-icon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
-import phScaleStrings from '../ph-scale-strings.js';
+import phScaleStrings from '../phScaleStrings.js';
 import phScale from '../phScale.js';
 import MacroModel from './model/MacroModel.js';
 import MacroScreenView from './view/MacroScreenView.js';

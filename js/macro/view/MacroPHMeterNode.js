@@ -34,7 +34,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import Water from '../../common/model/Water.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
-import phScaleStrings from '../../ph-scale-strings.js';
+import phScaleStrings from '../../phScaleStrings.js';
 import phScale from '../../phScale.js';
 
 const acidicString = phScaleStrings.acidic;

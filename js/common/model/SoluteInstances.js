@@ -10,7 +10,7 @@
 
 import Color from '../../../../scenery/js/util/Color.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import phScaleStrings from '../../ph-scale-strings.js';
+import phScaleStrings from '../../phScaleStrings.js';
 import phScale from '../../phScale.js';
 import Solute from './Solute.js';
 import Water from './Water.js';

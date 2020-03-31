@@ -13,7 +13,7 @@ import PHScaleConstants from './common/PHScaleConstants.js';
 import MacroScreen from './macro/MacroScreen.js';
 import MicroScreen from './micro/MicroScreen.js';
 import MySolutionScreen from './mysolution/MySolutionScreen.js';
-import phScaleStrings from './ph-scale-strings.js';
+import phScaleStrings from './phScaleStrings.js';
 
 const phScaleTitleString = phScaleStrings[ 'ph-scale' ].title;
 

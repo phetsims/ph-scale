@@ -13,7 +13,7 @@ import phScale from '../../phScale.js';
 import Solute from './Solute.js';
 
 // Objects are statically created, use reference equality to look up instances for toStateObject/fromStateObject
-class SoluteIO extends ReferenceIO {
+class SoluteIO extends ReferenceIO( ObjectIO ) {
 
   /**
    * Serializes to a state object.
@@ -38,7 +38,9 @@ class SoluteIO extends ReferenceIO {
    * @public
    */
   static fromStateObject( o ) {
-    return ReferenceIO.fromStateObject( o.phetioID );
+    const solute = ReferenceIO( ObjectIO ).fromStateObject( o.phetioID );
+    validate( solute, this.validator );
+    return solute;
   }
 }
 

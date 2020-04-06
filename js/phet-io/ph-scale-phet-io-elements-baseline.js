@@ -3797,70 +3797,44 @@ window.phet.preloads.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.macroScreen.view.dropperNode.dragHandler": {
-      "phetioDocumentation": "",
+    "phScale.macroScreen.view.dropperNode.dragListener.dragAction": {
+      "phetioDocumentation": "Emits whenever a drag occurs with an SceneryEventIO argument. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
+      "phetioDynamicElement": false,
+      "phetioEventType": "USER",
+      "phetioFeatured": false,
+      "phetioHighFrequency": true,
+      "phetioIsArchetype": false,
+      "phetioPlayback": false,
+      "phetioReadOnly": false,
+      "phetioState": false,
+      "phetioStudioControl": true,
+      "phetioTypeName": "ActionIO<SceneryEventIO>"
+    },
+    "phScale.macroScreen.view.dropperNode.dragListener.pressAction": {
+      "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
-      "phetioReadOnly": true,
+      "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ObjectIO"
+      "phetioTypeName": "ActionIO<SceneryEventIO>"
     },
-    "phScale.macroScreen.view.dropperNode.dragHandler.dragAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag in view coordinates</li></ol>",
+    "phScale.macroScreen.view.dropperNode.dragListener.releaseAction": {
+      "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<SceneryEventIO></li></ol>",
       "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": true,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": false,
-      "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO<Vector2IO>"
-    },
-    "phScale.macroScreen.view.dropperNode.dragHandler.dragEndAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag end in view coordinates</li></ol>",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
-      "phetioReadOnly": true,
+      "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO<Vector2IO>"
-    },
-    "phScale.macroScreen.view.dropperNode.dragHandler.dragStartAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag start in view coordinates</li></ol>",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": false,
-      "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO<Vector2IO>"
-    },
-    "phScale.macroScreen.view.dropperNode.dragHandler.isDraggingProperty": {
-      "phetioDocumentation": "Indicates whether the object is dragging",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": false,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<BooleanIO>"
+      "phetioTypeName": "ActionIO<NullableIO<SceneryEventIO>>"
     },
     "phScale.macroScreen.view.dropperNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
@@ -6696,70 +6670,44 @@ window.phet.preloads.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "phScale.microScreen.view.dropperNode.dragHandler": {
-      "phetioDocumentation": "",
+    "phScale.microScreen.view.dropperNode.dragListener.dragAction": {
+      "phetioDocumentation": "Emits whenever a drag occurs with an SceneryEventIO argument. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
+      "phetioDynamicElement": false,
+      "phetioEventType": "USER",
+      "phetioFeatured": false,
+      "phetioHighFrequency": true,
+      "phetioIsArchetype": false,
+      "phetioPlayback": false,
+      "phetioReadOnly": false,
+      "phetioState": false,
+      "phetioStudioControl": true,
+      "phetioTypeName": "ActionIO<SceneryEventIO>"
+    },
+    "phScale.microScreen.view.dropperNode.dragListener.pressAction": {
+      "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
-      "phetioReadOnly": true,
+      "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ObjectIO"
+      "phetioTypeName": "ActionIO<SceneryEventIO>"
     },
-    "phScale.microScreen.view.dropperNode.dragHandler.dragAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag in view coordinates</li></ol>",
+    "phScale.microScreen.view.dropperNode.dragListener.releaseAction": {
+      "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<SceneryEventIO></li></ol>",
       "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": true,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": false,
-      "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO<Vector2IO>"
-    },
-    "phScale.microScreen.view.dropperNode.dragHandler.dragEndAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag end in view coordinates</li></ol>",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
-      "phetioReadOnly": true,
+      "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO<Vector2IO>"
-    },
-    "phScale.microScreen.view.dropperNode.dragHandler.dragStartAction": {
-      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO - the position of the drag start in view coordinates</li></ol>",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": false,
-      "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO<Vector2IO>"
-    },
-    "phScale.microScreen.view.dropperNode.dragHandler.isDraggingProperty": {
-      "phetioDocumentation": "Indicates whether the object is dragging",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": false,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<BooleanIO>"
+      "phetioTypeName": "ActionIO<NullableIO<SceneryEventIO>>"
     },
     "phScale.microScreen.view.dropperNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",

@@ -33,7 +33,10 @@ class NeutralIndicatorNode extends Node {
 
     super( options );
 
-    const label = new Text( phScaleStrings.neutral, { font: new PhetFont( { size: 30, weight: 'bold' } ), maxWidth: 300 } );
+    const label = new Text( phScaleStrings.neutral, {
+      font: new PhetFont( { size: 30, weight: 'bold' } ),
+      maxWidth: 300
+    } );
 
     // translucent light-gray background, so this shows up on all solution colors
     const background = new Rectangle( 0, 0, 1.4 * label.width, 1.2 * label.height, {

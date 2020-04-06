@@ -8,12 +8,13 @@
  */
 
 import merge from '../../../../phet-core/js/merge.js';
+import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import LayoutBox from '../../../../scenery/js/nodes/LayoutBox.js';
 import Line from '../../../../scenery/js/nodes/Line.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
+import Color from '../../../../scenery/js/util/Color.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import Panel from '../../../../sun/js/Panel.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -45,17 +46,16 @@ class BeakerControlPanel extends Panel {
       phetioDocumentation: 'control panel that appears below the beaker'
     }, options );
 
-    // 'H3O+/OH- ratio' checkbox, with color-coded label, spacing tweaked visually
-    const textH3O = new RichText( PHScaleConstants.H3O_FORMULA, { font: FONT, fill: PHScaleColors.H3O_MOLECULES } );
-    const textSlash = new Text( '/', { font: FONT, left: textH3O.right + 2 } );
-    const textOH = new RichText( PHScaleConstants.OH_FORMULA, {
-      font: FONT,
-      fill: PHScaleColors.OH_MOLECULES,
-      left: textSlash.right + 4,
-      supXSpacing: 2
+    // 'H3O+ / OH- Ratio' checkbox, with color-coded symbols
+    assert && assert( PHScaleColors.H3O_MOLECULES instanceof Color );
+    assert && assert( PHScaleColors.OH_MOLECULES instanceof Color );
+    const ratioString = StringUtils.fillIn( `{{h3o}} / {{oh}} ${phScaleStrings.ratio} `, {
+      h3o: `<span style="color:${PHScaleColors.H3O_MOLECULES.toCSS()}">${PHScaleConstants.H3O_FORMULA}</span>`,
+      oh: `<span style="color:${PHScaleColors.OH_MOLECULES.toCSS()}">${PHScaleConstants.OH_FORMULA}</span>`
     } );
-    const textRatio = new Text( phScaleStrings.ratio, { font: FONT, left: textOH.right + 4 } );
-    const ratioLabel = new Node( { children: [ textH3O, textSlash, textOH, textRatio ] } );
+    const ratioLabel = new RichText( ratioString, {
+      font: FONT
+    } );
     const ratioCheckbox = new Checkbox( ratioLabel, ratioVisibleProperty, {
       tandem: options.tandem.createTandem( 'ratioCheckbox' )
     } );

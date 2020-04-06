@@ -15,15 +15,16 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import Property from '../../../../axon/js/Property.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Shape from '../../../../kite/js/Shape.js';
 import merge from '../../../../phet-core/js/merge.js';
-import MovableDragHandler from '../../../../scenery-phet/js/input/MovableDragHandler.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import ProbeNode from '../../../../scenery-phet/js/ProbeNode.js';
+import DragListener from '../../../../scenery/js/listeners/DragListener.js';
 import Line from '../../../../scenery/js/nodes/Line.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
@@ -270,11 +271,12 @@ class PHProbeNode extends ProbeNode {
     // touch area
     this.touchArea = this.localBounds.dilated( 20, 20 );
 
-    // drag handler
-    this.addInputListener( new MovableDragHandler( probe.positionProperty, {
-      dragBounds: probe.dragBounds,
-      modelViewTransform: modelViewTransform,
-      tandem: options.tandem.createTandem( 'dragHandler' )
+    // drag listener
+    this.addInputListener( new DragListener( {
+      positionProperty: probe.positionProperty,
+      dragBoundsProperty: new Property( probe.dragBounds ),
+      transform: modelViewTransform,
+      tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
 
     const isInNode = node => node.getBounds().containsPoint( probe.positionProperty.get() );

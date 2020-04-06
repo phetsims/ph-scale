@@ -14,13 +14,10 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import homeIcon from '../../images/Micro-home-icon_png.js';
 import navbarIcon from '../../images/Micro-navbar-icon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
-import phScaleStrings from '../phScaleStrings.js';
 import phScale from '../phScale.js';
+import phScaleStrings from '../phScaleStrings.js';
 import MicroModel from './model/MicroModel.js';
 import MicroScreenView from './view/MicroScreenView.js';
-
-const screenMicroString = phScaleStrings.screen.micro;
-
 
 class MicroScreen extends Screen {
 
@@ -31,7 +28,7 @@ class MicroScreen extends Screen {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
     const options = {
-      name: screenMicroString,
+      name: phScaleStrings.screen.micro,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
       homeScreenIcon: new Image( homeIcon ),
       navigationBarIcon: new Image( navbarIcon ),

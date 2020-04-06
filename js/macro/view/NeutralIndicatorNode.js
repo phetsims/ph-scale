@@ -16,8 +16,6 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import phScale from '../../phScale.js';
 import phScaleStrings from '../../phScaleStrings.js';
 
-const neutralString = phScaleStrings.neutral;
-
 class NeutralIndicatorNode extends Node {
 
   /**
@@ -35,7 +33,7 @@ class NeutralIndicatorNode extends Node {
 
     super( options );
 
-    const label = new Text( neutralString, { font: new PhetFont( { size: 30, weight: 'bold' } ), maxWidth: 300 } );
+    const label = new Text( phScaleStrings.neutral, { font: new PhetFont( { size: 30, weight: 'bold' } ), maxWidth: 300 } );
 
     // translucent light-gray background, so this shows up on all solution colors
     const background = new Rectangle( 0, 0, 1.4 * label.width, 1.2 * label.height, {

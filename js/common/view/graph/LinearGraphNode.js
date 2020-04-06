@@ -22,14 +22,12 @@ import Node from '../../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../../scenery/js/nodes/Path.js';
 import Text from '../../../../../scenery/js/nodes/Text.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
-import phScaleStrings from '../../../phScaleStrings.js';
 import phScale from '../../../phScale.js';
+import phScaleStrings from '../../../phScaleStrings.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
 import ZoomButtonGroup from './ZoomButtonGroup.js';
-
-const offScaleString = phScaleStrings.offScale;
 
 // constants
 const MANTISSA_RANGE = PHScaleConstants.LINEAR_MANTISSA_RANGE;
@@ -116,7 +114,7 @@ class LinearGraphNode extends Node {
     this.addChild( scaleNode );
 
     // 'off scale' label, positioned inside arrow
-    const offScaleNode = new Text( offScaleString, {
+    const offScaleNode = new Text( phScaleStrings.offScale, {
       font: new PhetFont( 18 ),
       fill: 'black',
       maxWidth: 0.5 * arrowWidth

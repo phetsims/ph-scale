@@ -34,12 +34,8 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import Water from '../../common/model/Water.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
-import phScaleStrings from '../../phScaleStrings.js';
 import phScale from '../../phScale.js';
-
-const acidicString = phScaleStrings.acidic;
-const basicString = phScaleStrings.basic;
-const pHString = phScaleStrings.pH;
+import phScaleStrings from '../../phScaleStrings.js';
 
 // constants
 const BACKGROUND_ENABLED_FILL = 'rgb( 31, 113, 2 )';
@@ -170,14 +166,14 @@ class ScaleNode extends Node {
 
     // 'Acidic' label
     const textOptions = { fill: 'white', font: SCALE_LABEL_FONT, maxWidth: 0.45 * options.size.height };
-    const acidicNode = new Text( acidicString, textOptions );
+    const acidicNode = new Text( phScaleStrings.acidic, textOptions );
     acidicNode.rotation = -Math.PI / 2;
     acidicNode.centerX = backgroundNode.centerX;
     acidicNode.centerY = 0.75 * backgroundNode.height;
     this.addChild( acidicNode );
 
     // 'Basic' label
-    const basicNode = new Text( basicString, textOptions );
+    const basicNode = new Text( phScaleStrings.basic, textOptions );
     basicNode.rotation = -Math.PI / 2;
     basicNode.centerX = backgroundNode.centerX;
     basicNode.centerY = 0.25 * backgroundNode.height;
@@ -374,7 +370,7 @@ class PHIndicatorNode extends Node {
     } );
 
     // label above the value
-    const labelNode = new Text( pHString, {
+    const labelNode = new Text( phScaleStrings.pH, {
       fill: 'white',
       font: new PhetFont( { size: 28, weight: 'bold' } ),
       maxWidth: 100

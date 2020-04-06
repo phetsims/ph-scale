@@ -14,13 +14,10 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import homeIcon from '../../images/Macro-home-icon_png.js';
 import navbarIcon from '../../images/Macro-navbar-icon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
-import phScaleStrings from '../phScaleStrings.js';
 import phScale from '../phScale.js';
+import phScaleStrings from '../phScaleStrings.js';
 import MacroModel from './model/MacroModel.js';
 import MacroScreenView from './view/MacroScreenView.js';
-
-const screenMacroString = phScaleStrings.screen.macro;
-
 
 class MacroScreen extends Screen {
 
@@ -32,7 +29,7 @@ class MacroScreen extends Screen {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
     const options = {
-      name: screenMacroString,
+      name: phScaleStrings.screen.macro,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
       homeScreenIcon: new Image( homeIcon ),
       navigationBarIcon: new Image( navbarIcon ),

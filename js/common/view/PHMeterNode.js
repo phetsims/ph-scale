@@ -24,12 +24,10 @@ import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
 import AccordionBox from '../../../../sun/js/AccordionBox.js';
 import NumberSpinner from '../../../../sun/js/NumberSpinner.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import phScaleStrings from '../../phScaleStrings.js';
 import phScale from '../../phScale.js';
+import phScaleStrings from '../../phScaleStrings.js';
 import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
-
-const pHString = phScaleStrings.pH;
 
 // constants
 const Y_MARGIN = 10;
@@ -54,7 +52,7 @@ class PHMeterNode extends AccordionBox {
       contentYSpacing: 10,
       titleAlignX: 'left',
       titleXMargin: 15,
-      titleNode: new Text( pHString, {
+      titleNode: new Text( phScaleStrings.pH, {
         fill: 'black',
         font: new PhetFont( { size: 28, weight: 'bold' } ),
         maxWidth: 50

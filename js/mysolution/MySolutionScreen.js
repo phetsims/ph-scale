@@ -14,13 +14,10 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import homeIcon from '../../images/MySolution-home-icon_png.js';
 import navbarIcon from '../../images/MySolution-navbar-icon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
-import phScaleStrings from '../phScaleStrings.js';
 import phScale from '../phScale.js';
+import phScaleStrings from '../phScaleStrings.js';
 import MySolutionModel from './model/MySolutionModel.js';
 import MySolutionScreenView from './view/MySolutionScreenView.js';
-
-const screenMySolutionString = phScaleStrings.screen.mySolution;
-
 
 class MySolutionScreen extends Screen {
 
@@ -31,7 +28,7 @@ class MySolutionScreen extends Screen {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
     const options = {
-      name: screenMySolutionString,
+      name: phScaleStrings.screen.mySolution,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
       homeScreenIcon: new Image( homeIcon ),
       navigationBarIcon: new Image( navbarIcon ),

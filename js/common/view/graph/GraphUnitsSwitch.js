@@ -10,15 +10,10 @@ import Dimension2 from '../../../../../dot/js/Dimension2.js';
 import merge from '../../../../../phet-core/js/merge.js';
 import RichText from '../../../../../scenery/js/nodes/RichText.js';
 import ABSwitch from '../../../../../sun/js/ABSwitch.js';
-import phScaleStrings from '../../../phScaleStrings.js';
 import phScale from '../../../phScale.js';
+import phScaleStrings from '../../../phScaleStrings.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphUnits from './GraphUnits.js';
-
-const concentrationString = phScaleStrings.concentration;
-const quantityString = phScaleStrings.quantity;
-const unitsMolesPerLiterString = phScaleStrings.units.molesPerLiter;
-const unitsMolesString = phScaleStrings.units.moles;
 
 class GraphUnitsSwitch extends ABSwitch {
 
@@ -37,14 +32,14 @@ class GraphUnitsSwitch extends ABSwitch {
       phetioDocumentation: 'A/B switch for switching units'
     }, options );
 
-    const concentrationLabel = new RichText( concentrationString + '<br>(' + unitsMolesPerLiterString + ')', {
+    const concentrationLabel = new RichText( phScaleStrings.concentration + '<br>(' + phScaleStrings.units.molesPerLiter + ')', {
       align: 'center',
       font: PHScaleConstants.AB_SWITCH_FONT,
       maxWidth: 125,
       tandem: options.tandem.createTandem( 'concentrationLabel' )
     } );
 
-    const quantityLabel = new RichText( quantityString + '<br>(' + unitsMolesString + ')', {
+    const quantityLabel = new RichText( phScaleStrings.quantity + '<br>(' + phScaleStrings.units.moles + ')', {
       align: 'center',
       font: PHScaleConstants.AB_SWITCH_FONT,
       maxWidth: 90,

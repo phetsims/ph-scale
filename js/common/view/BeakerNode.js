@@ -16,12 +16,8 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import phScaleStrings from '../../phScaleStrings.js';
 import phScale from '../../phScale.js';
-
-//strings
-const pattern0Value1UnitsString = phScaleStrings.pattern[ '0value' ][ '1units' ];
-const unitsLitersString = phScaleStrings.units.liters;
+import phScaleStrings from '../../phScaleStrings.js';
 
 // constants
 const RIM_OFFSET = 20;
@@ -112,7 +108,8 @@ class BeakerNode extends Node {
       if ( isMajorTick ) {
         const labelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
         if ( labelIndex < MAJOR_TICK_LABELS.length ) {
-          const label = StringUtils.format( pattern0Value1UnitsString, MAJOR_TICK_LABELS[ labelIndex ], unitsLitersString );
+          const label = StringUtils.format( phScaleStrings.pattern[ '0value' ][ '1units' ],
+            MAJOR_TICK_LABELS[ labelIndex ], phScaleStrings.units.liters );
           tickLabels.addChild( new Text( label, {
             font: MAJOR_TICK_FONT,
             fill: 'black',

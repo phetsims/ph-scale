@@ -17,13 +17,10 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import Panel from '../../../../sun/js/Panel.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import phScaleStrings from '../../phScaleStrings.js';
 import phScale from '../../phScale.js';
+import phScaleStrings from '../../phScaleStrings.js';
 import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
-
-const moleculeCountString = phScaleStrings.moleculeCount;
-const ratioString = phScaleStrings.ratio;
 
 // constants
 const FONT = new PhetFont( 20 );
@@ -57,7 +54,7 @@ class BeakerControlPanel extends Panel {
       left: textSlash.right + 4,
       supXSpacing: 2
     } );
-    const textRatio = new Text( ratioString, { font: FONT, left: textOH.right + 4 } );
+    const textRatio = new Text( phScaleStrings.ratio, { font: FONT, left: textOH.right + 4 } );
     const ratioLabel = new Node( { children: [ textH3O, textSlash, textOH, textRatio ] } );
     const ratioCheckbox = new Checkbox( ratioLabel, ratioVisibleProperty, {
       tandem: options.tandem.createTandem( 'ratioCheckbox' )
@@ -65,7 +62,7 @@ class BeakerControlPanel extends Panel {
     ratioCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );
 
     // 'Molecule count' checkbox
-    const moleculeCountLabel = new Text( moleculeCountString, { font: FONT } );
+    const moleculeCountLabel = new Text( phScaleStrings.moleculeCount, { font: FONT } );
     const moleculeCountCheckbox = new Checkbox( moleculeCountLabel, moleculeCountVisibleProperty, {
       tandem: options.tandem.createTandem( 'moleculeCountCheckbox' )
     } );

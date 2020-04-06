@@ -17,12 +17,9 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import phScaleStrings from '../../phScaleStrings.js';
 import phScale from '../../phScale.js';
+import phScaleStrings from '../../phScaleStrings.js';
 import PHScaleConstants from '../PHScaleConstants.js';
-
-const pattern0Value1UnitsString = phScaleStrings.pattern[ '0value' ][ '1units' ];
-const unitsLitersString = phScaleStrings.units.liters;
 
 // constants
 const ARROW_SIZE = new Dimension2( 21, 28 );
@@ -73,7 +70,8 @@ class VolumeIndicatorNode extends Node {
     totalVolumeProperty.link( totalVolume => {
 
       // text
-      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( totalVolume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), unitsLitersString );
+      valueNode.text = StringUtils.format( phScaleStrings.pattern[ '0value' ][ '1units' ],
+        Utils.toFixed( totalVolume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), phScaleStrings.units.liters );
       valueNode.centerY = arrowHead.centerY;
 
       // y position

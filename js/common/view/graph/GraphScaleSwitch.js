@@ -11,13 +11,10 @@ import merge from '../../../../../phet-core/js/merge.js';
 import Text from '../../../../../scenery/js/nodes/Text.js';
 import ABSwitch from '../../../../../sun/js/ABSwitch.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
-import phScaleStrings from '../../../phScaleStrings.js';
 import phScale from '../../../phScale.js';
+import phScaleStrings from '../../../phScaleStrings.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphScale from './GraphScale.js';
-
-const linearString = phScaleStrings.linear;
-const logarithmicString = phScaleStrings.logarithmic;
 
 class GraphScaleSwitch extends ABSwitch {
 
@@ -42,12 +39,12 @@ class GraphScaleSwitch extends ABSwitch {
     };
 
     // Logarithmic label
-    const logarithmicText = new Text( logarithmicString, merge( {
+    const logarithmicText = new Text( phScaleStrings.logarithmic, merge( {
       tandem: options.tandem.createTandem( 'logarithmicText' )
     }, textOptions ) );
 
     // Linear label
-    const linearText = new Text( linearString, merge( {
+    const linearText = new Text( phScaleStrings.linear, merge( {
       tandem: options.tandem.createTandem( 'linearText' )
     }, textOptions ) );
 

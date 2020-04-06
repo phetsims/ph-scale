@@ -6,14 +6,12 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import phScaleStrings from '../../phScaleStrings.js';
 import phScale from '../../phScale.js';
+import phScaleStrings from '../../phScaleStrings.js';
 import PHScaleColors from '../PHScaleColors.js';
 
-const choiceWaterString = phScaleStrings.choice.water;
-
 const Water = Object.freeze( {
-  name: choiceWaterString,
+  name: phScaleStrings.choice.water,
   pH: 7,
   concentration: 55, // mol/L
   color: PHScaleColors.WATER

@@ -256,7 +256,7 @@ class LogarithmicGraphNode extends Node {
  * @param {Font} font
  */
 function createTickLabel( exponent, font ) {
-  return new RichText( '10<sup>' + exponent + '</sup>', {
+  return new RichText( `10<sup>${exponent}</sup>`, {
     font: font,
     fill: 'black'
   } );

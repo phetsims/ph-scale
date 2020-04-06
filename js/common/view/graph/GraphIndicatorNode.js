@@ -82,7 +82,7 @@ class GraphIndicatorNode extends Node {
       shapeMatrix = Matrix3.scaling( -1, -1 );
     }
     else {
-      throw new Error( 'unsupported options.pointerPosition: ' + options.pointerPosition );
+      throw new Error( `unsupported options.pointerPosition: ${options.pointerPosition}` );
     }
 
     // Background with the pointer at top-right. Proceed clockwise from the tip of the pointer.

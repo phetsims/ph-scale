@@ -217,7 +217,7 @@ class RatioNode extends Node {
 
       // update dev counts
       if ( this.ratioText ) {
-        this.ratioText.text = numberOfH3O + ' / ' + numberOfOH;
+        this.ratioText.text = `${numberOfH3O} / ${numberOfOH}`;
       }
     }
   }

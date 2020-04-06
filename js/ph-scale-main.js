@@ -15,18 +15,17 @@ import MicroScreen from './micro/MicroScreen.js';
 import MySolutionScreen from './mysolution/MySolutionScreen.js';
 import phScaleStrings from './phScaleStrings.js';
 
-const phScaleTitleString = phScaleStrings[ 'ph-scale' ].title;
-
-const simOptions = {
-  credits: PHScaleConstants.CREDITS
-};
-
 SimLauncher.launch( () => {
+
   const screens = [
     new MacroScreen( Tandem.ROOT.createTandem( 'macroScreen' ) ),
     new MicroScreen( Tandem.ROOT.createTandem( 'microScreen' ) ),
     new MySolutionScreen( Tandem.ROOT.createTandem( 'mySolutionScreen' ) )
   ];
-  const sim = new Sim( phScaleTitleString, screens, simOptions );
+
+  const sim = new Sim( phScaleStrings[ 'ph-scale' ].title, screens, {
+    credits: PHScaleConstants.CREDITS
+  } );
+
   sim.start();
 } );

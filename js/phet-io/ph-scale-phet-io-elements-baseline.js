@@ -3251,19 +3251,6 @@ window.phet.preloads.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<SoluteIO>"
     },
-    "phScale.macroScreen.model.dropper.visibleProperty": {
-      "phetioDocumentation": "whether the dropper is visible",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": false,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<BooleanIO>"
-    },
     "phScale.macroScreen.model.pHMeter.pHProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
@@ -5785,19 +5772,6 @@ window.phet.preloads.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<SoluteIO>"
-    },
-    "phScale.microScreen.model.dropper.visibleProperty": {
-      "phetioDocumentation": "whether the dropper is visible",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": false,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phScale.microScreen.model.solution": {
       "phetioDocumentation": "solution in the beaker",

@@ -42,11 +42,6 @@ class DropperFluidNode extends Rectangle {
       this.fill = solute.stockColor;
       this.stroke = solute.stockColor.darkerColor();
     } );
-
-    // hide this node when the dropper is invisible
-    dropper.visibleProperty.link( visible => {
-      this.setVisible( visible );
-    } );
   }
 }
 

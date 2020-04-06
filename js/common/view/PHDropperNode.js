@@ -36,12 +36,6 @@ class PHDropperNode extends EyeDropperNode {
       this.translation = modelViewTransform.modelToViewPosition( position );
     } );
 
-    // visibility
-    dropper.visibleProperty.link( visible => {
-      this.visible = visible;
-      if ( !visible ) { dropper.flowRateProperty.set( 0 ); }
-    } );
-
     // change fluid color when the solute changes
     dropper.soluteProperty.link( solute => {
       this.fluidColor = solute.stockColor;

@@ -51,12 +51,6 @@ class Dropper extends Movable {
     } );
 
     // @public
-    this.visibleProperty = new BooleanProperty( options.visible, {
-      tandem: options.tandem.createTandem( 'visibleProperty' ),
-      phetioDocumentation: 'whether the dropper is visible'
-    } );
-
-    // @public
     this.dispensingProperty = new BooleanProperty( options.dispensing, {
       tandem: options.tandem.createTandem( 'dispensingProperty' ),
       phetioReadOnly: true,
@@ -99,7 +93,6 @@ class Dropper extends Movable {
   reset() {
     super.reset();
     this.soluteProperty.reset();
-    this.visibleProperty.reset();
     this.dispensingProperty.reset();
     this.enabledProperty.reset();
     this.flowRateProperty.reset();

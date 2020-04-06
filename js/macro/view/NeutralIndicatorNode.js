@@ -13,8 +13,8 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import phScaleStrings from '../../phScaleStrings.js';
 import phScale from '../../phScale.js';
+import phScaleStrings from '../../phScaleStrings.js';
 
 const neutralString = phScaleStrings.neutral;
 
@@ -47,8 +47,8 @@ class NeutralIndicatorNode extends Node {
     label.centerX = background.centerX;
     label.centerY = background.centerY;
 
-    // Wrap things in a parentNode, so that this feature can be permanently disabled via PhET-iO by setting
-    // this.visibleProperty.get() = false. See https://github.com/phetsims/ph-scale/issues/102
+    // Wrap things in a parentNode, so that this feature can be permanently disabled via PhET-iO via
+    // this.visibleProperty.set( false ). See https://github.com/phetsims/ph-scale/issues/102
     const parentNode = new Node( {
       children: [ background, label ]
     } );

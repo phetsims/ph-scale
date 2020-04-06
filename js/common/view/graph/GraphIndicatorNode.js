@@ -237,7 +237,7 @@ class GraphIndicatorNode extends Node {
   static createOHIndicator( valueProperty, options ) {
     return new GraphIndicatorNode( valueProperty,
       new OHNode(),
-      new RichText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: 'white', supXSpacing: 2 } ),
+      new RichText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
       merge( {
         backgroundFill: PHScaleColors.BASIC,
         pointerPosition: 'topLeft'

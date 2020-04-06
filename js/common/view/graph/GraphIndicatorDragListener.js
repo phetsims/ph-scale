@@ -7,15 +7,16 @@
  */
 
 import Utils from '../../../../../dot/js/Utils.js';
-import SimpleDragHandler from '../../../../../scenery/js/input/SimpleDragHandler.js';
+import DragListener from '../../../../../scenery/js/listeners/DragListener.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphUnits from './GraphUnits.js';
 
-class GraphIndicatorDragHandler extends SimpleDragHandler {
+class GraphIndicatorDragListener extends DragListener {
 
   /**
+   * @param {Node} targetNode
    * @param {Property.<number>} pHProperty - pH of the solution
    * @param {Property.<number>} totalVolumeProperty - volume of the solution
    * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
@@ -24,7 +25,7 @@ class GraphIndicatorDragHandler extends SimpleDragHandler {
    * @param {function} molesToPH - takes {number} moles and {number} volume (L), returns pH
    * @param {Tandem} tandem
    */
-  constructor( pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue, concentrationToPH, molesToPH, tandem ) {
+  constructor( targetNode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue, concentrationToPH, molesToPH, tandem ) {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
     let clickYOffset; // y-offset between initial click and indicator's origin
@@ -35,7 +36,7 @@ class GraphIndicatorDragHandler extends SimpleDragHandler {
 
       // Record the offset between the pointer and the indicator's origin.
       start: event => {
-        clickYOffset = event.currentTarget.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y;
+        clickYOffset = targetNode.globalToParentPoint( event.pointer.point ).y - targetNode.y;
       },
 
       // When the indicator is dragged, create a custom solute that corresponds to the new pH.
@@ -45,7 +46,7 @@ class GraphIndicatorDragHandler extends SimpleDragHandler {
         if ( totalVolumeProperty.get() !== 0 ) {
 
           // Adjust the y-coordinate for the offset between the pointer and the indicator's origin
-          const y = event.currentTarget.globalToParentPoint( event.pointer.point ).y - clickYOffset;
+          const y = targetNode.globalToParentPoint( event.pointer.point ).y - clickYOffset;
 
           // Convert the y-coordinate to a model value
           const value = yToValue( y );
@@ -67,5 +68,5 @@ class GraphIndicatorDragHandler extends SimpleDragHandler {
   }
 }
 
-phScale.register( 'GraphIndicatorDragHandler', GraphIndicatorDragHandler );
-export default GraphIndicatorDragHandler;
+phScale.register( 'GraphIndicatorDragHandler', GraphIndicatorDragListener );
+export default GraphIndicatorDragListener;

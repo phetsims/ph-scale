@@ -26,7 +26,7 @@ import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import PHModel from '../../model/PHModel.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
-import GraphIndicatorDragHandler from './GraphIndicatorDragHandler.js';
+import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
 
@@ -231,17 +231,17 @@ class LogarithmicGraphNode extends Node {
 
       // H3O+ indicator
       indicatorH3ONode.addInputListener(
-        new GraphIndicatorDragHandler( solution.pHProperty, solution.totalVolumeProperty, graphUnitsProperty, yToValue,
+        new GraphIndicatorDragListener( indicatorH3ONode, solution.pHProperty, solution.totalVolumeProperty, graphUnitsProperty, yToValue,
           PHModel.concentrationH3OToPH, PHModel.molesH3OToPH,
-          indicatorH3ONode.tandem.createTandem( 'dragHandler' )
+          indicatorH3ONode.tandem.createTandem( 'dragListener' )
         ) );
       indicatorH3ONode.cursor = 'pointer';
 
       // OH- indicator
       indicatorOHNode.addInputListener(
-        new GraphIndicatorDragHandler( solution.pHProperty, solution.totalVolumeProperty, graphUnitsProperty, yToValue,
+        new GraphIndicatorDragListener( indicatorOHNode, solution.pHProperty, solution.totalVolumeProperty, graphUnitsProperty, yToValue,
           PHModel.concentrationOHToPH, PHModel.molesOHToPH,
-          indicatorOHNode.tandem.createTandem( 'dragHandler' )
+          indicatorOHNode.tandem.createTandem( 'dragListener' )
         ) );
       indicatorOHNode.cursor = 'pointer';
     }

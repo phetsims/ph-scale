@@ -8,9 +8,10 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import Property from '../../../../axon/js/Property.js';
 import merge from '../../../../phet-core/js/merge.js';
 import EyeDropperNode from '../../../../scenery-phet/js/EyeDropperNode.js';
-import MovableDragHandler from '../../../../scenery-phet/js/input/MovableDragHandler.js';
+import DragListener from '../../../../scenery/js/listeners/DragListener.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import phScale from '../../phScale.js';
 
@@ -45,10 +46,11 @@ class PHDropperNode extends EyeDropperNode {
     this.touchArea = this.localBounds.dilatedX( 0.25 * this.width );
 
     // move the dropper
-    this.addInputListener( new MovableDragHandler( dropper.positionProperty, {
-      dragBounds: dropper.dragBounds,
-      modelViewTransform: modelViewTransform,
-      tandem: options.tandem.createTandem( 'dragHandler' )
+    this.addInputListener( new DragListener( {
+      positionProperty: dropper.positionProperty,
+      dragBoundsProperty: new Property( dropper.dragBounds ),
+      transform: modelViewTransform,
+      tandem: options.tandem.createTandem( 'dragListeners' )
     } ) );
   }
 }

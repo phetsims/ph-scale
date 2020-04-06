@@ -112,7 +112,11 @@ class MacroModel {
     this.autoFillVolume = options.autoFillVolume;
 
     // @public (read-only)
-    this.isAutoFillingProperty = new BooleanProperty( false );
+    this.isAutoFillingProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'isAutoFillingProperty' ),
+      phetioReadOnly: true,
+      phetioDocumentation: 'whether the beaker is in the process of being automatically filled with solute'
+    } );
 
     this.dropper.soluteProperty.link( () => {
 

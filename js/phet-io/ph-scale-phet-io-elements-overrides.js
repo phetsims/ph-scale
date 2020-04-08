@@ -145,6 +145,66 @@ window.phet.preloads.phetio.phetioElementsOverrides =
   "phScale.microScreen.view.drainFaucetNode.visibleProperty": {
     "phetioFeatured": true
   },
+  "phScale.microScreen.view.graphNode.expandedProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.microScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.microScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.microScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.visibleProperty": {
+    "phetioFeatured": false
+  },
+  "phScale.microScreen.view.graphNode.graphScaleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.microScreen.view.graphNode.graphScaleSwitch.linearText.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.microScreen.view.graphNode.graphScaleSwitch.logarithmicText.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.microScreen.view.graphNode.graphUnitsProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.microScreen.view.graphNode.linearGraphNode.indicatorH2ONode.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.microScreen.view.graphNode.linearGraphNode.indicatorH3ONode.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.microScreen.view.graphNode.linearGraphNode.indicatorOHNode.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.microScreen.view.graphNode.linearGraphNode.zoomButtonGroup.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.microScreen.view.graphNode.linearGraphNode.zoomButtonGroup.zoomInButton.enabledProperty": {
+    "phetioFeatured": false
+  },
+  "phScale.microScreen.view.graphNode.linearGraphNode.zoomButtonGroup.zoomInButton.visibleProperty": {
+    "phetioFeatured": false
+  },
+  "phScale.microScreen.view.graphNode.linearGraphNode.zoomButtonGroup.zoomOutButton.enabledProperty": {
+    "phetioFeatured": false
+  },
+  "phScale.microScreen.view.graphNode.linearGraphNode.zoomButtonGroup.zoomOutButton.visibleProperty": {
+    "phetioFeatured": false
+  },
+  "phScale.microScreen.view.graphNode.logarithmicGraphNode.indicatorH2ONode.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.microScreen.view.graphNode.logarithmicGraphNode.indicatorH3ONode.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.microScreen.view.graphNode.logarithmicGraphNode.indicatorOHNode.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.microScreen.view.graphNode.visibleProperty": {
+    "phetioFeatured": true
+  },
   "phScale.microScreen.view.pHMeterNode.expandedProperty": {
     "phetioFeatured": true
   },
@@ -209,6 +269,39 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phetioFeatured": true
   },
   "phScale.mySolutionScreen.view.beakerNode.tickMarks.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.mySolutionScreen.view.graphNode.expandedProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationLabel.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityLabel.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.visibleProperty": {
+    "phetioFeatured": false
+  },
+  "phScale.mySolutionScreen.view.graphNode.graphUnitsProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH2ONode.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH3ONode.pickableProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH3ONode.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorOHNode.pickableProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorOHNode.visibleProperty": {
+    "phetioFeatured": true
+  },
+  "phScale.mySolutionScreen.view.graphNode.visibleProperty": {
     "phetioFeatured": true
   },
   "phScale.mySolutionScreen.view.pHMeterNode.expandedProperty": {

@@ -1,6 +1,8 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
+ * GraphControlPanel is the control panel that appears above the graph.  It contains controls to collapse the graph,
+ * and change units.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

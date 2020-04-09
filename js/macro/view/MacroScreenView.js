@@ -85,10 +85,10 @@ class MacroScreenView extends ScreenView {
     const drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform );
 
     // Hide fluids when their faucets are hidden. See https://github.com/phetsims/ph-scale/issues/107
-    waterFaucetNode.on( 'visibility', () => {
+    waterFaucetNode.visibleProperty.lazyLink( () => {
       waterFaucetNode.visibile = waterFaucetNode.visible;
     } );
-    drainFluidNode.on( 'visibility', () => {
+    drainFluidNode.visibleProperty.lazyLink( () => {
       waterFaucetNode.visibile = drainFluidNode.visible;
     } );
 

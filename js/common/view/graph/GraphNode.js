@@ -63,7 +63,7 @@ class GraphNode extends Node {
 
     // vertical line that connects bottom of graphControlPanel to top of graph
     const lineToPanel = new Line( 0, 0, 0, 75, { stroke: 'black' } );
-    graphControlPanel.on( 'visibility', () => {
+    graphControlPanel.visibleProperty.lazyLink( () => {
       lineToPanel.visible = graphControlPanel.visible;
     } );
 
@@ -121,7 +121,7 @@ class GraphNode extends Node {
         bottom: graphScaleSwitch.top + 1
       } );
 
-      graphScaleSwitch.on( 'visibility', () => {
+      graphScaleSwitch.visibleProperty.lazyLink( () => {
         lineToSwitchNode.visible = graphScaleSwitch.visible;
       } );
 

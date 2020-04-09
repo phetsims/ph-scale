@@ -122,10 +122,10 @@ class MacroPHMeterNode extends Node {
     meter.probe.positionProperty.link( updateValue );
     solution.soluteProperty.link( updateValue );
     solution.pHProperty.link( updateValue );
-    solutionNode.on( 'bounds', updateValue );
-    dropperFluidNode.on( 'bounds', updateValue );
-    waterFluidNode.on( 'bounds', updateValue );
-    drainFluidNode.on( 'bounds', updateValue );
+    solutionNode.boundsProperty.lazyLink( updateValue );
+    dropperFluidNode.boundsProperty.lazyLink( updateValue );
+    waterFluidNode.boundsProperty.lazyLink( updateValue );
+    drainFluidNode.boundsProperty.lazyLink( updateValue );
 
     // Create a link to pHProperty, so it's easier to find in Studio.
     this.addLinkedElement( meter.pHProperty, {

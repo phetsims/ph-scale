@@ -7,7 +7,7 @@
  */
 
 import Sim from '../../joist/js/Sim.js';
-import SimLauncher from '../../joist/js/SimLauncher.js';
+import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import PHScaleConstants from './common/PHScaleConstants.js';
 import MacroScreen from './macro/MacroScreen.js';
@@ -15,7 +15,7 @@ import MicroScreen from './micro/MicroScreen.js';
 import MySolutionScreen from './mysolution/MySolutionScreen.js';
 import phScaleStrings from './phScaleStrings.js';
 
-SimLauncher.launch( () => {
+simLauncher.launch( () => {
 
   const screens = [
     new MacroScreen( Tandem.ROOT.createTandem( 'macroScreen' ) ),

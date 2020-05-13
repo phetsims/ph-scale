@@ -225,5 +225,5 @@ class MacroSolution extends PhetioObject {
   }
 }
 
-phScale.register( 'Solution', MacroSolution );
+phScale.register( 'MacroSolution', MacroSolution );
 export default MacroSolution;

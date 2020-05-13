@@ -68,5 +68,5 @@ class GraphIndicatorDragListener extends DragListener {
   }
 }
 
-phScale.register( 'GraphIndicatorDragHandler', GraphIndicatorDragListener );
+phScale.register( 'GraphIndicatorDragListener', GraphIndicatorDragListener );
 export default GraphIndicatorDragListener;

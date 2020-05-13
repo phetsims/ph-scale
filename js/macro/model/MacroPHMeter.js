@@ -64,5 +64,5 @@ class MacroPHMeter {
   }
 }
 
-phScale.register( 'PHMeter', MacroPHMeter );
+phScale.register( 'MacroPHMeter', MacroPHMeter );
 export default MacroPHMeter;

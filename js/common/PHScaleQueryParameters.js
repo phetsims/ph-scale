@@ -20,7 +20,10 @@ const PHScaleQueryParameters = QueryStringMachine.getAll( {
 
   // Shows the ratio (molecule counts) in the bottom of the beaker for the 'ratio' view.
   // For external use.
-  showRatio: { type: 'flag' }
+  showRatio: {
+    type: 'flag',
+    public: true
+  }
 } );
 
 phScale.register( 'PHScaleQueryParameters', PHScaleQueryParameters );

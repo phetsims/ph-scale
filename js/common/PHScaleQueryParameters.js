@@ -11,13 +11,15 @@ import phScale from '../phScale.js';
 const PHScaleQueryParameters = QueryStringMachine.getAll( {
 
   // Whether to automatically fill the beaker each time the solute changes.
+  // For external use.
   autoFill: {
     type: 'boolean',
     defaultValue: true,
     public: true
   },
 
-  // shows the ratio (molecule counts) in the bottom of the beaker for the 'ratio' view
+  // Shows the ratio (molecule counts) in the bottom of the beaker for the 'ratio' view.
+  // For external use.
   showRatio: { type: 'flag' }
 } );
 

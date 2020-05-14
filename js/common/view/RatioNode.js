@@ -86,15 +86,13 @@ class RatioNode extends Node {
     this.moleculesNode = new MoleculesCanvas( beakerBounds );
     this.addChild( this.moleculesNode );
 
-    // dev mode, show numbers of molecules at bottom of beaker
+    // Show the ratio of molecules
     if ( PHScaleQueryParameters.showRatio ) {
 
       // @private
       this.ratioText = new Text( '?', {
         font: new PhetFont( 30 ),
-        fill: 'black',
-        centerX: beakerBounds.getCenterX(),
-        bottom: beakerBounds.maxY - 20
+        fill: 'black'
       } );
       this.addChild( this.ratioText );
     }
@@ -141,6 +139,9 @@ class RatioNode extends Node {
     this.addLinkedElement( ratioVisibleProperty, {
       tandem: options.tandem.createTandem( 'ratioVisibleProperty' )
     } );
+
+    // @private
+    this.beakerBounds = beakerBounds;
   }
 
   /**
@@ -215,9 +216,11 @@ class RatioNode extends Node {
       // update molecules
       this.moleculesNode.setNumberOfMolecules( numberOfH3O, numberOfOH );
 
-      // update dev counts
+      // update ratio counts
       if ( this.ratioText ) {
         this.ratioText.text = `${numberOfH3O} / ${numberOfOH}`;
+        this.ratioText.centerX = this.beakerBounds.centerX;
+        this.ratioText.bottom = this.beakerBounds.maxY - 20;
       }
     }
   }

@@ -163,7 +163,10 @@ class PHSpinnerNode extends NumberSpinner {
         cornerRadius: CORNER_RADIUS,
         backgroundStroke: 'darkGray',
         textOptions: {
-          font: new PhetFont( 28 )
+          font: new PhetFont( 28 ),
+          phetioComponentOptions: {
+            textProperty: { phetioHighFrequency: true }
+          }
         }
       },
       arrowsScale: 1.5,

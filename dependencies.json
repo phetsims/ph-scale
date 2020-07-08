@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.4.0-dev.21 Wed Jul 08 2020 14:05:16 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# ph-scale 1.4.0-dev.22 Wed Jul 08 2020 16:04:09 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "1a41cef653bbed1025af5768bea958d7e3e0f8ae",
     "branch": "master"
@@ -33,7 +33,7 @@
     "branch": "master"
   },
   "ph-scale": {
-    "sha": "4dccd454a0a9910ecb4dff9c5161c834f6e32b21",
+    "sha": "682697b554c16935bcf834cb4f32a4b4ed1892b5",
     "branch": "master"
   },
   "phet-core": {
@@ -81,11 +81,11 @@
     "branch": "master"
   },
   "sun": {
-    "sha": "6a4382bdf91b8f5541b1c4b5de38db6089b1f214",
+    "sha": "3087ba4444ebfba0b0021580b632021ae361fe5f",
     "branch": "master"
   },
   "tambo": {
-    "sha": "c8e586892244d13608b03ccee0883202a19b7ce0",
+    "sha": "3aeccee5a0e4c28598de7201f7310de36d69d0e5",
     "branch": "master"
   },
   "tandem": {

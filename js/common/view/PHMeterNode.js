@@ -158,7 +158,6 @@ class PHSpinnerNode extends NumberSpinner {
       decrementFunction: decrementFunction,
       numberDisplayOptions: {
         decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
-        align: 'right',
         xMargin: 10,
         yMargin: 4,
         cornerRadius: CORNER_RADIUS,

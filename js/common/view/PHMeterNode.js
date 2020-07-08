@@ -156,17 +156,22 @@ class PHSpinnerNode extends NumberSpinner {
       // NumberSpinner options
       incrementFunction: incrementFunction,
       decrementFunction: decrementFunction,
-      decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
-      valueAlign: 'right',
-      cornerRadius: CORNER_RADIUS,
+      numberDisplayOptions: {
+        decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
+        align: 'right',
+        xMargin: 10,
+        yMargin: 4,
+        cornerRadius: CORNER_RADIUS,
+        backgroundStroke: 'darkGray',
+        textOptions: {
+          font: new PhetFont( 28 )
+        }
+      },
       arrowsScale: 1.5,
-      xMargin: 10,
-      yMargin: 4,
       xSpacing: 6,
       ySpacing: 4,
       touchAreaXDilation: 15,
       touchAreaYDilation: 2,
-      backgroundStroke: 'darkGray',
 
       // phet-io
       tandem: Tandem.REQUIRED

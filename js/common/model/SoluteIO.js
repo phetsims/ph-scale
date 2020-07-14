@@ -33,12 +33,12 @@ class SoluteIO extends ReferenceIO( ObjectIO ) {
 
   /**
    * Deserializes from a state object.
-   * @param {*} o
+   * @param {*} stateObject
    * @returns {PhetioObject}
    * @public
    */
-  static fromStateObject( o ) {
-    const solute = ReferenceIO( ObjectIO ).fromStateObject( o.phetioID );
+  static fromStateObject( stateObject ) {
+    const solute = ReferenceIO( ObjectIO ).fromStateObject( stateObject.phetioID );
     validate( solute, this.validator );
     return solute;
   }

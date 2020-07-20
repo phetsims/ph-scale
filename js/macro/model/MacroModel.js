@@ -118,6 +118,7 @@ class MacroModel {
       phetioDocumentation: 'whether the beaker is in the process of being automatically filled with solute'
     } );
 
+    // animate the dropper adding solute to the beaker
     this.dropper.soluteProperty.link( () => {
 
       // disable the faucets to cancel any multi-touch interaction that may be in progress, see issue #28
@@ -185,6 +186,9 @@ class MacroModel {
       this.isAutoFillingProperty.set( true );
       this.dropper.dispensingProperty.set( true );
       this.dropper.flowRateProperty.set( 0.75 ); // faster than standard flow rate
+    }
+    else {
+      this.updateFaucetsAndDropper();
     }
   }
 

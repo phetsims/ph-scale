@@ -269,7 +269,7 @@ class PHProbeNode extends ProbeNode {
     } );
 
     // touch area
-    this.touchArea = this.localBounds.dilated( 20, 20 );
+    this.touchArea = this.localBounds.dilated( 20 );
 
     // drag listener
     this.addInputListener( new DragListener( {

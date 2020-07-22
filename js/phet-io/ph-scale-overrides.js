@@ -37,7 +37,7 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.global.model.solutes.water.nameProperty": {
       "phetioFeatured": true
     },
-    "phScale.macroScreen.model.autoFillEnabledProperty": {
+    "phScale.macroScreen.model.autofillEnabledProperty": {
       "phetioFeatured": true
     },
     "phScale.macroScreen.model.dropper.soluteProperty": {
@@ -85,7 +85,7 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.macroScreen.view.waterFaucetNode.waterLabelNode.visibleProperty": {
       "phetioFeatured": true
     },
-    "phScale.microScreen.model.autoFillEnabledProperty": {
+    "phScale.microScreen.model.autofillEnabledProperty": {
       "phetioFeatured": true
     },
     "phScale.microScreen.model.dropper.soluteProperty": {

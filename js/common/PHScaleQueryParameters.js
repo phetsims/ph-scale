@@ -12,7 +12,7 @@ const PHScaleQueryParameters = QueryStringMachine.getAll( {
 
   // Whether to automatically fill the beaker each time the solute changes.
   // For external use.
-  autoFill: {
+  autofill: {
     type: 'boolean',
     defaultValue: true,
     public: true

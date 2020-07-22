@@ -144,9 +144,7 @@ class MacroScreenView extends ScreenView {
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
 
-    model.isAutoFillingProperty.link( isAutoFilling => {
-      dropperNode.interruptSubtreeInput();
-    } );
+    model.isAutofillingProperty.link( () => dropperNode.interruptSubtreeInput() );
   }
 }
 

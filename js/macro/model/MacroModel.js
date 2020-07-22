@@ -31,7 +31,7 @@ class MacroModel {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
     options = merge( {
-      autoFillVolume: 0.5, // L, automatically fill beaker with this much solute when the solute changes
+      autofillVolume: 0.5, // L, automatically fill beaker with this much solute when the solute changes
       includePHMeter: true, // whether to instantiate this.pHMeter
 
       // {function(solutionProperty:Property,Object:options)} used to instantiate the solution
@@ -101,19 +101,19 @@ class MacroModel {
         } );
     }
 
-    // @private whether the auto-fill feature is enabled.
+    // @private whether the autofill feature is enabled.
     // See https://github.com/phetsims/ph-scale/issues/104
-    this.autoFillEnabledProperty = new BooleanProperty( PHScaleQueryParameters.autoFill, {
-      tandem: tandem.createTandem( 'autoFillEnabledProperty' ),
+    this.autofillEnabledProperty = new BooleanProperty( PHScaleQueryParameters.autofill, {
+      tandem: tandem.createTandem( 'autofillEnabledProperty' ),
       phetioDocumentation: 'whether solute is automatically added to the beaker when the solute is changed'
     } );
 
-    // @private auto-fill when the solute changes
-    this.autoFillVolume = options.autoFillVolume;
+    // @private autofill when the solute changes
+    this.autofillVolume = options.autofillVolume;
 
     // @public (read-only)
-    this.isAutoFillingProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'isAutoFillingProperty' ),
+    this.isAutofillingProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'isAutofillingProperty' ),
       phetioReadOnly: true,
       phetioDocumentation: 'whether the beaker is in the process of being automatically filled with solute'
     } );
@@ -126,7 +126,7 @@ class MacroModel {
       this.drainFaucet.enabledProperty.set( false );
 
       // animate the dropper adding solute to the beaker
-      this.startAutoFill();
+      this.startAutofill();
     } );
 
     // Enable faucets and dropper based on amount of solution in the beaker.
@@ -144,7 +144,7 @@ class MacroModel {
     this.waterFaucet.reset();
     this.drainFaucet.reset();
     this.pHMeter && this.pHMeter.reset();
-    this.startAutoFill();
+    this.startAutofill();
   }
 
   /**
@@ -164,8 +164,8 @@ class MacroModel {
    * @public
    */
   step( deltaSeconds ) {
-    if ( this.isAutoFillingProperty.get() ) {
-      this.stepAutoFill( deltaSeconds );
+    if ( this.isAutofillingProperty.get() ) {
+      this.stepAutofill( deltaSeconds );
     }
     else {
       this.solution.addSolute( this.dropper.flowRateProperty.get() * deltaSeconds );
@@ -175,15 +175,15 @@ class MacroModel {
   }
 
   /**
-   * Starts the auto-fill animation.
+   * Starts the autofill animation.
    * @private
    */
-  startAutoFill() {
+  startAutofill() {
 
-    // This is short-circuited while PhET-iO state is being restored. Otherwise autoFill would activate and change
+    // This is short-circuited while PhET-iO state is being restored. Otherwise autofill would activate and change
     // the restored state. See https://github.com/phetsims/ph-scale/issues/132
-    if ( this.autoFillEnabledProperty.get() && this.autoFillVolume > 0 && !phet.joist.sim.isSettingPhetioStateProperty.get() ) {
-      this.isAutoFillingProperty.set( true );
+    if ( this.autofillEnabledProperty.get() && this.autofillVolume > 0 && !phet.joist.sim.isSettingPhetioStateProperty.get() ) {
+      this.isAutofillingProperty.set( true );
       this.dropper.dispensingProperty.set( true );
       this.dropper.flowRateProperty.set( 0.75 ); // faster than standard flow rate
     }
@@ -193,23 +193,23 @@ class MacroModel {
   }
 
   /**
-   * Advances the auto-fill animation.
+   * Advances the autofill animation.
    * @param deltaSeconds clock time change, in seconds
    * @private
    */
-  stepAutoFill( deltaSeconds ) {
-    this.solution.addSolute( Math.min( this.dropper.flowRateProperty.get() * deltaSeconds, this.autoFillVolume - this.solution.totalVolumeProperty.get() ) );
-    if ( this.solution.totalVolumeProperty.get() === this.autoFillVolume ) {
-      this.stopAutoFill();
+  stepAutofill( deltaSeconds ) {
+    this.solution.addSolute( Math.min( this.dropper.flowRateProperty.get() * deltaSeconds, this.autofillVolume - this.solution.totalVolumeProperty.get() ) );
+    if ( this.solution.totalVolumeProperty.get() === this.autofillVolume ) {
+      this.stopAutofill();
     }
   }
 
   /**
-   * Stops the auto-fill animation.
+   * Stops the autofill animation.
    * @private
    */
-  stopAutoFill() {
-    this.isAutoFillingProperty.set( false );
+  stopAutofill() {
+    this.isAutofillingProperty.set( false );
     this.dropper.dispensingProperty.set( false );
     this.updateFaucetsAndDropper();
   }

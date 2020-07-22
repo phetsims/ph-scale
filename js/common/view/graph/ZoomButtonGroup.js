@@ -60,8 +60,8 @@ class ZoomButtonGroup extends HBox {
     } );
 
     // expand touch areas
-    zoomOutButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
-    zoomInButton.touchArea = zoomOutButton.localBounds.dilated( 5, 5 );
+    zoomOutButton.touchArea = zoomOutButton.localBounds.dilated( 5 );
+    zoomInButton.touchArea = zoomOutButton.localBounds.dilated( 5 );
 
     assert && assert( !options.children, 'ZoomButtonGroup sets children' );
     options.children = [ zoomOutButton, zoomInButton ];

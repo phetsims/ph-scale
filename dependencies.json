@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.4.0-rc.1 Mon Jul 27 2020 12:03:28 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# ph-scale 1.4.0-rc.1 Mon Jul 27 2020 12:28:48 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "1a41cef653bbed1025af5768bea958d7e3e0f8ae",
     "branch": "HEAD"
@@ -22,7 +22,7 @@
   },
   "joist": {
     "sha": "59aae060dea6de8647eded91d2e96efb825ee602",
-    "branch": "ph-scale-1.4"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "5f0afa9da2f562014d032b39a765310e0ed45a14",
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "2bb00ebc9d2a494f3611a9e22d6b96f1449a1162",
+    "sha": "c889b903c68434efddbc0eb723ad28ddb2fc383f",
     "branch": "1.4"
   },
   "phet-core": {
@@ -89,8 +89,8 @@
     "branch": "HEAD"
   },
   "tandem": {
-    "sha": "b8f61d4f1bb734167117ac0fa0506712ee56db8d",
-    "branch": "HEAD"
+    "sha": "42ee096ca365d7df7e12b58a2b31db8efdba8493",
+    "branch": "ph-scale-1.4"
   },
   "utterance-queue": {
     "sha": "c2b44d1ca355707b2c2bae2a173c6ad26b5e6613",

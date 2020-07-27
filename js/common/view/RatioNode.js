@@ -151,9 +151,10 @@ class RatioNode extends Node {
    * @override
    */
   setVisible( visible ) {
-    const doUpdate = visible && !this.visible;
-    super.setVisible.call( this, visible );
-    if ( doUpdate ) { this.update(); }
+    super.setVisible( visible );
+    if ( visible ) {
+      this.update();
+    }
   }
 
   /**

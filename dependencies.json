@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.4.0-rc.1 Mon Aug 17 2020 11:22:02 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# ph-scale 1.4.0-rc.2 Mon Aug 17 2020 12:37:39 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "1a41cef653bbed1025af5768bea958d7e3e0f8ae",
     "branch": "HEAD"
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "5f27e30e0cdf7180fb53ca91231262305715cc6c",
+    "sha": "252e29c596dba9bbc857b9590c38db64775c7c63",
     "branch": "1.4"
   },
   "phet-core": {
@@ -78,7 +78,7 @@
   },
   "studio": {
     "sha": "decf8af891e15c850bf61bfe189d1d8ddcf97491",
-    "branch": "ph-scale-1.4"
+    "branch": "HEAD"
   },
   "sun": {
     "sha": "5b221a4b837522a80949fc186dfaf6d68eacb721",

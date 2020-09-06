@@ -47,7 +47,7 @@ class SoluteIO extends ReferenceIO( ObjectIO ) {
 SoluteIO.documentation = 'a solute';
 SoluteIO.typeName = 'SoluteIO';
 SoluteIO.validator = { isValidValue: value => value instanceof Solute };
-ObjectIO.validateSubtype( SoluteIO );
+ObjectIO.validateIOType( SoluteIO );
 
 phScale.register( 'SoluteIO', SoluteIO );
 export default SoluteIO;

@@ -42,7 +42,7 @@ class PHDropperNode extends EyeDropperNode {
 
     // change fluid color when the solute changes
     dropper.soluteProperty.link( solute => {
-      this.fluidColor = solute.stockColor;
+      this.setFluidColor( solute.stockColor );
     } );
 
     // dilate touch area

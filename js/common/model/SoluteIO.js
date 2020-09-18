@@ -15,13 +15,11 @@ import Solute from './Solute.js';
 const SoluteIO = new IOType( 'SoluteIO', {
   isValidValue: value => value instanceof Solute,
   supertype: ReferenceIO( IOType.ObjectIO ),
-  toStateObject( o ) {
-    return {
-      phetioID: o.tandem.phetioID,
-      name: o.name,
-      pH: o.pH
-    };
-  },
+  toStateObject: solute => ( {
+    phetioID: solute.tandem.phetioID,
+    name: solute.name,
+    pH: solute.pH
+  } ),
   fromStateObject( stateObject ) {
     return ReferenceIO( IOType.ObjectIO ).fromStateObject( stateObject.phetioID );
   }

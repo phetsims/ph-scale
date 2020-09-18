@@ -8,7 +8,6 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import DerivedPropertyIO from '../../../../axon/js/DerivedPropertyIO.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import merge from '../../../../phet-core/js/merge.js';
@@ -90,7 +89,7 @@ class MacroSolution extends PhetioObject {
       ( soluteVolume, waterVolume ) => ( this.ignoreVolumeUpdate ) ? this.totalVolumeProperty.get() : ( soluteVolume + waterVolume ), {
         units: 'L',
         tandem: options.tandem.createTandem( 'totalVolumeProperty' ),
-        phetioType: DerivedPropertyIO( NumberIO ),
+        phetioType: DerivedProperty.DerivedPropertyIO( NumberIO ),
         phetioDocumentation: 'total volume of the solution',
         phetioHighFrequency: true
       } );
@@ -107,7 +106,7 @@ class MacroSolution extends PhetioObject {
         }
       }, {
         tandem: options.tandem.createTandem( 'pHProperty' ),
-        phetioType: DerivedPropertyIO( NullableIO( NumberIO ) ),
+        phetioType: DerivedProperty.DerivedPropertyIO( NullableIO( NumberIO ) ),
         phetioDocumentation: 'pH of the solution',
         phetioHighFrequency: true
       } );

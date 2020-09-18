@@ -14,7 +14,6 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import DerivedPropertyIO from '../../../../axon/js/DerivedPropertyIO.js';
 import Range from '../../../../dot/js/Range.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Shape from '../../../../kite/js/Shape.js';
@@ -116,7 +115,7 @@ class RatioNode extends Node {
         }
       }, {
         tandem: options.tandem.createTandem( 'ratioProperty' ),
-        phetioType: DerivedPropertyIO( NullableIO( NumberIO ) ),
+        phetioType: DerivedProperty.DerivedPropertyIO( NullableIO( NumberIO ) ),
         phetioDocumentation: 'the H<sub>3</sub>O<sup>+</sup>/OH<sup>-</sup> ratio of the solution in the beaker, null if the beaker is empty',
         phetioHighFrequency: true
       } );

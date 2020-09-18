@@ -22,7 +22,6 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import DerivedPropertyIO from '../../../../axon/js/DerivedPropertyIO.js';
 import Property from '../../../../axon/js/Property.js';
 import extend from '../../../../phet-core/js/extend.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -61,7 +60,7 @@ const SolutionMixin = {
           [ this.totalVolumeProperty ],
           totalVolume => PHModel.volumeToConcentrationH20( totalVolume ), {
             tandem: tandem.createTandem( 'concentrationH2OProperty' ),
-            phetioType: DerivedPropertyIO( NullableIO( NumberIO ) ),
+            phetioType: DerivedProperty.DerivedPropertyIO( NullableIO( NumberIO ) ),
             units: 'mol/L',
             phetioDocumentation: 'concentration of H<sub>2</sub>O in the solution',
             phetioHighFrequency: true
@@ -72,7 +71,7 @@ const SolutionMixin = {
           [ pHProperty ],
           pH => PHModel.pHToConcentrationH3O( pH ), {
             tandem: tandem.createTandem( 'concentrationH3OProperty' ),
-            phetioType: DerivedPropertyIO( NullableIO( NumberIO ) ),
+            phetioType: DerivedProperty.DerivedPropertyIO( NullableIO( NumberIO ) ),
             units: 'mol/L',
             phetioDocumentation: 'concentration of H<sub>3</sub>O<sup>+</sup> in the solution',
             phetioHighFrequency: true
@@ -83,7 +82,7 @@ const SolutionMixin = {
           [ pHProperty ],
           pH => PHModel.pHToConcentrationOH( pH ), {
             tandem: tandem.createTandem( 'concentrationOHProperty' ),
-            phetioType: DerivedPropertyIO( NullableIO( NumberIO ) ),
+            phetioType: DerivedProperty.DerivedPropertyIO( NullableIO( NumberIO ) ),
             units: 'mol/L',
             phetioDocumentation: 'concentration of OH<sup>-</sup> in the solution',
             phetioHighFrequency: true
@@ -96,7 +95,7 @@ const SolutionMixin = {
           [ this.concentrationH2OProperty, totalVolumeProperty ],
           ( concentrationH2O, totalVolume ) => PHModel.computeMoles( concentrationH2O, totalVolume ), {
             tandem: tandem.createTandem( 'quantityH2OProperty' ),
-            phetioType: DerivedPropertyIO( NumberIO ),
+            phetioType: DerivedProperty.DerivedPropertyIO( NumberIO ),
             units: 'mol',
             phetioDocumentation: 'quantity of H<sub>2</sub>O in the solution',
             phetioHighFrequency: true
@@ -107,7 +106,7 @@ const SolutionMixin = {
           [ this.concentrationH3OProperty, totalVolumeProperty ],
           ( concentrationH3O, totalVolume ) => PHModel.computeMoles( concentrationH3O, totalVolume ), {
             tandem: tandem.createTandem( 'quantityH3OProperty' ),
-            phetioType: DerivedPropertyIO( NumberIO ),
+            phetioType: DerivedProperty.DerivedPropertyIO( NumberIO ),
             units: 'mol',
             phetioDocumentation: 'quantity of H<sub>3</sub>O<sup>+</sup> in the solution',
             phetioHighFrequency: true
@@ -118,7 +117,7 @@ const SolutionMixin = {
           [ this.concentrationOHProperty, totalVolumeProperty ],
           ( concentrationOH, totalVolume ) => PHModel.computeMoles( concentrationOH, totalVolume ), {
             tandem: tandem.createTandem( 'quantityOHProperty' ),
-            phetioType: DerivedPropertyIO( NumberIO ),
+            phetioType: DerivedProperty.DerivedPropertyIO( NumberIO ),
             units: 'mol',
             phetioDocumentation: 'quantity of OH<sup>-</sup> in the solution',
             phetioHighFrequency: true
@@ -131,7 +130,7 @@ const SolutionMixin = {
           [ this.concentrationH2OProperty, totalVolumeProperty ],
           ( concentrationH2O, totalVolume ) => PHModel.computeMolecules( concentrationH2O, totalVolume ), {
             tandem: tandem.createTandem( 'numberOfH2OMoleculesProperty' ),
-            phetioType: DerivedPropertyIO( NumberIO ),
+            phetioType: DerivedProperty.DerivedPropertyIO( NumberIO ),
             phetioDocumentation: 'number of H<sub>2</sub>O molecules in the solution',
             phetioHighFrequency: true
           } );
@@ -141,7 +140,7 @@ const SolutionMixin = {
           [ this.concentrationH3OProperty, totalVolumeProperty ],
           ( concentrationH3O, totalVolume ) => PHModel.computeMolecules( concentrationH3O, totalVolume ), {
             tandem: tandem.createTandem( 'numberOfH3OMoleculesProperty' ),
-            phetioType: DerivedPropertyIO( NumberIO ),
+            phetioType: DerivedProperty.DerivedPropertyIO( NumberIO ),
             phetioDocumentation: 'number of H<sub>3</sub>O<sup>+</sup> molecules in the solution',
             phetioHighFrequency: true
           } );
@@ -151,7 +150,7 @@ const SolutionMixin = {
           [ this.concentrationOHProperty, totalVolumeProperty ],
           ( concentrationOH, totalVolume ) => PHModel.computeMolecules( concentrationOH, totalVolume ), {
             tandem: tandem.createTandem( 'numberOfOHMoleculesProperty' ),
-            phetioType: DerivedPropertyIO( NumberIO ),
+            phetioType: DerivedProperty.DerivedPropertyIO( NumberIO ),
             phetioDocumentation: 'number of OH<sup>-</sup> molecules in the solution',
             phetioHighFrequency: true
           } );

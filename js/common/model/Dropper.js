@@ -14,7 +14,7 @@ import merge from '../../../../phet-core/js/merge.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import phScale from '../../phScale.js';
 import Movable from './Movable.js';
-import SoluteIO from './SoluteIO.js';
+import Solute from './Solute.js';
 
 class Dropper extends Movable {
 
@@ -46,7 +46,7 @@ class Dropper extends Movable {
     // @public
     this.soluteProperty = new Property( solute, {
       tandem: options.tandem.createTandem( 'soluteProperty' ),
-      phetioType: PropertyIO( SoluteIO ),
+      phetioType: PropertyIO( Solute.SoluteIO ),
       phetioDocumentation: 'the solute dispensed by the dropper'
     } );
 

@@ -12,9 +12,11 @@ import merge from '../../../../phet-core/js/merge.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import PhetioObject from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import IOType from '../../../../tandem/js/types/IOType.js';
+import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
 import phScale from '../../phScale.js';
+import phScaleStrings from '../../phScaleStrings.js';
 import PHScaleConstants from '../PHScaleConstants.js';
-import SoluteIO from './SoluteIO.js';
 import Water from './Water.js';
 
 class Solute extends PhetioObject {
@@ -44,7 +46,7 @@ class Solute extends PhetioObject {
 
       // phet-io
       tandem: Tandem.REQUIRED,
-      phetioType: SoluteIO
+      phetioType: Solute.SoluteIO
     }, options );
 
     super( options );
@@ -118,6 +120,79 @@ class Solute extends PhetioObject {
     return color;
   }
 }
+
+/**
+ * SoluteIO handles PhET-iO serialization of Solute. Since all Solutes are static instances, it implements
+ * 'Reference type serialization', as described in the Serialization section of
+ * https://github.com/phetsims/phet-io/blob/master/doc/phet-io-instrumentation-guide.md#serialization
+ * @public
+ */
+Solute.SoluteIO = new IOType( 'SoluteIO', {
+  valueType: Solute,
+  supertype: ReferenceIO( IOType.ObjectIO )
+} );
+
+// Static instances
+
+// tandem for all static instances of Solute, which are used across all screens
+const SOLUTES_TANDEM = Tandem.GLOBAL.createTandem( 'model' ).createTandem( 'solutes' );
+
+Solute.BATTERY_ACID = new Solute( phScaleStrings.choice.batteryAcid, 1, new Color( 255, 255, 0 ), {
+  colorStopColor: new Color( 255, 224, 204 ),
+  tandem: SOLUTES_TANDEM.createTandem( 'batteryAcid' )
+} );
+
+Solute.BLOOD = new Solute( phScaleStrings.choice.blood, 7.4, new Color( 211, 79, 68 ), {
+  colorStopColor: new Color( 255, 207, 204 ),
+  tandem: SOLUTES_TANDEM.createTandem( 'blood' )
+} );
+
+Solute.CHICKEN_SOUP = new Solute( phScaleStrings.choice.chickenSoup, 5.8, new Color( 255, 240, 104 ), {
+  colorStopColor: new Color( 255, 250, 204 ),
+  tandem: SOLUTES_TANDEM.createTandem( 'chickenSoup' )
+} );
+
+Solute.COFFEE = new Solute( phScaleStrings.choice.coffee, 5, new Color( 164, 99, 7 ), {
+  colorStopColor: new Color( 255, 240, 204 ),
+  tandem: SOLUTES_TANDEM.createTandem( 'coffee' )
+} );
+
+Solute.DRAIN_CLEANER = new Solute( phScaleStrings.choice.drainCleaner, 13, new Color( 255, 255, 0 ), {
+  colorStopColor: new Color( 255, 255, 204 ),
+  tandem: SOLUTES_TANDEM.createTandem( 'drainCleaner' )
+} );
+
+Solute.HAND_SOAP = new Solute( phScaleStrings.choice.handSoap, 10, new Color( 224, 141, 242 ), {
+  colorStopColor: new Color( 232, 204, 255 ),
+  tandem: SOLUTES_TANDEM.createTandem( 'handSoap' )
+} );
+
+Solute.MILK = new Solute( phScaleStrings.choice.milk, 6.5, new Color( 250, 250, 250 ), {
+  tandem: SOLUTES_TANDEM.createTandem( 'milk' )
+} );
+
+Solute.ORANGE_JUICE = new Solute( phScaleStrings.choice.orangeJuice, 3.5, new Color( 255, 180, 0 ), {
+  colorStopColor: new Color( 255, 242, 204 ),
+  tandem: SOLUTES_TANDEM.createTandem( 'orangeJuice' )
+} );
+
+Solute.SODA = new Solute( phScaleStrings.choice.soda, 2.5, new Color( 204, 255, 102 ), {
+  colorStopColor: new Color( 238, 255, 204 ),
+  tandem: SOLUTES_TANDEM.createTandem( 'soda' )
+} );
+
+Solute.SPIT = new Solute( phScaleStrings.choice.spit, 7.4, new Color( 202, 240, 239 ), {
+  tandem: SOLUTES_TANDEM.createTandem( 'spit' )
+} );
+
+Solute.VOMIT = new Solute( phScaleStrings.choice.vomit, 2, new Color( 255, 171, 120 ), {
+  colorStopColor: new Color( 255, 224, 204 ),
+  tandem: SOLUTES_TANDEM.createTandem( 'vomit' )
+} );
+
+Solute.WATER = new Solute( Water.name, Water.pH, Water.color, {
+  tandem: SOLUTES_TANDEM.createTandem( 'water' )
+} );
 
 phScale.register( 'Solute', Solute );
 export default Solute;

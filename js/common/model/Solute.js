@@ -129,7 +129,18 @@ class Solute extends PhetioObject {
  */
 Solute.SoluteIO = new IOType( 'SoluteIO', {
   valueType: Solute,
-  supertype: ReferenceIO( IOType.ObjectIO )
+  supertype: ReferenceIO( IOType.ObjectIO ),
+
+  // Because we want 'name' and 'pH' fields to appear in Studio, we are forced to override both toStateObject
+  // and fromStateObject. See https://github.com/phetsims/ph-scale/issues/205.
+  toStateObject: solute => ( {
+    phetioID: solute.tandem.phetioID,
+    name: solute.name,
+    pH: solute.pH
+  } ),
+  fromStateObject( stateObject ) {
+    return ReferenceIO( IOType.ObjectIO ).fromStateObject( stateObject.phetioID );
+  }
 } );
 
 // Static instances

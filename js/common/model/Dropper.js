@@ -9,7 +9,6 @@
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import PropertyIO from '../../../../axon/js/PropertyIO.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import phScale from '../../phScale.js';
@@ -46,7 +45,7 @@ class Dropper extends Movable {
     // @public
     this.soluteProperty = new Property( solute, {
       tandem: options.tandem.createTandem( 'soluteProperty' ),
-      phetioType: PropertyIO( Solute.SoluteIO ),
+      phetioType: Property.PropertyIO( Solute.SoluteIO ),
       phetioDocumentation: 'the solute dispensed by the dropper'
     } );
 

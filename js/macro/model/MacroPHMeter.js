@@ -11,7 +11,6 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import PropertyIO from '../../../../axon/js/PropertyIO.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
@@ -38,7 +37,7 @@ class MacroPHMeter {
     // @public value displayed by the meter, null if the meter is not reading a value
     this.pHProperty = new Property( null, {
       tandem: options.tandem.createTandem( 'pHProperty' ),
-      phetioType: PropertyIO( NullableIO( NumberIO ) ),
+      phetioType: Property.PropertyIO( NullableIO( NumberIO ) ),
       phetioReadOnly: true, // because this depends on where the probe is positioned
       phetioHighFrequency: true
     } );

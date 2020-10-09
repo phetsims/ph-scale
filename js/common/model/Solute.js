@@ -131,15 +131,13 @@ class Solute extends PhetioObject {
  */
 Solute.SoluteIO = new IOType( 'SoluteIO', {
   valueType: Solute,
-  toStateObject: solute => ( {
+  supertype: ReferenceIO( IOType.ObjectIO ),
+  toStateObject: solute => {
 
-    // TODO: phetioID should be gathered from having ReferenceIO be the supertype, https://github.com/phetsims/ph-scale/issues/205
-    phetioID: solute.tandem.phetioID,
-    name: solute.name,
-    pH: solute.pH
-  } ),
-  fromStateObject( stateObject ) {
-    return ReferenceIO( IOType.ObjectIO ).fromStateObject( stateObject );
+    const soluteReference = ReferenceIO( IOType.ObjectIO ).toStateObject( solute );
+    soluteReference.name = solute.name;
+    soluteReference.pH = solute.pH;
+    return soluteReference;
   }
 } );
 

@@ -67,10 +67,8 @@ class LogarithmicGraphNode extends Node {
 
       // phet-io
       tandem: Tandem.REQUIRED,
-      phetioComponentOptions: {
-        visibleProperty: {
-          phetioReadOnly: true
-        }
+      visiblePropertyOptions: {
+        phetioReadOnly: true
       }
     }, options );
 
@@ -215,14 +213,14 @@ class LogarithmicGraphNode extends Node {
     Property.multilink( [ valueH2OProperty, graphUnitsProperty ],
       ( valueH2O, graphUnits ) => {
         // offset the H2O indicator when off scale, so it doesn't butt up again OH indicator
-        indicatorH2ONode.y = valueToY( valueH2O, -4  );
+        indicatorH2ONode.y = valueToY( valueH2O, -4 );
       } );
     Property.multilink( [ valueH3OProperty, graphUnitsProperty ],
-      ( valueH3O, graphUnits )  => {
+      ( valueH3O, graphUnits ) => {
         indicatorH3ONode.y = valueToY( valueH3O );
       } );
     Property.multilink( [ valueOHProperty, graphUnitsProperty ],
-      ( valueOH, graphUnits )  => {
+      ( valueOH, graphUnits ) => {
         indicatorOHNode.y = valueToY( valueOH );
       } );
 

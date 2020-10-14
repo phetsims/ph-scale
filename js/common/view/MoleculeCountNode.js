@@ -35,10 +35,8 @@ class MoleculeCountNode extends Node {
 
       // phet-io
       tandem: Tandem.REQUIRED,
-      phetioComponentOptions: {
-        visibleProperty: {
-          phetioReadOnly: true
-        }
+      visiblePropertyOptions: {
+        phetioReadOnly: true
       },
       phetioDocumentation: 'displays the number of molecules in the solution'
     }, options );

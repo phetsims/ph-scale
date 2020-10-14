@@ -45,10 +45,8 @@ class BeakerNode extends Node {
 
       // BeakerNode should not be hideable, but its subcomponents are.
       // See https://github.com/phetsims/ph-scale/issues/108
-      phetioComponentOptions: {
-        visibleProperty: {
-          phetioReadOnly: true
-        }
+      visiblePropertyOptions: {
+        phetioReadOnly: true
       }
     }, options );
 

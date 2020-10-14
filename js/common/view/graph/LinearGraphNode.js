@@ -63,10 +63,8 @@ class LinearGraphNode extends Node {
 
       // phet-io
       tandem: Tandem.REQUIRED,
-      phetioComponentOptions: {
-        visibleProperty: {
-          phetioReadOnly: true
-        }
+      visiblePropertyOptions: {
+        phetioReadOnly: true
       }
     }, options );
 
@@ -239,9 +237,9 @@ class LinearGraphNode extends Node {
 
     // Move the indicators
     Property.multilink( [ valueH2OProperty, graphUnitsProperty, this.exponentProperty ],
-      ( valueH2O, graphUnits, exponent )  => {
+      ( valueH2O, graphUnits, exponent ) => {
         // offset the H2O indicator when off scale, so it doesn't butt up again OH indicator
-        indicatorH2ONode.y = valueToY( valueH2O, -4  );
+        indicatorH2ONode.y = valueToY( valueH2O, -4 );
       } );
     Property.multilink( [ valueH3OProperty, graphUnitsProperty, this.exponentProperty ],
       ( valueH3O, graphUnits, exponent ) => {

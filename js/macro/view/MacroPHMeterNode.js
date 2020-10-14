@@ -254,10 +254,8 @@ class PHProbeNode extends ProbeNode {
 
       // phet-io
       tandem: Tandem.REQUIRED,
-      phetioComponentOptions: {
-        visibleProperty: {
-          phetioReadOnly: true
-        }
+      visiblePropertyOptions: {
+        phetioReadOnly: true
       }
     }, options );
 

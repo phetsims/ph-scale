@@ -38,10 +38,8 @@ class ZoomButtonGroup extends HBox {
       enabledPropertyOptions: { phetioReadOnly: true },
       tandem: options.tandem.createTandem( 'zoomOutButton' ),
       phetioDocumentation: 'zoom out button for the linear scale',
-      phetioComponentOptions: {
-        visibleProperty: {
-          phetioReadOnly: true
-        }
+      visiblePropertyOptions: {
+        phetioReadOnly: true
       }
     } );
 
@@ -52,10 +50,8 @@ class ZoomButtonGroup extends HBox {
       enabledPropertyOptions: { phetioReadOnly: true },
       tandem: options.tandem.createTandem( 'zoomInButton' ),
       phetioDocumentation: 'zoom in button for the linear scale',
-      phetioComponentOptions: {
-        visibleProperty: {
-          phetioReadOnly: true
-        }
+      visiblePropertyOptions: {
+        phetioReadOnly: true
       }
     } );
 

@@ -86,7 +86,8 @@ class MacroPHMeterNode extends Node {
     // interactive probe
     const probeNode = new PHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode,
       waterFluidNode, drainFluidNode, {
-        tandem: options.tandem.createTandem( 'probeNode' )
+        tandem: options.tandem.createTandem( 'probeNode' ),
+        pickablePropertyInstrumented: true
       } );
 
     // wire that connects the probe to the meter

@@ -83,7 +83,7 @@ class PHMeterNode extends AccordionBox {
         cornerRadius: CORNER_RADIUS,
         textOptions: {
           font: new PhetFont( 28 ),
-          phetioComponentOptions: { textProperty: { phetioHighFrequency: true } }
+          textPropertyOptions: { phetioHighFrequency: true }
         },
         backgroundFill: 'white',
         backgroundStroke: 'darkGray',
@@ -164,9 +164,7 @@ class PHSpinnerNode extends NumberSpinner {
         backgroundStroke: 'darkGray',
         textOptions: {
           font: new PhetFont( 28 ),
-          phetioComponentOptions: {
-            textProperty: { phetioHighFrequency: true }
-          }
+          textPropertyOptions: { phetioHighFrequency: true }
         }
       },
       arrowsScale: 1.5,

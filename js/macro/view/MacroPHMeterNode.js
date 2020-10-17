@@ -365,7 +365,7 @@ class PHIndicatorNode extends Node {
       yMargin: 5,
       textOptions: {
         font: new PhetFont( 28 ),
-        phetioComponentOptions: { textProperty: { phetioHighFrequency: true } }
+        textPropertyOptions: { phetioHighFrequency: true }
       },
       tandem: options.tandem.createTandem( 'numberDisplay' )
     } );

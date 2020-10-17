@@ -73,9 +73,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.macroScreen.view.pHMeterNode.pHIndicatorNode.numberDisplay.visibleProperty": {
       "phetioFeatured": true
     },
-    "phScale.macroScreen.view.pHMeterNode.probeNode.pickableProperty": {
-      "phetioFeatured": true
-    },
     "phScale.macroScreen.view.volumeIndicatorNode.visibleProperty": {
       "phetioFeatured": true
     },
@@ -289,13 +286,7 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH2ONode.visibleProperty": {
       "phetioFeatured": true
     },
-    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH3ONode.pickableProperty": {
-      "phetioFeatured": true
-    },
     "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH3ONode.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorOHNode.pickableProperty": {
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorOHNode.visibleProperty": {

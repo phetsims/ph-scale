@@ -33,7 +33,7 @@ class ZoomButtonGroup extends HBox {
 
     const zoomOutButton = new ZoomButton( {
       in: false,
-      radius: MAGNIFYING_GLASS_RADIUS,
+      magnifyingGlassRadius: MAGNIFYING_GLASS_RADIUS,
       listener: () => exponentProperty.set( exponentProperty.get() + 1 ),
       enabledPropertyOptions: { phetioReadOnly: true },
       tandem: options.tandem.createTandem( 'zoomOutButton' ),
@@ -45,7 +45,7 @@ class ZoomButtonGroup extends HBox {
 
     const zoomInButton = new ZoomButton( {
       in: true,
-      radius: MAGNIFYING_GLASS_RADIUS,
+      magnifyingGlassRadius: MAGNIFYING_GLASS_RADIUS,
       listener: () => exponentProperty.set( exponentProperty.get() - 1 ),
       enabledPropertyOptions: { phetioReadOnly: true },
       tandem: options.tandem.createTandem( 'zoomInButton' ),

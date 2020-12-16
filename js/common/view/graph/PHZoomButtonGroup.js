@@ -1,7 +1,7 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * ZoomButtonGroup is the group of zoom button for the linear graph.
+ * PHZoomButtonGroup is the group of zoom button for the linear graph.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -15,7 +15,7 @@ import phScale from '../../../phScale.js';
 // constants
 const MAGNIFYING_GLASS_RADIUS = 13;
 
-class ZoomButtonGroup extends HBox {
+class PHZoomButtonGroup extends HBox {
 
   /**
    * @param {NumberProperty} exponentProperty - exponent for the linear graph
@@ -63,7 +63,7 @@ class ZoomButtonGroup extends HBox {
     zoomOutButton.touchArea = zoomOutButton.localBounds.dilated( 5 );
     zoomInButton.touchArea = zoomOutButton.localBounds.dilated( 5 );
 
-    assert && assert( !options.children, 'ZoomButtonGroup sets children' );
+    assert && assert( !options.children, 'PHZoomButtonGroup sets children' );
     options.children = [ zoomOutButton, zoomInButton ];
 
     super( options );
@@ -76,5 +76,5 @@ class ZoomButtonGroup extends HBox {
   }
 }
 
-phScale.register( 'ZoomButtonGroup', ZoomButtonGroup );
-export default ZoomButtonGroup;
+phScale.register( 'PHZoomButtonGroup', PHZoomButtonGroup );
+export default PHZoomButtonGroup;

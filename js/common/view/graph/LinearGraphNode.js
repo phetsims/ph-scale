@@ -27,7 +27,7 @@ import phScaleStrings from '../../../phScaleStrings.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
-import PHZoomButtonGroup from './PHZoomButtonGroup.js';
+import LinearZoomButtonGroup from './LinearZoomButtonGroup.js';
 
 // constants
 const MANTISSA_RANGE = PHScaleConstants.LINEAR_MANTISSA_RANGE;
@@ -230,7 +230,7 @@ class LinearGraphNode extends Node {
     this.exponentProperty.link( exponent => updateTickLabels( exponent ) );
 
     // zoom buttons
-    const zoomButtonGroup = new PHZoomButtonGroup( this.exponentProperty, {
+    const zoomButtonGroup = new LinearZoomButtonGroup( this.exponentProperty, {
       centerX: scaleNode.centerX,
       top: scaleNode.bottom + 44,
       tandem: options.tandem.createTandem( 'zoomButtonGroup' )

@@ -14,6 +14,7 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import dotRandom from '../../../../dot/js/dotRandom.js';
 import Range from '../../../../dot/js/Range.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Shape from '../../../../kite/js/Shape.js';
@@ -230,12 +231,12 @@ phScale.register( 'RatioNode', RatioNode );
 
 // Creates a random {number} x-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
 function createRandomX( bounds ) {
-  return phet.joist.random.nextIntBetween( bounds.minX, bounds.maxX );
+  return dotRandom.nextIntBetween( bounds.minX, bounds.maxX );
 }
 
 // Creates a random {number} y-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
 function createRandomY( bounds ) {
-  return phet.joist.random.nextIntBetween( bounds.minY, bounds.maxY );
+  return dotRandom.nextIntBetween( bounds.minY, bounds.maxY );
 }
 
 // Computes the {number} number of H3O+ molecules for some {number} pH.

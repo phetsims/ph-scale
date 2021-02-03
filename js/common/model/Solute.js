@@ -145,7 +145,7 @@ Solute.SoluteIO = new IOType( 'SoluteIO', {
 // Static instances
 
 // parent tandem for all static instances of Solute, which are used across all screens
-const SOLUTES_TANDEM = Tandem.GLOBAL.createTandem( 'model' ).createTandem( 'solutes' );
+const SOLUTES_TANDEM = Tandem.GLOBAL_MODEL.createTandem( 'model' ).createTandem( 'solutes' );
 
 Solute.BATTERY_ACID = new Solute( phScaleStrings.choice.batteryAcid, 1, new Color( 255, 255, 0 ), {
   colorStopColor: new Color( 255, 224, 204 ),

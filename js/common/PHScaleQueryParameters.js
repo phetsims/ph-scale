@@ -6,6 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import logGlobal from '../../../phet-core/js/logGlobal.js';
 import phScale from '../phScale.js';
 
 const PHScaleQueryParameters = QueryStringMachine.getAll( {
@@ -28,7 +29,9 @@ const PHScaleQueryParameters = QueryStringMachine.getAll( {
 
 phScale.register( 'PHScaleQueryParameters', PHScaleQueryParameters );
 
-// log the values of all sim-specific query parameters
-phet.log && phet.log( 'query parameters: ' + JSON.stringify( PHScaleQueryParameters, null, 2 ) );
+// Log query parameters
+logGlobal( 'phet.chipper.queryParameters' );
+logGlobal( 'phet.preloads.phetio.queryParameters' );
+logGlobal( 'phet.phScale.PHScaleQueryParameters' );
 
 export default PHScaleQueryParameters;

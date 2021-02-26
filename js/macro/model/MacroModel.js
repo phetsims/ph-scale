@@ -91,7 +91,7 @@ class MacroModel {
 
     // @public optional pH meter to the left of the drain faucet
     this.pHMeter = null;
-    if ( options.includePHMeter) {
+    if ( options.includePHMeter ) {
       const pHMeterPosition = new Vector2( this.drainFaucet.position.x - 300, 75 );
       this.pHMeter = new MacroPHMeter(
         pHMeterPosition,

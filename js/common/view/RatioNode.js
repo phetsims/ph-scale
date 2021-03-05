@@ -138,21 +138,11 @@ class RatioNode extends Node {
       tandem: options.tandem.createTandem( 'ratioVisibleProperty' )
     } );
 
+    // Update this Node when it becomes visible.
+    this.visibleProperty.link( visible => visible && this.update() );
+
     // @private
     this.beakerBounds = beakerBounds;
-  }
-
-  /**
-   * When this node becomes visible, update it.
-   * @param {boolean} visible
-   * @public
-   * @override
-   */
-  setVisible( visible ) {
-    super.setVisible( visible );
-    if ( visible ) {
-      this.update();
-    }
   }
 
   /**

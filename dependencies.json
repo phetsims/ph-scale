@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.3.4 Mon Oct 28 2019 14:51:48 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# ph-scale 1.3.4 Mon Mar 08 2021 15:27:00 GMT-0500 (Eastern Standard Time)",
   "assert": {
     "sha": "d8a2e8992420327ff72a6fc4bb93ec76549ded0e",
     "branch": "HEAD"
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "685e11faf9f079280b1751cf9d3c3128dae284ed",
+    "sha": "b8b20eef1aceda43c6cdcd65edb4a512ab1dec94",
     "branch": "1.3"
   },
   "phet-core": {
@@ -53,8 +53,8 @@
     "branch": "HEAD"
   },
   "phetmarks": {
-    "sha": "01cbbd71ad4ca7d29bf68de518e0d3215acf3528",
-    "branch": "HEAD"
+    "sha": "991f1a1fb9e68096d3f0c9c31017a8a953cd4ce5",
+    "branch": "ph-scale-1.3"
   },
   "query-string-machine": {
     "sha": "4e56d66c85fd5f296b2f1a480832328e54ee4b93",

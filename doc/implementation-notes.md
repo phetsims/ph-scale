@@ -10,20 +10,9 @@ Before reading this document, please read:
  
 ## Core Model
 
-All core model computations are in [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/model/PHModel.js).
+All core model computations are
+in [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/model/PHModel.js).
 
-## Mixin Design Pattern
-
-See [SolutionDerivedQuantities.js](https://github.com/phetsims/ph-scale/blob/master/js/common/model/SolutionMixin.js)
-for details about how
-the [mixin design pattern](https://github.com/phetsims/phet-info/blob/master/doc/phet-software-design-patterns.md#mixin-and-trait)
-is used. It adds Properties related to concentration and quantity to solution classes. The solution model class hierachy
-has this structure:
-
-```
-class MacroSolution
-
-class MicroSolution extends MacroSolution mixes SolutionDerivedQuantities
-
-class MySolution mixes SolutionDerivedQuantities
-```
+[SolutionDerivedProperties](https://github.com/phetsims/ph-scale/blob/master/js/common/model/SolutionDerivedProperties.js)
+models Properties of a solution that are derived from pH and volume. It is separated from the solution model so that it
+can be used in different solution models via composition. Read the documentation for more details.

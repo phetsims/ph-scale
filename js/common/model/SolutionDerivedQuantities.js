@@ -2,18 +2,15 @@
 
 /**
  * SolutionDerivedQuantities models the Properties of a solution that are derived from pH and volume, including
- * concentration (mol/L), quantity (mol), and numbers of molecules.
+ * concentration (mol/L), quantity (mol), and numbers of molecules. This class is separated from the solution
+ * model so that it can be used in different solution models via composition.  And we have different solution
+ * models because:
  *
- * These Properties are separated from the solution model for 2 reasons:
- *  - Different screens have different needs, and there is no base class model of solution that is shared by all
- *    screens. Macro and Micro screens have a solute, and pH and total volume are DerivedProperties. My Solution
- *    screen has no solute, and pH and totalVolume are not derived.
- *  - These Properties are not relevant to all screens, and we want these Properties to appear for PhET-iO only
- *    in the screens for which they are relevant. Specifically, these Properties are needed by the Micro and
- *    My Solution screens, but not by the Macro screen.
- *
- * We address the needs of all screens via composition, by creating an instance of this class for screens where
- * it's appropriate - that is, the Micro and MySolution screens.
+ * - Different screens have different needs, and there is no solution base class that is shared by all screens.
+ *   Macro and Micro screens have a solute, with pH and total volume being DerivedProperties. My Solution
+ *   screen has no solute, and pH and totalVolume are not derived.
+ * - For PhET-iO, these Properties should appear only in the screens for which they are relevant; that is, the
+ *   Micro and My Solution screens.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

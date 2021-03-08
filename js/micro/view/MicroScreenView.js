@@ -98,7 +98,7 @@ class MicroScreenView extends ScreenView {
 
     // 'molecule count' representation
     const moleculeCountNode = new MoleculeCountNode(
-      model.solution.derivedQuantities, viewProperties.moleculeCountVisibleProperty, {
+      model.solution.derivedProperties, viewProperties.moleculeCountVisibleProperty, {
         tandem: tandem.createTandem( 'moleculeCountNode' )
       } );
 
@@ -112,7 +112,7 @@ class MicroScreenView extends ScreenView {
 
     // graph
     const graphNode = new GraphNode( model.solution.pHProperty, model.solution.totalVolumeProperty,
-      model.solution.derivedQuantities, {
+      model.solution.derivedProperties, {
         hasLinearFeature: true,
         logScaleHeight: 485,
         linearScaleHeight: 440,

@@ -1,7 +1,7 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * SolutionDerivedQuantities models the Properties of a solution that are derived from pH and volume, including
+ * SolutionDerivedProperties models the Properties of a solution that are derived from pH and volume, including
  * concentration (mol/L), quantity (mol), and numbers of molecules. This class is separated from the solution
  * model so that it can be used in different solution models via composition.
  *
@@ -24,7 +24,7 @@ import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import phScale from '../../phScale.js';
 import PHModel from './PHModel.js';
 
-class SolutionDerivedQuantities {
+class SolutionDerivedProperties {
 
   /**
    * @param {Property.<number|null>} pHProperty
@@ -144,5 +144,5 @@ class SolutionDerivedQuantities {
   }
 }
 
-phScale.register( 'SolutionDerivedQuantities', SolutionDerivedQuantities );
-export default SolutionDerivedQuantities;
+phScale.register( 'SolutionDerivedProperties', SolutionDerivedProperties );
+export default SolutionDerivedProperties;

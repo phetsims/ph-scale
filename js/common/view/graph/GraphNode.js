@@ -16,7 +16,7 @@ import Line from '../../../../../scenery/js/nodes/Line.js';
 import Node from '../../../../../scenery/js/nodes/Node.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
-import SolutionDerivedQuantities from '../../model/SolutionDerivedQuantities.js';
+import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
 import GraphControlPanel from './GraphControlPanel.js';
 import GraphScale from './GraphScale.js';
 import GraphScaleSwitch from './GraphScaleSwitch.js';
@@ -29,11 +29,11 @@ class GraphNode extends Node {
   /**
    * @param {Property.<number>} pHProperty
    * @param {Property.<number>} totalVolumeProperty
-   * @param {SolutionDerivedQuantities} derivedQuantities
+   * @param {SolutionDerivedProperties} derivedProperties
    * @param {Object} [options]
    */
-  constructor( pHProperty, totalVolumeProperty, derivedQuantities, options ) {
-    assert && assert( derivedQuantities instanceof SolutionDerivedQuantities, 'invalid derivedQuantities' );
+  constructor( pHProperty, totalVolumeProperty, derivedProperties, options ) {
+    assert && assert( derivedProperties instanceof SolutionDerivedProperties, 'invalid derivedProperties' );
 
     options = merge( {
       isInteractive: false, // if true, add drag handlers for changing H3O+ and OH- on the Logarithmic graph
@@ -72,7 +72,7 @@ class GraphNode extends Node {
     } );
 
     // logarithmic graph
-    const logarithmicGraphNode = new LogarithmicGraphNode( pHProperty, totalVolumeProperty, derivedQuantities, graphUnitsProperty, {
+    const logarithmicGraphNode = new LogarithmicGraphNode( pHProperty, totalVolumeProperty, derivedProperties, graphUnitsProperty, {
       scaleHeight: options.logScaleHeight,
       isInteractive: options.isInteractive,
       centerX: lineToPanel.centerX,
@@ -104,7 +104,7 @@ class GraphNode extends Node {
       } );
 
       // linear graph
-      linearGraphNode = new LinearGraphNode( derivedQuantities, graphUnitsProperty, {
+      linearGraphNode = new LinearGraphNode( derivedProperties, graphUnitsProperty, {
         scaleHeight: options.linearScaleHeight,
         y: logarithmicGraphNode.y, // y, not top
         centerX: logarithmicGraphNode.centerX,
@@ -153,24 +153,24 @@ class GraphNode extends Node {
     };
 
     // Link to concentration Properties, see https://github.com/phetsims/ph-scale/issues/125
-    this.addLinkedElement( derivedQuantities.concentrationH2OProperty, {
+    this.addLinkedElement( derivedProperties.concentrationH2OProperty, {
       tandem: options.tandem.createTandem( 'concentrationH2OProperty' )
     } );
-    this.addLinkedElement( derivedQuantities.concentrationH3OProperty, {
+    this.addLinkedElement( derivedProperties.concentrationH3OProperty, {
       tandem: options.tandem.createTandem( 'concentrationH3OProperty' )
     } );
-    this.addLinkedElement( derivedQuantities.concentrationOHProperty, {
+    this.addLinkedElement( derivedProperties.concentrationOHProperty, {
       tandem: options.tandem.createTandem( 'concentrationOHProperty' )
     } );
 
     // Link to quantity Properties, see https://github.com/phetsims/ph-scale/issues/125
-    this.addLinkedElement( derivedQuantities.quantityH2OProperty, {
+    this.addLinkedElement( derivedProperties.quantityH2OProperty, {
       tandem: options.tandem.createTandem( 'quantityH2OProperty' )
     } );
-    this.addLinkedElement( derivedQuantities.quantityH3OProperty, {
+    this.addLinkedElement( derivedProperties.quantityH3OProperty, {
       tandem: options.tandem.createTandem( 'quantityH3OProperty' )
     } );
-    this.addLinkedElement( derivedQuantities.quantityOHProperty, {
+    this.addLinkedElement( derivedProperties.quantityOHProperty, {
       tandem: options.tandem.createTandem( 'quantityOHProperty' )
     } );
   }

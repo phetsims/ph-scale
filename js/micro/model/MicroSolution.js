@@ -8,7 +8,7 @@
 
 import merge from '../../../../phet-core/js/merge.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import SolutionDerivedQuantities from '../../common/model/SolutionDerivedQuantities.js';
+import SolutionDerivedProperties from '../../common/model/SolutionDerivedProperties.js';
 import MacroSolution from '../../macro/model/MacroSolution.js';
 import phScale from '../../phScale.js';
 
@@ -17,7 +17,7 @@ class MicroSolution extends MacroSolution {
   /**
    * @param {Property.<Solute>} soluteProperty
    * @param {Object} [options]
-   * @mixes SolutionDerivedQuantities
+   * @mixes SolutionDerivedProperties
    */
   constructor( soluteProperty, options ) {
 
@@ -28,8 +28,8 @@ class MicroSolution extends MacroSolution {
     super( soluteProperty, options );
 
     // @public
-    this.derivedQuantities = new SolutionDerivedQuantities( this.pHProperty, this.totalVolumeProperty, {
-      tandem: options.tandem // Properties created by SolutionDerivedQuantities should appear as if they are children of MicroSolution.
+    this.derivedProperties = new SolutionDerivedProperties( this.pHProperty, this.totalVolumeProperty, {
+      tandem: options.tandem // Properties created by SolutionDerivedProperties should appear as if they are children of MicroSolution.
     } );
   }
 }

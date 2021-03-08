@@ -69,7 +69,7 @@ class MySolutionScreenView extends ScreenView {
 
     // 'molecule count' representation
     const moleculeCountNode = new MoleculeCountNode(
-      model.solution.derivedQuantities, viewProperties.moleculeCountVisibleProperty, {
+      model.solution.derivedProperties, viewProperties.moleculeCountVisibleProperty, {
         tandem: tandem.createTandem( 'moleculeCountNode' )
       } );
 
@@ -83,7 +83,7 @@ class MySolutionScreenView extends ScreenView {
 
     // graph
     const graphNode = new GraphNode(
-      model.solution.pHProperty, model.solution.totalVolumeProperty, model.solution.derivedQuantities, {
+      model.solution.pHProperty, model.solution.totalVolumeProperty, model.solution.derivedProperties, {
         isInteractive: true, // add drag handlers for changing H3O+ and OH- on the Logarithmic graph
         logScaleHeight: 565,
         tandem: tandem.createTandem( 'graphNode' )

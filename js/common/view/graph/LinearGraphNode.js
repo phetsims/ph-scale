@@ -25,7 +25,7 @@ import Text from '../../../../../scenery/js/nodes/Text.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import phScaleStrings from '../../../phScaleStrings.js';
-import SolutionDerivedQuantities from '../../model/SolutionDerivedQuantities.js';
+import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
@@ -37,12 +37,12 @@ const MANTISSA_RANGE = PHScaleConstants.LINEAR_MANTISSA_RANGE;
 class LinearGraphNode extends Node {
 
   /**
-   * @param {SolutionDerivedQuantities} derivedQuantities
+   * @param {SolutionDerivedProperties} derivedProperties
    * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
    * @param {Object} [options]
    */
-  constructor( derivedQuantities, graphUnitsProperty, options ) {
-    assert && assert( derivedQuantities instanceof SolutionDerivedQuantities, 'invalid derivedQuantities' );
+  constructor( derivedProperties, graphUnitsProperty, options ) {
+    assert && assert( derivedProperties instanceof SolutionDerivedProperties, 'invalid derivedProperties' );
     assert && assert( graphUnitsProperty instanceof EnumerationProperty, 'invalid graphUnitsProperty' );
 
     options = merge( {
@@ -169,17 +169,17 @@ class LinearGraphNode extends Node {
 
     // Values displayed on the indicators
     const valueH2OProperty = new DerivedProperty(
-      [ derivedQuantities.concentrationH2OProperty, derivedQuantities.quantityH2OProperty, graphUnitsProperty ],
+      [ derivedProperties.concentrationH2OProperty, derivedProperties.quantityH2OProperty, graphUnitsProperty ],
       ( concentration, quantity, graphUnits ) =>
         ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
     );
     const valueH3OProperty = new DerivedProperty(
-      [ derivedQuantities.concentrationH3OProperty, derivedQuantities.quantityH3OProperty, graphUnitsProperty ],
+      [ derivedProperties.concentrationH3OProperty, derivedProperties.quantityH3OProperty, graphUnitsProperty ],
       ( concentration, quantity, graphUnits ) =>
         ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
     );
     const valueOHProperty = new DerivedProperty(
-      [ derivedQuantities.concentrationOHProperty, derivedQuantities.quantityOHProperty, graphUnitsProperty ],
+      [ derivedProperties.concentrationOHProperty, derivedProperties.quantityOHProperty, graphUnitsProperty ],
       ( concentration, quantity, graphUnits ) =>
         ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
     );

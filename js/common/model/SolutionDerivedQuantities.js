@@ -6,7 +6,7 @@
  * model so that it can be used in different solution models via composition.
  *
  * This sim has different solution models because:
- * - Different screens have different needs, and there is no solution base class that is shared by all screens.
+ * - Different screens have different needs, and there is no solution base class that is appropriate for all screens.
  *   Macro and Micro screens have a solute, with pH and total volume being DerivedProperties. My Solution
  *   screen has no solute, and pH and totalVolume are not derived.
  * - For PhET-iO, these Properties should appear only in the screens for which they are relevant; that is, the

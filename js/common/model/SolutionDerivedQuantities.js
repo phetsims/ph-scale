@@ -3,9 +3,9 @@
 /**
  * SolutionDerivedQuantities models the Properties of a solution that are derived from pH and volume, including
  * concentration (mol/L), quantity (mol), and numbers of molecules. This class is separated from the solution
- * model so that it can be used in different solution models via composition.  And we have different solution
- * models because:
+ * model so that it can be used in different solution models via composition.
  *
+ * This sim has different solution models because:
  * - Different screens have different needs, and there is no solution base class that is shared by all screens.
  *   Macro and Micro screens have a solute, with pH and total volume being DerivedProperties. My Solution
  *   screen has no solute, and pH and totalVolume are not derived.

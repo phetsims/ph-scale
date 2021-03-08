@@ -68,9 +68,10 @@ class MySolutionScreenView extends ScreenView {
     } );
 
     // 'molecule count' representation
-    const moleculeCountNode = new MoleculeCountNode( model.solution, viewProperties.moleculeCountVisibleProperty, {
-      tandem: tandem.createTandem( 'moleculeCountNode' )
-    } );
+    const moleculeCountNode = new MoleculeCountNode(
+      model.solution.derivedQuantities, viewProperties.moleculeCountVisibleProperty, {
+        tandem: tandem.createTandem( 'moleculeCountNode' )
+      } );
 
     // beaker controls
     const beakerControlPanel = new BeakerControlPanel(
@@ -81,11 +82,12 @@ class MySolutionScreenView extends ScreenView {
       } );
 
     // graph
-    const graphNode = new GraphNode( model.solution, {
-      isInteractive: true, // add drag handlers for changing H3O+ and OH- on the Logarithmic graph
-      logScaleHeight: 565,
-      tandem: tandem.createTandem( 'graphNode' )
-    } );
+    const graphNode = new GraphNode(
+      model.solution.pHProperty, model.solution.totalVolumeProperty, model.solution.derivedQuantities, {
+        isInteractive: true, // add drag handlers for changing H3O+ and OH- on the Logarithmic graph
+        logScaleHeight: 565,
+        tandem: tandem.createTandem( 'graphNode' )
+      } );
 
     // pH meter
     const pHMeterTop = 15;

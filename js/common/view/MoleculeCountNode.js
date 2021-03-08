@@ -17,6 +17,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import phScale from '../../phScale.js';
+import SolutionDerivedQuantities from '../model/SolutionDerivedQuantities.js';
 import PHScaleColors from '../PHScaleColors.js';
 import H2ONode from './molecules/H2ONode.js';
 import H3ONode from './molecules/H3ONode.js';
@@ -25,11 +26,12 @@ import OHNode from './molecules/OHNode.js';
 class MoleculeCountNode extends Node {
 
   /**
-   * @param {MicroSolution|MySolution} solution
+   * @param {SolutionDerivedQuantities} derivedQuantities
    * @param {Property.<boolean>} moleculeCountVisibleProperty
    * @param {Object} [options]
    */
-  constructor( solution, moleculeCountVisibleProperty, options ) {
+  constructor( derivedQuantities, moleculeCountVisibleProperty, options ) {
+    assert && assert( derivedQuantities instanceof SolutionDerivedQuantities, 'invalid derivedQuantities' );
 
     options = merge( {
 
@@ -58,9 +60,9 @@ class MoleculeCountNode extends Node {
       xAlign: 'right',
       yAlign: 'center'
     };
-    const countH3ONode = new AlignBox( new ScientificNotationNode( solution.numberOfH3OMoleculesProperty, notationOptions ), countsAlignBoxOptions );
-    const countOHNode = new AlignBox( new ScientificNotationNode( solution.numberOfOHMoleculesProperty, notationOptions ), countsAlignBoxOptions );
-    const countH2ONode = new AlignBox( new ScientificNotationNode( solution.numberOfH2OMoleculesProperty, merge( { exponent: 25 }, notationOptions ) ), countsAlignBoxOptions );
+    const countH3ONode = new AlignBox( new ScientificNotationNode( derivedQuantities.numberOfH3OMoleculesProperty, notationOptions ), countsAlignBoxOptions );
+    const countOHNode = new AlignBox( new ScientificNotationNode( derivedQuantities.numberOfOHMoleculesProperty, notationOptions ), countsAlignBoxOptions );
+    const countH2ONode = new AlignBox( new ScientificNotationNode( derivedQuantities.numberOfH2OMoleculesProperty, merge( { exponent: 25 }, notationOptions ) ), countsAlignBoxOptions );
 
     // Add an invisible count to the group, so that we get the correct (maximum) width.
     const invisibleCountNode = new AlignBox( new ScientificNotationNode( new Property( 1e16 ), notationOptions ), countsAlignBoxOptions );
@@ -134,13 +136,13 @@ class MoleculeCountNode extends Node {
     } );
 
     // Links to the count Properties
-    this.addLinkedElement( solution.numberOfH3OMoleculesProperty, {
+    this.addLinkedElement( derivedQuantities.numberOfH3OMoleculesProperty, {
       tandem: options.tandem.createTandem( 'numberOfH3OMoleculesProperty' )
     } );
-    this.addLinkedElement( solution.numberOfOHMoleculesProperty, {
+    this.addLinkedElement( derivedQuantities.numberOfOHMoleculesProperty, {
       tandem: options.tandem.createTandem( 'numberOfOHMoleculesProperty' )
     } );
-    this.addLinkedElement( solution.numberOfH2OMoleculesProperty, {
+    this.addLinkedElement( derivedQuantities.numberOfH2OMoleculesProperty, {
       tandem: options.tandem.createTandem( 'numberOfH2OMoleculesProperty' )
     } );
 

@@ -12,7 +12,7 @@ import Range from '../../../../dot/js/Range.js';
 import merge from '../../../../phet-core/js/merge.js';
 import PhetioObject from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import SolutionMixin from '../../common/model/SolutionMixin.js';
+import SolutionDerivedQuantities from '../../common/model/SolutionDerivedQuantities.js';
 import Water from '../../common/model/Water.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
@@ -21,7 +21,7 @@ class MySolution extends PhetioObject {
 
   /**
    * @param {Object} [options]
-   * @mixes SolutionMixin
+   * @mixes SolutionDerivedQuantities
    */
   constructor( options ) {
 
@@ -59,7 +59,10 @@ class MySolution extends PhetioObject {
       // DO NOT INSTRUMENT FOR PhET-iO
     } );
 
-    this.initializeSolutionMixin( this.pHProperty, this.totalVolumeProperty, this.tandem );
+    // @public
+    this.derivedQuantities = new SolutionDerivedQuantities( this.pHProperty, this.totalVolumeProperty, {
+      tandem: options.tandem // Properties created by SolutionDerivedQuantities should appear as if they are children of MySolution.
+    } );
   }
 
   /**
@@ -68,10 +71,9 @@ class MySolution extends PhetioObject {
   reset() {
     this.pHProperty.reset();
     this.totalVolumeProperty.reset();
+    // this.derivedQuantities does not need to be reset because all of its Properties are derived.
   }
 }
-
-SolutionMixin.mixInto( MySolution );
 
 phScale.register( 'MySolution', MySolution );
 export default MySolution;

@@ -39,7 +39,7 @@ class MacroSolution extends PhetioObject {
       maxVolume: 1, // maximum total volume (solute + water), in L
 
       // phet-io
-      tandem: Tandem.OPTIONAL, // because Solution is not instrumented in MySolutionModel
+      tandem: Tandem.REQUIRED,
       phetioState: false,
       phetioDocumentation: 'solution in the beaker'
 

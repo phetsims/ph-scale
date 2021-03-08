@@ -13,6 +13,7 @@
  */
 
 import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
+import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Property from '../../../../../axon/js/Property.js';
 import Utils from '../../../../../dot/js/Utils.js';
 import merge from '../../../../../phet-core/js/merge.js';
@@ -25,6 +26,7 @@ import LinearGradient from '../../../../../scenery/js/util/LinearGradient.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import PHModel from '../../model/PHModel.js';
+import SolutionDerivedQuantities from '../../model/SolutionDerivedQuantities.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
@@ -33,11 +35,15 @@ import GraphUnits from './GraphUnits.js';
 class LogarithmicGraphNode extends Node {
 
   /**
-   * @param {MicroSolution|MySolution} solution
+   * @param {Property.<number>} pHProperty
+   * @param {Property.<number>} totalVolumeProperty
+   * @param {SolutionDerivedQuantities} derivedQuantities
    * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
    * @param {Object} [options]
    */
-  constructor( solution, graphUnitsProperty, options ) {
+  constructor( pHProperty, totalVolumeProperty, derivedQuantities, graphUnitsProperty, options ) {
+    assert && assert( derivedQuantities instanceof SolutionDerivedQuantities, 'invalid derivedQuantities' );
+    assert && assert( graphUnitsProperty instanceof EnumerationProperty, 'invalid graphUnitsProperty' );
 
     options = merge( {
       isInteractive: false, // if true, add drag handlers for changing H3O+ and OH-
@@ -147,17 +153,17 @@ class LogarithmicGraphNode extends Node {
 
     // Values displayed on the indicators
     const valueH2OProperty = new DerivedProperty(
-      [ solution.concentrationH2OProperty, solution.quantityH2OProperty, graphUnitsProperty ],
+      [ derivedQuantities.concentrationH2OProperty, derivedQuantities.quantityH2OProperty, graphUnitsProperty ],
       ( concentration, quantity, graphUnits ) =>
         ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
     );
     const valueH3OProperty = new DerivedProperty(
-      [ solution.concentrationH3OProperty, solution.quantityH3OProperty, graphUnitsProperty ],
+      [ derivedQuantities.concentrationH3OProperty, derivedQuantities.quantityH3OProperty, graphUnitsProperty ],
       ( concentration, quantity, graphUnits ) =>
         ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
     );
     const valueOHProperty = new DerivedProperty(
-      [ solution.concentrationOHProperty, solution.quantityOHProperty, graphUnitsProperty ],
+      [ derivedQuantities.concentrationOHProperty, derivedQuantities.quantityOHProperty, graphUnitsProperty ],
       ( concentration, quantity, graphUnits ) =>
         ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
     );
@@ -231,7 +237,7 @@ class LogarithmicGraphNode extends Node {
 
       // H3O+ indicator
       indicatorH3ONode.addInputListener(
-        new GraphIndicatorDragListener( indicatorH3ONode, solution.pHProperty, solution.totalVolumeProperty, graphUnitsProperty, yToValue,
+        new GraphIndicatorDragListener( indicatorH3ONode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
           PHModel.concentrationH3OToPH, PHModel.molesH3OToPH,
           indicatorH3ONode.tandem.createTandem( 'dragListener' )
         ) );
@@ -239,7 +245,7 @@ class LogarithmicGraphNode extends Node {
 
       // OH- indicator
       indicatorOHNode.addInputListener(
-        new GraphIndicatorDragListener( indicatorOHNode, solution.pHProperty, solution.totalVolumeProperty, graphUnitsProperty, yToValue,
+        new GraphIndicatorDragListener( indicatorOHNode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
           PHModel.concentrationOHToPH, PHModel.molesOHToPH,
           indicatorOHNode.tandem.createTandem( 'dragListener' )
         ) );

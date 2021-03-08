@@ -97,9 +97,10 @@ class MicroScreenView extends ScreenView {
     } );
 
     // 'molecule count' representation
-    const moleculeCountNode = new MoleculeCountNode( model.solution, viewProperties.moleculeCountVisibleProperty, {
-      tandem: tandem.createTandem( 'moleculeCountNode' )
-    } );
+    const moleculeCountNode = new MoleculeCountNode(
+      model.solution.derivedQuantities, viewProperties.moleculeCountVisibleProperty, {
+        tandem: tandem.createTandem( 'moleculeCountNode' )
+      } );
 
     // beaker control panel
     const beakerControlPanel = new BeakerControlPanel(
@@ -110,12 +111,13 @@ class MicroScreenView extends ScreenView {
       } );
 
     // graph
-    const graphNode = new GraphNode( model.solution, {
-      hasLinearFeature: true,
-      logScaleHeight: 485,
-      linearScaleHeight: 440,
-      tandem: tandem.createTandem( 'graphNode' )
-    } );
+    const graphNode = new GraphNode( model.solution.pHProperty, model.solution.totalVolumeProperty,
+      model.solution.derivedQuantities, {
+        hasLinearFeature: true,
+        logScaleHeight: 485,
+        linearScaleHeight: 440,
+        tandem: tandem.createTandem( 'graphNode' )
+      } );
 
     // pH meter
     const pHMeterTop = 15;

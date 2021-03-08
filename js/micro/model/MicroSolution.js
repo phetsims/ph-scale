@@ -6,7 +6,9 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import SolutionMixin from '../../common/model/SolutionMixin.js';
+import merge from '../../../../phet-core/js/merge.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import SolutionDerivedQuantities from '../../common/model/SolutionDerivedQuantities.js';
 import MacroSolution from '../../macro/model/MacroSolution.js';
 import phScale from '../../phScale.js';
 
@@ -15,15 +17,22 @@ class MicroSolution extends MacroSolution {
   /**
    * @param {Property.<Solute>} soluteProperty
    * @param {Object} [options]
-   * @mixes SolutionMixin
+   * @mixes SolutionDerivedQuantities
    */
   constructor( soluteProperty, options ) {
+
+    options = merge( {
+      tandem: Tandem.REQUIRED
+    }, options );
+
     super( soluteProperty, options );
-    this.initializeSolutionMixin( this.pHProperty, this.totalVolumeProperty, this.tandem );
+
+    // @public
+    this.derivedQuantities = new SolutionDerivedQuantities( this.pHProperty, this.totalVolumeProperty, {
+      tandem: options.tandem // Properties created by SolutionDerivedQuantities should appear as if they are children of MySolution.
+    } );
   }
 }
-
-SolutionMixin.mixInto( MicroSolution );
 
 phScale.register( 'MicroSolution', MicroSolution );
 export default MicroSolution;

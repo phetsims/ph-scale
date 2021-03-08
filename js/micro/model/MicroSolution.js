@@ -29,7 +29,7 @@ class MicroSolution extends MacroSolution {
 
     // @public
     this.derivedQuantities = new SolutionDerivedQuantities( this.pHProperty, this.totalVolumeProperty, {
-      tandem: options.tandem // Properties created by SolutionDerivedQuantities should appear as if they are children of MySolution.
+      tandem: options.tandem // Properties created by SolutionDerivedQuantities should appear as if they are children of MicroSolution.
     } );
   }
 }

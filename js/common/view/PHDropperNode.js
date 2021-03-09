@@ -27,7 +27,7 @@ class PHDropperNode extends EyeDropperNode {
     super( merge( {
 
       // EyeDropperNode options
-      isDispensingProperty: dropper.dispensingProperty,
+      isDispensingProperty: dropper.isDispensingProperty,
       buttonOptions: {
         enabledProperty: dropper.enabledProperty
       },

@@ -50,8 +50,8 @@ class Dropper extends PHMovable {
     } );
 
     // @public
-    this.dispensingProperty = new BooleanProperty( options.dispensing, {
-      tandem: options.tandem.createTandem( 'dispensingProperty' ),
+    this.isDispensingProperty = new BooleanProperty( options.dispensing, {
+      tandem: options.tandem.createTandem( 'isDispensingProperty' ),
       phetioReadOnly: true,
       phetioDocumentation: 'whether solute is currently flowing out of the dropper'
     } );
@@ -75,12 +75,12 @@ class Dropper extends PHMovable {
     // Turn off the dropper when it's disabled.
     this.enabledProperty.link( enabled => {
       if ( !enabled ) {
-        this.dispensingProperty.set( false );
+        this.isDispensingProperty.set( false );
       }
     } );
 
     // Toggle the flow rate when the dropper is turned on/off.
-    this.dispensingProperty.link( dispensing => {
+    this.isDispensingProperty.link( dispensing => {
       this.flowRateProperty.set( dispensing ? options.maxFlowRate : 0 );
     } );
   }
@@ -92,7 +92,7 @@ class Dropper extends PHMovable {
   reset() {
     super.reset();
     this.soluteProperty.reset();
-    this.dispensingProperty.reset();
+    this.isDispensingProperty.reset();
     this.enabledProperty.reset();
     this.flowRateProperty.reset();
   }

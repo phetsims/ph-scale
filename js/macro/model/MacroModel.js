@@ -184,7 +184,7 @@ class MacroModel {
     // the restored state. See https://github.com/phetsims/ph-scale/issues/132
     if ( this.autofillEnabledProperty.get() && this.autofillVolume > 0 && !phet.joist.sim.isSettingPhetioStateProperty.get() ) {
       this.isAutofillingProperty.set( true );
-      this.dropper.dispensingProperty.set( true );
+      this.dropper.isDispensingProperty.set( true );
       this.dropper.flowRateProperty.set( 0.75 ); // faster than standard flow rate
     }
     else {
@@ -210,7 +210,7 @@ class MacroModel {
    */
   stopAutofill() {
     this.isAutofillingProperty.set( false );
-    this.dropper.dispensingProperty.set( false );
+    this.dropper.isDispensingProperty.set( false );
     this.updateFaucetsAndDropper();
   }
 }

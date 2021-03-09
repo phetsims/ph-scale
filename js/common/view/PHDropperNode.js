@@ -25,8 +25,12 @@ class PHDropperNode extends EyeDropperNode {
   constructor( dropper, modelViewTransform, options ) {
 
     super( merge( {
+
+      // EyeDropperNode options
       isDispensingProperty: dropper.dispensingProperty,
-      buttonEnabledProperty: dropper.enabledProperty,
+      buttonOptions: {
+        enabledProperty: dropper.enabledProperty
+      },
 
       // phet-io
       tandem: Tandem.REQUIRED,

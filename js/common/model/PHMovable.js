@@ -12,7 +12,7 @@ import merge from '../../../../phet-core/js/merge.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import phScale from '../../phScale.js';
 
-class Movable {
+class PHMovable {
 
   /**
    * @param {Vector2} position
@@ -47,5 +47,5 @@ class Movable {
   }
 }
 
-phScale.register( 'Movable', Movable );
-export default Movable;
+phScale.register( 'PHMovable', PHMovable );
+export default PHMovable;

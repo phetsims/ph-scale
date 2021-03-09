@@ -15,7 +15,7 @@ import merge from '../../../../phet-core/js/merge.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import Movable from '../../common/model/Movable.js';
+import PHMovable from '../../common/model/PHMovable.js';
 import phScale from '../../phScale.js';
 
 class MacroPHMeter {
@@ -46,7 +46,7 @@ class MacroPHMeter {
     this.bodyPosition = bodyPosition;
 
     // @public position of the meter's movable probe
-    this.probe = new Movable( probePosition, probeDragBounds, {
+    this.probe = new PHMovable( probePosition, probeDragBounds, {
       tandem: options.tandem.createTandem( 'probe' ),
       positionPropertyOptions: {
         phetioHighFrequency: true

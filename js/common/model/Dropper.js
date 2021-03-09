@@ -12,10 +12,10 @@ import Property from '../../../../axon/js/Property.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import phScale from '../../phScale.js';
-import Movable from './Movable.js';
+import PHMovable from './PHMovable.js';
 import Solute from './Solute.js';
 
-class Dropper extends Movable {
+class Dropper extends PHMovable {
 
   /**
    * @param {Solute} solute

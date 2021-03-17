@@ -177,13 +177,13 @@ class LogarithmicGraphNode extends Node {
       x: backgroundNode.left + options.indicatorXOffset,
       isInteractive: options.isInteractive,
       tandem: options.tandem.createTandem( 'indicatorH3ONode' ),
-      pickablePropertyPhetioInstrumented: true
+      inputEnabledPropertyPhetioInstrumented: true
     } );
     const indicatorOHNode = GraphIndicatorNode.createOHIndicator( valueOHProperty, {
       x: backgroundNode.right - options.indicatorXOffset,
       isInteractive: options.isInteractive,
       tandem: options.tandem.createTandem( 'indicatorOHNode' ),
-      pickablePropertyPhetioInstrumented: true
+      inputEnabledPropertyPhetioInstrumented: true
     } );
     this.addChild( indicatorH2ONode );
     this.addChild( indicatorH3ONode );

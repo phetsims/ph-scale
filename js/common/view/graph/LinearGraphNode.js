@@ -191,13 +191,11 @@ class LinearGraphNode extends Node {
     } );
     const indicatorH3ONode = GraphIndicatorNode.createH3OIndicator( valueH3OProperty, {
       x: scaleNode.left + options.majorTickLength,
-      tandem: options.tandem.createTandem( 'indicatorH3ONode' ),
-      inputEnabledPropertyPhetioInstrumented: true
+      tandem: options.tandem.createTandem( 'indicatorH3ONode' )
     } );
     const indicatorOHNode = GraphIndicatorNode.createOHIndicator( valueOHProperty, {
       x: scaleNode.right - options.majorTickLength,
-      tandem: options.tandem.createTandem( 'indicatorOHNode' ),
-      inputEnabledPropertyPhetioInstrumented: true
+      tandem: options.tandem.createTandem( 'indicatorOHNode' )
     } );
     this.addChild( indicatorH2ONode );
     this.addChild( indicatorH3ONode );

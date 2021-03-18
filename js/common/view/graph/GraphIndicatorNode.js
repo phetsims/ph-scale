@@ -65,6 +65,13 @@ class GraphIndicatorNode extends Node {
       tandem: Tandem.REQUIRED
     }, options );
 
+    // Instrument interactiveProperty for interactive indicators.
+    assert && assert( options.inputEnabledPropertyPhetioInstrumented === undefined,
+      'GraphIndicatorNode sets inputEnabledPropertyPhetioInstrumented' );
+    if ( options.isInteractive ) {
+      options.inputEnabledPropertyPhetioInstrumented = true;
+    }
+
     super();
 
     // Transform shapes to support various orientations of pointer.

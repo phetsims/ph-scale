@@ -182,6 +182,11 @@ class GraphIndicatorNode extends Node {
       this.pickableProperty.lazyLink( () => {
         arrowNode.visible = ( this.pickable !== false ); // pickable may be true, false, or null
       } );
+
+      // Hide the arrow when input is enabled.
+      this.inputEnabledProperty.link( inputEnabled => {
+        arrowNode.visible = inputEnabled;
+      } );
     }
 
     // sync with value

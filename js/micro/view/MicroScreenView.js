@@ -91,16 +91,16 @@ class MicroScreenView extends ScreenView {
     const drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform );
 
     // 'H3O+/OH- ratio' representation
-    const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, viewProperties.ratioVisibleProperty, {
-      visible: viewProperties.ratioVisibleProperty.get(),
+    const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, {
+      visibleProperty: viewProperties.ratioVisibleProperty,
       tandem: tandem.createTandem( 'ratioNode' )
     } );
 
     // 'molecule count' representation
-    const moleculeCountNode = new MoleculeCountNode(
-      model.solution.derivedProperties, viewProperties.moleculeCountVisibleProperty, {
-        tandem: tandem.createTandem( 'moleculeCountNode' )
-      } );
+    const moleculeCountNode = new MoleculeCountNode( model.solution.derivedProperties, {
+      visibleProperty: viewProperties.moleculeCountVisibleProperty,
+      tandem: tandem.createTandem( 'moleculeCountNode' )
+    } );
 
     // beaker control panel
     const beakerControlPanel = new BeakerControlPanel(

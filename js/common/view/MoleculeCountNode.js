@@ -27,19 +27,15 @@ class MoleculeCountNode extends Node {
 
   /**
    * @param {SolutionDerivedProperties} derivedProperties
-   * @param {Property.<boolean>} moleculeCountVisibleProperty
    * @param {Object} [options]
    */
-  constructor( derivedProperties, moleculeCountVisibleProperty, options ) {
+  constructor( derivedProperties, options ) {
     assert && assert( derivedProperties instanceof SolutionDerivedProperties, 'invalid derivedProperties' );
 
     options = merge( {
 
       // phet-io
       tandem: Tandem.REQUIRED,
-      visiblePropertyOptions: {
-        phetioReadOnly: true
-      },
       phetioDocumentation: 'displays the number of molecules in the solution'
     }, options );
 
@@ -127,13 +123,6 @@ class MoleculeCountNode extends Node {
     hboxH3O.center = backgroundH3O.center;
     hboxOH.center = backgroundOH.center;
     hboxH2O.center = backgroundH2O.center;
-
-    moleculeCountVisibleProperty.linkAttribute( this, 'visible' );
-
-    // Create a link to moleculeCountVisibleProperty, so it's easier to find in Studio.
-    this.addLinkedElement( moleculeCountVisibleProperty, {
-      tandem: options.tandem.createTandem( 'moleculeCountVisibleProperty' )
-    } );
 
     // Links to the count Properties
     this.addLinkedElement( derivedProperties.numberOfH3OMoleculesProperty, {

@@ -55,18 +55,14 @@ class RatioNode extends Node {
    * @param {Beaker} beaker
    * @param {MicroSolution|MySolution} solution
    * @param {ModelViewTransform2} modelViewTransform
-   * @param {Property.<boolean>} ratioVisibleProperty
    * @param {Object} [options]
    */
-  constructor( beaker, solution, modelViewTransform, ratioVisibleProperty, options ) {
+  constructor( beaker, solution, modelViewTransform, options ) {
 
     options = merge( {
 
       // phet-io
-      tandem: Tandem.REQUIRED,
-      visiblePropertyOptions: {
-        phetioReadOnly: true
-      }
+      tandem: Tandem.REQUIRED
     }, options );
 
     super();
@@ -129,13 +125,6 @@ class RatioNode extends Node {
         this.clipArea = Shape.rectangle( beakerBounds.minX, beakerBounds.maxY - solutionHeight, beakerBounds.getWidth(), solutionHeight );
       }
       this.moleculesNode.invalidatePaint(); //WORKAROUND: #25, scenery#200
-    } );
-
-    ratioVisibleProperty.linkAttribute( this, 'visible' );
-
-    // Create a link to ratioVisibleProperty, so it's easier to find in Studio.
-    this.addLinkedElement( ratioVisibleProperty, {
-      tandem: options.tandem.createTandem( 'ratioVisibleProperty' )
     } );
 
     // Update this Node when it becomes visible.

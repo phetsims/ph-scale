@@ -66,10 +66,10 @@ class GraphIndicatorNode extends Node {
     }, options );
 
     // Instrument interactiveProperty for interactive indicators.
-    assert && assert( options.inputEnabledPropertyPhetioInstrumented === undefined,
-      'GraphIndicatorNode sets inputEnabledPropertyPhetioInstrumented' );
+    assert && assert( options.phetioInputEnabledPropertyInstrumented === undefined,
+      'GraphIndicatorNode sets phetioInputEnabledPropertyInstrumented' );
     if ( options.isInteractive ) {
-      options.inputEnabledPropertyPhetioInstrumented = true;
+      options.phetioInputEnabledPropertyInstrumented = true;
     }
 
     super();

@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.4.0-rc.2 Mon Mar 08 2021 15:29:46 GMT-0500 (Eastern Standard Time)",
+  "comment": "# ph-scale 1.4.0-rc.2 Thu Apr 22 2021 15:42:29 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "1a41cef653bbed1025af5768bea958d7e3e0f8ae",
     "branch": "HEAD"
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "45a4461e378626759ef5f53c2efff5527626667e",
+    "sha": "8845f843f723bbb7814953dd806da0a7b00e2836",
     "branch": "1.4"
   },
   "phet-core": {
@@ -58,15 +58,15 @@
   },
   "phetmarks": {
     "sha": "616eb4864c397546422f35c713db3a167f773a03",
-    "branch": "ph-scale-1.4"
+    "branch": "HEAD"
   },
   "query-string-machine": {
     "sha": "a7ce24a16629ee8b5fd294ebdbb917466a9a04f1",
     "branch": "HEAD"
   },
   "scenery": {
-    "sha": "517ee0f088162fc6b43c76c694aea831317cd963",
-    "branch": "HEAD"
+    "sha": "38eeadfc215ccf4ef076fe9f945e3e8e5e1d6fb8",
+    "branch": "ph-scale-1.4"
   },
   "scenery-phet": {
     "sha": "839830a5268d2dde0875165d48a1ed445405e30a",

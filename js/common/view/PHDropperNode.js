@@ -55,7 +55,8 @@ class PHDropperNode extends EyeDropperNode {
       positionProperty: dropper.positionProperty,
       dragBoundsProperty: new Property( dropper.dragBounds ),
       transform: modelViewTransform,
-      tandem: options.tandem.createTandem( 'dragListener' )
+      tandem: options.tandem.createTandem( 'dragListener' ),
+      phetioEnabledPropertyInstrumented: true
     } ) );
   }
 }

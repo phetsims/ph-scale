@@ -32,6 +32,8 @@ class PHDropperNode extends EyeDropperNode {
         enabledProperty: dropper.enabledProperty
       },
 
+      cursor: null,
+
       // phet-io
       tandem: Tandem.REQUIRED,
       visiblePropertyOptions: { phetioReadOnly: true } // see https://github.com/phetsims/ph-scale/issues/178
@@ -52,6 +54,7 @@ class PHDropperNode extends EyeDropperNode {
 
     // move the dropper
     this.addInputListener( new DragListener( {
+      useInputListenerCursor: true,
       positionProperty: dropper.positionProperty,
       dragBoundsProperty: new Property( dropper.dragBounds ),
       transform: modelViewTransform,

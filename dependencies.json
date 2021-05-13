@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "79713b4f58cf1964e5dbdc18fef6e29a78c14f59",
+    "sha": "c9a94309f63d873da4f13b5ea799c409ff9a0c9c",
     "branch": "1.4"
   },
   "phet-core": {
@@ -65,7 +65,7 @@
     "branch": "HEAD"
   },
   "scenery": {
-    "sha": "4a549813fda84ae479ac127c44f064a6a79e6a9f",
+    "sha": "3527074fe1c4bb36c3a3ecf0ae39797eaccd43ec",
     "branch": "HEAD"
   },
   "scenery-phet": {

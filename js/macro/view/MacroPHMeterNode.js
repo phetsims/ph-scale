@@ -229,7 +229,7 @@ class ScaleNode extends Node {
 class PHProbeNode extends ProbeNode {
 
   /**
-   * @param {Movable} probe
+   * @param {PHMovable} probe
    * @param {ModelViewTransform2} modelViewTransform
    * @param {Node} solutionNode
    * @param {Node} dropperFluidNode
@@ -292,7 +292,7 @@ class PHProbeNode extends ProbeNode {
 class WireNode extends Path {
 
   /**
-   * @param {Movable} probe
+   * @param {PHMovable} probe
    * @param {Node} bodyNode
    * @param {Node} probeNode
    */

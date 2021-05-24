@@ -73,10 +73,14 @@ class MicroScreenView extends ScreenView {
     // dropper
     const DROPPER_SCALE = 0.85;
     const dropperNode = new PHDropperNode( model.dropper, modelViewTransform, {
+      visibleProperty: model.dropper.visibleProperty,
       tandem: tandem.createTandem( 'dropperNode' )
     } );
     dropperNode.setScaleMagnitude( DROPPER_SCALE );
-    const dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * EyeDropperNode.TIP_WIDTH, modelViewTransform );
+    const dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * EyeDropperNode.TIP_WIDTH,
+      modelViewTransform, {
+        visibleProperty: model.dropper.visibleProperty
+      } );
 
     // faucets
     const waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform, {

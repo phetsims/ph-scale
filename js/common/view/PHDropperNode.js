@@ -35,8 +35,7 @@ class PHDropperNode extends EyeDropperNode {
       cursor: null,
 
       // phet-io
-      tandem: Tandem.REQUIRED,
-      visiblePropertyOptions: { phetioReadOnly: true } // see https://github.com/phetsims/ph-scale/issues/178
+      tandem: Tandem.REQUIRED
     }, options ) );
 
     // position

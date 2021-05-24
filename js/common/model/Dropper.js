@@ -63,6 +63,13 @@ class Dropper extends PHMovable {
       phetioDocumentation: 'whether the button on the dropper is enabled'
     } );
 
+    // @public Added for PhET-iO clients, so they can choose to make the dropper invisible.
+    // See https://github.com/phetsims/ph-scale/issues/178
+    this.visibleProperty = new BooleanProperty( true, {
+      tandem: options.tandem.createTandem( 'visibleProperty' ),
+      phetioDocumentation: 'whether the dropper is visible'
+    } );
+
     // @public
     this.flowRateProperty = new NumberProperty( options.flowRate, {
       units: 'L/s',

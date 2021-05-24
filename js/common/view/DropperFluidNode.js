@@ -6,6 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import merge from '../../../../phet-core/js/merge.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import phScale from '../../phScale.js';
 
@@ -16,11 +17,16 @@ class DropperFluidNode extends Rectangle {
    * @param {Beaker} beaker
    * @param {number} tipWidth
    * @param {ModelViewTransform2} modelViewTransform
+   * @param {Object} [options]
    * @constructor
    */
-  constructor( dropper, beaker, tipWidth, modelViewTransform ) {
+  constructor( dropper, beaker, tipWidth, modelViewTransform, options ) {
 
-    super( 0, 0, 0, 0, { lineWidth: 1 } );
+    options = merge( {
+      lineWidth: 1
+    }, options );
+
+    super( 0, 0, 0, 0, options );
 
     // shape and position
     const updateShapeAndPosition = () => {

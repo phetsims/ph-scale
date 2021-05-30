@@ -13,7 +13,9 @@ import Color from '../../../../scenery/js/util/Color.js';
 import PhetioObject from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import IOType from '../../../../tandem/js/types/IOType.js';
+import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
+import StringIO from '../../../../tandem/js/types/StringIO.js';
 import phScale from '../../phScale.js';
 import phScaleStrings from '../../phScaleStrings.js';
 import PHScaleConstants from '../PHScaleConstants.js';
@@ -133,6 +135,10 @@ class Solute extends PhetioObject {
 Solute.SoluteIO = new IOType( 'SoluteIO', {
   valueType: Solute,
   supertype: ReferenceIO( IOType.ObjectIO ),
+  stateSchema: {
+    name: StringIO,
+    pH: NumberIO
+  },
   toStateObject: solute => {
 
     const soluteReference = ReferenceIO( IOType.ObjectIO ).toStateObject( solute );

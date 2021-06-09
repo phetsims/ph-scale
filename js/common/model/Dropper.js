@@ -88,7 +88,9 @@ class Dropper extends PHMovable {
 
     // Toggle the flow rate when the dropper is turned on/off.
     this.isDispensingProperty.link( dispensing => {
-      this.flowRateProperty.set( dispensing ? options.maxFlowRate : 0 );
+      if ( !phet.joist.sim.isSettingPhetioStateProperty.get() ) {
+        this.flowRateProperty.set( dispensing ? options.maxFlowRate : 0 );
+      }
     } );
   }
 

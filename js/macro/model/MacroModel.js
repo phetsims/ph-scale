@@ -121,12 +121,16 @@ class MacroModel {
     // animate the dropper adding solute to the beaker
     this.dropper.soluteProperty.link( () => {
 
-      // disable the faucets to cancel any multi-touch interaction that may be in progress, see issue #28
-      this.waterFaucet.enabledProperty.set( false );
-      this.drainFaucet.enabledProperty.set( false );
+      // Do not autofill when state is being restored, see https://github.com/phetsims/ph-scale/issues/223.
+      if ( !phet.joist.sim.isSettingPhetioStateProperty.value ) {
 
-      // animate the dropper adding solute to the beaker
-      this.startAutofill();
+        // disable the faucets to cancel any multi-touch interaction that may be in progress, see issue #28
+        this.waterFaucet.enabledProperty.set( false );
+        this.drainFaucet.enabledProperty.set( false );
+
+        // animate the dropper adding solute to the beaker
+        this.startAutofill();
+      }
     } );
 
     // Enable faucets and dropper based on amount of solution in the beaker.

@@ -26,13 +26,11 @@ const PHScaleConstants = {
     softwareDevelopment:
       'Chris Malley (PixelZoom, Inc.)',
     team:
-      'Wendy Adams, Jack Barbera, Julia Chamberlain, Laurie Langdon, Trish Loeblein, Emily B. Moore, Ariel Paul, ' +
-      'Katherine Perkins, Amy Rouinfar',
+      'Wendy Adams, Jack Barbera, Julia Chamberlain, Laurie Langdon, Trish Loeblein, Emily Miller, Emily B. Moore, Ariel Paul, Katherine Perkins, Amy Rouinfar',
     graphicArts:
       'Sharon Siman-Tov',
     qualityAssurance:
-      'Jaspe Arias, Logan Bray, Steele Dalton, Bryce Griebenow, Elise Morgan, Liam Mulhall, Oliver Orejola, ' +
-      'Benjamin Roberts, Jacob Romero, Ethan Ward, Kathryn Woessner, Bryan Yoelin',
+      'Jaspe Arias, Logan Bray, Steele Dalton, Bryce Griebenow, Elise Morgan, Liam Mulhall, Oliver Orejola, Benjamin Roberts, Jacob Romero, Ethan Ward, Kathryn Woessner, Bryan Yoelin',
     thanks:
       'Conversion of this simulation to HTML5 was funded in part by the Royal Society of Chemistry.'
   },

@@ -50,6 +50,7 @@ const PHScaleConstants = {
 
   // logarithmic graph
   LOGARITHMIC_EXPONENT_RANGE: new Range( -16, 2 ),
+  LOGARITHMIC_MANTISSA_DECIMAL_PLACES: 1,
   LINEAR_EXPONENT_RANGE: new Range( -14, 1 ),
   LINEAR_MANTISSA_RANGE: new Range( 0, 8 ),
 

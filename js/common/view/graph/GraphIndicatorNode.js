@@ -55,7 +55,7 @@ class GraphIndicatorNode extends Node {
       valueYMargin: 3,
       xSpacing: 8,
       ySpacing: 4,
-      mantissaDecimalPlaces: 1,
+      mantissaDecimalPlaces: PHScaleConstants.LOGARITHMIC_MANTISSA_DECIMAL_PLACES,
       exponent: null, // use this to request a specific exponent, otherwise the exponent is computed
       isInteractive: false,
       arrowFill: 'rgb( 0, 200, 0 )',

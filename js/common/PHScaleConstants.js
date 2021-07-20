@@ -30,7 +30,9 @@ const PHScaleConstants = {
     graphicArts:
       'Sharon Siman-Tov',
     qualityAssurance:
-      'Jaspe Arias, Logan Bray, Steele Dalton, Bryce Griebenow, Clifford Hardin, Brooklyn Lash, Emily Miller, Elise Morgan, Liam Mulhall, Oliver Orejola, Benjamin Roberts, Jacob Romero, Ethan Ward, Kathryn Woessner, Bryan Yoelin',
+      'Jaspe Arias, Logan Bray, Steele Dalton, Bryce Griebenow, Clifford Hardin, Brooklyn Lash, Emily Miller, ' +
+      'Elise Morgan, Liam Mulhall, Oliver Orejola, Devon Quispe, Benjamin Roberts, Jacob Romero, Nancy Salpepi, ' +
+      'Ethan Ward, Kathryn Woessner, Bryan Yoelin',
     thanks:
       'Conversion of this simulation to HTML5 was funded in part by the Royal Society of Chemistry.'
   },

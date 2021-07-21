@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.5.0-rc.1 Tue Jul 13 2021 12:30:48 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# ph-scale 1.5.0-rc.1 Wed Jul 21 2021 08:54:59 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "f360fa1bd09a47b3c9e49cd90c8dddd136a13e0c",
     "branch": "HEAD"
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "0bbad0f40888207aa0cea94579ec55b6001f25fe",
+    "sha": "a5db742e7651470f4818fcd4316ddcade274dd47",
     "branch": "1.5"
   },
   "phet-core": {
@@ -41,8 +41,8 @@
     "branch": "HEAD"
   },
   "phet-io": {
-    "sha": "1286e9e13fef70942e3a885b93f86e6ed79ffca0",
-    "branch": "HEAD"
+    "sha": "6b8ed44d4ebe8fd0fc3205700e8934666d0b129b",
+    "branch": "ph-scale-1.5"
   },
   "phet-io-client-guides": {
     "sha": "2afc9ab63741908f0289b76427b9a527ea752a23",
@@ -65,8 +65,8 @@
     "branch": "HEAD"
   },
   "scenery": {
-    "sha": "b329758b5fbfca0309746575d3f22095ea48b5bb",
-    "branch": "HEAD"
+    "sha": "74fb661a106ed4a96542ee8f70a31c8ea0e6b2ef",
+    "branch": "ph-scale-1.5"
   },
   "scenery-phet": {
     "sha": "9135b542c8bacef27b851c78b2e7680369327d32",

@@ -44,8 +44,7 @@ const PHScaleConstants = {
 
   // pH
   PH_RANGE: new RangeWithValue( -1, 15, 7 ),
-  MACRO_PH_METER_DECIMAL_PLACES: 2,
-  MICRO_PH_METER_DECIMAL_PLACES: 3,
+  PH_METER_DECIMAL_PLACES: 2,
 
   // volume
   VOLUME_DECIMAL_PLACES: 2,

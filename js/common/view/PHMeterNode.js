@@ -79,7 +79,7 @@ class PHMeterNode extends AccordionBox {
 
       // the meter is not interactive, just display the pH value
       contentNode = new NumberDisplay( pHProperty, PHScaleConstants.PH_RANGE, {
-        decimalPlaces: PHScaleConstants.MICRO_PH_METER_DECIMAL_PLACES,
+        decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
         cornerRadius: CORNER_RADIUS,
         textOptions: {
           font: new PhetFont( 28 ),
@@ -137,18 +137,18 @@ class PHSpinnerNode extends NumberSpinner {
    */
   constructor( pHProperty, options ) {
 
-    const pHDelta = 1 / Math.pow( 10, PHScaleConstants.MICRO_PH_METER_DECIMAL_PLACES );
+    const pHDelta = 1 / Math.pow( 10, PHScaleConstants.PH_METER_DECIMAL_PLACES );
 
     // When using the spinner to change pH, constrain pHProperty to be exactly the value displayed by the spinner.
     // See https://github.com/phetsims/ph-scale/issues/143
     const incrementFunction = value => {
-      value = Utils.toFixedNumber( value, PHScaleConstants.MICRO_PH_METER_DECIMAL_PLACES );
-      return Utils.toFixedNumber( value + pHDelta, PHScaleConstants.MICRO_PH_METER_DECIMAL_PLACES );
+      value = Utils.toFixedNumber( value, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      return Utils.toFixedNumber( value + pHDelta, PHScaleConstants.PH_METER_DECIMAL_PLACES );
     };
 
     const decrementFunction = value => {
-      value = Utils.toFixedNumber( value, PHScaleConstants.MICRO_PH_METER_DECIMAL_PLACES );
-      return Utils.toFixedNumber( value - pHDelta, PHScaleConstants.MICRO_PH_METER_DECIMAL_PLACES );
+      value = Utils.toFixedNumber( value, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      return Utils.toFixedNumber( value - pHDelta, PHScaleConstants.PH_METER_DECIMAL_PLACES );
     };
 
     options = merge( {
@@ -157,7 +157,7 @@ class PHSpinnerNode extends NumberSpinner {
       incrementFunction: incrementFunction,
       decrementFunction: decrementFunction,
       numberDisplayOptions: {
-        decimalPlaces: PHScaleConstants.MICRO_PH_METER_DECIMAL_PLACES,
+        decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
         xMargin: 10,
         yMargin: 4,
         cornerRadius: CORNER_RADIUS,

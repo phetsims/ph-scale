@@ -359,7 +359,7 @@ class PHIndicatorNode extends Node {
 
     // pH display
     const numberDisplay = new NumberDisplay( pHProperty, PHScaleConstants.PH_RANGE, {
-      decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
+      decimalPlaces: PHScaleConstants.MACRO_PH_METER_DECIMAL_PLACES,
       align: 'right',
       noValueAlign: 'center',
       cornerRadius: CORNER_RADIUS,
@@ -445,7 +445,7 @@ class PHIndicatorNode extends Node {
       arrowNode.visible = lineNode.visible = enabled;
 
       // Highlight the indicator when displayed pH === 7
-      highlight.visible = ( Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === 7 );
+      highlight.visible = ( Utils.toFixedNumber( pH, PHScaleConstants.MACRO_PH_METER_DECIMAL_PLACES ) === 7 );
     } );
   }
 }

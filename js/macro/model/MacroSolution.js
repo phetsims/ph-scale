@@ -220,7 +220,7 @@ class MacroSolution extends PhetioObject {
    * @private
    */
   isEquivalentToWater() {
-    return Utils.toFixedNumber( this.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES ) === Water.pH;
+    return Utils.toFixedNumber( this.pHProperty.get(), PHScaleConstants.MACRO_PH_METER_DECIMAL_PLACES ) === Water.pH;
   }
 }
 

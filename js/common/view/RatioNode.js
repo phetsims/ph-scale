@@ -146,7 +146,7 @@ class RatioNode extends Node {
 
     let pH = this.solution.pHProperty.get();
     if ( pH !== null ) {
-      pH = Utils.toFixedNumber( this.solution.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      pH = Utils.toFixedNumber( this.solution.pHProperty.get(), PHScaleConstants.MICRO_PH_METER_DECIMAL_PLACES );
     }
 
     if ( this.pH !== pH ) {

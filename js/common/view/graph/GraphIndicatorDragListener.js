@@ -61,12 +61,21 @@ class GraphIndicatorDragListener extends DragListener {
           } );
           const exponent = scientificNotation.exponent - PHScaleConstants.LOGARITHMIC_MANTISSA_DECIMAL_PLACES;
           const interval = Math.pow( 10, exponent );
-          const adjustedValue = Utils.roundToInterval( value, interval );
+          let adjustedValue = Utils.roundToInterval( value, interval );
+
+          // Workaround for https://github.com/phetsims/ph-scale/issues/225.
+          // For on value (9.9e-8), the precision of what we're displaying results in a situation where we have
+          // different concentrations of H3O+ and OH-, but are displaying a neutral pH of 7.00.  So we decided
+          // that it was preferable to avoid that value, and snap to the concentration (1.0e-7) that results in
+          // a neutral solution.
+          const isConcentration = ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER );
+          if ( isConcentration && adjustedValue === 9.9e-8 ) {
+            console.log( 'applying workaround for https://github.com/phetsims/ph-scale/issues/225' );
+            adjustedValue = 1.0e-7;
+          }
 
           // Map the model value to pH, depending on which units we're using.
-          let pH = ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER ) ?
-                   concentrationToPH( adjustedValue ) :
-                   molesToPH( adjustedValue, totalVolumeProperty.get() );
+          let pH = isConcentration ? concentrationToPH( adjustedValue ) : molesToPH( adjustedValue, totalVolumeProperty.get() );
 
           // Constrain the pH to the valid range
           pH = Utils.clamp( pH, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );

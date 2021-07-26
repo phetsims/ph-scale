@@ -70,7 +70,6 @@ class GraphIndicatorDragListener extends DragListener {
           // a neutral solution.
           const isConcentration = ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER );
           if ( isConcentration && adjustedValue === 9.9e-8 ) {
-            console.log( 'applying workaround for https://github.com/phetsims/ph-scale/issues/225' );
             adjustedValue = 1.0e-7;
           }
 

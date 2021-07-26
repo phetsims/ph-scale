@@ -64,7 +64,7 @@ class GraphIndicatorDragListener extends DragListener {
           let adjustedValue = Utils.roundToInterval( value, interval );
 
           // Workaround for https://github.com/phetsims/ph-scale/issues/225.
-          // For on value (9.9e-8), the precision of what we're displaying results in a situation where we have
+          // For one value (9.9e-8), the precision of what we're displaying results in a situation where we have
           // different concentrations of H3O+ and OH-, but are displaying a neutral pH of 7.00.  So we decided
           // that it was preferable to avoid that value, and snap to the concentration (1.0e-7) that results in
           // a neutral solution.

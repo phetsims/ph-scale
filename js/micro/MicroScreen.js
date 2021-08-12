@@ -12,8 +12,8 @@ import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import Image from '../../../scenery/js/nodes/Image.js';
 import Tandem from '../../../tandem/js/Tandem.js';
-import homeIcon from '../../images/Micro-home-icon_png.js';
-import navbarIcon from '../../images/Micro-navbar-icon_png.js';
+import microHomeScreenIcon_png from '../../images/microHomeScreenIcon_png.js';
+import microNavbarIcon_png from '../../images/microNavbarIcon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
 import phScale from '../phScale.js';
 import phScaleStrings from '../phScaleStrings.js';
@@ -31,11 +31,11 @@ class MicroScreen extends Screen {
     const options = {
       name: phScaleStrings.screen.micro,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
-      homeScreenIcon: new ScreenIcon( new Image( homeIcon ), {
+      homeScreenIcon: new ScreenIcon( new Image( microHomeScreenIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),
-      navigationBarIcon: new ScreenIcon( new Image( navbarIcon ), {
+      navigationBarIcon: new ScreenIcon( new Image( microNavbarIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),

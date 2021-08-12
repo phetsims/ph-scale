@@ -12,8 +12,8 @@ import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import Image from '../../../scenery/js/nodes/Image.js';
 import Tandem from '../../../tandem/js/Tandem.js';
-import homeIcon from '../../images/Macro-home-icon_png.js';
-import navbarIcon from '../../images/Macro-navbar-icon_png.js';
+import macroHomeScreenIcon_png from '../../images/macroHomeScreenIcon_png.js';
+import macroNavbarIcon_png from '../../images/macroNavbarIcon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
 import phScale from '../phScale.js';
 import phScaleStrings from '../phScaleStrings.js';
@@ -32,11 +32,11 @@ class MacroScreen extends Screen {
     const options = {
       name: phScaleStrings.screen.macro,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
-      homeScreenIcon: new ScreenIcon( new Image( homeIcon ), {
+      homeScreenIcon: new ScreenIcon( new Image( macroHomeScreenIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),
-      navigationBarIcon: new ScreenIcon( new Image( navbarIcon ), {
+      navigationBarIcon: new ScreenIcon( new Image( macroNavbarIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),

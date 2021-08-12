@@ -12,8 +12,8 @@ import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import Image from '../../../scenery/js/nodes/Image.js';
 import Tandem from '../../../tandem/js/Tandem.js';
-import homeIcon from '../../images/MySolution-home-icon_png.js';
-import navbarIcon from '../../images/MySolution-navbar-icon_png.js';
+import mySolutionHomeScreenIcon_png from '../../images/mySolutionHomeScreenIcon_png.js';
+import mySolutionNavbarIcon_png from '../../images/mySolutionNavbarIcon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
 import phScale from '../phScale.js';
 import phScaleStrings from '../phScaleStrings.js';
@@ -31,11 +31,11 @@ class MySolutionScreen extends Screen {
     const options = {
       name: phScaleStrings.screen.mySolution,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
-      homeScreenIcon: new ScreenIcon( new Image( homeIcon ), {
+      homeScreenIcon: new ScreenIcon( new Image( mySolutionHomeScreenIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),
-      navigationBarIcon: new ScreenIcon( new Image( navbarIcon ), {
+      navigationBarIcon: new ScreenIcon( new Image( mySolutionNavbarIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),

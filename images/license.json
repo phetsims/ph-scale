@@ -1,5 +1,5 @@
 {
-  "MySolution-home-icon.png": {
+  "mySolutionHomeScreenIcon.png": {
     "text": [
       "Copyright 2002-2015 University of Colorado Boulder"
     ],
@@ -7,7 +7,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Yuen-ying Carpenter"
   },
-  "MySolution-navbar-icon.png": {
+  "mySolutionNavbarIcon.png": {
     "text": [
       "Copyright 2002-2015 University of Colorado Boulder"
     ],
@@ -15,7 +15,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Yuen-ying Carpenter"
   },
-  "Macro-home-icon.png": {
+  "macroHomeScreenIcon.png": {
     "text": [
       "Copyright 2002-2015 University of Colorado Boulder"
     ],
@@ -23,7 +23,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Yuen-ying Carpenter"
   },
-  "Macro-navbar-icon.png": {
+  "macroNavbarIcon.png": {
     "text": [
       "Copyright 2002-2015 University of Colorado Boulder"
     ],
@@ -31,7 +31,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Yuen-ying Carpenter"
   },
-  "Micro-home-icon.png": {
+  "microHomeScreenIcon.png": {
     "text": [
       "Copyright 2002-2015 University of Colorado Boulder"
     ],
@@ -39,7 +39,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Yuen-ying Carpenter"
   },
-  "Micro-navbar-icon.png": {
+  "microNavbarIcon.png": {
     "text": [
       "Copyright 2002-2015 University of Colorado Boulder"
     ],

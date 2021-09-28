@@ -98,12 +98,6 @@ class MySolutionScreenView extends ScreenView {
       } );
 
     const resetAllButton = new ResetAllButton( {
-
-      // preventFit was added as a workaround for https://github.com/phetsims/ph-scale/issues/226.
-      // Setting preventFit on any Node resolves a problem where some UI elements shift up and down
-      // while interacting with the sim. If layer splits are needed in the future and preventFit:true
-      // is added elsewhere, this workaround should be revisited, and you might be able to delete it.
-      preventFit: true,
       scale: 1.32,
       listener: () => {
         this.interruptSubtreeInput();

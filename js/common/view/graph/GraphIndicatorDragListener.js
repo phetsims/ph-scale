@@ -8,7 +8,7 @@
 
 import Utils from '../../../../../dot/js/Utils.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
-import DragListener from '../../../../../scenery/js/listeners/DragListener.js';
+import { DragListener } from '../../../../../scenery/js/imports.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import PHScaleConstants from '../../PHScaleConstants.js';

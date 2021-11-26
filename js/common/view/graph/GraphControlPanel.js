@@ -8,8 +8,8 @@
  */
 
 import merge from '../../../../../phet-core/js/merge.js';
-import Node from '../../../../../scenery/js/nodes/Node.js';
-import Rectangle from '../../../../../scenery/js/nodes/Rectangle.js';
+import { Node } from '../../../../../scenery/js/imports.js';
+import { Rectangle } from '../../../../../scenery/js/imports.js';
 import ExpandCollapseButton from '../../../../../sun/js/ExpandCollapseButton.js';
 import Panel from '../../../../../sun/js/Panel.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';

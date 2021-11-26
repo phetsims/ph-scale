@@ -12,8 +12,8 @@
 import BooleanProperty from '../../../../../axon/js/BooleanProperty.js';
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import merge from '../../../../../phet-core/js/merge.js';
-import Line from '../../../../../scenery/js/nodes/Line.js';
-import Node from '../../../../../scenery/js/nodes/Node.js';
+import { Line } from '../../../../../scenery/js/imports.js';
+import { Node } from '../../../../../scenery/js/imports.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';

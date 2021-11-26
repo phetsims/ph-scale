@@ -8,7 +8,7 @@
 
 import Dimension2 from '../../../../../dot/js/Dimension2.js';
 import merge from '../../../../../phet-core/js/merge.js';
-import RichText from '../../../../../scenery/js/nodes/RichText.js';
+import { RichText } from '../../../../../scenery/js/imports.js';
 import ABSwitch from '../../../../../sun/js/ABSwitch.js';
 import phScale from '../../../phScale.js';
 import phScaleStrings from '../../../phScaleStrings.js';

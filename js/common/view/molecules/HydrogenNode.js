@@ -7,7 +7,7 @@
  */
 
 import ShadedSphereNode from '../../../../../scenery-phet/js/ShadedSphereNode.js';
-import Color from '../../../../../scenery/js/util/Color.js';
+import { Color } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
 import PHScaleColors from '../../PHScaleColors.js';
 

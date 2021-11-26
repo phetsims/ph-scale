@@ -9,7 +9,7 @@
 
 import Utils from '../../../../dot/js/Utils.js';
 import merge from '../../../../phet-core/js/merge.js';
-import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
+import { Rectangle } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 

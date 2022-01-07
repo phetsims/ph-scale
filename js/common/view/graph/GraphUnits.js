@@ -6,10 +6,10 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Enumeration from '../../../../../phet-core/js/Enumeration.js';
+import EnumerationDeprecated from '../../../../../phet-core/js/EnumerationDeprecated.js';
 import phScale from '../../../phScale.js';
 
-const GraphUnits = Enumeration.byKeys( [ 'MOLES_PER_LITER', 'MOLES' ] );
+const GraphUnits = EnumerationDeprecated.byKeys( [ 'MOLES_PER_LITER', 'MOLES' ] );
 
 phScale.register( 'GraphUnits', GraphUnits );
 export default GraphUnits;

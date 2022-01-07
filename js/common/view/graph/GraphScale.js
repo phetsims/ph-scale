@@ -6,10 +6,10 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Enumeration from '../../../../../phet-core/js/Enumeration.js';
+import EnumerationDeprecated from '../../../../../phet-core/js/EnumerationDeprecated.js';
 import phScale from '../../../phScale.js';
 
-const GraphScale = Enumeration.byKeys( [ 'LOGARITHMIC', 'LINEAR' ] );
+const GraphScale = EnumerationDeprecated.byKeys( [ 'LOGARITHMIC', 'LINEAR' ] );
 
 phScale.register( 'GraphScale', GraphScale );
 export default GraphScale;

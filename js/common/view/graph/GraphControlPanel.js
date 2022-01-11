@@ -21,7 +21,7 @@ import GraphUnitsSwitch from './GraphUnitsSwitch.js';
 class GraphControlPanel extends Panel {
 
   /**
-   * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
+   * @param {EnumerationDeprecatedProperty.<GraphUnits>} graphUnitsProperty
    * @param {Property.<boolean>} expandedProperty
    * @param {Object} [options]
    */

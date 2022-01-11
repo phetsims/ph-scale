@@ -13,7 +13,7 @@
  */
 
 import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
-import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
+import EnumerationDeprecatedProperty from '../../../../../axon/js/EnumerationDeprecatedProperty.js';
 import Property from '../../../../../axon/js/Property.js';
 import Utils from '../../../../../dot/js/Utils.js';
 import merge from '../../../../../phet-core/js/merge.js';
@@ -38,12 +38,12 @@ class LogarithmicGraphNode extends Node {
    * @param {Property.<number>} pHProperty
    * @param {Property.<number>} totalVolumeProperty
    * @param {SolutionDerivedProperties} derivedProperties
-   * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
+   * @param {EnumerationDeprecatedProperty.<GraphUnits>} graphUnitsProperty
    * @param {Object} [options]
    */
   constructor( pHProperty, totalVolumeProperty, derivedProperties, graphUnitsProperty, options ) {
     assert && assert( derivedProperties instanceof SolutionDerivedProperties, 'invalid derivedProperties' );
-    assert && assert( graphUnitsProperty instanceof EnumerationProperty, 'invalid graphUnitsProperty' );
+    assert && assert( graphUnitsProperty instanceof EnumerationDeprecatedProperty, 'invalid graphUnitsProperty' );
 
     options = merge( {
       isInteractive: false, // if true, add drag handlers for changing H3O+ and OH-

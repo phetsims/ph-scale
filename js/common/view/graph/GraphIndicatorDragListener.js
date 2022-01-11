@@ -20,7 +20,7 @@ class GraphIndicatorDragListener extends DragListener {
    * @param {Node} targetNode
    * @param {Property.<number>} pHProperty - pH of the solution
    * @param {Property.<number>} totalVolumeProperty - volume of the solution
-   * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
+   * @param {EnumerationDeprecatedProperty.<GraphUnits>} graphUnitsProperty
    * @param {function} yToValue - function that takes a {number} y coordinate and converts it to a {number} model value
    * @param {function} concentrationToPH - takes {number} concentration, returns pH
    * @param {function} molesToPH - takes {number} moles and {number} volume (L), returns pH

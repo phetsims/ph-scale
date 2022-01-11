@@ -18,7 +18,7 @@ import GraphUnits from './GraphUnits.js';
 class GraphUnitsSwitch extends ABSwitch {
 
   /**
-   * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
+   * @param {EnumerationDeprecatedProperty.<GraphUnits>} graphUnitsProperty
    * @param {Object} [options]
    */
   constructor( graphUnitsProperty, options ) {

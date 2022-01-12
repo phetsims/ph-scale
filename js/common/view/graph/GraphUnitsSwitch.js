@@ -1,4 +1,4 @@
-// Copyright 2020-2021, University of Colorado Boulder
+// Copyright 2020-2022, University of Colorado Boulder
 
 /**
  * GraphScaleSwitch is the control for switching between Concentration and Quantity units for the graphs.

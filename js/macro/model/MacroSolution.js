@@ -65,7 +65,6 @@ class MacroSolution extends PhetioObject {
     this.soluteVolumeProperty = new NumberProperty( options.soluteVolume, {
       units: 'L',
       tandem: options.tandem.createTandem( 'soluteVolumeProperty' ),
-      phetioStudioControl: false, // https://github.com/phetsims/ph-scale/issues/119#issuecomment-595450329
       phetioDocumentation: `Volume of solute in the solution. soluteVolumeProperty + waterVolumeProperty should be <= ${options.maxVolume}`,
       phetioHighFrequency: true
     } );
@@ -74,7 +73,6 @@ class MacroSolution extends PhetioObject {
     this.waterVolumeProperty = new NumberProperty( options.waterVolume, {
       units: 'L',
       tandem: options.tandem.createTandem( 'waterVolumeProperty' ),
-      phetioStudioControl: false, // https://github.com/phetsims/ph-scale/issues/119#issuecomment-595450329
       phetioDocumentation: `Volume of water in the solution. waterVolumeProperty + soluteVolumeProperty should be <= ${options.maxVolume}`,
       phetioHighFrequency: true
     } );

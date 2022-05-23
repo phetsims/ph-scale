@@ -12,7 +12,7 @@
 import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import EnumerationDeprecatedProperty from '../../../../../axon/js/EnumerationDeprecatedProperty.js';
 import NumberProperty from '../../../../../axon/js/NumberProperty.js';
-import Property from '../../../../../axon/js/Property.js';
+import Multilink from '../../../../../axon/js/Multilink.js';
 import Utils from '../../../../../dot/js/Utils.js';
 import { Shape } from '../../../../../kite/js/imports.js';
 import merge from '../../../../../phet-core/js/merge.js';
@@ -240,16 +240,16 @@ class LinearGraphNode extends Node {
     this.addChild( zoomButtonGroup );
 
     // Move the indicators
-    Property.multilink( [ valueH2OProperty, graphUnitsProperty, this.exponentProperty ],
+    Multilink.multilink( [ valueH2OProperty, graphUnitsProperty, this.exponentProperty ],
       ( valueH2O, graphUnits, exponent ) => {
         // offset the H2O indicator when off scale, so it doesn't butt up again OH indicator
         indicatorH2ONode.y = valueToY( valueH2O, -4 );
       } );
-    Property.multilink( [ valueH3OProperty, graphUnitsProperty, this.exponentProperty ],
+    Multilink.multilink( [ valueH3OProperty, graphUnitsProperty, this.exponentProperty ],
       ( valueH3O, graphUnits, exponent ) => {
         indicatorH3ONode.y = valueToY( valueH3O );
       } );
-    Property.multilink( [ valueOHProperty, graphUnitsProperty, this.exponentProperty ],
+    Multilink.multilink( [ valueOHProperty, graphUnitsProperty, this.exponentProperty ],
       ( valueOH, graphUnits, exponent ) => {
         indicatorOHNode.y = valueToY( valueOH );
       } );

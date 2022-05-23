@@ -16,6 +16,7 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
@@ -120,7 +121,7 @@ class MacroPHMeterNode extends Node {
       }
       meter.pHProperty.set( pH );
     };
-    Property.multilink( [
+    Multilink.multilink( [
       meter.probe.positionProperty,
       solution.soluteProperty,
       solution.pHProperty,

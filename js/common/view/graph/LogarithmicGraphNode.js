@@ -14,7 +14,7 @@
 
 import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import EnumerationDeprecatedProperty from '../../../../../axon/js/EnumerationDeprecatedProperty.js';
-import Property from '../../../../../axon/js/Property.js';
+import Multilink from '../../../../../axon/js/Multilink.js';
 import Utils from '../../../../../dot/js/Utils.js';
 import merge from '../../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
@@ -216,16 +216,16 @@ class LogarithmicGraphNode extends Node {
     };
 
     // Move the indicators
-    Property.multilink( [ valueH2OProperty, graphUnitsProperty ],
+    Multilink.multilink( [ valueH2OProperty, graphUnitsProperty ],
       ( valueH2O, graphUnits ) => {
         // offset the H2O indicator when off scale, so it doesn't butt up again OH indicator
         indicatorH2ONode.y = valueToY( valueH2O, -4 );
       } );
-    Property.multilink( [ valueH3OProperty, graphUnitsProperty ],
+    Multilink.multilink( [ valueH3OProperty, graphUnitsProperty ],
       ( valueH3O, graphUnits ) => {
         indicatorH3ONode.y = valueToY( valueH3O );
       } );
-    Property.multilink( [ valueOHProperty, graphUnitsProperty ],
+    Multilink.multilink( [ valueOHProperty, graphUnitsProperty ],
       ( valueOH, graphUnits ) => {
         indicatorOHNode.y = valueToY( valueOH );
       } );

@@ -10,11 +10,7 @@
 import merge from '../../../../phet-core/js/merge.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { LayoutBox } from '../../../../scenery/js/imports.js';
-import { Line } from '../../../../scenery/js/imports.js';
-import { RichText } from '../../../../scenery/js/imports.js';
-import { Text } from '../../../../scenery/js/imports.js';
-import { Color } from '../../../../scenery/js/imports.js';
+import { Color, Line, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import Panel from '../../../../sun/js/Panel.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
@@ -73,9 +69,8 @@ class BeakerControlPanel extends Panel {
       tandem: options.tandem.createTandem( 'separator' )
     } );
 
-    const content = new LayoutBox( {
+    const content = new VBox( {
       children: [ ratioCheckbox, separator, moleculeCountCheckbox ],
-      orientation: 'vertical',
       align: 'left',
       spacing: 10
     } );

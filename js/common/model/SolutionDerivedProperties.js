@@ -1,4 +1,4 @@
-// Copyright 2021, University of Colorado Boulder
+// Copyright 2021-2022, University of Colorado Boulder
 
 /**
  * SolutionDerivedProperties models the Properties of a solution that are derived from pH and volume, including

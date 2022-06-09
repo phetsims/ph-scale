@@ -16,7 +16,7 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import { AbstractProperty } from '../../../../axon/js/Property.js';
+import { ReadOnlyProperty } from '../../../../axon/js/Property.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
@@ -27,14 +27,14 @@ import PHModel from './PHModel.js';
 class SolutionDerivedProperties {
 
   /**
-   * @param {AbstractProperty.<number|null>} pHProperty
-   * @param {AbstractProperty.<number>} totalVolumeProperty
+   * @param {ReadOnlyProperty.<number|null>} pHProperty
+   * @param {ReadOnlyProperty.<number>} totalVolumeProperty
    * @param {Object} [options]
    */
   constructor( pHProperty, totalVolumeProperty, options ) {
 
-    assert && assert( pHProperty instanceof AbstractProperty, 'invalid pHProperty' );
-    assert && assert( totalVolumeProperty instanceof AbstractProperty, 'invalid totalVolumeProperty' );
+    assert && assert( pHProperty instanceof ReadOnlyProperty, 'invalid pHProperty' );
+    assert && assert( totalVolumeProperty instanceof ReadOnlyProperty, 'invalid totalVolumeProperty' );
 
     options = merge( {
       tandem: Tandem.REQUIRED

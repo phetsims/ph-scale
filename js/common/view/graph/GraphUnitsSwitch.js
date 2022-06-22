@@ -25,7 +25,7 @@ class GraphUnitsSwitch extends ABSwitch {
 
     options = merge( {
       toggleSwitchOptions: { size: new Dimension2( 50, 25 ) },
-      centerOnButton: true,
+      centerOnSwitch: true,
 
       // phet-io
       tandem: options.tandem.createTandem( 'graphUnitsSwitch' ),

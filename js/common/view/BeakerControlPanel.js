@@ -52,14 +52,14 @@ class BeakerControlPanel extends Panel {
     const ratioLabel = new RichText( ratioString, {
       font: FONT
     } );
-    const ratioCheckbox = new Checkbox( ratioLabel, ratioVisibleProperty, {
+    const ratioCheckbox = new Checkbox( ratioVisibleProperty, ratioLabel, {
       tandem: options.tandem.createTandem( 'ratioCheckbox' )
     } );
     ratioCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );
 
     // 'Molecule count' checkbox
     const moleculeCountLabel = new Text( phScaleStrings.moleculeCount, { font: FONT } );
-    const moleculeCountCheckbox = new Checkbox( moleculeCountLabel, moleculeCountVisibleProperty, {
+    const moleculeCountCheckbox = new Checkbox( moleculeCountVisibleProperty, moleculeCountLabel, {
       tandem: options.tandem.createTandem( 'moleculeCountCheckbox' )
     } );
     moleculeCountCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );

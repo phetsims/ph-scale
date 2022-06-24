@@ -19,13 +19,13 @@ import phScale from '../../phScale.js';
 class SoluteComboBox extends ComboBox {
 
   /**
-   * @param {Solute[]} solutes
    * @param {Property.<Solute>} selectedSolute
+   * @param {Solute[]} solutes
    * @param {Node} soluteListParent
    * @param {Object} [options]
    * @constructor
    */
-  constructor( solutes, selectedSolute, soluteListParent, options ) {
+  constructor( selectedSolute, solutes, soluteListParent, options ) {
 
     options = merge( {
       listPosition: 'below',
@@ -81,7 +81,7 @@ class SoluteComboBox extends ComboBox {
       textNode.maxWidth = maxWidth;
     } );
 
-    super( items, selectedSolute, soluteListParent, options );
+    super( selectedSolute, items, soluteListParent, options );
   }
 }
 

@@ -132,7 +132,7 @@ class MicroScreenView extends ScreenView {
 
     // solutes combo box
     const soluteListParent = new Node();
-    const soluteComboBox = new SoluteComboBox( model.solutes, model.dropper.soluteProperty, soluteListParent, {
+    const soluteComboBox = new SoluteComboBox( model.dropper.soluteProperty, model.solutes, soluteListParent, {
       maxWidth: 400,
       tandem: tandem.createTandem( 'soluteComboBox' )
     } );

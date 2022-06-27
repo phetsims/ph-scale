@@ -8,11 +8,8 @@
 
 import merge from '../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { HBox } from '../../../../scenery/js/imports.js';
-import { Rectangle } from '../../../../scenery/js/imports.js';
-import { Text } from '../../../../scenery/js/imports.js';
+import { HBox, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import ComboBox from '../../../../sun/js/ComboBox.js';
-import ComboBoxItem from '../../../../sun/js/ComboBoxItem.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import phScale from '../../phScale.js';
 
@@ -70,9 +67,11 @@ class SoluteComboBox extends ComboBox {
         children: [ colorNode, textNode ]
       } );
 
-      items.push( new ComboBoxItem( hBox, solute, {
-        tandemName: `${solute.tandemName}Item` // Item suffix is required by ComboBoxItem
-      } ) );
+      items.push( {
+        value: solute,
+        node: hBox,
+        tandemName: `${solute.tandemName}${ComboBox.ITEM_TANDEM_NAME_SUFFIX}`
+      } );
     } );
 
     // ComboBox does not dynamically resize. So if a solution name does change, constrain the listbox item width.

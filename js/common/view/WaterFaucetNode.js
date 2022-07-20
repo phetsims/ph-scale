@@ -9,8 +9,7 @@
 import merge from '../../../../phet-core/js/merge.js';
 import FaucetNode from '../../../../scenery-phet/js/FaucetNode.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Node } from '../../../../scenery/js/imports.js';
-import { Text } from '../../../../scenery/js/imports.js';
+import { Node, Text } from '../../../../scenery/js/imports.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import phScale from '../../phScale.js';
 import Water from '../model/Water.js';

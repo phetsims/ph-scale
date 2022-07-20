@@ -11,17 +11,14 @@
 
 import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import EnumerationDeprecatedProperty from '../../../../../axon/js/EnumerationDeprecatedProperty.js';
-import NumberProperty from '../../../../../axon/js/NumberProperty.js';
 import Multilink from '../../../../../axon/js/Multilink.js';
+import NumberProperty from '../../../../../axon/js/NumberProperty.js';
 import Utils from '../../../../../dot/js/Utils.js';
 import { Shape } from '../../../../../kite/js/imports.js';
 import merge from '../../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
-import { Line } from '../../../../../scenery/js/imports.js';
-import { Node } from '../../../../../scenery/js/imports.js';
-import { Path } from '../../../../../scenery/js/imports.js';
-import { Text } from '../../../../../scenery/js/imports.js';
+import { Line, Node, Path, Text } from '../../../../../scenery/js/imports.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import phScaleStrings from '../../../phScaleStrings.js';

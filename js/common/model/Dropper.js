@@ -45,7 +45,7 @@ class Dropper extends PHMovable {
     // @public
     this.soluteProperty = new Property( solute, {
       tandem: options.tandem.createTandem( 'soluteProperty' ),
-      phetioType: Property.PropertyIO( Solute.SoluteIO ),
+      phetioValueType: Solute.SoluteIO,
       phetioDocumentation: 'the solute dispensed by the dropper'
     } );
 

@@ -37,7 +37,7 @@ class MacroPHMeter {
     // @public value displayed by the meter, null if the meter is not reading a value
     this.pHProperty = new Property( null, {
       tandem: options.tandem.createTandem( 'pHProperty' ),
-      phetioType: Property.PropertyIO( NullableIO( NumberIO ) ),
+      phetioValueType: NullableIO( NumberIO ),
       phetioReadOnly: true, // because this depends on where the probe is positioned
       phetioHighFrequency: true
     } );

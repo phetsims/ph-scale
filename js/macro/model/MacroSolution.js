@@ -87,7 +87,7 @@ class MacroSolution extends PhetioObject {
       ( soluteVolume, waterVolume ) => ( this.ignoreVolumeUpdate ) ? this.totalVolumeProperty.get() : ( soluteVolume + waterVolume ), {
         units: 'L',
         tandem: options.tandem.createTandem( 'totalVolumeProperty' ),
-        phetioType: DerivedProperty.DerivedPropertyIO( NumberIO ),
+        phetioValueType: NumberIO,
         phetioDocumentation: 'total volume of the solution',
         phetioHighFrequency: true
       } );
@@ -104,7 +104,7 @@ class MacroSolution extends PhetioObject {
         }
       }, {
         tandem: options.tandem.createTandem( 'pHProperty' ),
-        phetioType: DerivedProperty.DerivedPropertyIO( NullableIO( NumberIO ) ),
+        phetioValueType: NullableIO( NumberIO ),
         phetioDocumentation: 'pH of the solution',
         phetioHighFrequency: true
       } );

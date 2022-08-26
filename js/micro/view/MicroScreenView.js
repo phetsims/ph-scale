@@ -125,9 +125,11 @@ class MicroScreenView extends ScreenView {
 
     // pH meter
     const pHMeterTop = 15;
+
+    // TODO: https://github.com/phetsims/tandem/issues/267 ask @arounifar how to name this tandem
     const pHMeterNode = new PHMeterNode( model.solution.pHProperty,
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
-        tandem: tandem.createTandem( 'pHMeterNode' )
+        tandem: tandem.createTandem( 'pHMeterNodeAccordionBox' )
       } );
 
     // solutes combo box

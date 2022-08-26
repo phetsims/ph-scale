@@ -94,7 +94,7 @@ class MySolutionScreenView extends ScreenView {
     const pHMeterNode = new PHMeterNode( model.solution.pHProperty,
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
         isInteractive: true, // add spinner to change pH
-        tandem: tandem.createTandem( 'pHMeterNode' )
+        tandem: tandem.createTandem( 'pHMeterNodeAccordionBox' )
       } );
 
     const resetAllButton = new ResetAllButton( {

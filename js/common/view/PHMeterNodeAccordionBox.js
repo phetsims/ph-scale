@@ -9,7 +9,7 @@
  *
  * NOTE: This class has the somewhat-redundant name PHMeterNodeAccordionBox because we have 2 pH meters in this
  * sim (see MacroPHMeterNode for the Macro screen), and we want them both to be discoverable in Studio by searching
- * for "pHMeterNode". So their tandem names are 'pHMeterNodeAccordionBox' and 'pHMeterNode'. The downside of this is
+ * for 'pHMeterNode'. So their tandem names are 'pHMeterNodeAccordionBox' and 'pHMeterNode'. The downside of this is
  * that someone who is familiar with tandem naming conventions will not find 'pHMeterAccordionBox'.
  * See https://github.com/phetsims/ph-scale/issues/238.
  *

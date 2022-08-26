@@ -1,11 +1,17 @@
 // Copyright 2014-2022, University of Colorado Boulder
 
 /**
- * pH meter for the 'Micro' and 'My Solution' screens.
- * Origin is at top left.
- * The meter can be expanded and collapsed.
- * By default, the meter displays pH but does not allow you to change it.
- * pH can be optionally changed (using a spinner) for custom solutions.
+ * PHMeterNodeAccordionBox is the pH meter for the 'Micro' and 'My Solution' screens.
+ * - Origin is at top left.
+ * - The meter can be expanded and collapsed.
+ * - By default, the meter displays pH but does not allow you to change it.
+ * - pH can be optionally changed (using a spinner) for custom solutions.
+ *
+ * NOTE: This class has the somewhat-redundant name PHMeterNodeAccordionBox because we have 2 pH meters in this
+ * sim (see MacroPHMeterNode for the Macro screen), and we want them both to be discoverable in Studio by searching
+ * for "pHMeterNode". So their tandem names are 'pHMeterNodeAccordionBox' and 'pHMeterNode'. The downside of this is
+ * that someone who is familiar with tandem naming conventions will not find 'pHMeterAccordionBox'.
+ * See https://github.com/phetsims/ph-scale/issues/238.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

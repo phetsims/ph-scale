@@ -30,7 +30,7 @@ import FaucetFluidNode from '../../common/view/FaucetFluidNode.js';
 import GraphNode from '../../common/view/graph/GraphNode.js';
 import MoleculeCountNode from '../../common/view/MoleculeCountNode.js';
 import PHDropperNode from '../../common/view/PHDropperNode.js';
-import PHMeterNode from '../../common/view/PHMeterNode.js';
+import PHMeterNodeAccordionBox from '../../common/view/PHMeterNodeAccordionBox.js';
 import PHScaleViewProperties from '../../common/view/PHScaleViewProperties.js';
 import RatioNode from '../../common/view/RatioNode.js';
 import SoluteComboBox from '../../common/view/SoluteComboBox.js';
@@ -126,8 +126,7 @@ class MicroScreenView extends ScreenView {
     // pH meter
     const pHMeterTop = 15;
 
-    // TODO: https://github.com/phetsims/tandem/issues/267 ask @arounifar how to name this tandem
-    const pHMeterNode = new PHMeterNode( model.solution.pHProperty,
+    const phMeterNodeAccordionBox = new PHMeterNodeAccordionBox( model.solution.pHProperty,
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
         tandem: tandem.createTandem( 'pHMeterNodeAccordionBox' )
       } );
@@ -146,7 +145,7 @@ class MicroScreenView extends ScreenView {
         model.reset();
         viewProperties.reset();
         graphNode.reset();
-        pHMeterNode.reset();
+        phMeterNodeAccordionBox.reset();
       },
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
@@ -162,7 +161,7 @@ class MicroScreenView extends ScreenView {
         dropperFluidNode,
         dropperNode,
         solutionNode,
-        pHMeterNode,
+        phMeterNodeAccordionBox,
         ratioNode,
         beakerNode,
         moleculeCountNode,
@@ -181,11 +180,11 @@ class MicroScreenView extends ScreenView {
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControlPanel.centerX = beakerNode.centerX;
     beakerControlPanel.top = beakerNode.bottom + 10;
-    pHMeterNode.left = modelViewTransform.modelToViewX( model.beaker.left ) - ( 0.4 * pHMeterNode.width );
-    pHMeterNode.top = pHMeterTop;
+    phMeterNodeAccordionBox.left = modelViewTransform.modelToViewX( model.beaker.left ) - ( 0.4 * phMeterNodeAccordionBox.width );
+    phMeterNodeAccordionBox.top = pHMeterTop;
     graphNode.right = drainFaucetNode.left - 40;
-    graphNode.top = pHMeterNode.top;
-    soluteComboBox.left = pHMeterNode.right + 35;
+    graphNode.top = phMeterNodeAccordionBox.top;
+    soluteComboBox.left = phMeterNodeAccordionBox.right + 35;
     soluteComboBox.top = this.layoutBounds.top + pHMeterTop;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;

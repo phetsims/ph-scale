@@ -29,7 +29,7 @@ import PHScaleConstants from '../PHScaleConstants.js';
 const Y_MARGIN = 10;
 const CORNER_RADIUS = 8;
 
-class PHMeterNode extends AccordionBox {
+class PHMeterNodeAccordionBox extends AccordionBox {
 
   /**
    * @param {Property.<number>} pHProperty - pH of the solution
@@ -120,7 +120,7 @@ class PHMeterNode extends AccordionBox {
   }
 }
 
-phScale.register( 'PHMeterNode', PHMeterNode );
+phScale.register( 'PHMeterNodeAccordionBox', PHMeterNodeAccordionBox );
 
 /**
  * Spinner for pH value.
@@ -227,4 +227,4 @@ class ProbeNode extends Node {
   }
 }
 
-export default PHMeterNode;
+export default PHMeterNodeAccordionBox;

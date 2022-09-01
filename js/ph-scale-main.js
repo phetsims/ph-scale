@@ -23,7 +23,7 @@ simLauncher.launch( () => {
     new MySolutionScreen( Tandem.ROOT.createTandem( 'mySolutionScreen' ) )
   ];
 
-  const sim = new Sim( phScaleStrings[ 'ph-scale' ].title, screens, {
+  const sim = new Sim( phScaleStrings[ 'ph-scale' ].titleStringProperty, screens, {
     credits: PHScaleConstants.CREDITS,
 
     // phet-io options

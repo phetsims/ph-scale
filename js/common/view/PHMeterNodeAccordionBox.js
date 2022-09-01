@@ -54,7 +54,7 @@ class PHMeterNodeAccordionBox extends AccordionBox {
       contentYSpacing: 10,
       titleAlignX: 'left',
       titleXMargin: 15,
-      titleNode: new Text( phScaleStrings.pH, {
+      titleNode: new Text( phScaleStrings.pHStringProperty, {
         fill: 'black',
         font: new PhetFont( { size: 28, weight: 'bold' } ),
         maxWidth: 50

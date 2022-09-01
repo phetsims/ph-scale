@@ -143,10 +143,14 @@ class MacroScreenView extends ScreenView {
     // Layout of nodes that don't have a position specified in the model
     soluteComboBox.left = modelViewTransform.modelToViewX( model.beaker.left ) - 20; // anchor on left so it grows to the right during i18n
     soluteComboBox.top = this.layoutBounds.top + 15;
-    neutralIndicatorNode.centerX = beakerNode.centerX;
-    neutralIndicatorNode.bottom = beakerNode.bottom - 30;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
+
+    // Keep the neutral indicator centered in the bottom of the beaker.
+    neutralIndicatorNode.boundsProperty.link( bounds => {
+      neutralIndicatorNode.centerX = beakerNode.centerX;
+      neutralIndicatorNode.bottom = beakerNode.bottom - 30;
+    } );
 
     model.isAutofillingProperty.link( () => dropperNode.interruptSubtreeInput() );
   }

@@ -165,14 +165,14 @@ class ScaleNode extends Node {
 
     // 'Acidic' label
     const textOptions = { fill: 'white', font: SCALE_LABEL_FONT, maxWidth: 0.45 * options.size.height };
-    const acidicNode = new Text( phScaleStrings.acidic, textOptions );
+    const acidicNode = new Text( phScaleStrings.acidicStringProperty, textOptions );
     acidicNode.rotation = -Math.PI / 2;
     acidicNode.centerX = backgroundNode.centerX;
     acidicNode.centerY = 0.75 * backgroundNode.height;
     this.addChild( acidicNode );
 
     // 'Basic' label
-    const basicNode = new Text( phScaleStrings.basic, textOptions );
+    const basicNode = new Text( phScaleStrings.basicStringProperty, textOptions );
     basicNode.rotation = -Math.PI / 2;
     basicNode.centerX = backgroundNode.centerX;
     basicNode.centerY = 0.25 * backgroundNode.height;
@@ -368,7 +368,7 @@ class PHIndicatorNode extends Node {
     } );
 
     // label above the value
-    const labelNode = new Text( phScaleStrings.pH, {
+    const labelNode = new Text( phScaleStrings.pHStringProperty, {
       fill: 'white',
       font: new PhetFont( { size: 28, weight: 'bold' } ),
       maxWidth: 100

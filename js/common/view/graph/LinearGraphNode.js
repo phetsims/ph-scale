@@ -113,7 +113,7 @@ class LinearGraphNode extends Node {
     this.addChild( scaleNode );
 
     // 'off scale' label, positioned inside arrow
-    const offScaleNode = new Text( phScaleStrings.offScale, {
+    const offScaleNode = new Text( phScaleStrings.offScaleStringProperty, {
       font: new PhetFont( 18 ),
       fill: 'black',
       maxWidth: 0.5 * arrowWidth

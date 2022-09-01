@@ -39,12 +39,12 @@ class GraphScaleSwitch extends ABSwitch {
     };
 
     // Logarithmic label
-    const logarithmicText = new Text( phScaleStrings.logarithmic, merge( {
+    const logarithmicText = new Text( phScaleStrings.logarithmicStringProperty, merge( {
       tandem: options.tandem.createTandem( 'logarithmicText' )
     }, textOptions ) );
 
     // Linear label
-    const linearText = new Text( phScaleStrings.linear, merge( {
+    const linearText = new Text( phScaleStrings.linearStringProperty, merge( {
       tandem: options.tandem.createTandem( 'linearText' )
     }, textOptions ) );
 

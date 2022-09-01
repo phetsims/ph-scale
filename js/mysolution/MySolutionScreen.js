@@ -29,7 +29,7 @@ class MySolutionScreen extends Screen {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
     const options = {
-      name: phScaleStrings.screen.mySolution,
+      name: phScaleStrings.screen.mySolutionStringProperty,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
       homeScreenIcon: new ScreenIcon( new Image( mySolutionHomeScreenIcon_png ), {
         maxIconWidthProportion: 1,

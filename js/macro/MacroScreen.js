@@ -30,7 +30,7 @@ class MacroScreen extends Screen {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
     const options = {
-      name: phScaleStrings.screen.macro,
+      name: phScaleStrings.screen.macroStringProperty,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
       homeScreenIcon: new ScreenIcon( new Image( macroHomeScreenIcon_png ), {
         maxIconWidthProportion: 1,

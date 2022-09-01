@@ -31,20 +31,22 @@ class NeutralIndicatorNode extends Node {
 
     super( options );
 
-    const label = new Text( phScaleStrings.neutral, {
+    const label = new Text( phScaleStrings.neutralStringProperty, {
       font: new PhetFont( { size: 30, weight: 'bold' } ),
       maxWidth: 300
     } );
 
     // translucent light-gray background, so this shows up on all solution colors
-    const background = new Rectangle( 0, 0, 1.4 * label.width, 1.2 * label.height, {
+    const background = new Rectangle( 0, 0, 1, 1, {
       cornerRadius: 8,
       fill: 'rgba( 240, 240, 240, 0.6 )'
     } );
 
-    // Center the label
-    label.centerX = background.centerX;
-    label.centerY = background.centerY;
+    // Size the background to fit the label, center the label.
+    label.boundsProperty.link( bounds => {
+      background.setRect( 0, 0, 1.4 * bounds.width, 1.2 * bounds.height );
+      label.center = background.center;
+    } );
 
     // Wrap things in a parentNode, so that this feature can be permanently disabled via PhET-iO via
     // this.visibleProperty.set( false ). See https://github.com/phetsims/ph-scale/issues/102

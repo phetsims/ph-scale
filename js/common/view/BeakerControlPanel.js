@@ -58,7 +58,7 @@ class BeakerControlPanel extends Panel {
     ratioCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );
 
     // 'Molecule count' checkbox
-    const moleculeCountLabel = new Text( phScaleStrings.moleculeCount, { font: FONT } );
+    const moleculeCountLabel = new Text( phScaleStrings.moleculeCountStringProperty, { font: FONT } );
     const moleculeCountCheckbox = new Checkbox( moleculeCountVisibleProperty, moleculeCountLabel, {
       tandem: options.tandem.createTandem( 'moleculeCountCheckbox' )
     } );

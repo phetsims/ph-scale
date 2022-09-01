@@ -29,7 +29,7 @@ class MicroScreen extends Screen {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
     const options = {
-      name: phScaleStrings.screen.micro,
+      name: phScaleStrings.screen.microStringProperty,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
       homeScreenIcon: new ScreenIcon( new Image( microHomeScreenIcon_png ), {
         maxIconWidthProportion: 1,

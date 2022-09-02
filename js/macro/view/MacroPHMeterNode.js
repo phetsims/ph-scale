@@ -165,18 +165,18 @@ class ScaleNode extends Node {
 
     // 'Acidic' label
     const textOptions = { fill: 'white', font: SCALE_LABEL_FONT, maxWidth: 0.45 * options.size.height };
-    const acidicNode = new Text( phScaleStrings.acidicStringProperty, textOptions );
-    acidicNode.rotation = -Math.PI / 2;
-    acidicNode.centerX = backgroundNode.centerX;
-    acidicNode.centerY = 0.75 * backgroundNode.height;
-    this.addChild( acidicNode );
+    const acidicText = new Text( phScaleStrings.acidicStringProperty, textOptions );
+    acidicText.rotation = -Math.PI / 2;
+    acidicText.centerX = backgroundNode.centerX;
+    acidicText.centerY = 0.75 * backgroundNode.height;
+    this.addChild( acidicText );
 
     // 'Basic' label
-    const basicNode = new Text( phScaleStrings.basicStringProperty, textOptions );
-    basicNode.rotation = -Math.PI / 2;
-    basicNode.centerX = backgroundNode.centerX;
-    basicNode.centerY = 0.25 * backgroundNode.height;
-    this.addChild( basicNode );
+    const basicText = new Text( phScaleStrings.basicStringProperty, textOptions );
+    basicText.rotation = -Math.PI / 2;
+    basicText.centerX = backgroundNode.centerX;
+    basicText.centerY = 0.25 * backgroundNode.height;
+    this.addChild( basicText );
 
     // tick marks, labeled at 'even' values, skip 7 (neutral)
     let y = options.size.height;

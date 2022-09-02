@@ -31,7 +31,7 @@ class NeutralIndicatorNode extends Node {
 
     super( options );
 
-    const label = new Text( phScaleStrings.neutralStringProperty, {
+    const labelText = new Text( phScaleStrings.neutralStringProperty, {
       font: new PhetFont( { size: 30, weight: 'bold' } ),
       maxWidth: 300
     } );
@@ -43,15 +43,15 @@ class NeutralIndicatorNode extends Node {
     } );
 
     // Size the background to fit the label, center the label.
-    label.boundsProperty.link( bounds => {
+    labelText.boundsProperty.link( bounds => {
       background.setRect( 0, 0, 1.4 * bounds.width, 1.2 * bounds.height );
-      label.center = background.center;
+      labelText.center = background.center;
     } );
 
     // Wrap things in a parentNode, so that this feature can be permanently disabled via PhET-iO via
     // this.visibleProperty.set( false ). See https://github.com/phetsims/ph-scale/issues/102
     const parentNode = new Node( {
-      children: [ background, label ]
+      children: [ background, labelText ]
     } );
     this.addChild( parentNode );
 

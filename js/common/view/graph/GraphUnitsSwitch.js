@@ -32,21 +32,21 @@ class GraphUnitsSwitch extends ABSwitch {
       phetioDocumentation: 'A/B switch for switching units'
     }, options );
 
-    const concentrationLabel = new RichText( `${phScaleStrings.concentration}<br>(${phScaleStrings.units.molesPerLiter})`, {
+    const concentrationText = new RichText( `${phScaleStrings.concentration}<br>(${phScaleStrings.units.molesPerLiter})`, {
       align: 'center',
       font: PHScaleConstants.AB_SWITCH_FONT,
       maxWidth: 125,
-      tandem: options.tandem.createTandem( 'concentrationLabel' )
+      tandem: options.tandem.createTandem( 'concentrationText' )
     } );
 
-    const quantityLabel = new RichText( `${phScaleStrings.quantity}<br>(${phScaleStrings.units.moles})`, {
+    const quantityText = new RichText( `${phScaleStrings.quantity}<br>(${phScaleStrings.units.moles})`, {
       align: 'center',
       font: PHScaleConstants.AB_SWITCH_FONT,
       maxWidth: 90,
-      tandem: options.tandem.createTandem( 'quantityLabel' )
+      tandem: options.tandem.createTandem( 'quantityText' )
     } );
 
-    super( graphUnitsProperty, GraphUnits.MOLES_PER_LITER, concentrationLabel, GraphUnits.MOLES, quantityLabel, options );
+    super( graphUnitsProperty, GraphUnits.MOLES_PER_LITER, concentrationText, GraphUnits.MOLES, quantityText, options );
   }
 }
 

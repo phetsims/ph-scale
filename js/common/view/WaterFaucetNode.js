@@ -48,14 +48,14 @@ class WaterFaucetNode extends Node {
     this.addChild( faucetNode );
 
     // decorate the faucet with the name of the water
-    const waterLabelNode = new Text( Water.name, {
+    const waterText = new Text( Water.name, {
       font: new PhetFont( 28 ),
       maxWidth: 85,
       left: faucetNode.left + 115,
       bottom: faucetNode.centerY - 40,
-      tandem: options.tandem.createTandem( 'waterLabelNode' )
+      tandem: options.tandem.createTandem( 'waterText' )
     } );
-    this.addChild( waterLabelNode );
+    this.addChild( waterText );
   }
 }
 

@@ -49,17 +49,17 @@ class BeakerControlPanel extends Panel {
       h3o: `<span style="color:${PHScaleColors.H3O_MOLECULES.toCSS()}">${PHScaleConstants.H3O_FORMULA}</span>`,
       oh: `<span style="color:${PHScaleColors.OH_MOLECULES.toCSS()}">${PHScaleConstants.OH_FORMULA}</span>`
     } );
-    const ratioLabel = new RichText( ratioString, {
+    const ratioText = new RichText( ratioString, {
       font: FONT
     } );
-    const ratioCheckbox = new Checkbox( ratioVisibleProperty, ratioLabel, {
+    const ratioCheckbox = new Checkbox( ratioVisibleProperty, ratioText, {
       tandem: options.tandem.createTandem( 'ratioCheckbox' )
     } );
     ratioCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );
 
     // 'Molecule count' checkbox
-    const moleculeCountLabel = new Text( phScaleStrings.moleculeCountStringProperty, { font: FONT } );
-    const moleculeCountCheckbox = new Checkbox( moleculeCountVisibleProperty, moleculeCountLabel, {
+    const moleculeCountLabelText = new Text( phScaleStrings.moleculeCountStringProperty, { font: FONT } );
+    const moleculeCountCheckbox = new Checkbox( moleculeCountVisibleProperty, moleculeCountLabelText, {
       tandem: options.tandem.createTandem( 'moleculeCountCheckbox' )
     } );
     moleculeCountCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );

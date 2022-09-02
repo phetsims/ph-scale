@@ -113,14 +113,14 @@ class LinearGraphNode extends Node {
     this.addChild( scaleNode );
 
     // 'off scale' label, positioned inside arrow
-    const offScaleNode = new Text( phScaleStrings.offScaleStringProperty, {
+    const offScaleText = new Text( phScaleStrings.offScaleStringProperty, {
       font: new PhetFont( 18 ),
       fill: 'black',
       maxWidth: 0.5 * arrowWidth
     } );
-    this.addChild( offScaleNode );
-    offScaleNode.centerX = arrowNode.centerX;
-    offScaleNode.y = arrowNode.top + ( 0.85 * arrowHeadHeight );
+    this.addChild( offScaleText );
+    offScaleText.centerX = arrowNode.centerX;
+    offScaleText.y = arrowNode.top + ( 0.85 * arrowHeadHeight );
 
     // Create the tick marks. Correct labels will be assigned later.
     const tickLabels = [];

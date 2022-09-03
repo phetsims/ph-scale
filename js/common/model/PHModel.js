@@ -1,5 +1,6 @@
 // Copyright 2014-2020, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * This is the core model of pH Scale. All fundamental computations are encapsulated here.
  * Throughout this model, a null pH value means 'no value'.

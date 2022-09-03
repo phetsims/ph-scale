@@ -1,5 +1,6 @@
 // Copyright 2013-2021, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * Solute model, with instances used by this sim.
  * Solutes are immutable, so all fields should be considered immutable.

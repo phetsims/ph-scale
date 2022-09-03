@@ -1,5 +1,6 @@
 // Copyright 2021-2022, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * SolutionDerivedProperties models the Properties of a solution that are derived from pH and volume, including
  * concentration (mol/L), quantity (mol), and numbers of molecules. This class is separated from the solution

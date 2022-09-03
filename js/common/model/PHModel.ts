@@ -15,6 +15,12 @@ import Water from './Water.js';
 // constants
 const AVOGADROS_NUMBER = 6.023E23; // number of molecules in one mole of solution
 
+// null means 'no value', typically when we have no solution because the volume is zero.
+export type PHValue = number | null;
+
+// null means 'no value', typically when we have no solution because the volume is zero.
+export type ConcentrationValue = number | null;
+
 const PHModel = {
 
   /**
@@ -24,7 +30,7 @@ const PHModel = {
    * @param waterVolume liters
    * @returns pH, null if total volume is zero
    */
-  computePH( solutePH: number, soluteVolume: number, waterVolume: number ): number | null {
+  computePH( solutePH: number, soluteVolume: number, waterVolume: number ): PHValue {
     let pH;
     const totalVolume = soluteVolume + waterVolume;
     if ( totalVolume === 0 ) {
@@ -50,7 +56,7 @@ const PHModel = {
    * @param concentration
    * @returns pH, null if concentration is zero
    */
-  concentrationH3OToPH( concentration: number ): number | null {
+  concentrationH3OToPH( concentration: number ): PHValue {
     return ( concentration === 0 ) ? null : -Utils.log10( concentration );
   },
 
@@ -59,7 +65,7 @@ const PHModel = {
    * @param concentration
    * @returns pH, null if concentration is zero
    */
-  concentrationOHToPH( concentration: number ): number | null {
+  concentrationOHToPH( concentration: number ): PHValue {
     const pH = PHModel.concentrationH3OToPH( concentration );
     return ( pH === null || concentration === 0 ) ? null : 14 - pH;
   },
@@ -70,7 +76,7 @@ const PHModel = {
    * @param volume volume of the solution in liters
    * @returns pH, null if moles or volume is zero
    */
-  molesH3OToPH( moles: number, volume: number ): number | null {
+  molesH3OToPH( moles: number, volume: number ): PHValue {
     return ( moles === 0 || volume === 0 ) ? null : PHModel.concentrationH3OToPH( moles / volume );
   },
 
@@ -80,7 +86,7 @@ const PHModel = {
    * @param volume volume of the solution in liters
    * @returns pH, null if moles or volume is zero
    */
-  molesOHToPH( moles: number, volume: number ): number | null {
+  molesOHToPH( moles: number, volume: number ): PHValue {
     return ( moles === 0 || volume === 0 ) ? null : PHModel.concentrationOHToPH( moles / volume );
   },
 
@@ -89,7 +95,7 @@ const PHModel = {
    * @param volume
    * @returns concentration in moles/L, null if volume is 0
    */
-  volumeToConcentrationH20( volume: number ): number | null {
+  volumeToConcentrationH20( volume: number ): PHValue {
     return ( volume === 0 ) ? null : Water.concentration;
   },
 
@@ -99,7 +105,7 @@ const PHModel = {
    * @param pH null means 'no value'
    * @returns concentration in moles/L, null means no concentration
    */
-  pHToConcentrationH3O( pH: number | null ): number | null {
+  pHToConcentrationH3O( pH: PHValue ): ConcentrationValue {
     return ( pH === null ) ? null : Math.pow( 10, -pH );
   },
 
@@ -108,21 +114,21 @@ const PHModel = {
    * @param pH null means 'no value'
    * @returns concentration in moles/L, null means no concentration
    */
-  pHToConcentrationOH( pH: number | null ): number | null {
+  pHToConcentrationOH( pH: PHValue ): ConcentrationValue {
     return ( pH === null ) ? null : PHModel.pHToConcentrationH3O( 14 - pH );
   },
 
   /**
    * Computes the number of molecules in solution.
    */
-  computeMolecules( concentration: number | null, volume: number ): number {
+  computeMolecules( concentration: ConcentrationValue, volume: number ): number {
     return ( concentration === null ) ? 0 : ( concentration * volume * AVOGADROS_NUMBER );
   },
 
   /**
    * Computes moles in solution.
    */
-  computeMoles( concentration: number | null, volume: number ): number {
+  computeMoles( concentration: ConcentrationValue, volume: number ): number {
     return ( concentration === null ) ? 0 : ( concentration * volume );
   }
 };

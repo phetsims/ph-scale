@@ -23,7 +23,7 @@ import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import phScale from '../../phScale.js';
-import PHModel from './PHModel.js';
+import PHModel, { ConcentrationValue, PHValue } from './PHModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -32,9 +32,9 @@ export type SolutionDerivedPropertiesOptions = SelfOptions & PickRequired<Phetio
 export default class SolutionDerivedProperties {
 
   // The concentration (mol/L) of H2O, H3O+, and OH- in the solution
-  public readonly concentrationH2OProperty: TReadOnlyProperty<number | null>;
-  public readonly concentrationH3OProperty: TReadOnlyProperty<number | null>;
-  public readonly concentrationOHProperty: TReadOnlyProperty<number | null>;
+  public readonly concentrationH2OProperty: TReadOnlyProperty<ConcentrationValue>;
+  public readonly concentrationH3OProperty: TReadOnlyProperty<ConcentrationValue>;
+  public readonly concentrationOHProperty: TReadOnlyProperty<ConcentrationValue>;
 
   // The quantity (mol) of H2O, H3O+, and OH- in the solution
   public readonly quantityH2OProperty: TReadOnlyProperty<number>;
@@ -46,7 +46,7 @@ export default class SolutionDerivedProperties {
   public readonly numberOfH3OMoleculesProperty: TReadOnlyProperty<number>;
   public readonly numberOfOHMoleculesProperty: TReadOnlyProperty<number>;
 
-  public constructor( pHProperty: TReadOnlyProperty<number | null>,
+  public constructor( pHProperty: TReadOnlyProperty<PHValue>,
                       totalVolumeProperty: TReadOnlyProperty<number>,
                       providedOptions: SolutionDerivedPropertiesOptions ) {
 

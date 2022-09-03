@@ -1,6 +1,5 @@
-// Copyright 2013-2020, University of Colorado Boulder
+// Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Faucet model, used for input and output faucets.
  * This model assumes that the pipe enters the faucet from the left.
@@ -10,38 +9,53 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import Property from '../../../../axon/js/Property.js';
 import Range from '../../../../dot/js/Range.js';
-import merge from '../../../../phet-core/js/merge.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
+import optionize from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import phScale from '../../phScale.js';
 
-class Faucet {
+type SelfOptions = {
+  spoutWidth?: number; // pixels
+  maxFlowRate?: number; // L/sec
+  flowRate?: number; // L/sec
+  enabled?: boolean;
+};
+
+export type FaucetOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+
+export default class Faucet {
+
+  public readonly position: Vector2;
+  public readonly pipeMinX: number;
+  public readonly spoutWidth: number;
+  public readonly maxFlowRate: number;
+  public readonly flowRateProperty: NumberProperty;
+  public readonly enabledProperty: Property<boolean>;
 
   /**
-   * @param {Vector2} position center of output pipe
-   * @param {number} pipeMinX x-coordinate of where the pipe starts
-   * @param {Object} [options]
-   * @constructor
+   * @param position - center of output pipe
+   * @param pipeMinX - x-coordinate of where the pipe starts
+   * @param [providedOptions]
    */
-  constructor( position, pipeMinX, options ) {
+  public constructor( position: Vector2, pipeMinX: number, providedOptions: FaucetOptions ) {
 
-    options = merge( {
+    const options = optionize<FaucetOptions, SelfOptions>()( {
+
+      // SelfOptions
       spoutWidth: 45, // pixels
       maxFlowRate: 0.25, // L/sec
       flowRate: 0,
-      enabled: true,
+      enabled: true
+    }, providedOptions );
 
-      // phet-io
-      tandem: Tandem.REQUIRED
-    }, options );
-
-    // @public
     this.position = position;
     this.pipeMinX = pipeMinX;
     this.spoutWidth = options.spoutWidth;
     this.maxFlowRate = options.maxFlowRate;
 
-    // @public
     this.flowRateProperty = new NumberProperty( options.flowRate, {
       range: new Range( 0, options.maxFlowRate ),
       units: 'L/s',
@@ -51,7 +65,6 @@ class Faucet {
       phetioHighFrequency: true
     } );
 
-    // @public
     this.enabledProperty = new BooleanProperty( options.enabled, {
       tandem: options.tandem.createTandem( 'enabledProperty' ),
       phetioReadOnly: true,
@@ -60,20 +73,16 @@ class Faucet {
 
     // when disabled, turn off the faucet.
     this.enabledProperty.link( enabled => {
-      if ( !enabled ) {
+      if ( !enabled && !phet.joist.sim.isSettingPhetioStateProperty.value ) {
         this.flowRateProperty.set( 0 );
       }
     } );
   }
 
-  /**
-   * @public
-   */
-  reset() {
+  public reset(): void {
     this.flowRateProperty.reset();
     this.enabledProperty.reset();
   }
 }
 
 phScale.register( 'Faucet', Faucet );
-export default Faucet;

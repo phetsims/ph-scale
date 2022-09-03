@@ -1,6 +1,5 @@
 // Copyright 2021-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * SolutionDerivedProperties models the Properties of a solution that are derived from pH and volume, including
  * concentration (mol/L), quantity (mol), and numbers of molecules. This class is separated from the solution
@@ -17,33 +16,42 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
-import merge from '../../../../phet-core/js/merge.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import phScale from '../../phScale.js';
 import PHModel from './PHModel.js';
 
-class SolutionDerivedProperties {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {ReadOnlyProperty.<number|null>} pHProperty
-   * @param {ReadOnlyProperty.<number>} totalVolumeProperty
-   * @param {Object} [options]
-   */
-  constructor( pHProperty, totalVolumeProperty, options ) {
+export type SolutionDerivedPropertiesOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-    assert && assert( pHProperty instanceof ReadOnlyProperty, 'invalid pHProperty' );
-    assert && assert( totalVolumeProperty instanceof ReadOnlyProperty, 'invalid totalVolumeProperty' );
+export default class SolutionDerivedProperties {
 
-    options = merge( {
-      tandem: Tandem.REQUIRED
-    }, options );
+  // The concentration (mol/L) of H2O, H3O+, and OH- in the solution
+  public readonly concentrationH2OProperty: TReadOnlyProperty<number | null>;
+  public readonly concentrationH3OProperty: TReadOnlyProperty<number | null>;
+  public readonly concentrationOHProperty: TReadOnlyProperty<number | null>;
 
-    // Concentration (mol/L) ------------------------------------------------
+  // The quantity (mol) of H2O, H3O+, and OH- in the solution
+  public readonly quantityH2OProperty: TReadOnlyProperty<number>;
+  public readonly quantityH3OProperty: TReadOnlyProperty<number>;
+  public readonly quantityOHProperty: TReadOnlyProperty<number>;
 
-    // The concentration (mol/L) of H2O in the solution
+  // The number of H2O, H3O+, and OH- molecules in the solution
+  public readonly numberOfH2OMoleculesProperty: TReadOnlyProperty<number>;
+  public readonly numberOfH3OMoleculesProperty: TReadOnlyProperty<number>;
+  public readonly numberOfOHMoleculesProperty: TReadOnlyProperty<number>;
+
+  public constructor( pHProperty: TReadOnlyProperty<number | null>,
+                      totalVolumeProperty: TReadOnlyProperty<number>,
+                      providedOptions: SolutionDerivedPropertiesOptions ) {
+
+    const options = providedOptions;
+
     this.concentrationH2OProperty = new DerivedProperty(
       [ totalVolumeProperty ],
       totalVolume => PHModel.volumeToConcentrationH20( totalVolume ), {
@@ -54,7 +62,6 @@ class SolutionDerivedProperties {
         phetioHighFrequency: true
       } );
 
-    // The concentration (mol/L) of H3O+ in the solution
     this.concentrationH3OProperty = new DerivedProperty(
       [ pHProperty ],
       pH => PHModel.pHToConcentrationH3O( pH ), {
@@ -65,7 +72,6 @@ class SolutionDerivedProperties {
         phetioHighFrequency: true
       } );
 
-    // The concentration (mol/L) of OH- in the solution
     this.concentrationOHProperty = new DerivedProperty(
       [ pHProperty ],
       pH => PHModel.pHToConcentrationOH( pH ), {
@@ -76,9 +82,6 @@ class SolutionDerivedProperties {
         phetioHighFrequency: true
       } );
 
-    // Quantity (mol) ------------------------------------------------
-
-    // The quantity (mol) of H2O in the solution
     this.quantityH2OProperty = new DerivedProperty(
       [ this.concentrationH2OProperty, totalVolumeProperty ],
       ( concentrationH2O, totalVolume ) => PHModel.computeMoles( concentrationH2O, totalVolume ), {
@@ -89,7 +92,6 @@ class SolutionDerivedProperties {
         phetioHighFrequency: true
       } );
 
-    // The quantity (mol) of H3O+ in the solution
     this.quantityH3OProperty = new DerivedProperty(
       [ this.concentrationH3OProperty, totalVolumeProperty ],
       ( concentrationH3O, totalVolume ) => PHModel.computeMoles( concentrationH3O, totalVolume ), {
@@ -100,7 +102,6 @@ class SolutionDerivedProperties {
         phetioHighFrequency: true
       } );
 
-    // The quantity (mol) of OH- in the solution
     this.quantityOHProperty = new DerivedProperty(
       [ this.concentrationOHProperty, totalVolumeProperty ],
       ( concentrationOH, totalVolume ) => PHModel.computeMoles( concentrationOH, totalVolume ), {
@@ -111,9 +112,6 @@ class SolutionDerivedProperties {
         phetioHighFrequency: true
       } );
 
-    // Molecule counts ------------------------------------------------
-
-    // @public number of H2O molecules in the solution
     this.numberOfH2OMoleculesProperty = new DerivedProperty(
       [ this.concentrationH2OProperty, totalVolumeProperty ],
       ( concentrationH2O, totalVolume ) => PHModel.computeMolecules( concentrationH2O, totalVolume ), {
@@ -123,7 +121,6 @@ class SolutionDerivedProperties {
         phetioHighFrequency: true
       } );
 
-    // @public number of H3O+ molecules in the solution
     this.numberOfH3OMoleculesProperty = new DerivedProperty(
       [ this.concentrationH3OProperty, totalVolumeProperty ],
       ( concentrationH3O, totalVolume ) => PHModel.computeMolecules( concentrationH3O, totalVolume ), {
@@ -133,7 +130,6 @@ class SolutionDerivedProperties {
         phetioHighFrequency: true
       } );
 
-    // @public number of OH- molecules in the solution
     this.numberOfOHMoleculesProperty = new DerivedProperty(
       [ this.concentrationOHProperty, totalVolumeProperty ],
       ( concentrationOH, totalVolume ) => PHModel.computeMolecules( concentrationOH, totalVolume ), {
@@ -146,4 +142,3 @@ class SolutionDerivedProperties {
 }
 
 phScale.register( 'SolutionDerivedProperties', SolutionDerivedProperties );
-export default SolutionDerivedProperties;

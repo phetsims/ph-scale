@@ -1,6 +1,5 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Model of the dropper, contains solute in solution form (stock solution).
  *
@@ -10,68 +9,61 @@
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import merge from '../../../../phet-core/js/merge.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 import phScale from '../../phScale.js';
-import PHMovable from './PHMovable.js';
+import PHMovable, { PHMovableOptions } from './PHMovable.js';
 import Solute from './Solute.js';
 
-class Dropper extends PHMovable {
+type SelfOptions = {
+  flowRate?: number; // L/sec
+  maxFlowRate?: number; // L/sec
+  dispensing?: boolean; // is the dropper dispensing solute?
+  empty?: boolean; // is the dropper empty?
+  enabled?: boolean; // is the dropper enabled?
+  visible?: boolean; // is the dropper visible?
+};
 
-  /**
-   * @param {Solute} solute
-   * @param {Vector2} position
-   * @param {Bounds2} dragBounds
-   * @param {Object} [options]
-   */
-  constructor( solute, position, dragBounds, options ) {
+export type DropperOptions = SelfOptions & PHMovableOptions;
 
-    options = merge( {
-      maxFlowRate: 0.05, // L/sec
-      flowRate: 0, // L/sec
-      dispensing: false, // is the dropper dispensing solute?
-      enabled: true,
+export default class Dropper extends PHMovable {
+
+  public readonly soluteProperty: Property<Solute>;
+  public readonly flowRateProperty: Property<number>;
+  public readonly isDispensingProperty: Property<boolean>;
+  public readonly enabledProperty: Property<boolean>;
+
+  // Added for PhET-iO clients, so they can choose to make the dropper invisible.
+  // See https://github.com/phetsims/ph-scale/issues/178
+  public readonly visibleProperty: Property<boolean>;
+
+  public constructor( solute: Solute, position: Vector2, dragBounds: Bounds2, providedOptions: DropperOptions ) {
+
+    const options = optionize<DropperOptions, SelfOptions, PHMovableOptions>()( {
+
+      // SelfOptions
+      flowRate: 0,
+      maxFlowRate: 0.05,
+      dispensing: false,
       empty: false,
+      enabled: true,
       visible: true,
 
-      // phet-io
-      tandem: Tandem.REQUIRED,
+      // PHMovableOptions
       positionPropertyOptions: {
         phetioHighFrequency: true
       }
-    }, options );
+    }, providedOptions );
 
     super( position, dragBounds, options );
 
-    // @public
     this.soluteProperty = new Property( solute, {
       tandem: options.tandem.createTandem( 'soluteProperty' ),
       phetioValueType: Solute.SoluteIO,
       phetioDocumentation: 'the solute dispensed by the dropper'
     } );
 
-    // @public
-    this.isDispensingProperty = new BooleanProperty( options.dispensing, {
-      tandem: options.tandem.createTandem( 'isDispensingProperty' ),
-      phetioReadOnly: true,
-      phetioDocumentation: 'whether solute is currently flowing out of the dropper'
-    } );
-
-    // @public
-    this.enabledProperty = new BooleanProperty( options.enabled, {
-      tandem: options.tandem.createTandem( 'enabledProperty' ),
-      phetioReadOnly: true,
-      phetioDocumentation: 'whether the button on the dropper is enabled'
-    } );
-
-    // @public Added for PhET-iO clients, so they can choose to make the dropper invisible.
-    // See https://github.com/phetsims/ph-scale/issues/178
-    this.visibleProperty = new BooleanProperty( true, {
-      tandem: options.tandem.createTandem( 'visibleProperty' ),
-      phetioDocumentation: 'whether the dropper is visible'
-    } );
-
-    // @public
     this.flowRateProperty = new NumberProperty( options.flowRate, {
       units: 'L/s',
       isValidValue: value => ( value >= 0 ),
@@ -80,9 +72,26 @@ class Dropper extends PHMovable {
       phetioDocumentation: 'the flow rate of solute coming out of the dropper'
     } ); // L/sec
 
+    this.isDispensingProperty = new BooleanProperty( options.dispensing, {
+      tandem: options.tandem.createTandem( 'isDispensingProperty' ),
+      phetioReadOnly: true,
+      phetioDocumentation: 'whether solute is currently flowing out of the dropper'
+    } );
+
+    this.enabledProperty = new BooleanProperty( options.enabled, {
+      tandem: options.tandem.createTandem( 'enabledProperty' ),
+      phetioReadOnly: true,
+      phetioDocumentation: 'whether the button on the dropper is enabled'
+    } );
+
+    this.visibleProperty = new BooleanProperty( true, {
+      tandem: options.tandem.createTandem( 'visibleProperty' ),
+      phetioDocumentation: 'whether the dropper is visible'
+    } );
+
     // Turn off the dropper when it's disabled.
     this.enabledProperty.link( enabled => {
-      if ( !enabled ) {
+      if ( !enabled && !phet.joist.sim.isSettingPhetioStateProperty.get() ) {
         this.isDispensingProperty.set( false );
       }
     } );
@@ -95,11 +104,7 @@ class Dropper extends PHMovable {
     } );
   }
 
-  /**
-   * @public
-   * @override
-   */
-  reset() {
+  public override reset(): void {
     super.reset();
     this.soluteProperty.reset();
     this.isDispensingProperty.reset();
@@ -109,4 +114,3 @@ class Dropper extends PHMovable {
 }
 
 phScale.register( 'Dropper', Dropper );
-export default Dropper;

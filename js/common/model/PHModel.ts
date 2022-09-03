@@ -1,6 +1,5 @@
 // Copyright 2014-2020, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * This is the core model of pH Scale. All fundamental computations are encapsulated here.
  * Throughout this model, a null pH value means 'no value'.
@@ -20,14 +19,12 @@ const PHModel = {
 
   /**
    * General algorithm for pH.
-   *
-   * @param {number} solutePH
-   * @param {number} soluteVolume liters
-   * @param {number} waterVolume liters
-   * @returns {number|null} pH, null if total volume is zero
-   * @public
+   * @param solutePH
+   * @param soluteVolume liters
+   * @param waterVolume liters
+   * @returns pH, null if total volume is zero
    */
-  computePH( solutePH, soluteVolume, waterVolume ) {
+  computePH( solutePH: number, soluteVolume: number, waterVolume: number ): number | null {
     let pH;
     const totalVolume = soluteVolume + waterVolume;
     if ( totalVolume === 0 ) {
@@ -50,105 +47,83 @@ const PHModel = {
 
   /**
    * Compute pH from H3O+ concentration.
-   *
-   * @param {number} concentration
-   * @returns {number} pH, null if concentration is zero
-   * @public
+   * @param concentration
+   * @returns pH, null if concentration is zero
    */
-  concentrationH3OToPH( concentration ) {
+  concentrationH3OToPH( concentration: number ): number | null {
     return ( concentration === 0 ) ? null : -Utils.log10( concentration );
   },
 
   /**
    * Compute pH from OH- concentration.
-   *
-   * @param {number} concentration
-   * @returns {number} pH, null if concentration is zero
-   * @public
+   * @param concentration
+   * @returns pH, null if concentration is zero
    */
-  concentrationOHToPH( concentration ) {
-    return ( concentration === 0 ) ? null : 14 - PHModel.concentrationH3OToPH( concentration );
+  concentrationOHToPH( concentration: number ): number | null {
+    const pH = PHModel.concentrationH3OToPH( concentration );
+    return ( pH === null || concentration === 0 ) ? null : 14 - pH;
   },
 
   /**
    * Compute pH from moles of H3O+.
-   *
-   * @param {number} moles
-   * @param {number} volume volume of the solution in liters
-   * @returns {number} pH, null if moles or volume is zero
-   * @public
+   * @param moles
+   * @param volume volume of the solution in liters
+   * @returns pH, null if moles or volume is zero
    */
-  molesH3OToPH( moles, volume ) {
+  molesH3OToPH( moles: number, volume: number ): number | null {
     return ( moles === 0 || volume === 0 ) ? null : PHModel.concentrationH3OToPH( moles / volume );
   },
 
   /**
    * Compute pH from moles of OH-.
-   *
-   * @param {number} moles
-   * @param {number} volume volume of the solution in liters
-   * @returns {number} pH, null if moles or volume is zero
-   * @public
+   * @param moles
+   * @param volume volume of the solution in liters
+   * @returns pH, null if moles or volume is zero
    */
-  molesOHToPH( moles, volume ) {
+  molesOHToPH( moles: number, volume: number ): number | null {
     return ( moles === 0 || volume === 0 ) ? null : PHModel.concentrationOHToPH( moles / volume );
   },
 
   /**
    * Computes concentration of H20 from volume.
-   *
-   * @param {number} volume
-   * @returns {number} concentration in moles/L
-   * @public
+   * @param volume
+   * @returns concentration in moles/L, null if volume is 0
    */
-  volumeToConcentrationH20( volume ) {
+  volumeToConcentrationH20( volume: number ): number | null {
     return ( volume === 0 ) ? null : Water.concentration;
   },
 
   /**
    * Computes concentration of H3O+ from pH.
    *
-   * @param {number} pH null mean 'no value'
-   * @returns {number} concentration in moles/L
-   * @public
+   * @param pH null means 'no value'
+   * @returns concentration in moles/L, null means no concentration
    */
-  pHToConcentrationH3O( pH ) {
+  pHToConcentrationH3O( pH: number | null ): number | null {
     return ( pH === null ) ? null : Math.pow( 10, -pH );
   },
 
   /**
    * Computes concentration of OH- from pH.
-   *
-   * @param {number} pH null means 'no value'
-   * @returns {number} concentration in moles/L
-   * @public
+   * @param pH null means 'no value'
+   * @returns concentration in moles/L, null means no concentration
    */
-  pHToConcentrationOH( pH ) {
+  pHToConcentrationOH( pH: number | null ): number | null {
     return ( pH === null ) ? null : PHModel.pHToConcentrationH3O( 14 - pH );
   },
 
   /**
    * Computes the number of molecules in solution.
-   *
-   * @param {number} concentration moles/L
-   * @param {number} volume L
-   * @returns {number} moles
-   * @public
    */
-  computeMolecules( concentration, volume ) {
-    return concentration * volume * AVOGADROS_NUMBER;
+  computeMolecules( concentration: number | null, volume: number ): number {
+    return ( concentration === null ) ? 0 : ( concentration * volume * AVOGADROS_NUMBER );
   },
 
   /**
    * Computes moles in solution.
-   *
-   * @param {number} concentration moles/L
-   * @param {number} volume L
-   * @returns {number} moles
-   * @public
    */
-  computeMoles( concentration, volume ) {
-    return concentration * volume;
+  computeMoles( concentration: number | null, volume: number ): number {
+    return ( concentration === null ) ? 0 : ( concentration * volume );
   }
 };
 

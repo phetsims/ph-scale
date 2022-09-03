@@ -1,6 +1,5 @@
 // Copyright 2013-2021, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * A movable model element.
  * Semantics of units are determined by the client.
@@ -8,45 +7,44 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Vector2Property from '../../../../dot/js/Vector2Property.js';
-import merge from '../../../../phet-core/js/merge.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import Property from '../../../../axon/js/Property.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
+import Vector2Property, { Vector2PropertyOptions } from '../../../../dot/js/Vector2Property.js';
+import { combineOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import phScale from '../../phScale.js';
 
-class PHMovable {
+type SelfOptions = {
 
-  /**
-   * @param {Vector2} position
-   * @param {Bounds2} dragBounds optional, undefined if not provided
-   * @param {Object} [options]
-   */
-  constructor( position, dragBounds, options ) {
+  // options passed to positionProperty
+  positionPropertyOptions?: StrictOmit<Vector2PropertyOptions, 'tandem'>;
+};
 
-    options = merge( {
+export type PHMovableOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-      // options passed to positionProperty
-      positionPropertyOptions: null,
+export default class PHMovable {
 
-      // phet-io
-      tandem: Tandem.REQUIRED
-    }, options );
+  public readonly positionProperty: Property<Vector2>;
+  public readonly dragBounds: Bounds2;
 
-    // @public
-    this.positionProperty = new Vector2Property( position, merge( {}, options.positionPropertyOptions, {
-      tandem: options.tandem.createTandem( 'positionProperty' )
-    } ) );
+  public constructor( position: Vector2, dragBounds: Bounds2, providedOptions: PHMovableOptions ) {
 
-    // @public
+    const options = providedOptions;
+
+    this.positionProperty = new Vector2Property( position,
+      combineOptions<Vector2PropertyOptions>( {
+        tandem: options.tandem.createTandem( 'positionProperty' )
+      }, options.positionPropertyOptions ) );
+
     this.dragBounds = dragBounds;
   }
 
-  /**
-   * @public
-   */
-  reset() {
+  public reset(): void {
     this.positionProperty.reset();
   }
 }
 
 phScale.register( 'PHMovable', PHMovable );
-export default PHMovable;

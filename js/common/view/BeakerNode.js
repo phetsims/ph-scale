@@ -1,5 +1,6 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * Visual representation of a beaker that is filled to the top with a solution.
  * Origin is at the bottom center.

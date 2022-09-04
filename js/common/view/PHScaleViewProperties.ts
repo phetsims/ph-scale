@@ -1,6 +1,5 @@
-// Copyright 2016-2020, University of Colorado Boulder
+// Copyright 2016-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * View-specific Properties for the 'My Solution' and 'Micro' screens.
  *
@@ -8,38 +7,32 @@
  */
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import Property from '../../../../axon/js/Property.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import phScale from '../../phScale.js';
 
-class PHScaleViewProperties {
+export default class PHScaleViewProperties {
 
-  /**
-   * @param {Tandem} tandem
-   */
-  constructor( tandem ) {
-    assert && assert( tandem instanceof Tandem, 'invalid tandem' );
+  public readonly ratioVisibleProperty: Property<boolean>;
+  public readonly moleculeCountVisibleProperty: Property<boolean>;
 
-    // @public
+  public constructor( tandem: Tandem ) {
+
     this.ratioVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'ratioVisibleProperty' ),
       phetioDocumentation: 'controls visibility of the H3O+/OH- Ratio view'
     } );
 
-    // @public
     this.moleculeCountVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'moleculeCountVisibleProperty' ),
       phetioDocumentation: 'controls visibility of the Molecule Count view'
     } );
   }
 
-  /**
-   * @public
-   */
-  reset() {
+  public reset(): void {
     this.ratioVisibleProperty.reset();
     this.moleculeCountVisibleProperty.reset();
   }
 }
 
 phScale.register( 'PHScaleViewProperties', PHScaleViewProperties );
-export default PHScaleViewProperties;

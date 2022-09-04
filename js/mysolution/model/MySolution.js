@@ -1,5 +1,6 @@
 // Copyright 2020-2021, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * MySolution is the model of the solution in the My Solution screen.
  *

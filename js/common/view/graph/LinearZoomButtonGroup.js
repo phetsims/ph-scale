@@ -1,5 +1,6 @@
 // Copyright 2020, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * LinearZoomButtonGroup is the group of zoom button for the 'Linear' graph.
  *

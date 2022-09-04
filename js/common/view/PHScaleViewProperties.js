@@ -1,5 +1,6 @@
 // Copyright 2016-2020, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * View-specific Properties for the 'My Solution' and 'Micro' screens.
  *

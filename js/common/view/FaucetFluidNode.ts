@@ -1,6 +1,5 @@
-// Copyright 2013-2021, University of Colorado Boulder
+// Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Fluid coming out of a faucet.
  * Origin is at the top center, to simplify alignment with the center of the faucet's spout.
@@ -8,29 +7,23 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import merge from '../../../../phet-core/js/merge.js';
-import { Rectangle } from '../../../../scenery/js/imports.js';
+import Property from '../../../../axon/js/Property.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
+import { Color, Rectangle } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
+import Faucet from '../model/Faucet.js';
 
-class FaucetFluidNode extends Rectangle {
+export default class FaucetFluidNode extends Rectangle {
 
-  /**
-   * @param {Faucet} faucet
-   * @param {Property.<Color>} colorProperty
-   * @param {number} height in model coordinates
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {Object} [options]
-   */
-  constructor( faucet, colorProperty, height, modelViewTransform, options ) {
+  public constructor( faucet: Faucet, colorProperty: Property<Color>, height: number, modelViewTransform: ModelViewTransform2 ) {
 
-    options = merge( {
+    const options = {
 
-      lineWidth: 1,
+      // RectangleOptions
       pickable: false
-    }, options );
 
-    // See https://github.com/phetsims/ph-scale/issues/107
-    assert && assert( !options.tandem, 'do not instrument FaucetFluidNode' );
+      // Do not instrument FaucetFluidNode, see https://github.com/phetsims/ph-scale/issues/107
+    };
 
     super( 0, 0, 0, 0, options );
 
@@ -40,10 +33,7 @@ class FaucetFluidNode extends Rectangle {
       this.stroke = color.darkerColor();
     } );
 
-    /*
-     * Set the width of the shape to match the flow rate.
-     * @param {number} flowRate
-     */
+    // Set the width of the shape to match the flow rate.
     const viewPosition = modelViewTransform.modelToViewPosition( faucet.position );
     const viewHeight = modelViewTransform.modelToViewDeltaY( height );
     faucet.flowRateProperty.link( flowRate => {
@@ -59,4 +49,3 @@ class FaucetFluidNode extends Rectangle {
 }
 
 phScale.register( 'FaucetFluidNode', FaucetFluidNode );
-export default FaucetFluidNode;

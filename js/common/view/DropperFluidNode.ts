@@ -21,7 +21,7 @@ export type DropperFluidNodeOptions = SelfOptions & PickRequired<RectangleOption
 export default class DropperFluidNode extends Rectangle {
 
   public constructor( dropper: Dropper, beaker: Beaker, tipWidth: number, modelViewTransform: ModelViewTransform2,
-                      providedOptions?: DropperFluidNodeOptions ) {
+                      providedOptions: DropperFluidNodeOptions ) {
 
     super( 0, 0, 0, 0, providedOptions );
 

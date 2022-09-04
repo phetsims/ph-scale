@@ -1,6 +1,5 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Graph with a logarithmic scale, for displaying concentration (mol/L) and quantity (moles).
  * Assumes that graphing concentration and quantity can be graphed on the same scale.
@@ -16,64 +15,85 @@
 import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Multilink from '../../../../../axon/js/Multilink.js';
+import Property from '../../../../../axon/js/Property.js';
+import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import Utils from '../../../../../dot/js/Utils.js';
-import merge from '../../../../../phet-core/js/merge.js';
+import optionize from '../../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
-import { Line, LinearGradient, Node, Rectangle, RichText } from '../../../../../scenery/js/imports.js';
-import Tandem from '../../../../../tandem/js/Tandem.js';
+import { Font, Line, LinearGradient, Node, NodeOptions, Rectangle, RichText, TColor } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
-import PHModel from '../../model/PHModel.js';
+import PHModel, { PHValue } from '../../model/PHModel.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
 
-class LogarithmicGraphNode extends Node {
+type SelfOptions = {
 
-  /**
-   * @param {Property.<number>} pHProperty
-   * @param {Property.<number>} totalVolumeProperty
-   * @param {SolutionDerivedProperties} derivedProperties
-   * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
-   * @param {Object} [options]
-   */
-  constructor( pHProperty, totalVolumeProperty, derivedProperties, graphUnitsProperty, options ) {
-    assert && assert( derivedProperties instanceof SolutionDerivedProperties, 'invalid derivedProperties' );
-    assert && assert( graphUnitsProperty instanceof EnumerationProperty, 'invalid graphUnitsProperty' );
+  // if true, add drag handlers for changing H3O+ and OH-
+  isInteractive?: boolean;
 
-    options = merge( {
-      isInteractive: false, // if true, add drag handlers for changing H3O+ and OH-
+  // scale
+  scaleHeight?: number;
+  minScaleWidth?: number;
+  scaleYMargin?: number; // space above/below top/bottom tick marks
+  scaleCornerRadius?: number;
+  scaleStroke?: TColor;
+  scaleLineWidth?: number;
 
-      // scale
+  // major ticks
+  majorTickFont?: Font;
+  majorTickStroke?: TColor;
+  majorTickLength?: number;
+  majorTickLineWidth?: number;
+  majorTickXSpacing?: number;
+
+  // minor ticks
+  minorTickStroke?: TColor;
+  minorTickLength?: number;
+  minorTickLineWidth?: number;
+
+  // indicators
+  indicatorXOffset?: number;
+};
+
+export type LogarithmicGraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+
+export default class LogarithmicGraphNode extends Node {
+
+  public constructor( pHProperty: Property<PHValue>,
+                      totalVolumeProperty: TReadOnlyProperty<number>,
+                      derivedProperties: SolutionDerivedProperties,
+                      graphUnitsProperty: EnumerationProperty<GraphUnits>,
+                      providedOptions: LogarithmicGraphNodeOptions ) {
+
+    const options = optionize<LogarithmicGraphNodeOptions, SelfOptions, NodeOptions>()( {
+
+      // SelfOptions
+      isInteractive: false,
       scaleHeight: 100,
       minScaleWidth: 100,
-      scaleYMargin: 30, // space above/below top/bottom tick marks
+      scaleYMargin: 30,
       scaleCornerRadius: 20,
       scaleStroke: 'black',
       scaleLineWidth: 2,
-
-      // major ticks
       majorTickFont: new PhetFont( 22 ),
-      majorTickLength: 15,
       majorTickStroke: 'black',
+      majorTickLength: 15,
       majorTickLineWidth: 1,
       majorTickXSpacing: 5,
-
-      // minor ticks
-      minorTickLength: 7,
       minorTickStroke: 'black',
+      minorTickLength: 7,
       minorTickLineWidth: 1,
-
-      // indicators
       indicatorXOffset: 10,
 
-      // phet-io
-      tandem: Tandem.REQUIRED,
+      // NodeOptions
       visiblePropertyOptions: {
         phetioReadOnly: true
       }
-    }, options );
+    }, providedOptions );
 
     super();
 
@@ -186,10 +206,8 @@ class LogarithmicGraphNode extends Node {
 
     /**
      * Given a value, compute it's y position relative to the top of the scale.
-     * @param {number|null} value
-     * @returns {number}
      */
-    const valueToY = value => {
+    const valueToY = ( value: number | null ) => {
       if ( value === 0 || value === null ) {
         // below the bottom tick
         return options.scaleHeight - ( 0.5 * options.scaleYMargin );
@@ -205,7 +223,7 @@ class LogarithmicGraphNode extends Node {
     };
 
     // Given a y position relative to the top of the scale, compute a value.
-    const yToValue = y => {
+    const yToValue = ( y: number ) => {
       const yOffset = y - options.scaleYMargin; // distance between indicator's origin and top tick mark
       const maxHeight = ( options.scaleHeight - 2 * options.scaleYMargin ); // distance between top and bottom tick marks
       const exponent = Utils.linear( 0, maxHeight, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, yOffset );
@@ -216,6 +234,7 @@ class LogarithmicGraphNode extends Node {
     Multilink.multilink( [ valueH2OProperty, graphUnitsProperty ],
       ( valueH2O, graphUnits ) => {
         // offset the H2O indicator when off scale, so it doesn't butt up again OH indicator
+        // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 valueToY only takes 1 arg
         indicatorH2ONode.y = valueToY( valueH2O, -4 );
       } );
     Multilink.multilink( [ valueH3OProperty, graphUnitsProperty ],
@@ -253,10 +272,8 @@ class LogarithmicGraphNode extends Node {
 
 /**
  * Creates a tick label, '10' to some exponent.
- * @param {number} exponent
- * @param {Font} font
  */
-function createTickLabel( exponent, font ) {
+function createTickLabel( exponent: number, font: Font ): Node {
   return new RichText( `10<sup>${exponent}</sup>`, {
     font: font,
     fill: 'black'
@@ -264,4 +281,3 @@ function createTickLabel( exponent, font ) {
 }
 
 phScale.register( 'LogarithmicGraphNode', LogarithmicGraphNode );
-export default LogarithmicGraphNode;

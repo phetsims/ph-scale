@@ -57,8 +57,8 @@ const PHModel = {
    * @param concentration
    * @returns pH, null if concentration is zero
    */
-  concentrationH3OToPH( concentration: number ): PHValue {
-    return ( concentration === 0 ) ? null : -Utils.log10( concentration );
+  concentrationH3OToPH( concentration: ConcentrationValue ): PHValue {
+    return ( concentration === null || concentration === 0 ) ? null : -Utils.log10( concentration );
   },
 
   /**
@@ -66,9 +66,9 @@ const PHModel = {
    * @param concentration
    * @returns pH, null if concentration is zero
    */
-  concentrationOHToPH( concentration: number ): PHValue {
+  concentrationOHToPH( concentration: ConcentrationValue ): PHValue {
     const pH = PHModel.concentrationH3OToPH( concentration );
-    return ( pH === null || concentration === 0 ) ? null : 14 - pH;
+    return ( pH === null ) ? null : 14 - pH;
   },
 
   /**

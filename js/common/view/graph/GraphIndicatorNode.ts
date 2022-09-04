@@ -16,7 +16,7 @@ import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import ArrowNode from '../../../../../scenery-phet/js/ArrowNode.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
-import { Node, NodeOptions, Path, Rectangle, RichText, TColor } from '../../../../../scenery/js/imports.js';
+import { Node, NodeOptions, NodeTranslationOptions, Path, Rectangle, RichText, TColor } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
 import PHScaleColors from '../../PHScaleColors.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
@@ -51,11 +51,11 @@ type SelfOptions = {
   arrowXSpacing?: number;
 };
 
-export type GraphIndicatorNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+export type GraphIndicatorNodeOptions = SelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class GraphIndicatorNode extends Node {
 
-  public constructor( valueProperty: TReadOnlyProperty<number>,
+  public constructor( valueProperty: TReadOnlyProperty<number | null>,
                       moleculeNode: Node,
                       formulaNode: Node,
                       providedOptions: GraphIndicatorNodeOptions ) {
@@ -215,10 +215,8 @@ export default class GraphIndicatorNode extends Node {
       } );
     }
 
-    // sync with value
-    valueProperty.link( value => {
-
-      // center on the background
+    // center value on the background
+    valueNode.boundsProperty.link( () => {
       valueNode.center = valueBackgroundNode.center;
     } );
 
@@ -228,7 +226,7 @@ export default class GraphIndicatorNode extends Node {
   /**
    * Creates an indicator for H2O.
    */
-  public static createH2OIndicator( valueProperty: TReadOnlyProperty<number>,
+  public static createH2OIndicator( valueProperty: TReadOnlyProperty<number | null>,
                                     options: GraphIndicatorNodeOptions ): GraphIndicatorNode {
     return new GraphIndicatorNode( valueProperty,
       new H2ONode(),
@@ -244,7 +242,7 @@ export default class GraphIndicatorNode extends Node {
   /**
    * Creates an indicator for H3O+.
    */
-  public static createH3OIndicator( valueProperty: TReadOnlyProperty<number>,
+  public static createH3OIndicator( valueProperty: TReadOnlyProperty<number | null>,
                                     options: GraphIndicatorNodeOptions ): GraphIndicatorNode {
     return new GraphIndicatorNode( valueProperty,
       new H3ONode(),
@@ -258,7 +256,7 @@ export default class GraphIndicatorNode extends Node {
   /**
    * Creates an indicator for OH-.
    */
-  public static createOHIndicator( valueProperty: TReadOnlyProperty<number>,
+  public static createOHIndicator( valueProperty: TReadOnlyProperty<number | null>,
                                    options: GraphIndicatorNodeOptions ): GraphIndicatorNode {
     return new GraphIndicatorNode( valueProperty,
       new OHNode(),

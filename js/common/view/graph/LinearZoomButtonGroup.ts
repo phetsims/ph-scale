@@ -11,11 +11,13 @@ import Range from '../../../../../dot/js/Range.js';
 import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import MagnifyingGlassZoomButtonGroup, { MagnifyingGlassZoomButtonGroupOptions } from '../../../../../scenery-phet/js/MagnifyingGlassZoomButtonGroup.js';
+import { NodeTranslationOptions } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type LinearZoomButtonGroupOptions = SelfOptions & PickRequired<MagnifyingGlassZoomButtonGroupOptions, 'tandem'>;
+export type LinearZoomButtonGroupOptions = SelfOptions & NodeTranslationOptions &
+  PickRequired<MagnifyingGlassZoomButtonGroupOptions, 'tandem'>;
 
 export default class LinearZoomButtonGroup extends MagnifyingGlassZoomButtonGroup {
 

@@ -1,6 +1,5 @@
 // Copyright 2014-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Graph with a linear scale, for displaying concentration (mol/L) and quantity (moles).
  * Some of the code related to indicators (initialization and updateIndicators) is similar
@@ -16,11 +15,11 @@ import Multilink from '../../../../../axon/js/Multilink.js';
 import NumberProperty from '../../../../../axon/js/NumberProperty.js';
 import Utils from '../../../../../dot/js/Utils.js';
 import { Shape } from '../../../../../kite/js/imports.js';
-import merge from '../../../../../phet-core/js/merge.js';
+import optionize from '../../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
-import { Line, Node, Path, Text } from '../../../../../scenery/js/imports.js';
-import Tandem from '../../../../../tandem/js/Tandem.js';
+import { Font, Line, Node, NodeOptions, Path, TColor, Text } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
 import phScaleStrings from '../../../phScaleStrings.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
@@ -32,47 +31,61 @@ import LinearZoomButtonGroup from './LinearZoomButtonGroup.js';
 // constants
 const MANTISSA_RANGE = PHScaleConstants.LINEAR_MANTISSA_RANGE;
 
-class LinearGraphNode extends Node {
+type SelfOptions = {
 
-  /**
-   * @param {SolutionDerivedProperties} derivedProperties
-   * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
-   * @param {Object} [options]
-   */
-  constructor( derivedProperties, graphUnitsProperty, options ) {
-    assert && assert( derivedProperties instanceof SolutionDerivedProperties, 'invalid derivedProperties' );
-    assert && assert( graphUnitsProperty instanceof EnumerationProperty, 'invalid graphUnitsProperty' );
+  // scale
+  scaleHeight?: number;
+  minScaleWidth?: number;
+  scaleFill?: TColor;
+  scaleStroke?: TColor;
+  scaleLineWidth?: number;
+  scaleYMargin?: number;
 
-    options = merge( {
+  // arrow at top of scale
+  arrowHeight?: number;
 
-      // scale
+  // major ticks
+  majorTickFont?: Font;
+  majorTickStroke?: TColor;
+  majorTickLength?: number;
+  majorTickLineWidth?: number;
+  majorTickXSpacing?: number;
+};
+
+export type LinearGraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+
+export default class LinearGraphNode extends Node {
+
+  private readonly exponentProperty: NumberProperty;
+
+  public constructor( derivedProperties: SolutionDerivedProperties,
+                      graphUnitsProperty: EnumerationProperty<GraphUnits>,
+                      providedOptions: LinearGraphNodeOptions ) {
+
+    const options = optionize<LinearGraphNodeOptions, SelfOptions, NodeOptions>()( {
+
+      // SelfOptions
       scaleHeight: 100,
       minScaleWidth: 100,
       scaleFill: 'rgb( 230, 230, 230 )',
       scaleStroke: 'black',
       scaleLineWidth: 2,
       scaleYMargin: 30,
-
-      // arrow at top of scale
       arrowHeight: 75,
-
-      // major ticks
       majorTickFont: new PhetFont( 18 ),
-      majorTickLength: 10,
       majorTickStroke: 'black',
+      majorTickLength: 10,
       majorTickLineWidth: 1,
       majorTickXSpacing: 5,
 
-      // phet-io
-      tandem: Tandem.REQUIRED,
+      // NodeOptions
       visiblePropertyOptions: {
         phetioReadOnly: true
       }
-    }, options );
+    }, providedOptions );
 
     super();
 
-    // @private
     this.exponentProperty = new NumberProperty( PHScaleConstants.LINEAR_EXPONENT_RANGE.max, {
       numberType: 'Integer',
       tandem: options.tandem.createTandem( 'exponentProperty' ),
@@ -124,7 +137,7 @@ class LinearGraphNode extends Node {
     offScaleText.y = arrowNode.top + ( 0.85 * arrowHeadHeight );
 
     // Create the tick marks. Correct labels will be assigned later.
-    const tickLabels = [];
+    const tickLabels: ScientificNotationNode[] = [];
     const numberOfTicks = MANTISSA_RANGE.getLength() + 1;
     const ySpacing = ( scaleHeight - arrowHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
     let tickLabel;
@@ -201,11 +214,11 @@ class LinearGraphNode extends Node {
 
     /*
      * Given a value, compute it's y position relative to the top of the scale.
-     * @param {number|null} value in model coordinates
-     * @param {number} offScaleYOffset optional y-offset added to the position if the value is off the scale
-     * @returns {number} y position in view coordinates
+     * @param value - in model coordinates
+     * @param offScaleYOffset - optional y-offset added to the position if the value is off the scale
+     * @returns y position in view coordinates
      */
-    const valueToY = ( value, offScaleYOffset ) => {
+    const valueToY = ( value: number | null, offScaleYOffset = 0 ) => {
       const topTickValue = MANTISSA_RANGE.max * Math.pow( 10, this.exponentProperty.get() );
       value = value || 0;
       if ( value > topTickValue ) {
@@ -218,9 +231,11 @@ class LinearGraphNode extends Node {
     };
 
     // updates the tick labels to match the exponent
-    const updateTickLabels = exponent => {
+    const updateTickLabels = ( exponent: number ) => {
       const tickOptions = ( exponent >= 0 ) ? { exponent: 0 } : { exponent: exponent }; // show positive exponents as integers
       for ( let i = 0; i < tickLabels.length; i++ ) {
+
+        // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 this looks buggy
         tickLabels[ i ].valueProperty.set( i * Math.pow( 10, exponent ), tickOptions );
         tickLabels[ i ].centerX = scaleNode.centerX;
       }
@@ -255,13 +270,9 @@ class LinearGraphNode extends Node {
     this.mutate( options );
   }
 
-  /**
-   * @public
-   */
-  reset() {
+  public reset(): void {
     this.exponentProperty.reset();
   }
 }
 
 phScale.register( 'LinearGraphNode', LinearGraphNode );
-export default LinearGraphNode;

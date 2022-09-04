@@ -119,17 +119,17 @@ export default class MoleculeCountNode extends Node {
     hboxH2O.center = backgroundH2O.center;
 
     // Links to the count Properties
-    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.numberOfH3OMoleculesProperty, {
       tandem: options.tandem.createTandem( 'numberOfH3OMoleculesProperty' )
     } );
 
-    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.numberOfOHMoleculesProperty, {
       tandem: options.tandem.createTandem( 'numberOfOHMoleculesProperty' )
     } );
 
-    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.numberOfH2OMoleculesProperty, {
       tandem: options.tandem.createTandem( 'numberOfH2OMoleculesProperty' )
     } );

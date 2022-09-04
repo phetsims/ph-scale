@@ -105,7 +105,7 @@ export default class RatioNode extends Node {
           return null;
         }
         else {
-          // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
+          // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
           return PHModel.pHToConcentrationH3O( pH ) / PHModel.pHToConcentrationOH( pH );
         }
       }, {
@@ -142,7 +142,7 @@ export default class RatioNode extends Node {
 
     let pH = this.solution.pHProperty.value;
     if ( pH !== null ) {
-      // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
+      // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
       pH = Utils.toFixedNumber( this.solution.pHProperty.value, PHScaleConstants.PH_METER_DECIMAL_PLACES );
     }
 
@@ -213,13 +213,13 @@ function createRandomY( bounds: Bounds2 ): number {
 
 // Computes the {number} number of H3O+ molecules for some {number} pH.
 function computeNumberOfH3O( pH: PHValue ): number {
-  // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
+  // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
   return Utils.roundSymmetric( PHModel.pHToConcentrationH3O( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
 }
 
 // Computes the {number} number of OH- molecules for some {number} pH.
 function computeNumberOfOH( pH: PHValue ): number {
-  // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
+  // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
   return Utils.roundSymmetric( PHModel.pHToConcentrationOH( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
 }
 
@@ -259,13 +259,13 @@ class MoleculesCanvas extends CanvasNode {
     const ArrayConstructor = window.Float32Array || window.Array;
 
     // pre-allocate arrays for molecule x and y coordinates, to eliminate allocation in critical code
-    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.xH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
-    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.yH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
-    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.xOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
-    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.yOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
 
     // Generate majority and minority {HTMLCanvasElement} for each molecule.

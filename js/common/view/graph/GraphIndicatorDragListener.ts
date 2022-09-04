@@ -13,7 +13,7 @@ import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphUnits from './GraphUnits.js';
-import { PHValue } from '../../model/PHModel.js';
+import { ConcentrationValue, PHValue } from '../../model/PHModel.js';
 import Property from '../../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
@@ -35,8 +35,8 @@ export default class GraphIndicatorDragListener extends DragListener {
                       totalVolumeProperty: TReadOnlyProperty<number>,
                       graphUnitsProperty: EnumerationProperty<GraphUnits>,
                       yToValue: ( y: number ) => number,
-                      concentrationToPH: ( concentration: number ) => number,
-                      molesToPH: ( moles: number, volume: number ) => number,
+                      concentrationToPH: ( concentration: ConcentrationValue ) => PHValue,
+                      molesToPH: ( moles: number, volume: number ) => PHValue,
                       tandem: Tandem ) {
 
     let clickYOffset: number; // y-offset between initial click and indicator's origin
@@ -87,6 +87,7 @@ export default class GraphIndicatorDragListener extends DragListener {
           let pH = isConcentration ? concentrationToPH( adjustedValue ) : molesToPH( adjustedValue, totalVolumeProperty.value );
 
           // Constrain the pH to the valid range
+          // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 handle pH === null
           pH = Utils.clamp( pH, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
 
           phet.log && phet.log( `value=${value} adjustedValue=${adjustedValue} pH=${pH}` );

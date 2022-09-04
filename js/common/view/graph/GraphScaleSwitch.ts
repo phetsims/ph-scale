@@ -1,38 +1,38 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * GraphScaleSwitch is the control for switching between logarithmic and linear scales.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Dimension2 from '../../../../../dot/js/Dimension2.js';
 import merge from '../../../../../phet-core/js/merge.js';
+import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import { Text } from '../../../../../scenery/js/imports.js';
-import ABSwitch from '../../../../../sun/js/ABSwitch.js';
-import Tandem from '../../../../../tandem/js/Tandem.js';
+import ABSwitch, { ABSwitchOptions } from '../../../../../sun/js/ABSwitch.js';
 import phScale from '../../../phScale.js';
 import phScaleStrings from '../../../phScaleStrings.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphScale from './GraphScale.js';
 
-class GraphScaleSwitch extends ABSwitch {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {EnumerationProperty.<GraphScale>} graphScaleProperty
-   * @param {Object} [options]
-   */
-  constructor( graphScaleProperty, options ) {
+export type GraphScaleSwitchOptions = SelfOptions & PickRequired<ABSwitchOptions, 'tandem'>;
 
-    options = merge( {
+export default class GraphScaleSwitch extends ABSwitch<GraphScale> {
+
+  public constructor( graphScaleProperty: EnumerationProperty<GraphScale>, providedOptions: GraphScaleSwitchOptions ) {
+
+    const options = optionize<GraphScaleSwitchOptions, SelfOptions, ABSwitchOptions>()( {
+
+      // ABSwitchOptions
       toggleSwitchOptions: { size: new Dimension2( 50, 25 ) },
       centerOnSwitch: true,
-
-      // phet-io
-      tandem: Tandem.REQUIRED,
       phetioDocumentation: 'A/B switch for switching between logarithmic and linear scales'
-    }, options );
+    }, providedOptions );
 
     const textOptions = {
       font: PHScaleConstants.AB_SWITCH_FONT,
@@ -54,4 +54,3 @@ class GraphScaleSwitch extends ABSwitch {
 }
 
 phScale.register( 'GraphScaleSwitch', GraphScaleSwitch );
-export default GraphScaleSwitch;

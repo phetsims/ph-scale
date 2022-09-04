@@ -21,7 +21,7 @@ import Utils from '../../../../../dot/js/Utils.js';
 import optionize from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
-import { Font, Line, LinearGradient, Node, NodeOptions, Rectangle, RichText, TColor } from '../../../../../scenery/js/imports.js';
+import { Font, Line, LinearGradient, Node, NodeOptions, NodeTranslationOptions, Rectangle, RichText, TColor } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
 import PHModel, { PHValue } from '../../model/PHModel.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
@@ -59,7 +59,7 @@ type SelfOptions = {
   indicatorXOffset?: number;
 };
 
-export type LogarithmicGraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+export type LogarithmicGraphNodeOptions = SelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class LogarithmicGraphNode extends Node {
 

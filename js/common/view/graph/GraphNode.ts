@@ -1,6 +1,5 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Container for all components related to the graph feature.
  * It has an expand/collapse bar at the top of it, and can switch between 'concentration' and 'quantity'.
@@ -12,9 +11,7 @@
 
 import BooleanProperty from '../../../../../axon/js/BooleanProperty.js';
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
-import merge from '../../../../../phet-core/js/merge.js';
-import { Line, Node } from '../../../../../scenery/js/imports.js';
-import Tandem from '../../../../../tandem/js/Tandem.js';
+import { Line, Node, NodeOptions } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
 import GraphControlPanel from './GraphControlPanel.js';
@@ -23,29 +20,40 @@ import GraphScaleSwitch from './GraphScaleSwitch.js';
 import GraphUnits from './GraphUnits.js';
 import LinearGraphNode from './LinearGraphNode.js';
 import LogarithmicGraphNode from './LogarithmicGraphNode.js';
+import { PHValue } from '../../model/PHModel.js';
+import Property from '../../../../../axon/js/Property.js';
+import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
+import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
+import optionize from '../../../../../phet-core/js/optionize.js';
 
-class GraphNode extends Node {
+type SelfOptions = {
+  isInteractive?: boolean; // if true, add drag handlers for changing H3O+ and OH- on the Logarithmic graph
+  logScaleHeight?: number;
+  linearScaleHeight?: number;
+  units?: GraphUnits; // initial state of the units switch
+  hasLinearFeature?: boolean; // add the linear graph feature?
+  graphScale?: GraphScale; // initial state of the scale switch, meaningful only if hasLinearFeature === true
+};
 
-  /**
-   * @param {Property.<number>} pHProperty
-   * @param {Property.<number>} totalVolumeProperty
-   * @param {SolutionDerivedProperties} derivedProperties
-   * @param {Object} [options]
-   */
-  constructor( pHProperty, totalVolumeProperty, derivedProperties, options ) {
-    assert && assert( derivedProperties instanceof SolutionDerivedProperties, 'invalid derivedProperties' );
+export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
-    options = merge( {
-      isInteractive: false, // if true, add drag handlers for changing H3O+ and OH- on the Logarithmic graph
+export default class GraphNode extends Node {
+
+  private readonly resetGraphNode: () => void;
+
+  public constructor( pHProperty: Property<PHValue>,
+                      totalVolumeProperty: TReadOnlyProperty<number>,
+                      derivedProperties: SolutionDerivedProperties,
+                      providedOptions: GraphNodeOptions ) {
+
+    const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {
+      isInteractive: false,
       logScaleHeight: 500,
       linearScaleHeight: 500,
-      units: GraphUnits.MOLES_PER_LITER, // initial state of the units switch
-      hasLinearFeature: false, // add the linear graph feature?
-      graphScale: GraphScale.LOGARITHMIC, // initial state of the scale switch, meaningful only if hasLinearFeature === true
-
-      // phet-io
-      tandem: Tandem.REQUIRED
-    }, options );
+      units: GraphUnits.MOLES_PER_LITER,
+      hasLinearFeature: false,
+      graphScale: GraphScale.LOGARITHMIC
+    }, providedOptions );
 
     super();
 
@@ -93,9 +101,9 @@ class GraphNode extends Node {
       parentNode.visible = expanded;
     } );
 
-    // @private {LinearGraphNode|null} optional linear graph
-    let linearGraphNode = null;
-    let graphScaleProperty = null;
+    // optional linear graph
+    let linearGraphNode: LinearGraphNode;
+    let graphScaleProperty: EnumerationProperty<GraphScale>;
     if ( options.hasLinearFeature ) {
 
       // scale (log, linear) of the graph
@@ -144,7 +152,6 @@ class GraphNode extends Node {
 
     this.mutate( options );
 
-    // @private
     this.resetGraphNode = () => {
       expandedProperty.reset();
       graphUnitsProperty.reset();
@@ -153,35 +160,37 @@ class GraphNode extends Node {
     };
 
     // Link to concentration Properties, see https://github.com/phetsims/ph-scale/issues/125
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.concentrationH2OProperty, {
       tandem: options.tandem.createTandem( 'concentrationH2OProperty' )
     } );
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.concentrationH3OProperty, {
       tandem: options.tandem.createTandem( 'concentrationH3OProperty' )
     } );
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.concentrationOHProperty, {
       tandem: options.tandem.createTandem( 'concentrationOHProperty' )
     } );
 
     // Link to quantity Properties, see https://github.com/phetsims/ph-scale/issues/125
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.quantityH2OProperty, {
       tandem: options.tandem.createTandem( 'quantityH2OProperty' )
     } );
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.quantityH3OProperty, {
       tandem: options.tandem.createTandem( 'quantityH3OProperty' )
     } );
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.quantityOHProperty, {
       tandem: options.tandem.createTandem( 'quantityOHProperty' )
     } );
   }
 
-  /**
-   * @public
-   */
-  reset() {
+  public reset(): void {
     this.resetGraphNode();
   }
 }
 
 phScale.register( 'GraphNode', GraphNode );
-export default GraphNode;

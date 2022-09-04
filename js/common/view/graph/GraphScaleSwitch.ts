@@ -10,7 +10,7 @@ import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Dimension2 from '../../../../../dot/js/Dimension2.js';
 import optionize, { combineOptions, EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
-import { Text, TextOptions } from '../../../../../scenery/js/imports.js';
+import { NodeTranslationOptions, Text, TextOptions } from '../../../../../scenery/js/imports.js';
 import ABSwitch, { ABSwitchOptions } from '../../../../../sun/js/ABSwitch.js';
 import phScale from '../../../phScale.js';
 import phScaleStrings from '../../../phScaleStrings.js';
@@ -19,7 +19,7 @@ import GraphScale from './GraphScale.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type GraphScaleSwitchOptions = SelfOptions & PickRequired<ABSwitchOptions, 'tandem'>;
+export type GraphScaleSwitchOptions = SelfOptions & NodeTranslationOptions & PickRequired<ABSwitchOptions, 'tandem'>;
 
 export default class GraphScaleSwitch extends ABSwitch<GraphScale> {
 

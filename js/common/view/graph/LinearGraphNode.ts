@@ -19,7 +19,7 @@ import optionize from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
-import { Font, Line, Node, NodeOptions, Path, TColor, Text } from '../../../../../scenery/js/imports.js';
+import { Font, Line, Node, NodeOptions, NodeTranslationOptions, Path, TColor, Text } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
 import phScaleStrings from '../../../phScaleStrings.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
@@ -52,7 +52,7 @@ type SelfOptions = {
   majorTickXSpacing?: number;
 };
 
-export type LinearGraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+export type LinearGraphNodeOptions = SelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class LinearGraphNode extends Node {
 

@@ -1,5 +1,6 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * Displays a volume value, with an left-pointing arrow to the left of the value.
  * The origin is at the tip of the arrowhead.

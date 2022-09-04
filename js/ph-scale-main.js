@@ -20,7 +20,9 @@ simLauncher.launch( () => {
   const screens = [
     new MacroScreen( Tandem.ROOT.createTandem( 'macroScreen' ) ),
     new MicroScreen( Tandem.ROOT.createTandem( 'microScreen' ) ),
-    new MySolutionScreen( Tandem.ROOT.createTandem( 'mySolutionScreen' ) )
+    new MySolutionScreen( {
+      tandem: Tandem.ROOT.createTandem( 'mySolutionScreen' )
+    } )
   ];
 
   const sim = new Sim( phScaleStrings[ 'ph-scale' ].titleStringProperty, screens, {

@@ -22,7 +22,7 @@ import OHNode from './molecules/OHNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type MoleculeCountNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+export type MoleculeCountNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
 
 export default class MoleculeCountNode extends Node {
 

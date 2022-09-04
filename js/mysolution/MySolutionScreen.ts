@@ -1,6 +1,5 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * The 'My Solution' screen.
  *
@@ -8,11 +7,12 @@
  */
 
 import Property from '../../../axon/js/Property.js';
-import Screen from '../../../joist/js/Screen.js';
+import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
+import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
+import PickRequired from '../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import { Image } from '../../../scenery/js/imports.js';
-import Tandem from '../../../tandem/js/Tandem.js';
 import mySolutionHomeScreenIcon_png from '../../images/mySolutionHomeScreenIcon_png.js';
 import mySolutionNavbarIcon_png from '../../images/mySolutionNavbarIcon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
@@ -21,16 +21,17 @@ import phScaleStrings from '../phScaleStrings.js';
 import MySolutionModel from './model/MySolutionModel.js';
 import MySolutionScreenView from './view/MySolutionScreenView.js';
 
-class MySolutionScreen extends Screen {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {Tandem} tandem
-   */
-  //TODO https://github.com/phetsims/ph-scale/issues/242 move tandem to providedOptions
-  constructor( tandem ) {
-    assert && assert( tandem instanceof Tandem, 'invalid tandem' );
+type MySolutionScreenOptions = SelfOptions & PickRequired<ScreenOptions, 'tandem'>;
 
-    const options = {
+export default class MySolutionScreen extends Screen {
+
+  public constructor( providedOptions: MySolutionScreenOptions ) {
+
+    const options = optionize<MySolutionScreenOptions, SelfOptions, ScreenOptions>()( {
+
+      // ScreenOptions
       name: phScaleStrings.screen.mySolutionStringProperty,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
       homeScreenIcon: new ScreenIcon( new Image( mySolutionHomeScreenIcon_png ), {
@@ -40,19 +41,19 @@ class MySolutionScreen extends Screen {
       navigationBarIcon: new ScreenIcon( new Image( mySolutionNavbarIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
-      } ),
-      tandem: tandem
-    };
+      } )
+    }, providedOptions );
 
     super(
       () => new MySolutionModel( {
-        tandem: tandem.createTandem( 'model' )
+        tandem: options.tandem.createTandem( 'model' )
       } ),
-      model => new MySolutionScreenView( model, ModelViewTransform2.createIdentity(), tandem.createTandem( 'view' ) ),
+      model => new MySolutionScreenView( model, ModelViewTransform2.createIdentity(), {
+        tandem: options.tandem.createTandem( 'view' )
+      } ),
       options
     );
   }
 }
 
 phScale.register( 'MySolutionScreen', MySolutionScreen );
-export default MySolutionScreen;

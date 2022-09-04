@@ -47,10 +47,10 @@ type MicroScreenViewOptions = SelfOptions & PickRequired<ScreenOptions, 'tandem'
 
 export default class MicroScreenView extends ScreenView {
 
-  public constructor( model: MicroModel, modelViewTransform: ModelViewTransform2, provideOptions: MicroScreenViewOptions ) {
+  public constructor( model: MicroModel, modelViewTransform: ModelViewTransform2, providedOptions: MicroScreenViewOptions ) {
 
     const options = optionize3<MicroScreenViewOptions, SelfOptions, ScreenOptions>()( {},
-      PHScaleConstants.SCREEN_VIEW_OPTIONS, provideOptions );
+      PHScaleConstants.SCREEN_VIEW_OPTIONS, providedOptions );
 
     super( options );
 

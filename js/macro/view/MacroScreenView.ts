@@ -1,6 +1,5 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * View for the 'Macro' screen.
  *
@@ -8,12 +7,13 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
+import { ScreenOptions } from '../../../../joist/js/Screen.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
-import merge from '../../../../phet-core/js/merge.js';
+import { EmptySelfOptions, optionize3 } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import EyeDropperNode from '../../../../scenery-phet/js/EyeDropperNode.js';
 import { Node } from '../../../../scenery/js/imports.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 import Water from '../../common/model/Water.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import BeakerNode from '../../common/view/BeakerNode.js';
@@ -28,19 +28,21 @@ import WaterFaucetNode from '../../common/view/WaterFaucetNode.js';
 import phScale from '../../phScale.js';
 import MacroPHMeterNode from './MacroPHMeterNode.js';
 import NeutralIndicatorNode from './NeutralIndicatorNode.js';
+import MacroModel from '../model/MacroModel.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 
-class MacroScreenView extends ScreenView {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {MacroModel} model
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {Object} [options]
-   */
-  constructor( model, modelViewTransform, options ) {
+type MacroScreenViewOptions = SelfOptions & PickRequired<ScreenOptions, 'tandem'>;
 
-    super( merge( {
-      tandem: Tandem.REQUIRED
-    }, PHScaleConstants.SCREEN_VIEW_OPTIONS, options ) );
+export default class MacroScreenView extends ScreenView {
+
+  public constructor( model: MacroModel, modelViewTransform: ModelViewTransform2, providedOptions: MacroScreenViewOptions ) {
+
+    const options = optionize3<MacroScreenViewOptions, SelfOptions, ScreenOptions>()( {},
+      PHScaleConstants.SCREEN_VIEW_OPTIONS, providedOptions );
+
+    super( options );
 
     // beaker
     const beakerNode = new BeakerNode( model.beaker, modelViewTransform, {
@@ -89,14 +91,16 @@ class MacroScreenView extends ScreenView {
 
     // Hide fluids when their faucets are hidden. See https://github.com/phetsims/ph-scale/issues/107
     waterFaucetNode.visibleProperty.lazyLink( () => {
-      waterFaucetNode.visibile = waterFaucetNode.visible;
+      waterFluidNode.visible = waterFaucetNode.visible;
     } );
-    drainFluidNode.visibleProperty.lazyLink( () => {
-      waterFaucetNode.visibile = drainFluidNode.visible;
+    drainFaucetNode.visibleProperty.lazyLink( () => {
+      drainFluidNode.visible = drainFaucetNode.visible;
     } );
 
     // pH meter
-    const pHMeterNode = new MacroPHMeterNode( model.pHMeter, model.solution, model.dropper,
+    const pHMeter = model.pHMeter!;
+    assert && assert( pHMeter );
+    const pHMeterNode = new MacroPHMeterNode( pHMeter, model.solution, model.dropper,
       solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform, {
         tandem: options.tandem.createTandem( 'pHMeterNode' )
       } );
@@ -156,4 +160,3 @@ class MacroScreenView extends ScreenView {
 }
 
 phScale.register( 'MacroScreenView', MacroScreenView );
-export default MacroScreenView;

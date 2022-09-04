@@ -14,8 +14,8 @@ import phScaleStrings from '../../phScaleStrings.js';
 import PHModel, { PHValue } from '../../common/model/PHModel.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import Property from '../../../../axon/js/Property.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -23,7 +23,7 @@ export type NeutralIndicatorNodeOptions = SelfOptions & PickRequired<NodeOptions
 
 export default class NeutralIndicatorNode extends Node {
 
-  public constructor( pHProperty: Property<PHValue>, providedOptions: NeutralIndicatorNodeOptions ) {
+  public constructor( pHProperty: TReadOnlyProperty<PHValue>, providedOptions: NeutralIndicatorNodeOptions ) {
 
     const options = optionize<NeutralIndicatorNodeOptions, SelfOptions, PhetioObjectOptions>()( {
 

@@ -66,7 +66,7 @@ export default class MacroModel {
   // how much (L) to autofill when the solute changes
   private readonly autofillVolume: number;
 
-  private readonly isAutofillingProperty: Property<boolean>;
+  public readonly isAutofillingProperty: Property<boolean>;
 
   public constructor( providedOptions: MacroModelOptions ) {
 

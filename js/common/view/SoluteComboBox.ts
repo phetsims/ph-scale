@@ -1,45 +1,44 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Combo box for choosing a solute (stock solution).
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import merge from '../../../../phet-core/js/merge.js';
+import Property from '../../../../axon/js/Property.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { HBox, Rectangle, Text } from '../../../../scenery/js/imports.js';
-import ComboBox from '../../../../sun/js/ComboBox.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import { HBox, Node, Rectangle, Text } from '../../../../scenery/js/imports.js';
+import ComboBox, { ComboBoxItem, ComboBoxOptions } from '../../../../sun/js/ComboBox.js';
 import phScale from '../../phScale.js';
+import Solute from '../model/Solute.js';
 
-class SoluteComboBox extends ComboBox {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {Property.<Solute>} selectedSolute
-   * @param {Solute[]} solutes
-   * @param {Node} soluteListParent
-   * @param {Object} [options]
-   * @constructor
-   */
-  constructor( selectedSolute, solutes, soluteListParent, options ) {
+export type SoluteComboBoxOptions = SelfOptions & PickRequired<ComboBoxOptions, 'tandem'>;
 
-    options = merge( {
+export default class SoluteComboBox extends ComboBox<Solute> {
+
+  public constructor( selectedSoluteProperty: Property<Solute>,
+                      solutes: Solute[], soluteListParent: Node,
+                      providedOptions: SoluteComboBoxOptions ) {
+
+    const options = optionize<SoluteComboBoxOptions, SelfOptions, ComboBoxOptions>()( {
+
+      // ComboBoxOptions
       listPosition: 'below',
       xMargin: 16,
       yMargin: 16,
       highlightFill: 'rgb( 218, 255, 255 )',
       buttonLineWidth: 2,
-      cornerRadius: 10,
+      cornerRadius: 10
+    }, providedOptions );
 
-      // phet-io
-      tandem: Tandem.REQUIRED
-    }, options );
-
-    const items = []; // {ComboBoxItem[]}
+    const items: ComboBoxItem<Solute>[] = [];
+    const textNodes: Text[] = [];
     let maxWidth = 0; // max width of Text nodes
-    const textNodes = []; // {Text[]}
 
     // Create items for the listbox
     solutes.forEach( solute => {
@@ -59,6 +58,7 @@ class SoluteComboBox extends ComboBox {
 
       // If the solute name changes, update the item.
       // See https://github.com/phetsims/ph-scale/issues/110
+      //TODO https://github.com/phetsims/ph-scale/issues/239
       solute.nameProperty.link( name => {
         textNode.text = name;
       } );
@@ -77,13 +77,13 @@ class SoluteComboBox extends ComboBox {
 
     // ComboBox does not dynamically resize. So if a solution name does change, constrain the listbox item width.
     // See https://github.com/phetsims/ph-scale/issues/110
+    //TODO https://github.com/phetsims/ph-scale/issues/239
     textNodes.forEach( textNode => {
       textNode.maxWidth = maxWidth;
     } );
 
-    super( selectedSolute, items, soluteListParent, options );
+    super( selectedSoluteProperty, items, soluteListParent, options );
   }
 }
 
 phScale.register( 'SoluteComboBox', SoluteComboBox );
-export default SoluteComboBox;

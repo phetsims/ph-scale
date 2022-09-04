@@ -55,7 +55,8 @@ class MySolutionScreenView extends ScreenView {
     } );
 
     // solution in the beaker
-    const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
+    const solutionNode = new SolutionNode( model.solution.totalVolumeProperty, model.solution.colorProperty,
+      model.beaker, modelViewTransform );
 
     // volume indicator along the right edge of the beaker
     const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.totalVolumeProperty, model.beaker, modelViewTransform, {

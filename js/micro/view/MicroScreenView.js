@@ -64,7 +64,8 @@ class MicroScreenView extends ScreenView {
     } );
 
     // solution
-    const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
+    const solutionNode = new SolutionNode( model.solution.totalVolumeProperty, model.solution.colorProperty,
+      model.beaker, modelViewTransform );
 
     // volume indicator on right side of beaker
     const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.totalVolumeProperty, model.beaker, modelViewTransform, {

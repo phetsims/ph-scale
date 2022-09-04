@@ -1,6 +1,5 @@
-// Copyright 2013-2021, University of Colorado Boulder
+// Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * H3O+ (hydronium) molecule.
  *
@@ -12,38 +11,31 @@ import phScale from '../../../phScale.js';
 import HydrogenNode from './HydrogenNode.js';
 import OxygenNode from './OxygenNode.js';
 
-class H3ONode extends Node {
+export default class H3ONode extends Node {
 
-  /**
-   * @param {Object} [options]
-   */
-  constructor( options ) {
+  public constructor() {
 
-    super();
-
-    // atoms
     const oxygen = new OxygenNode();
-    const hydrogen1 = new HydrogenNode();
-    const hydrogen2 = new HydrogenNode();
-    const hydrogen3 = new HydrogenNode();
 
-    // rendering order
-    this.addChild( hydrogen3 );
-    this.addChild( oxygen );
-    this.addChild( hydrogen1 );
-    this.addChild( hydrogen2 );
+    const hydrogen1 = new HydrogenNode( {
+      centerX: oxygen.left,
+      centerY: oxygen.centerY - ( 0.1 * oxygen.height )
+    } );
 
-    // layout
-    hydrogen1.centerX = oxygen.left;
-    hydrogen1.centerY = oxygen.centerY - ( 0.1 * oxygen.height );
-    hydrogen2.centerX = oxygen.centerX + ( 0.4 * oxygen.width );
-    hydrogen2.centerY = oxygen.top + ( 0.1 * oxygen.height );
-    hydrogen3.centerX = oxygen.centerX + ( 0.2 * oxygen.width );
-    hydrogen3.centerY = oxygen.bottom - ( 0.1 * oxygen.height );
+    const hydrogen2 = new HydrogenNode( {
+      centerX: oxygen.centerX + ( 0.4 * oxygen.width ),
+      centerY: oxygen.top + ( 0.1 * oxygen.height )
+    } );
 
-    this.mutate( options );
+    const hydrogen3 = new HydrogenNode( {
+      centerX: oxygen.centerX + ( 0.2 * oxygen.width ),
+      centerY: oxygen.bottom - ( 0.1 * oxygen.height )
+    } );
+
+    super( {
+      children: [ hydrogen3, oxygen, hydrogen1, hydrogen2 ]
+    } );
   }
 }
 
 phScale.register( 'H3ONode', H3ONode );
-export default H3ONode;

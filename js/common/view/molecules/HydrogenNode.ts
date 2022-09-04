@@ -1,26 +1,32 @@
-// Copyright 2013-2021, University of Colorado Boulder
+// Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Hydrogen atom.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import ShadedSphereNode from '../../../../../scenery-phet/js/ShadedSphereNode.js';
-import { Color } from '../../../../../scenery/js/imports.js';
+import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
+import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../../scenery-phet/js/ShadedSphereNode.js';
+import { Color, NodeTranslationOptions } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
 import PHScaleColors from '../../PHScaleColors.js';
 
-class HydrogenNode extends ShadedSphereNode {
+type SelfOptions = EmptySelfOptions;
 
-  constructor() {
-    super( 15, {
+export type HydrogenNodeOptions = SelfOptions & NodeTranslationOptions;
+
+export default class HydrogenNode extends ShadedSphereNode {
+
+  public constructor( providedOptions?: HydrogenNodeOptions ) {
+
+    const options = optionize<HydrogenNodeOptions, SelfOptions, ShadedSphereNodeOptions>()( {
       mainColor: PHScaleColors.HYDROGEN,
       highlightColor: new Color( 255, 255, 255 )
-    } );
+    }, providedOptions );
+
+    super( 15, options );
   }
 }
 
 phScale.register( 'HydrogenNode', HydrogenNode );
-export default HydrogenNode;

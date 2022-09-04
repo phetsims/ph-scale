@@ -1,6 +1,5 @@
-// Copyright 2013-2021, University of Colorado Boulder
+// Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * H2O (water) molecule.
  *
@@ -12,34 +11,26 @@ import phScale from '../../../phScale.js';
 import HydrogenNode from './HydrogenNode.js';
 import OxygenNode from './OxygenNode.js';
 
-class H2ONode extends Node {
+export default class H2ONode extends Node {
 
-  /**
-   * @param {Object} [options]
-   */
-  constructor( options ) {
+  public constructor() {
 
-    super();
-
-    // atoms
     const oxygen = new OxygenNode();
-    const hydrogen1 = new HydrogenNode();
-    const hydrogen2 = new HydrogenNode();
 
-    // rendering order
-    this.addChild( hydrogen2 );
-    this.addChild( oxygen );
-    this.addChild( hydrogen1 );
+    const hydrogen1 = new HydrogenNode( {
+      left: oxygen.right - ( 0.2 * oxygen.width ),
+      centerY: oxygen.centerY - ( 0.1 * oxygen.height )
+    } );
 
-    // layout
-    hydrogen1.left = oxygen.right - ( 0.2 * oxygen.width );
-    hydrogen1.centerY = oxygen.centerY - ( 0.1 * oxygen.height );
-    hydrogen2.centerX = oxygen.centerX + ( 0.1 * oxygen.width );
-    hydrogen2.centerY = oxygen.bottom;
+    const hydrogen2 = new HydrogenNode( {
+      centerX: oxygen.centerX + ( 0.1 * oxygen.width ),
+      centerY: oxygen.bottom
+    } );
 
-    this.mutate( options );
+    super( {
+      children: [ hydrogen2, oxygen, hydrogen1 ]
+    } );
   }
 }
 
 phScale.register( 'H2ONode', H2ONode );
-export default H2ONode;

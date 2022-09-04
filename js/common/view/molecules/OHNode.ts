@@ -1,6 +1,5 @@
-// Copyright 2013-2021, University of Colorado Boulder
+// Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * OH- (hydroxide) molecule.
  *
@@ -12,30 +11,21 @@ import phScale from '../../../phScale.js';
 import HydrogenNode from './HydrogenNode.js';
 import OxygenNode from './OxygenNode.js';
 
-class OHNode extends Node {
+export default class OHNode extends Node {
 
-  /**
-   * @param {Object} [options]
-   */
-  constructor( options ) {
+  public constructor() {
 
-    super();
-
-    // atoms
     const oxygen = new OxygenNode();
-    const hydrogen = new HydrogenNode();
 
-    // rendering order
-    this.addChild( oxygen );
-    this.addChild( hydrogen );
+    const hydrogen = new HydrogenNode( {
+      left: oxygen.right - ( 0.2 * oxygen.width ),
+      centerY: oxygen.centerY - ( 0.1 * oxygen.height )
+    } );
 
-    // layout
-    hydrogen.left = oxygen.right - ( 0.2 * oxygen.width );
-    hydrogen.centerY = oxygen.centerY - ( 0.1 * oxygen.height );
-
-    this.mutate( options );
+    super( {
+      children: [ oxygen, hydrogen ]
+    } );
   }
 }
 
 phScale.register( 'OHNode', OHNode );
-export default OHNode;

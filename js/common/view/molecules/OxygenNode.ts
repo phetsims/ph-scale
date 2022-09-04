@@ -1,6 +1,5 @@
-// Copyright 2013-2021, University of Colorado Boulder
+// Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Oxygen atom.
  *
@@ -12,9 +11,9 @@ import { Color } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
 import PHScaleColors from '../../PHScaleColors.js';
 
-class OxygenNode extends ShadedSphereNode {
+export default class OxygenNode extends ShadedSphereNode {
 
-  constructor() {
+  public constructor() {
     super( 30, {
       mainColor: PHScaleColors.OXYGEN,
       highlightColor: new Color( 255, 255, 255 )
@@ -23,4 +22,3 @@ class OxygenNode extends ShadedSphereNode {
 }
 
 phScale.register( 'OxygenNode', OxygenNode );
-export default OxygenNode;

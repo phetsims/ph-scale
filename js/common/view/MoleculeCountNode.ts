@@ -1,6 +1,5 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Displays the number of molecules in the beaker.
  *
@@ -9,10 +8,11 @@
 
 import Property from '../../../../axon/js/Property.js';
 import merge from '../../../../phet-core/js/merge.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import ScientificNotationNode from '../../../../scenery-phet/js/ScientificNotationNode.js';
-import { AlignBox, AlignGroup, HBox, Node, Rectangle } from '../../../../scenery/js/imports.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import ScientificNotationNode, { ScientificNotationNodeOptions } from '../../../../scenery-phet/js/ScientificNotationNode.js';
+import { AlignBox, AlignBoxOptions, AlignGroup, HBox, Node, NodeOptions, Rectangle } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
 import SolutionDerivedProperties from '../model/SolutionDerivedProperties.js';
 import PHScaleColors from '../PHScaleColors.js';
@@ -20,21 +20,19 @@ import H2ONode from './molecules/H2ONode.js';
 import H3ONode from './molecules/H3ONode.js';
 import OHNode from './molecules/OHNode.js';
 
-class MoleculeCountNode extends Node {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {SolutionDerivedProperties} derivedProperties
-   * @param {Object} [options]
-   */
-  constructor( derivedProperties, options ) {
-    assert && assert( derivedProperties instanceof SolutionDerivedProperties, 'invalid derivedProperties' );
+export type MoleculeCountNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
-    options = merge( {
+export default class MoleculeCountNode extends Node {
 
-      // phet-io
-      tandem: Tandem.REQUIRED,
+  public constructor( derivedProperties: SolutionDerivedProperties, providedOptions: MoleculeCountNodeOptions ) {
+
+    const options = optionize<MoleculeCountNodeOptions, SelfOptions, NodeOptions>()( {
+
+      // NodeOptions
       phetioDocumentation: 'displays the number of molecules in the solution'
-    }, options );
+    }, providedOptions );
 
     // margins and spacing
     const xMargin = 10;
@@ -43,12 +41,12 @@ class MoleculeCountNode extends Node {
     const ySpacing = 6;
 
     // count values
-    const notationOptions = {
+    const notationOptions: ScientificNotationNodeOptions = {
       font: new PhetFont( 22 ),
       fill: 'white',
       mantissaDecimalPlaces: 2
     };
-    const countsAlignBoxOptions = {
+    const countsAlignBoxOptions: AlignBoxOptions = {
       group: new AlignGroup(),
       xAlign: 'right',
       yAlign: 'center'
@@ -62,7 +60,7 @@ class MoleculeCountNode extends Node {
     invisibleCountNode.visible = false;
 
     // molecule icons
-    const iconsAlignBoxOptions = {
+    const iconsAlignBoxOptions: AlignBoxOptions = {
       group: new AlignGroup(),
       xAlign: 'center',
       yAlign: 'center'
@@ -102,7 +100,6 @@ class MoleculeCountNode extends Node {
       fill: PHScaleColors.H2O_BACKGROUND
     }, backgroundOptions ) );
 
-    assert && assert( !options.children, 'MoleculeCountsNode sets children' );
     options.children = [
       backgroundH3O, hboxH3O,
       backgroundOH, hboxOH,
@@ -122,18 +119,21 @@ class MoleculeCountNode extends Node {
     hboxH2O.center = backgroundH2O.center;
 
     // Links to the count Properties
+    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.numberOfH3OMoleculesProperty, {
       tandem: options.tandem.createTandem( 'numberOfH3OMoleculesProperty' )
     } );
+
+    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.numberOfOHMoleculesProperty, {
       tandem: options.tandem.createTandem( 'numberOfOHMoleculesProperty' )
     } );
+
+    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.numberOfH2OMoleculesProperty, {
       tandem: options.tandem.createTandem( 'numberOfH2OMoleculesProperty' )
     } );
-
   }
 }
 
 phScale.register( 'MoleculeCountNode', MoleculeCountNode );
-export default MoleculeCountNode;

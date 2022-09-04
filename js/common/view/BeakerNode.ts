@@ -1,6 +1,5 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Visual representation of a beaker that is filled to the top with a solution.
  * Origin is at the bottom center.
@@ -10,13 +9,15 @@
 
 import Utils from '../../../../dot/js/Utils.js';
 import { Shape } from '../../../../kite/js/imports.js';
-import merge from '../../../../phet-core/js/merge.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Node, Path, Text } from '../../../../scenery/js/imports.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import { Node, NodeOptions, Path, Text } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
 import phScaleStrings from '../../phScaleStrings.js';
+import Beaker from '../model/Beaker.js';
 
 // constants
 const RIM_OFFSET = 20;
@@ -28,26 +29,22 @@ const TICK_LABEL_X_SPACING = 8;
 const MAJOR_TICK_LABELS = [ '\u00bd', '1' ]; // 1/2, 1
 const MAJOR_TICK_FONT = new PhetFont( 24 );
 
-class BeakerNode extends Node {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {Beaker} beaker
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {Object} [options]
-   */
-  constructor( beaker, modelViewTransform, options ) {
+export type BeakerNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
-    options = merge( {
+export default class BeakerNode extends Node {
 
-      // phet-io
-      tandem: Tandem.REQUIRED,
+  public constructor( beaker: Beaker, modelViewTransform: ModelViewTransform2, providedOptions: BeakerNodeOptions ) {
+
+    const options = optionize<BeakerNodeOptions, SelfOptions, NodeOptions>()( {
 
       // BeakerNode should not be hideable, but its subcomponents are.
       // See https://github.com/phetsims/ph-scale/issues/108
       visiblePropertyOptions: {
         phetioReadOnly: true
       }
-    }, options );
+    }, providedOptions );
 
     super( options );
 
@@ -123,4 +120,3 @@ class BeakerNode extends Node {
 }
 
 phScale.register( 'BeakerNode', BeakerNode );
-export default BeakerNode;

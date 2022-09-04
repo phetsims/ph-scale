@@ -1,6 +1,5 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * pH meter for the 'Macro' screen.
  *
@@ -19,20 +18,27 @@
 import Multilink from '../../../../axon/js/Multilink.js';
 import Property from '../../../../axon/js/Property.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
+import Range from '../../../../dot/js/Range.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import { Shape } from '../../../../kite/js/imports.js';
-import merge from '../../../../phet-core/js/merge.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import ProbeNode from '../../../../scenery-phet/js/ProbeNode.js';
-import { DragListener, Line, LinearGradient, Node, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import ProbeNode, { ProbeNodeOptions } from '../../../../scenery-phet/js/ProbeNode.js';
+import { DragListener, Line, LinearGradient, Node, NodeOptions, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
+import Dropper from '../../common/model/Dropper.js';
 import Water from '../../common/model/Water.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
 import phScaleStrings from '../../phScaleStrings.js';
+import MacroPHMeter from '../model/MacroPHMeter.js';
+import MacroSolution from '../model/MacroSolution.js';
+import { PHValue } from '../../common/model/PHModel.js';
+import PHMovable from '../../common/model/PHMovable.js';
 
 // constants
 const BACKGROUND_ENABLED_FILL = 'rgb( 31, 113, 2 )';
@@ -45,27 +51,23 @@ const NEUTRAL_TICK_LENGTH = 40;
 const TICK_LABEL_X_SPACING = 5;
 const CORNER_RADIUS = 12;
 
-class MacroPHMeterNode extends Node {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {MacroPHMeter} meter
-   * @param {MicroSolution|MySolution} solution
-   * @param {Dropper} dropper
-   * @param {Node} solutionNode
-   * @param {Node} dropperFluidNode
-   * @param {Node} waterFluidNode
-   * @param {Node} drainFluidNode
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {Object} [options]
-   */
-  constructor( meter, solution, dropper, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode,
-               modelViewTransform, options ) {
+export type MacroPHMeterNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
-    options = merge( {
+export default class MacroPHMeterNode extends Node {
 
-      // phet-io
-      tandem: Tandem.REQUIRED
-    }, options );
+  public constructor( meter: MacroPHMeter,
+                      solution: MacroSolution,
+                      dropper: Dropper,
+                      solutionNode: Node,
+                      dropperFluidNode: Node,
+                      waterFluidNode: Node,
+                      drainFluidNode: Node,
+                      modelViewTransform: ModelViewTransform2,
+                      providedOptions: MacroPHMeterNodeOptions ) {
+
+    const options = providedOptions;
 
     super( options );
 
@@ -82,8 +84,7 @@ class MacroPHMeterNode extends Node {
     // interactive probe
     const probeNode = new PHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode,
       waterFluidNode, drainFluidNode, {
-        tandem: options.tandem.createTandem( 'probeNode' ),
-        phetioInputEnabledPropertyInstrumented: true
+        tandem: options.tandem.createTandem( 'probeNode' )
       } );
 
     // wire that connects the probe to the meter
@@ -133,27 +134,30 @@ class MacroPHMeterNode extends Node {
   }
 }
 
-phScale.register( 'MacroPHMeterNode', MacroPHMeterNode );
-
 /**
  * The meter's vertical scale.
  */
+type ScaleNodeSelfOptions = {
+  range?: Range;
+  size?: Dimension2;
+};
+type ScaleNodeOptions = ScaleNodeSelfOptions;
+
 class ScaleNode extends Node {
 
-  /**
-   * @param {Object} [options]
-   */
-  constructor( options ) {
+  private readonly backgroundStrokeWidth: number;
 
-    options = merge( {
+  public constructor( providedOptions?: ScaleNodeOptions ) {
+
+    const options = optionize<ScaleNodeOptions, ScaleNodeSelfOptions, NodeOptions>()( {
       range: PHScaleConstants.PH_RANGE,
       size: new Dimension2( 75, 450 )
-    }, options );
+    }, providedOptions );
 
     super();
 
     // gradient background
-    this.backgroundStrokeWidth = 2; // @private
+    this.backgroundStrokeWidth = 2;
     const backgroundNode = new Rectangle( 0, 0, options.size.width, options.size.height, {
       fill: new LinearGradient( 0, 0, 0, options.size.height )
         .addColorStop( 0, PHScaleColors.BASIC )
@@ -215,8 +219,8 @@ class ScaleNode extends Node {
     neutralLabelNode.centerY = neutralLineNode.centerY;
   }
 
-  // @public needed for precise positioning of things that point to values on the scale
-  getBackgroundStrokeWidth() {
+  // needed for precise positioning of things that point to values on the scale
+  public getBackgroundStrokeWidth(): number {
     return this.backgroundStrokeWidth;
   }
 }
@@ -224,20 +228,21 @@ class ScaleNode extends Node {
 /**
  * Meter probe, origin at center of crosshairs.
  */
+type PHProbeNodeSelfOptions = EmptySelfOptions;
+type PHProbeNodeOptions = PHProbeNodeSelfOptions & PickRequired<ProbeNodeOptions, 'tandem'>;
+
 class PHProbeNode extends ProbeNode {
 
-  /**
-   * @param {PHMovable} probe
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {Node} solutionNode
-   * @param {Node} dropperFluidNode
-   * @param {Node} waterFluidNode
-   * @param {Node} drainFluidNode
-   * @param {Object} [options]
-   */
-  constructor( probe, modelViewTransform, solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, options ) {
+  public readonly isInSolution: () => boolean;
+  public readonly isInWater: () => boolean;
+  public readonly isInDrainFluid: () => boolean;
+  public readonly isInDropperSolution: () => boolean;
 
-    options = merge( {
+  public constructor( probe: PHMovable, modelViewTransform: ModelViewTransform2, solutionNode: Node,
+                      dropperFluidNode: Node, waterFluidNode: Node, drainFluidNode: Node,
+                      providedOptions: PHProbeNodeOptions ) {
+
+    const options = optionize<PHProbeNodeOptions, PHProbeNodeSelfOptions, ProbeNodeOptions>()( {
       sensorTypeFunction: ProbeNode.crosshairs( {
         intersectionRadius: 6
       } ),
@@ -250,13 +255,11 @@ class PHProbeNode extends ProbeNode {
       color: 'rgb( 35, 129, 0 )',
       rotation: Math.PI / 2,
       cursor: 'pointer',
-
-      // phet-io
-      tandem: Tandem.REQUIRED,
       visiblePropertyOptions: {
         phetioReadOnly: true
-      }
-    }, options );
+      },
+      phetioInputEnabledPropertyInstrumented: true
+    }, providedOptions );
 
     super( options );
 
@@ -276,7 +279,7 @@ class PHProbeNode extends ProbeNode {
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
 
-    const isInNode = node => node.getBounds().containsPoint( probe.positionProperty.get() );
+    const isInNode = ( node: Node ) => node.getBounds().containsPoint( probe.positionProperty.get() );
     this.isInSolution = () => isInNode( solutionNode );
     this.isInWater = () => isInNode( waterFluidNode );
     this.isInDrainFluid = () => isInNode( drainFluidNode );
@@ -289,12 +292,7 @@ class PHProbeNode extends ProbeNode {
  */
 class WireNode extends Path {
 
-  /**
-   * @param {PHMovable} probe
-   * @param {Node} bodyNode
-   * @param {Node} probeNode
-   */
-  constructor( probe, bodyNode, probeNode ) {
+  public constructor( probe: PHMovable, bodyNode: Node, probeNode: Node ) {
 
     super( new Shape(), {
       stroke: 'rgb( 80, 80, 80 )',
@@ -331,18 +329,14 @@ class WireNode extends Path {
  * pH indicator that slides vertically along scale.
  * When there is no pH value, it points to 'neutral' but does not display a value.
  */
+type PHIndicatorNodeSelfOptions = EmptySelfOptions;
+type PHIndicatorNodeOptions = PHIndicatorNodeSelfOptions & PickRequired<NodeOptions, 'tandem'>;
+
 class PHIndicatorNode extends Node {
 
-  /**
-   * @param {Property.<number>} pHProperty
-   * @param {number} scaleWidth
-   * @param {Object} [options]
-   */
-  constructor( pHProperty, scaleWidth, options ) {
+  public constructor( pHProperty: Property<PHValue>, scaleWidth: number, providedOptions: PHIndicatorNodeOptions ) {
 
-    options = merge( {
-      tandem: Tandem.REQUIRED
-    }, options );
+    const options = providedOptions;
 
     super( options );
 
@@ -441,9 +435,10 @@ class PHIndicatorNode extends Node {
       arrowNode.visible = lineNode.visible = enabled;
 
       // Highlight the indicator when displayed pH === 7
+      // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 handle null pH
       highlight.visible = ( Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === 7 );
     } );
   }
 }
 
-export default MacroPHMeterNode;
+phScale.register( 'MacroPHMeterNode', MacroPHMeterNode );

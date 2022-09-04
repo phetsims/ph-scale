@@ -1,6 +1,5 @@
 // Copyright 2013-2021, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Dropper that contains a solute in solution form.
  * Origin is at the center of the hole where solution comes out of the dropper (bottom center).
@@ -10,34 +9,33 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import merge from '../../../../phet-core/js/merge.js';
-import EyeDropperNode from '../../../../scenery-phet/js/EyeDropperNode.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
+import EyeDropperNode, { EyeDropperNodeOptions } from '../../../../scenery-phet/js/EyeDropperNode.js';
 import { DragListener } from '../../../../scenery/js/imports.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 import phScale from '../../phScale.js';
+import Dropper from '../model/Dropper.js';
 
-class PHDropperNode extends EyeDropperNode {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {Dropper} dropper
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {Object} [options]
-   */
-  constructor( dropper, modelViewTransform, options ) {
+export type PHDropperNodeOptions = SelfOptions & PickRequired<EyeDropperNodeOptions, 'tandem'>;
 
-    super( merge( {
+export default class PHDropperNode extends EyeDropperNode {
 
-      // EyeDropperNode options
+  public constructor( dropper: Dropper, modelViewTransform: ModelViewTransform2, providedOptions: PHDropperNodeOptions ) {
+
+    const options = optionize<PHDropperNodeOptions, SelfOptions, EyeDropperNodeOptions>()( {
+
+      // EyeDropperNodeOptions
       isDispensingProperty: dropper.isDispensingProperty,
       buttonOptions: {
         enabledProperty: dropper.enabledProperty
       },
+      cursor: null
+    }, providedOptions );
 
-      cursor: null,
-
-      // phet-io
-      tandem: Tandem.REQUIRED
-    }, options ) );
+    super( options );
 
     // position
     dropper.positionProperty.link( position => {
@@ -65,4 +63,3 @@ class PHDropperNode extends EyeDropperNode {
 }
 
 phScale.register( 'PHDropperNode', PHDropperNode );
-export default PHDropperNode;

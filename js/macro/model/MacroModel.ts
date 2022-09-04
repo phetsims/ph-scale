@@ -29,7 +29,7 @@ type SelfOptions = {
   autofillVolume?: number;
 
   // whether to instantiate this.pHMeter
-  includePHMeter?: true;
+  includePHMeter?: boolean;
 
   // used to instantiate the solution
   createSolution?: ( soluteProperty: Property<Solute>, options: MacroSolutionOptions ) => MacroSolution;

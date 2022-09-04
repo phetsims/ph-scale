@@ -1,6 +1,5 @@
 // Copyright 2013-2020, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * MicroModel is the model for the 'Micro' screen.  It extends the MacroModel, substituting a different solution
  * model, and omitting the pH meter.
@@ -9,16 +8,21 @@
  */
 
 import Bounds2 from '../../../../dot/js/Bounds2.js';
-import merge from '../../../../phet-core/js/merge.js';
-import MacroModel from '../../macro/model/MacroModel.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import MacroModel, { MacroModelOptions } from '../../macro/model/MacroModel.js';
 import phScale from '../../phScale.js';
 import MicroSolution from './MicroSolution.js';
 
-class MicroModel extends MacroModel {
+type SelfOptions = EmptySelfOptions;
 
-  constructor( options ) {
+export type MicroModelOptions = SelfOptions & PickRequired<MacroModelOptions, 'tandem'>;
 
-    options = merge( {
+export default class MicroModel extends MacroModel {
+
+  public constructor( providedOptions: MicroModelOptions ) {
+
+    const options = optionize<MicroModelOptions, SelfOptions, MacroModelOptions>()( {
 
       // Creates the solution needed by the Micro screen
       createSolution: ( solutionProperty, options ) => new MicroSolution( solutionProperty, options ),
@@ -26,7 +30,7 @@ class MicroModel extends MacroModel {
       // pHMeter is not needed in the Micro screen, because it has no moving parts and it's always measuring the
       // pH of the solution. See https://github.com/phetsims/ph-scale/issues/137
       includePHMeter: false
-    }, options );
+    }, providedOptions );
 
     super( options );
 
@@ -37,4 +41,3 @@ class MicroModel extends MacroModel {
 }
 
 phScale.register( 'MicroModel', MicroModel );
-export default MicroModel;

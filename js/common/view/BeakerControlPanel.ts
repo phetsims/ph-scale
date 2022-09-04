@@ -1,20 +1,20 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
- * Controls what you see in the beaker.
- * This includes the 'H3O+/OH- ratio' and 'Molecule count' representations.
+ * Controls for things that you see in the beaker.
+ * This includes the 'H3O+/OH- ratio' and 'Molecule count' checkboxes.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import merge from '../../../../phet-core/js/merge.js';
+import Property from '../../../../axon/js/Property.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Color, Line, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
-import Panel from '../../../../sun/js/Panel.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import phScale from '../../phScale.js';
 import phScaleStrings from '../../phScaleStrings.js';
 import PHScaleColors from '../PHScaleColors.js';
@@ -23,25 +23,24 @@ import PHScaleConstants from '../PHScaleConstants.js';
 // constants
 const FONT = new PhetFont( 20 );
 
-class BeakerControlPanel extends Panel {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {Property.<boolean>} ratioVisibleProperty
-   * @param {Property.<boolean>} moleculeCountVisibleProperty
-   * @param {Object} [options]
-   */
-  constructor( ratioVisibleProperty, moleculeCountVisibleProperty, options ) {
+export type BeakerControlPanelOptions = SelfOptions & PickRequired<PanelOptions, 'tandem'>;
 
-    options = merge( {
+export default class BeakerControlPanel extends Panel {
+
+  public constructor( ratioVisibleProperty: Property<boolean>, moleculeCountVisibleProperty: Property<boolean>,
+                      providedOptions: BeakerControlPanelOptions ) {
+
+    const options = optionize<BeakerControlPanelOptions, SelfOptions, PanelOptions>()( {
+
+      // PanelOptions
       xMargin: 15,
       yMargin: 10,
       lineWidth: 2,
       fill: PHScaleColors.PANEL_FILL,
-
-      // phet-io
-      tandem: Tandem.REQUIRED,
       phetioDocumentation: 'control panel that appears below the beaker'
-    }, options );
+    }, providedOptions );
 
     // 'H3O+ / OH- Ratio' checkbox, with color-coded symbols
     assert && assert( PHScaleColors.H3O_MOLECULES instanceof Color );
@@ -81,4 +80,3 @@ class BeakerControlPanel extends Panel {
 }
 
 phScale.register( 'BeakerControlPanel', BeakerControlPanel );
-export default BeakerControlPanel;

@@ -1,6 +1,5 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Model of the pH meter.
  * <p/>
@@ -12,41 +11,46 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import merge from '../../../../phet-core/js/merge.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
+import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import PHMovable from '../../common/model/PHMovable.js';
 import phScale from '../../phScale.js';
+import { PHValue } from '../../common/model/PHModel.js';
 
-class MacroPHMeter {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {Vector2} bodyPosition
-   * @param {Vector2} probePosition
-   * @param {Bounds2} probeDragBounds
-   * @param {Object} [options]
-   */
-  constructor( bodyPosition, probePosition, probeDragBounds, options ) {
+export type MacroPHMeterOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-    options = merge( {
+export default class MacroPHMeter {
 
-      // phet-io
-      tandem: Tandem.REQUIRED
-    }, options );
+  // pH value displayed by the meter, null if the meter is not reading a value
+  public readonly pHProperty: Property<PHValue>;
 
-    // @public value displayed by the meter, null if the meter is not reading a value
-    this.pHProperty = new Property( null, {
+  // fixed position of the meter's body
+  public readonly bodyPosition: Vector2;
+
+  // movable probe
+  public readonly probe: PHMovable;
+
+  public constructor( bodyPosition: Vector2, probePosition: Vector2, probeDragBounds: Bounds2,
+                      providedOptions: MacroPHMeterOptions ) {
+
+    const options = providedOptions;
+
+    this.pHProperty = new Property<PHValue>( null, {
       tandem: options.tandem.createTandem( 'pHProperty' ),
       phetioValueType: NullableIO( NumberIO ),
       phetioReadOnly: true, // because this depends on where the probe is positioned
       phetioHighFrequency: true
     } );
 
-    // @public fix position of the meter's body
     this.bodyPosition = bodyPosition;
 
-    // @public position of the meter's movable probe
     this.probe = new PHMovable( probePosition, probeDragBounds, {
       tandem: options.tandem.createTandem( 'probe' ),
       positionPropertyOptions: {
@@ -55,14 +59,10 @@ class MacroPHMeter {
     } );
   }
 
-  /**
-   * @public
-   */
-  reset() {
+  public reset(): void {
     this.pHProperty.reset();
     this.probe.reset();
   }
 }
 
 phScale.register( 'MacroPHMeter', MacroPHMeter );
-export default MacroPHMeter;

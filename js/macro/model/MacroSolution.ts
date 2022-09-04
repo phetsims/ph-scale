@@ -1,6 +1,5 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * MacroSolution is the solution model used in the Macro screen.
  * Solvent (water) is constant, solute (in stock solution form) is variable.
@@ -10,14 +9,17 @@
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import Property from '../../../../axon/js/Property.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
-import merge from '../../../../phet-core/js/merge.js';
+import optionize from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { Color } from '../../../../scenery/js/imports.js';
-import PhetioObject from '../../../../tandem/js/PhetioObject.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import PHModel from '../../common/model/PHModel.js';
+import PHModel, { PHValue } from '../../common/model/PHModel.js';
+import Solute from '../../common/model/Solute.js';
 import Water from '../../common/model/Water.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
@@ -25,32 +27,48 @@ import phScale from '../../phScale.js';
 // constants
 const MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );
 
-class MacroSolution extends PhetioObject {
+type SelfOptions = {
+  soluteVolume?: number; // initial volume of solute, in L
+  waterVolume?: number; // initial volume of water, in L
+  maxVolume?: number; // maximum total volume (solute + water), in L
+};
 
-  /**
-   * @param {Property.<Solute>} soluteProperty
-   * @param {Object} [options]
-   */
-  constructor( soluteProperty, options ) {
+export type MacroSolutionOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-    options = merge( {
+export default class MacroSolution extends PhetioObject {
 
-      soluteVolume: 0, // initial volume of solute, in L
-      waterVolume: 0, // initial volume of water, in L
-      maxVolume: 1, // maximum total volume (solute + water), in L
+  public readonly soluteProperty: Property<Solute>;
+  public readonly soluteVolumeProperty: Property<number>;
+  public readonly waterVolumeProperty: Property<number>;
+  public readonly totalVolumeProperty: TReadOnlyProperty<number>;
+  public readonly pHProperty: TReadOnlyProperty<PHValue>;
+  public readonly colorProperty: TReadOnlyProperty<Color>;
+  public readonly maxVolume: number;
 
-      // phet-io
-      tandem: Tandem.REQUIRED,
+  // Used to update total volume atomically when draining solution, see https://github.com/phetsims/ph-scale/issues/25
+  private ignoreVolumeUpdate: boolean;
+
+  public constructor( soluteProperty: Property<Solute>, providedOptions: MacroSolutionOptions ) {
+
+    const options = optionize<MacroSolutionOptions, SelfOptions, PhetioObjectOptions>()( {
+
+      // SelfOptions
+      soluteVolume: 0,
+      waterVolume: 0,
+      maxVolume: 1,
+
+      // PhetioOptions
       phetioState: false,
       phetioDocumentation: 'solution in the beaker'
+    }, providedOptions );
 
-    }, options );
-
+    assert && assert( options.soluteVolume >= 0 );
+    assert && assert( options.waterVolume >= 0 );
+    assert && assert( options.maxVolume > 0 );
     assert && assert( options.soluteVolume + options.waterVolume <= options.maxVolume );
 
     super( options );
 
-    // @public
     this.soluteProperty = soluteProperty;
 
     // Create a PhET-iO linked element that points to where soluteProperty lives (in Dropper).
@@ -59,10 +77,8 @@ class MacroSolution extends PhetioObject {
       tandem: options.tandem.createTandem( 'soluteProperty' )
     } );
 
-    // @public (read-only)
     this.maxVolume = options.maxVolume;
 
-    // @public
     this.soluteVolumeProperty = new NumberProperty( options.soluteVolume, {
       units: 'L',
       tandem: options.tandem.createTandem( 'soluteVolumeProperty' ),
@@ -70,7 +86,6 @@ class MacroSolution extends PhetioObject {
       phetioHighFrequency: true
     } );
 
-    // @public
     this.waterVolumeProperty = new NumberProperty( options.waterVolume, {
       units: 'L',
       tandem: options.tandem.createTandem( 'waterVolumeProperty' ),
@@ -78,11 +93,9 @@ class MacroSolution extends PhetioObject {
       phetioHighFrequency: true
     } );
 
-    // @private
     // Used to update total volume atomically when draining solution, see https://github.com/phetsims/ph-scale/issues/25
     this.ignoreVolumeUpdate = false;
 
-    // @public total volume
     this.totalVolumeProperty = new DerivedProperty(
       [ this.soluteVolumeProperty, this.waterVolumeProperty ],
       ( soluteVolume, waterVolume ) => ( this.ignoreVolumeUpdate ) ? this.totalVolumeProperty.get() : ( soluteVolume + waterVolume ), {
@@ -93,7 +106,6 @@ class MacroSolution extends PhetioObject {
         phetioHighFrequency: true
       } );
 
-    // @public pH, null if no value
     this.pHProperty = new DerivedProperty(
       [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
       ( solute, soluteVolume, waterVolume ) => {
@@ -110,7 +122,6 @@ class MacroSolution extends PhetioObject {
         phetioHighFrequency: true
       } );
 
-    // @public color
     this.colorProperty = new DerivedProperty(
       [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
       ( solute, soluteVolume, waterVolume ) => {
@@ -126,12 +137,10 @@ class MacroSolution extends PhetioObject {
         else {
           return solute.computeColor( soluteVolume / ( soluteVolume + waterVolume ) );
         }
-      }, {
-        // DO NOT INSTRUMENT FOR PhET-iO
       } );
 
     // When the solute changes, reset to initial volumes.
-    // This is short-circuited while PhET-iO state is being restored. Otherwise the restored state would be changed.
+    // This is short-circuited while PhET-iO state is being restored. Otherwise, the restored state would be changed.
     // See https://github.com/phetsims/ph-scale/issues/132
     this.soluteProperty.link( () => {
       if ( !phet.joist.sim.isSettingPhetioStateProperty.get() ) {
@@ -141,10 +150,7 @@ class MacroSolution extends PhetioObject {
     } );
   }
 
-  /**
-   * @public
-   */
-  reset() {
+  public reset(): void {
     this.soluteVolumeProperty.reset();
     this.waterVolumeProperty.reset();
   }
@@ -153,31 +159,29 @@ class MacroSolution extends PhetioObject {
   // Volume (Liters)
   //----------------------------------------------------------------------------
 
-  // @private Returns the amount of volume that is available to fill.
-  getFreeVolume() {
+  // Returns the amount of volume that is available to fill.
+  private getFreeVolume(): number {
     return this.maxVolume - this.totalVolumeProperty.get();
   }
 
-  // @public Convenience function for adding solute
-  addSolute( deltaVolume ) {
+  // Convenience function for adding solute
+  public addSolute( deltaVolume: number ): void {
     if ( deltaVolume > 0 ) {
       this.soluteVolumeProperty.set( Math.max( MIN_VOLUME, this.soluteVolumeProperty.get() + Math.min( deltaVolume, this.getFreeVolume() ) ) );
     }
   }
 
-  // @public Convenience function for adding water
-  addWater( deltaVolume ) {
+  // Convenience function for adding water
+  public addWater( deltaVolume: number ): void {
     if ( deltaVolume > 0 ) {
       this.waterVolumeProperty.set( Math.max( MIN_VOLUME, this.waterVolumeProperty.get() + Math.min( deltaVolume, this.getFreeVolume() ) ) );
     }
   }
 
   /**
-   * Drains a specified amount of solution.
-   * @param {number} deltaVolume amount of solution to drain, in liters
-   * @public
+   * Drains a specified amount of solution, in liters.
    */
-  drainSolution( deltaVolume ) {
+  public drainSolution( deltaVolume: number ): void {
     if ( deltaVolume > 0 ) {
       const totalVolume = this.totalVolumeProperty.get();
       if ( totalVolume > 0 ) {
@@ -199,12 +203,8 @@ class MacroSolution extends PhetioObject {
    * Sets volume atomically, to prevent pH value from going through an intermediate state.
    * This is used when draining solution, so that equal parts of solute and water are removed atomically.
    * See documentation of ignoreVolumeUpdate above, and https://github.com/phetsims/ph-scale/issues/25.
-   *
-   * @param {number} waterVolume liters
-   * @param {number} soluteVolume liters
-   * @private
    */
-  setVolumeAtomic( waterVolume, soluteVolume ) {
+  private setVolumeAtomic( waterVolume: number, soluteVolume: number ): void {
 
     // ignore the first notification if both volumes are changing
     this.ignoreVolumeUpdate = ( waterVolume !== this.waterVolumeProperty.get() ) && ( soluteVolume !== this.soluteVolumeProperty.get() );
@@ -216,12 +216,11 @@ class MacroSolution extends PhetioObject {
   /**
    * True if the value displayed by the pH meter has precision that makes it equivalent to the pH of water.
    * Eg, the value displayed to the user is '7.00'.
-   * @private
    */
-  isEquivalentToWater() {
-    return Utils.toFixedNumber( this.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES ) === Water.pH;
+  private isEquivalentToWater(): boolean {
+    return ( this.pHProperty.value !== null ) &&
+           ( Utils.toFixedNumber( this.pHProperty.value, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === Water.pH );
   }
 }
 
 phScale.register( 'MacroSolution', MacroSolution );
-export default MacroSolution;

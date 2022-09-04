@@ -1,6 +1,5 @@
 // Copyright 2013-2021, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Model for the 'Macro' screen. Also serves as the supertype for the 'Micro' model.
  *
@@ -8,9 +7,12 @@
  */
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import Property from '../../../../axon/js/Property.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import merge from '../../../../phet-core/js/merge.js';
+import optionize from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import Beaker from '../../common/model/Beaker.js';
 import Dropper from '../../common/model/Dropper.js';
@@ -20,27 +22,63 @@ import PHScaleConstants from '../../common/PHScaleConstants.js';
 import PHScaleQueryParameters from '../../common/PHScaleQueryParameters.js';
 import phScale from '../../phScale.js';
 import MacroPHMeter from './MacroPHMeter.js';
-import MacroSolution from './MacroSolution.js';
+import MacroSolution, { MacroSolutionOptions } from './MacroSolution.js';
 
-class MacroModel {
+type SelfOptions = {
 
-  /**
-   * @param {Tandem} tandem
-   * @param {Object} [options]
-   */
-  constructor( tandem, options ) {
-    assert && assert( tandem instanceof Tandem, 'invalid tandem' );
+  // L, automatically fill beaker with this much solute when the solute changes
+  autofillVolume?: number;
 
-    options = merge( {
-      autofillVolume: 0.5, // L, automatically fill beaker with this much solute when the solute changes
-      includePHMeter: true, // whether to instantiate this.pHMeter
+  // whether to instantiate this.pHMeter
+  includePHMeter?: true;
 
-      // {function(solutionProperty:Property,Object:options)} used to instantiate the solution
-      createSolution: ( solutionProperty, options ) => new MacroSolution( solutionProperty, options )
-    }, options );
+  // used to instantiate the solution
+  createSolution?: ( soluteProperty: Property<Solute>, options: MacroSolutionOptions ) => MacroSolution;
+};
 
-    // @public solute choices, in order that they'll appear in the combo box
-    // The order is alphabetical (English names), see https://github.com/phetsims/ph-scale/issues/101
+export type MacroModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+
+export default class MacroModel {
+
+  // solute choices, in order that they'll appear in the combo box
+  // The order is alphabetical (English names), see https://github.com/phetsims/ph-scale/issues/101
+  public readonly solutes: Solute[];
+
+  // the beaker, everything else is positioned relative to it
+  public readonly beaker: Beaker;
+
+  public readonly dropper: Dropper;
+
+  // solution in the beaker
+  public readonly solution: MacroSolution;
+
+  // water faucet, at the beaker's top-right
+  public readonly waterFaucet: Faucet;
+
+  // drain faucet, at the beaker's bottom-left
+  public readonly drainFaucet: Faucet;
+
+  // optional pH meter, to the left of the drain faucet
+  public readonly pHMeter: MacroPHMeter | null;
+
+  // whether the autofill feature is enabled, see https://github.com/phetsims/ph-scale/issues/104
+  private readonly autofillEnabledProperty: Property<boolean>;
+
+  // how much (L) to autofill when the solute changes
+  private readonly autofillVolume: number;
+
+  private readonly isAutofillingProperty: Property<boolean>;
+
+  public constructor( tandem: Tandem, providedOptions: MacroModelOptions ) {
+
+    const options = optionize<MacroModelOptions, SelfOptions>()( {
+
+      // SelfOptions
+      autofillVolume: 0.5,
+      includePHMeter: true,
+      createSolution: ( solutionProperty: Property<Solute>, options: MacroModelOptions ) => new MacroSolution( solutionProperty, options )
+    }, providedOptions );
+
     this.solutes = [
       Solute.BATTERY_ACID,
       Solute.BLOOD,
@@ -56,25 +94,20 @@ class MacroModel {
       Solute.WATER
     ];
 
-    // @public Beaker, everything else is positioned relative to it
     this.beaker = new Beaker( PHScaleConstants.BEAKER_POSITION );
 
-    // Dropper above the beaker
     const yDropper = this.beaker.position.y - this.beaker.size.height - 15;
-    // @public
     this.dropper = new Dropper( Solute.WATER,
       new Vector2( this.beaker.position.x - 50, yDropper ),
       new Bounds2( this.beaker.left + 40, yDropper, this.beaker.right - 200, yDropper ), {
         tandem: tandem.createTandem( 'dropper' )
       } );
 
-    // @public Solution in the beaker
     this.solution = options.createSolution( this.dropper.soluteProperty, {
       maxVolume: this.beaker.volume,
       tandem: tandem.createTandem( 'solution' )
     } );
 
-    // @public Water faucet at the beaker's top-right
     this.waterFaucet = new Faucet(
       new Vector2( this.beaker.right - 50, this.beaker.position.y - this.beaker.size.height - 45 ),
       this.beaker.right + 400, {
@@ -82,7 +115,6 @@ class MacroModel {
         tandem: tandem.createTandem( 'waterFaucet' )
       } );
 
-    // @public Drain faucet at the beaker's bottom-left.
     this.drainFaucet = new Faucet(
       new Vector2( this.beaker.left - 75, this.beaker.position.y + 43 ),
       this.beaker.left, {
@@ -90,7 +122,6 @@ class MacroModel {
         tandem: tandem.createTandem( 'drainFaucet' )
       } );
 
-    // @public optional pH meter to the left of the drain faucet
     this.pHMeter = null;
     if ( options.includePHMeter ) {
       const pHMeterPosition = new Vector2( this.drainFaucet.position.x - 300, 75 );
@@ -102,17 +133,13 @@ class MacroModel {
         } );
     }
 
-    // @private whether the autofill feature is enabled.
-    // See https://github.com/phetsims/ph-scale/issues/104
     this.autofillEnabledProperty = new BooleanProperty( PHScaleQueryParameters.autofill, {
       tandem: tandem.createTandem( 'autofillEnabledProperty' ),
       phetioDocumentation: 'whether solute is automatically added to the beaker when the solute is changed'
     } );
 
-    // @private autofill when the solute changes
     this.autofillVolume = options.autofillVolume;
 
-    // @public (read-only)
     this.isAutofillingProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'isAutofillingProperty' ),
       phetioReadOnly: true,
@@ -140,10 +167,7 @@ class MacroModel {
     } );
   }
 
-  /**
-   * @public
-   */
-  reset() {
+  public reset(): void {
     this.dropper.reset();
     this.solution.reset();
     this.waterFaucet.reset();
@@ -154,9 +178,8 @@ class MacroModel {
 
   /**
    * Enables faucets and dropper based on amount of solution in the beaker.
-   * @private
    */
-  updateFaucetsAndDropper() {
+  private updateFaucetsAndDropper(): void {
     const volume = this.solution.totalVolumeProperty.get();
     this.waterFaucet.enabledProperty.set( volume < this.beaker.volume );
     this.drainFaucet.enabledProperty.set( volume > 0 );
@@ -164,26 +187,23 @@ class MacroModel {
   }
 
   /**
-   * Moves time forward by the specified amount.
-   * @param deltaSeconds clock time change, in seconds.
-   * @public
+   * Moves time forward by the specified delta, in seconds.
    */
-  step( deltaSeconds ) {
+  public step( dt: number ): void {
     if ( this.isAutofillingProperty.get() ) {
-      this.stepAutofill( deltaSeconds );
+      this.stepAutofill( dt );
     }
     else {
-      this.solution.addSolute( this.dropper.flowRateProperty.get() * deltaSeconds );
-      this.solution.addWater( this.waterFaucet.flowRateProperty.get() * deltaSeconds );
-      this.solution.drainSolution( this.drainFaucet.flowRateProperty.get() * deltaSeconds );
+      this.solution.addSolute( this.dropper.flowRateProperty.get() * dt );
+      this.solution.addWater( this.waterFaucet.flowRateProperty.get() * dt );
+      this.solution.drainSolution( this.drainFaucet.flowRateProperty.get() * dt );
     }
   }
 
   /**
    * Starts the autofill animation.
-   * @private
    */
-  startAutofill() {
+  private startAutofill(): void {
     if ( this.autofillEnabledProperty.get() && this.autofillVolume > 0 ) {
       this.isAutofillingProperty.set( true );
       this.dropper.isDispensingProperty.set( true );
@@ -195,12 +215,10 @@ class MacroModel {
   }
 
   /**
-   * Advances the autofill animation.
-   * @param deltaSeconds clock time change, in seconds
-   * @private
+   * Advances the autofill animation by dt, in seconds.
    */
-  stepAutofill( deltaSeconds ) {
-    this.solution.addSolute( Math.min( this.dropper.flowRateProperty.get() * deltaSeconds, this.autofillVolume - this.solution.totalVolumeProperty.get() ) );
+  private stepAutofill( dt: number ): void {
+    this.solution.addSolute( Math.min( this.dropper.flowRateProperty.get() * dt, this.autofillVolume - this.solution.totalVolumeProperty.get() ) );
     if ( this.solution.totalVolumeProperty.get() === this.autofillVolume ) {
       this.stopAutofill();
     }
@@ -208,9 +226,8 @@ class MacroModel {
 
   /**
    * Stops the autofill animation.
-   * @private
    */
-  stopAutofill() {
+  private stopAutofill(): void {
     this.isAutofillingProperty.set( false );
     this.dropper.isDispensingProperty.set( false );
     this.updateFaucetsAndDropper();
@@ -218,4 +235,3 @@ class MacroModel {
 }
 
 phScale.register( 'MacroModel', MacroModel );
-export default MacroModel;

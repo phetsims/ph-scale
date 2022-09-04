@@ -24,10 +24,9 @@ class MacroScreen extends Screen {
 
   /**
    * @param {Tandem} tandem
-   * @param {Object} [modelOptions]
    */
   //TODO https://github.com/phetsims/ph-scale/issues/242 move tandem to providedOptions
-  constructor( tandem, modelOptions ) {
+  constructor( tandem ) {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 
     const options = {
@@ -45,7 +44,7 @@ class MacroScreen extends Screen {
     };
 
     super(
-      () => new MacroModel( tandem.createTandem( 'model' ), modelOptions ),
+      () => new MacroModel( tandem.createTandem( 'model' ) ),
       model => new MacroScreenView( model, ModelViewTransform2.createIdentity(), tandem.createTandem( 'view' ) ),
       options
     );

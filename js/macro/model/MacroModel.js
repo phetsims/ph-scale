@@ -1,5 +1,6 @@
 // Copyright 2013-2021, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * Model for the 'Macro' screen. Also serves as the supertype for the 'Micro' model.
  *

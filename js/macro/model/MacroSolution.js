@@ -1,5 +1,6 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * MacroSolution is the solution model used in the Macro screen.
  * Solvent (water) is constant, solute (in stock solution form) is variable.

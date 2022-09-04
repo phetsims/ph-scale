@@ -36,6 +36,7 @@ class MacroScreenView extends ScreenView {
    * @param {ModelViewTransform2} modelViewTransform
    * @param {Tandem} tandem
    */
+  //TODO https://github.com/phetsims/ph-scale/issues/242 move tandem to providedOptions
   constructor( model, modelViewTransform, tandem ) {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
     assert && assert( modelViewTransform instanceof ModelViewTransform2, 'invalid modelViewTransform' );

@@ -25,6 +25,7 @@ class MySolutionScreen extends Screen {
   /**
    * @param {Tandem} tandem
    */
+  //TODO https://github.com/phetsims/ph-scale/issues/242 move tandem to providedOptions
   constructor( tandem ) {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 

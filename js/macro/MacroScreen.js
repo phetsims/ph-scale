@@ -26,6 +26,7 @@ class MacroScreen extends Screen {
    * @param {Tandem} tandem
    * @param {Object} [modelOptions]
    */
+  //TODO https://github.com/phetsims/ph-scale/issues/242 move tandem to providedOptions
   constructor( tandem, modelOptions ) {
     assert && assert( tandem instanceof Tandem, 'invalid tandem' );
 

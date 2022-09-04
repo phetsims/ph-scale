@@ -69,6 +69,7 @@ export default class MacroModel {
 
   private readonly isAutofillingProperty: Property<boolean>;
 
+  //TODO https://github.com/phetsims/ph-scale/issues/242 move tandem to providedOptions
   public constructor( tandem: Tandem, providedOptions: MacroModelOptions ) {
 
     const options = optionize<MacroModelOptions, SelfOptions>()( {

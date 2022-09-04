@@ -1,50 +1,44 @@
-// Copyright 2013-2020, University of Colorado Boulder
+// Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * MySolutionModel is the model for the 'My Solution' screen.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Tandem from '../../../../tandem/js/Tandem.js';
+import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import Beaker from '../../common/model/Beaker.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
 import MySolution from './MySolution.js';
 
-// constants
-const DEFAULT_PH = 7;
-const VOLUME = 0.5; // L
+type SelfOptions = EmptySelfOptions;
 
-class MySolutionModel {
+export type MySolutionModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-  /**
-   * @param {Tandem} tandem
-   */
-  //TODO https://github.com/phetsims/ph-scale/issues/242 move tandem to providedOptions
-  constructor( tandem ) {
-    assert && assert( tandem instanceof Tandem, 'invalid tandem' );
+export default class MySolutionModel {
 
-    // @public Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
+  // Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
+  public readonly beaker: Beaker;
+
+  // solution in the beaker
+  public readonly solution: MySolution;
+
+  public constructor( providedOptions: MySolutionModelOptions ) {
+
     this.beaker = new Beaker( PHScaleConstants.BEAKER_POSITION );
 
-    // @public solution in the beaker
     this.solution = new MySolution( {
-      pH: DEFAULT_PH,
-      volume: VOLUME,
       maxVolume: this.beaker.volume,
-      tandem: tandem.createTandem( 'solution' )
+      tandem: providedOptions.tandem.createTandem( 'solution' )
     } );
   }
 
-  /**
-   * @public
-   */
-  reset() {
+  public reset(): void {
     this.solution.reset();
   }
 }
 
 phScale.register( 'MySolutionModel', MySolutionModel );
-export default MySolutionModel;

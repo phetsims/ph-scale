@@ -1,6 +1,5 @@
-// Copyright 2020-2021, University of Colorado Boulder
+// Copyright 2020-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * MySolution is the model of the solution in the My Solution screen.
  *
@@ -10,35 +9,45 @@
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Range from '../../../../dot/js/Range.js';
-import merge from '../../../../phet-core/js/merge.js';
-import PhetioObject from '../../../../tandem/js/PhetioObject.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import optionize from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { Color } from '../../../../scenery/js/imports.js';
+import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import SolutionDerivedProperties from '../../common/model/SolutionDerivedProperties.js';
 import Water from '../../common/model/Water.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
 
-class MySolution extends PhetioObject {
+type SelfOptions = {
+  pH?: number;
+  volume?: number; // C
+  maxVolume?: number; // L
+};
 
-  /**
-   * @param {Object} [options]
-   * @mixes SolutionDerivedProperties
-   */
-  constructor( options ) {
+export type MySolutionOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-    options = merge( {
+export default class MySolution extends PhetioObject {
+
+  public readonly pHProperty: NumberProperty; // pH of the solution in the beaker
+  public readonly totalVolumeProperty: NumberProperty; // total volume of the solution in the beaker
+  public readonly colorProperty: Property<Color>;
+  public readonly derivedProperties: SolutionDerivedProperties;
+
+  public constructor( providedOptions: MySolutionOptions ) {
+
+    const options = optionize<MySolutionOptions, SelfOptions, PhetioObjectOptions>()( {
+
+      // SelfOptions
       pH: 7,
-      volume: 0.5, // L
-      maxVolume: 1.2, // L
+      volume: 0.5,
+      maxVolume: 1.2,
 
-      // phet-io
-      tandem: Tandem.REQUIRED,
+      // PhetioObjectOptions
       phetioState: false
-    }, options );
+    }, providedOptions );
 
     super( options );
 
-    // @public pH of the solution in the beaker
     this.pHProperty = new NumberProperty( options.pH, {
       range: PHScaleConstants.PH_RANGE,
       tandem: options.tandem.createTandem( 'pHProperty' ),
@@ -46,7 +55,6 @@ class MySolution extends PhetioObject {
       phetioHighFrequency: true
     } );
 
-    // @public total volume of the solution in the beaker
     this.totalVolumeProperty = new NumberProperty( options.volume, {
       units: 'L',
       tandem: options.tandem.createTandem( 'totalVolumeProperty' ),
@@ -55,21 +63,16 @@ class MySolution extends PhetioObject {
       phetioHighFrequency: true
     } );
 
-    // @public
-    this.colorProperty = new Property( Water.color, {
-      // DO NOT INSTRUMENT FOR PhET-iO
-    } );
+    // Do not instrument for PhET-iO.
+    this.colorProperty = new Property( Water.color );
 
-    // @public
+    // Properties created by SolutionDerivedProperties should appear as if they are children of MySolution.
     this.derivedProperties = new SolutionDerivedProperties( this.pHProperty, this.totalVolumeProperty, {
-      tandem: options.tandem // Properties created by SolutionDerivedProperties should appear as if they are children of MySolution.
+      tandem: options.tandem
     } );
   }
 
-  /**
-   * @public
-   */
-  reset() {
+  public reset(): void {
     this.pHProperty.reset();
     this.totalVolumeProperty.reset();
     // this.derivedProperties does not need to be reset because all of its Properties are derived.
@@ -77,4 +80,3 @@ class MySolution extends PhetioObject {
 }
 
 phScale.register( 'MySolution', MySolution );
-export default MySolution;

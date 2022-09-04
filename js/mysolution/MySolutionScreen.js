@@ -44,7 +44,9 @@ class MySolutionScreen extends Screen {
     };
 
     super(
-      () => new MySolutionModel( tandem.createTandem( 'model' ) ),
+      () => new MySolutionModel( {
+        tandem: tandem.createTandem( 'model' )
+      } ),
       model => new MySolutionScreenView( model, ModelViewTransform2.createIdentity(), tandem.createTandem( 'view' ) ),
       options
     );

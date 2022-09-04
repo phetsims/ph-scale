@@ -1,41 +1,40 @@
-// Copyright 2013-2020, University of Colorado Boulder
+// Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Faucet that drains solution from the beaker.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import merge from '../../../../phet-core/js/merge.js';
-import FaucetNode from '../../../../scenery-phet/js/FaucetNode.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import FaucetNode, { FaucetNodeOptions } from '../../../../scenery-phet/js/FaucetNode.js';
 import phScale from '../../phScale.js';
 import PHScaleConstants from '../PHScaleConstants.js';
+import Faucet from '../model/Faucet.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
+import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 // constants
 const SCALE = 0.6;
 
-class DrainFaucetNode extends FaucetNode {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {Faucet} faucet
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {Object} [options]
-   */
-  constructor( faucet, modelViewTransform, options ) {
+export type DrainFaucetNodeOptions = SelfOptions & PickRequired<FaucetNodeOptions, 'tandem'>;
+
+export default class DrainFaucetNode extends FaucetNode {
+
+  public constructor( faucet: Faucet, modelViewTransform: ModelViewTransform2, providedOptions: DrainFaucetNodeOptions ) {
 
     const horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.position.x - faucet.pipeMinX ) ) / SCALE;
 
-    options = merge( {}, PHScaleConstants.FAUCET_OPTIONS, {
+    const defaultOptions = combineOptions<FaucetNodeOptions>( {}, PHScaleConstants.FAUCET_OPTIONS, {
 
-      // FaucetNode options
+      // FaucetNodeOptions
       horizontalPipeLength: horizontalPipeLength,
-      verticalPipeLength: 5,
+      verticalPipeLength: 5
+    } );
 
-      // phet-io
-      tandem: Tandem.REQUIRED
-    }, options );
+    const options = optionize<DrainFaucetNodeOptions, SelfOptions, FaucetNodeOptions>()( defaultOptions, providedOptions );
 
     super( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, options );
 
@@ -45,4 +44,3 @@ class DrainFaucetNode extends FaucetNode {
 }
 
 phScale.register( 'DrainFaucetNode', DrainFaucetNode );
-export default DrainFaucetNode;

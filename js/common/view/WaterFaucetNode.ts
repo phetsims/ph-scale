@@ -6,10 +6,9 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import merge from '../../../../phet-core/js/merge.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import FaucetNode from '../../../../scenery-phet/js/FaucetNode.js';
+import FaucetNode, { FaucetNodeOptions } from '../../../../scenery-phet/js/FaucetNode.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
@@ -36,7 +35,7 @@ export default class WaterFaucetNode extends Node {
     const horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.position.x - faucet.pipeMinX ) ) / SCALE;
 
     const faucetNode = new FaucetNode( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty,
-      merge( {}, PHScaleConstants.FAUCET_OPTIONS, {
+      combineOptions<FaucetNodeOptions>( {}, PHScaleConstants.FAUCET_OPTIONS, {
         horizontalPipeLength: horizontalPipeLength,
         verticalPipeLength: 20,
         tandem: options.tandem.createTandem( 'faucetNode' )

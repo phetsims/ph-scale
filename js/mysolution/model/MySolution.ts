@@ -66,8 +66,9 @@ export default class MySolution extends PhetioObject {
     // Do not instrument for PhET-iO.
     this.colorProperty = new Property( Water.color );
 
-    // Properties created by SolutionDerivedProperties should appear as if they are children of MySolution.
     this.derivedProperties = new SolutionDerivedProperties( this.pHProperty, this.totalVolumeProperty, {
+
+      // Properties created by SolutionDerivedProperties should appear as if they are children of MySolution.
       tandem: options.tandem
     } );
   }

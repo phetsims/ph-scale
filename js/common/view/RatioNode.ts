@@ -1,12 +1,11 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Visual representation of H3O+/OH- ratio.
  *
  * Molecules are drawn as flat circles, directly to Canvas for performance.
  * In the pH range is close to neutral, the relationship between number of molecules and pH is log.
- * Outside of that range, we can't possibly draw that many molecules, so we fake it using a linear relationship.
+ * Outside that range, we can't possibly draw that many molecules, so we fake it using a linear relationship.
  *
  * Note: The implementation refers to 'majority' or 'minority' species throughout.
  * This is a fancy was of saying 'the molecule that has the larger (or smaller) count'.
@@ -15,21 +14,26 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
 import dotRandom from '../../../../dot/js/dotRandom.js';
 import Range from '../../../../dot/js/Range.js';
 import Utils from '../../../../dot/js/Utils.js';
 import { Shape } from '../../../../kite/js/imports.js';
-import merge from '../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { CanvasNode, Circle, Node, Text } from '../../../../scenery/js/imports.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import { CanvasNode, Circle, Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import phScale from '../../phScale.js';
-import PHModel from '../model/PHModel.js';
+import PHModel, { PHValue } from '../model/PHModel.js';
 import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import PHScaleQueryParameters from '../PHScaleQueryParameters.js';
+import Beaker from '../model/Beaker.js';
+import MicroSolution from '../../micro/model/MicroSolution.js';
+import MySolution from '../../mysolution/model/MySolution.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 
 // constants
 const TOTAL_MOLECULES_AT_PH_7 = 100;
@@ -47,41 +51,38 @@ const H3O_LINE_WIDTH = 0.25; // width of stroke around H3O+ molecules, ignored i
 const OH_STROKE = 'black'; // optional stroke around OH- molecules
 const OH_LINE_WIDTH = 0.25; // width of stroke around OH- molecules, ignored if OH_STROKE is null
 
-class RatioNode extends Node {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {Beaker} beaker
-   * @param {MicroSolution|MySolution} solution
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {Object} [options]
-   */
-  constructor( beaker, solution, modelViewTransform, options ) {
+export type RatioNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
-    options = merge( {
+export default class RatioNode extends Node {
 
-      // phet-io
-      tandem: Tandem.REQUIRED
-    }, options );
+  private readonly solution: MicroSolution | MySolution;
+  private pH: PHValue;
+  private readonly moleculesNode: MoleculesCanvas;
+  private readonly ratioText: Text | null;
+  private readonly beakerBounds: Bounds2;
+
+  public constructor( beaker: Beaker, solution: MicroSolution | MySolution, modelViewTransform: ModelViewTransform2,
+                      providedOptions: RatioNodeOptions ) {
+
+    const options = providedOptions;
 
     super();
 
-    // @private save constructor args
     this.solution = solution;
-
-    // @private current pH, null to force an update
-    this.pH = null;
+    this.pH = null; // null to force an update
 
     // bounds of the beaker, in view coordinates
-    const beakerBounds = modelViewTransform.modelToViewBounds( beaker.bounds );
+    this.beakerBounds = modelViewTransform.modelToViewBounds( beaker.bounds );
 
-    // @private parent for all molecules
-    this.moleculesNode = new MoleculesCanvas( beakerBounds );
+    // parent for all molecules
+    this.moleculesNode = new MoleculesCanvas( this.beakerBounds );
     this.addChild( this.moleculesNode );
 
     // Show the ratio of molecules
+    this.ratioText = null;
     if ( PHScaleQueryParameters.showRatio ) {
-
-      // @private
       this.ratioText = new Text( '?', {
         font: new PhetFont( 30 ),
         fill: 'black'
@@ -104,6 +105,7 @@ class RatioNode extends Node {
           return null;
         }
         else {
+          // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
           return PHModel.pHToConcentrationH3O( pH ) / PHModel.pHToConcentrationOH( pH );
         }
       }, {
@@ -119,32 +121,29 @@ class RatioNode extends Node {
         this.clipArea = null;
       }
       else {
-        const solutionHeight = beakerBounds.getHeight() * totalVolume / beaker.volume;
-        this.clipArea = Shape.rectangle( beakerBounds.minX, beakerBounds.maxY - solutionHeight, beakerBounds.getWidth(), solutionHeight );
+        const solutionHeight = this.beakerBounds.getHeight() * totalVolume / beaker.volume;
+        this.clipArea = Shape.rectangle( this.beakerBounds.minX, this.beakerBounds.maxY - solutionHeight, this.beakerBounds.getWidth(), solutionHeight );
       }
       this.moleculesNode.invalidatePaint(); //WORKAROUND: #25, scenery#200
     } );
 
     // Update this Node when it becomes visible.
     this.visibleProperty.link( visible => visible && this.update() );
-
-    // @private
-    this.beakerBounds = beakerBounds;
   }
 
   /**
    * Updates the number of molecules when the pH (as displayed on the meter) changes.
    * If total volume changes, we don't create more molecules, we just expose more of them.
-   * @private
    */
-  update() {
+  private update(): void {
 
     // don't update if not visible
     if ( !this.visible ) { return; }
 
-    let pH = this.solution.pHProperty.get();
+    let pH = this.solution.pHProperty.value;
     if ( pH !== null ) {
-      pH = Utils.toFixedNumber( this.solution.pHProperty.get(), PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
+      pH = Utils.toFixedNumber( this.solution.pHProperty.value, PHScaleConstants.PH_METER_DECIMAL_PLACES );
     }
 
     if ( this.pH !== pH ) {
@@ -202,45 +201,56 @@ class RatioNode extends Node {
   }
 }
 
-phScale.register( 'RatioNode', RatioNode );
-
-//-------------------------------------------------------------------------------------
-
 // Creates a random {number} x-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
-function createRandomX( bounds ) {
+function createRandomX( bounds: Bounds2 ): number {
   return dotRandom.nextIntBetween( bounds.minX, bounds.maxX );
 }
 
 // Creates a random {number} y-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
-function createRandomY( bounds ) {
+function createRandomY( bounds: Bounds2 ): number {
   return dotRandom.nextIntBetween( bounds.minY, bounds.maxY );
 }
 
 // Computes the {number} number of H3O+ molecules for some {number} pH.
-function computeNumberOfH3O( pH ) {
+function computeNumberOfH3O( pH: PHValue ): number {
+  // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
   return Utils.roundSymmetric( PHModel.pHToConcentrationH3O( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
 }
 
 // Computes the {number} number of OH- molecules for some {number} pH.
-function computeNumberOfOH( pH ) {
+function computeNumberOfOH( pH: PHValue ): number {
+  // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
   return Utils.roundSymmetric( PHModel.pHToConcentrationOH( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
 }
-
-//-------------------------------------------------------------------------------------
 
 /**
  * Draws all molecules directly to Canvas.
  */
 class MoleculesCanvas extends CanvasNode {
 
+  private readonly beakerBounds: Bounds2;
+  private numberOfH3OMolecules: number;
+  private numberOfOHMolecules: number;
+
+  // x and y coordinates for molecules
+  private readonly xH3O: number[];
+  private readonly yH3O: number[];
+  private readonly xOH: number[];
+  private readonly yOH: number[];
+
+  // majority and minority images for each molecule
+  private imageH3OMajority: HTMLCanvasElement | null;
+  private imageH3OMinority: HTMLCanvasElement | null;
+  private imageOHMajority: HTMLCanvasElement | null;
+  private imageOHMinority: HTMLCanvasElement | null;
+
   /**
-   * @param {Bounds2} beakerBounds - beaker bounds in view coordinate frame
+   * @param beakerBounds - beaker bounds in view coordinate frame
    */
-  constructor( beakerBounds ) {
+  public constructor( beakerBounds: Bounds2 ) {
 
     super( { canvasBounds: beakerBounds } );
 
-    // @private
     this.beakerBounds = beakerBounds;
     this.numberOfH3OMolecules = 0;
     this.numberOfOHMolecules = 0;
@@ -248,57 +258,62 @@ class MoleculesCanvas extends CanvasNode {
     // use typed array if available, it will use less memory and be faster
     const ArrayConstructor = window.Float32Array || window.Array;
 
-    // @private pre-allocate arrays for molecule x and y coordinates, to eliminate allocation in critical code
+    // pre-allocate arrays for molecule x and y coordinates, to eliminate allocation in critical code
+    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
     this.xH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
+    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
     this.yH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
+    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
     this.xOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
+    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242
     this.yOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
 
-    // @private Generate majority and minority {HTMLCanvasElement} for each molecule.
+    // Generate majority and minority {HTMLCanvasElement} for each molecule.
+    this.imageH3OMajority = null;
     new Circle( H3O_RADIUS, {
       fill: PHScaleColors.H3O_MOLECULES.withAlpha( MAJORITY_ALPHA ),
       stroke: H3O_STROKE,
       lineWidth: H3O_LINE_WIDTH
     } )
       .toCanvas( ( canvas, x, y, width, height ) => {
-        this.imageH3OMajority = canvas; // @private {HTMLCanvasElement}
+        this.imageH3OMajority = canvas;
       } );
 
+    this.imageH3OMinority = null;
     new Circle( H3O_RADIUS, {
       fill: PHScaleColors.H3O_MOLECULES.withAlpha( MINORITY_ALPHA ),
       stroke: H3O_STROKE,
       lineWidth: H3O_LINE_WIDTH
     } )
       .toCanvas( ( canvas, x, y, width, height ) => {
-        this.imageH3OMinority = canvas; // @private {HTMLCanvasElement}
+        this.imageH3OMinority = canvas;
       } );
 
+    this.imageOHMajority = null;
     new Circle( OH_RADIUS, {
       fill: PHScaleColors.OH_MOLECULES.withAlpha( MAJORITY_ALPHA ),
       stroke: OH_STROKE,
       lineWidth: OH_LINE_WIDTH
     } )
       .toCanvas( ( canvas, x, y, width, height ) => {
-        this.imageOHMajority = canvas; // @private {HTMLCanvasElement}
+        this.imageOHMajority = canvas;
       } );
 
+    this.imageOHMinority = null;
     new Circle( OH_RADIUS, {
       fill: PHScaleColors.OH_MOLECULES.withAlpha( MINORITY_ALPHA ),
       stroke: OH_STROKE,
       lineWidth: OH_LINE_WIDTH
     } )
       .toCanvas( ( canvas, x, y, width, height ) => {
-        this.imageOHMinority = canvas; // @private {HTMLCanvasElement}
+        this.imageOHMinority = canvas;
       } );
   }
 
   /**
    * Sets the number of molecules to display. Called when the solution's pH changes.
-   * @param {number} numberOfH3OMolecules
-   * @param {number} numberOfOHMolecules
-   * @public
    */
-  setNumberOfMolecules( numberOfH3OMolecules, numberOfOHMolecules ) {
+  public setNumberOfMolecules( numberOfH3OMolecules: number, numberOfOHMolecules: number ): void {
     if ( numberOfH3OMolecules !== this.numberOfH3OMolecules || numberOfOHMolecules !== this.numberOfOHMolecules ) {
 
       /*
@@ -327,33 +342,26 @@ class MoleculesCanvas extends CanvasNode {
 
   /**
    * Paints molecules to the Canvas.
-   * @param {CanvasRenderingContext2D} context
-   * @protected
-   * @override
    */
-  paintCanvas( context ) {
+  public override paintCanvas( context: CanvasRenderingContext2D ): void {
 
     // draw majority species behind minority species
     if ( this.numberOfH3OMolecules > this.numberOfOHMolecules ) {
-      this.drawMolecules( context, this.imageH3OMajority, this.numberOfH3OMolecules, this.xH3O, this.yH3O );
-      this.drawMolecules( context, this.imageOHMinority, this.numberOfOHMolecules, this.xOH, this.yOH );
+      this.drawMolecules( context, this.imageH3OMajority!, this.numberOfH3OMolecules, this.xH3O, this.yH3O );
+      this.drawMolecules( context, this.imageOHMinority!, this.numberOfOHMolecules, this.xOH, this.yOH );
     }
     else {
-      this.drawMolecules( context, this.imageOHMajority, this.numberOfOHMolecules, this.xOH, this.yOH );
-      this.drawMolecules( context, this.imageH3OMinority, this.numberOfH3OMolecules, this.xH3O, this.yH3O );
+      this.drawMolecules( context, this.imageOHMajority!, this.numberOfOHMolecules, this.xOH, this.yOH );
+      this.drawMolecules( context, this.imageH3OMinority!, this.numberOfH3OMolecules, this.xH3O, this.yH3O );
     }
   }
 
   /**
    * Draws one species of molecule. Using drawImage is faster than arc.
-   * @param {CanvasRenderingContext2D} context
-   * @param {HTMLCanvasElement} image
-   * @param {number} numberOfMolecules
-   * @param {number[]} xCoordinates
-   * @param {number[]} yCoordinates
-   * @private
    */
-  drawMolecules( context, image, numberOfMolecules, xCoordinates, yCoordinates ) {
+  private drawMolecules( context: CanvasRenderingContext2D, image: HTMLCanvasElement, numberOfMolecules: number,
+                         xCoordinates: number[], yCoordinates: number[] ): void {
+    assert && assert( image, 'HTMLCanvasElement is not loaded yet' );
 
     // images are generated asynchronously, so test just in case they aren't available when this is first called
     if ( image ) {
@@ -364,4 +372,4 @@ class MoleculesCanvas extends CanvasNode {
   }
 }
 
-export default RatioNode;
+phScale.register( 'RatioNode', RatioNode );

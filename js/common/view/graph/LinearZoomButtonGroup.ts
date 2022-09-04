@@ -1,6 +1,5 @@
 // Copyright 2020, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * LinearZoomButtonGroup is the group of zoom button for the 'Linear' graph.
  *
@@ -9,32 +8,30 @@
 
 import NumberProperty from '../../../../../axon/js/NumberProperty.js';
 import Range from '../../../../../dot/js/Range.js';
-import merge from '../../../../../phet-core/js/merge.js';
-import MagnifyingGlassZoomButtonGroup from '../../../../../scenery-phet/js/MagnifyingGlassZoomButtonGroup.js';
-import Tandem from '../../../../../tandem/js/Tandem.js';
+import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
+import MagnifyingGlassZoomButtonGroup, { MagnifyingGlassZoomButtonGroupOptions } from '../../../../../scenery-phet/js/MagnifyingGlassZoomButtonGroup.js';
 import phScale from '../../../phScale.js';
 
-class LinearZoomButtonGroup extends MagnifyingGlassZoomButtonGroup {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {NumberProperty} exponentProperty - exponent for the linear graph
-   * @param {Object} [options]
-   */
-  constructor( exponentProperty, options ) {
+export type LinearZoomButtonGroupOptions = SelfOptions & PickRequired<MagnifyingGlassZoomButtonGroupOptions, 'tandem'>;
 
-    assert && assert( exponentProperty instanceof NumberProperty, 'invalid exponentProperty' );
-    assert && assert( exponentProperty.range, 'exponentProperty must have range' );
+export default class LinearZoomButtonGroup extends MagnifyingGlassZoomButtonGroup {
 
-    options = merge( {
-      layout: 'horizontal',
+  public constructor( exponentProperty: NumberProperty, providedOptions: LinearZoomButtonGroupOptions ) {
+
+    const options = optionize<LinearZoomButtonGroupOptions, SelfOptions, MagnifyingGlassZoomButtonGroupOptions>()( {
+
+      // MagnifyingGlassZoomButtonGroupOptions
       spacing: 25,
       magnifyingGlassNodeOptions: {
         glassRadius: 13
-      },
+      }
+    }, providedOptions );
 
-      // phet-io
-      tandem: Tandem.REQUIRED
-    }, options );
+    const range = exponentProperty.range!;
+    assert && assert( range, 'exponentProperty must have range' );
 
     // For exponent, a smaller value means 'more zoomed in'.
     // For MagnifyingGlassZoomButtonGroup and zoomLevelProperty, a smaller value means 'more zoomed out'.
@@ -42,8 +39,8 @@ class LinearZoomButtonGroup extends MagnifyingGlassZoomButtonGroup {
     // We can't use DynamicProperty here because MagnifyingGlassZoomButtonGroup require a NumberProperty.
     const zoomLevelProperty = new NumberProperty( -exponentProperty.value, {
       numberType: 'Integer',
-      range: new Range( -exponentProperty.range.max, -exponentProperty.range.min )
-    } );
+      range: new Range( -range.max, -range.min )
+    } ).asRanged();
     zoomLevelProperty.link( zoomLevel => { exponentProperty.value = -zoomLevel; } );
     exponentProperty.link( exponent => { zoomLevelProperty.value = -exponent; } );
 
@@ -52,4 +49,3 @@ class LinearZoomButtonGroup extends MagnifyingGlassZoomButtonGroup {
 }
 
 phScale.register( 'LinearZoomButtonGroup', LinearZoomButtonGroup );
-export default LinearZoomButtonGroup;

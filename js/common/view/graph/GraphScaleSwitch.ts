@@ -8,10 +8,9 @@
 
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Dimension2 from '../../../../../dot/js/Dimension2.js';
-import merge from '../../../../../phet-core/js/merge.js';
-import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions, EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
-import { Text } from '../../../../../scenery/js/imports.js';
+import { Text, TextOptions } from '../../../../../scenery/js/imports.js';
 import ABSwitch, { ABSwitchOptions } from '../../../../../sun/js/ABSwitch.js';
 import phScale from '../../../phScale.js';
 import phScaleStrings from '../../../phScaleStrings.js';
@@ -40,12 +39,12 @@ export default class GraphScaleSwitch extends ABSwitch<GraphScale> {
     };
 
     // Logarithmic label
-    const logarithmicText = new Text( phScaleStrings.logarithmicStringProperty, merge( {
+    const logarithmicText = new Text( phScaleStrings.logarithmicStringProperty, combineOptions<TextOptions>( {
       tandem: options.tandem.createTandem( 'logarithmicText' )
     }, textOptions ) );
 
     // Linear label
-    const linearText = new Text( phScaleStrings.linearStringProperty, merge( {
+    const linearText = new Text( phScaleStrings.linearStringProperty, combineOptions<TextOptions>( {
       tandem: options.tandem.createTandem( 'linearText' )
     }, textOptions ) );
 

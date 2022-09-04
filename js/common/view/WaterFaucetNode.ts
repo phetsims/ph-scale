@@ -1,6 +1,5 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Faucet that dispenses water (the solvent).
  *
@@ -8,33 +7,31 @@
  */
 
 import merge from '../../../../phet-core/js/merge.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import FaucetNode from '../../../../scenery-phet/js/FaucetNode.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Node, Text } from '../../../../scenery/js/imports.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import { Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
 import Water from '../model/Water.js';
 import PHScaleConstants from '../PHScaleConstants.js';
+import Faucet from '../model/Faucet.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 
 // constants
 const SCALE = 0.6;
 
-class WaterFaucetNode extends Node {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {Faucet} faucet
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {Object} [options]
-   */
-  constructor( faucet, modelViewTransform, options ) {
+export type WaterFaucetNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
-    options = merge( {
+export default class WaterFaucetNode extends Node {
 
-      // phet-io
-      tandem: Tandem.REQUIRED
-    }, options );
+  public constructor( faucet: Faucet, modelViewTransform: ModelViewTransform2, providedOptions: WaterFaucetNodeOptions ) {
 
-    super( options );
+    const options = optionize<WaterFaucetNodeOptions, SelfOptions, NodeOptions>()( {
+      // Empty optionize call is needed because we're setting options.children below.
+    }, providedOptions );
 
     const horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.position.x - faucet.pipeMinX ) ) / SCALE;
 
@@ -46,9 +43,8 @@ class WaterFaucetNode extends Node {
       } ) );
     faucetNode.translation = modelViewTransform.modelToViewPosition( faucet.position );
     faucetNode.setScaleMagnitude( -SCALE, SCALE ); // reflect horizontally
-    this.addChild( faucetNode );
 
-    // decorate the faucet with the name of the water
+    // decorate the faucet with 'Water' label
     const waterText = new Text( Water.name, {
       font: new PhetFont( 28 ),
       maxWidth: 85,
@@ -56,9 +52,11 @@ class WaterFaucetNode extends Node {
       bottom: faucetNode.centerY - 40,
       tandem: options.tandem.createTandem( 'waterText' )
     } );
-    this.addChild( waterText );
+
+    options.children = [ faucetNode, waterText ];
+
+    super( options );
   }
 }
 
 phScale.register( 'WaterFaucetNode', WaterFaucetNode );
-export default WaterFaucetNode;

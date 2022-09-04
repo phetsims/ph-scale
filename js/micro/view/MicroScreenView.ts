@@ -1,6 +1,5 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * View for the 'Micro' screen.
  *
@@ -14,12 +13,14 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
+import { ScreenOptions } from '../../../../joist/js/Screen.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
-import merge from '../../../../phet-core/js/merge.js';
+import { EmptySelfOptions, optionize3 } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import EyeDropperNode from '../../../../scenery-phet/js/EyeDropperNode.js';
 import { Node } from '../../../../scenery/js/imports.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 import Water from '../../common/model/Water.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import BeakerControlPanel from '../../common/view/BeakerControlPanel.js';
@@ -38,19 +39,20 @@ import SolutionNode from '../../common/view/SolutionNode.js';
 import VolumeIndicatorNode from '../../common/view/VolumeIndicatorNode.js';
 import WaterFaucetNode from '../../common/view/WaterFaucetNode.js';
 import phScale from '../../phScale.js';
+import MicroModel from '../model/MicroModel.js';
 
-class MicroScreenView extends ScreenView {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {MicroModel} model
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {Object} [options]
-   */
-  constructor( model, modelViewTransform, options ) {
+type MicroScreenViewOptions = SelfOptions & PickRequired<ScreenOptions, 'tandem'>;
 
-    super( merge( {
-      tandem: Tandem.REQUIRED
-    }, PHScaleConstants.SCREEN_VIEW_OPTIONS, options ) );
+export default class MicroScreenView extends ScreenView {
+
+  public constructor( model: MicroModel, modelViewTransform: ModelViewTransform2, provideOptions: MicroScreenViewOptions ) {
+
+    const options = optionize3<MicroScreenViewOptions, SelfOptions, ScreenOptions>()( {},
+      PHScaleConstants.SCREEN_VIEW_OPTIONS, provideOptions );
+
+    super( options );
 
     // view-specific properties
     const viewProperties = new PHScaleViewProperties( options.tandem.createTandem( 'viewProperties' ) );
@@ -94,12 +96,14 @@ class MicroScreenView extends ScreenView {
     const drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform );
 
     // 'H3O+/OH- ratio' representation
+    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242 solution type mismatch
     const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, {
       visibleProperty: viewProperties.ratioVisibleProperty,
       tandem: options.tandem.createTandem( 'ratioNode' )
     } );
 
     // 'molecule count' representation
+    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242 derivedProperties does not exist
     const moleculeCountNode = new MoleculeCountNode( model.solution.derivedProperties, {
       visibleProperty: viewProperties.moleculeCountVisibleProperty,
       tandem: options.tandem.createTandem( 'moleculeCountNode' )
@@ -114,7 +118,9 @@ class MicroScreenView extends ScreenView {
       } );
 
     // graph
+    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242 pHProperty type mismatch
     const graphNode = new GraphNode( model.solution.pHProperty, model.solution.totalVolumeProperty,
+      // @ts-ignore https://github.com/phetsims/ph-scale/issues/242 derivedProperties does not exist
       model.solution.derivedProperties, {
         hasLinearFeature: true,
         logScaleHeight: 485,
@@ -125,6 +131,7 @@ class MicroScreenView extends ScreenView {
     // pH meter
     const pHMeterTop = 15;
 
+    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242 pHProperty type mismatch
     const phMeterNodeAccordionBox = new PHMeterNodeAccordionBox( model.solution.pHProperty,
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
         tandem: options.tandem.createTandem( 'pHMeterNodeAccordionBox' )
@@ -191,4 +198,3 @@ class MicroScreenView extends ScreenView {
 }
 
 phScale.register( 'MicroScreenView', MicroScreenView );
-export default MicroScreenView;

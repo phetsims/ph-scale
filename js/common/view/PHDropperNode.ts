@@ -19,7 +19,7 @@ import Dropper from '../model/Dropper.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type PHDropperNodeOptions = SelfOptions & PickRequired<EyeDropperNodeOptions, 'tandem'>;
+export type PHDropperNodeOptions = SelfOptions & PickRequired<EyeDropperNodeOptions, 'tandem' | 'visibleProperty'>;
 
 export default class PHDropperNode extends EyeDropperNode {
 

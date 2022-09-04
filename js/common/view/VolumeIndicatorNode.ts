@@ -7,7 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Utils from '../../../../dot/js/Utils.js';
 import { Shape } from '../../../../kite/js/imports.js';
@@ -32,7 +32,7 @@ export type VolumeIndicatorNodeOptions = SelfOptions & PickRequired<NodeOptions,
 
 export default class VolumeIndicatorNode extends Node {
 
-  public constructor( totalVolumeProperty: Property<number>,
+  public constructor( totalVolumeProperty: TReadOnlyProperty<number>,
                       beaker: Beaker,
                       modelViewTransform: ModelViewTransform2,
                       providedOptions: VolumeIndicatorNodeOptions ) {

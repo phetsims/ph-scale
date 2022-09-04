@@ -7,7 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import { Color, Rectangle } from '../../../../scenery/js/imports.js';
@@ -17,8 +17,8 @@ import PHScaleConstants from '../PHScaleConstants.js';
 
 export default class SolutionNode extends Rectangle {
 
-  public constructor( solutionVolumeProperty: Property<number>,
-                      solutionColorProperty: Property<Color>,
+  public constructor( solutionVolumeProperty: TReadOnlyProperty<number>,
+                      solutionColorProperty: TReadOnlyProperty<Color>,
                       beaker: Beaker,
                       modelViewTransform: ModelViewTransform2 ) {
 

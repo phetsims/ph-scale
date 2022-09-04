@@ -8,6 +8,7 @@
 
 import Property from '../../../../axon/js/Property.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { HBox, Node, Rectangle, Text } from '../../../../scenery/js/imports.js';
@@ -17,7 +18,9 @@ import Solute from '../model/Solute.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type SoluteComboBoxOptions = SelfOptions & PickRequired<ComboBoxOptions, 'tandem'>;
+export type SoluteComboBoxOptions = SelfOptions &
+  PickRequired<ComboBoxOptions, 'tandem'> &
+  PickOptional<ComboBoxOptions, 'maxWidth'>;
 
 export default class SoluteComboBox extends ComboBox<Solute> {
 

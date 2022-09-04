@@ -7,7 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import { Color, Rectangle } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
@@ -15,7 +15,7 @@ import Faucet from '../model/Faucet.js';
 
 export default class FaucetFluidNode extends Rectangle {
 
-  public constructor( faucet: Faucet, colorProperty: Property<Color>, height: number, modelViewTransform: ModelViewTransform2 ) {
+  public constructor( faucet: Faucet, colorProperty: TReadOnlyProperty<Color>, height: number, modelViewTransform: ModelViewTransform2 ) {
 
     const options = {
 

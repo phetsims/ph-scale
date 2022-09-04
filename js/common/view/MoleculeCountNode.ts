@@ -7,12 +7,11 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import merge from '../../../../phet-core/js/merge.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import ScientificNotationNode, { ScientificNotationNodeOptions } from '../../../../scenery-phet/js/ScientificNotationNode.js';
-import { AlignBox, AlignBoxOptions, AlignGroup, HBox, Node, NodeOptions, Rectangle } from '../../../../scenery/js/imports.js';
+import { AlignBox, AlignBoxOptions, AlignGroup, HBox, Node, NodeOptions, Rectangle, RectangleOptions } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
 import SolutionDerivedProperties from '../model/SolutionDerivedProperties.js';
 import PHScaleColors from '../PHScaleColors.js';
@@ -53,7 +52,8 @@ export default class MoleculeCountNode extends Node {
     };
     const countH3ONode = new AlignBox( new ScientificNotationNode( derivedProperties.numberOfH3OMoleculesProperty, notationOptions ), countsAlignBoxOptions );
     const countOHNode = new AlignBox( new ScientificNotationNode( derivedProperties.numberOfOHMoleculesProperty, notationOptions ), countsAlignBoxOptions );
-    const countH2ONode = new AlignBox( new ScientificNotationNode( derivedProperties.numberOfH2OMoleculesProperty, merge( { exponent: 25 }, notationOptions ) ), countsAlignBoxOptions );
+    const countH2ONode = new AlignBox( new ScientificNotationNode( derivedProperties.numberOfH2OMoleculesProperty,
+      combineOptions<ScientificNotationNodeOptions>( { exponent: 25 }, notationOptions ) ), countsAlignBoxOptions );
 
     // Add an invisible count to the group, so that we get the correct (maximum) width.
     const invisibleCountNode = new AlignBox( new ScientificNotationNode( new Property( 1e16 ), notationOptions ), countsAlignBoxOptions );
@@ -90,13 +90,13 @@ export default class MoleculeCountNode extends Node {
       cornerRadius: 5,
       backgroundStroke: 'rgb( 200, 200, 200 )'
     };
-    const backgroundH3O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, merge( {
+    const backgroundH3O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, combineOptions<RectangleOptions>( {
       fill: PHScaleColors.ACIDIC
     }, backgroundOptions ) );
-    const backgroundOH = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, merge( {
+    const backgroundOH = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, combineOptions<RectangleOptions>( {
       fill: PHScaleColors.BASIC
     }, backgroundOptions ) );
-    const backgroundH2O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, merge( {
+    const backgroundH2O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, combineOptions<RectangleOptions>( {
       fill: PHScaleColors.H2O_BACKGROUND
     }, backgroundOptions ) );
 

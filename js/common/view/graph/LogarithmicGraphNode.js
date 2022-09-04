@@ -1,5 +1,6 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * Graph with a logarithmic scale, for displaying concentration (mol/L) and quantity (moles).
  * Assumes that graphing concentration and quantity can be graphed on the same scale.

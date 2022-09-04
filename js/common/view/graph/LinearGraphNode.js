@@ -1,5 +1,6 @@
 // Copyright 2014-2022, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * Graph with a linear scale, for displaying concentration (mol/L) and quantity (moles).
  * Some of the code related to indicators (initialization and updateIndicators) is similar

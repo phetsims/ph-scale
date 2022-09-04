@@ -10,7 +10,7 @@
  */
 
 import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
-import EnumerationDeprecatedProperty from '../../../../../axon/js/EnumerationDeprecatedProperty.js';
+import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Multilink from '../../../../../axon/js/Multilink.js';
 import NumberProperty from '../../../../../axon/js/NumberProperty.js';
 import Utils from '../../../../../dot/js/Utils.js';
@@ -35,12 +35,12 @@ class LinearGraphNode extends Node {
 
   /**
    * @param {SolutionDerivedProperties} derivedProperties
-   * @param {EnumerationDeprecatedProperty.<GraphUnits>} graphUnitsProperty
+   * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
    * @param {Object} [options]
    */
   constructor( derivedProperties, graphUnitsProperty, options ) {
     assert && assert( derivedProperties instanceof SolutionDerivedProperties, 'invalid derivedProperties' );
-    assert && assert( graphUnitsProperty instanceof EnumerationDeprecatedProperty, 'invalid graphUnitsProperty' );
+    assert && assert( graphUnitsProperty instanceof EnumerationProperty, 'invalid graphUnitsProperty' );
 
     options = merge( {
 

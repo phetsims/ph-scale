@@ -1,16 +1,19 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
+import Enumeration from '../../../../../phet-core/js/Enumeration.js';
+import EnumerationValue from '../../../../../phet-core/js/EnumerationValue.js';
+
 /**
  * Type of graph (log or linear).
+ * NOTE: When converting to TypeScript, this was not converted to a string union because we do not want to change
+ * the PhET-iO API. String-union values use camelCase, while EnumerationValue uses UPPER_CASE.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import EnumerationDeprecated from '../../../../../phet-core/js/EnumerationDeprecated.js';
-import phScale from '../../../phScale.js';
+export default class GraphScale extends EnumerationValue {
+  public static readonly LOGARITHMIC = new GraphScale();
+  public static readonly LINEAR = new GraphScale();
 
-const GraphScale = EnumerationDeprecated.byKeys( [ 'LOGARITHMIC', 'LINEAR' ] );
-
-phScale.register( 'GraphScale', GraphScale );
-export default GraphScale;
+  public static readonly enumeration = new Enumeration( GraphScale );
+}

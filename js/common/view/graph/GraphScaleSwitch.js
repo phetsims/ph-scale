@@ -19,7 +19,7 @@ import GraphScale from './GraphScale.js';
 class GraphScaleSwitch extends ABSwitch {
 
   /**
-   * @param {EnumerationDeprecatedProperty.<GraphScale>} graphScaleProperty
+   * @param {EnumerationProperty.<GraphScale>} graphScaleProperty
    * @param {Object} [options]
    */
   constructor( graphScaleProperty, options ) {

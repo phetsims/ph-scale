@@ -1,16 +1,19 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
+import Enumeration from '../../../../../phet-core/js/Enumeration.js';
+import EnumerationValue from '../../../../../phet-core/js/EnumerationValue.js';
+
 /**
  * Units used on the graph.
+ * NOTE: When converting to TypeScript, this was not converted to a string union because we do not want to change
+ * the PhET-iO API. String-union values use camelCase, while EnumerationValue uses UPPER_CASE.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import EnumerationDeprecated from '../../../../../phet-core/js/EnumerationDeprecated.js';
-import phScale from '../../../phScale.js';
+export default class GraphUnits extends EnumerationValue {
+  public static readonly MOLES_PER_LITER = new GraphUnits();
+  public static readonly MOLES = new GraphUnits();
 
-const GraphUnits = EnumerationDeprecated.byKeys( [ 'MOLES_PER_LITER', 'MOLES' ] );
-
-phScale.register( 'GraphUnits', GraphUnits );
-export default GraphUnits;
+  public static readonly enumeration = new Enumeration( GraphUnits );
+}

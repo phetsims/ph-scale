@@ -10,7 +10,7 @@
  */
 
 import BooleanProperty from '../../../../../axon/js/BooleanProperty.js';
-import EnumerationDeprecatedProperty from '../../../../../axon/js/EnumerationDeprecatedProperty.js';
+import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import merge from '../../../../../phet-core/js/merge.js';
 import { Line, Node } from '../../../../../scenery/js/imports.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
@@ -54,7 +54,7 @@ class GraphNode extends Node {
     } );
 
     // units used for the graph
-    const graphUnitsProperty = new EnumerationDeprecatedProperty( GraphUnits, options.units, {
+    const graphUnitsProperty = new EnumerationProperty( options.units, {
       tandem: options.tandem.createTandem( 'graphUnitsProperty' )
     } );
 
@@ -98,7 +98,7 @@ class GraphNode extends Node {
     if ( options.hasLinearFeature ) {
 
       // scale (log, linear) of the graph
-      graphScaleProperty = new EnumerationDeprecatedProperty( GraphScale, options.graphScale, {
+      graphScaleProperty = new EnumerationProperty( options.graphScale, {
         tandem: options.tandem.createTandem( 'graphScaleProperty' )
       } );
 

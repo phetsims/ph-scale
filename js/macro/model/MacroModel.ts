@@ -13,7 +13,6 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 import Beaker from '../../common/model/Beaker.js';
 import Dropper from '../../common/model/Dropper.js';
 import Faucet from '../../common/model/Faucet.js';
@@ -69,8 +68,7 @@ export default class MacroModel {
 
   private readonly isAutofillingProperty: Property<boolean>;
 
-  //TODO https://github.com/phetsims/ph-scale/issues/242 move tandem to providedOptions
-  public constructor( tandem: Tandem, providedOptions: MacroModelOptions ) {
+  public constructor( providedOptions: MacroModelOptions ) {
 
     const options = optionize<MacroModelOptions, SelfOptions>()( {
 
@@ -101,26 +99,26 @@ export default class MacroModel {
     this.dropper = new Dropper( Solute.WATER,
       new Vector2( this.beaker.position.x - 50, yDropper ),
       new Bounds2( this.beaker.left + 40, yDropper, this.beaker.right - 200, yDropper ), {
-        tandem: tandem.createTandem( 'dropper' )
+        tandem: options.tandem.createTandem( 'dropper' )
       } );
 
     this.solution = options.createSolution( this.dropper.soluteProperty, {
       maxVolume: this.beaker.volume,
-      tandem: tandem.createTandem( 'solution' )
+      tandem: options.tandem.createTandem( 'solution' )
     } );
 
     this.waterFaucet = new Faucet(
       new Vector2( this.beaker.right - 50, this.beaker.position.y - this.beaker.size.height - 45 ),
       this.beaker.right + 400, {
         enabled: this.solution.totalVolumeProperty.get() < this.beaker.volume,
-        tandem: tandem.createTandem( 'waterFaucet' )
+        tandem: options.tandem.createTandem( 'waterFaucet' )
       } );
 
     this.drainFaucet = new Faucet(
       new Vector2( this.beaker.left - 75, this.beaker.position.y + 43 ),
       this.beaker.left, {
         enabled: this.solution.totalVolumeProperty.get() > 0,
-        tandem: tandem.createTandem( 'drainFaucet' )
+        tandem: options.tandem.createTandem( 'drainFaucet' )
       } );
 
     this.pHMeter = null;
@@ -130,19 +128,19 @@ export default class MacroModel {
         pHMeterPosition,
         new Vector2( pHMeterPosition.x + 150, this.beaker.position.y ),
         PHScaleConstants.SCREEN_VIEW_OPTIONS.layoutBounds, {
-          tandem: tandem.createTandem( 'pHMeter' )
+          tandem: options.tandem.createTandem( 'pHMeter' )
         } );
     }
 
     this.autofillEnabledProperty = new BooleanProperty( PHScaleQueryParameters.autofill, {
-      tandem: tandem.createTandem( 'autofillEnabledProperty' ),
+      tandem: options.tandem.createTandem( 'autofillEnabledProperty' ),
       phetioDocumentation: 'whether solute is automatically added to the beaker when the solute is changed'
     } );
 
     this.autofillVolume = options.autofillVolume;
 
     this.isAutofillingProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'isAutofillingProperty' ),
+      tandem: options.tandem.createTandem( 'isAutofillingProperty' ),
       phetioReadOnly: true,
       phetioDocumentation: 'whether the beaker is in the process of being automatically filled with solute'
     } );

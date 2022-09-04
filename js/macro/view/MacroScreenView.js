@@ -9,7 +9,6 @@
 import Property from '../../../../axon/js/Property.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import merge from '../../../../phet-core/js/merge.js';
-import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import EyeDropperNode from '../../../../scenery-phet/js/EyeDropperNode.js';
 import { Node } from '../../../../scenery/js/imports.js';
@@ -34,20 +33,17 @@ class MacroScreenView extends ScreenView {
   /**
    * @param {MacroModel} model
    * @param {ModelViewTransform2} modelViewTransform
-   * @param {Tandem} tandem
+   * @param {Object} [options]
    */
-  //TODO https://github.com/phetsims/ph-scale/issues/242 move tandem to providedOptions
-  constructor( model, modelViewTransform, tandem ) {
-    assert && assert( tandem instanceof Tandem, 'invalid tandem' );
-    assert && assert( modelViewTransform instanceof ModelViewTransform2, 'invalid modelViewTransform' );
+  constructor( model, modelViewTransform, options ) {
 
-    super( merge( {}, PHScaleConstants.SCREEN_VIEW_OPTIONS, {
-      tandem: tandem
-    } ) );
+    super( merge( {
+      tandem: Tandem.REQUIRED
+    }, PHScaleConstants.SCREEN_VIEW_OPTIONS, options ) );
 
     // beaker
     const beakerNode = new BeakerNode( model.beaker, modelViewTransform, {
-      tandem: tandem.createTandem( 'beakerNode' )
+      tandem: options.tandem.createTandem( 'beakerNode' )
     } );
 
     // solution in the beaker
@@ -56,19 +52,19 @@ class MacroScreenView extends ScreenView {
 
     // volume indicator on the right edge of beaker
     const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.totalVolumeProperty, model.beaker, modelViewTransform, {
-      tandem: tandem.createTandem( 'volumeIndicatorNode' )
+      tandem: options.tandem.createTandem( 'volumeIndicatorNode' )
     } );
 
     // Neutral indicator that appears in the bottom of the beaker.
     const neutralIndicatorNode = new NeutralIndicatorNode( model.solution.pHProperty, {
-      tandem: tandem.createTandem( 'neutralIndicatorNode' )
+      tandem: options.tandem.createTandem( 'neutralIndicatorNode' )
     } );
 
     // dropper
     const DROPPER_SCALE = 0.85;
     const dropperNode = new PHDropperNode( model.dropper, modelViewTransform, {
       visibleProperty: model.dropper.visibleProperty,
-      tandem: tandem.createTandem( 'dropperNode' )
+      tandem: options.tandem.createTandem( 'dropperNode' )
     } );
     dropperNode.setScaleMagnitude( DROPPER_SCALE );
     const dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * EyeDropperNode.TIP_WIDTH,
@@ -78,10 +74,10 @@ class MacroScreenView extends ScreenView {
 
     // faucets
     const waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform, {
-      tandem: tandem.createTandem( 'waterFaucetNode' )
+      tandem: options.tandem.createTandem( 'waterFaucetNode' )
     } );
     const drainFaucetNode = new DrainFaucetNode( model.drainFaucet, modelViewTransform, {
-      tandem: tandem.createTandem( 'drainFaucetNode' )
+      tandem: options.tandem.createTandem( 'drainFaucetNode' )
     } );
 
     // fluids coming out of faucets
@@ -101,14 +97,14 @@ class MacroScreenView extends ScreenView {
     // pH meter
     const pHMeterNode = new MacroPHMeterNode( model.pHMeter, model.solution, model.dropper,
       solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform, {
-        tandem: tandem.createTandem( 'pHMeterNode' )
+        tandem: options.tandem.createTandem( 'pHMeterNode' )
       } );
 
     // solutes combo box
     const soluteListParent = new Node();
     const soluteComboBox = new SoluteComboBox( model.dropper.soluteProperty, model.solutes, soluteListParent, {
       maxWidth: 400,
-      tandem: tandem.createTandem( 'soluteComboBox' )
+      tandem: options.tandem.createTandem( 'soluteComboBox' )
     } );
 
     const resetAllButton = new ResetAllButton( {
@@ -117,7 +113,7 @@ class MacroScreenView extends ScreenView {
         this.interruptSubtreeInput();
         model.reset();
       },
-      tandem: tandem.createTandem( 'resetAllButton' )
+      tandem: options.tandem.createTandem( 'resetAllButton' )
     } );
 
     // Parent for all nodes added to this screen

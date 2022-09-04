@@ -8,21 +8,16 @@
  */
 
 import Bounds2 from '../../../../dot/js/Bounds2.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import merge from '../../../../phet-core/js/merge.js';
 import MacroModel from '../../macro/model/MacroModel.js';
 import phScale from '../../phScale.js';
 import MicroSolution from './MicroSolution.js';
 
 class MicroModel extends MacroModel {
 
-  /**
-   * @param {Tandem} tandem
-   */
-  //TODO https://github.com/phetsims/ph-scale/issues/242 move tandem to providedOptions
-  constructor( tandem ) {
-    assert && assert( tandem instanceof Tandem, 'invalid tandem' );
+  constructor( options ) {
 
-    super( tandem, {
+    options = merge( {
 
       // Creates the solution needed by the Micro screen
       createSolution: ( solutionProperty, options ) => new MicroSolution( solutionProperty, options ),
@@ -30,7 +25,9 @@ class MicroModel extends MacroModel {
       // pHMeter is not needed in the Micro screen, because it has no moving parts and it's always measuring the
       // pH of the solution. See https://github.com/phetsims/ph-scale/issues/137
       includePHMeter: false
-    } );
+    }, options );
+
+    super( options );
 
     // adjust the drag bounds of the dropper to account for different user-interface constraints
     const yDropper = this.dropper.positionProperty.get().y;

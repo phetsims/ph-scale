@@ -1,6 +1,5 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * The 'Macro' screen.
  *
@@ -8,11 +7,12 @@
  */
 
 import Property from '../../../axon/js/Property.js';
-import Screen from '../../../joist/js/Screen.js';
+import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
+import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
+import PickRequired from '../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import { Image } from '../../../scenery/js/imports.js';
-import Tandem from '../../../tandem/js/Tandem.js';
 import macroHomeScreenIcon_png from '../../images/macroHomeScreenIcon_png.js';
 import macroNavbarIcon_png from '../../images/macroNavbarIcon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
@@ -21,16 +21,17 @@ import phScaleStrings from '../phScaleStrings.js';
 import MacroModel from './model/MacroModel.js';
 import MacroScreenView from './view/MacroScreenView.js';
 
-class MacroScreen extends Screen {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {Tandem} tandem
-   */
-  //TODO https://github.com/phetsims/ph-scale/issues/242 move tandem to providedOptions
-  constructor( tandem ) {
-    assert && assert( tandem instanceof Tandem, 'invalid tandem' );
+type MacroScreenOptions = SelfOptions & PickRequired<ScreenOptions, 'tandem'>;
 
-    const options = {
+export default class MacroScreen extends Screen {
+
+  public constructor( providedOptions: MacroScreenOptions ) {
+
+    const options = optionize<MacroScreenOptions, SelfOptions, ScreenOptions>()( {
+
+      // ScreenOptions
       name: phScaleStrings.screen.macroStringProperty,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
       homeScreenIcon: new ScreenIcon( new Image( macroHomeScreenIcon_png ), {
@@ -40,17 +41,19 @@ class MacroScreen extends Screen {
       navigationBarIcon: new ScreenIcon( new Image( macroNavbarIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
-      } ),
-      tandem: tandem
-    };
+      } )
+    }, providedOptions );
 
     super(
-      () => new MacroModel( tandem.createTandem( 'model' ) ),
-      model => new MacroScreenView( model, ModelViewTransform2.createIdentity(), tandem.createTandem( 'view' ) ),
+      () => new MacroModel( {
+        tandem: options.tandem.createTandem( 'model' )
+      } ),
+      model => new MacroScreenView( model, ModelViewTransform2.createIdentity(), {
+        tandem: options.tandem.createTandem( 'view' )
+      } ),
       options
     );
   }
 }
 
 phScale.register( 'MacroScreen', MacroScreen );
-export default MacroScreen;

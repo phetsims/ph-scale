@@ -15,7 +15,6 @@
 import Property from '../../../../axon/js/Property.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import merge from '../../../../phet-core/js/merge.js';
-import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import EyeDropperNode from '../../../../scenery-phet/js/EyeDropperNode.js';
 import { Node } from '../../../../scenery/js/imports.js';
@@ -44,23 +43,20 @@ class MicroScreenView extends ScreenView {
   /**
    * @param {MicroModel} model
    * @param {ModelViewTransform2} modelViewTransform
-   * @param {Tandem} tandem
+   * @param {Object} [options]
    */
-  //TODO https://github.com/phetsims/ph-scale/issues/242 move tandem to providedOptions
-  constructor( model, modelViewTransform, tandem ) {
-    assert && assert( tandem instanceof Tandem, 'invalid tandem' );
-    assert && assert( modelViewTransform instanceof ModelViewTransform2, 'invalid modelViewTransform' );
+  constructor( model, modelViewTransform, options ) {
 
-    super( merge( {}, PHScaleConstants.SCREEN_VIEW_OPTIONS, {
-      tandem: tandem
-    } ) );
+    super( merge( {
+      tandem: Tandem.REQUIRED
+    }, PHScaleConstants.SCREEN_VIEW_OPTIONS, options ) );
 
     // view-specific properties
-    const viewProperties = new PHScaleViewProperties( tandem.createTandem( 'viewProperties' ) );
+    const viewProperties = new PHScaleViewProperties( options.tandem.createTandem( 'viewProperties' ) );
 
     // beaker
     const beakerNode = new BeakerNode( model.beaker, modelViewTransform, {
-      tandem: tandem.createTandem( 'beakerNode' )
+      tandem: options.tandem.createTandem( 'beakerNode' )
     } );
 
     // solution
@@ -69,14 +65,14 @@ class MicroScreenView extends ScreenView {
 
     // volume indicator on right side of beaker
     const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.totalVolumeProperty, model.beaker, modelViewTransform, {
-      tandem: tandem.createTandem( 'volumeIndicatorNode' )
+      tandem: options.tandem.createTandem( 'volumeIndicatorNode' )
     } );
 
     // dropper
     const DROPPER_SCALE = 0.85;
     const dropperNode = new PHDropperNode( model.dropper, modelViewTransform, {
       visibleProperty: model.dropper.visibleProperty,
-      tandem: tandem.createTandem( 'dropperNode' )
+      tandem: options.tandem.createTandem( 'dropperNode' )
     } );
     dropperNode.setScaleMagnitude( DROPPER_SCALE );
     const dropperFluidNode = new DropperFluidNode( model.dropper, model.beaker, DROPPER_SCALE * EyeDropperNode.TIP_WIDTH,
@@ -86,10 +82,10 @@ class MicroScreenView extends ScreenView {
 
     // faucets
     const waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform, {
-      tandem: tandem.createTandem( 'waterFaucetNode' )
+      tandem: options.tandem.createTandem( 'waterFaucetNode' )
     } );
     const drainFaucetNode = new DrainFaucetNode( model.drainFaucet, modelViewTransform, {
-      tandem: tandem.createTandem( 'drainFaucetNode' )
+      tandem: options.tandem.createTandem( 'drainFaucetNode' )
     } );
     const SOLVENT_FLUID_HEIGHT = model.beaker.position.y - model.waterFaucet.position.y;
     const DRAIN_FLUID_HEIGHT = 1000; // tall enough that resizing the play area is unlikely to show bottom of fluid
@@ -99,13 +95,13 @@ class MicroScreenView extends ScreenView {
     // 'H3O+/OH- ratio' representation
     const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, {
       visibleProperty: viewProperties.ratioVisibleProperty,
-      tandem: tandem.createTandem( 'ratioNode' )
+      tandem: options.tandem.createTandem( 'ratioNode' )
     } );
 
     // 'molecule count' representation
     const moleculeCountNode = new MoleculeCountNode( model.solution.derivedProperties, {
       visibleProperty: viewProperties.moleculeCountVisibleProperty,
-      tandem: tandem.createTandem( 'moleculeCountNode' )
+      tandem: options.tandem.createTandem( 'moleculeCountNode' )
     } );
 
     // beaker control panel
@@ -113,7 +109,7 @@ class MicroScreenView extends ScreenView {
       viewProperties.ratioVisibleProperty,
       viewProperties.moleculeCountVisibleProperty, {
         maxWidth: 0.85 * beakerNode.width,
-        tandem: tandem.createTandem( 'beakerControlPanel' )
+        tandem: options.tandem.createTandem( 'beakerControlPanel' )
       } );
 
     // graph
@@ -122,7 +118,7 @@ class MicroScreenView extends ScreenView {
         hasLinearFeature: true,
         logScaleHeight: 485,
         linearScaleHeight: 440,
-        tandem: tandem.createTandem( 'graphNode' )
+        tandem: options.tandem.createTandem( 'graphNode' )
       } );
 
     // pH meter
@@ -130,14 +126,14 @@ class MicroScreenView extends ScreenView {
 
     const phMeterNodeAccordionBox = new PHMeterNodeAccordionBox( model.solution.pHProperty,
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
-        tandem: tandem.createTandem( 'pHMeterNodeAccordionBox' )
+        tandem: options.tandem.createTandem( 'pHMeterNodeAccordionBox' )
       } );
 
     // solutes combo box
     const soluteListParent = new Node();
     const soluteComboBox = new SoluteComboBox( model.dropper.soluteProperty, model.solutes, soluteListParent, {
       maxWidth: 400,
-      tandem: tandem.createTandem( 'soluteComboBox' )
+      tandem: options.tandem.createTandem( 'soluteComboBox' )
     } );
 
     const resetAllButton = new ResetAllButton( {
@@ -149,7 +145,7 @@ class MicroScreenView extends ScreenView {
         graphNode.reset();
         phMeterNodeAccordionBox.reset();
       },
-      tandem: tandem.createTandem( 'resetAllButton' )
+      tandem: options.tandem.createTandem( 'resetAllButton' )
     } );
 
     // Parent for all nodes added to this screen

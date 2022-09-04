@@ -18,8 +18,12 @@ import phScaleStrings from './phScaleStrings.js';
 simLauncher.launch( () => {
 
   const screens = [
-    new MacroScreen( Tandem.ROOT.createTandem( 'macroScreen' ) ),
-    new MicroScreen( Tandem.ROOT.createTandem( 'microScreen' ) ),
+    new MacroScreen( {
+      tandem: Tandem.ROOT.createTandem( 'macroScreen' )
+    } ),
+    new MicroScreen( {
+      tandem: Tandem.ROOT.createTandem( 'microScreen' )
+    } ),
     new MySolutionScreen( {
       tandem: Tandem.ROOT.createTandem( 'mySolutionScreen' )
     } )

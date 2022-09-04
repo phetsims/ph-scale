@@ -1,43 +1,40 @@
-// Copyright 2013-2021, University of Colorado Boulder
+// Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Fluid (stock solution) coming out of the dropper.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import merge from '../../../../phet-core/js/merge.js';
-import { Rectangle } from '../../../../scenery/js/imports.js';
+import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
+import { Rectangle, RectangleOptions } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
+import Beaker from '../model/Beaker.js';
+import Dropper from '../model/Dropper.js';
 
-class DropperFluidNode extends Rectangle {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {Dropper} dropper
-   * @param {Beaker} beaker
-   * @param {number} tipWidth
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {Object} [options]
-   * @constructor
-   */
-  constructor( dropper, beaker, tipWidth, modelViewTransform, options ) {
+export type DropperFluidNodeOptions = SelfOptions & PickOptional<RectangleOptions, 'visibleProperty'>;
 
-    options = merge( {
-      lineWidth: 1
-    }, options );
+export default class DropperFluidNode extends Rectangle {
 
-    super( 0, 0, 0, 0, options );
+  public constructor( dropper: Dropper, beaker: Beaker, tipWidth: number, modelViewTransform: ModelViewTransform2,
+                      providedOptions?: DropperFluidNodeOptions ) {
 
-    // shape and position
+    super( 0, 0, 0, 0, providedOptions );
+
     const updateShapeAndPosition = () => {
-      // path
+
+      // shape
       if ( dropper.flowRateProperty.get() > 0 ) {
         this.setRect( -tipWidth / 2, 0, tipWidth, beaker.position.y - dropper.positionProperty.get().y );
       }
       else {
         this.setRect( 0, 0, 0, 0 );
       }
+
       // move this node to the dropper's position
       this.translation = modelViewTransform.modelToViewPosition( dropper.positionProperty.get() );
     };
@@ -53,4 +50,3 @@ class DropperFluidNode extends Rectangle {
 }
 
 phScale.register( 'DropperFluidNode', DropperFluidNode );
-export default DropperFluidNode;

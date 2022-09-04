@@ -1,5 +1,6 @@
 // Copyright 2020-2022, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * GraphControlPanel is the control panel that appears above the graph.  It contains controls to collapse the graph,
  * and change units.

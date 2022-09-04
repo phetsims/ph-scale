@@ -1,6 +1,5 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Indicator that the solution is neutral.
  * This consists of 'Neutral' on a translucent background.
@@ -8,27 +7,29 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import merge from '../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Node, Rectangle, Text } from '../../../../scenery/js/imports.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import { Node, NodeOptions, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
 import phScaleStrings from '../../phScaleStrings.js';
+import PHModel, { PHValue } from '../../common/model/PHModel.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import Property from '../../../../axon/js/Property.js';
+import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 
-class NeutralIndicatorNode extends Node {
+type SelfOptions = EmptySelfOptions;
 
-  /**
-   * @param {MacroSolution|MicroSolution|MySolution} solution
-   * @param {Object} [options]
-   */
-  constructor( solution, options ) {
+export type NeutralIndicatorNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
-    options = merge( {
+export default class NeutralIndicatorNode extends Node {
 
-      // phet-io
-      tandem: Tandem.REQUIRED,
+  public constructor( pHProperty: Property<PHValue>, providedOptions: NeutralIndicatorNodeOptions ) {
+
+    const options = optionize<NeutralIndicatorNodeOptions, SelfOptions, PhetioObjectOptions>()( {
+
+      // NodeOptions
       phetioDocumentation: 'becomes visible when the solution has neutral pH'
-    }, options );
+    }, providedOptions );
 
     super( options );
 
@@ -56,12 +57,11 @@ class NeutralIndicatorNode extends Node {
     } );
     this.addChild( parentNode );
 
-    // Make parentNode node visible when the solution has neutral pH.
-    solution.pHProperty.link( pH => {
-      parentNode.setVisible( solution.isEquivalentToWater() );
+    // Make parentNode visible when the solution has neutral pH.
+    pHProperty.link( pH => {
+      parentNode.visible = PHModel.isEquivalentToWater( pH );
     } );
   }
 }
 
 phScale.register( 'NeutralIndicatorNode', NeutralIndicatorNode );
-export default NeutralIndicatorNode;

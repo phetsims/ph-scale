@@ -59,7 +59,7 @@ class MacroScreenView extends ScreenView {
     } );
 
     // Neutral indicator that appears in the bottom of the beaker.
-    const neutralIndicatorNode = new NeutralIndicatorNode( model.solution, {
+    const neutralIndicatorNode = new NeutralIndicatorNode( model.solution.pHProperty, {
       tandem: tandem.createTandem( 'neutralIndicatorNode' )
     } );
 

@@ -11,6 +11,7 @@
 import Utils from '../../../../dot/js/Utils.js';
 import phScale from '../../phScale.js';
 import Water from './Water.js';
+import PHScaleConstants from '../PHScaleConstants.js';
 
 // constants
 const AVOGADROS_NUMBER = 6.023E23; // number of molecules in one mole of solution
@@ -130,6 +131,15 @@ const PHModel = {
    */
   computeMoles( concentration: ConcentrationValue, volume: number ): number {
     return ( concentration === null ) ? 0 : ( concentration * volume );
+  },
+
+  /**
+   * True if the value displayed by the pH meter has precision that makes it equivalent to the pH of water.
+   * Eg, the value displayed to the user is '7.00'.
+   */
+  isEquivalentToWater( pH: PHValue ): boolean {
+    return ( pH !== null ) &&
+           ( Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === Water.pH );
   }
 };
 

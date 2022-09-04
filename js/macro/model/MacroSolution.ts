@@ -11,7 +11,6 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import Utils from '../../../../dot/js/Utils.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { Color } from '../../../../scenery/js/imports.js';
@@ -131,7 +130,7 @@ export default class MacroSolution extends PhetioObject {
         else if ( soluteVolume + waterVolume === 0 ) {
           return Color.BLACK; // no solution, should never see this color displayed
         }
-        else if ( soluteVolume === 0 || this.isEquivalentToWater() ) {
+        else if ( soluteVolume === 0 || PHModel.isEquivalentToWater( this.pHProperty.value ) ) {
           return Water.color;
         }
         else {
@@ -211,15 +210,6 @@ export default class MacroSolution extends PhetioObject {
     this.waterVolumeProperty.set( waterVolume );
     this.ignoreVolumeUpdate = false; // don't ignore the second notification, so that observers will update
     this.soluteVolumeProperty.set( soluteVolume );
-  }
-
-  /**
-   * True if the value displayed by the pH meter has precision that makes it equivalent to the pH of water.
-   * Eg, the value displayed to the user is '7.00'.
-   */
-  private isEquivalentToWater(): boolean {
-    return ( this.pHProperty.value !== null ) &&
-           ( Utils.toFixedNumber( this.pHProperty.value, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === Water.pH );
   }
 }
 

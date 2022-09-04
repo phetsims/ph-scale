@@ -51,7 +51,7 @@ export default class NeutralIndicatorNode extends Node {
     } );
 
     // Wrap things in a parentNode, so that this feature can be permanently disabled via PhET-iO via
-    // this.visibleProperty.set( false ). See https://github.com/phetsims/ph-scale/issues/102
+    // this.visibleProperty. See https://github.com/phetsims/ph-scale/issues/102
     const parentNode = new Node( {
       children: [ background, labelText ]
     } );

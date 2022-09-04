@@ -166,14 +166,16 @@ export default class MacroSolution extends PhetioObject {
   // Convenience function for adding solute
   public addSolute( deltaVolume: number ): void {
     if ( deltaVolume > 0 ) {
-      this.soluteVolumeProperty.set( Math.max( MIN_VOLUME, this.soluteVolumeProperty.value + Math.min( deltaVolume, this.getFreeVolume() ) ) );
+      this.soluteVolumeProperty.value =
+        Math.max( MIN_VOLUME, this.soluteVolumeProperty.value + Math.min( deltaVolume, this.getFreeVolume() ) );
     }
   }
 
   // Convenience function for adding water
   public addWater( deltaVolume: number ): void {
     if ( deltaVolume > 0 ) {
-      this.waterVolumeProperty.set( Math.max( MIN_VOLUME, this.waterVolumeProperty.value + Math.min( deltaVolume, this.getFreeVolume() ) ) );
+      this.waterVolumeProperty.value =
+        Math.max( MIN_VOLUME, this.waterVolumeProperty.value + Math.min( deltaVolume, this.getFreeVolume() ) );
     }
   }
 
@@ -207,9 +209,9 @@ export default class MacroSolution extends PhetioObject {
 
     // ignore the first notification if both volumes are changing
     this.ignoreVolumeUpdate = ( waterVolume !== this.waterVolumeProperty.value ) && ( soluteVolume !== this.soluteVolumeProperty.value );
-    this.waterVolumeProperty.set( waterVolume );
+    this.waterVolumeProperty.value = waterVolume;
     this.ignoreVolumeUpdate = false; // don't ignore the second notification, so that observers will update
-    this.soluteVolumeProperty.set( soluteVolume );
+    this.soluteVolumeProperty.value = soluteVolume;
   }
 }
 

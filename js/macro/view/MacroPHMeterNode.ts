@@ -115,7 +115,7 @@ export default class MacroPHMeterNode extends Node {
       else {
         pH = null;
       }
-      meter.pHProperty.set( pH );
+      meter.pHProperty.value = pH;
     };
     Multilink.multilink( [
       meter.probe.positionProperty,

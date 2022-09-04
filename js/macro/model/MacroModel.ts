@@ -152,8 +152,8 @@ export default class MacroModel {
       if ( !phet.joist.sim.isSettingPhetioStateProperty.value ) {
 
         // disable the faucets to cancel any multi-touch interaction that may be in progress, see issue #28
-        this.waterFaucet.enabledProperty.set( false );
-        this.drainFaucet.enabledProperty.set( false );
+        this.waterFaucet.enabledProperty.value = false;
+        this.drainFaucet.enabledProperty.value = false;
 
         // animate the dropper adding solute to the beaker
         this.startAutofill();
@@ -180,9 +180,9 @@ export default class MacroModel {
    */
   private updateFaucetsAndDropper(): void {
     const volume = this.solution.totalVolumeProperty.value;
-    this.waterFaucet.enabledProperty.set( volume < this.beaker.volume );
-    this.drainFaucet.enabledProperty.set( volume > 0 );
-    this.dropper.enabledProperty.set( volume < this.beaker.volume );
+    this.waterFaucet.enabledProperty.value = ( volume < this.beaker.volume );
+    this.drainFaucet.enabledProperty.value = ( volume > 0 );
+    this.dropper.enabledProperty.value = ( volume < this.beaker.volume );
   }
 
   /**
@@ -204,9 +204,9 @@ export default class MacroModel {
    */
   private startAutofill(): void {
     if ( this.autofillEnabledProperty.value && this.autofillVolume > 0 ) {
-      this.isAutofillingProperty.set( true );
-      this.dropper.isDispensingProperty.set( true );
-      this.dropper.flowRateProperty.set( 0.75 ); // faster than standard flow rate
+      this.isAutofillingProperty.value = true;
+      this.dropper.isDispensingProperty.value = true;
+      this.dropper.flowRateProperty.value = 0.75; // faster than standard flow rate
     }
     else {
       this.updateFaucetsAndDropper();
@@ -228,8 +228,8 @@ export default class MacroModel {
    * Stops the autofill animation.
    */
   private stopAutofill(): void {
-    this.isAutofillingProperty.set( false );
-    this.dropper.isDispensingProperty.set( false );
+    this.isAutofillingProperty.value = false;
+    this.dropper.isDispensingProperty.value = false;
     this.updateFaucetsAndDropper();
   }
 }

@@ -74,7 +74,7 @@ export default class Faucet {
     // when disabled, turn off the faucet.
     this.enabledProperty.link( enabled => {
       if ( !enabled && !phet.joist.sim.isSettingPhetioStateProperty.value ) {
-        this.flowRateProperty.set( 0 );
+        this.flowRateProperty.value = 0;
       }
     } );
   }

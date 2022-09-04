@@ -28,15 +28,15 @@ export default class DropperFluidNode extends Rectangle {
     const updateShapeAndPosition = () => {
 
       // shape
-      if ( dropper.flowRateProperty.get() > 0 ) {
-        this.setRect( -tipWidth / 2, 0, tipWidth, beaker.position.y - dropper.positionProperty.get().y );
+      if ( dropper.flowRateProperty.value > 0 ) {
+        this.setRect( -tipWidth / 2, 0, tipWidth, beaker.position.y - dropper.positionProperty.value.y );
       }
       else {
         this.setRect( 0, 0, 0, 0 );
       }
 
       // move this node to the dropper's position
-      this.translation = modelViewTransform.modelToViewPosition( dropper.positionProperty.get() );
+      this.translation = modelViewTransform.modelToViewPosition( dropper.positionProperty.value );
     };
     dropper.positionProperty.link( updateShapeAndPosition );
     dropper.flowRateProperty.link( updateShapeAndPosition );

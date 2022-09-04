@@ -219,7 +219,7 @@ export default class LinearGraphNode extends Node {
      * @returns y position in view coordinates
      */
     const valueToY = ( value: number | null, offScaleYOffset = 0 ) => {
-      const topTickValue = MANTISSA_RANGE.max * Math.pow( 10, this.exponentProperty.get() );
+      const topTickValue = MANTISSA_RANGE.max * Math.pow( 10, this.exponentProperty.value );
       value = value || 0;
       if ( value > topTickValue ) {
         // values out of range are placed in the arrow

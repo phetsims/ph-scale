@@ -97,7 +97,7 @@ export default class MacroSolution extends PhetioObject {
 
     this.totalVolumeProperty = new DerivedProperty(
       [ this.soluteVolumeProperty, this.waterVolumeProperty ],
-      ( soluteVolume, waterVolume ) => ( this.ignoreVolumeUpdate ) ? this.totalVolumeProperty.get() : ( soluteVolume + waterVolume ), {
+      ( soluteVolume, waterVolume ) => ( this.ignoreVolumeUpdate ) ? this.totalVolumeProperty.value : ( soluteVolume + waterVolume ), {
         units: 'L',
         tandem: options.tandem.createTandem( 'totalVolumeProperty' ),
         phetioValueType: NumberIO,
@@ -109,7 +109,7 @@ export default class MacroSolution extends PhetioObject {
       [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
       ( solute, soluteVolume, waterVolume ) => {
         if ( this.ignoreVolumeUpdate ) {
-          return this.pHProperty.get();
+          return this.pHProperty.value;
         }
         else {
           return PHModel.computePH( solute.pH, soluteVolume, waterVolume );
@@ -125,7 +125,7 @@ export default class MacroSolution extends PhetioObject {
       [ this.soluteProperty, this.soluteVolumeProperty, this.waterVolumeProperty ],
       ( solute, soluteVolume, waterVolume ) => {
         if ( this.ignoreVolumeUpdate ) {
-          return this.colorProperty.get();
+          return this.colorProperty.value;
         }
         else if ( soluteVolume + waterVolume === 0 ) {
           return Color.BLACK; // no solution, should never see this color displayed
@@ -142,7 +142,7 @@ export default class MacroSolution extends PhetioObject {
     // This is short-circuited while PhET-iO state is being restored. Otherwise, the restored state would be changed.
     // See https://github.com/phetsims/ph-scale/issues/132
     this.soluteProperty.link( () => {
-      if ( !phet.joist.sim.isSettingPhetioStateProperty.get() ) {
+      if ( !phet.joist.sim.isSettingPhetioStateProperty.value ) {
         this.waterVolumeProperty.reset();
         this.soluteVolumeProperty.reset();
       }
@@ -160,20 +160,20 @@ export default class MacroSolution extends PhetioObject {
 
   // Returns the amount of volume that is available to fill.
   private getFreeVolume(): number {
-    return this.maxVolume - this.totalVolumeProperty.get();
+    return this.maxVolume - this.totalVolumeProperty.value;
   }
 
   // Convenience function for adding solute
   public addSolute( deltaVolume: number ): void {
     if ( deltaVolume > 0 ) {
-      this.soluteVolumeProperty.set( Math.max( MIN_VOLUME, this.soluteVolumeProperty.get() + Math.min( deltaVolume, this.getFreeVolume() ) ) );
+      this.soluteVolumeProperty.set( Math.max( MIN_VOLUME, this.soluteVolumeProperty.value + Math.min( deltaVolume, this.getFreeVolume() ) ) );
     }
   }
 
   // Convenience function for adding water
   public addWater( deltaVolume: number ): void {
     if ( deltaVolume > 0 ) {
-      this.waterVolumeProperty.set( Math.max( MIN_VOLUME, this.waterVolumeProperty.get() + Math.min( deltaVolume, this.getFreeVolume() ) ) );
+      this.waterVolumeProperty.set( Math.max( MIN_VOLUME, this.waterVolumeProperty.value + Math.min( deltaVolume, this.getFreeVolume() ) ) );
     }
   }
 
@@ -182,7 +182,7 @@ export default class MacroSolution extends PhetioObject {
    */
   public drainSolution( deltaVolume: number ): void {
     if ( deltaVolume > 0 ) {
-      const totalVolume = this.totalVolumeProperty.get();
+      const totalVolume = this.totalVolumeProperty.value;
       if ( totalVolume > 0 ) {
         if ( totalVolume - deltaVolume < MIN_VOLUME ) {
           // drain the remaining solution
@@ -190,8 +190,8 @@ export default class MacroSolution extends PhetioObject {
         }
         else {
           // drain equal percentages of water and solute
-          const waterVolume = this.waterVolumeProperty.get();
-          const soluteVolume = this.soluteVolumeProperty.get();
+          const waterVolume = this.waterVolumeProperty.value;
+          const soluteVolume = this.soluteVolumeProperty.value;
           this.setVolumeAtomic( waterVolume - ( deltaVolume * waterVolume / totalVolume ), soluteVolume - ( deltaVolume * soluteVolume / totalVolume ) );
         }
       }
@@ -206,7 +206,7 @@ export default class MacroSolution extends PhetioObject {
   private setVolumeAtomic( waterVolume: number, soluteVolume: number ): void {
 
     // ignore the first notification if both volumes are changing
-    this.ignoreVolumeUpdate = ( waterVolume !== this.waterVolumeProperty.get() ) && ( soluteVolume !== this.soluteVolumeProperty.get() );
+    this.ignoreVolumeUpdate = ( waterVolume !== this.waterVolumeProperty.value ) && ( soluteVolume !== this.soluteVolumeProperty.value );
     this.waterVolumeProperty.set( waterVolume );
     this.ignoreVolumeUpdate = false; // don't ignore the second notification, so that observers will update
     this.soluteVolumeProperty.set( soluteVolume );

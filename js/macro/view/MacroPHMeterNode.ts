@@ -104,13 +104,13 @@ export default class MacroPHMeterNode extends Node {
     const updateValue = () => {
       let pH;
       if ( probeNode.isInSolution() || probeNode.isInDrainFluid() ) {
-        pH = solution.pHProperty.get();
+        pH = solution.pHProperty.value;
       }
       else if ( probeNode.isInWater() ) {
         pH = Water.pH;
       }
       else if ( probeNode.isInDropperSolution() ) {
-        pH = dropper.soluteProperty.get().pH;
+        pH = dropper.soluteProperty.value.pH;
       }
       else {
         pH = null;
@@ -279,7 +279,7 @@ class PHProbeNode extends ProbeNode {
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
 
-    const isInNode = ( node: Node ) => node.getBounds().containsPoint( probe.positionProperty.get() );
+    const isInNode = ( node: Node ) => node.getBounds().containsPoint( probe.positionProperty.value );
     this.isInSolution = () => isInNode( solutionNode );
     this.isInWater = () => isInNode( waterFluidNode );
     this.isInDrainFluid = () => isInNode( drainFluidNode );

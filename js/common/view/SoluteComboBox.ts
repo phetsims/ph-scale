@@ -53,7 +53,7 @@ export default class SoluteComboBox extends ComboBox<Solute> {
       } );
 
       // label
-      const textNode = new Text( solute.nameProperty.get(), {
+      const textNode = new Text( solute.nameProperty.value, {
         font: new PhetFont( 22 )
       } );
       textNodes.push( textNode );

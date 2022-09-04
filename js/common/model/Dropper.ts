@@ -91,14 +91,14 @@ export default class Dropper extends PHMovable {
 
     // Turn off the dropper when it's disabled.
     this.enabledProperty.link( enabled => {
-      if ( !enabled && !phet.joist.sim.isSettingPhetioStateProperty.get() ) {
+      if ( !enabled && !phet.joist.sim.isSettingPhetioStateProperty.value ) {
         this.isDispensingProperty.set( false );
       }
     } );
 
     // Toggle the flow rate when the dropper is turned on/off.
     this.isDispensingProperty.link( dispensing => {
-      if ( !phet.joist.sim.isSettingPhetioStateProperty.get() ) {
+      if ( !phet.joist.sim.isSettingPhetioStateProperty.value ) {
         this.flowRateProperty.set( dispensing ? options.maxFlowRate : 0 );
       }
     } );

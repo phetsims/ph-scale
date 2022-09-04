@@ -110,14 +110,14 @@ export default class MacroModel {
     this.waterFaucet = new Faucet(
       new Vector2( this.beaker.right - 50, this.beaker.position.y - this.beaker.size.height - 45 ),
       this.beaker.right + 400, {
-        enabled: this.solution.totalVolumeProperty.get() < this.beaker.volume,
+        enabled: this.solution.totalVolumeProperty.value < this.beaker.volume,
         tandem: options.tandem.createTandem( 'waterFaucet' )
       } );
 
     this.drainFaucet = new Faucet(
       new Vector2( this.beaker.left - 75, this.beaker.position.y + 43 ),
       this.beaker.left, {
-        enabled: this.solution.totalVolumeProperty.get() > 0,
+        enabled: this.solution.totalVolumeProperty.value > 0,
         tandem: options.tandem.createTandem( 'drainFaucet' )
       } );
 
@@ -179,7 +179,7 @@ export default class MacroModel {
    * Enables faucets and dropper based on amount of solution in the beaker.
    */
   private updateFaucetsAndDropper(): void {
-    const volume = this.solution.totalVolumeProperty.get();
+    const volume = this.solution.totalVolumeProperty.value;
     this.waterFaucet.enabledProperty.set( volume < this.beaker.volume );
     this.drainFaucet.enabledProperty.set( volume > 0 );
     this.dropper.enabledProperty.set( volume < this.beaker.volume );
@@ -189,13 +189,13 @@ export default class MacroModel {
    * Moves time forward by the specified delta, in seconds.
    */
   public step( dt: number ): void {
-    if ( this.isAutofillingProperty.get() ) {
+    if ( this.isAutofillingProperty.value ) {
       this.stepAutofill( dt );
     }
     else {
-      this.solution.addSolute( this.dropper.flowRateProperty.get() * dt );
-      this.solution.addWater( this.waterFaucet.flowRateProperty.get() * dt );
-      this.solution.drainSolution( this.drainFaucet.flowRateProperty.get() * dt );
+      this.solution.addSolute( this.dropper.flowRateProperty.value * dt );
+      this.solution.addWater( this.waterFaucet.flowRateProperty.value * dt );
+      this.solution.drainSolution( this.drainFaucet.flowRateProperty.value * dt );
     }
   }
 
@@ -203,7 +203,7 @@ export default class MacroModel {
    * Starts the autofill animation.
    */
   private startAutofill(): void {
-    if ( this.autofillEnabledProperty.get() && this.autofillVolume > 0 ) {
+    if ( this.autofillEnabledProperty.value && this.autofillVolume > 0 ) {
       this.isAutofillingProperty.set( true );
       this.dropper.isDispensingProperty.set( true );
       this.dropper.flowRateProperty.set( 0.75 ); // faster than standard flow rate
@@ -217,8 +217,9 @@ export default class MacroModel {
    * Advances the autofill animation by dt, in seconds.
    */
   private stepAutofill( dt: number ): void {
-    this.solution.addSolute( Math.min( this.dropper.flowRateProperty.get() * dt, this.autofillVolume - this.solution.totalVolumeProperty.get() ) );
-    if ( this.solution.totalVolumeProperty.get() === this.autofillVolume ) {
+    this.solution.addSolute( Math.min( this.dropper.flowRateProperty.value * dt,
+      this.autofillVolume - this.solution.totalVolumeProperty.value ) );
+    if ( this.solution.totalVolumeProperty.value === this.autofillVolume ) {
       this.stopAutofill();
     }
   }

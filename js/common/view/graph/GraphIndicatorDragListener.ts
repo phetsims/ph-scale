@@ -1,6 +1,5 @@
 // Copyright 2014-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * Drag handler for the interactive graph indicators.
  *
@@ -9,28 +8,38 @@
 
 import Utils from '../../../../../dot/js/Utils.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
-import { DragListener } from '../../../../../scenery/js/imports.js';
+import { DragListener, Node } from '../../../../../scenery/js/imports.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphUnits from './GraphUnits.js';
+import { PHValue } from '../../model/PHModel.js';
+import Property from '../../../../../axon/js/Property.js';
+import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
+import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 
-class GraphIndicatorDragListener extends DragListener {
+export default class GraphIndicatorDragListener extends DragListener {
 
   /**
-   * @param {Node} targetNode
-   * @param {Property.<number>} pHProperty - pH of the solution
-   * @param {Property.<number>} totalVolumeProperty - volume of the solution
-   * @param {EnumerationProperty.<GraphUnits>} graphUnitsProperty
-   * @param {function} yToValue - function that takes a {number} y coordinate and converts it to a {number} model value
-   * @param {function} concentrationToPH - takes {number} concentration, returns pH
-   * @param {function} molesToPH - takes {number} moles and {number} volume (L), returns pH
-   * @param {Tandem} tandem
+   * @param targetNode
+   * @param pHProperty - pH of the solution
+   * @param totalVolumeProperty - volume of the solution
+   * @param graphUnitsProperty
+   * @param yToValue - converts a y view coordinate to a model value
+   * @param concentrationToPH - converts concentration to pH
+   * @param molesToPH - converts moles + volume to pH
+   * @param tandem
    */
-  constructor( targetNode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue, concentrationToPH, molesToPH, tandem ) {
-    assert && assert( tandem instanceof Tandem, 'invalid tandem' );
+  public constructor( targetNode: Node,
+                      pHProperty: Property<PHValue>,
+                      totalVolumeProperty: TReadOnlyProperty<number>,
+                      graphUnitsProperty: EnumerationProperty<GraphUnits>,
+                      yToValue: ( y: number ) => number,
+                      concentrationToPH: ( concentration: number ) => number,
+                      molesToPH: ( moles: number, volume: number ) => number,
+                      tandem: Tandem ) {
 
-    let clickYOffset; // y-offset between initial click and indicator's origin
+    let clickYOffset: number; // y-offset between initial click and indicator's origin
 
     super( {
 
@@ -45,7 +54,7 @@ class GraphIndicatorDragListener extends DragListener {
       drag: event => {
 
         // If the solution volume is zero (empty beaker), then we have no solution, and therefore no pH, so do nothing.
-        if ( totalVolumeProperty.get() !== 0 ) {
+        if ( totalVolumeProperty.value !== 0 ) {
 
           // Adjust the y-coordinate for the offset between the pointer and the indicator's origin
           const y = targetNode.globalToParentPoint( event.pointer.point ).y - clickYOffset;
@@ -60,7 +69,7 @@ class GraphIndicatorDragListener extends DragListener {
           const scientificNotation = ScientificNotationNode.toScientificNotation( value, {
             mantissaDecimalPlaces: PHScaleConstants.LOGARITHMIC_MANTISSA_DECIMAL_PLACES
           } );
-          const exponent = scientificNotation.exponent - PHScaleConstants.LOGARITHMIC_MANTISSA_DECIMAL_PLACES;
+          const exponent = +scientificNotation.exponent - PHScaleConstants.LOGARITHMIC_MANTISSA_DECIMAL_PLACES;
           const interval = Math.pow( 10, exponent );
           let adjustedValue = Utils.roundToInterval( value, interval );
 
@@ -69,13 +78,13 @@ class GraphIndicatorDragListener extends DragListener {
           // different concentrations of H3O+ and OH-, but are displaying a neutral pH of 7.00.  So we decided
           // that it was preferable to avoid that value, and snap to the concentration (1.0e-7) that results in
           // a neutral solution.
-          const isConcentration = ( graphUnitsProperty.get() === GraphUnits.MOLES_PER_LITER );
+          const isConcentration = ( graphUnitsProperty.value === GraphUnits.MOLES_PER_LITER );
           if ( isConcentration && adjustedValue === 9.9e-8 ) {
             adjustedValue = 1.0e-7;
           }
 
           // Map the model value to pH, depending on which units we're using.
-          let pH = isConcentration ? concentrationToPH( adjustedValue ) : molesToPH( adjustedValue, totalVolumeProperty.get() );
+          let pH = isConcentration ? concentrationToPH( adjustedValue ) : molesToPH( adjustedValue, totalVolumeProperty.value );
 
           // Constrain the pH to the valid range
           pH = Utils.clamp( pH, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
@@ -83,7 +92,7 @@ class GraphIndicatorDragListener extends DragListener {
           phet.log && phet.log( `value=${value} adjustedValue=${adjustedValue} pH=${pH}` );
 
           // Set the solution's pH
-          pHProperty.set( pH );
+          pHProperty.value = pH;
         }
       },
 
@@ -94,4 +103,3 @@ class GraphIndicatorDragListener extends DragListener {
 }
 
 phScale.register( 'GraphIndicatorDragListener', GraphIndicatorDragListener );
-export default GraphIndicatorDragListener;

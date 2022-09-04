@@ -7,7 +7,7 @@
  */
 
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickOptional from '../../../../phet-core/js/types/PickOptional.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import { Rectangle, RectangleOptions } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
@@ -16,7 +16,7 @@ import Dropper from '../model/Dropper.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type DropperFluidNodeOptions = SelfOptions & PickOptional<RectangleOptions, 'visibleProperty'>;
+export type DropperFluidNodeOptions = SelfOptions & PickRequired<RectangleOptions, 'visibleProperty'>;
 
 export default class DropperFluidNode extends Rectangle {
 

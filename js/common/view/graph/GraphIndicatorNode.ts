@@ -1,6 +1,5 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * GraphIndicatorNode points to a value on a graph's vertical scale.
  * Origin is at the indicator's pointer, and the pointer can be attached to any corner of the indicator (see options.pointerPosition).
@@ -9,14 +8,15 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import Matrix3 from '../../../../../dot/js/Matrix3.js';
 import { Shape } from '../../../../../kite/js/imports.js';
-import merge from '../../../../../phet-core/js/merge.js';
+import optionize, { combineOptions } from '../../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import ArrowNode from '../../../../../scenery-phet/js/ArrowNode.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
-import { Node, Path, Rectangle, RichText } from '../../../../../scenery/js/imports.js';
-import Tandem from '../../../../../tandem/js/Tandem.js';
+import { Node, NodeOptions, Path, Rectangle, RichText, TColor } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
 import PHScaleColors from '../../PHScaleColors.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
@@ -28,24 +28,47 @@ import OHNode from '../molecules/OHNode.js';
 const POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute width of the pointy part of the indicator
 const POINTER_HEIGHT_PERCENTAGE = 0.5; // used to compute height of the pointy part of the indicator
 
-class GraphIndicatorNode extends Node {
+type PointerPosition = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
-  /**
-   * @param {Property.<number>} valueProperty
-   * @param {Node} moleculeNode
-   * @param {Node} formulaNode
-   * @param {Object} [options]
-   */
-  constructor( valueProperty, moleculeNode, formulaNode, options ) {
+type SelfOptions = {
+  pointerPosition?: PointerPosition;
+  backgroundFill?: TColor;
+  backgroundStroke?: TColor;
+  backgroundWidth?: number;
+  backgroundHeight?: number;
+  backgroundCornerRadius?: number;
+  backgroundLineWidth?: number;
+  backgroundXMargin?: number;
+  backgroundYMargin?: number;
+  valueXMargin?: number;
+  valueYMargin?: number;
+  xSpacing?: number;
+  ySpacing?: number;
+  mantissaDecimalPlaces?: number;
+  exponent?: number | null; // null causes exponent to be computed
+  isInteractive?: boolean;
+  arrowFill?: TColor;
+  arrowXSpacing?: number;
+};
 
-    options = merge( {
-      scale: 0.75, // specified by design team
-      pointerPosition: 'topRight', // values: topLeft, topRight, bottomLeft, bottomRight
+export type GraphIndicatorNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+
+export default class GraphIndicatorNode extends Node {
+
+  public constructor( valueProperty: TReadOnlyProperty<number>,
+                      moleculeNode: Node,
+                      formulaNode: Node,
+                      providedOptions: GraphIndicatorNodeOptions ) {
+
+    const options = optionize<GraphIndicatorNodeOptions, SelfOptions, NodeOptions>()( {
+
+      // SelfOptions
+      pointerPosition: 'topRight',
       backgroundFill: 'white',
+      backgroundStroke: 'black',
       backgroundWidth: 160,
       backgroundHeight: 80,
       backgroundCornerRadius: 10,
-      backgroundStroke: 'black',
       backgroundLineWidth: 2,
       backgroundXMargin: 10,
       backgroundYMargin: 8,
@@ -54,18 +77,16 @@ class GraphIndicatorNode extends Node {
       xSpacing: 8,
       ySpacing: 4,
       mantissaDecimalPlaces: PHScaleConstants.LOGARITHMIC_MANTISSA_DECIMAL_PLACES,
-      exponent: null, // use this to request a specific exponent, otherwise the exponent is computed
+      exponent: null,
       isInteractive: false,
       arrowFill: 'rgb( 0, 200, 0 )',
       arrowXSpacing: 5,
 
-      // phet-io
-      tandem: Tandem.REQUIRED
-    }, options );
+      // NodeOptions
+      scale: 0.75 // specified by design team
+    }, providedOptions );
 
     // Instrument interactiveProperty for interactive indicators.
-    assert && assert( options.phetioInputEnabledPropertyInstrumented === undefined,
-      'GraphIndicatorNode sets phetioInputEnabledPropertyInstrumented' );
     if ( options.isInteractive ) {
       options.phetioInputEnabledPropertyInstrumented = true;
     }
@@ -206,15 +227,13 @@ class GraphIndicatorNode extends Node {
 
   /**
    * Creates an indicator for H2O.
-   * @param {Property.<number>} valueProperty
-   * @param {Object} [options] see GraphIndicatorNode constructor
-   * @public
    */
-  static createH2OIndicator( valueProperty, options ) {
+  public static createH2OIndicator( valueProperty: TReadOnlyProperty<number>,
+                                    options: GraphIndicatorNodeOptions ): GraphIndicatorNode {
     return new GraphIndicatorNode( valueProperty,
       new H2ONode(),
       new RichText( PHScaleConstants.H2O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
-      merge( {
+      combineOptions<GraphIndicatorNodeOptions>( {
         backgroundFill: PHScaleColors.H2O_BACKGROUND,
         pointerPosition: 'bottomLeft',
         mantissaDecimalPlaces: 0,
@@ -224,15 +243,13 @@ class GraphIndicatorNode extends Node {
 
   /**
    * Creates an indicator for H3O+.
-   * @param {Property.<number>} valueProperty
-   * @param {Object} [options] see GraphIndicatorNode constructor
-   * @public
    */
-  static createH3OIndicator( valueProperty, options ) {
+  public static createH3OIndicator( valueProperty: TReadOnlyProperty<number>,
+                                    options: GraphIndicatorNodeOptions ): GraphIndicatorNode {
     return new GraphIndicatorNode( valueProperty,
       new H3ONode(),
       new RichText( PHScaleConstants.H3O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
-      merge( {
+      combineOptions<GraphIndicatorNodeOptions>( {
         backgroundFill: PHScaleColors.ACIDIC,
         pointerPosition: 'topRight'
       }, options ) );
@@ -240,15 +257,13 @@ class GraphIndicatorNode extends Node {
 
   /**
    * Creates an indicator for OH-.
-   * @param {Property.<number>} valueProperty
-   * @param {Object} [options] see GraphIndicatorNode constructor
-   * @public
    */
-  static createOHIndicator( valueProperty, options ) {
+  public static createOHIndicator( valueProperty: TReadOnlyProperty<number>,
+                                   options: GraphIndicatorNodeOptions ): GraphIndicatorNode {
     return new GraphIndicatorNode( valueProperty,
       new OHNode(),
       new RichText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
-      merge( {
+      combineOptions<GraphIndicatorNodeOptions>( {
         backgroundFill: PHScaleColors.BASIC,
         pointerPosition: 'topLeft'
       }, options ) );
@@ -256,4 +271,3 @@ class GraphIndicatorNode extends Node {
 }
 
 phScale.register( 'GraphIndicatorNode', GraphIndicatorNode );
-export default GraphIndicatorNode;

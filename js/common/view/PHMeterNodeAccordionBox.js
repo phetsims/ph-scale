@@ -1,5 +1,6 @@
 // Copyright 2014-2022, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * PHMeterNodeAccordionBox is the pH meter for the 'Micro' and 'My Solution' screens.
  * - Origin is at top left.

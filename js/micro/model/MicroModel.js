@@ -1,5 +1,6 @@
 // Copyright 2013-2020, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * MicroModel is the model for the 'Micro' screen.  It extends the MacroModel, substituting a different solution
  * model, and omitting the pH meter.

@@ -1,6 +1,5 @@
 // Copyright 2014-2022, University of Colorado Boulder
 
-// @ts-nocheck
 /**
  * PHMeterNodeAccordionBox is the pH meter for the 'Micro' and 'My Solution' screens.
  * - Origin is at top left.
@@ -20,35 +19,44 @@
 import Property from '../../../../axon/js/Property.js';
 import Utils from '../../../../dot/js/Utils.js';
 import { Shape } from '../../../../kite/js/imports.js';
-import merge from '../../../../phet-core/js/merge.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { LinearGradient, Node, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
-import AccordionBox from '../../../../sun/js/AccordionBox.js';
-import NumberSpinner from '../../../../sun/js/NumberSpinner.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import { LinearGradient, Node, NodeOptions, NodeTranslationOptions, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
+import AccordionBox, { AccordionBoxOptions } from '../../../../sun/js/AccordionBox.js';
+import NumberSpinner, { NumberSpinnerOptions } from '../../../../sun/js/NumberSpinner.js';
 import phScale from '../../phScale.js';
 import phScaleStrings from '../../phScaleStrings.js';
 import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
+import { PHValue } from '../model/PHModel.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 
 // constants
 const Y_MARGIN = 10;
 const CORNER_RADIUS = 8;
 
-class PHMeterNodeAccordionBox extends AccordionBox {
+type SelfOptions = {
+  isInteractive?: boolean; // true: pHProperty can be changed, false: pHProperty is read-only
+};
+
+export type PHMeterNodeAccordionBoxOptions = SelfOptions & PickRequired<AccordionBoxOptions, 'tandem'>;
+
+export default class PHMeterNodeAccordionBox extends AccordionBox {
 
   /**
-   * @param {Property.<number>} pHProperty - pH of the solution
-   * @param {number} probeYOffset distance from top of meter to tip of probe, in view coordinate frame
-   * @param {Object} [options]
+   * @param pHProperty - pH of the solution
+   * @param probeYOffset - distance from top of meter to tip of probe, in view coordinate frame
+   * @param [providedOptions]
    */
-  constructor( pHProperty, probeYOffset, options ) {
+  public constructor( pHProperty: Property<PHValue>, probeYOffset: number, providedOptions: PHMeterNodeAccordionBoxOptions ) {
 
-    options = merge( {
-      isInteractive: false, // {boolean} true: pHProperty can be changed, false: pHProperty is read-only
+    const options = optionize<PHMeterNodeAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()( {
 
-      // AccordionBox options
+      // SelfOptions
+      isInteractive: false,
+
+      // AccordionBoxOptions
       fill: PHScaleColors.PANEL_FILL,
       lineWidth: 2,
       cornerRadius: CORNER_RADIUS,
@@ -64,16 +72,14 @@ class PHMeterNodeAccordionBox extends AccordionBox {
       buttonXMargin: 14,
       buttonYMargin: Y_MARGIN,
       expandCollapseButtonOptions: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_OPTIONS,
-      contentYMargin: Y_MARGIN,
-
-      // phet-io
-      tandem: Tandem.REQUIRED
-    }, options );
+      contentYMargin: Y_MARGIN
+    }, providedOptions );
 
     let contentNode = null;
     if ( options.isInteractive ) {
 
       // the meter is interactive, the pH value can be changed with a spinner
+      // @ts-ignore https://github.com/phetsims/ph-scale/issues/242 pHNumberProperty value is number | null
       contentNode = new PHSpinnerNode( pHProperty, {
         tandem: options.tandem.createTandem( 'spinner' )
       } );
@@ -104,7 +110,7 @@ class PHMeterNodeAccordionBox extends AccordionBox {
       top: this.top
     } );
     this.addChild( probeNode );
-    probeNode.moveToBack( probeNode );
+    probeNode.moveToBack();
 
     this.expandedProperty.link( expanded => {
       probeNode.visible = expanded;
@@ -119,44 +125,39 @@ class PHMeterNodeAccordionBox extends AccordionBox {
     }
   }
 
-  /**
-   * @public
-   */
-  reset() {
+  public override reset(): void {
     this.expandedProperty.reset();
+    super.reset();
   }
 }
-
-phScale.register( 'PHMeterNodeAccordionBox', PHMeterNodeAccordionBox );
 
 /**
  * Spinner for pH value.
  */
+type PHSpinnerNodeSelfOptions = EmptySelfOptions;
+type PHSpinnerNodeOptions = PHSpinnerNodeSelfOptions & PickRequired<NumberSpinnerOptions, 'tandem'>;
+
 class PHSpinnerNode extends NumberSpinner {
 
-  /**
-   * @param {Property.<number>} pHProperty
-   * @param {Object} [options]
-   */
-  constructor( pHProperty, options ) {
+  public constructor( pHProperty: Property<number>, providedOptions: PHSpinnerNodeOptions ) {
 
     const pHDelta = 1 / Math.pow( 10, PHScaleConstants.PH_METER_DECIMAL_PLACES );
 
     // When using the spinner to change pH, constrain pHProperty to be exactly the value displayed by the spinner.
     // See https://github.com/phetsims/ph-scale/issues/143
-    const incrementFunction = value => {
+    const incrementFunction = ( value: number ) => {
       value = Utils.toFixedNumber( value, PHScaleConstants.PH_METER_DECIMAL_PLACES );
       return Utils.toFixedNumber( value + pHDelta, PHScaleConstants.PH_METER_DECIMAL_PLACES );
     };
 
-    const decrementFunction = value => {
+    const decrementFunction = ( value: number ) => {
       value = Utils.toFixedNumber( value, PHScaleConstants.PH_METER_DECIMAL_PLACES );
       return Utils.toFixedNumber( value - pHDelta, PHScaleConstants.PH_METER_DECIMAL_PLACES );
     };
 
-    options = merge( {
+    const options = optionize<PHSpinnerNodeOptions, PHSpinnerNodeSelfOptions, NumberSpinnerOptions>()( {
 
-      // NumberSpinner options
+      // NumberSpinnerOptions
       incrementFunction: incrementFunction,
       decrementFunction: decrementFunction,
       numberDisplayOptions: {
@@ -174,11 +175,8 @@ class PHSpinnerNode extends NumberSpinner {
       xSpacing: 6,
       ySpacing: 4,
       touchAreaXDilation: 15,
-      touchAreaYDilation: 2,
-
-      // phet-io
-      tandem: Tandem.REQUIRED
-    }, options );
+      touchAreaYDilation: 2
+    }, providedOptions );
 
     super( pHProperty, new Property( PHScaleConstants.PH_RANGE ), options );
   }
@@ -187,15 +185,16 @@ class PHSpinnerNode extends NumberSpinner {
 /**
  * Probe that extends out the bottom of the meter.
  */
+type ProbeNodeSelfOptions = EmptySelfOptions;
+type ProbeNodeOptions = ProbeNodeSelfOptions & NodeTranslationOptions;
+
 class ProbeNode extends Node {
 
-  /**
-   * @param {number} probeHeight
-   * @param {Object} [options]
-   */
-  constructor( probeHeight, options ) {
+  public constructor( probeHeight: number, providedOptions?: ProbeNodeOptions ) {
 
-    options = options || {};
+    const options = optionize<ProbeNodeOptions, ProbeNodeSelfOptions, NodeOptions>()( {
+      // Empty optionize is needed because we're setting children below.
+    }, providedOptions );
 
     const PROBE_WIDTH = 20;
     const TIP_HEIGHT = 50;
@@ -227,11 +226,10 @@ class ProbeNode extends Node {
       top: shaftNode.bottom - OVERLAP
     } );
 
-    assert && assert( !options.children, 'ProbeNode sets children' );
     options.children = [ shaftNode, tipNode ];
 
     super( options );
   }
 }
 
-export default PHMeterNodeAccordionBox;
+phScale.register( 'PHMeterNodeAccordionBox', PHMeterNodeAccordionBox );

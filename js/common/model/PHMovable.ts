@@ -28,7 +28,7 @@ export type PHMovableOptions = SelfOptions & PickRequired<PhetioObjectOptions, '
 export default class PHMovable {
 
   public readonly positionProperty: Property<Vector2>;
-  public readonly dragBounds: Bounds2;
+  public dragBounds: Bounds2;
 
   public constructor( position: Vector2, dragBounds: Bounds2, providedOptions: PHMovableOptions ) {
 

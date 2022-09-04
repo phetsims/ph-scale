@@ -1,5 +1,6 @@
 // Copyright 2013-2021, University of Colorado Boulder
 
+// @ts-nocheck
 /**
  * Fluid (stock solution) coming out of the dropper.
  *

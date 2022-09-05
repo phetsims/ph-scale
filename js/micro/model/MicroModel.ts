@@ -1,4 +1,4 @@
-// Copyright 2013-2020, University of Colorado Boulder
+// Copyright 2013-2022, University of Colorado Boulder
 
 /**
  * MicroModel is the model for the 'Micro' screen.  It extends the MacroModel, substituting a different solution

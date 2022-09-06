@@ -119,7 +119,7 @@ export default class MicroScreenView extends ScreenView {
 
     // graph
     const graphNode = new GraphNode( model.solution.totalVolumeProperty,
-      // @ts-ignore https://github.com/phetsims/ph-scale/issues/242 derivedProperties does not exist
+      // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 derivedProperties does not exist
       model.solution.derivedProperties, {
         pHProperty: model.solution.pHProperty,
         hasLinearFeature: true,

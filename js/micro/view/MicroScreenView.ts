@@ -31,7 +31,7 @@ import FaucetFluidNode from '../../common/view/FaucetFluidNode.js';
 import GraphNode from '../../common/view/graph/GraphNode.js';
 import MoleculeCountNode from '../../common/view/MoleculeCountNode.js';
 import PHDropperNode from '../../common/view/PHDropperNode.js';
-import PHMeterNodeAccordionBox from '../../common/view/PHMeterNodeAccordionBox.js';
+import MicroPHAccordionBox from './MicroPHAccordionBox.js';
 import PHScaleViewProperties from '../../common/view/PHScaleViewProperties.js';
 import RatioNode from '../../common/view/RatioNode.js';
 import SoluteComboBox from '../../common/view/SoluteComboBox.js';
@@ -130,9 +130,7 @@ export default class MicroScreenView extends ScreenView {
 
     // pH meter
     const pHMeterTop = 15;
-
-    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242 pHProperty type mismatch
-    const phMeterNodeAccordionBox = new PHMeterNodeAccordionBox( model.solution.pHProperty,
+    const phMeterNodeAccordionBox = new MicroPHAccordionBox( model.solution.pHProperty,
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
         tandem: options.tandem.createTandem( 'pHMeterNodeAccordionBox' )
       } );

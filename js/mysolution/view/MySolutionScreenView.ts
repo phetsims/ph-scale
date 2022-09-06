@@ -24,13 +24,13 @@ import BeakerControlPanel from '../../common/view/BeakerControlPanel.js';
 import BeakerNode from '../../common/view/BeakerNode.js';
 import GraphNode from '../../common/view/graph/GraphNode.js';
 import MoleculeCountNode from '../../common/view/MoleculeCountNode.js';
-import PHMeterNodeAccordionBox from '../../common/view/PHMeterNodeAccordionBox.js';
 import PHScaleViewProperties from '../../common/view/PHScaleViewProperties.js';
 import RatioNode from '../../common/view/RatioNode.js';
 import SolutionNode from '../../common/view/SolutionNode.js';
 import VolumeIndicatorNode from '../../common/view/VolumeIndicatorNode.js';
 import phScale from '../../phScale.js';
 import MySolutionModel from '../model/MySolutionModel.js';
+import MySolutionPHAccordionBox from './MySolutionPHAccordionBox.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -93,10 +93,8 @@ export default class MySolutionScreenView extends ScreenView {
 
     // pH meter
     const pHMeterTop = 15;
-    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 NumberProperty is not assignable to Property<PHValue>
-    const pHMeterNode = new PHMeterNodeAccordionBox( model.solution.pHProperty,
+    const pHMeterNode = new MySolutionPHAccordionBox( model.solution.pHProperty,
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
-        isInteractive: true, // add spinner to change pH
         tandem: options.tandem.createTandem( 'pHMeterNodeAccordionBox' )
       } );
 

@@ -24,12 +24,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 // constants
 const Y_MARGIN = 10;
 
-type SelfOptions = {
-
-  // true makes the indicators interactive on the Logarithmic graph, allowing the user to change concentration
-  // and quantity, thereby changing pH.
-  isInteractive?: boolean;
-};
+type SelfOptions = EmptySelfOptions;
 
 export type PHAccordionBoxOptions = SelfOptions & PickRequired<AccordionBoxOptions, 'tandem'>;
 
@@ -47,9 +42,6 @@ export default class PHAccordionBox extends AccordionBox {
                          providedOptions: PHAccordionBoxOptions ) {
 
     const options = optionize<PHAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()( {
-
-      // SelfOptions
-      isInteractive: false,
 
       // AccordionBoxOptions
       fill: PHScaleColors.PANEL_FILL,

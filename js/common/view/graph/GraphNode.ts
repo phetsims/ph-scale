@@ -160,29 +160,23 @@ export default class GraphNode extends Node {
     };
 
     // Link to concentration Properties, see https://github.com/phetsims/ph-scale/issues/125
-    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.concentrationH2OProperty, {
       tandem: options.tandem.createTandem( 'concentrationH2OProperty' )
     } );
-    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.concentrationH3OProperty, {
       tandem: options.tandem.createTandem( 'concentrationH3OProperty' )
     } );
-    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.concentrationOHProperty, {
       tandem: options.tandem.createTandem( 'concentrationOHProperty' )
     } );
 
     // Link to quantity Properties, see https://github.com/phetsims/ph-scale/issues/125
-    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.quantityH2OProperty, {
       tandem: options.tandem.createTandem( 'quantityH2OProperty' )
     } );
-    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.quantityH3OProperty, {
       tandem: options.tandem.createTandem( 'quantityH3OProperty' )
     } );
-    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.addLinkedElement( derivedProperties.quantityOHProperty, {
       tandem: options.tandem.createTandem( 'quantityOHProperty' )
     } );

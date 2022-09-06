@@ -19,7 +19,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import { LinkableElement, PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import phScale from '../../phScale.js';
@@ -32,19 +32,19 @@ export type SolutionDerivedPropertiesOptions = SelfOptions & PickRequired<Phetio
 export default class SolutionDerivedProperties {
 
   // The concentration (mol/L) of H2O, H3O+, and OH- in the solution
-  public readonly concentrationH2OProperty: TReadOnlyProperty<ConcentrationValue>;
-  public readonly concentrationH3OProperty: TReadOnlyProperty<ConcentrationValue>;
-  public readonly concentrationOHProperty: TReadOnlyProperty<ConcentrationValue>;
+  public readonly concentrationH2OProperty: TReadOnlyProperty<ConcentrationValue> & LinkableElement;
+  public readonly concentrationH3OProperty: TReadOnlyProperty<ConcentrationValue> & LinkableElement;
+  public readonly concentrationOHProperty: TReadOnlyProperty<ConcentrationValue> & LinkableElement;
 
   // The quantity (mol) of H2O, H3O+, and OH- in the solution
-  public readonly quantityH2OProperty: TReadOnlyProperty<number>;
-  public readonly quantityH3OProperty: TReadOnlyProperty<number>;
-  public readonly quantityOHProperty: TReadOnlyProperty<number>;
+  public readonly quantityH2OProperty: TReadOnlyProperty<number> & LinkableElement;
+  public readonly quantityH3OProperty: TReadOnlyProperty<number> & LinkableElement;
+  public readonly quantityOHProperty: TReadOnlyProperty<number> & LinkableElement;
 
   // The number of H2O, H3O+, and OH- molecules in the solution
-  public readonly numberOfH2OMoleculesProperty: TReadOnlyProperty<number>;
-  public readonly numberOfH3OMoleculesProperty: TReadOnlyProperty<number>;
-  public readonly numberOfOHMoleculesProperty: TReadOnlyProperty<number>;
+  public readonly numberOfH2OMoleculesProperty: TReadOnlyProperty<number> & LinkableElement;
+  public readonly numberOfH3OMoleculesProperty: TReadOnlyProperty<number> & LinkableElement;
+  public readonly numberOfOHMoleculesProperty: TReadOnlyProperty<number> & LinkableElement;
 
   public constructor( pHProperty: TReadOnlyProperty<PHValue>,
                       totalVolumeProperty: TReadOnlyProperty<number>,

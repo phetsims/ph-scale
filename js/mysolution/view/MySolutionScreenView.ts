@@ -93,7 +93,7 @@ export default class MySolutionScreenView extends ScreenView {
 
     // pH meter
     const pHMeterTop = 15;
-    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 NumberProperty is not assignable to Property<PHValue>
     const pHMeterNode = new PHMeterNodeAccordionBox( model.solution.pHProperty,
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
         isInteractive: true, // add spinner to change pH

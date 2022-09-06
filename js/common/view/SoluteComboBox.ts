@@ -61,7 +61,7 @@ export default class SoluteComboBox extends ComboBox<Solute> {
 
       // If the solute name changes, update the item.
       // See https://github.com/phetsims/ph-scale/issues/110
-      //TODO https://github.com/phetsims/ph-scale/issues/239
+      //TODO https://github.com/phetsims/ph-scale/issues/239 support for dynamic locale
       solute.nameProperty.link( name => {
         textNode.text = name;
       } );
@@ -80,7 +80,7 @@ export default class SoluteComboBox extends ComboBox<Solute> {
 
     // ComboBox does not dynamically resize. So if a solution name does change, constrain the listbox item width.
     // See https://github.com/phetsims/ph-scale/issues/110
-    //TODO https://github.com/phetsims/ph-scale/issues/239
+    //TODO https://github.com/phetsims/ph-scale/issues/239 support for dynamic locale
     textNodes.forEach( textNode => {
       textNode.maxWidth = maxWidth;
     } );

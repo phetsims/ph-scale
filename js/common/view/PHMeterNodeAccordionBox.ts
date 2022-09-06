@@ -37,7 +37,10 @@ const Y_MARGIN = 10;
 const CORNER_RADIUS = 8;
 
 type SelfOptions = {
-  isInteractive?: boolean; // true: pHProperty can be changed, false: pHProperty is read-only
+
+  // true makes the indicators interactive on the Logarithmic graph, allowing the user to change concentration
+  // and quantity, thereby changing pH.
+  isInteractive?: boolean;
 };
 
 export type PHMeterNodeAccordionBoxOptions = SelfOptions & PickRequired<AccordionBoxOptions, 'tandem'>;

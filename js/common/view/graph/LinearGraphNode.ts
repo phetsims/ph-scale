@@ -137,7 +137,7 @@ export default class LinearGraphNode extends Node {
     offScaleText.y = arrowNode.top + ( 0.85 * arrowHeadHeight );
 
     // Create the tick marks. Correct labels will be assigned later.
-    const tickLabels: ScientificNotationNode[] = [];
+    const tickLabels: TickLabelNode[] = [];
     const numberOfTicks = MANTISSA_RANGE.getLength() + 1;
     const ySpacing = ( scaleHeight - arrowHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
     let tickLabel;
@@ -154,12 +154,7 @@ export default class LinearGraphNode extends Node {
         stroke: options.majorTickStroke,
         lineWidth: options.majorTickLineWidth
       } );
-      tickLabel = new ScientificNotationNode( new NumberProperty( i ), {
-        font: options.majorTickFont,
-        fill: 'black',
-        mantissaDecimalPlaces: 0,
-        showIntegersAsMantissaOnly: true
-      } );
+      tickLabel = new TickLabelNode( i, options.majorTickFont );
 
       // rendering order
       this.addChild( tickLineLeft );
@@ -232,11 +227,8 @@ export default class LinearGraphNode extends Node {
 
     // updates the tick labels to match the exponent
     const updateTickLabels = ( exponent: number ) => {
-      const tickOptions = ( exponent >= 0 ) ? { exponent: 0 } : { exponent: exponent }; // show positive exponents as integers
       for ( let i = 0; i < tickLabels.length; i++ ) {
-
-        // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 this looks buggy
-        tickLabels[ i ].valueProperty.set( i * Math.pow( 10, exponent ), tickOptions );
+        tickLabels[ i ].value = ( i * Math.pow( 10, exponent ) );
         tickLabels[ i ].centerX = scaleNode.centerX;
       }
     };
@@ -272,6 +264,33 @@ export default class LinearGraphNode extends Node {
 
   public reset(): void {
     this.exponentProperty.reset();
+  }
+}
+
+/**
+ * TickLabelNode is the label on a tick mark.
+ */
+class TickLabelNode extends ScientificNotationNode {
+
+  // ScientificNotationNode has a read-only valueProperty, and we need to modify it as we zoom in/out on the graph.
+  private readonly numberProperty: NumberProperty;
+
+  public constructor( value: number, font: Font ) {
+
+    const numberProperty = new NumberProperty( value );
+
+    super( numberProperty, {
+      font: font,
+      fill: 'black',
+      mantissaDecimalPlaces: 0,
+      showIntegersAsMantissaOnly: true
+    } );
+
+    this.numberProperty = numberProperty;
+  }
+
+  public set value( value: number ) {
+    this.numberProperty.value = value;
   }
 }
 

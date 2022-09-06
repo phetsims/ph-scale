@@ -233,10 +233,10 @@ class MoleculesCanvas extends CanvasNode {
   private numberOfOHMolecules: number;
 
   // x and y coordinates for molecules
-  private readonly xH3O: number[];
-  private readonly yH3O: number[];
-  private readonly xOH: number[];
-  private readonly yOH: number[];
+  private readonly xH3O: Float32Array;
+  private readonly yH3O: Float32Array;
+  private readonly xOH: Float32Array;
+  private readonly yOH: Float32Array;
 
   // majority and minority images for each molecule
   private imageH3OMajority: HTMLCanvasElement | null;
@@ -259,13 +259,9 @@ class MoleculesCanvas extends CanvasNode {
     const ArrayConstructor = window.Float32Array || window.Array;
 
     // pre-allocate arrays for molecule x and y coordinates, to eliminate allocation in critical code
-    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.xH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
-    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.yH3O = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
-    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.xOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
-    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
     this.yOH = new ArrayConstructor( MAX_MAJORITY_MOLECULES );
 
     // Generate majority and minority {HTMLCanvasElement} for each molecule.
@@ -360,7 +356,7 @@ class MoleculesCanvas extends CanvasNode {
    * Draws one species of molecule. Using drawImage is faster than arc.
    */
   private drawMolecules( context: CanvasRenderingContext2D, image: HTMLCanvasElement, numberOfMolecules: number,
-                         xCoordinates: number[], yCoordinates: number[] ): void {
+                         xCoordinates: Float32Array, yCoordinates: Float32Array ): void {
     assert && assert( image, 'HTMLCanvasElement is not loaded yet' );
 
     // images are generated asynchronously, so test just in case they aren't available when this is first called

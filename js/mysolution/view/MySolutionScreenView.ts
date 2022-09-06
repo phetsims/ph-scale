@@ -83,7 +83,7 @@ export default class MySolutionScreenView extends ScreenView {
       } );
 
     // graph
-    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 NumberProperty is not assignable to Property<PHValue>
     const graphNode = new GraphNode( model.solution.pHProperty, model.solution.totalVolumeProperty,
       model.solution.derivedProperties, {
         isInteractive: true, // add drag handlers for changing H3O+ and OH- on the Logarithmic graph

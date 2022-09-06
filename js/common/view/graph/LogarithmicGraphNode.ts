@@ -234,7 +234,7 @@ export default class LogarithmicGraphNode extends Node {
     Multilink.multilink( [ valueH2OProperty, graphUnitsProperty ],
       ( valueH2O, graphUnits ) => {
         // offset the H2O indicator when off scale, so it doesn't butt up again OH indicator
-        // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 valueToY only takes 1 arg
+        // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 this looks buggy, valueToY only takes 1 arg
         indicatorH2ONode.y = valueToY( valueH2O, -4 );
       } );
     Multilink.multilink( [ valueH3OProperty, graphUnitsProperty ],

@@ -7,7 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import PHMeterNodeAccordionBox, { PHMeterNodeAccordionBoxOptions } from '../../common/view/PHMeterNodeAccordionBox.js';
+import PHAccordionBox, { PHMeterNodeAccordionBoxOptions } from '../../common/view/PHAccordionBox.js';
 import phScale from '../../phScale.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -18,7 +18,7 @@ type SelfOptions = EmptySelfOptions;
 
 export type MySolutionPHAccordionBoxOptions = SelfOptions & PickRequired<PHMeterNodeAccordionBoxOptions, 'tandem'>;
 
-export default class MySolutionPHAccordionBox extends PHMeterNodeAccordionBox {
+export default class MySolutionPHAccordionBox extends PHAccordionBox {
 
   /**
    * @param pHProperty - pH of the solution

@@ -6,7 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import PHMeterNodeAccordionBox, { PHMeterNodeAccordionBoxOptions } from '../../common/view/PHMeterNodeAccordionBox.js';
+import PHAccordionBox, { PHMeterNodeAccordionBoxOptions } from '../../common/view/PHAccordionBox.js';
 import phScale from '../../phScale.js';
 import { PHValue } from '../../common/model/PHModel.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
@@ -21,7 +21,7 @@ type SelfOptions = EmptySelfOptions;
 
 export type MicroPHAccordionBoxOptions = SelfOptions & PickRequired<PHMeterNodeAccordionBoxOptions, 'tandem'>;
 
-export default class MicroPHAccordionBox extends PHMeterNodeAccordionBox {
+export default class MicroPHAccordionBox extends PHAccordionBox {
 
   /**
    * @param pHProperty - pH of the solution
@@ -34,7 +34,7 @@ export default class MicroPHAccordionBox extends PHMeterNodeAccordionBox {
 
     const contentNode = new NumberDisplay( pHProperty, PHScaleConstants.PH_RANGE, {
       decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
-      cornerRadius: PHMeterNodeAccordionBox.CORNER_RADIUS,
+      cornerRadius: PHAccordionBox.CORNER_RADIUS,
       textOptions: {
         font: new PhetFont( 28 ),
         textPropertyOptions: { phetioHighFrequency: true }

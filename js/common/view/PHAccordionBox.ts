@@ -1,7 +1,7 @@
 // Copyright 2014-2022, University of Colorado Boulder
 
 /**
- * PHMeterNodeAccordionBox is the base class for the pH in the 'Micro' and 'My Solution' screens.
+ * PHAccordionBox is the base class for the pH in the 'Micro' and 'My Solution' screens.
  * - Origin is at top left.
  * - Can be expanded and collapsed.
  * - Has a probe that extends down into the solution.
@@ -33,7 +33,7 @@ type SelfOptions = {
 
 export type PHMeterNodeAccordionBoxOptions = SelfOptions & PickRequired<AccordionBoxOptions, 'tandem'>;
 
-export default class PHMeterNodeAccordionBox extends AccordionBox {
+export default class PHAccordionBox extends AccordionBox {
 
   protected static readonly CORNER_RADIUS = 8;
 
@@ -54,7 +54,7 @@ export default class PHMeterNodeAccordionBox extends AccordionBox {
       // AccordionBoxOptions
       fill: PHScaleColors.PANEL_FILL,
       lineWidth: 2,
-      cornerRadius: PHMeterNodeAccordionBox.CORNER_RADIUS,
+      cornerRadius: PHAccordionBox.CORNER_RADIUS,
       contentYSpacing: 10,
       titleAlignX: 'left',
       titleXMargin: 15,
@@ -141,4 +141,4 @@ class ProbeNode extends Node {
   }
 }
 
-phScale.register( 'PHMeterNodeAccordionBox', PHMeterNodeAccordionBox );
+phScale.register( 'PHAccordionBox', PHAccordionBox );

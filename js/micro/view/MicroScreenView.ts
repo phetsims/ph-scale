@@ -130,9 +130,9 @@ export default class MicroScreenView extends ScreenView {
 
     // pH meter
     const pHMeterTop = 15;
-    const phMeterNodeAccordionBox = new MicroPHAccordionBox( model.solution.pHProperty,
+    const pHAccordionBox = new MicroPHAccordionBox( model.solution.pHProperty,
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
-        tandem: options.tandem.createTandem( 'pHMeterNodeAccordionBox' )
+        tandem: options.tandem.createTandem( 'pHAccordionBox' )
       } );
 
     // solutes combo box
@@ -149,7 +149,7 @@ export default class MicroScreenView extends ScreenView {
         model.reset();
         viewProperties.reset();
         graphNode.reset();
-        phMeterNodeAccordionBox.reset();
+        pHAccordionBox.reset();
       },
       tandem: options.tandem.createTandem( 'resetAllButton' )
     } );
@@ -165,7 +165,7 @@ export default class MicroScreenView extends ScreenView {
         dropperFluidNode,
         dropperNode,
         solutionNode,
-        phMeterNodeAccordionBox,
+        pHAccordionBox,
         ratioNode,
         beakerNode,
         moleculeCountNode,
@@ -184,11 +184,11 @@ export default class MicroScreenView extends ScreenView {
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControlPanel.centerX = beakerNode.centerX;
     beakerControlPanel.top = beakerNode.bottom + 10;
-    phMeterNodeAccordionBox.left = modelViewTransform.modelToViewX( model.beaker.left ) - ( 0.4 * phMeterNodeAccordionBox.width );
-    phMeterNodeAccordionBox.top = pHMeterTop;
+    pHAccordionBox.left = modelViewTransform.modelToViewX( model.beaker.left ) - ( 0.4 * pHAccordionBox.width );
+    pHAccordionBox.top = pHMeterTop;
     graphNode.right = drainFaucetNode.left - 40;
-    graphNode.top = phMeterNodeAccordionBox.top;
-    soluteComboBox.left = phMeterNodeAccordionBox.right + 35;
+    graphNode.top = pHAccordionBox.top;
+    soluteComboBox.left = pHAccordionBox.right + 35;
     soluteComboBox.top = this.layoutBounds.top + pHMeterTop;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;

@@ -14,7 +14,7 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { Color } from '../../../../scenery/js/imports.js';
-import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import PhetioObject, { LinkableElement, PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import PHModel, { PHValue } from '../../common/model/PHModel.js';
@@ -40,7 +40,7 @@ export default class MacroSolution extends PhetioObject {
   public readonly soluteVolumeProperty: Property<number>;
   public readonly waterVolumeProperty: Property<number>;
   public readonly totalVolumeProperty: TReadOnlyProperty<number>;
-  public readonly pHProperty: TReadOnlyProperty<PHValue>;
+  public readonly pHProperty: TReadOnlyProperty<PHValue> & LinkableElement;
   public readonly colorProperty: TReadOnlyProperty<Color>;
   public readonly maxVolume: number;
 

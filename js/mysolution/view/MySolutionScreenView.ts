@@ -92,10 +92,10 @@ export default class MySolutionScreenView extends ScreenView {
       } );
 
     // pH meter
-    const pHMeterTop = 15;
-    const pHMeterNode = new MySolutionPHAccordionBox( model.solution.pHProperty,
-      modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
-        tandem: options.tandem.createTandem( 'pHMeterNodeAccordionBox' )
+    const pHAccordionBoxTop = 15;
+    const pHAccordionBox = new MySolutionPHAccordionBox( model.solution.pHProperty,
+      modelViewTransform.modelToViewY( model.beaker.position.y ) - pHAccordionBoxTop, {
+        tandem: options.tandem.createTandem( 'pHAccordionBox' )
       } );
 
     const resetAllButton = new ResetAllButton( {
@@ -105,7 +105,7 @@ export default class MySolutionScreenView extends ScreenView {
         model.reset();
         viewProperties.reset();
         graphNode.reset();
-        pHMeterNode.reset();
+        pHAccordionBox.reset();
       },
       tandem: options.tandem.createTandem( 'resetAllButton' )
     } );
@@ -114,7 +114,7 @@ export default class MySolutionScreenView extends ScreenView {
     const rootNode = new Node( {
       children: [
         solutionNode,
-        pHMeterNode,
+        pHAccordionBox,
         ratioNode,
         beakerNode,
         moleculeCountNode,
@@ -127,14 +127,14 @@ export default class MySolutionScreenView extends ScreenView {
     this.addChild( rootNode );
 
     // Layout of nodes that don't have a position specified in the model
-    pHMeterNode.left = beakerNode.left;
-    pHMeterNode.top = pHMeterTop;
+    pHAccordionBox.left = beakerNode.left;
+    pHAccordionBox.top = pHAccordionBoxTop;
     moleculeCountNode.centerX = beakerNode.centerX;
     moleculeCountNode.bottom = beakerNode.bottom - 25;
     beakerControlPanel.centerX = beakerNode.centerX;
     beakerControlPanel.top = beakerNode.bottom + 10;
     graphNode.right = beakerNode.left - 70;
-    graphNode.top = pHMeterNode.top;
+    graphNode.top = pHAccordionBox.top;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
   }

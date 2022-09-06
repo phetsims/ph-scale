@@ -1,12 +1,13 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * MicroPHAccordionBox is the pH accordion box for the 'Micro' screen. It is display-only; the pH is not editable.
+ * MicroPHAccordionBox is the pH accordion box (aka meter) for the 'Micro' screen.
+ * It is display-only; the pH is not editable.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import PHAccordionBox, { PHMeterNodeAccordionBoxOptions } from '../../common/view/PHAccordionBox.js';
+import PHAccordionBox, { PHAccordionBoxOptions } from '../../common/view/PHAccordionBox.js';
 import phScale from '../../phScale.js';
 import { PHValue } from '../../common/model/PHModel.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
@@ -19,7 +20,7 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type MicroPHAccordionBoxOptions = SelfOptions & PickRequired<PHMeterNodeAccordionBoxOptions, 'tandem'>;
+export type MicroPHAccordionBoxOptions = SelfOptions & PickRequired<PHAccordionBoxOptions, 'tandem'>;
 
 export default class MicroPHAccordionBox extends PHAccordionBox {
 

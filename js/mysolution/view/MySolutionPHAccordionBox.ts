@@ -1,13 +1,13 @@
 // Copyright 2022, University of Colorado Boulder
 
 /**
- * MySolutionPHAccordionBox is the pH accordion box for the 'My Solution' screen.
+ * MySolutionPHAccordionBox is the pH accordion box (aka meter) for the 'My Solution' screen.
  * It allows the user to change the pH via a spinner.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import PHAccordionBox, { PHMeterNodeAccordionBoxOptions } from '../../common/view/PHAccordionBox.js';
+import PHAccordionBox, { PHAccordionBoxOptions } from '../../common/view/PHAccordionBox.js';
 import phScale from '../../phScale.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -16,7 +16,7 @@ import { PHSpinnerNode } from './PHSpinnerNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type MySolutionPHAccordionBoxOptions = SelfOptions & PickRequired<PHMeterNodeAccordionBoxOptions, 'tandem'>;
+export type MySolutionPHAccordionBoxOptions = SelfOptions & PickRequired<PHAccordionBoxOptions, 'tandem'>;
 
 export default class MySolutionPHAccordionBox extends PHAccordionBox {
 

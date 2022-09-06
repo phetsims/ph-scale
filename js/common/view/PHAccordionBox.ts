@@ -1,7 +1,7 @@
 // Copyright 2014-2022, University of Colorado Boulder
 
 /**
- * PHAccordionBox is the base class for the pH in the 'Micro' and 'My Solution' screens.
+ * PHAccordionBox is the base class for the pH accordion box (aka meter) in the 'Micro' and 'My Solution' screens.
  * - Origin is at top left.
  * - Can be expanded and collapsed.
  * - Has a probe that extends down into the solution.
@@ -31,7 +31,7 @@ type SelfOptions = {
   isInteractive?: boolean;
 };
 
-export type PHMeterNodeAccordionBoxOptions = SelfOptions & PickRequired<AccordionBoxOptions, 'tandem'>;
+export type PHAccordionBoxOptions = SelfOptions & PickRequired<AccordionBoxOptions, 'tandem'>;
 
 export default class PHAccordionBox extends AccordionBox {
 
@@ -44,9 +44,9 @@ export default class PHAccordionBox extends AccordionBox {
    */
   protected constructor( contentNode: Node,
                          probeYOffset: number,
-                         providedOptions: PHMeterNodeAccordionBoxOptions ) {
+                         providedOptions: PHAccordionBoxOptions ) {
 
-    const options = optionize<PHMeterNodeAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()( {
+    const options = optionize<PHAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()( {
 
       // SelfOptions
       isInteractive: false,

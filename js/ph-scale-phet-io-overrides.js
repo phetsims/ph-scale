@@ -202,7 +202,7 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.microScreen.view.graphNode.visibleProperty": {
       "phetioFeatured": true
     },
-    "phScale.microScreen.view.pHMeterNodeAccordionBox.expandedProperty": {
+    "phScale.microScreen.view.pHAccordionBox.expandedProperty": {
       "phetioFeatured": true
     },
     "phScale.microScreen.view.ratioNode.ratioProperty": {
@@ -295,7 +295,7 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.mySolutionScreen.view.graphNode.visibleProperty": {
       "phetioFeatured": true
     },
-    "phScale.mySolutionScreen.view.pHMeterNodeAccordionBox.expandedProperty": {
+    "phScale.mySolutionScreen.view.pHAccordionBox.expandedProperty": {
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.view.ratioNode.ratioProperty": {

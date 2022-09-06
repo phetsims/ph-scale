@@ -435,8 +435,7 @@ class PHIndicatorNode extends Node {
       arrowNode.visible = lineNode.visible = enabled;
 
       // Highlight the indicator when displayed pH === 7
-      // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 pH is possibly null
-      highlight.visible = ( Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === 7 );
+      highlight.visible = ( pH !== null ) && ( Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === 7 );
     } );
   }
 }

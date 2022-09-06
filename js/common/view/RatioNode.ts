@@ -105,8 +105,11 @@ export default class RatioNode extends Node {
           return null;
         }
         else {
-          // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 pH is possibly null
-          return PHModel.pHToConcentrationH3O( pH ) / PHModel.pHToConcentrationOH( pH );
+          const concentrationH3O = PHModel.pHToConcentrationH3O( pH )!;
+          assert && assert( concentrationH3O !== null );
+          const concentrationOH = PHModel.pHToConcentrationOH( pH )!;
+          assert && assert( concentrationOH !== null && concentrationOH !== 0 );
+          return concentrationH3O / concentrationOH;
         }
       }, {
         tandem: options.tandem.createTandem( 'ratioProperty' ),
@@ -142,8 +145,7 @@ export default class RatioNode extends Node {
 
     let pH = this.solution.pHProperty.value;
     if ( pH !== null ) {
-      // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 pH is possibly null
-      pH = Utils.toFixedNumber( this.solution.pHProperty.value, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      pH = Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES );
     }
 
     if ( this.pH !== pH ) {
@@ -201,26 +203,38 @@ export default class RatioNode extends Node {
   }
 }
 
-// Creates a random {number} x-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
+// Creates a random x-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
 function createRandomX( bounds: Bounds2 ): number {
   return dotRandom.nextIntBetween( bounds.minX, bounds.maxX );
 }
 
-// Creates a random {number} y-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
+// Creates a random y-coordinate inside some {Bounds2} bounds. Integer values improve Canvas performance.
 function createRandomY( bounds: Bounds2 ): number {
   return dotRandom.nextIntBetween( bounds.minY, bounds.maxY );
 }
 
-// Computes the {number} number of H3O+ molecules for some {number} pH.
+// Computes the number of H3O+ molecules for some pH.
 function computeNumberOfH3O( pH: PHValue ): number {
-  // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 pH is possibly null
-  return Utils.roundSymmetric( PHModel.pHToConcentrationH3O( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
+  if ( pH === null ) {
+    return 0;
+  }
+  else {
+    const concentrationH3O = PHModel.pHToConcentrationH3O( pH )!;
+    assert && assert( concentrationH3O !== null, 'concentrationH3O is not expected to be null when pH !== null' );
+    return Utils.roundSymmetric( concentrationH3O * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
+  }
 }
 
-// Computes the {number} number of OH- molecules for some {number} pH.
+// Computes the number of OH- molecules for some pH.
 function computeNumberOfOH( pH: PHValue ): number {
-  // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 pH is possibly null
-  return Utils.roundSymmetric( PHModel.pHToConcentrationOH( pH ) * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
+  if ( pH === null ) {
+    return 0;
+  }
+  else {
+    const concentrationOH = PHModel.pHToConcentrationOH( pH )!;
+    assert && assert( concentrationOH !== null, 'concentrationOH is not expected to be null when pH !== null' );
+    return Utils.roundSymmetric( concentrationOH * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
+  }
 }
 
 /**

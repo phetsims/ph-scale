@@ -87,8 +87,8 @@ export default class GraphIndicatorDragListener extends DragListener {
           let pH = isConcentration ? concentrationToPH( adjustedValue ) : molesToPH( adjustedValue, totalVolumeProperty.value );
 
           // Constrain the pH to the valid range
-          // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 pH is possibly null
-          pH = Utils.clamp( pH, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+          assert && assert( pH !== null, 'pH is not expected to be null here, because we checked that totalVolumeProperty.value !== 0 above' );
+          pH = Utils.clamp( pH!, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
 
           phet.log && phet.log( `value=${value} adjustedValue=${adjustedValue} pH=${pH}` );
 

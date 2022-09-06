@@ -79,7 +79,7 @@ export default class PHMeterNodeAccordionBox extends AccordionBox {
     if ( options.isInteractive ) {
 
       // the meter is interactive, the pH value can be changed with a spinner
-      // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 pHNumberProperty value is number | null
+      // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 pHProperty is number | null
       contentNode = new PHSpinnerNode( pHProperty, {
         tandem: options.tandem.createTandem( 'spinner' )
       } );

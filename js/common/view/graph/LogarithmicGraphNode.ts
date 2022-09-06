@@ -32,8 +32,10 @@ import GraphUnits from './GraphUnits.js';
 
 type SelfOptions = {
 
-  // if true, add drag handlers for changing H3O+ and OH-
-  isInteractive?: boolean;
+  // For the 'Micro' screen, pHProperty is read-only.
+  // For the 'My Solutions' screen, pHProperty is mutable.
+  // The type of pHProperty determines whether the Logarithmic graph is interactive.
+  pHProperty: TReadOnlyProperty<PHValue> | Property<number>;
 
   // scale
   scaleHeight?: number;
@@ -63,8 +65,7 @@ export type LogarithmicGraphNodeOptions = SelfOptions & NodeTranslationOptions &
 
 export default class LogarithmicGraphNode extends Node {
 
-  public constructor( pHProperty: Property<PHValue>,
-                      totalVolumeProperty: TReadOnlyProperty<number>,
+  public constructor( totalVolumeProperty: TReadOnlyProperty<number>,
                       derivedProperties: SolutionDerivedProperties,
                       graphUnitsProperty: EnumerationProperty<GraphUnits>,
                       providedOptions: LogarithmicGraphNodeOptions ) {
@@ -72,7 +73,6 @@ export default class LogarithmicGraphNode extends Node {
     const options = optionize<LogarithmicGraphNodeOptions, SelfOptions, NodeOptions>()( {
 
       // SelfOptions
-      isInteractive: false,
       scaleHeight: 100,
       minScaleWidth: 100,
       scaleYMargin: 30,
@@ -96,6 +96,8 @@ export default class LogarithmicGraphNode extends Node {
     }, providedOptions );
 
     super();
+
+    const isInteractive = options.pHProperty instanceof Property;
 
     // background for the scale, width sized to fit
     const widestTickLabel = createTickLabel( PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, options.majorTickFont );
@@ -188,16 +190,17 @@ export default class LogarithmicGraphNode extends Node {
     // indicators
     const indicatorH2ONode = GraphIndicatorNode.createH2OIndicator( valueH2OProperty, {
       x: backgroundNode.right - options.indicatorXOffset,
+      isInteractive: isInteractive,
       tandem: options.tandem.createTandem( 'indicatorH2ONode' )
     } );
     const indicatorH3ONode = GraphIndicatorNode.createH3OIndicator( valueH3OProperty, {
       x: backgroundNode.left + options.indicatorXOffset,
-      isInteractive: options.isInteractive,
+      isInteractive: isInteractive,
       tandem: options.tandem.createTandem( 'indicatorH3ONode' )
     } );
     const indicatorOHNode = GraphIndicatorNode.createOHIndicator( valueOHProperty, {
       x: backgroundNode.right - options.indicatorXOffset,
-      isInteractive: options.isInteractive,
+      isInteractive: isInteractive,
       tandem: options.tandem.createTandem( 'indicatorOHNode' )
     } );
     this.addChild( indicatorH2ONode );
@@ -245,7 +248,9 @@ export default class LogarithmicGraphNode extends Node {
       } );
 
     // Add drag handlers for H3O+ and OH-
-    if ( options.isInteractive ) {
+    if ( isInteractive ) {
+      const pHProperty = options.pHProperty as Property<number>;
+      assert && assert( pHProperty instanceof Property, 'expected pHProperty to be mutable' );
 
       // H3O+ indicator
       indicatorH3ONode.addInputListener(

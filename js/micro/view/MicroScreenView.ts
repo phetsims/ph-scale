@@ -118,10 +118,10 @@ export default class MicroScreenView extends ScreenView {
       } );
 
     // graph
-    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242 pHProperty type mismatch
-    const graphNode = new GraphNode( model.solution.pHProperty, model.solution.totalVolumeProperty,
+    const graphNode = new GraphNode( model.solution.totalVolumeProperty,
       // @ts-ignore https://github.com/phetsims/ph-scale/issues/242 derivedProperties does not exist
       model.solution.derivedProperties, {
+        pHProperty: model.solution.pHProperty,
         hasLinearFeature: true,
         logScaleHeight: 485,
         linearScaleHeight: 440,

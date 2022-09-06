@@ -19,21 +19,18 @@ import GraphScale from './GraphScale.js';
 import GraphScaleSwitch from './GraphScaleSwitch.js';
 import GraphUnits from './GraphUnits.js';
 import LinearGraphNode from './LinearGraphNode.js';
-import LogarithmicGraphNode from './LogarithmicGraphNode.js';
-import { PHValue } from '../../model/PHModel.js';
-import Property from '../../../../../axon/js/Property.js';
+import LogarithmicGraphNode, { LogarithmicGraphNodeOptions } from './LogarithmicGraphNode.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import optionize from '../../../../../phet-core/js/optionize.js';
 
 type SelfOptions = {
-  isInteractive?: boolean; // if true, add drag handlers for changing H3O+ and OH- on the Logarithmic graph
   logScaleHeight?: number;
   linearScaleHeight?: number;
   units?: GraphUnits; // initial state of the units switch
   hasLinearFeature?: boolean; // add the linear graph feature?
   graphScale?: GraphScale; // initial state of the scale switch, meaningful only if hasLinearFeature === true
-};
+} & PickRequired<LogarithmicGraphNodeOptions, 'pHProperty'>;
 
 export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
@@ -41,13 +38,11 @@ export default class GraphNode extends Node {
 
   private readonly resetGraphNode: () => void;
 
-  public constructor( pHProperty: Property<PHValue>,
-                      totalVolumeProperty: TReadOnlyProperty<number>,
+  public constructor( totalVolumeProperty: TReadOnlyProperty<number>,
                       derivedProperties: SolutionDerivedProperties,
                       providedOptions: GraphNodeOptions ) {
 
     const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {
-      isInteractive: false,
       logScaleHeight: 500,
       linearScaleHeight: 500,
       units: GraphUnits.MOLES_PER_LITER,
@@ -80,9 +75,9 @@ export default class GraphNode extends Node {
     } );
 
     // logarithmic graph
-    const logarithmicGraphNode = new LogarithmicGraphNode( pHProperty, totalVolumeProperty, derivedProperties, graphUnitsProperty, {
+    const logarithmicGraphNode = new LogarithmicGraphNode( totalVolumeProperty, derivedProperties, graphUnitsProperty, {
+      pHProperty: options.pHProperty,
       scaleHeight: options.logScaleHeight,
-      isInteractive: options.isInteractive,
       centerX: lineToPanel.centerX,
       y: 30, // y, not top
       tandem: options.tandem.createTandem( 'logarithmicGraphNode' )

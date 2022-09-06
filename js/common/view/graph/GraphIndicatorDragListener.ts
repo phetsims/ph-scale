@@ -31,7 +31,7 @@ export default class GraphIndicatorDragListener extends DragListener {
    * @param tandem
    */
   public constructor( targetNode: Node,
-                      pHProperty: Property<PHValue>,
+                      pHProperty: Property<number>,
                       totalVolumeProperty: TReadOnlyProperty<number>,
                       graphUnitsProperty: EnumerationProperty<GraphUnits>,
                       yToValue: ( y: number ) => number,

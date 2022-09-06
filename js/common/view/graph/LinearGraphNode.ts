@@ -272,7 +272,8 @@ export default class LinearGraphNode extends Node {
  */
 class TickLabelNode extends ScientificNotationNode {
 
-  // ScientificNotationNode has a read-only valueProperty, and we need to modify it as we zoom in/out on the graph.
+  // ScientificNotationNode has a read-only valueProperty. Since we need to modify the labels as we zoom in/out on
+  // the graph, keep track of the associated Property, so that we can modify it.
   private readonly numberProperty: NumberProperty;
 
   public constructor( value: number, font: Font ) {

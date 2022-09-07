@@ -16,13 +16,13 @@ import phScale from '../../phScale.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type MySolutionOptions = SelfOptions & PickRequired<MacroSolutionOptions, 'tandem'>;
+export type MicroSolutionOptions = SelfOptions & PickRequired<MacroSolutionOptions, 'tandem'>;
 
 export default class MicroSolution extends MacroSolution {
 
   public readonly derivedProperties: SolutionDerivedProperties;
 
-  public constructor( soluteProperty: Property<Solute>, providedOptions: MySolutionOptions ) {
+  public constructor( soluteProperty: Property<Solute>, providedOptions: MicroSolutionOptions ) {
 
     super( soluteProperty, providedOptions );
 

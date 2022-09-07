@@ -17,7 +17,7 @@ import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransfo
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Node, NodeOptions, Path, Text } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
-import phScaleStrings from '../../phScaleStrings.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
 import Beaker from '../model/Beaker.js';
 
 // constants
@@ -105,7 +105,7 @@ export default class BeakerNode extends Node {
         if ( labelIndex < MAJOR_TICK_LABELS.length ) {
 
           const labelStringProperty = new DerivedProperty(
-            [ phScaleStrings.pattern[ '0value' ][ '1unitsStringProperty' ], phScaleStrings.units.litersStringProperty ],
+            [ PhScaleStrings.pattern[ '0value' ][ '1unitsStringProperty' ], PhScaleStrings.units.litersStringProperty ],
             ( pattern, litersString ) => StringUtils.format( pattern, MAJOR_TICK_LABELS[ labelIndex ], litersString )
           );
 

@@ -17,7 +17,7 @@ import macroHomeScreenIcon_png from '../../images/macroHomeScreenIcon_png.js';
 import macroNavbarIcon_png from '../../images/macroNavbarIcon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
 import phScale from '../phScale.js';
-import phScaleStrings from '../phScaleStrings.js';
+import PhScaleStrings from '../PhScaleStrings.js';
 import MacroModel from './model/MacroModel.js';
 import MacroScreenView from './view/MacroScreenView.js';
 
@@ -32,7 +32,7 @@ export default class MacroScreen extends Screen {
     const options = optionize<MacroScreenOptions, SelfOptions, ScreenOptions>()( {
 
       // ScreenOptions
-      name: phScaleStrings.screen.macroStringProperty,
+      name: PhScaleStrings.screen.macroStringProperty,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
       homeScreenIcon: new ScreenIcon( new Image( macroHomeScreenIcon_png ), {
         maxIconWidthProportion: 1,

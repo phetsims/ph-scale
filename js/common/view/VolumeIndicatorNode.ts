@@ -19,7 +19,7 @@ import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransfo
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Node, NodeOptions, Path, Text } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
-import phScaleStrings from '../../phScaleStrings.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
 import Beaker from '../model/Beaker.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 
@@ -53,7 +53,7 @@ export default class VolumeIndicatorNode extends Node {
     const arrowHead = new Path( arrowHeadShape, { fill: 'black' } );
 
     const valueStringProperty = new DerivedProperty(
-      [ phScaleStrings.pattern[ '0value' ][ '1unitsStringProperty' ], totalVolumeProperty, phScaleStrings.units.litersStringProperty ],
+      [ PhScaleStrings.pattern[ '0value' ][ '1unitsStringProperty' ], totalVolumeProperty, PhScaleStrings.units.litersStringProperty ],
       ( pattern, totalVolume, litersString ) =>
         StringUtils.format( pattern, Utils.toFixed( totalVolume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), litersString )
     );

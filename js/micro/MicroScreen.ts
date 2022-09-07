@@ -16,7 +16,7 @@ import microHomeScreenIcon_png from '../../images/microHomeScreenIcon_png.js';
 import microNavbarIcon_png from '../../images/microNavbarIcon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
 import phScale from '../phScale.js';
-import phScaleStrings from '../phScaleStrings.js';
+import PhScaleStrings from '../PhScaleStrings.js';
 import MicroModel from './model/MicroModel.js';
 import MicroScreenView from './view/MicroScreenView.js';
 import PickRequired from '../../../phet-core/js/types/PickRequired.js';
@@ -32,7 +32,7 @@ class MicroScreen extends Screen {
     const options = optionize<MicroScreenOptions, SelfOptions, ScreenOptions>()( {
 
       // ScreenOptions
-      name: phScaleStrings.screen.microStringProperty,
+      name: PhScaleStrings.screen.microStringProperty,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
       homeScreenIcon: new ScreenIcon( new Image( microHomeScreenIcon_png ), {
         maxIconWidthProportion: 1,

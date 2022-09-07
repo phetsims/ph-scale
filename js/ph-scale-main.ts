@@ -13,7 +13,7 @@ import PHScaleConstants from './common/PHScaleConstants.js';
 import MacroScreen from './macro/MacroScreen.js';
 import MicroScreen from './micro/MicroScreen.js';
 import MySolutionScreen from './mysolution/MySolutionScreen.js';
-import phScaleStrings from './phScaleStrings.js';
+import PhScaleStrings from './PhScaleStrings.js';
 
 simLauncher.launch( () => {
 
@@ -29,7 +29,7 @@ simLauncher.launch( () => {
     } )
   ];
 
-  const sim = new Sim( phScaleStrings[ 'ph-scale' ].titleStringProperty, screens, {
+  const sim = new Sim( PhScaleStrings[ 'ph-scale' ].titleStringProperty, screens, {
     credits: PHScaleConstants.CREDITS,
 
     // phet-io options

@@ -54,8 +54,8 @@ type StringsType = {
   'offScaleStringProperty': TReadOnlyProperty<string>;
 };
 
-const phScaleStrings = getStringModule( 'PH_SCALE' ) as StringsType;
+const PhScaleStrings = getStringModule( 'PH_SCALE' ) as StringsType;
 
-phScale.register( 'phScaleStrings', phScaleStrings );
+phScale.register( 'PhScaleStrings', PhScaleStrings );
 
-export default phScaleStrings;
+export default PhScaleStrings;

@@ -7,6 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import { Shape } from '../../../../kite/js/imports.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
@@ -103,10 +104,12 @@ export default class BeakerNode extends Node {
         const labelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
         if ( labelIndex < MAJOR_TICK_LABELS.length ) {
 
-          //TODO https://github.com/phetsims/ph-scale/issues/239 dynamic locale
-          const label = StringUtils.format( phScaleStrings.pattern[ '0value' ][ '1units' ],
-            MAJOR_TICK_LABELS[ labelIndex ], phScaleStrings.units.liters );
-          tickLabels.addChild( new Text( label, {
+          const labelStringProperty = new DerivedProperty(
+            [ phScaleStrings.pattern[ '0value' ][ '1unitsStringProperty' ], phScaleStrings.units.litersStringProperty ],
+            ( pattern, litersString ) => StringUtils.format( pattern, MAJOR_TICK_LABELS[ labelIndex ], litersString )
+          );
+
+          tickLabels.addChild( new Text( labelStringProperty, {
             font: MAJOR_TICK_FONT,
             fill: 'black',
             right: beakerRight - tickLength - TICK_LABEL_X_SPACING,

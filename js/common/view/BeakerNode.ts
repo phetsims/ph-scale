@@ -102,6 +102,8 @@ export default class BeakerNode extends Node {
       if ( isMajorTick ) {
         const labelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
         if ( labelIndex < MAJOR_TICK_LABELS.length ) {
+
+          //TODO https://github.com/phetsims/ph-scale/issues/239 dynamic locale
           const label = StringUtils.format( phScaleStrings.pattern[ '0value' ][ '1units' ],
             MAJOR_TICK_LABELS[ labelIndex ], phScaleStrings.units.liters );
           tickLabels.addChild( new Text( label, {

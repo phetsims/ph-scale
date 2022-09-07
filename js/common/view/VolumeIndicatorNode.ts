@@ -69,6 +69,7 @@ export default class VolumeIndicatorNode extends Node {
     totalVolumeProperty.link( totalVolume => {
 
       // text
+      //TODO https://github.com/phetsims/ph-scale/issues/239 dynamic locale
       valueNode.text = StringUtils.format( phScaleStrings.pattern[ '0value' ][ '1units' ],
         Utils.toFixed( totalVolume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), phScaleStrings.units.liters );
       valueNode.centerY = arrowHead.centerY;

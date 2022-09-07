@@ -40,8 +40,6 @@ export default class SoluteComboBox extends ComboBox<Solute> {
     }, providedOptions );
 
     const items: ComboBoxItem<Solute>[] = [];
-    const textNodes: Text[] = [];
-    let maxWidth = 0; // max width of Text nodes
 
     // Create items for the listbox
     solutes.forEach( solute => {
@@ -53,17 +51,9 @@ export default class SoluteComboBox extends ComboBox<Solute> {
       } );
 
       // label
-      const textNode = new Text( solute.nameProperty.value, {
-        font: new PhetFont( 22 )
-      } );
-      textNodes.push( textNode );
-      maxWidth = Math.max( maxWidth, textNode.width );
-
-      // If the solute name changes, update the item.
-      // See https://github.com/phetsims/ph-scale/issues/110
-      //TODO https://github.com/phetsims/ph-scale/issues/239 support for dynamic locale
-      solute.nameProperty.link( name => {
-        textNode.text = name;
+      const textNode = new Text( solute.nameProperty, {
+        font: new PhetFont( 22 ),
+        maxWidth: 140 // determined empirically
       } );
 
       const hBox = new HBox( {
@@ -76,13 +66,6 @@ export default class SoluteComboBox extends ComboBox<Solute> {
         node: hBox,
         tandemName: `${solute.tandemName}${ComboBox.ITEM_TANDEM_NAME_SUFFIX}`
       } );
-    } );
-
-    // ComboBox does not dynamically resize. So if a solution name does change, constrain the listbox item width.
-    // See https://github.com/phetsims/ph-scale/issues/110
-    //TODO https://github.com/phetsims/ph-scale/issues/239 support for dynamic locale
-    textNodes.forEach( textNode => {
-      textNode.maxWidth = maxWidth;
     } );
 
     super( selectedSoluteProperty, items, soluteListParent, options );

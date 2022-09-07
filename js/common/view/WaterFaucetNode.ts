@@ -1,4 +1,4 @@
-// Copyright 2013-2022, University of Colorado Boulder
+  // Copyright 2013-2022, University of Colorado Boulder
 
 /**
  * Faucet that dispenses water (the solvent).
@@ -44,7 +44,7 @@ export default class WaterFaucetNode extends Node {
     faucetNode.setScaleMagnitude( -SCALE, SCALE ); // reflect horizontally
 
     // decorate the faucet with 'Water' label
-    const waterText = new Text( Water.name, {
+    const waterText = new Text( Water.nameProperty, {
       font: new PhetFont( 28 ),
       maxWidth: 85,
       left: faucetNode.left + 115,

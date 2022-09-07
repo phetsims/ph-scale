@@ -7,8 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Property from '../../../../axon/js/Property.js';
-import StringProperty from '../../../../axon/js/StringProperty.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { Color } from '../../../../scenery/js/imports.js';
@@ -43,11 +42,8 @@ export type SoluteOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tan
 
 export default class Solute extends PhetioObject {
 
-  // Name is a Property solely for PhET-iO. A use-case is when the client wants to replace the solute name with
-  // something like '?' as part of an exercise where the student needs to guess a solute's identity.  This Property
-  // should definitely not be used to make a solute look like some other solute, but there's nothing to prevent that
-  // abuse. See https://github.com/phetsims/ph-scale/issues/110
-  public readonly nameProperty: Property<string>;
+  // the name of the solute, displayed to the user
+  public readonly nameProperty: TReadOnlyProperty<string>;
 
   // pH value of the solute
   public readonly pH: number;
@@ -64,12 +60,12 @@ export default class Solute extends PhetioObject {
   private readonly colorStopRatio: number;
 
   /**
-   * @param name - the name of the solute, displayed to the user
+   * @param nameProperty - the name of the solute, displayed to the user
    * @param pH - the pH of the solute
    * @param stockColor - color of the solute in stock solution (no dilution)
    * @param [provideOptions]
    */
-  public constructor( name: string, pH: number, stockColor: Color, provideOptions: SoluteOptions ) {
+  public constructor( nameProperty: TReadOnlyProperty<string>, pH: number, stockColor: Color, provideOptions: SoluteOptions ) {
 
     assert && assert( PHScaleConstants.PH_RANGE.contains( pH ), `invalid pH: ${pH}` );
 
@@ -90,10 +86,7 @@ export default class Solute extends PhetioObject {
 
     super( options );
 
-    this.nameProperty = new StringProperty( name, {
-      tandem: options.tandem.createTandem( 'nameProperty' ),
-      phetioDocumentation: 'name of the solute, as displayed in the user interface'
-    } );
+    this.nameProperty = nameProperty;
 
     this.pH = pH;
     this.stockColor = stockColor;
@@ -141,63 +134,64 @@ export default class Solute extends PhetioObject {
     return color;
   }
 
-  public static readonly BATTERY_ACID = new Solute( phScaleStrings.choice.batteryAcid, 1, new Color( 255, 255, 0 ), {
+  public static readonly BATTERY_ACID = new Solute( phScaleStrings.choice.batteryAcidStringProperty, 1, new Color( 255, 255, 0 ), {
     colorStopColor: new Color( 255, 224, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'batteryAcid' )
   } );
 
-  public static readonly BLOOD = new Solute( phScaleStrings.choice.blood, 7.4, new Color( 211, 79, 68 ), {
+  public static readonly BLOOD = new Solute( phScaleStrings.choice.bloodStringProperty, 7.4, new Color( 211, 79, 68 ), {
     colorStopColor: new Color( 255, 207, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'blood' )
   } );
 
-  public static readonly CHICKEN_SOUP = new Solute( phScaleStrings.choice.chickenSoup, 5.8, new Color( 255, 240, 104 ), {
+  public static readonly CHICKEN_SOUP = new Solute( phScaleStrings.choice.chickenSoupStringProperty, 5.8, new Color( 255, 240, 104 ), {
     colorStopColor: new Color( 255, 250, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'chickenSoup' )
   } );
 
-  public static readonly COFFEE = new Solute( phScaleStrings.choice.coffee, 5, new Color( 164, 99, 7 ), {
+  public static readonly COFFEE = new Solute( phScaleStrings.choice.coffeeStringProperty, 5, new Color( 164, 99, 7 ), {
     colorStopColor: new Color( 255, 240, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'coffee' )
   } );
 
-  public static readonly DRAIN_CLEANER = new Solute( phScaleStrings.choice.drainCleaner, 13, new Color( 255, 255, 0 ), {
+  public static readonly DRAIN_CLEANER = new Solute( phScaleStrings.choice.drainCleanerStringProperty, 13, new Color( 255, 255, 0 ), {
     colorStopColor: new Color( 255, 255, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'drainCleaner' )
   } );
 
-  public static readonly HAND_SOAP = new Solute( phScaleStrings.choice.handSoap, 10, new Color( 224, 141, 242 ), {
+  public static readonly HAND_SOAP = new Solute( phScaleStrings.choice.handSoapStringProperty, 10, new Color( 224, 141, 242 ), {
     colorStopColor: new Color( 232, 204, 255 ),
     tandem: SOLUTES_TANDEM.createTandem( 'handSoap' )
   } );
 
-  public static readonly MILK = new Solute( phScaleStrings.choice.milk, 6.5, new Color( 250, 250, 250 ), {
+  public static readonly MILK = new Solute( phScaleStrings.choice.milkStringProperty, 6.5, new Color( 250, 250, 250 ), {
     tandem: SOLUTES_TANDEM.createTandem( 'milk' )
   } );
 
-  public static readonly ORANGE_JUICE = new Solute( phScaleStrings.choice.orangeJuice, 3.5, new Color( 255, 180, 0 ), {
+  public static readonly ORANGE_JUICE = new Solute( phScaleStrings.choice.orangeJuiceStringProperty, 3.5, new Color( 255, 180, 0 ), {
     colorStopColor: new Color( 255, 242, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'orangeJuice' )
   } );
 
-  public static readonly SODA = new Solute( phScaleStrings.choice.soda, 2.5, new Color( 204, 255, 102 ), {
+  public static readonly SODA = new Solute( phScaleStrings.choice.sodaStringProperty, 2.5, new Color( 204, 255, 102 ), {
     colorStopColor: new Color( 238, 255, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'soda' )
   } );
 
-  public static readonly SPIT = new Solute( phScaleStrings.choice.spit, 7.4, new Color( 202, 240, 239 ), {
+  public static readonly SPIT = new Solute( phScaleStrings.choice.spitStringProperty, 7.4, new Color( 202, 240, 239 ), {
     tandem: SOLUTES_TANDEM.createTandem( 'spit' )
   } );
 
-  public static readonly VOMIT = new Solute( phScaleStrings.choice.vomit, 2, new Color( 255, 171, 120 ), {
+  public static readonly VOMIT = new Solute( phScaleStrings.choice.vomitStringProperty, 2, new Color( 255, 171, 120 ), {
     colorStopColor: new Color( 255, 224, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'vomit' )
   } );
 
-  public static readonly WATER = new Solute( Water.name, Water.pH, Water.color, {
+  public static readonly WATER = new Solute( Water.nameProperty, Water.pH, Water.color, {
     tandem: SOLUTES_TANDEM.createTandem( 'water' )
   } );
 
+  //TODO https://github.com/phetsims/ph-scale/issues/239 this is messed up, solute.name does not exits
   /**
    * SoluteIO handles PhET-iO serialization of Solute. Since all Solutes are static instances, it implements
    * 'Reference type serialization', as described in the Serialization section of

@@ -7,12 +7,13 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Color, Line, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
+import { Line, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import phScale from '../../phScale.js';
@@ -43,13 +44,13 @@ export default class BeakerControlPanel extends Panel {
     }, providedOptions );
 
     // 'H3O+ / OH- Ratio' checkbox, with color-coded symbols
-    assert && assert( PHScaleColors.H3O_MOLECULES instanceof Color );
-    assert && assert( PHScaleColors.OH_MOLECULES instanceof Color );
-    const ratioString = StringUtils.fillIn( `{{h3o}} / {{oh}} ${phScaleStrings.ratio} `, {
-      h3o: `<span style="color:${PHScaleColors.H3O_MOLECULES.toCSS()}">${PHScaleConstants.H3O_FORMULA}</span>`,
-      oh: `<span style="color:${PHScaleColors.OH_MOLECULES.toCSS()}">${PHScaleConstants.OH_FORMULA}</span>`
-    } );
-    const ratioText = new RichText( ratioString, {
+    const ratioStringProperty = new DerivedProperty(
+      [ phScaleStrings.ratioStringProperty ],
+      ( ratioString: string ) => StringUtils.fillIn( `{{h3o}} / {{oh}} ${ratioString} `, {
+        h3o: `<span style="color:${PHScaleColors.H3O_MOLECULES.toCSS()}">${PHScaleConstants.H3O_FORMULA}</span>`,
+        oh: `<span style="color:${PHScaleColors.OH_MOLECULES.toCSS()}">${PHScaleConstants.OH_FORMULA}</span>`
+      } ) );
+    const ratioText = new RichText( ratioStringProperty, {
       font: FONT
     } );
     const ratioCheckbox = new Checkbox( ratioVisibleProperty, ratioText, {

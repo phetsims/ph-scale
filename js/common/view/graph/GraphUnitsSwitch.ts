@@ -6,6 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Dimension2 from '../../../../../dot/js/Dimension2.js';
 import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
@@ -34,7 +35,10 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
     }, provideOptions );
 
     // Concentration (mol/L)
-    const concentrationText = new RichText( `${phScaleStrings.concentration}<br>(${phScaleStrings.units.molesPerLiter})`, {
+    const concentrationStringProperty = new DerivedProperty(
+      [ phScaleStrings.concentrationStringProperty, phScaleStrings.units.molesPerLiterStringProperty ],
+      ( concentrationString, molesPerLiterString ) => `${concentrationString}<br>(${molesPerLiterString})` );
+    const concentrationText = new RichText( concentrationStringProperty, {
       align: 'center',
       font: PHScaleConstants.AB_SWITCH_FONT,
       maxWidth: 125,
@@ -42,7 +46,10 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
     } );
 
     // Quantity (mol)
-    const quantityText = new RichText( `${phScaleStrings.quantity}<br>(${phScaleStrings.units.moles})`, {
+    const quantityStringProperty = new DerivedProperty(
+      [ phScaleStrings.quantityStringProperty, phScaleStrings.units.molesStringProperty ],
+      ( quantityString, molesString ) => `${quantityString}<br>(${molesString})` );
+    const quantityText = new RichText( quantityStringProperty, {
       align: 'center',
       font: PHScaleConstants.AB_SWITCH_FONT,
       maxWidth: 90,

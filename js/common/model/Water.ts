@@ -11,7 +11,7 @@ import phScaleStrings from '../../phScaleStrings.js';
 import PHScaleColors from '../PHScaleColors.js';
 
 const Water = Object.freeze( {
-  name: phScaleStrings.choice.water,
+  nameProperty: phScaleStrings.choice.waterStringProperty,
   pH: 7,
   concentration: 55, // mol/L
   color: PHScaleColors.WATER

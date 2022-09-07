@@ -18,7 +18,7 @@ import Solute from '../model/Solute.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type SoluteComboBoxOptions = SelfOptions &
+type SoluteComboBoxOptions = SelfOptions &
   PickRequired<ComboBoxOptions, 'tandem'> &
   PickOptional<ComboBoxOptions, 'maxWidth'>;
 

@@ -53,7 +53,7 @@ const CORNER_RADIUS = 12;
 
 type SelfOptions = EmptySelfOptions;
 
-export type MacroPHMeterNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+type MacroPHMeterNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class MacroPHMeterNode extends Node {
 

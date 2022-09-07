@@ -20,7 +20,7 @@ import GraphUnits from './GraphUnits.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type GraphUnitsSwitchOptions = SelfOptions & NodeTranslationOptions & PickRequired<ABSwitchOptions, 'tandem'>;
+type GraphUnitsSwitchOptions = SelfOptions & NodeTranslationOptions & PickRequired<ABSwitchOptions, 'tandem'>;
 
 export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
 

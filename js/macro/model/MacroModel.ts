@@ -15,7 +15,7 @@ import MacroSolution from './MacroSolution.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type MacroModelOptions = SelfOptions & PickRequired<PHModelOptions<MacroSolution>, 'tandem'>;
+type MacroModelOptions = SelfOptions & PickRequired<PHModelOptions<MacroSolution>, 'tandem'>;
 
 export default class MacroModel extends PHModel<MacroSolution> {
 

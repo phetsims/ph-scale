@@ -18,7 +18,7 @@ type SelfOptions = {
   size: Dimension2;
 };
 
-export type BeakerOptions = SelfOptions;
+type BeakerOptions = SelfOptions;
 
 export default class Beaker {
 

@@ -32,7 +32,7 @@ const MAJOR_TICK_FONT = new PhetFont( 24 );
 
 type SelfOptions = EmptySelfOptions;
 
-export type BeakerNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+type BeakerNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class BeakerNode extends Node {
 

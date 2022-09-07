@@ -51,7 +51,7 @@ type SelfOptions = {
   arrowXSpacing?: number;
 };
 
-export type GraphIndicatorNodeOptions = SelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'tandem'>;
+type GraphIndicatorNodeOptions = SelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class GraphIndicatorNode extends Node {
 

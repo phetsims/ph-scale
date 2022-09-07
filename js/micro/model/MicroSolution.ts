@@ -15,7 +15,7 @@ import phScale from '../../phScale.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type MicroSolutionOptions = SelfOptions & MacroSolutionOptions;
+type MicroSolutionOptions = SelfOptions & MacroSolutionOptions;
 
 export default class MicroSolution extends MacroSolution {
 

@@ -16,7 +16,7 @@ import { PHSpinnerNode } from './PHSpinnerNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type MySolutionPHAccordionBoxOptions = SelfOptions & PickRequired<PHAccordionBoxOptions, 'tandem'>;
+type MySolutionPHAccordionBoxOptions = SelfOptions & PickRequired<PHAccordionBoxOptions, 'tandem'>;
 
 export default class MySolutionPHAccordionBox extends PHAccordionBox {
 

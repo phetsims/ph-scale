@@ -24,7 +24,7 @@ type SelfOptions = {
   maxVolume?: number; // L
 };
 
-export type MySolutionOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+type MySolutionOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class MySolution extends PhetioObject {
 

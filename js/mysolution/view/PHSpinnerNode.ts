@@ -13,7 +13,8 @@ import Utils from '../../../../dot/js/Utils.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 type SelfOptions = EmptySelfOptions;
-export type PHSpinnerNodeOptions = SelfOptions & PickRequired<NumberSpinnerOptions, 'tandem'>;
+
+type PHSpinnerNodeOptions = SelfOptions & PickRequired<NumberSpinnerOptions, 'tandem'>;
 
 export class PHSpinnerNode extends NumberSpinner {
 

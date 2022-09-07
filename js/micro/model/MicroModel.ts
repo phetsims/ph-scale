@@ -16,7 +16,7 @@ import MicroSolution from './MicroSolution.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type MicroModelOptions = SelfOptions & PickRequired<PHModelOptions<MicroSolution>, 'tandem'>;
+type MicroModelOptions = SelfOptions & PickRequired<PHModelOptions<MicroSolution>, 'tandem'>;
 
 export default class MicroModel extends PHModel<MicroSolution> {
 

@@ -16,7 +16,7 @@ import MySolution from './MySolution.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type MySolutionModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+type MySolutionModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class MySolutionModel {
 

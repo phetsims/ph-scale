@@ -52,7 +52,7 @@ const OH_LINE_WIDTH = 0.25; // width of stroke around OH- molecules, ignored if 
 
 type SelfOptions = EmptySelfOptions;
 
-export type RatioNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
+type RatioNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
 
 export default class RatioNode extends Node {
 

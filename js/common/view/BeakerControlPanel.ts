@@ -17,7 +17,7 @@ import { Line, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import phScale from '../../phScale.js';
-import phScaleStrings from '../../phScaleStrings.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
 import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 
@@ -45,7 +45,7 @@ export default class BeakerControlPanel extends Panel {
 
     // 'H3O+ / OH- Ratio' checkbox, with color-coded symbols
     const ratioStringProperty = new DerivedProperty(
-      [ phScaleStrings.ratioStringProperty ],
+      [ PhScaleStrings.ratioStringProperty ],
       ( ratioString: string ) => StringUtils.fillIn( `{{h3o}} / {{oh}} ${ratioString} `, {
         h3o: `<span style="color:${PHScaleColors.H3O_MOLECULES.toCSS()}">${PHScaleConstants.H3O_FORMULA}</span>`,
         oh: `<span style="color:${PHScaleColors.OH_MOLECULES.toCSS()}">${PHScaleConstants.OH_FORMULA}</span>`
@@ -59,7 +59,7 @@ export default class BeakerControlPanel extends Panel {
     ratioCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );
 
     // 'Molecule count' checkbox
-    const moleculeCountLabelText = new Text( phScaleStrings.moleculeCountStringProperty, { font: FONT } );
+    const moleculeCountLabelText = new Text( PhScaleStrings.moleculeCountStringProperty, { font: FONT } );
     const moleculeCountCheckbox = new Checkbox( moleculeCountVisibleProperty, moleculeCountLabelText, {
       tandem: options.tandem.createTandem( 'moleculeCountCheckbox' )
     } );

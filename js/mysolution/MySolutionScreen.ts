@@ -17,7 +17,7 @@ import mySolutionHomeScreenIcon_png from '../../images/mySolutionHomeScreenIcon_
 import mySolutionNavbarIcon_png from '../../images/mySolutionNavbarIcon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
 import phScale from '../phScale.js';
-import phScaleStrings from '../phScaleStrings.js';
+import PhScaleStrings from '../PhScaleStrings.js';
 import MySolutionModel from './model/MySolutionModel.js';
 import MySolutionScreenView from './view/MySolutionScreenView.js';
 
@@ -32,7 +32,7 @@ export default class MySolutionScreen extends Screen {
     const options = optionize<MySolutionScreenOptions, SelfOptions, ScreenOptions>()( {
 
       // ScreenOptions
-      name: phScaleStrings.screen.mySolutionStringProperty,
+      name: PhScaleStrings.screen.mySolutionStringProperty,
       backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
       homeScreenIcon: new ScreenIcon( new Image( mySolutionHomeScreenIcon_png ), {
         maxIconWidthProportion: 1,

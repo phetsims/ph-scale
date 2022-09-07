@@ -10,8 +10,8 @@
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Node, NodeOptions, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
-import phScaleStrings from '../../phScaleStrings.js';
 import { PHValue } from '../../common/model/PHModel.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
@@ -34,7 +34,7 @@ export default class NeutralIndicatorNode extends Node {
 
     super( options );
 
-    const labelText = new Text( phScaleStrings.neutralStringProperty, {
+    const labelText = new Text( PhScaleStrings.neutralStringProperty, {
       font: new PhetFont( { size: 30, weight: 'bold' } ),
       maxWidth: 300
     } );

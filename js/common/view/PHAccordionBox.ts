@@ -15,7 +15,7 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { LinearGradient, Node, NodeOptions, NodeTranslationOptions, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import AccordionBox, { AccordionBoxOptions } from '../../../../sun/js/AccordionBox.js';
 import phScale from '../../phScale.js';
-import phScaleStrings from '../../phScaleStrings.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
 import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -50,7 +50,7 @@ export default class PHAccordionBox extends AccordionBox {
       contentYSpacing: 10,
       titleAlignX: 'left',
       titleXMargin: 15,
-      titleNode: new Text( phScaleStrings.pHStringProperty, {
+      titleNode: new Text( PhScaleStrings.pHStringProperty, {
         fill: 'black',
         font: new PhetFont( { size: 28, weight: 'bold' } ),
         maxWidth: 50

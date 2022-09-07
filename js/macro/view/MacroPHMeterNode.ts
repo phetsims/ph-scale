@@ -34,7 +34,7 @@ import Water from '../../common/model/Water.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
-import phScaleStrings from '../../phScaleStrings.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
 import MacroPHMeter from '../model/MacroPHMeter.js';
 import MacroSolution from '../model/MacroSolution.js';
 import { PHValue } from '../../common/model/PHModel.js';
@@ -170,7 +170,7 @@ class ScaleNode extends Node {
 
     // 'Acidic' label
     const textOptions = { fill: 'white', font: SCALE_LABEL_FONT, maxWidth: 0.45 * options.size.height };
-    const acidicText = new Text( phScaleStrings.acidicStringProperty, textOptions );
+    const acidicText = new Text( PhScaleStrings.acidicStringProperty, textOptions );
     acidicText.rotation = -Math.PI / 2;
     this.addChild( acidicText );
     acidicText.boundsProperty.link( bounds => {
@@ -179,7 +179,7 @@ class ScaleNode extends Node {
     } );
 
     // 'Basic' label
-    const basicText = new Text( phScaleStrings.basicStringProperty, textOptions );
+    const basicText = new Text( PhScaleStrings.basicStringProperty, textOptions );
     basicText.rotation = -Math.PI / 2;
     this.addChild( basicText );
     basicText.boundsProperty.link( bounds => {
@@ -367,7 +367,7 @@ class PHIndicatorNode extends Node {
     } );
 
     // label above the value
-    const labelNode = new Text( phScaleStrings.pHStringProperty, {
+    const labelNode = new Text( PhScaleStrings.pHStringProperty, {
       fill: 'white',
       font: new PhetFont( { size: 28, weight: 'bold' } ),
       maxWidth: 100

@@ -14,7 +14,7 @@ import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import { NodeTranslationOptions, RichText } from '../../../../../scenery/js/imports.js';
 import ABSwitch, { ABSwitchOptions } from '../../../../../sun/js/ABSwitch.js';
 import phScale from '../../../phScale.js';
-import phScaleStrings from '../../../phScaleStrings.js';
+import PhScaleStrings from '../../../PhScaleStrings.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphUnits from './GraphUnits.js';
 
@@ -36,7 +36,7 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
 
     // Concentration (mol/L)
     const concentrationStringProperty = new DerivedProperty(
-      [ phScaleStrings.concentrationStringProperty, phScaleStrings.units.molesPerLiterStringProperty ],
+      [ PhScaleStrings.concentrationStringProperty, PhScaleStrings.units.molesPerLiterStringProperty ],
       ( concentrationString, molesPerLiterString ) => `${concentrationString}<br>(${molesPerLiterString})` );
     const concentrationText = new RichText( concentrationStringProperty, {
       align: 'center',
@@ -47,7 +47,7 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
 
     // Quantity (mol)
     const quantityStringProperty = new DerivedProperty(
-      [ phScaleStrings.quantityStringProperty, phScaleStrings.units.molesStringProperty ],
+      [ PhScaleStrings.quantityStringProperty, PhScaleStrings.units.molesStringProperty ],
       ( quantityString, molesString ) => `${quantityString}<br>(${molesString})` );
     const quantityText = new RichText( quantityStringProperty, {
       align: 'center',

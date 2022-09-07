@@ -18,7 +18,7 @@ import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
 import StringIO from '../../../../tandem/js/types/StringIO.js';
 import phScale from '../../phScale.js';
-import phScaleStrings from '../../phScaleStrings.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import Water from './Water.js';
 
@@ -127,55 +127,55 @@ export default class Solute extends PhetioObject {
     return color;
   }
 
-  public static readonly BATTERY_ACID = new Solute( phScaleStrings.choice.batteryAcidStringProperty, 1, new Color( 255, 255, 0 ), {
+  public static readonly BATTERY_ACID = new Solute( PhScaleStrings.choice.batteryAcidStringProperty, 1, new Color( 255, 255, 0 ), {
     colorStopColor: new Color( 255, 224, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'batteryAcid' )
   } );
 
-  public static readonly BLOOD = new Solute( phScaleStrings.choice.bloodStringProperty, 7.4, new Color( 211, 79, 68 ), {
+  public static readonly BLOOD = new Solute( PhScaleStrings.choice.bloodStringProperty, 7.4, new Color( 211, 79, 68 ), {
     colorStopColor: new Color( 255, 207, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'blood' )
   } );
 
-  public static readonly CHICKEN_SOUP = new Solute( phScaleStrings.choice.chickenSoupStringProperty, 5.8, new Color( 255, 240, 104 ), {
+  public static readonly CHICKEN_SOUP = new Solute( PhScaleStrings.choice.chickenSoupStringProperty, 5.8, new Color( 255, 240, 104 ), {
     colorStopColor: new Color( 255, 250, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'chickenSoup' )
   } );
 
-  public static readonly COFFEE = new Solute( phScaleStrings.choice.coffeeStringProperty, 5, new Color( 164, 99, 7 ), {
+  public static readonly COFFEE = new Solute( PhScaleStrings.choice.coffeeStringProperty, 5, new Color( 164, 99, 7 ), {
     colorStopColor: new Color( 255, 240, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'coffee' )
   } );
 
-  public static readonly DRAIN_CLEANER = new Solute( phScaleStrings.choice.drainCleanerStringProperty, 13, new Color( 255, 255, 0 ), {
+  public static readonly DRAIN_CLEANER = new Solute( PhScaleStrings.choice.drainCleanerStringProperty, 13, new Color( 255, 255, 0 ), {
     colorStopColor: new Color( 255, 255, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'drainCleaner' )
   } );
 
-  public static readonly HAND_SOAP = new Solute( phScaleStrings.choice.handSoapStringProperty, 10, new Color( 224, 141, 242 ), {
+  public static readonly HAND_SOAP = new Solute( PhScaleStrings.choice.handSoapStringProperty, 10, new Color( 224, 141, 242 ), {
     colorStopColor: new Color( 232, 204, 255 ),
     tandem: SOLUTES_TANDEM.createTandem( 'handSoap' )
   } );
 
-  public static readonly MILK = new Solute( phScaleStrings.choice.milkStringProperty, 6.5, new Color( 250, 250, 250 ), {
+  public static readonly MILK = new Solute( PhScaleStrings.choice.milkStringProperty, 6.5, new Color( 250, 250, 250 ), {
     tandem: SOLUTES_TANDEM.createTandem( 'milk' )
   } );
 
-  public static readonly ORANGE_JUICE = new Solute( phScaleStrings.choice.orangeJuiceStringProperty, 3.5, new Color( 255, 180, 0 ), {
+  public static readonly ORANGE_JUICE = new Solute( PhScaleStrings.choice.orangeJuiceStringProperty, 3.5, new Color( 255, 180, 0 ), {
     colorStopColor: new Color( 255, 242, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'orangeJuice' )
   } );
 
-  public static readonly SODA = new Solute( phScaleStrings.choice.sodaStringProperty, 2.5, new Color( 204, 255, 102 ), {
+  public static readonly SODA = new Solute( PhScaleStrings.choice.sodaStringProperty, 2.5, new Color( 204, 255, 102 ), {
     colorStopColor: new Color( 238, 255, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'soda' )
   } );
 
-  public static readonly SPIT = new Solute( phScaleStrings.choice.spitStringProperty, 7.4, new Color( 202, 240, 239 ), {
+  public static readonly SPIT = new Solute( PhScaleStrings.choice.spitStringProperty, 7.4, new Color( 202, 240, 239 ), {
     tandem: SOLUTES_TANDEM.createTandem( 'spit' )
   } );
 
-  public static readonly VOMIT = new Solute( phScaleStrings.choice.vomitStringProperty, 2, new Color( 255, 171, 120 ), {
+  public static readonly VOMIT = new Solute( PhScaleStrings.choice.vomitStringProperty, 2, new Color( 255, 171, 120 ), {
     colorStopColor: new Color( 255, 224, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'vomit' )
   } );

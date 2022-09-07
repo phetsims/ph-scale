@@ -21,7 +21,7 @@ import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
 import { Font, Line, Node, NodeOptions, NodeTranslationOptions, Path, TColor, Text } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
-import phScaleStrings from '../../../phScaleStrings.js';
+import PhScaleStrings from '../../../PhScaleStrings.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
@@ -127,7 +127,7 @@ export default class LinearGraphNode extends Node {
     this.addChild( scaleNode );
 
     // 'off scale' label, positioned inside arrow
-    const offScaleText = new Text( phScaleStrings.offScaleStringProperty, {
+    const offScaleText = new Text( PhScaleStrings.offScaleStringProperty, {
       font: new PhetFont( 18 ),
       fill: 'black',
       maxWidth: 0.5 * arrowWidth

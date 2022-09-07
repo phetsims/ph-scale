@@ -13,7 +13,7 @@ import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import { NodeTranslationOptions, Text, TextOptions } from '../../../../../scenery/js/imports.js';
 import ABSwitch, { ABSwitchOptions } from '../../../../../sun/js/ABSwitch.js';
 import phScale from '../../../phScale.js';
-import phScaleStrings from '../../../phScaleStrings.js';
+import PhScaleStrings from '../../../PhScaleStrings.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphScale from './GraphScale.js';
 
@@ -39,12 +39,12 @@ export default class GraphScaleSwitch extends ABSwitch<GraphScale> {
     };
 
     // Logarithmic label
-    const logarithmicText = new Text( phScaleStrings.logarithmicStringProperty, combineOptions<TextOptions>( {
+    const logarithmicText = new Text( PhScaleStrings.logarithmicStringProperty, combineOptions<TextOptions>( {
       tandem: options.tandem.createTandem( 'logarithmicText' )
     }, textOptions ) );
 
     // Linear label
-    const linearText = new Text( phScaleStrings.linearStringProperty, combineOptions<TextOptions>( {
+    const linearText = new Text( PhScaleStrings.linearStringProperty, combineOptions<TextOptions>( {
       tandem: options.tandem.createTandem( 'linearText' )
     }, textOptions ) );
 

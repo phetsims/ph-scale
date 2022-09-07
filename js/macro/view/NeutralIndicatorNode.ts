@@ -11,11 +11,12 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Node, NodeOptions, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
 import phScaleStrings from '../../phScaleStrings.js';
-import PHModel, { PHValue } from '../../common/model/PHModel.js';
+import { PHValue } from '../model/MacroModel.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import MacroModel from '../model/MacroModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -59,7 +60,7 @@ export default class NeutralIndicatorNode extends Node {
 
     // Make parentNode visible when the solution has neutral pH.
     pHProperty.link( pH => {
-      parentNode.visible = PHModel.isEquivalentToWater( pH );
+      parentNode.visible = MacroModel.isEquivalentToWater( pH );
     } );
   }
 }

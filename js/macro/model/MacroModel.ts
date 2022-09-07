@@ -23,6 +23,17 @@ import PHScaleQueryParameters from '../../common/PHScaleQueryParameters.js';
 import phScale from '../../phScale.js';
 import MacroPHMeter from './MacroPHMeter.js';
 import MacroSolution from './MacroSolution.js';
+import Water from '../../common/model/Water.js';
+import Utils from '../../../../dot/js/Utils.js';
+
+// constants
+const AVOGADROS_NUMBER = 6.023E23; // number of molecules in one mole of solution
+
+// null means 'no value', typically when we have no solution because the volume is zero.
+export type PHValue = number | null;
+
+// null means 'no value', typically when we have no solution because the volume is zero.
+export type ConcentrationValue = number | null;
 
 type SelfOptions<T extends MacroSolution> = {
 
@@ -229,6 +240,124 @@ export default class MacroModel<T extends MacroSolution> {
     this.isAutofillingProperty.value = false;
     this.dropper.isDispensingProperty.value = false;
     this.updateFaucetsAndDropper();
+  }
+
+  /**
+   * General algorithm for pH.
+   * @param solutePH
+   * @param soluteVolume liters
+   * @param waterVolume liters
+   * @returns pH, null if total volume is zero
+   */
+  public static computePH( solutePH: number, soluteVolume: number, waterVolume: number ): PHValue {
+    let pH;
+    const totalVolume = soluteVolume + waterVolume;
+    if ( totalVolume === 0 ) {
+      pH = null;
+    }
+    else if ( waterVolume === 0 ) {
+      pH = solutePH; // to prevent floating-point error in log10 computations
+    }
+    else if ( soluteVolume === 0 ) {
+      pH = Water.pH; // to prevent floating-point error in log10 computations
+    }
+    else if ( solutePH < 7 ) {
+      pH = -Utils.log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -Water.pH ) * waterVolume ) / totalVolume );
+    }
+    else {
+      pH = 14 + Utils.log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, Water.pH - 14 ) * waterVolume ) / totalVolume );
+    }
+    return pH;
+  }
+
+  /**
+   * Compute pH from H3O+ concentration.
+   * @param concentration
+   * @returns pH, null if concentration is zero
+   */
+  public static concentrationH3OToPH( concentration: ConcentrationValue ): PHValue {
+    return ( concentration === null || concentration === 0 ) ? null : -Utils.log10( concentration );
+  }
+
+  /**
+   * Compute pH from OH- concentration.
+   * @param concentration
+   * @returns pH, null if concentration is zero
+   */
+  public static concentrationOHToPH( concentration: ConcentrationValue ): PHValue {
+    const pH = MacroModel.concentrationH3OToPH( concentration );
+    return ( pH === null ) ? null : 14 - pH;
+  }
+
+  /**
+   * Compute pH from moles of H3O+.
+   * @param moles
+   * @param volume volume of the solution in liters
+   * @returns pH, null if moles or volume is zero
+   */
+  public static molesH3OToPH( moles: number, volume: number ): PHValue {
+    return ( moles === 0 || volume === 0 ) ? null : MacroModel.concentrationH3OToPH( moles / volume );
+  }
+
+  /**
+   * Compute pH from moles of OH-.
+   * @param moles
+   * @param volume volume of the solution in liters
+   * @returns pH, null if moles or volume is zero
+   */
+  public static molesOHToPH( moles: number, volume: number ): PHValue {
+    return ( moles === 0 || volume === 0 ) ? null : MacroModel.concentrationOHToPH( moles / volume );
+  }
+
+  /**
+   * Computes concentration of H20 from volume.
+   * @param volume
+   * @returns concentration in moles/L, null if volume is 0
+   */
+  public static volumeToConcentrationH20( volume: number ): PHValue {
+    return ( volume === 0 ) ? null : Water.concentration;
+  }
+
+  /**
+   * Computes concentration of H3O+ from pH.
+   *
+   * @param pH null means 'no value'
+   * @returns concentration in moles/L, null means no concentration
+   */
+  public static pHToConcentrationH3O( pH: PHValue ): ConcentrationValue {
+    return ( pH === null ) ? null : Math.pow( 10, -pH );
+  }
+
+  /**
+   * Computes concentration of OH- from pH.
+   * @param pH null means 'no value'
+   * @returns concentration in moles/L, null means no concentration
+   */
+  public static pHToConcentrationOH( pH: PHValue ): ConcentrationValue {
+    return ( pH === null ) ? null : MacroModel.pHToConcentrationH3O( 14 - pH );
+  }
+
+  /**
+   * Computes the number of molecules in solution.
+   */
+  public static computeMolecules( concentration: ConcentrationValue, volume: number ): number {
+    return ( concentration === null ) ? 0 : ( concentration * volume * AVOGADROS_NUMBER );
+  }
+
+  /**
+   * Computes moles in solution.
+   */
+  public static computeMoles( concentration: ConcentrationValue, volume: number ): number {
+    return ( concentration === null ) ? 0 : ( concentration * volume );
+  }
+
+  /**
+   * True if the value displayed by the pH meter has precision that makes it equivalent to the pH of water.
+   * Eg, the value displayed to the user is '7.00'.
+   */
+  public static isEquivalentToWater( pH: PHValue ): boolean {
+    return ( pH !== null ) &&
+           ( Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === Water.pH );
   }
 }
 

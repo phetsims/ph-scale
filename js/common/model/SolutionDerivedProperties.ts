@@ -22,8 +22,9 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { LinkableElement, PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
+import MacroModel from '../../macro/model/MacroModel.js';
 import phScale from '../../phScale.js';
-import PHModel, { ConcentrationValue, PHValue } from './PHModel.js';
+import { ConcentrationValue, PHValue } from '../../macro/model/MacroModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -54,7 +55,7 @@ export default class SolutionDerivedProperties {
 
     this.concentrationH2OProperty = new DerivedProperty(
       [ totalVolumeProperty ],
-      totalVolume => PHModel.volumeToConcentrationH20( totalVolume ), {
+      totalVolume => MacroModel.volumeToConcentrationH20( totalVolume ), {
         tandem: options.tandem.createTandem( 'concentrationH2OProperty' ),
         phetioValueType: NullableIO( NumberIO ),
         units: 'mol/L',
@@ -64,7 +65,7 @@ export default class SolutionDerivedProperties {
 
     this.concentrationH3OProperty = new DerivedProperty(
       [ pHProperty ],
-      pH => PHModel.pHToConcentrationH3O( pH ), {
+      pH => MacroModel.pHToConcentrationH3O( pH ), {
         tandem: options.tandem.createTandem( 'concentrationH3OProperty' ),
         phetioValueType: NullableIO( NumberIO ),
         units: 'mol/L',
@@ -74,7 +75,7 @@ export default class SolutionDerivedProperties {
 
     this.concentrationOHProperty = new DerivedProperty(
       [ pHProperty ],
-      pH => PHModel.pHToConcentrationOH( pH ), {
+      pH => MacroModel.pHToConcentrationOH( pH ), {
         tandem: options.tandem.createTandem( 'concentrationOHProperty' ),
         phetioValueType: NullableIO( NumberIO ),
         units: 'mol/L',
@@ -84,7 +85,7 @@ export default class SolutionDerivedProperties {
 
     this.quantityH2OProperty = new DerivedProperty(
       [ this.concentrationH2OProperty, totalVolumeProperty ],
-      ( concentrationH2O, totalVolume ) => PHModel.computeMoles( concentrationH2O, totalVolume ), {
+      ( concentrationH2O, totalVolume ) => MacroModel.computeMoles( concentrationH2O, totalVolume ), {
         tandem: options.tandem.createTandem( 'quantityH2OProperty' ),
         phetioValueType: NumberIO,
         units: 'mol',
@@ -94,7 +95,7 @@ export default class SolutionDerivedProperties {
 
     this.quantityH3OProperty = new DerivedProperty(
       [ this.concentrationH3OProperty, totalVolumeProperty ],
-      ( concentrationH3O, totalVolume ) => PHModel.computeMoles( concentrationH3O, totalVolume ), {
+      ( concentrationH3O, totalVolume ) => MacroModel.computeMoles( concentrationH3O, totalVolume ), {
         tandem: options.tandem.createTandem( 'quantityH3OProperty' ),
         phetioValueType: NumberIO,
         units: 'mol',
@@ -104,7 +105,7 @@ export default class SolutionDerivedProperties {
 
     this.quantityOHProperty = new DerivedProperty(
       [ this.concentrationOHProperty, totalVolumeProperty ],
-      ( concentrationOH, totalVolume ) => PHModel.computeMoles( concentrationOH, totalVolume ), {
+      ( concentrationOH, totalVolume ) => MacroModel.computeMoles( concentrationOH, totalVolume ), {
         tandem: options.tandem.createTandem( 'quantityOHProperty' ),
         phetioValueType: NumberIO,
         units: 'mol',
@@ -114,7 +115,7 @@ export default class SolutionDerivedProperties {
 
     this.numberOfH2OMoleculesProperty = new DerivedProperty(
       [ this.concentrationH2OProperty, totalVolumeProperty ],
-      ( concentrationH2O, totalVolume ) => PHModel.computeMolecules( concentrationH2O, totalVolume ), {
+      ( concentrationH2O, totalVolume ) => MacroModel.computeMolecules( concentrationH2O, totalVolume ), {
         tandem: options.tandem.createTandem( 'numberOfH2OMoleculesProperty' ),
         phetioValueType: NumberIO,
         phetioDocumentation: 'number of H<sub>2</sub>O molecules in the solution',
@@ -123,7 +124,7 @@ export default class SolutionDerivedProperties {
 
     this.numberOfH3OMoleculesProperty = new DerivedProperty(
       [ this.concentrationH3OProperty, totalVolumeProperty ],
-      ( concentrationH3O, totalVolume ) => PHModel.computeMolecules( concentrationH3O, totalVolume ), {
+      ( concentrationH3O, totalVolume ) => MacroModel.computeMolecules( concentrationH3O, totalVolume ), {
         tandem: options.tandem.createTandem( 'numberOfH3OMoleculesProperty' ),
         phetioValueType: NumberIO,
         phetioDocumentation: 'number of H<sub>3</sub>O<sup>+</sup> molecules in the solution',
@@ -132,7 +133,7 @@ export default class SolutionDerivedProperties {
 
     this.numberOfOHMoleculesProperty = new DerivedProperty(
       [ this.concentrationOHProperty, totalVolumeProperty ],
-      ( concentrationOH, totalVolume ) => PHModel.computeMolecules( concentrationOH, totalVolume ), {
+      ( concentrationOH, totalVolume ) => MacroModel.computeMolecules( concentrationOH, totalVolume ), {
         tandem: options.tandem.createTandem( 'numberOfOHMoleculesProperty' ),
         phetioValueType: NumberIO,
         phetioDocumentation: 'number of OH<sup>-</sup> molecules in the solution',

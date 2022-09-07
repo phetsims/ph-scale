@@ -9,7 +9,7 @@
 
 import PHAccordionBox, { PHAccordionBoxOptions } from '../../common/view/PHAccordionBox.js';
 import phScale from '../../phScale.js';
-import { PHValue } from '../../common/model/PHModel.js';
+import { PHValue } from '../../macro/model/MacroModel.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';

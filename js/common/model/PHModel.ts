@@ -47,7 +47,7 @@ type SelfOptions<T extends MacroSolution> = {
   createSolution: ( soluteProperty: Property<Solute>, maxVolume: number, tandem: Tandem ) => T;
 };
 
-export type MacroModelOptions<T extends MacroSolution> = SelfOptions<T> & PickRequired<PhetioObjectOptions, 'tandem'>;
+export type PHModelOptions<T extends MacroSolution> = SelfOptions<T> & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class PHModel<T extends MacroSolution> {
 
@@ -80,9 +80,9 @@ export default class PHModel<T extends MacroSolution> {
 
   public readonly isAutofillingProperty: Property<boolean>;
 
-  public constructor( providedOptions: MacroModelOptions<T> ) {
+  public constructor( providedOptions: PHModelOptions<T> ) {
 
-    const options = optionize<MacroModelOptions<T>, SelfOptions<T>>()( {
+    const options = optionize<PHModelOptions<T>, SelfOptions<T>>()( {
 
       // SelfOptions
       autofillVolume: 0.5,

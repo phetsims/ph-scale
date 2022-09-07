@@ -16,7 +16,7 @@ import phScale from '../../../phScale.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type LinearZoomButtonGroupOptions = SelfOptions & NodeTranslationOptions &
+type LinearZoomButtonGroupOptions = SelfOptions & NodeTranslationOptions &
   PickRequired<MagnifyingGlassZoomButtonGroupOptions, 'tandem'>;
 
 export default class LinearZoomButtonGroup extends MagnifyingGlassZoomButtonGroup {

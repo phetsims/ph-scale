@@ -24,7 +24,7 @@ type SelfOptions = {
   enabled?: boolean;
 };
 
-export type FaucetOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+type FaucetOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class Faucet {
 

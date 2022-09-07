@@ -52,7 +52,7 @@ type SelfOptions = {
   majorTickXSpacing?: number;
 };
 
-export type LinearGraphNodeOptions = SelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'tandem'>;
+type LinearGraphNodeOptions = SelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class LinearGraphNode extends Node {
 

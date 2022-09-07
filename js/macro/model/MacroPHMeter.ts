@@ -24,7 +24,7 @@ import { PHValue } from '../../common/model/PHModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type MacroPHMeterOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+type MacroPHMeterOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class MacroPHMeter {
 

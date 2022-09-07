@@ -32,7 +32,7 @@ type SelfOptions = {
   graphScale?: GraphScale; // initial state of the scale switch, meaningful only if hasLinearFeature === true
 } & PickRequired<LogarithmicGraphNodeOptions, 'pHProperty'>;
 
-export type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+type GraphNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class GraphNode extends Node {
 

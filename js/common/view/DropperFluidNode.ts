@@ -16,7 +16,7 @@ import Dropper from '../model/Dropper.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type DropperFluidNodeOptions = SelfOptions & PickRequired<RectangleOptions, 'visibleProperty'>;
+type DropperFluidNodeOptions = SelfOptions & PickRequired<RectangleOptions, 'visibleProperty'>;
 
 export default class DropperFluidNode extends Rectangle {
 

@@ -20,7 +20,7 @@ import PHModel from '../../common/model/PHModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type NeutralIndicatorNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+type NeutralIndicatorNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class NeutralIndicatorNode extends Node {
 

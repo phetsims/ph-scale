@@ -24,7 +24,7 @@ const MIN_HEIGHT = 50;
 
 type SelfOptions = EmptySelfOptions;
 
-export type GraphControlPanelOptions = SelfOptions & PickRequired<PanelOptions, 'tandem'>;
+type GraphControlPanelOptions = SelfOptions & PickRequired<PanelOptions, 'tandem'>;
 
 export default class GraphControlPanel extends Panel {
 

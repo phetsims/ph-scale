@@ -26,7 +26,7 @@ const FONT = new PhetFont( 20 );
 
 type SelfOptions = EmptySelfOptions;
 
-export type BeakerControlPanelOptions = SelfOptions & PickRequired<PanelOptions, 'tandem' | 'maxWidth'>;
+type BeakerControlPanelOptions = SelfOptions & PickRequired<PanelOptions, 'tandem' | 'maxWidth'>;
 
 export default class BeakerControlPanel extends Panel {
 

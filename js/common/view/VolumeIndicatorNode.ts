@@ -29,7 +29,7 @@ const VALUE_FONT = new PhetFont( { size: 24, weight: 'bold' } );
 
 type SelfOptions = EmptySelfOptions;
 
-export type VolumeIndicatorNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+type VolumeIndicatorNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class VolumeIndicatorNode extends Node {
 

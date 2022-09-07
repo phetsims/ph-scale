@@ -28,7 +28,7 @@ import { ConcentrationValue, PHValue } from './PHModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type SolutionDerivedPropertiesOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+type SolutionDerivedPropertiesOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class SolutionDerivedProperties {
 

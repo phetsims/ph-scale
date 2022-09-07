@@ -19,7 +19,7 @@ const SCALE = 0.6;
 
 type SelfOptions = EmptySelfOptions;
 
-export type DrainFaucetNodeOptions = SelfOptions & PickRequired<FaucetNodeOptions, 'tandem'>;
+type DrainFaucetNodeOptions = SelfOptions & PickRequired<FaucetNodeOptions, 'tandem'>;
 
 export default class DrainFaucetNode extends FaucetNode {
 

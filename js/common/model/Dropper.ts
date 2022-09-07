@@ -25,7 +25,7 @@ type SelfOptions = {
   visible?: boolean; // is the dropper visible?
 };
 
-export type DropperOptions = SelfOptions & PHMovableOptions;
+type DropperOptions = SelfOptions & PHMovableOptions;
 
 export default class Dropper extends PHMovable {
 

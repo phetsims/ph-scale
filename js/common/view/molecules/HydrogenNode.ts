@@ -14,7 +14,7 @@ import PHScaleColors from '../../PHScaleColors.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type HydrogenNodeOptions = SelfOptions & NodeTranslationOptions;
+type HydrogenNodeOptions = SelfOptions & NodeTranslationOptions;
 
 export default class HydrogenNode extends ShadedSphereNode {
 

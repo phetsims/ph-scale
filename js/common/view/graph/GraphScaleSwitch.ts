@@ -19,7 +19,7 @@ import GraphScale from './GraphScale.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type GraphScaleSwitchOptions = SelfOptions & NodeTranslationOptions & PickRequired<ABSwitchOptions, 'tandem'>;
+type GraphScaleSwitchOptions = SelfOptions & NodeTranslationOptions & PickRequired<ABSwitchOptions, 'tandem'>;
 
 export default class GraphScaleSwitch extends ABSwitch<GraphScale> {
 

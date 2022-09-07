@@ -22,7 +22,7 @@ const SCALE = 0.6;
 
 type SelfOptions = EmptySelfOptions;
 
-export type WaterFaucetNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+type WaterFaucetNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class WaterFaucetNode extends Node {
 

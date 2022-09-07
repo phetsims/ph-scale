@@ -10,19 +10,19 @@
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import PHModel, { MacroModelOptions } from '../../common/model/PHModel.js';
+import PHModel, { PHModelOptions } from '../../common/model/PHModel.js';
 import phScale from '../../phScale.js';
 import MicroSolution from './MicroSolution.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type MicroModelOptions = SelfOptions & PickRequired<MacroModelOptions<MicroSolution>, 'tandem'>;
+type MicroModelOptions = SelfOptions & PickRequired<PHModelOptions<MicroSolution>, 'tandem'>;
 
 export default class MicroModel extends PHModel<MicroSolution> {
 
   public constructor( providedOptions: MicroModelOptions ) {
 
-    const options = optionize<MicroModelOptions, SelfOptions, MacroModelOptions<MicroSolution>>()( {
+    const options = optionize<MicroModelOptions, SelfOptions, PHModelOptions<MicroSolution>>()( {
 
       // Creates the solution needed by the Micro screen
       createSolution: ( solutionProperty, maxVolume, tandem ) => new MicroSolution( solutionProperty, {

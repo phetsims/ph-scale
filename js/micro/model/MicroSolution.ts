@@ -8,7 +8,6 @@
 
 import Property from '../../../../axon/js/Property.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Solute from '../../common/model/Solute.js';
 import SolutionDerivedProperties from '../../common/model/SolutionDerivedProperties.js';
 import MacroSolution, { MacroSolutionOptions } from '../../macro/model/MacroSolution.js';
@@ -16,7 +15,7 @@ import phScale from '../../phScale.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type MicroSolutionOptions = SelfOptions & PickRequired<MacroSolutionOptions, 'tandem'>;
+export type MicroSolutionOptions = SelfOptions & MacroSolutionOptions;
 
 export default class MicroSolution extends MacroSolution {
 

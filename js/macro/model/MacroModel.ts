@@ -13,6 +13,7 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import Beaker from '../../common/model/Beaker.js';
 import Dropper from '../../common/model/Dropper.js';
 import Faucet from '../../common/model/Faucet.js';
@@ -21,7 +22,7 @@ import PHScaleConstants from '../../common/PHScaleConstants.js';
 import PHScaleQueryParameters from '../../common/PHScaleQueryParameters.js';
 import phScale from '../../phScale.js';
 import MacroPHMeter from './MacroPHMeter.js';
-import MacroSolution, { MacroSolutionOptions } from './MacroSolution.js';
+import MacroSolution from './MacroSolution.js';
 
 type SelfOptions = {
 
@@ -32,7 +33,7 @@ type SelfOptions = {
   includePHMeter?: boolean;
 
   // used to instantiate the solution
-  createSolution?: ( soluteProperty: Property<Solute>, options: MacroSolutionOptions ) => MacroSolution;
+  createSolution?: ( soluteProperty: Property<Solute>, maxVolume: number, tandem: Tandem ) => MacroSolution;
 };
 
 export type MacroModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
@@ -75,7 +76,10 @@ export default class MacroModel {
       // SelfOptions
       autofillVolume: 0.5,
       includePHMeter: true,
-      createSolution: ( solutionProperty: Property<Solute>, options: MacroModelOptions ) => new MacroSolution( solutionProperty, options )
+      createSolution: ( solutionProperty, maxVolume, tandem ) => new MacroSolution( solutionProperty, {
+        maxVolume: maxVolume,
+        tandem: tandem
+      } )
     }, providedOptions );
 
     this.solutes = [
@@ -102,10 +106,8 @@ export default class MacroModel {
         tandem: options.tandem.createTandem( 'dropper' )
       } );
 
-    this.solution = options.createSolution( this.dropper.soluteProperty, {
-      maxVolume: this.beaker.volume,
-      tandem: options.tandem.createTandem( 'solution' )
-    } );
+    this.solution = options.createSolution( this.dropper.soluteProperty, this.beaker.volume,
+      options.tandem.createTandem( 'solution' ) );
 
     this.waterFaucet = new Faucet(
       new Vector2( this.beaker.right - 50, this.beaker.position.y - this.beaker.size.height - 45 ),

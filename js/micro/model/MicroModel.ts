@@ -25,7 +25,10 @@ export default class MicroModel extends MacroModel {
     const options = optionize<MicroModelOptions, SelfOptions, MacroModelOptions>()( {
 
       // Creates the solution needed by the Micro screen
-      createSolution: ( solutionProperty, options ) => new MicroSolution( solutionProperty, options ),
+      createSolution: ( solutionProperty, maxVolume, tandem ) => new MicroSolution( solutionProperty, {
+        maxVolume: maxVolume,
+        tandem: tandem
+      } ),
 
       // pHMeter is not needed in the Micro screen, because it has no moving parts and it's always measuring the
       // pH of the solution. See https://github.com/phetsims/ph-scale/issues/137

@@ -11,7 +11,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PHModel, { PHModelOptions } from '../../common/model/PHModel.js';
 import phScale from '../../phScale.js';
-import MacroSolution from './MacroSolution.js';
+import MacroSolution from '../../common/model/MacroSolution.js';
 import MacroPHMeter from './MacroPHMeter.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import Vector2 from '../../../../dot/js/Vector2.js';

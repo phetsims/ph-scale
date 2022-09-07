@@ -10,7 +10,7 @@ import Property from '../../../../axon/js/Property.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Solute from '../../common/model/Solute.js';
 import SolutionDerivedProperties from '../../common/model/SolutionDerivedProperties.js';
-import MacroSolution, { MacroSolutionOptions } from '../../macro/model/MacroSolution.js';
+import MacroSolution, { MacroSolutionOptions } from '../../common/model/MacroSolution.js';
 import phScale from '../../phScale.js';
 
 type SelfOptions = EmptySelfOptions;

@@ -21,7 +21,7 @@ import Solute from './Solute.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import PHScaleQueryParameters from '../PHScaleQueryParameters.js';
 import phScale from '../../phScale.js';
-import MacroSolution from '../../macro/model/MacroSolution.js';
+import MacroSolution from './MacroSolution.js';
 import Water from './Water.js';
 import Utils from '../../../../dot/js/Utils.js';
 

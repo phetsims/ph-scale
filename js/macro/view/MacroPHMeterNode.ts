@@ -36,7 +36,7 @@ import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import MacroPHMeter from '../model/MacroPHMeter.js';
-import MacroSolution from '../model/MacroSolution.js';
+import MacroSolution from '../../common/model/MacroSolution.js';
 import { PHValue } from '../../common/model/PHModel.js';
 import PHMovable from '../../common/model/PHMovable.js';
 

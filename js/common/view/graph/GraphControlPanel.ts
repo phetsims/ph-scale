@@ -49,8 +49,10 @@ export default class GraphControlPanel extends Panel {
     const rectangle = new Rectangle( 0, 0, options.minWidth, MIN_HEIGHT );
 
     const graphUnitsSwitch = new GraphUnitsSwitch( graphUnitsProperty, {
-      center: rectangle.center,
       tandem: options.tandem.createTandem( 'graphUnitsSwitch' )
+    } );
+    graphUnitsSwitch.boundsProperty.link( bounds => {
+      graphUnitsSwitch.center = rectangle.center;
     } );
 
     const expandCollapseButton = new ExpandCollapseButton( expandedProperty,

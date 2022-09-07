@@ -116,9 +116,11 @@ export default class GraphNode extends Node {
 
       // scale switch (Logarithmic vs Linear)
       const graphScaleSwitch = new GraphScaleSwitch( graphScaleProperty, {
-        centerX: lineToPanel.centerX,
-        top: linearGraphNode.bottom + 15,
         tandem: options.tandem.createTandem( 'graphScaleSwitch' )
+      } );
+      graphScaleSwitch.boundsProperty.link( bounds => {
+        graphScaleSwitch.centerX = lineToPanel.centerX;
+        graphScaleSwitch.top = linearGraphNode.bottom + 15;
       } );
 
       // vertical line that connects bottom of graph to top of scale switch

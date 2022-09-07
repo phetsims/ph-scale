@@ -14,16 +14,16 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import Beaker from '../../common/model/Beaker.js';
-import Dropper from '../../common/model/Dropper.js';
-import Faucet from '../../common/model/Faucet.js';
-import Solute from '../../common/model/Solute.js';
-import PHScaleConstants from '../../common/PHScaleConstants.js';
-import PHScaleQueryParameters from '../../common/PHScaleQueryParameters.js';
+import Beaker from './Beaker.js';
+import Dropper from './Dropper.js';
+import Faucet from './Faucet.js';
+import Solute from './Solute.js';
+import PHScaleConstants from '../PHScaleConstants.js';
+import PHScaleQueryParameters from '../PHScaleQueryParameters.js';
 import phScale from '../../phScale.js';
-import MacroPHMeter from './MacroPHMeter.js';
-import MacroSolution from './MacroSolution.js';
-import Water from '../../common/model/Water.js';
+import MacroPHMeter from '../../macro/model/MacroPHMeter.js';
+import MacroSolution from '../../macro/model/MacroSolution.js';
+import Water from './Water.js';
 import Utils from '../../../../dot/js/Utils.js';
 
 // constants

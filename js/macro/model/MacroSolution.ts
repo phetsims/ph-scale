@@ -17,12 +17,12 @@ import { Color } from '../../../../scenery/js/imports.js';
 import PhetioObject, { LinkableElement, PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import { PHValue } from './PHModel.js';
+import { PHValue } from '../../common/model/PHModel.js';
 import Solute from '../../common/model/Solute.js';
 import Water from '../../common/model/Water.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
-import PHModel from './PHModel.js';
+import PHModel from '../../common/model/PHModel.js';
 
 // constants
 const MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );

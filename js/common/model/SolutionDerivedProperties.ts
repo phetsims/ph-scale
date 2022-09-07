@@ -22,9 +22,9 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { LinkableElement, PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import PHModel from '../../macro/model/PHModel.js';
+import PHModel from './PHModel.js';
 import phScale from '../../phScale.js';
-import { ConcentrationValue, PHValue } from '../../macro/model/PHModel.js';
+import { ConcentrationValue, PHValue } from './PHModel.js';
 
 type SelfOptions = EmptySelfOptions;
 

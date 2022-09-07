@@ -11,12 +11,12 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Node, NodeOptions, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
 import phScaleStrings from '../../phScaleStrings.js';
-import { PHValue } from '../model/PHModel.js';
+import { PHValue } from '../../common/model/PHModel.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import PHModel from '../model/PHModel.js';
+import PHModel from '../../common/model/PHModel.js';
 
 type SelfOptions = EmptySelfOptions;
 

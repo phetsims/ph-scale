@@ -24,7 +24,7 @@ import { CanvasNode, Circle, Node, NodeOptions, Text } from '../../../../scenery
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import phScale from '../../phScale.js';
-import PHModel, { PHValue } from '../../macro/model/PHModel.js';
+import PHModel, { PHValue } from '../model/PHModel.js';
 import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import PHScaleQueryParameters from '../PHScaleQueryParameters.js';

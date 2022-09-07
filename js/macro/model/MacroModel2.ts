@@ -9,7 +9,7 @@
 
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import PHModel, { MacroModelOptions } from './PHModel.js';
+import PHModel, { MacroModelOptions } from '../../common/model/PHModel.js';
 import phScale from '../../phScale.js';
 import MacroSolution from './MacroSolution.js';
 

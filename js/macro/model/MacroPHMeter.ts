@@ -20,7 +20,7 @@ import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import PHMovable from '../../common/model/PHMovable.js';
 import phScale from '../../phScale.js';
-import { PHValue } from './PHModel.js';
+import { PHValue } from '../../common/model/PHModel.js';
 
 type SelfOptions = EmptySelfOptions;
 

@@ -10,7 +10,7 @@
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import PHModel, { MacroModelOptions } from '../../macro/model/PHModel.js';
+import PHModel, { MacroModelOptions } from '../../common/model/PHModel.js';
 import phScale from '../../phScale.js';
 import MicroSolution from './MicroSolution.js';
 

@@ -118,15 +118,14 @@ export default class MicroScreenView extends ScreenView {
       } );
 
     // graph
-    const graphNode = new GraphNode( model.solution.totalVolumeProperty,
-      // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 derivedProperties does not exist
-      model.solution.derivedProperties, {
-        pHProperty: model.solution.pHProperty,
-        hasLinearFeature: true,
-        logScaleHeight: 485,
-        linearScaleHeight: 440,
-        tandem: options.tandem.createTandem( 'graphNode' )
-      } );
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 derivedProperties does not exist
+    const graphNode = new GraphNode( model.solution.totalVolumeProperty, model.solution.derivedProperties, {
+      pHProperty: model.solution.pHProperty,
+      hasLinearFeature: true,
+      logScaleHeight: 485,
+      linearScaleHeight: 440,
+      tandem: options.tandem.createTandem( 'graphNode' )
+    } );
 
     // pH meter
     const pHMeterTop = 15;

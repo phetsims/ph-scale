@@ -21,7 +21,6 @@ import Solute from './Solute.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import PHScaleQueryParameters from '../PHScaleQueryParameters.js';
 import phScale from '../../phScale.js';
-import MacroPHMeter from '../../macro/model/MacroPHMeter.js';
 import MacroSolution from '../../macro/model/MacroSolution.js';
 import Water from './Water.js';
 import Utils from '../../../../dot/js/Utils.js';
@@ -39,9 +38,6 @@ type SelfOptions<T extends MacroSolution> = {
 
   // L, automatically fill beaker with this much solute when the solute changes
   autofillVolume?: number;
-
-  // whether to instantiate this.pHMeter
-  includePHMeter?: boolean;
 
   // used to instantiate the solution
   createSolution: ( soluteProperty: Property<Solute>, maxVolume: number, tandem: Tandem ) => T;
@@ -69,9 +65,6 @@ export default class PHModel<T extends MacroSolution> {
   // drain faucet, at the beaker's bottom-left
   public readonly drainFaucet: Faucet;
 
-  // optional pH meter, to the left of the drain faucet
-  public readonly pHMeter: MacroPHMeter | null;
-
   // whether the autofill feature is enabled, see https://github.com/phetsims/ph-scale/issues/104
   private readonly autofillEnabledProperty: Property<boolean>;
 
@@ -85,8 +78,7 @@ export default class PHModel<T extends MacroSolution> {
     const options = optionize<PHModelOptions<T>, SelfOptions<T>>()( {
 
       // SelfOptions
-      autofillVolume: 0.5,
-      includePHMeter: true
+      autofillVolume: 0.5
     }, providedOptions );
 
     this.solutes = [
@@ -130,17 +122,6 @@ export default class PHModel<T extends MacroSolution> {
         tandem: options.tandem.createTandem( 'drainFaucet' )
       } );
 
-    this.pHMeter = null;
-    if ( options.includePHMeter ) {
-      const pHMeterPosition = new Vector2( this.drainFaucet.position.x - 300, 75 );
-      this.pHMeter = new MacroPHMeter(
-        pHMeterPosition,
-        new Vector2( pHMeterPosition.x + 150, this.beaker.position.y ),
-        PHScaleConstants.SCREEN_VIEW_OPTIONS.layoutBounds, {
-          tandem: options.tandem.createTandem( 'pHMeter' )
-        } );
-    }
-
     this.autofillEnabledProperty = new BooleanProperty( PHScaleQueryParameters.autofill, {
       tandem: options.tandem.createTandem( 'autofillEnabledProperty' ),
       phetioDocumentation: 'whether solute is automatically added to the beaker when the solute is changed'
@@ -180,7 +161,6 @@ export default class PHModel<T extends MacroSolution> {
     this.solution.reset();
     this.waterFaucet.reset();
     this.drainFaucet.reset();
-    this.pHMeter && this.pHMeter.reset();
     this.startAutofill();
   }
 

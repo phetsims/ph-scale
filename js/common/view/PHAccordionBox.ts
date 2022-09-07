@@ -78,8 +78,8 @@ export default class PHAccordionBox extends AccordionBox {
   }
 
   public override reset(): void {
-    this.expandedProperty.reset();
     super.reset();
+    this.expandedProperty.reset();
   }
 }
 

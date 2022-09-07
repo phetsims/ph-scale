@@ -184,7 +184,7 @@ export default class Solute extends PhetioObject {
     tandem: SOLUTES_TANDEM.createTandem( 'water' )
   } );
 
-  //TODO https://github.com/phetsims/ph-scale/issues/239 revisit this
+  //TODO https://github.com/phetsims/ph-scale/issues/243 SoluteIO name does not update when localeProperty changes
   /**
    * SoluteIO handles PhET-iO serialization of Solute. Since all Solutes are static instances, it implements
    * 'Reference type serialization', as described in the Serialization section of

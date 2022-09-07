@@ -129,8 +129,12 @@ export default class MySolutionScreenView extends ScreenView {
     pHAccordionBox.top = pHAccordionBoxTop;
     moleculeCountNode.centerX = beakerNode.centerX;
     moleculeCountNode.bottom = beakerNode.bottom - 25;
-    beakerControlPanel.centerX = beakerNode.centerX;
-    beakerControlPanel.top = beakerNode.bottom + 10;
+
+    beakerControlPanel.boundsProperty.link( bounds => {
+      beakerControlPanel.centerX = beakerNode.centerX;
+      beakerControlPanel.top = beakerNode.bottom + 10;
+    } );
+
     graphNode.right = beakerNode.left - 70;
     graphNode.top = pHAccordionBox.top;
     resetAllButton.right = this.layoutBounds.right - 40;

@@ -180,8 +180,12 @@ export default class MicroScreenView extends ScreenView {
     // Layout of nodes that don't have a position specified in the model
     moleculeCountNode.centerX = beakerNode.centerX;
     moleculeCountNode.bottom = beakerNode.bottom - 25;
-    beakerControlPanel.centerX = beakerNode.centerX;
-    beakerControlPanel.top = beakerNode.bottom + 10;
+
+    beakerControlPanel.boundsProperty.link( bounds => {
+      beakerControlPanel.centerX = beakerNode.centerX;
+      beakerControlPanel.top = beakerNode.bottom + 10;
+    } );
+
     pHAccordionBox.left = modelViewTransform.modelToViewX( model.beaker.left ) - ( 0.4 * pHAccordionBox.width );
     pHAccordionBox.top = pHMeterTop;
     graphNode.right = drainFaucetNode.left - 40;

@@ -109,13 +109,21 @@ export default class BeakerNode extends Node {
             ( pattern, litersString ) => StringUtils.format( pattern, MAJOR_TICK_LABELS[ labelIndex ], litersString )
           );
 
-          tickLabels.addChild( new Text( labelStringProperty, {
+          const labelText = new Text( labelStringProperty, {
             font: MAJOR_TICK_FONT,
             fill: 'black',
             right: beakerRight - tickLength - TICK_LABEL_X_SPACING,
             centerY: y,
             maxWidth: 80 // determined empirically
-          } ) );
+          } );
+
+          tickLabels.addChild( labelText );
+
+          const labelY = y; // closure
+          labelText.boundsProperty.link( bounds => {
+            labelText.right = beakerRight - tickLength - TICK_LABEL_X_SPACING;
+            labelText.centerY = labelY;
+          } );
         }
       }
     }

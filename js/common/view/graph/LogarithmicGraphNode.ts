@@ -23,13 +23,13 @@ import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import { Font, Line, LinearGradient, Node, NodeOptions, NodeTranslationOptions, Rectangle, RichText, TColor } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
-import { PHValue } from '../../../macro/model/MacroModel.js';
+import { PHValue } from '../../../macro/model/PHModel.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
-import MacroModel from '../../../macro/model/MacroModel.js';
+import PHModel from '../../../macro/model/PHModel.js';
 
 type SelfOptions = {
 
@@ -256,7 +256,7 @@ export default class LogarithmicGraphNode extends Node {
       // H3O+ indicator
       indicatorH3ONode.addInputListener(
         new GraphIndicatorDragListener( indicatorH3ONode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
-          MacroModel.concentrationH3OToPH, MacroModel.molesH3OToPH,
+          PHModel.concentrationH3OToPH, PHModel.molesH3OToPH,
           indicatorH3ONode.tandem.createTandem( 'dragListener' )
         ) );
       indicatorH3ONode.cursor = 'pointer';
@@ -264,7 +264,7 @@ export default class LogarithmicGraphNode extends Node {
       // OH- indicator
       indicatorOHNode.addInputListener(
         new GraphIndicatorDragListener( indicatorOHNode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
-          MacroModel.concentrationOHToPH, MacroModel.molesOHToPH,
+          PHModel.concentrationOHToPH, PHModel.molesOHToPH,
           indicatorOHNode.tandem.createTandem( 'dragListener' )
         ) );
       indicatorOHNode.cursor = 'pointer';

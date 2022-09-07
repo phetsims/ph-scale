@@ -1,7 +1,7 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
 /**
- * MicroModel is the model for the 'Micro' screen.  It extends the MacroModel, substituting a different solution
+ * MicroModel is the model for the 'Micro' screen.  It extends the PHModel, substituting a different solution
  * model, and omitting the pH meter.
  *
  * @author Chris Malley (PixelZoom, Inc.)
@@ -10,7 +10,7 @@
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import MacroModel, { MacroModelOptions } from '../../macro/model/MacroModel.js';
+import PHModel, { MacroModelOptions } from '../../macro/model/PHModel.js';
 import phScale from '../../phScale.js';
 import MicroSolution from './MicroSolution.js';
 
@@ -18,7 +18,7 @@ type SelfOptions = EmptySelfOptions;
 
 export type MicroModelOptions = SelfOptions & PickRequired<MacroModelOptions<MicroSolution>, 'tandem'>;
 
-export default class MicroModel extends MacroModel<MicroSolution> {
+export default class MicroModel extends PHModel<MicroSolution> {
 
   public constructor( providedOptions: MicroModelOptions ) {
 

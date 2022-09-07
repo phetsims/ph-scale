@@ -49,7 +49,7 @@ type SelfOptions<T extends MacroSolution> = {
 
 export type MacroModelOptions<T extends MacroSolution> = SelfOptions<T> & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-export default class MacroModel<T extends MacroSolution> {
+export default class PHModel<T extends MacroSolution> {
 
   // solute choices, in order that they'll appear in the combo box
   // The order is alphabetical (English names), see https://github.com/phetsims/ph-scale/issues/101
@@ -285,7 +285,7 @@ export default class MacroModel<T extends MacroSolution> {
    * @returns pH, null if concentration is zero
    */
   public static concentrationOHToPH( concentration: ConcentrationValue ): PHValue {
-    const pH = MacroModel.concentrationH3OToPH( concentration );
+    const pH = PHModel.concentrationH3OToPH( concentration );
     return ( pH === null ) ? null : 14 - pH;
   }
 
@@ -296,7 +296,7 @@ export default class MacroModel<T extends MacroSolution> {
    * @returns pH, null if moles or volume is zero
    */
   public static molesH3OToPH( moles: number, volume: number ): PHValue {
-    return ( moles === 0 || volume === 0 ) ? null : MacroModel.concentrationH3OToPH( moles / volume );
+    return ( moles === 0 || volume === 0 ) ? null : PHModel.concentrationH3OToPH( moles / volume );
   }
 
   /**
@@ -306,7 +306,7 @@ export default class MacroModel<T extends MacroSolution> {
    * @returns pH, null if moles or volume is zero
    */
   public static molesOHToPH( moles: number, volume: number ): PHValue {
-    return ( moles === 0 || volume === 0 ) ? null : MacroModel.concentrationOHToPH( moles / volume );
+    return ( moles === 0 || volume === 0 ) ? null : PHModel.concentrationOHToPH( moles / volume );
   }
 
   /**
@@ -334,7 +334,7 @@ export default class MacroModel<T extends MacroSolution> {
    * @returns concentration in moles/L, null means no concentration
    */
   public static pHToConcentrationOH( pH: PHValue ): ConcentrationValue {
-    return ( pH === null ) ? null : MacroModel.pHToConcentrationH3O( 14 - pH );
+    return ( pH === null ) ? null : PHModel.pHToConcentrationH3O( 14 - pH );
   }
 
   /**
@@ -361,4 +361,4 @@ export default class MacroModel<T extends MacroSolution> {
   }
 }
 
-phScale.register( 'MacroModel', MacroModel );
+phScale.register( 'PHModel', PHModel );

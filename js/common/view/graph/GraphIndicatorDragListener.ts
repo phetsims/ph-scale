@@ -13,7 +13,7 @@ import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphUnits from './GraphUnits.js';
-import { ConcentrationValue, PHValue } from '../../../macro/model/MacroModel.js';
+import { ConcentrationValue, PHValue } from '../../../macro/model/PHModel.js';
 import Property from '../../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';

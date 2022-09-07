@@ -24,7 +24,7 @@ import { CanvasNode, Circle, Node, NodeOptions, Text } from '../../../../scenery
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import phScale from '../../phScale.js';
-import MacroModel, { PHValue } from '../../macro/model/MacroModel.js';
+import PHModel, { PHValue } from '../../macro/model/PHModel.js';
 import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import PHScaleQueryParameters from '../PHScaleQueryParameters.js';
@@ -105,9 +105,9 @@ export default class RatioNode extends Node {
           return null;
         }
         else {
-          const concentrationH3O = MacroModel.pHToConcentrationH3O( pH )!;
+          const concentrationH3O = PHModel.pHToConcentrationH3O( pH )!;
           assert && assert( concentrationH3O !== null );
-          const concentrationOH = MacroModel.pHToConcentrationOH( pH )!;
+          const concentrationOH = PHModel.pHToConcentrationOH( pH )!;
           assert && assert( concentrationOH !== null && concentrationOH !== 0 );
           return concentrationH3O / concentrationOH;
         }
@@ -215,7 +215,7 @@ function computeNumberOfH3O( pH: PHValue ): number {
     return 0;
   }
   else {
-    const concentrationH3O = MacroModel.pHToConcentrationH3O( pH )!;
+    const concentrationH3O = PHModel.pHToConcentrationH3O( pH )!;
     assert && assert( concentrationH3O !== null, 'concentrationH3O is not expected to be null when pH !== null' );
     return Utils.roundSymmetric( concentrationH3O * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
   }
@@ -227,7 +227,7 @@ function computeNumberOfOH( pH: PHValue ): number {
     return 0;
   }
   else {
-    const concentrationOH = MacroModel.pHToConcentrationOH( pH )!;
+    const concentrationOH = PHModel.pHToConcentrationOH( pH )!;
     assert && assert( concentrationOH !== null, 'concentrationOH is not expected to be null when pH !== null' );
     return Utils.roundSymmetric( concentrationOH * ( TOTAL_MOLECULES_AT_PH_7 / 2 ) / 1E-7 );
   }

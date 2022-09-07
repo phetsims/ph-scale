@@ -17,12 +17,12 @@ import { Color } from '../../../../scenery/js/imports.js';
 import PhetioObject, { LinkableElement, PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import { PHValue } from './MacroModel.js';
+import { PHValue } from './PHModel.js';
 import Solute from '../../common/model/Solute.js';
 import Water from '../../common/model/Water.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
-import MacroModel from './MacroModel.js';
+import PHModel from './PHModel.js';
 
 // constants
 const MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );
@@ -113,7 +113,7 @@ export default class MacroSolution extends PhetioObject {
           return this.pHProperty.value;
         }
         else {
-          return MacroModel.computePH( solute.pH, soluteVolume, waterVolume );
+          return PHModel.computePH( solute.pH, soluteVolume, waterVolume );
         }
       }, {
         tandem: options.tandem.createTandem( 'pHProperty' ),
@@ -131,7 +131,7 @@ export default class MacroSolution extends PhetioObject {
         else if ( soluteVolume + waterVolume === 0 ) {
           return Color.BLACK; // no solution, should never see this color displayed
         }
-        else if ( soluteVolume === 0 || MacroModel.isEquivalentToWater( this.pHProperty.value ) ) {
+        else if ( soluteVolume === 0 || PHModel.isEquivalentToWater( this.pHProperty.value ) ) {
           return Water.color;
         }
         else {

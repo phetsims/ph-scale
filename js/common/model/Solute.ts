@@ -101,14 +101,7 @@ export default class Solute extends PhetioObject {
    * String representation of this Solute. For debugging only, do not depend on the format!
    */
   public override toString(): string {
-    return `Solution[name:${this.name}, pH:${this.pH}]`;
-  }
-
-  /**
-   * Gets the solute's name.
-   */
-  public get name(): string {
-    return this.nameProperty.value;
+    return `Solution[name:${this.nameProperty.value}, pH:${this.pH}]`;
   }
 
   /**
@@ -191,13 +184,13 @@ export default class Solute extends PhetioObject {
     tandem: SOLUTES_TANDEM.createTandem( 'water' )
   } );
 
-  //TODO https://github.com/phetsims/ph-scale/issues/239 this is messed up, solute.name does not exits
+  //TODO https://github.com/phetsims/ph-scale/issues/239 revisit this
   /**
    * SoluteIO handles PhET-iO serialization of Solute. Since all Solutes are static instances, it implements
    * 'Reference type serialization', as described in the Serialization section of
    * https://github.com/phetsims/phet-io/blob/master/doc/phet-io-instrumentation-technical-guide.md#serialization
    * But because we want 'name' and 'pH' fields to appear in Studio, we cannot subclass ReferenceIO and must provide
-   * both toStateObject and fromStateObject. See https://github.com/phetsims/ph-scale/issues/205.
+   * both stateSchema and toStateObject. See https://github.com/phetsims/ph-scale/issues/205.
    */
   public static readonly SoluteIO = new IOType( 'SoluteIO', {
     valueType: Solute,
@@ -207,9 +200,8 @@ export default class Solute extends PhetioObject {
       pH: NumberIO
     },
     toStateObject: solute => {
-
       const soluteReference = ReferenceIO( IOType.ObjectIO ).toStateObject( solute );
-      soluteReference.name = solute.name;
+      soluteReference.name = solute.nameProperty.value;
       soluteReference.pH = solute.pH;
       return soluteReference;
     }

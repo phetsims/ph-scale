@@ -1,7 +1,7 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
 /**
- * Model for the 'Macro' screen. Also serves as the supertype for the 'Micro' model.
+ * PHModel is the base-class model for the 'Macro' and 'Micro' screens.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

@@ -189,7 +189,7 @@ export default class Solute extends PhetioObject {
    * SoluteIO handles PhET-iO serialization of Solute. Since all Solutes are static instances, it implements
    * 'Reference type serialization', as described in the Serialization section of
    * https://github.com/phetsims/phet-io/blob/master/doc/phet-io-instrumentation-technical-guide.md#serialization
-   * But because we want 'name' and 'pH' fields to appear in Studio, we cannot subclass ReferenceIO and must provide
+   * But because we want 'name' and 'pH' fields to appear in Studio, we cannot subclass ReferenceIO, and must provide
    * both stateSchema and toStateObject. See https://github.com/phetsims/ph-scale/issues/205.
    */
   public static readonly SoluteIO = new IOType( 'SoluteIO', {

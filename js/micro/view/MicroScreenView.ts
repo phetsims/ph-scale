@@ -96,14 +96,14 @@ export default class MicroScreenView extends ScreenView {
     const drainFluidNode = new FaucetFluidNode( model.drainFaucet, model.solution.colorProperty, DRAIN_FLUID_HEIGHT, modelViewTransform );
 
     // 'H3O+/OH- ratio' representation
-    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242 solution type mismatch
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 solution type mismatch
     const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, {
       visibleProperty: viewProperties.ratioVisibleProperty,
       tandem: options.tandem.createTandem( 'ratioNode' )
     } );
 
     // 'molecule count' representation
-    // @ts-ignore https://github.com/phetsims/ph-scale/issues/242 derivedProperties does not exist
+    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 derivedProperties does not exist
     const moleculeCountNode = new MoleculeCountNode( model.solution.derivedProperties, {
       visibleProperty: viewProperties.moleculeCountVisibleProperty,
       tandem: options.tandem.createTandem( 'moleculeCountNode' )

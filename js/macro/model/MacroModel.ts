@@ -1,7 +1,7 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
 /**
- * MacroModel2 is the model for the 'Micro' screen.  It extends the PHModel, substituting a different solution
+ * MacroModel is the model for the 'Micro' screen.  It extends the PHModel, substituting a different solution
  * model, and omitting the pH meter.
  *
  * @author Chris Malley (PixelZoom, Inc.)
@@ -17,7 +17,7 @@ type SelfOptions = EmptySelfOptions;
 
 export type MacroModel2Options = SelfOptions & PickRequired<PHModelOptions<MacroSolution>, 'tandem'>;
 
-export default class MacroModel2 extends PHModel<MacroSolution> {
+export default class MacroModel extends PHModel<MacroSolution> {
 
   public constructor( providedOptions: MacroModel2Options ) {
 
@@ -34,4 +34,4 @@ export default class MacroModel2 extends PHModel<MacroSolution> {
   }
 }
 
-phScale.register( 'MacroModel2', MacroModel2 );
+phScale.register( 'MacroModel', MacroModel );

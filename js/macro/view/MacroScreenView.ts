@@ -29,7 +29,7 @@ import phScale from '../../phScale.js';
 import MacroPHMeterNode from './MacroPHMeterNode.js';
 import NeutralIndicatorNode from './NeutralIndicatorNode.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
-import MacroModel2 from '../model/MacroModel2.js';
+import MacroModel from '../model/MacroModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -37,7 +37,7 @@ type MacroScreenViewOptions = SelfOptions & PickRequired<ScreenOptions, 'tandem'
 
 export default class MacroScreenView extends ScreenView {
 
-  public constructor( model: MacroModel2, modelViewTransform: ModelViewTransform2, providedOptions: MacroScreenViewOptions ) {
+  public constructor( model: MacroModel, modelViewTransform: ModelViewTransform2, providedOptions: MacroScreenViewOptions ) {
 
     const options = optionize3<MacroScreenViewOptions, SelfOptions, ScreenOptions>()( {},
       PHScaleConstants.SCREEN_VIEW_OPTIONS, providedOptions );

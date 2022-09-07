@@ -7,6 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Utils from '../../../../dot/js/Utils.js';
@@ -51,8 +52,14 @@ export default class VolumeIndicatorNode extends Node {
       .close();
     const arrowHead = new Path( arrowHeadShape, { fill: 'black' } );
 
+    const valueStringProperty = new DerivedProperty(
+      [ phScaleStrings.pattern[ '0value' ][ '1unitsStringProperty' ], totalVolumeProperty, phScaleStrings.units.litersStringProperty ],
+      ( pattern, totalVolume, litersString ) =>
+        StringUtils.format( pattern, Utils.toFixed( totalVolume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), litersString )
+    );
+
     // volume value
-    const valueNode = new Text( '0', {
+    const valueNode = new Text( valueStringProperty, {
       font: VALUE_FONT,
       left: arrowHead.right + 3,
       maxWidth: 75
@@ -65,17 +72,13 @@ export default class VolumeIndicatorNode extends Node {
     // x position
     this.left = modelViewTransform.modelToViewX( beaker.right ) + 3;
 
-    // update when the total volume of the solution changes...
-    totalVolumeProperty.link( totalVolume => {
-
-      // text
-      //TODO https://github.com/phetsims/ph-scale/issues/239 dynamic locale
-      valueNode.text = StringUtils.format( phScaleStrings.pattern[ '0value' ][ '1units' ],
-        Utils.toFixed( totalVolume, PHScaleConstants.VOLUME_DECIMAL_PLACES ), phScaleStrings.units.liters );
+    valueNode.boundsProperty.link( bounds => {
       valueNode.centerY = arrowHead.centerY;
+    } );
 
-      // y position
-      const solutionHeight = Utils.linear( 0, beaker.volume, 0, beaker.size.height, totalVolume ); // volume -> height, model coordinates
+    // update position of the indicator
+    totalVolumeProperty.link( totalVolume => {
+      const solutionHeight = Utils.linear( 0, beaker.volume, 0, beaker.size.height, totalVolume );
       this.y = modelViewTransform.modelToViewY( beaker.position.y - solutionHeight );
     } );
   }

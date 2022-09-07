@@ -102,7 +102,6 @@ export default class MicroScreenView extends ScreenView {
     } );
 
     // 'molecule count' representation
-    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 derivedProperties does not exist
     const moleculeCountNode = new MoleculeCountNode( model.solution.derivedProperties, {
       visibleProperty: viewProperties.moleculeCountVisibleProperty,
       tandem: options.tandem.createTandem( 'moleculeCountNode' )
@@ -117,7 +116,6 @@ export default class MicroScreenView extends ScreenView {
       } );
 
     // graph
-    // @ts-ignore TODO https://github.com/phetsims/ph-scale/issues/242 derivedProperties does not exist
     const graphNode = new GraphNode( model.solution.totalVolumeProperty, model.solution.derivedProperties, {
       pHProperty: model.solution.pHProperty,
       hasLinearFeature: true,

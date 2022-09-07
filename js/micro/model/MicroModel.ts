@@ -16,13 +16,13 @@ import MicroSolution from './MicroSolution.js';
 
 type SelfOptions = EmptySelfOptions;
 
-export type MicroModelOptions = SelfOptions & PickRequired<MacroModelOptions, 'tandem'>;
+export type MicroModelOptions = SelfOptions & PickRequired<MacroModelOptions<MicroSolution>, 'tandem'>;
 
-export default class MicroModel extends MacroModel {
+export default class MicroModel extends MacroModel<MicroSolution> {
 
   public constructor( providedOptions: MicroModelOptions ) {
 
-    const options = optionize<MicroModelOptions, SelfOptions, MacroModelOptions>()( {
+    const options = optionize<MicroModelOptions, SelfOptions, MacroModelOptions<MicroSolution>>()( {
 
       // Creates the solution needed by the Micro screen
       createSolution: ( solutionProperty, maxVolume, tandem ) => new MicroSolution( solutionProperty, {

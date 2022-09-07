@@ -18,7 +18,7 @@ import macroNavbarIcon_png from '../../images/macroNavbarIcon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
 import phScale from '../phScale.js';
 import phScaleStrings from '../phScaleStrings.js';
-import MacroModel from './model/MacroModel.js';
+import MacroModel2 from './model/MacroModel2.js';
 import MacroScreenView from './view/MacroScreenView.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -45,7 +45,7 @@ export default class MacroScreen extends Screen {
     }, providedOptions );
 
     super(
-      () => new MacroModel( {
+      () => new MacroModel2( {
         tandem: options.tandem.createTandem( 'model' )
       } ),
       model => new MacroScreenView( model, ModelViewTransform2.createIdentity(), {

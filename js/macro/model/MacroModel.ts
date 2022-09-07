@@ -24,7 +24,7 @@ import phScale from '../../phScale.js';
 import MacroPHMeter from './MacroPHMeter.js';
 import MacroSolution from './MacroSolution.js';
 
-type SelfOptions = {
+type SelfOptions<T extends MacroSolution> = {
 
   // L, automatically fill beaker with this much solute when the solute changes
   autofillVolume?: number;
@@ -33,12 +33,12 @@ type SelfOptions = {
   includePHMeter?: boolean;
 
   // used to instantiate the solution
-  createSolution?: ( soluteProperty: Property<Solute>, maxVolume: number, tandem: Tandem ) => MacroSolution;
+  createSolution: ( soluteProperty: Property<Solute>, maxVolume: number, tandem: Tandem ) => T;
 };
 
-export type MacroModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+export type MacroModelOptions<T extends MacroSolution> = SelfOptions<T> & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-export default class MacroModel {
+export default class MacroModel<T extends MacroSolution> {
 
   // solute choices, in order that they'll appear in the combo box
   // The order is alphabetical (English names), see https://github.com/phetsims/ph-scale/issues/101
@@ -50,7 +50,7 @@ export default class MacroModel {
   public readonly dropper: Dropper;
 
   // solution in the beaker
-  public readonly solution: MacroSolution;
+  public readonly solution: T;
 
   // water faucet, at the beaker's top-right
   public readonly waterFaucet: Faucet;
@@ -69,17 +69,13 @@ export default class MacroModel {
 
   public readonly isAutofillingProperty: Property<boolean>;
 
-  public constructor( providedOptions: MacroModelOptions ) {
+  public constructor( providedOptions: MacroModelOptions<T> ) {
 
-    const options = optionize<MacroModelOptions, SelfOptions>()( {
+    const options = optionize<MacroModelOptions<T>, SelfOptions<T>>()( {
 
       // SelfOptions
       autofillVolume: 0.5,
-      includePHMeter: true,
-      createSolution: ( solutionProperty, maxVolume, tandem ) => new MacroSolution( solutionProperty, {
-        maxVolume: maxVolume,
-        tandem: tandem
-      } )
+      includePHMeter: true
     }, providedOptions );
 
     this.solutes = [

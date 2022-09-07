@@ -11,25 +11,25 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PHModel, { PHModelOptions } from '../../common/model/PHModel.js';
 import phScale from '../../phScale.js';
-import MacroSolution from '../../common/model/MacroSolution.js';
+import Solution from '../../common/model/Solution.js';
 import MacroPHMeter from './MacroPHMeter.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type MacroModelOptions = SelfOptions & PickRequired<PHModelOptions<MacroSolution>, 'tandem'>;
+type MacroModelOptions = SelfOptions & PickRequired<PHModelOptions<Solution>, 'tandem'>;
 
-export default class MacroModel extends PHModel<MacroSolution> {
+export default class MacroModel extends PHModel<Solution> {
 
   public readonly pHMeter: MacroPHMeter;
 
   public constructor( providedOptions: MacroModelOptions ) {
 
-    const options = optionize<MacroModelOptions, SelfOptions, PHModelOptions<MacroSolution>>()( {
+    const options = optionize<MacroModelOptions, SelfOptions, PHModelOptions<Solution>>()( {
 
       // Creates the solution needed by the Macro screen
-      createSolution: ( solutionProperty, maxVolume, tandem ) => new MacroSolution( solutionProperty, {
+      createSolution: ( solutionProperty, maxVolume, tandem ) => new Solution( solutionProperty, {
         maxVolume: maxVolume,
         tandem: tandem
       } )

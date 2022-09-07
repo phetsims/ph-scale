@@ -1,7 +1,7 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
 /**
- * MacroSolution is the solution model used in the Macro screen.
+ * Solution is the solution model used in the Macro screen.
  * Solvent (water) is constant, solute (in stock solution form) is variable.
  *
  * @author Chris Malley (PixelZoom, Inc.)
@@ -35,7 +35,7 @@ type SelfOptions = {
 
 export type MacroSolutionOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-export default class MacroSolution extends PhetioObject {
+export default class Solution extends PhetioObject {
 
   public readonly soluteProperty: Property<Solute>;
   public readonly soluteVolumeProperty: Property<number>;
@@ -216,4 +216,4 @@ export default class MacroSolution extends PhetioObject {
   }
 }
 
-phScale.register( 'MacroSolution', MacroSolution );
+phScale.register( 'Solution', Solution );

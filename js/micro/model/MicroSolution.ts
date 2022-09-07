@@ -10,14 +10,14 @@ import Property from '../../../../axon/js/Property.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Solute from '../../common/model/Solute.js';
 import SolutionDerivedProperties from '../../common/model/SolutionDerivedProperties.js';
-import MacroSolution, { MacroSolutionOptions } from '../../common/model/MacroSolution.js';
+import Solution, { MacroSolutionOptions } from '../../common/model/Solution.js';
 import phScale from '../../phScale.js';
 
 type SelfOptions = EmptySelfOptions;
 
 type MicroSolutionOptions = SelfOptions & MacroSolutionOptions;
 
-export default class MicroSolution extends MacroSolution {
+export default class MicroSolution extends Solution {
 
   public readonly derivedProperties: SolutionDerivedProperties;
 

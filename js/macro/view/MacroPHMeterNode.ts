@@ -36,7 +36,7 @@ import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import MacroPHMeter from '../model/MacroPHMeter.js';
-import MacroSolution from '../../common/model/MacroSolution.js';
+import Solution from '../../common/model/Solution.js';
 import { PHValue } from '../../common/model/PHModel.js';
 import PHMovable from '../../common/model/PHMovable.js';
 
@@ -58,7 +58,7 @@ type MacroPHMeterNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>
 export default class MacroPHMeterNode extends Node {
 
   public constructor( meter: MacroPHMeter,
-                      solution: MacroSolution,
+                      solution: Solution,
                       dropper: Dropper,
                       solutionNode: Node,
                       dropperFluidNode: Node,

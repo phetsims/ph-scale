@@ -21,7 +21,7 @@ import Solute from './Solute.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import PHScaleQueryParameters from '../PHScaleQueryParameters.js';
 import phScale from '../../phScale.js';
-import MacroSolution from './MacroSolution.js';
+import Solution from './Solution.js';
 import Water from './Water.js';
 import Utils from '../../../../dot/js/Utils.js';
 
@@ -34,7 +34,7 @@ export type PHValue = number | null;
 // null means 'no value', typically when we have no solution because the volume is zero.
 export type ConcentrationValue = number | null;
 
-type SelfOptions<T extends MacroSolution> = {
+type SelfOptions<T extends Solution> = {
 
   // L, automatically fill beaker with this much solute when the solute changes
   autofillVolume?: number;
@@ -43,9 +43,9 @@ type SelfOptions<T extends MacroSolution> = {
   createSolution: ( soluteProperty: Property<Solute>, maxVolume: number, tandem: Tandem ) => T;
 };
 
-export type PHModelOptions<T extends MacroSolution> = SelfOptions<T> & PickRequired<PhetioObjectOptions, 'tandem'>;
+export type PHModelOptions<T extends Solution> = SelfOptions<T> & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-export default class PHModel<T extends MacroSolution> {
+export default class PHModel<T extends Solution> {
 
   // solute choices, in order that they'll appear in the combo box
   // The order is alphabetical (English names), see https://github.com/phetsims/ph-scale/issues/101

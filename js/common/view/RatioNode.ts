@@ -29,11 +29,10 @@ import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import PHScaleQueryParameters from '../PHScaleQueryParameters.js';
 import Beaker from '../model/Beaker.js';
-import MicroSolution from '../../micro/model/MicroSolution.js';
-import MySolution from '../../mysolution/model/MySolution.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 // constants
 const TOTAL_MOLECULES_AT_PH_7 = 100;
@@ -57,21 +56,22 @@ export type RatioNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem' 
 
 export default class RatioNode extends Node {
 
-  private readonly solution: MicroSolution | MySolution;
-  private pH: PHValue;
+  private readonly pHProperty: TReadOnlyProperty<PHValue>;
   private readonly moleculesNode: MoleculesCanvas;
   private readonly ratioText: Text | null;
   private readonly beakerBounds: Bounds2;
 
-  public constructor( beaker: Beaker, solution: MicroSolution | MySolution, modelViewTransform: ModelViewTransform2,
+  public constructor( beaker: Beaker,
+                      pHProperty: TReadOnlyProperty<PHValue>,
+                      totalVolumeProperty: TReadOnlyProperty<number>,
+                      modelViewTransform: ModelViewTransform2,
                       providedOptions: RatioNodeOptions ) {
 
     const options = providedOptions;
 
     super();
 
-    this.solution = solution;
-    this.pH = null; // null to force an update
+    this.pHProperty = pHProperty;
 
     // bounds of the beaker, in view coordinates
     this.beakerBounds = modelViewTransform.modelToViewBounds( beaker.bounds );
@@ -94,12 +94,12 @@ export default class RatioNode extends Node {
     this.mutate( options );
 
     // sync view with model
-    solution.pHProperty.link( this.update.bind( this ) );
+    pHProperty.link( this.update.bind( this ) );
 
     // This Property was added for PhET-iO, to show the actual H3O+/OH- ratio of the solution. It is not used
     // elsewhere, hence the eslint-disable comment below. See https://github.com/phetsims/ph-scale/issues/112
-    // eslint-disable-next-line no-new
-    new DerivedProperty( [ solution.pHProperty ],
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const ratioProperty = new DerivedProperty( [ pHProperty ],
       pH => {
         if ( pH === null ) {
           return null;
@@ -119,7 +119,7 @@ export default class RatioNode extends Node {
       } );
 
     // clip to the shape of the solution in the beaker
-    solution.totalVolumeProperty.link( totalVolume => {
+    totalVolumeProperty.link( totalVolume => {
       if ( totalVolume === 0 ) {
         this.clipArea = null;
       }
@@ -143,62 +143,58 @@ export default class RatioNode extends Node {
     // don't update if not visible
     if ( !this.visible ) { return; }
 
-    let pH = this.solution.pHProperty.value;
+    let pH = this.pHProperty.value;
     if ( pH !== null ) {
       pH = Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES );
     }
 
-    if ( this.pH !== pH ) {
+    let numberOfH3O = 0;
+    let numberOfOH = 0;
 
-      this.pH = pH;
-      let numberOfH3O = 0;
-      let numberOfOH = 0;
+    if ( pH !== null ) {
 
-      if ( pH !== null ) {
+      // compute number of molecules
+      if ( LOG_PH_RANGE.contains( pH ) ) {
 
-        // compute number of molecules
-        if ( LOG_PH_RANGE.contains( pH ) ) {
+        // # molecules varies logarithmically in this range
+        numberOfH3O = Math.max( MIN_MINORITY_MOLECULES, computeNumberOfH3O( pH ) );
+        numberOfOH = Math.max( MIN_MINORITY_MOLECULES, computeNumberOfOH( pH ) );
+      }
+      else {
 
-          // # molecules varies logarithmically in this range
-          numberOfH3O = Math.max( MIN_MINORITY_MOLECULES, computeNumberOfH3O( pH ) );
-          numberOfOH = Math.max( MIN_MINORITY_MOLECULES, computeNumberOfOH( pH ) );
+        // # molecules varies linearly in this range
+        // N is the number of molecules to add for each 1 unit of pH above or below the thresholds
+        const N = ( MAX_MAJORITY_MOLECULES - computeNumberOfOH( LOG_PH_RANGE.max ) ) / ( PHScaleConstants.PH_RANGE.max - LOG_PH_RANGE.max );
+        let pHDiff;
+        if ( pH > LOG_PH_RANGE.max ) {
+
+          // strong base
+          pHDiff = pH - LOG_PH_RANGE.max;
+          numberOfH3O = Math.max( MIN_MINORITY_MOLECULES, ( computeNumberOfH3O( LOG_PH_RANGE.max ) - pHDiff ) );
+          numberOfOH = computeNumberOfOH( LOG_PH_RANGE.max ) + ( pHDiff * N );
         }
         else {
 
-          // # molecules varies linearly in this range
-          // N is the number of molecules to add for each 1 unit of pH above or below the thresholds
-          const N = ( MAX_MAJORITY_MOLECULES - computeNumberOfOH( LOG_PH_RANGE.max ) ) / ( PHScaleConstants.PH_RANGE.max - LOG_PH_RANGE.max );
-          let pHDiff;
-          if ( pH > LOG_PH_RANGE.max ) {
-
-            // strong base
-            pHDiff = pH - LOG_PH_RANGE.max;
-            numberOfH3O = Math.max( MIN_MINORITY_MOLECULES, ( computeNumberOfH3O( LOG_PH_RANGE.max ) - pHDiff ) );
-            numberOfOH = computeNumberOfOH( LOG_PH_RANGE.max ) + ( pHDiff * N );
-          }
-          else {
-
-            // strong acid
-            pHDiff = LOG_PH_RANGE.min - pH;
-            numberOfH3O = computeNumberOfH3O( LOG_PH_RANGE.min ) + ( pHDiff * N );
-            numberOfOH = Math.max( MIN_MINORITY_MOLECULES, ( computeNumberOfOH( LOG_PH_RANGE.min ) - pHDiff ) );
-          }
+          // strong acid
+          pHDiff = LOG_PH_RANGE.min - pH;
+          numberOfH3O = computeNumberOfH3O( LOG_PH_RANGE.min ) + ( pHDiff * N );
+          numberOfOH = Math.max( MIN_MINORITY_MOLECULES, ( computeNumberOfOH( LOG_PH_RANGE.min ) - pHDiff ) );
         }
-
-        // convert to integer values
-        numberOfH3O = Utils.roundSymmetric( numberOfH3O );
-        numberOfOH = Utils.roundSymmetric( numberOfOH );
       }
 
-      // update molecules
-      this.moleculesNode.setNumberOfMolecules( numberOfH3O, numberOfOH );
+      // convert to integer values
+      numberOfH3O = Utils.roundSymmetric( numberOfH3O );
+      numberOfOH = Utils.roundSymmetric( numberOfOH );
+    }
 
-      // update ratio counts
-      if ( this.ratioText ) {
-        this.ratioText.text = `${numberOfH3O} / ${numberOfOH}`;
-        this.ratioText.centerX = this.beakerBounds.centerX;
-        this.ratioText.bottom = this.beakerBounds.maxY - 20;
-      }
+    // update molecules
+    this.moleculesNode.setNumberOfMolecules( numberOfH3O, numberOfOH );
+
+    // update ratio counts
+    if ( this.ratioText ) {
+      this.ratioText.text = `${numberOfH3O} / ${numberOfOH}`;
+      this.ratioText.centerX = this.beakerBounds.centerX;
+      this.ratioText.bottom = this.beakerBounds.maxY - 20;
     }
   }
 }

@@ -63,7 +63,7 @@ export default class MySolutionScreenView extends ScreenView {
     } );
 
     // 'H3O+/OH- ratio' representation
-    const ratioNode = new RatioNode( model.beaker, model.solution, modelViewTransform, {
+    const ratioNode = new RatioNode( model.beaker, model.solution.pHProperty, model.solution.totalVolumeProperty, modelViewTransform, {
       visibleProperty: viewProperties.ratioVisibleProperty,
       tandem: options.tandem.createTandem( 'ratioNode' )
     } );

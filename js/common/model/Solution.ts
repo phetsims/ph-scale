@@ -1,7 +1,7 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
 /**
- * Solution is the solution model used in the Macro screen.
+ * Solution is the base class for the solution in the 'Macro' and 'Micro' screens.
  * Solvent (water) is constant, solute (in stock solution form) is variable.
  *
  * @author Chris Malley (PixelZoom, Inc.)
@@ -33,7 +33,7 @@ type SelfOptions = {
   maxVolume?: number; // maximum total volume (solute + water), in L
 };
 
-export type MacroSolutionOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+export type SolutionOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class Solution extends PhetioObject {
 
@@ -48,9 +48,9 @@ export default class Solution extends PhetioObject {
   // Used to update total volume atomically when draining solution, see https://github.com/phetsims/ph-scale/issues/25
   private ignoreVolumeUpdate: boolean;
 
-  public constructor( soluteProperty: Property<Solute>, providedOptions: MacroSolutionOptions ) {
+  protected constructor( soluteProperty: Property<Solute>, providedOptions: SolutionOptions ) {
 
-    const options = optionize<MacroSolutionOptions, SelfOptions, PhetioObjectOptions>()( {
+    const options = optionize<SolutionOptions, SelfOptions, PhetioObjectOptions>()( {
 
       // SelfOptions
       soluteVolume: 0,

@@ -98,9 +98,7 @@ export default class MacroScreenView extends ScreenView {
     } );
 
     // pH meter
-    const pHMeter = model.pHMeter;
-    assert && assert( pHMeter );
-    const pHMeterNode = new MacroPHMeterNode( pHMeter, model.solution, model.dropper,
+    const pHMeterNode = new MacroPHMeterNode( model.pHMeter, model.solution, model.dropper,
       solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform, {
         tandem: options.tandem.createTandem( 'pHMeterNode' )
       } );

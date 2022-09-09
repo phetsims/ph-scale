@@ -43,9 +43,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.macroScreen.view.waterFaucetNode.visibleProperty": {
       "phetioFeatured": true
     },
-    "phScale.macroScreen.view.waterFaucetNode.waterText.visibleProperty": {
-      "phetioFeatured": true
-    },
     "phScale.microScreen.model.autofillEnabledProperty": {
       "phetioFeatured": true
     },
@@ -109,22 +106,10 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.microScreen.view.graphNode.expandedProperty": {
       "phetioFeatured": true
     },
-    "phScale.microScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationText.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityText.visibleProperty": {
-      "phetioFeatured": true
-    },
     "phScale.microScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.visibleProperty": {
       "phetioFeatured": false
     },
     "phScale.microScreen.view.graphNode.graphScaleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.view.graphNode.graphScaleSwitch.linearText.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.view.graphNode.graphScaleSwitch.logarithmicText.visibleProperty": {
       "phetioFeatured": true
     },
     "phScale.microScreen.view.graphNode.graphUnitsProperty": {
@@ -184,9 +169,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.microScreen.view.waterFaucetNode.visibleProperty": {
       "phetioFeatured": true
     },
-    "phScale.microScreen.view.waterFaucetNode.waterText.visibleProperty": {
-      "phetioFeatured": true
-    },
     "phScale.mySolutionScreen.model.solution.concentrationH2OProperty": {
       "phetioFeatured": true
     },
@@ -233,12 +215,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.view.graphNode.expandedProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationText.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityText.visibleProperty": {
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.visibleProperty": {

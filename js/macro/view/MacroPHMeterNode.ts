@@ -426,8 +426,12 @@ class PHIndicatorNode extends Node {
     backgroundRectangle.left = arrowNode.right - 1; // overlap to hide seam
     backgroundRectangle.centerY = arrowNode.centerY;
     highlight.center = backgroundRectangle.center;
-    labelNode.centerX = backgroundRectangle.centerX;
-    labelNode.top = backgroundRectangle.top + backgroundYMargin;
+
+    labelNode.boundsProperty.link( bounds => {
+      labelNode.centerX = backgroundRectangle.centerX;
+      labelNode.top = backgroundRectangle.top + backgroundYMargin;
+    } );
+
     numberDisplay.centerX = backgroundRectangle.centerX;
     numberDisplay.top = labelNode.bottom + backgroundYSpacing;
 

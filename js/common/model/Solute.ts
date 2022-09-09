@@ -16,7 +16,6 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import IOType from '../../../../tandem/js/types/IOType.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
-import StringIO from '../../../../tandem/js/types/StringIO.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import PHScaleConstants from '../PHScaleConstants.js';
@@ -186,24 +185,22 @@ export default class Solute extends PhetioObject {
     tandem: SOLUTES_TANDEM.createTandem( 'water' )
   } );
 
-  //TODO https://github.com/phetsims/ph-scale/issues/243 SoluteIO name does not update when localeProperty changes
   /**
    * SoluteIO handles PhET-iO serialization of Solute. Since all Solutes are static instances, it implements
    * 'Reference type serialization', as described in the Serialization section of
    * https://github.com/phetsims/phet-io/blob/master/doc/phet-io-instrumentation-technical-guide.md#serialization
-   * But because we want 'name' and 'pH' fields to appear in Studio, we cannot simply subclass ReferenceIO, We
-   * must also provide stateSchema and toStateObject. See https://github.com/phetsims/ph-scale/issues/205.
+   * But because we want 'pH' to appear in Studio, we cannot simply subclass ReferenceIO. We must also provide
+   * stateSchema and toStateObject.
+   * See https://github.com/phetsims/ph-scale/issues/205 and https://github.com/phetsims/ph-scale/issues/243.
    */
   public static readonly SoluteIO = new IOType( 'SoluteIO', {
     valueType: Solute,
     supertype: ReferenceIO( IOType.ObjectIO ),
     stateSchema: {
-      name: StringIO,
       pH: NumberIO
     },
     toStateObject: solute => {
       const soluteReference = ReferenceIO( IOType.ObjectIO ).toStateObject( solute );
-      soluteReference.name = solute.nameProperty.value;
       soluteReference.pH = solute.pH;
       return soluteReference;
     }

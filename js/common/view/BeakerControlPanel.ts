@@ -13,7 +13,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Line, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
+import { RichText, Text, VBox, VDivider } from '../../../../scenery/js/imports.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import phScale from '../../phScale.js';
@@ -65,13 +65,12 @@ export default class BeakerControlPanel extends Panel {
     } );
     moleculeCountCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );
 
-    const separator = new Line( 0, 0, Math.max( moleculeCountCheckbox.width, ratioCheckbox.width ), 0, {
-      stroke: 'gray',
-      tandem: options.tandem.createTandem( 'separator' )
+    const divider = new VDivider( {
+      tandem: options.tandem.createTandem( 'divider' )
     } );
 
     const content = new VBox( {
-      children: [ ratioCheckbox, separator, moleculeCountCheckbox ],
+      children: [ ratioCheckbox, divider, moleculeCountCheckbox ],
       align: 'left',
       spacing: 10
     } );

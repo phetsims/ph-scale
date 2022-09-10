@@ -95,7 +95,7 @@ export default class Solute extends PhetioObject {
     this.colorStopColor = options.colorStopColor;
     this.colorStopRatio = options.colorStopRatio;
 
-    //TODO https://github.com/phetsims/axon/issues/414 cannot create a link to nameProperty because it's not LinkableElement
+    //TODO https://github.com/phetsims/ph-scale/issues/246 addLinkedElement( nameProperty )
   }
 
   /**

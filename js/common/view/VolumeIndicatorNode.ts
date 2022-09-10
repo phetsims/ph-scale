@@ -59,21 +59,21 @@ export default class VolumeIndicatorNode extends Node {
     );
 
     // volume value
-    const valueNode = new Text( valueStringProperty, {
+    const valueText = new Text( valueStringProperty, {
       font: VALUE_FONT,
       left: arrowHead.right + 3,
       maxWidth: 75
     } );
 
-    options.children = [ valueNode, arrowHead ];
+    options.children = [ valueText, arrowHead ];
 
     super( options );
 
     // x position
     this.left = modelViewTransform.modelToViewX( beaker.right ) + 3;
 
-    valueNode.boundsProperty.link( bounds => {
-      valueNode.centerY = arrowHead.centerY;
+    valueText.boundsProperty.link( bounds => {
+      valueText.centerY = arrowHead.centerY;
     } );
 
     // update position of the indicator

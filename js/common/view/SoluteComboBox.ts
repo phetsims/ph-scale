@@ -51,14 +51,14 @@ export default class SoluteComboBox extends ComboBox<Solute> {
       } );
 
       // label
-      const textNode = new Text( solute.nameProperty, {
+      const labelText = new Text( solute.nameProperty, {
         font: new PhetFont( 22 ),
         maxWidth: 140 // determined empirically
       } );
 
       const hBox = new HBox( {
         spacing: 5,
-        children: [ colorNode, textNode ]
+        children: [ colorNode, labelText ]
       } );
 
       items.push( {

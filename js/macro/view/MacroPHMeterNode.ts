@@ -200,10 +200,10 @@ class ScaleNode extends Node {
 
         // tick label
         if ( pH % 2 === 0 ) {
-          const tickLabelNode = new Text( pH, { font: TICK_FONT } );
-          tickLabelNode.right = lineNode.left - TICK_LABEL_X_SPACING;
-          tickLabelNode.centerY = lineNode.centerY;
-          this.addChild( tickLabelNode );
+          const tickText = new Text( pH, { font: TICK_FONT } );
+          tickText.right = lineNode.left - TICK_LABEL_X_SPACING;
+          tickText.centerY = lineNode.centerY;
+          this.addChild( tickText );
         }
       }
       y += dy;
@@ -214,13 +214,13 @@ class ScaleNode extends Node {
     neutralLineNode.right = backgroundNode.left;
     neutralLineNode.centerY = options.size.height / 2;
     this.addChild( neutralLineNode );
-    const neutralLabelNode = new Text( '7', {
+    const neutralText = new Text( '7', {
       fill: PHScaleColors.NEUTRAL,
       font: new PhetFont( { family: 'Arial black', size: 28, weight: 'bold' } )
     } );
-    this.addChild( neutralLabelNode );
-    neutralLabelNode.right = neutralLineNode.left - TICK_LABEL_X_SPACING;
-    neutralLabelNode.centerY = neutralLineNode.centerY;
+    this.addChild( neutralText );
+    neutralText.right = neutralLineNode.left - TICK_LABEL_X_SPACING;
+    neutralText.centerY = neutralLineNode.centerY;
   }
 
   // needed for precise positioning of things that point to values on the scale
@@ -367,7 +367,7 @@ class PHIndicatorNode extends Node {
     } );
 
     // label above the value
-    const labelNode = new Text( PhScaleStrings.pHStringProperty, {
+    const pHText = new Text( PhScaleStrings.pHStringProperty, {
       fill: 'white',
       font: new PhetFont( { size: 28, weight: 'bold' } ),
       maxWidth: 100
@@ -377,8 +377,8 @@ class PHIndicatorNode extends Node {
     const backgroundXMargin = 14;
     const backgroundYMargin = 10;
     const backgroundYSpacing = 6;
-    const backgroundWidth = Math.max( labelNode.width, numberDisplay.width ) + ( 2 * backgroundXMargin );
-    const backgroundHeight = labelNode.height + numberDisplay.height + backgroundYSpacing + ( 2 * backgroundYMargin );
+    const backgroundWidth = Math.max( pHText.width, numberDisplay.width ) + ( 2 * backgroundXMargin );
+    const backgroundHeight = pHText.height + numberDisplay.height + backgroundYSpacing + ( 2 * backgroundYMargin );
     const backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, {
       cornerRadius: CORNER_RADIUS,
       fill: BACKGROUND_ENABLED_FILL
@@ -414,7 +414,7 @@ class PHIndicatorNode extends Node {
     this.addChild( arrowNode );
     this.addChild( backgroundRectangle );
     this.addChild( highlight );
-    this.addChild( labelNode );
+    this.addChild( pHText );
     this.addChild( numberDisplay );
     this.addChild( lineNode );
 
@@ -427,13 +427,13 @@ class PHIndicatorNode extends Node {
     backgroundRectangle.centerY = arrowNode.centerY;
     highlight.center = backgroundRectangle.center;
 
-    labelNode.boundsProperty.link( bounds => {
-      labelNode.centerX = backgroundRectangle.centerX;
-      labelNode.top = backgroundRectangle.top + backgroundYMargin;
+    pHText.boundsProperty.link( bounds => {
+      pHText.centerX = backgroundRectangle.centerX;
+      pHText.top = backgroundRectangle.top + backgroundYMargin;
     } );
 
     numberDisplay.centerX = backgroundRectangle.centerX;
-    numberDisplay.top = labelNode.bottom + backgroundYSpacing;
+    numberDisplay.top = pHText.bottom + backgroundYSpacing;
 
     pHProperty.link( pH => {
 

@@ -72,6 +72,9 @@ export default class Solute extends PhetioObject {
 
     assert && assert( PHScaleConstants.PH_RANGE.contains( pH ), `invalid pH: ${pH}` );
 
+    assert && assert( Solute.SoluteIO,
+      'Since Solute instances are created statically, make sure this was created (statically) first' );
+
     const options = optionize<SoluteOptions, SelfOptions, PhetioObjectOptions>()( {
 
       // SelfOptions
@@ -138,6 +141,23 @@ export default class Solute extends PhetioObject {
     return soluteReference;
   }
 
+  /**
+   * SoluteIO handles PhET-iO serialization of Solute. Since all Solutes are static instances, it implements
+   * 'Reference type serialization', as described in the Serialization section of
+   * https://github.com/phetsims/phet-io/blob/master/doc/phet-io-instrumentation-technical-guide.md#serialization
+   * But because we want 'pH' to appear in Studio, we cannot simply subclass ReferenceIO. We must also provide
+   * stateSchema and toStateObject.
+   * See https://github.com/phetsims/ph-scale/issues/205 and https://github.com/phetsims/ph-scale/issues/243.
+   */
+  public static readonly SoluteIO = new IOType<Solute, SoluteStateObject>( 'SoluteIO', {
+    valueType: Solute,
+    supertype: ReferenceIO( IOType.ObjectIO ),
+    stateSchema: {
+      pH: NumberIO
+    },
+    toStateObject: solute => solute.toStateObject()
+  } );
+
   public static readonly BATTERY_ACID = new Solute( PhScaleStrings.choice.batteryAcidStringProperty, 1, new Color( 255, 255, 0 ), {
     colorStopColor: new Color( 255, 224, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'batteryAcid' )
@@ -193,23 +213,6 @@ export default class Solute extends PhetioObject {
 
   public static readonly WATER = new Solute( Water.nameProperty, Water.pH, Water.color, {
     tandem: SOLUTES_TANDEM.createTandem( 'water' )
-  } );
-
-  /**
-   * SoluteIO handles PhET-iO serialization of Solute. Since all Solutes are static instances, it implements
-   * 'Reference type serialization', as described in the Serialization section of
-   * https://github.com/phetsims/phet-io/blob/master/doc/phet-io-instrumentation-technical-guide.md#serialization
-   * But because we want 'pH' to appear in Studio, we cannot simply subclass ReferenceIO. We must also provide
-   * stateSchema and toStateObject.
-   * See https://github.com/phetsims/ph-scale/issues/205 and https://github.com/phetsims/ph-scale/issues/243.
-   */
-  public static readonly SoluteIO = new IOType<Solute, SoluteStateObject>( 'SoluteIO', {
-    valueType: Solute,
-    supertype: ReferenceIO( IOType.ObjectIO ),
-    stateSchema: {
-      pH: NumberIO
-    },
-    toStateObject: solute => solute.toStateObject()
   } );
 }
 

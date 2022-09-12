@@ -72,8 +72,7 @@ export default class Solute extends PhetioObject {
 
     assert && assert( PHScaleConstants.PH_RANGE.contains( pH ), `invalid pH: ${pH}` );
 
-    assert && assert( Solute.SoluteIO,
-      'Since Solute instances are created statically, make sure this was created (statically) first' );
+    assert && assert( Solute.SoluteIO, 'SoluteIO and Solute instances are statics, so make sure SoluteIO exists' );
 
     const options = optionize<SoluteOptions, SelfOptions, PhetioObjectOptions>()( {
 

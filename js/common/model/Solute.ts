@@ -14,8 +14,8 @@ import { Color } from '../../../../scenery/js/imports.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import IOType from '../../../../tandem/js/types/IOType.js';
-import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
+import NumberIO, { NumberStateObject } from '../../../../tandem/js/types/NumberIO.js';
+import ReferenceIO, { ReferenceIOState } from '../../../../tandem/js/types/ReferenceIO.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import PHScaleConstants from '../PHScaleConstants.js';
@@ -38,6 +38,10 @@ type SelfOptions = {
 };
 
 export type SoluteOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+
+type SoluteStateObject = {
+  pH: NumberStateObject;
+} & ReferenceIOState;
 
 export default class Solute extends PhetioObject {
 
@@ -128,6 +132,12 @@ export default class Solute extends PhetioObject {
     return color;
   }
 
+  public toStateObject(): SoluteStateObject {
+    const soluteReference = ReferenceIO( IOType.ObjectIO ).toStateObject( this );
+    soluteReference.pH = this.pH;
+    return soluteReference;
+  }
+
   public static readonly BATTERY_ACID = new Solute( PhScaleStrings.choice.batteryAcidStringProperty, 1, new Color( 255, 255, 0 ), {
     colorStopColor: new Color( 255, 224, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'batteryAcid' )
@@ -193,17 +203,13 @@ export default class Solute extends PhetioObject {
    * stateSchema and toStateObject.
    * See https://github.com/phetsims/ph-scale/issues/205 and https://github.com/phetsims/ph-scale/issues/243.
    */
-  public static readonly SoluteIO = new IOType( 'SoluteIO', {
+  public static readonly SoluteIO = new IOType<Solute, SoluteStateObject>( 'SoluteIO', {
     valueType: Solute,
     supertype: ReferenceIO( IOType.ObjectIO ),
     stateSchema: {
       pH: NumberIO
     },
-    toStateObject: solute => {
-      const soluteReference = ReferenceIO( IOType.ObjectIO ).toStateObject( solute );
-      soluteReference.pH = solute.pH;
-      return soluteReference;
-    }
+    toStateObject: solute => solute.toStateObject()
   } );
 }
 

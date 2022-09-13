@@ -13,7 +13,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { RichText, Text, VBox, VDivider } from '../../../../scenery/js/imports.js';
+import { RichText, Text, VBox, HSeparator } from '../../../../scenery/js/imports.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import phScale from '../../phScale.js';
@@ -65,7 +65,7 @@ export default class BeakerControlPanel extends Panel {
     } );
     moleculeCountCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );
 
-    const divider = new VDivider( {
+    const divider = new HSeparator( {
       tandem: options.tandem.createTandem( 'divider' )
     } );
 

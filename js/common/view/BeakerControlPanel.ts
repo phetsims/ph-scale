@@ -65,12 +65,12 @@ export default class BeakerControlPanel extends Panel {
     } );
     moleculeCountCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );
 
-    const divider = new HSeparator( {
-      tandem: options.tandem.createTandem( 'divider' )
+    const separator = new HSeparator( {
+      tandem: options.tandem.createTandem( 'separator' )
     } );
 
     const content = new VBox( {
-      children: [ ratioCheckbox, divider, moleculeCountCheckbox ],
+      children: [ ratioCheckbox, separator, moleculeCountCheckbox ],
       align: 'left',
       spacing: 10
     } );

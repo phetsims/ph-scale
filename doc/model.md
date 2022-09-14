@@ -2,7 +2,7 @@
 
 This document is a high-level description of the model used in PhET's _pH Scale_ simulation.
 
-See [PHModel.js](https://github.com/phetsims/ph-scale/blob/master/js/common/model/PHModel.js) for implementation.
+See [PHModel.ts](https://github.com/phetsims/ph-scale/blob/master/js/common/model/PHModel.ts) for implementation.
 
 ## Definitions
 

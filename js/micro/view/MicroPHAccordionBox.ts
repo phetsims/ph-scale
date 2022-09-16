@@ -38,7 +38,7 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
       cornerRadius: PHAccordionBox.CORNER_RADIUS,
       textOptions: {
         font: new PhetFont( 28 ),
-        textPropertyOptions: { phetioHighFrequency: true }
+        stringPropertyOptions: { phetioHighFrequency: true }
       },
       backgroundFill: 'white',
       backgroundStroke: 'darkGray',

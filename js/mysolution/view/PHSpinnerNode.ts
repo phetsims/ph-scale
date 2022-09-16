@@ -47,7 +47,7 @@ export class PHSpinnerNode extends NumberSpinner {
         backgroundStroke: 'darkGray',
         textOptions: {
           font: new PhetFont( 28 ),
-          textPropertyOptions: { phetioHighFrequency: true }
+          stringPropertyOptions: { phetioHighFrequency: true }
         }
       },
       arrowsScale: 1.5,

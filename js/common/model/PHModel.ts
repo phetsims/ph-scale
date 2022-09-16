@@ -24,6 +24,7 @@ import phScale from '../../phScale.js';
 import Solution from './Solution.js';
 import Water from './Water.js';
 import Utils from '../../../../dot/js/Utils.js';
+import TModel from '../../../../joist/js/TModel.js';
 
 // constants
 const AVOGADROS_NUMBER = 6.023E23; // number of molecules in one mole of solution
@@ -45,7 +46,7 @@ type SelfOptions<T extends Solution> = {
 
 export type PHModelOptions<T extends Solution> = SelfOptions<T> & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-export default class PHModel<T extends Solution> {
+export default class PHModel<T extends Solution> implements TModel {
 
   // solute choices, in order that they'll appear in the combo box
   // The order is alphabetical (English names), see https://github.com/phetsims/ph-scale/issues/101

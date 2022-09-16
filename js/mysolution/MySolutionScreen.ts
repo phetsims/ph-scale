@@ -25,7 +25,7 @@ type SelfOptions = EmptySelfOptions;
 
 type MySolutionScreenOptions = SelfOptions & PickRequired<ScreenOptions, 'tandem'>;
 
-export default class MySolutionScreen extends Screen {
+export default class MySolutionScreen extends Screen<MySolutionModel, MySolutionScreenView> {
 
   public constructor( providedOptions: MySolutionScreenOptions ) {
 

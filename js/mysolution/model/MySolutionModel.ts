@@ -6,6 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import TModel from '../../../../joist/js/TModel.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
@@ -18,7 +19,7 @@ type SelfOptions = EmptySelfOptions;
 
 type MySolutionModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-export default class MySolutionModel {
+export default class MySolutionModel implements TModel {
 
   // Beaker, everything else is positioned relative to it. Offset constants were set by visual inspection.
   public readonly beaker: Beaker;
@@ -38,6 +39,10 @@ export default class MySolutionModel {
 
   public reset(): void {
     this.solution.reset();
+  }
+
+  public step(): void {
+    // required by TModel
   }
 }
 

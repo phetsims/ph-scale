@@ -25,7 +25,7 @@ type SelfOptions = EmptySelfOptions;
 
 type MicroScreenOptions = SelfOptions & PickRequired<ScreenOptions, 'tandem'>;
 
-class MicroScreen extends Screen {
+class MicroScreen extends Screen<MicroModel, MicroScreenView> {
 
   public constructor( providedOptions: MicroScreenOptions ) {
 

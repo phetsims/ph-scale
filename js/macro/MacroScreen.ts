@@ -25,7 +25,7 @@ type SelfOptions = EmptySelfOptions;
 
 type MacroScreenOptions = SelfOptions & PickRequired<ScreenOptions, 'tandem'>;
 
-export default class MacroScreen extends Screen {
+export default class MacroScreen extends Screen<MacroModel, MacroScreenView> {
 
   public constructor( providedOptions: MacroScreenOptions ) {
 

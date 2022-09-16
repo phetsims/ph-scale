@@ -49,7 +49,8 @@ export default class WaterFaucetNode extends Node {
       maxWidth: 85,
       left: faucetNode.left + 115,
       bottom: faucetNode.centerY - 40,
-      tandem: options.tandem.createTandem( 'waterText' )
+      tandem: options.tandem.createTandem( 'waterText' ),
+      phetioVisiblePropertyInstrumented: true
     } );
 
     options.children = [ faucetNode, waterText ];

@@ -42,7 +42,8 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
       align: 'center',
       font: PHScaleConstants.AB_SWITCH_FONT,
       maxWidth: 125,
-      tandem: options.tandem.createTandem( 'concentrationText' )
+      tandem: options.tandem.createTandem( 'concentrationText' ),
+      phetioVisiblePropertyInstrumented: true
     } );
 
     // Quantity (mol)
@@ -53,7 +54,8 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
       align: 'center',
       font: PHScaleConstants.AB_SWITCH_FONT,
       maxWidth: 90,
-      tandem: options.tandem.createTandem( 'quantityText' )
+      tandem: options.tandem.createTandem( 'quantityText' ),
+      phetioVisiblePropertyInstrumented: true
     } );
 
     super( graphUnitsProperty, GraphUnits.MOLES_PER_LITER, concentrationText, GraphUnits.MOLES, quantityText, options );

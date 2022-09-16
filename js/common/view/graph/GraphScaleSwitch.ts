@@ -40,12 +40,14 @@ export default class GraphScaleSwitch extends ABSwitch<GraphScale> {
 
     // Logarithmic label
     const logarithmicText = new Text( PhScaleStrings.logarithmicStringProperty, combineOptions<TextOptions>( {
-      tandem: options.tandem.createTandem( 'logarithmicText' )
+      tandem: options.tandem.createTandem( 'logarithmicText' ),
+      phetioVisiblePropertyInstrumented: true
     }, textOptions ) );
 
     // Linear label
     const linearText = new Text( PhScaleStrings.linearStringProperty, combineOptions<TextOptions>( {
-      tandem: options.tandem.createTandem( 'linearText' )
+      tandem: options.tandem.createTandem( 'linearText' ),
+      phetioVisiblePropertyInstrumented: true
     }, textOptions ) );
 
     super( graphScaleProperty, GraphScale.LOGARITHMIC, logarithmicText, GraphScale.LINEAR, linearText, options );

@@ -5,53 +5,53 @@
  */
 /* eslint-disable */
 import getStringModule from '../../chipper/js/getStringModule.js';
-import TReadOnlyProperty from '../../axon/js/TReadOnlyProperty.js';
+import LinkableProperty from '../../axon/js/LinkableProperty.js';
 import phScale from './phScale.js';
 
 type StringsType = {
   'ph-scale': {
-    'titleStringProperty': TReadOnlyProperty<string>;
+    'titleStringProperty': LinkableProperty<string>;
   };
   'screen': {
-    'macroStringProperty': TReadOnlyProperty<string>;
-    'microStringProperty': TReadOnlyProperty<string>;
-    'mySolutionStringProperty': TReadOnlyProperty<string>;
+    'macroStringProperty': LinkableProperty<string>;
+    'microStringProperty': LinkableProperty<string>;
+    'mySolutionStringProperty': LinkableProperty<string>;
   };
   'choice': {
-    'milkStringProperty': TReadOnlyProperty<string>;
-    'chickenSoupStringProperty': TReadOnlyProperty<string>;
-    'batteryAcidStringProperty': TReadOnlyProperty<string>;
-    'vomitStringProperty': TReadOnlyProperty<string>;
-    'sodaStringProperty': TReadOnlyProperty<string>;
-    'orangeJuiceStringProperty': TReadOnlyProperty<string>;
-    'coffeeStringProperty': TReadOnlyProperty<string>;
-    'spitStringProperty': TReadOnlyProperty<string>;
-    'bloodStringProperty': TReadOnlyProperty<string>;
-    'handSoapStringProperty': TReadOnlyProperty<string>;
-    'waterStringProperty': TReadOnlyProperty<string>;
-    'drainCleanerStringProperty': TReadOnlyProperty<string>;
+    'milkStringProperty': LinkableProperty<string>;
+    'chickenSoupStringProperty': LinkableProperty<string>;
+    'batteryAcidStringProperty': LinkableProperty<string>;
+    'vomitStringProperty': LinkableProperty<string>;
+    'sodaStringProperty': LinkableProperty<string>;
+    'orangeJuiceStringProperty': LinkableProperty<string>;
+    'coffeeStringProperty': LinkableProperty<string>;
+    'spitStringProperty': LinkableProperty<string>;
+    'bloodStringProperty': LinkableProperty<string>;
+    'handSoapStringProperty': LinkableProperty<string>;
+    'waterStringProperty': LinkableProperty<string>;
+    'drainCleanerStringProperty': LinkableProperty<string>;
   };
   'units': {
-    'litersStringProperty': TReadOnlyProperty<string>;
-    'molesStringProperty': TReadOnlyProperty<string>;
-    'molesPerLiterStringProperty': TReadOnlyProperty<string>;
+    'litersStringProperty': LinkableProperty<string>;
+    'molesStringProperty': LinkableProperty<string>;
+    'molesPerLiterStringProperty': LinkableProperty<string>;
   };
   'pattern': {
     '0value': {
-      '1unitsStringProperty': TReadOnlyProperty<string>;
+      '1unitsStringProperty': LinkableProperty<string>;
     }
   };
-  'pHStringProperty': TReadOnlyProperty<string>;
-  'acidicStringProperty': TReadOnlyProperty<string>;
-  'basicStringProperty': TReadOnlyProperty<string>;
-  'neutralStringProperty': TReadOnlyProperty<string>;
-  'concentrationStringProperty': TReadOnlyProperty<string>;
-  'quantityStringProperty': TReadOnlyProperty<string>;
-  'moleculeCountStringProperty': TReadOnlyProperty<string>;
-  'ratioStringProperty': TReadOnlyProperty<string>;
-  'linearStringProperty': TReadOnlyProperty<string>;
-  'logarithmicStringProperty': TReadOnlyProperty<string>;
-  'offScaleStringProperty': TReadOnlyProperty<string>;
+  'pHStringProperty': LinkableProperty<string>;
+  'acidicStringProperty': LinkableProperty<string>;
+  'basicStringProperty': LinkableProperty<string>;
+  'neutralStringProperty': LinkableProperty<string>;
+  'concentrationStringProperty': LinkableProperty<string>;
+  'quantityStringProperty': LinkableProperty<string>;
+  'moleculeCountStringProperty': LinkableProperty<string>;
+  'ratioStringProperty': LinkableProperty<string>;
+  'linearStringProperty': LinkableProperty<string>;
+  'logarithmicStringProperty': LinkableProperty<string>;
+  'offScaleStringProperty': LinkableProperty<string>;
 };
 
 const PhScaleStrings = getStringModule( 'PH_SCALE' ) as StringsType;

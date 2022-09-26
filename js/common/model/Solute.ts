@@ -7,6 +7,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import LinkableProperty from '../../../../axon/js/LinkableProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -68,7 +69,7 @@ export default class Solute extends PhetioObject {
    * @param stockColor - color of the solute in stock solution (no dilution)
    * @param [provideOptions]
    */
-  public constructor( nameProperty: TReadOnlyProperty<string>, pH: number, stockColor: Color, provideOptions: SoluteOptions ) {
+  public constructor( nameProperty: LinkableProperty<string>, pH: number, stockColor: Color, provideOptions: SoluteOptions ) {
 
     assert && assert( PHScaleConstants.PH_RANGE.contains( pH ), `invalid pH: ${pH}` );
 
@@ -102,6 +103,9 @@ export default class Solute extends PhetioObject {
     this.colorStopRatio = options.colorStopRatio;
 
     //TODO https://github.com/phetsims/ph-scale/issues/246 addLinkedElement( nameProperty )
+    this.addLinkedElement( nameProperty, {
+      tandem: options.tandem.createTandem( 'nameProperty' )
+    } );
   }
 
   /**

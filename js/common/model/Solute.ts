@@ -102,7 +102,6 @@ export default class Solute extends PhetioObject {
     this.colorStopColor = options.colorStopColor;
     this.colorStopRatio = options.colorStopRatio;
 
-    //TODO https://github.com/phetsims/ph-scale/issues/246 addLinkedElement( nameProperty )
     this.addLinkedElement( nameProperty, {
       tandem: options.tandem.createTandem( 'nameProperty' )
     } );

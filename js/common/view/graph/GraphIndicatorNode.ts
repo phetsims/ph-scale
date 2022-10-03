@@ -83,11 +83,13 @@ export default class GraphIndicatorNode extends Node {
       arrowXSpacing: 5,
 
       // NodeOptions
-      scale: 0.75 // specified by design team
+      scale: 0.75, // specified by design team
+      tagName: 'div'
     }, providedOptions );
 
     // Instrument interactiveProperty for interactive indicators.
     if ( options.isInteractive ) {
+      options.focusable = true;
       options.phetioInputEnabledPropertyInstrumented = true;
     }
 

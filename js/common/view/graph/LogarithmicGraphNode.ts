@@ -191,7 +191,6 @@ export default class LogarithmicGraphNode extends Node {
     // indicators
     const indicatorH2ONode = GraphIndicatorNode.createH2OIndicator( valueH2OProperty, {
       x: backgroundNode.right - options.indicatorXOffset,
-      isInteractive: isInteractive,
       tandem: options.tandem.createTandem( 'indicatorH2ONode' )
     } );
     const indicatorH3ONode = GraphIndicatorNode.createH3OIndicator( valueH3OProperty, {

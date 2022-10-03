@@ -13,7 +13,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import EyeDropperNode, { EyeDropperNodeOptions } from '../../../../scenery-phet/js/EyeDropperNode.js';
-import { DragListener } from '../../../../scenery/js/imports.js';
+import { DragListener, KeyboardDragListener } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
 import Dropper from '../model/Dropper.js';
 
@@ -32,7 +32,9 @@ export default class PHDropperNode extends EyeDropperNode {
       buttonOptions: {
         enabledProperty: dropper.enabledProperty
       },
-      cursor: null
+      cursor: null,
+      tagName: 'div',
+      focusable: true
     }, providedOptions );
 
     super( options );
@@ -57,6 +59,16 @@ export default class PHDropperNode extends EyeDropperNode {
       dragBoundsProperty: new Property( dropper.dragBounds ),
       transform: modelViewTransform,
       tandem: options.tandem.createTandem( 'dragListener' ),
+      phetioEnabledPropertyInstrumented: true
+    } ) );
+
+    this.addInputListener( new KeyboardDragListener( {
+      dragVelocity: 300, // velocity of the Node being dragged, in view coordinates per second
+      shiftDragVelocity: 20, // velocity with the Shift key pressed, typically slower than dragVelocity
+      positionProperty: dropper.positionProperty,
+      dragBoundsProperty: new Property( dropper.dragBounds ),
+      transform: modelViewTransform,
+      tandem: options.tandem.createTandem( 'keyboardDragListener' ),
       phetioEnabledPropertyInstrumented: true
     } ) );
   }

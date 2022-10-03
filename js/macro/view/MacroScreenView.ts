@@ -154,6 +154,16 @@ export default class MacroScreenView extends ScreenView {
     } );
 
     model.isAutofillingProperty.link( () => dropperNode.interruptSubtreeInput() );
+
+    // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249
+    screenViewRootNode.pdomOrder = [
+      pHMeterNode,
+      soluteComboBox,
+      dropperNode,
+      waterFaucetNode,
+      drainFaucetNode,
+      resetAllButton
+    ];
   }
 }
 

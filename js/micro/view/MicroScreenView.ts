@@ -192,6 +192,18 @@ export default class MicroScreenView extends ScreenView {
     soluteComboBox.top = this.layoutBounds.top + pHMeterTop;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
+
+    // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249
+    screenViewRootNode.pdomOrder = [
+      graphNode,
+      pHAccordionBox,
+      soluteComboBox,
+      dropperNode,
+      waterFaucetNode,
+      drainFaucetNode,
+      beakerControlPanel,
+      resetAllButton
+    ];
   }
 }
 

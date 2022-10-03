@@ -52,6 +52,8 @@ export default class GraphNode extends Node {
 
     super();
 
+    const pdomOrder = [];
+
     // whether the graph is expanded or collapsed
     const expandedProperty = new BooleanProperty( true, {
       tandem: options.tandem.createTandem( 'expandedProperty' )
@@ -67,6 +69,7 @@ export default class GraphNode extends Node {
       tandem: options.tandem.createTandem( 'graphControlPanel' )
     } );
     this.addChild( graphControlPanel );
+    pdomOrder.push( graphControlPanel );
 
     // vertical line that connects bottom of graphControlPanel to top of graph
     const lineToPanel = new Line( 0, 0, 0, 75, { stroke: 'black' } );
@@ -122,6 +125,8 @@ export default class GraphNode extends Node {
         graphScaleSwitch.centerX = lineToPanel.centerX;
         graphScaleSwitch.top = linearGraphNode.bottom + 15;
       } );
+      pdomOrder.push( graphScaleSwitch );
+      pdomOrder.push( linearGraphNode );
 
       // vertical line that connects bottom of graph to top of scale switch
       const lineToSwitchNode = new Line( 0, 0, 0, 200, {
@@ -146,6 +151,7 @@ export default class GraphNode extends Node {
         linearGraphNode.visible = ( graphScale === GraphScale.LINEAR );
       } );
     }
+    pdomOrder.push( logarithmicGraphNode );
 
     this.mutate( options );
 
@@ -177,6 +183,9 @@ export default class GraphNode extends Node {
     this.addLinkedElement( derivedProperties.quantityOHProperty, {
       tandem: options.tandem.createTandem( 'quantityOHProperty' )
     } );
+
+    // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249
+    this.pdomOrder = pdomOrder;
   }
 
   public reset(): void {

@@ -67,6 +67,12 @@ export default class GraphControlPanel extends Panel {
     } );
 
     super( content, options );
+
+    // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249
+    this.pdomOrder = [
+      graphUnitsSwitch,
+      expandCollapseButton
+    ];
   }
 }
 

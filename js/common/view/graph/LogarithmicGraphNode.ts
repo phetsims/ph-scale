@@ -268,6 +268,12 @@ export default class LogarithmicGraphNode extends Node {
           indicatorOHNode.tandem.createTandem( 'dragListener' )
         ) );
       indicatorOHNode.cursor = 'pointer';
+
+      // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249
+      this.pdomOrder = [
+        indicatorH3ONode,
+        indicatorOHNode
+      ];
     }
 
     this.mutate( options );

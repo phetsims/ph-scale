@@ -30,6 +30,7 @@ import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
 import PHModel from '../../model/PHModel.js';
+import GraphIndicatorKeyboardDragListener from './GraphIndicatorKeyboardDragListener.js';
 
 type SelfOptions = {
 
@@ -253,20 +254,26 @@ export default class LogarithmicGraphNode extends Node {
       assert && assert( pHProperty instanceof Property, 'expected pHProperty to be mutable' );
 
       // H3O+ indicator
+      indicatorH3ONode.cursor = 'pointer';
       indicatorH3ONode.addInputListener(
         new GraphIndicatorDragListener( indicatorH3ONode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
-          PHModel.concentrationH3OToPH, PHModel.molesH3OToPH,
-          indicatorH3ONode.tandem.createTandem( 'dragListener' )
+          PHModel.concentrationH3OToPH, PHModel.molesH3OToPH, indicatorH3ONode.tandem.createTandem( 'dragListener' )
         ) );
-      indicatorH3ONode.cursor = 'pointer';
+      indicatorH3ONode.addInputListener(
+        new GraphIndicatorKeyboardDragListener( indicatorH3ONode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
+          PHModel.concentrationH3OToPH, PHModel.molesH3OToPH, indicatorH3ONode.tandem.createTandem( 'keyboardDragListener' )
+        ) );
 
       // OH- indicator
+      indicatorOHNode.cursor = 'pointer';
       indicatorOHNode.addInputListener(
         new GraphIndicatorDragListener( indicatorOHNode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
-          PHModel.concentrationOHToPH, PHModel.molesOHToPH,
-          indicatorOHNode.tandem.createTandem( 'dragListener' )
+          PHModel.concentrationOHToPH, PHModel.molesOHToPH, indicatorOHNode.tandem.createTandem( 'dragListener' )
         ) );
-      indicatorOHNode.cursor = 'pointer';
+      indicatorOHNode.addInputListener(
+        new GraphIndicatorKeyboardDragListener( indicatorOHNode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
+          PHModel.concentrationH3OToPH, PHModel.molesH3OToPH, indicatorOHNode.tandem.createTandem( 'keyboardDragListener' )
+        ) );
 
       // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249
       this.pdomOrder = [

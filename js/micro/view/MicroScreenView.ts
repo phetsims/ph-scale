@@ -151,7 +151,7 @@ export default class MicroScreenView extends ScreenView {
     } );
 
     // Parent for all nodes added to this screen
-    const rootNode = new Node( {
+    const screenViewRootNode = new Node( {
       children: [
         // nodes are rendered in this order
         waterFluidNode,
@@ -173,7 +173,7 @@ export default class MicroScreenView extends ScreenView {
         soluteListParent // last, so that combo box list is on top
       ]
     } );
-    this.addChild( rootNode );
+    this.addChild( screenViewRootNode );
 
     // Layout of nodes that don't have a position specified in the model
     moleculeCountNode.centerX = beakerNode.centerX;

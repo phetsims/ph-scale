@@ -109,7 +109,7 @@ export default class MySolutionScreenView extends ScreenView {
     } );
 
     // Parent for all nodes added to this screen
-    const rootNode = new Node( {
+    const screenViewRootNode = new Node( {
       children: [
         solutionNode,
         pHAccordionBox,
@@ -122,7 +122,7 @@ export default class MySolutionScreenView extends ScreenView {
         resetAllButton
       ]
     } );
-    this.addChild( rootNode );
+    this.addChild( screenViewRootNode );
 
     // Layout of nodes that don't have a position specified in the model
     pHAccordionBox.left = beakerNode.left;

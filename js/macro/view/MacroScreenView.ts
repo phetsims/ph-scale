@@ -120,7 +120,7 @@ export default class MacroScreenView extends ScreenView {
     } );
 
     // Parent for all nodes added to this screen
-    const rootNode = new Node( {
+    const screenViewRootNode = new Node( {
       children: [
         // nodes are rendered in this order
         waterFluidNode,
@@ -139,7 +139,7 @@ export default class MacroScreenView extends ScreenView {
         soluteListParent // last, so that combo box list is on top
       ]
     } );
-    this.addChild( rootNode );
+    this.addChild( screenViewRootNode );
 
     // Layout of nodes that don't have a position specified in the model
     soluteComboBox.left = modelViewTransform.modelToViewX( model.beaker.left ) - 20; // anchor on left so it grows to the right during i18n

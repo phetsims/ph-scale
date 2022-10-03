@@ -28,7 +28,7 @@ import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransfo
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import ProbeNode, { ProbeNodeOptions } from '../../../../scenery-phet/js/ProbeNode.js';
-import { DragListener, Line, LinearGradient, Node, NodeOptions, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
+import { DragListener, KeyboardDragListener, Line, LinearGradient, Node, NodeOptions, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import Dropper from '../../common/model/Dropper.js';
 import Water from '../../common/model/Water.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
@@ -91,10 +91,7 @@ export default class MacroPHMeterNode extends Node {
     const wireNode = new WireNode( meter.probe, scaleNode, probeNode );
 
     // rendering order
-    this.addChild( wireNode );
-    this.addChild( probeNode );
-    this.addChild( scaleNode );
-    this.addChild( pHIndicatorNode );
+    this.children = [ pHIndicatorNode, wireNode, probeNode, scaleNode ];
 
     // vertical position of the indicator
     meter.pHProperty.link( pH => {
@@ -259,6 +256,8 @@ class PHProbeNode extends ProbeNode {
       color: 'rgb( 35, 129, 0 )',
       rotation: Math.PI / 2,
       cursor: 'pointer',
+      tagName: 'div',
+      focusable: true,
       visiblePropertyOptions: {
         phetioReadOnly: true
       },
@@ -275,12 +274,23 @@ class PHProbeNode extends ProbeNode {
     // touch area
     this.touchArea = this.localBounds.dilated( 20 );
 
+    const dragBoundsProperty = new Property( probe.dragBounds );
+
     // drag listener
     this.addInputListener( new DragListener( {
       positionProperty: probe.positionProperty,
-      dragBoundsProperty: new Property( probe.dragBounds ),
+      dragBoundsProperty: dragBoundsProperty,
       transform: modelViewTransform,
       tandem: options.tandem.createTandem( 'dragListener' )
+    } ) );
+
+    this.addInputListener( new KeyboardDragListener( {
+      dragVelocity: 300, // velocity of the Node being dragged, in view coordinates per second
+      shiftDragVelocity: 20, // velocity with the Shift key pressed, typically slower than dragVelocity
+      positionProperty: probe.positionProperty,
+      dragBoundsProperty: dragBoundsProperty,
+      transform: modelViewTransform,
+      tandem: providedOptions.tandem.createTandem( 'keyboardDragListener' )
     } ) );
 
     const isInNode = ( node: Node ) => node.getBounds().containsPoint( probe.positionProperty.value );

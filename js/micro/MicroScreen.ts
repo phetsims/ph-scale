@@ -20,6 +20,7 @@ import PhScaleStrings from '../PhScaleStrings.js';
 import MicroModel from './model/MicroModel.js';
 import MicroScreenView from './view/MicroScreenView.js';
 import PickRequired from '../../../phet-core/js/types/PickRequired.js';
+import MicroKeyboardHelpContent from './view/MicroKeyboardHelpContent.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -41,7 +42,8 @@ class MicroScreen extends Screen<MicroModel, MicroScreenView> {
       navigationBarIcon: new ScreenIcon( new Image( microNavbarIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
-      } )
+      } ),
+      keyboardHelpNode: new MicroKeyboardHelpContent()
     }, providedOptions );
 
     super(

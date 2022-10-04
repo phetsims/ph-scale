@@ -19,6 +19,7 @@ import PHScaleColors from '../common/PHScaleColors.js';
 import phScale from '../phScale.js';
 import PhScaleStrings from '../PhScaleStrings.js';
 import MySolutionModel from './model/MySolutionModel.js';
+import MySolutionKeyboardHelpContent from './view/MySolutionKeyboardHelpContent.js';
 import MySolutionScreenView from './view/MySolutionScreenView.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -41,7 +42,8 @@ export default class MySolutionScreen extends Screen<MySolutionModel, MySolution
       navigationBarIcon: new ScreenIcon( new Image( mySolutionNavbarIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
-      } )
+      } ),
+      keyboardHelpNode: new MySolutionKeyboardHelpContent()
     }, providedOptions );
 
     super(

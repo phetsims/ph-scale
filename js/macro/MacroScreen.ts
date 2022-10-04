@@ -20,6 +20,7 @@ import phScale from '../phScale.js';
 import PhScaleStrings from '../PhScaleStrings.js';
 import MacroModel from './model/MacroModel.js';
 import MacroScreenView from './view/MacroScreenView.js';
+import MacroKeyboardHelpContent from './view/MacroKeyboardHelpContent.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -41,7 +42,8 @@ export default class MacroScreen extends Screen<MacroModel, MacroScreenView> {
       navigationBarIcon: new ScreenIcon( new Image( macroNavbarIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
-      } )
+      } ),
+      keyboardHelpNode: new MacroKeyboardHelpContent()
     }, providedOptions );
 
     super(

@@ -14,12 +14,13 @@ import PhScaleStrings from '../../PhScaleStrings.js';
 import MoveKeyboardHelpContent from '../../common/view/MoveKeyboardHelpContent.js';
 
 export default class MacroKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
+
   public constructor() {
 
     const leftColumn = [
 
       // Move the Dropper
-      new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheDropperStringProperty ),
+      new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheDropperOrPHProbeStringProperty ),
 
       // Choose a Solute
       new ComboBoxKeyboardHelpSection( {

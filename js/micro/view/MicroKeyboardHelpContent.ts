@@ -1,19 +1,45 @@
 // Copyright 2022, University of Colorado Boulder
 
+//TODO https://github.com/phetsims/ph-scale/issues/249 same as MacroKeyboardHelpContent, except for moveTheDropperStringProperty
 /**
  * MicroKeyboardHelpContent is the keyboard-help content for the 'Micro' screen.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { Node, Text } from '../../../../scenery/js/imports.js';
+import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
 import phScale from '../../phScale.js';
+import MoveKeyboardHelpContent from '../../common/view/MoveKeyboardHelpContent.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
+import ComboBoxKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/ComboBoxKeyboardHelpSection.js';
+import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/BasicActionsKeyboardHelpSection.js';
 
-export default class MicroKeyboardHelpContent extends Node {
+export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
+
   public constructor() {
-    super( {
-      children: [ new Text( 'Under Construction' ) ]
-    } );
+
+    const leftColumn = [
+
+      // Move the Dropper
+      new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheDropperStringProperty ),
+
+      // Choose a Solute
+      new ComboBoxKeyboardHelpSection( {
+        headingString: PhScaleStrings.keyboardHelpDialog.chooseASoluteStringProperty,
+        thingAsLowerCaseSingular: PhScaleStrings.keyboardHelpDialog.soluteStringProperty,
+        thingAsLowerCasePlural: PhScaleStrings.keyboardHelpDialog.solutesStringProperty
+      } )
+    ];
+
+    const rightColumn = [
+
+      // Basic Actions
+      new BasicActionsKeyboardHelpSection( {
+        withCheckboxContent: true
+      } )
+    ];
+
+    super( leftColumn, rightColumn );
   }
 }
 

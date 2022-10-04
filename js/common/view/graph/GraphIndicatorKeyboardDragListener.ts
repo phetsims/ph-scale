@@ -53,6 +53,7 @@ export default class GraphIndicatorKeyboardDragListener extends KeyboardDragList
   // Dragging is constrained to up/down, but we want the left/right arrows to do something.
   // For now, override these methods.  Eventually, this will be supported by KeyboardDragListener.
   // See https://github.com/phetsims/scenery/issues/1460
+  //TODO https://github.com/phetsims/ph-scale/issues/249 replace overrides with KeyboardDragListener options
 
   public override upMovementKeysDown(): boolean {
     return this.keyInListDown( [

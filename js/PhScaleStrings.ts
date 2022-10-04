@@ -57,7 +57,8 @@ type StringsType = {
     'soluteStringProperty': LinkableProperty<string>;
     'solutesStringProperty': LinkableProperty<string>;
     'moveTheDropperStringProperty': LinkableProperty<string>;
-    'moveTheDropperOrPHProbeStringProperty': LinkableProperty<string>;
+    'moveThePHProbeStringProperty': LinkableProperty<string>;
+    'moveTheGraphIndicatorsStringProperty': LinkableProperty<string>;
     'moveStringProperty': LinkableProperty<string>;
     'moveSlowerStringProperty': LinkableProperty<string>;
   }

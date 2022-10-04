@@ -104,8 +104,11 @@
   "keyboardHelpDialog.moveTheDropper": {
     "value": "Move the Dropper"
   },
-  "keyboardHelpDialog.moveTheDropperOrPHProbe": {
-    "value": "Move the Dropper or pH Probe"
+  "keyboardHelpDialog.moveThePHProbe": {
+    "value": "Move the pH Probe"
+  },
+  "keyboardHelpDialog.moveTheGraphIndicators": {
+    "value": "Move the Graph Indicators"
   },
   "keyboardHelpDialog.move": {
     "value": "Move"

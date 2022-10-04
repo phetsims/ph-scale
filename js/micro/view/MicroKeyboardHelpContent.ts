@@ -1,6 +1,5 @@
 // Copyright 2022, University of Colorado Boulder
 
-//TODO https://github.com/phetsims/ph-scale/issues/249 same as MacroKeyboardHelpContent, except for moveTheDropperStringProperty
 /**
  * MicroKeyboardHelpContent is the keyboard-help content for the 'Micro' screen.
  *
@@ -21,7 +20,7 @@ export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
     const leftColumn = [
 
       // Move the Dropper
-      new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheDropperStringProperty ),
+      new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheDropperStringProperty, 'leftRight' ),
 
       // Choose a Solute
       new ComboBoxKeyboardHelpSection( {

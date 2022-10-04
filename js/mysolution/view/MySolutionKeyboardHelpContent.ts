@@ -6,14 +6,31 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { Node, Text } from '../../../../scenery/js/imports.js';
+import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
 import phScale from '../../phScale.js';
+import MoveKeyboardHelpContent from '../../common/view/MoveKeyboardHelpContent.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
+import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/BasicActionsKeyboardHelpSection.js';
 
-export default class MySolutionKeyboardHelpContent extends Node {
+export default class MySolutionKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
+
   public constructor() {
-    super( {
-      children: [ new Text( 'Under Construction' ) ]
-    } );
+
+    const leftColumn = [
+
+      // Move the Dropper
+      new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheGraphIndicatorsStringProperty, 'upDown' )
+    ];
+
+    const rightColumn = [
+
+      // Basic Actions
+      new BasicActionsKeyboardHelpSection( {
+        withCheckboxContent: true
+      } )
+    ];
+
+    super( leftColumn, rightColumn );
   }
 }
 

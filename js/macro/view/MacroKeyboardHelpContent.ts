@@ -21,7 +21,7 @@ export default class MacroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
     const leftColumn = [
 
       // Move the pH Probe and Dropper
-      new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveThePHProbeAndDropperStringProperty ),
+      new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveThePHProbeOrDropperStringProperty ),
 
       // Choose a Solute
       new ComboBoxKeyboardHelpSection( {

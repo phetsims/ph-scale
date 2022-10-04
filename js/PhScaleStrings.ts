@@ -52,6 +52,15 @@ type StringsType = {
   'linearStringProperty': LinkableProperty<string>;
   'logarithmicStringProperty': LinkableProperty<string>;
   'offScaleStringProperty': LinkableProperty<string>;
+  'keyboardHelpDialog': {
+    'chooseASoluteStringProperty': LinkableProperty<string>;
+    'soluteStringProperty': LinkableProperty<string>;
+    'solutesStringProperty': LinkableProperty<string>;
+    'moveTheDropperStringProperty': LinkableProperty<string>;
+    'moveTheDropperOrPHProbeStringProperty': LinkableProperty<string>;
+    'moveStringProperty': LinkableProperty<string>;
+    'moveSlowerStringProperty': LinkableProperty<string>;
+  }
 };
 
 const PhScaleStrings = getStringModule( 'PH_SCALE' ) as StringsType;

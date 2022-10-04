@@ -91,5 +91,26 @@
   },
   "offScale": {
     "value": "off scale"
+  },
+  "keyboardHelpDialog.chooseASolute": {
+    "value": "Choose a Solute"
+  },
+  "keyboardHelpDialog.solute": {
+    "value": "solute"
+  },
+  "keyboardHelpDialog.solutes": {
+    "value": "solutes"
+  },
+  "keyboardHelpDialog.moveTheDropper": {
+    "value": "Move the Dropper"
+  },
+  "keyboardHelpDialog.moveTheDropperOrPHProbe": {
+    "value": "Move the Dropper or pH Probe"
+  },
+  "keyboardHelpDialog.move": {
+    "value": "Move"
+  },
+  "keyboardHelpDialog.moveSlower": {
+    "value": "Move slower"
   }
 }

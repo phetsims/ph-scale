@@ -101,11 +101,11 @@
   "keyboardHelpDialog.solutes": {
     "value": "solutes"
   },
+  "keyboardHelpDialog.moveThePHProbeAndDropper": {
+    "value": "Move the pH Probe and Dropper"
+  },
   "keyboardHelpDialog.moveTheDropper": {
     "value": "Move the Dropper"
-  },
-  "keyboardHelpDialog.moveThePHProbe": {
-    "value": "Move the pH Probe"
   },
   "keyboardHelpDialog.moveTheGraphIndicators": {
     "value": "Move the Graph Indicators"

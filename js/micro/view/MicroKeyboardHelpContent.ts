@@ -20,7 +20,7 @@ export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
     const leftColumn = [
 
       // Move the Dropper
-      new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheDropperStringProperty, 'leftRight' ),
+      new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheDropperStringProperty ),
 
       // Choose a Solute
       new ComboBoxKeyboardHelpSection( {

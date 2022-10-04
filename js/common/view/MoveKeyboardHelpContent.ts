@@ -13,11 +13,9 @@ import KeyboardHelpSectionRow from '../../../../scenery-phet/js/keyboard/help/Ke
 import PhScaleStrings from '../../PhScaleStrings.js';
 import phScale from '../../phScale.js';
 
-type ArrowType = 'upDown' | 'leftRight' | 'both';
-
 export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
 
-  public constructor( titleProperty: TReadOnlyProperty<string>, arrowType: ArrowType = 'both' ) {
+  public constructor( titleProperty: TReadOnlyProperty<string> ) {
 
     // arrows or WASD
     const normalRow = KeyboardHelpSectionRow.labelWithIcon( PhScaleStrings.keyboardHelpDialog.moveStringProperty,

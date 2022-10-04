@@ -23,7 +23,7 @@ export default class MacroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
       new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveThePHProbeStringProperty ),
 
       // Move the Dropper
-      new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheDropperStringProperty, 'leftRight' ),
+      new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheDropperStringProperty ),
 
       // Choose a Solute
       new ComboBoxKeyboardHelpSection( {

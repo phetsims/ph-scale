@@ -34,7 +34,8 @@ export default class PHDropperNode extends EyeDropperNode {
       },
       cursor: null,
       tagName: 'div',
-      focusable: true
+      focusable: true,
+      phetioInputEnabledPropertyInstrumented: true
     }, providedOptions );
 
     super( options );
@@ -58,8 +59,7 @@ export default class PHDropperNode extends EyeDropperNode {
       positionProperty: dropper.positionProperty,
       dragBoundsProperty: new Property( dropper.dragBounds ),
       transform: modelViewTransform,
-      tandem: options.tandem.createTandem( 'dragListener' ),
-      phetioEnabledPropertyInstrumented: true
+      tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
 
     this.addInputListener( new PHDropperKeyboardDragListener( {
@@ -68,8 +68,7 @@ export default class PHDropperNode extends EyeDropperNode {
       positionProperty: dropper.positionProperty,
       dragBoundsProperty: new Property( dropper.dragBounds ),
       transform: modelViewTransform,
-      tandem: options.tandem.createTandem( 'keyboardDragListener' ),
-      phetioEnabledPropertyInstrumented: true
+      tandem: options.tandem.createTandem( 'keyboardDragListener' )
     } ) );
   }
 }

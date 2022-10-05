@@ -13,7 +13,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import EyeDropperNode, { EyeDropperNodeOptions } from '../../../../scenery-phet/js/EyeDropperNode.js';
-import { DragListener, KeyboardDragListener, KeyboardDragListenerOptions, KeyboardUtils } from '../../../../scenery/js/imports.js';
+import { DragListener, KeyboardDragListener } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
 import Dropper from '../model/Dropper.js';
 
@@ -62,7 +62,8 @@ export default class PHDropperNode extends EyeDropperNode {
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
 
-    this.addInputListener( new PHDropperKeyboardDragListener( {
+    this.addInputListener( new KeyboardDragListener( {
+      keyboardDragDirection: 'leftRight', // constrained to horizontal dragging
       dragVelocity: 300, // velocity of the Node being dragged, in view coordinates per second
       shiftDragVelocity: 20, // velocity with the Shift key pressed, typically slower than dragVelocity
       positionProperty: dropper.positionProperty,
@@ -70,40 +71,6 @@ export default class PHDropperNode extends EyeDropperNode {
       transform: modelViewTransform,
       tandem: options.tandem.createTandem( 'keyboardDragListener' )
     } ) );
-  }
-}
-
-//TODO https://github.com/phetsims/ph-scale/issues/249 delete this class, replace overrides with KeyboardDragListener options
-class PHDropperKeyboardDragListener extends KeyboardDragListener {
-
-  public constructor( providedOptions?: KeyboardDragListenerOptions ) {
-    super( providedOptions );
-  }
-
-  // Dragging is constrained to up/down, but we want the left/right arrows to do something.
-  // For now, override these methods.  Eventually, this will be supported by KeyboardDragListener.
-  // See https://github.com/phetsims/scenery/issues/1460
-
-  public override leftMovementKeysDown(): boolean {
-    return this.keyInListDown( [
-      KeyboardUtils.KEY_LEFT_ARROW, KeyboardUtils.KEY_DOWN_ARROW,
-      KeyboardUtils.KEY_A, KeyboardUtils.KEY_S
-    ] );
-  }
-
-  public override rightMovementKeysDown(): boolean {
-    return this.keyInListDown( [
-      KeyboardUtils.KEY_RIGHT_ARROW, KeyboardUtils.KEY_UP_ARROW,
-      KeyboardUtils.KEY_W, KeyboardUtils.KEY_D
-    ] );
-  }
-
-  public override upMovementKeysDown(): boolean {
-    return false;
-  }
-
-  public override downMovementKeysDown(): boolean {
-    return false;
   }
 }
 

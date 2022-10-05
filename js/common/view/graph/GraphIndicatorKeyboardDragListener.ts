@@ -6,7 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { KeyboardDragListener, KeyboardUtils, Node } from '../../../../../scenery/js/imports.js';
+import { KeyboardDragListener, Node } from '../../../../../scenery/js/imports.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import GraphUnits from './GraphUnits.js';
@@ -37,6 +37,7 @@ export default class GraphIndicatorKeyboardDragListener extends KeyboardDragList
                       molesToPH: ( moles: number, volume: number ) => PHValue,
                       tandem: Tandem ) {
     super( {
+      keyboardDragDirection: 'upDown', // constrained to vertical dragging
       drag: viewDelta => GraphIndicatorDragListener.doDrag( targetNode.y + viewDelta.y, targetNode, pHProperty,
         totalVolumeProperty.value, graphUnitsProperty.value, yToValue, concentrationToPH, molesToPH ),
 
@@ -48,33 +49,6 @@ export default class GraphIndicatorKeyboardDragListener extends KeyboardDragList
       shiftDragVelocity: 40,
       tandem: tandem
     } );
-  }
-
-  // Dragging is constrained to up/down, but we want the left/right arrows to do something.
-  // For now, override these methods.  Eventually, this will be supported by KeyboardDragListener.
-  // See https://github.com/phetsims/scenery/issues/1460
-  //TODO https://github.com/phetsims/ph-scale/issues/249 replace overrides with KeyboardDragListener options
-
-  public override upMovementKeysDown(): boolean {
-    return this.keyInListDown( [
-      KeyboardUtils.KEY_UP_ARROW, KeyboardUtils.KEY_RIGHT_ARROW,
-      KeyboardUtils.KEY_W, KeyboardUtils.KEY_D
-    ] );
-  }
-
-  public override downMovementKeysDown(): boolean {
-    return this.keyInListDown( [
-      KeyboardUtils.KEY_DOWN_ARROW, KeyboardUtils.KEY_LEFT_ARROW,
-      KeyboardUtils.KEY_A, KeyboardUtils.KEY_S
-    ] );
-  }
-
-  public override leftMovementKeysDown(): boolean {
-    return false;
-  }
-
-  public override rightMovementKeysDown(): boolean {
-    return false;
   }
 }
 

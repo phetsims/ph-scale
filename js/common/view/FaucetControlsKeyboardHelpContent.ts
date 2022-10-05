@@ -13,12 +13,14 @@ import phScale from '../../phScale.js';
 
 //TODO https://github.com/phetsims/scenery-phet/issues/773 i18n, add to scenery-phet-strings_en.json
 const faucetControlsStringProperty = new StringProperty( 'Faucet Controls' );
+const fluidFlowStringProperty = new StringProperty( 'fluid flow' );
 
 export default class FaucetControlsKeyboardHelpContent extends SliderControlsKeyboardHelpSection {
 
   public constructor() {
     super( {
-      headingString: faucetControlsStringProperty
+      headingString: faucetControlsStringProperty,
+      sliderString: fluidFlowStringProperty.value //TODO Property is not supported by SliderControlsKeyboardHelpSection
     } );
   }
 }

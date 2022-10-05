@@ -23,18 +23,18 @@ export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
       // Move the Dropper
       new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheDropperStringProperty ),
 
+      // Faucet Controls
+      new FaucetControlsKeyboardHelpContent()
+    ];
+
+    const rightColumn = [
+
       // Choose a Solute
       new ComboBoxKeyboardHelpSection( {
         headingString: PhScaleStrings.keyboardHelpDialog.chooseASoluteStringProperty,
         thingAsLowerCaseSingular: PhScaleStrings.keyboardHelpDialog.soluteStringProperty,
         thingAsLowerCasePlural: PhScaleStrings.keyboardHelpDialog.solutesStringProperty
-      } )
-    ];
-
-    const rightColumn = [
-
-      // Faucet Controls
-      new FaucetControlsKeyboardHelpContent(),
+      } ),
 
       // Basic Actions
       new BasicActionsKeyboardHelpSection( {

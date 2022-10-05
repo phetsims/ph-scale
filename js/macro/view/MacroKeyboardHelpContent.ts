@@ -23,18 +23,18 @@ export default class MacroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
       // Move the pH Probe and Dropper
       new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveThePHProbeOrDropperStringProperty ),
 
+      // Faucet Controls
+      new FaucetControlsKeyboardHelpContent()
+    ];
+
+    const rightColumn = [
+
       // Choose a Solute
       new ComboBoxKeyboardHelpSection( {
         headingString: PhScaleStrings.keyboardHelpDialog.chooseASoluteStringProperty,
         thingAsLowerCaseSingular: PhScaleStrings.keyboardHelpDialog.soluteStringProperty,
         thingAsLowerCasePlural: PhScaleStrings.keyboardHelpDialog.solutesStringProperty
-      } )
-    ];
-
-    const rightColumn = [
-
-      // Faucet Controls
-      new FaucetControlsKeyboardHelpContent(),
+      } ),
 
       // Basic Actions
       new BasicActionsKeyboardHelpSection( {

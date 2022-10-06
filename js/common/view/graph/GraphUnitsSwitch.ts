@@ -40,7 +40,7 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
     const concentrationStringProperty = new DerivedProperty(
       [ PhScaleStrings.concentrationStringProperty, PhScaleStrings.units.molesPerLiterStringProperty ],
       ( concentrationString, molesPerLiterString ) => `${concentrationString}<br>(${molesPerLiterString})`, {
-        tandem: concentrationTextTandem.createTandem( 'textProperty' ),
+        tandem: concentrationTextTandem.createTandem( 'stringProperty' ),
         phetioValueType: StringIO
       } );
     const concentrationText = new RichText( concentrationStringProperty, {
@@ -52,14 +52,18 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
     } );
 
     // Quantity (mol)
+    const quantityTextTandem = options.tandem.createTandem( 'quantityText' );
     const quantityStringProperty = new DerivedProperty(
       [ PhScaleStrings.quantityStringProperty, PhScaleStrings.units.molesStringProperty ],
-      ( quantityString, molesString ) => `${quantityString}<br>(${molesString})` );
+      ( quantityString, molesString ) => `${quantityString}<br>(${molesString})`, {
+        tandem: quantityTextTandem.createTandem( 'stringProperty' ),
+        phetioValueType: StringIO
+      } );
     const quantityText = new RichText( quantityStringProperty, {
       align: 'center',
       font: PHScaleConstants.AB_SWITCH_FONT,
       maxWidth: 90,
-      tandem: options.tandem.createTandem( 'quantityText' ),
+      tandem: quantityTextTandem,
       phetioVisiblePropertyInstrumented: true
     } );
 

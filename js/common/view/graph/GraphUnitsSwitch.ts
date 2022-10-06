@@ -13,6 +13,7 @@ import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optioni
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import { NodeTranslationOptions, RichText } from '../../../../../scenery/js/imports.js';
 import ABSwitch, { ABSwitchOptions } from '../../../../../sun/js/ABSwitch.js';
+import StringIO from '../../../../../tandem/js/types/StringIO.js';
 import phScale from '../../../phScale.js';
 import PhScaleStrings from '../../../PhScaleStrings.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
@@ -35,14 +36,18 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
     }, provideOptions );
 
     // Concentration (mol/L)
+    const concentrationTextTandem = options.tandem.createTandem( 'concentrationText' );
     const concentrationStringProperty = new DerivedProperty(
       [ PhScaleStrings.concentrationStringProperty, PhScaleStrings.units.molesPerLiterStringProperty ],
-      ( concentrationString, molesPerLiterString ) => `${concentrationString}<br>(${molesPerLiterString})` );
+      ( concentrationString, molesPerLiterString ) => `${concentrationString}<br>(${molesPerLiterString})`, {
+        tandem: concentrationTextTandem.createTandem( 'textProperty' ),
+        phetioValueType: StringIO
+      } );
     const concentrationText = new RichText( concentrationStringProperty, {
       align: 'center',
       font: PHScaleConstants.AB_SWITCH_FONT,
       maxWidth: 125,
-      tandem: options.tandem.createTandem( 'concentrationText' ),
+      tandem: concentrationTextTandem,
       phetioVisiblePropertyInstrumented: true
     } );
 

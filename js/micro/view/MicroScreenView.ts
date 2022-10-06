@@ -195,13 +195,13 @@ export default class MicroScreenView extends ScreenView {
 
     // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249
     screenViewRootNode.pdomOrder = [
-      graphNode,
       pHAccordionBox,
       soluteComboBox,
       dropperNode,
       waterFaucetNode,
       drainFaucetNode,
       beakerControlPanel,
+      graphNode,
       resetAllButton
     ];
   }

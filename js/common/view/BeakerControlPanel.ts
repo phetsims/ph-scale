@@ -80,7 +80,7 @@ class RatioCheckbox extends Checkbox {
         h3o: `<span style="color:${PHScaleColors.H3O_MOLECULES.toCSS()}">${PHScaleConstants.H3O_FORMULA}</span>`,
         oh: `<span style="color:${PHScaleColors.OH_MOLECULES.toCSS()}">${PHScaleConstants.OH_FORMULA}</span>`
       } ), {
-        tandem: tandem.createTandem( 'stringProperty' ),
+        tandem: tandem.createTandem( RichText.STRING_PROPERTY_TANDEM_NAME ),
         phetioValueType: StringIO
       } );
 

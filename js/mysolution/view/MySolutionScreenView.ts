@@ -142,9 +142,9 @@ export default class MySolutionScreenView extends ScreenView {
 
     // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249
     screenViewRootNode.pdomOrder = [
-      graphNode,
       pHAccordionBox,
       beakerControlPanel,
+      graphNode,
       resetAllButton
     ];
   }

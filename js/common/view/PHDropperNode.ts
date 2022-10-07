@@ -33,8 +33,6 @@ export default class PHDropperNode extends EyeDropperNode {
         enabledProperty: dropper.enabledProperty
       },
       cursor: null,
-      tagName: 'div',
-      focusable: true,
       phetioInputEnabledPropertyInstrumented: true
     }, providedOptions );
 

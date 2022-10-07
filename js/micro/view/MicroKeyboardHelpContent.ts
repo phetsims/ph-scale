@@ -8,7 +8,6 @@
 
 import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
 import phScale from '../../phScale.js';
-import MoveKeyboardHelpContent from '../../common/view/MoveKeyboardHelpContent.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import ComboBoxKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/ComboBoxKeyboardHelpSection.js';
 import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/BasicActionsKeyboardHelpSection.js';
@@ -19,9 +18,6 @@ export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
   public constructor() {
 
     const leftColumn = [
-
-      // Move the Dropper
-      new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheDropperStringProperty ),
 
       // Faucet Controls
       new FaucetControlsKeyboardHelpContent()

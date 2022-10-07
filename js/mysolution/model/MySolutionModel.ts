@@ -40,10 +40,6 @@ export default class MySolutionModel implements TModel {
   public reset(): void {
     this.solution.reset();
   }
-
-  public step(): void {
-    // required by TModel
-  }
 }
 
 phScale.register( 'MySolutionModel', MySolutionModel );

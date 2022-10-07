@@ -272,7 +272,7 @@ export default class LogarithmicGraphNode extends Node {
         ) );
       indicatorOHNode.addInputListener(
         new GraphIndicatorKeyboardDragListener( indicatorOHNode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
-          PHModel.concentrationH3OToPH, PHModel.molesH3OToPH, indicatorOHNode.tandem.createTandem( 'keyboardDragListener' )
+          PHModel.concentrationOHToPH, PHModel.molesOHToPH, indicatorOHNode.tandem.createTandem( 'keyboardDragListener' )
         ) );
 
       // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249

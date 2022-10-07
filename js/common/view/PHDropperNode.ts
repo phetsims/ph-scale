@@ -59,6 +59,9 @@ export default class PHDropperNode extends EyeDropperNode {
       transform: modelViewTransform,
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
+
+    // NOTE: Moving the dropper via the keyboard is not necessary.
+    // See https://github.com/phetsims/ph-scale/issues/252
   }
 }
 

@@ -28,7 +28,7 @@ import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransfo
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import ProbeNode, { ProbeNodeOptions } from '../../../../scenery-phet/js/ProbeNode.js';
-import { DragListener, KeyboardDragListener, Line, LinearGradient, Node, NodeOptions, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
+import { DragListener, InteractiveHighlighting, KeyboardDragListener, Line, LinearGradient, Node, NodeOptions, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import Dropper from '../../common/model/Dropper.js';
 import Water from '../../common/model/Water.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
@@ -232,7 +232,7 @@ class ScaleNode extends Node {
 type PHProbeNodeSelfOptions = EmptySelfOptions;
 type PHProbeNodeOptions = PHProbeNodeSelfOptions & PickRequired<ProbeNodeOptions, 'tandem'>;
 
-class PHProbeNode extends ProbeNode {
+class PHProbeNode extends InteractiveHighlighting( ProbeNode ) {
 
   public readonly isInSolution: () => boolean;
   public readonly isInWater: () => boolean;

@@ -16,7 +16,7 @@ import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import ArrowNode from '../../../../../scenery-phet/js/ArrowNode.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
-import { Node, NodeOptions, NodeTranslationOptions, Path, Rectangle, RichText, TColor } from '../../../../../scenery/js/imports.js';
+import { InteractiveHighlighting, Node, NodeOptions, NodeTranslationOptions, Path, Rectangle, RichText, TColor } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
 import PHScaleColors from '../../PHScaleColors.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
@@ -53,7 +53,7 @@ type SelfOptions = {
 
 type GraphIndicatorNodeOptions = SelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'tandem'>;
 
-export default class GraphIndicatorNode extends Node {
+export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) {
 
   public constructor( valueProperty: TReadOnlyProperty<number | null>,
                       moleculeNode: Node,
@@ -215,6 +215,11 @@ export default class GraphIndicatorNode extends Node {
       this.inputEnabledProperty.link( inputEnabled => {
         arrowNode.visible = inputEnabled;
       } );
+    }
+    else {
+
+      // The interactive highlight should only activate for "interactive" components
+      this.interactiveHighlightEnabled = false;
     }
 
     // center value on the background

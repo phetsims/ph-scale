@@ -13,7 +13,7 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import EyeDropperNode, { EyeDropperNodeOptions } from '../../../../scenery-phet/js/EyeDropperNode.js';
-import { DragListener } from '../../../../scenery/js/imports.js';
+import { DragListener, InteractiveHighlighting } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
 import Dropper from '../model/Dropper.js';
 
@@ -21,7 +21,7 @@ type SelfOptions = EmptySelfOptions;
 
 type PHDropperNodeOptions = SelfOptions & PickRequired<EyeDropperNodeOptions, 'tandem' | 'visibleProperty'>;
 
-export default class PHDropperNode extends EyeDropperNode {
+export default class PHDropperNode extends InteractiveHighlighting( EyeDropperNode ) {
 
   public constructor( dropper: Dropper, modelViewTransform: ModelViewTransform2, providedOptions: PHDropperNodeOptions ) {
 

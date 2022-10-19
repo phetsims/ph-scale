@@ -251,7 +251,6 @@ export default class LogarithmicGraphNode extends Node {
     // Add drag handlers for H3O+ and OH-
     if ( isInteractive ) {
       const pHProperty = options.pHProperty as Property<number>;
-      assert && assert( pHProperty instanceof Property, 'expected pHProperty to be mutable' );
 
       // H3O+ indicator
       indicatorH3ONode.cursor = 'pointer';

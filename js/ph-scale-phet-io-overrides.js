@@ -91,9 +91,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.microScreen.model.solution.waterVolumeProperty": {
       "phetioFeatured": true
     },
-    "phScale.microScreen.view.beakerControlPanel.separator.visibleProperty": {
-      "phetioFeatured": true
-    },
     "phScale.microScreen.view.beakerControlPanel.visibleProperty": {
       "phetioFeatured": true
     },
@@ -218,9 +215,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.model.solution.totalVolumeProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.view.beakerControlPanel.separator.visibleProperty": {
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.view.beakerControlPanel.visibleProperty": {

@@ -53,7 +53,7 @@ export default class MoleculeCountNode extends Node {
     const countH3ONode = new AlignBox( new ScientificNotationNode( derivedProperties.numberOfH3OMoleculesProperty, notationOptions ), countsAlignBoxOptions );
     const countOHNode = new AlignBox( new ScientificNotationNode( derivedProperties.numberOfOHMoleculesProperty, notationOptions ), countsAlignBoxOptions );
     const countH2ONode = new AlignBox( new ScientificNotationNode( derivedProperties.numberOfH2OMoleculesProperty,
-      combineOptions<ScientificNotationNodeOptions>( { exponent: 25 }, notationOptions ) ), countsAlignBoxOptions );
+      combineOptions<ScientificNotationNodeOptions>( {}, notationOptions, { exponent: 25 } ) ), countsAlignBoxOptions );
 
     // Add an invisible count to the group, so that we get the correct (maximum) width.
     const invisibleCountNode = new AlignBox( new ScientificNotationNode( new Property( 1e16 ), notationOptions ), countsAlignBoxOptions );
@@ -90,15 +90,12 @@ export default class MoleculeCountNode extends Node {
       cornerRadius: 5,
       backgroundStroke: 'rgb( 200, 200, 200 )'
     };
-    const backgroundH3O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, combineOptions<RectangleOptions>( {
-      fill: PHScaleColors.ACIDIC
-    }, backgroundOptions ) );
-    const backgroundOH = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, combineOptions<RectangleOptions>( {
-      fill: PHScaleColors.BASIC
-    }, backgroundOptions ) );
-    const backgroundH2O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, combineOptions<RectangleOptions>( {
-      fill: PHScaleColors.H2O_BACKGROUND
-    }, backgroundOptions ) );
+    const backgroundH3O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, combineOptions<RectangleOptions>(
+      {}, backgroundOptions, { fill: PHScaleColors.ACIDIC } ) );
+    const backgroundOH = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, combineOptions<RectangleOptions>(
+      {}, backgroundOptions, { fill: PHScaleColors.BASIC } ) );
+    const backgroundH2O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, combineOptions<RectangleOptions>(
+      {}, backgroundOptions, { fill: PHScaleColors.H2O_BACKGROUND } ) );
 
     options.children = [
       backgroundH3O, hboxH3O,

@@ -11,7 +11,7 @@ import phScale from '../../phScale.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import Faucet from '../model/Faucet.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
-import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import { EmptySelfOptions, optionize4 } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 
 // constants
@@ -27,14 +27,13 @@ export default class DrainFaucetNode extends FaucetNode {
 
     const horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.position.x - faucet.pipeMinX ) ) / SCALE;
 
-    const defaultOptions = combineOptions<FaucetNodeOptions>( {}, PHScaleConstants.FAUCET_OPTIONS, {
+    const options = optionize4<DrainFaucetNodeOptions, SelfOptions, FaucetNodeOptions>()( {},
+      PHScaleConstants.FAUCET_OPTIONS, {
 
-      // FaucetNodeOptions
-      horizontalPipeLength: horizontalPipeLength,
-      verticalPipeLength: 5
-    } );
-
-    const options = optionize<DrainFaucetNodeOptions, SelfOptions, FaucetNodeOptions>()( defaultOptions, providedOptions );
+        // FaucetNodeOptions
+        horizontalPipeLength: horizontalPipeLength,
+        verticalPipeLength: 5
+      }, providedOptions );
 
     super( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, options );
 

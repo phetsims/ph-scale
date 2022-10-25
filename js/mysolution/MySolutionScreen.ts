@@ -43,7 +43,7 @@ export default class MySolutionScreen extends Screen<MySolutionModel, MySolution
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),
-      keyboardHelpNode: new MySolutionKeyboardHelpContent()
+      createKeyboardHelpNode: () => new MySolutionKeyboardHelpContent()
     }, providedOptions );
 
     super(

@@ -43,7 +43,7 @@ export default class MacroScreen extends Screen<MacroModel, MacroScreenView> {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),
-      keyboardHelpNode: new MacroKeyboardHelpContent()
+      createKeyboardHelpNode: () => new MacroKeyboardHelpContent()
     }, providedOptions );
 
     super(

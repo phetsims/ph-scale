@@ -15,7 +15,7 @@ import { Color } from '../../../../scenery/js/imports.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import IOType from '../../../../tandem/js/types/IOType.js';
-import NumberIO, { NumberStateObject } from '../../../../tandem/js/types/NumberIO.js';
+import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import ReferenceIO, { ReferenceIOState } from '../../../../tandem/js/types/ReferenceIO.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
@@ -41,7 +41,7 @@ type SelfOptions = {
 export type SoluteOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 type SoluteStateObject = {
-  pH: NumberStateObject;
+  pH: number;
 } & ReferenceIOState;
 
 export default class Solute extends PhetioObject {

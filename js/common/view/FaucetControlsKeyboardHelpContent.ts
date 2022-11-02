@@ -19,8 +19,8 @@ export default class FaucetControlsKeyboardHelpContent extends SliderControlsKey
 
   public constructor() {
     super( {
-      headingString: faucetControlsStringProperty,
-      sliderString: fluidFlowStringProperty.value //TODO Property is not supported by SliderControlsKeyboardHelpSection
+      headingStringProperty: faucetControlsStringProperty,
+      sliderStringProperty: fluidFlowStringProperty
     } );
   }
 }

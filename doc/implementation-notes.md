@@ -13,6 +13,6 @@ Before reading this document, please read:
 All core model computations are
 in [PHModel.ts](https://github.com/phetsims/ph-scale/blob/master/js/common/model/PHModel.ts).
 
-[SolutionDerivedProperties](https://github.com/phetsims/ph-scale/blob/master/js/common/model/SolutionDerivedProperties.ts)
+[SolutionDerivedProperties.ts](https://github.com/phetsims/ph-scale/blob/master/js/common/model/SolutionDerivedProperties.ts)
 models Properties of a solution that are derived from pH and volume. It is separated from the solution model so that it
 can be used in different solution models via composition. Read the documentation for more details.

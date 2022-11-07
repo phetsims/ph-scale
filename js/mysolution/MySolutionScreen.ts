@@ -56,6 +56,11 @@ export default class MySolutionScreen extends Screen<MySolutionModel, MySolution
       options
     );
   }
+
+  public override dispose(): void {
+    assert && assert( false, 'dispose is not supported, exists for the lifetime of the sim' );
+    super.dispose();
+  }
 }
 
 phScale.register( 'MySolutionScreen', MySolutionScreen );

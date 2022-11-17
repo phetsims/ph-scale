@@ -21,7 +21,6 @@
       "adapted-from-phet"
     ],
     "simFeatures": {
-      "supportsInteractiveDescription": true,
       "supportsDynamicLocale": true
     },
     "simulation": true,

@@ -20,7 +20,6 @@ import PhScaleStrings from '../PhScaleStrings.js';
 import MicroModel from './model/MicroModel.js';
 import MicroScreenView from './view/MicroScreenView.js';
 import PickRequired from '../../../phet-core/js/types/PickRequired.js';
-import MicroKeyboardHelpContent from './view/MicroKeyboardHelpContent.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -42,8 +41,9 @@ class MicroScreen extends Screen<MicroModel, MicroScreenView> {
       navigationBarIcon: new ScreenIcon( new Image( microNavbarIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
-      } ),
-      createKeyboardHelpNode: () => new MicroKeyboardHelpContent()
+      } )
+      //TODO https://github.com/phetsims/ph-scale/issues/249 restore when work on alternative input resume
+      // createKeyboardHelpNode: () => new MicroKeyboardHelpContent()
     }, providedOptions );
 
     super(

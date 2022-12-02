@@ -1,4 +1,4 @@
-# pH Scale - model description
+# pH Scale - Model Description
 
 This document is a high-level description of the model used in PhET's _pH Scale_ simulation.
 

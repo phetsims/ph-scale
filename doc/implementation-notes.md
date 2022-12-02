@@ -1,4 +1,4 @@
-# pH Scale - implementation notes
+# pH Scale - Implementation Notes
 
 This document contains notes related to the implementation of pH Scale. 
 This is not an exhaustive description of the implementation.  The intention is 

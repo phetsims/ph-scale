@@ -32,7 +32,7 @@ export default class LinearZoomButtonGroup extends MagnifyingGlassZoomButtonGrou
       }
     }, providedOptions );
 
-    const range = exponentProperty.range!;
+    const range = exponentProperty.range;
     assert && assert( range, 'exponentProperty must have range' );
 
     // For exponent, a smaller value means 'more zoomed in'.
@@ -42,7 +42,7 @@ export default class LinearZoomButtonGroup extends MagnifyingGlassZoomButtonGrou
     const zoomLevelProperty = new NumberProperty( -exponentProperty.value, {
       numberType: 'Integer',
       range: new Range( -range.max, -range.min )
-    } ).asRanged();
+    } );
     zoomLevelProperty.link( zoomLevel => { exponentProperty.value = -zoomLevel; } );
     exponentProperty.link( exponent => { zoomLevelProperty.value = -exponent; } );
 

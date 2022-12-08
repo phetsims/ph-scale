@@ -2,6 +2,7 @@
 
 import Enumeration from '../../../../../phet-core/js/Enumeration.js';
 import EnumerationValue from '../../../../../phet-core/js/EnumerationValue.js';
+import phScale from '../../../phScale.js';
 
 /**
  * Units used on the graph.
@@ -17,3 +18,5 @@ export default class GraphUnits extends EnumerationValue {
 
   public static readonly enumeration = new Enumeration( GraphUnits );
 }
+
+phScale.register( 'GraphUnits', GraphUnits );

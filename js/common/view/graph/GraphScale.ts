@@ -2,6 +2,7 @@
 
 import Enumeration from '../../../../../phet-core/js/Enumeration.js';
 import EnumerationValue from '../../../../../phet-core/js/EnumerationValue.js';
+import phScale from '../../../phScale.js';
 
 /**
  * Type of graph (log or linear).
@@ -17,3 +18,5 @@ export default class GraphScale extends EnumerationValue {
 
   public static readonly enumeration = new Enumeration( GraphScale );
 }
+
+phScale.register( 'GraphScale', GraphScale );

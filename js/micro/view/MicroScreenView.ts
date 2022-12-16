@@ -29,7 +29,7 @@ import DrainFaucetNode from '../../common/view/DrainFaucetNode.js';
 import DropperFluidNode from '../../common/view/DropperFluidNode.js';
 import FaucetFluidNode from '../../common/view/FaucetFluidNode.js';
 import GraphNode from '../../common/view/graph/GraphNode.js';
-import MoleculeCountNode from '../../common/view/MoleculeCountNode.js';
+import ParticleCountsNode from '../../common/view/ParticleCountsNode.js';
 import PHDropperNode from '../../common/view/PHDropperNode.js';
 import MicroPHAccordionBox from './MicroPHAccordionBox.js';
 import PHScaleViewProperties from '../../common/view/PHScaleViewProperties.js';
@@ -102,7 +102,7 @@ export default class MicroScreenView extends ScreenView {
     } );
 
     // 'Particle Counts' representation
-    const particleCountsNode = new MoleculeCountNode( model.solution.derivedProperties, {
+    const particleCountsNode = new ParticleCountsNode( model.solution.derivedProperties, {
       visibleProperty: viewProperties.particleCountsVisibleProperty,
       tandem: options.tandem.createTandem( 'particleCountsNode' )
     } );

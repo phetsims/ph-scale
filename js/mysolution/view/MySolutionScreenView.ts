@@ -23,7 +23,7 @@ import PHScaleConstants from '../../common/PHScaleConstants.js';
 import BeakerControlPanel from '../../common/view/BeakerControlPanel.js';
 import BeakerNode from '../../common/view/BeakerNode.js';
 import GraphNode from '../../common/view/graph/GraphNode.js';
-import MoleculeCountNode from '../../common/view/MoleculeCountNode.js';
+import ParticleCountsNode from '../../common/view/ParticleCountsNode.js';
 import PHScaleViewProperties from '../../common/view/PHScaleViewProperties.js';
 import RatioNode from '../../common/view/RatioNode.js';
 import SolutionNode from '../../common/view/SolutionNode.js';
@@ -69,7 +69,7 @@ export default class MySolutionScreenView extends ScreenView {
     } );
 
     // 'Particle Counts' representation
-    const particleCountsNode = new MoleculeCountNode( model.solution.derivedProperties, {
+    const particleCountsNode = new ParticleCountsNode( model.solution.derivedProperties, {
       visibleProperty: viewProperties.particleCountsVisibleProperty,
       tandem: options.tandem.createTandem( 'particleCountsNode' )
     } );

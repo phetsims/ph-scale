@@ -23,7 +23,7 @@ type SelfOptions = EmptySelfOptions;
 
 type MoleculeCountNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
 
-export default class MoleculeCountNode extends Node {
+export default class ParticleCountsNode extends Node {
 
   public constructor( derivedProperties: SolutionDerivedProperties, providedOptions: MoleculeCountNodeOptions ) {
 
@@ -130,4 +130,4 @@ export default class MoleculeCountNode extends Node {
   }
 }
 
-phScale.register( 'MoleculeCountNode', MoleculeCountNode );
+phScale.register( 'ParticleCountsNode', ParticleCountsNode );

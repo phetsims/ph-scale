@@ -56,7 +56,7 @@ type GraphIndicatorNodeOptions = SelfOptions & NodeTranslationOptions & PickRequ
 export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) {
 
   public constructor( valueProperty: TReadOnlyProperty<number | null>,
-                      moleculeNode: Node,
+                      particleNode: Node,
                       formulaNode: Node,
                       providedOptions: GraphIndicatorNodeOptions ) {
 
@@ -148,19 +148,19 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
     } );
     valueNode.setScaleMagnitude( 0.7 );
 
-    // molecule and formula, scaled to fit available height
-    const moleculeAndFormula = new Node();
-    moleculeAndFormula.addChild( moleculeNode );
-    moleculeAndFormula.addChild( formulaNode );
-    formulaNode.left = moleculeNode.right + options.xSpacing;
-    formulaNode.centerY = moleculeNode.centerY;
-    moleculeAndFormula.setScaleMagnitude( 0.7 );
+    // particle and formula, scaled to fit available height
+    const particleAndFormula = new Node();
+    particleAndFormula.addChild( particleNode );
+    particleAndFormula.addChild( formulaNode );
+    formulaNode.left = particleNode.right + options.xSpacing;
+    formulaNode.centerY = particleNode.centerY;
+    particleAndFormula.setScaleMagnitude( 0.7 );
 
     // rendering order
     this.addChild( backgroundNode );
     this.addChild( valueBackgroundNode );
     this.addChild( valueNode );
-    this.addChild( moleculeAndFormula );
+    this.addChild( particleAndFormula );
 
     // layout, relative to backgroundNode
     if ( options.pointerPosition === 'topRight' || options.pointerPosition === 'bottomRight' ) {
@@ -171,8 +171,8 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
     }
     valueNode.centerY = valueBackgroundNode.centerY;
     valueBackgroundNode.top = backgroundNode.top + options.backgroundYMargin;
-    moleculeAndFormula.centerX = valueBackgroundNode.centerX;
-    moleculeAndFormula.top = valueBackgroundNode.bottom + options.ySpacing;
+    particleAndFormula.centerX = valueBackgroundNode.centerX;
+    particleAndFormula.top = valueBackgroundNode.bottom + options.ySpacing;
 
     if ( options.isInteractive ) {
 
@@ -203,7 +203,7 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
       // set pickable false for nodes that don't need to be interactive, to improve performance.
       valueNode.pickable = false;
       valueBackgroundNode.pickable = false;
-      moleculeAndFormula.pickable = false;
+      particleAndFormula.pickable = false;
 
       // Hide the arrow if the indicator is not pickable.
       // See https://github.com/phetsims/ph-scale/issues/126

@@ -67,13 +67,13 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.microScreen.model.solution.concentrationOHProperty": {
       "phetioFeatured": true
     },
-    "phScale.microScreen.model.solution.numberOfH2OMoleculesProperty": {
+    "phScale.microScreen.model.solution.particleCountH2OProperty": {
       "phetioFeatured": true
     },
-    "phScale.microScreen.model.solution.numberOfH3OMoleculesProperty": {
+    "phScale.microScreen.model.solution.particleCountH3OProperty": {
       "phetioFeatured": true
     },
-    "phScale.microScreen.model.solution.numberOfOHMoleculesProperty": {
+    "phScale.microScreen.model.solution.particleCountOHProperty": {
       "phetioFeatured": true
     },
     "phScale.microScreen.model.solution.pHProperty": {
@@ -175,7 +175,7 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.microScreen.view.ratioNode.ratioProperty": {
       "phetioFeatured": true
     },
-    "phScale.microScreen.view.viewProperties.moleculeCountVisibleProperty": {
+    "phScale.microScreen.view.viewProperties.particleCountsVisibleProperty": {
       "phetioFeatured": true
     },
     "phScale.microScreen.view.viewProperties.ratioVisibleProperty": {
@@ -199,13 +199,13 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.mySolutionScreen.model.solution.concentrationOHProperty": {
       "phetioFeatured": true
     },
-    "phScale.mySolutionScreen.model.solution.numberOfH2OMoleculesProperty": {
+    "phScale.mySolutionScreen.model.solution.particleCountH2OProperty": {
       "phetioFeatured": true
     },
-    "phScale.mySolutionScreen.model.solution.numberOfH3OMoleculesProperty": {
+    "phScale.mySolutionScreen.model.solution.particleCountH3OProperty": {
       "phetioFeatured": true
     },
-    "phScale.mySolutionScreen.model.solution.numberOfOHMoleculesProperty": {
+    "phScale.mySolutionScreen.model.solution.particleCountOHProperty": {
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.model.solution.pHProperty": {
@@ -265,7 +265,7 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.mySolutionScreen.view.ratioNode.ratioProperty": {
       "phetioFeatured": true
     },
-    "phScale.mySolutionScreen.view.viewProperties.moleculeCountVisibleProperty": {
+    "phScale.mySolutionScreen.view.viewProperties.particleCountsVisibleProperty": {
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.view.viewProperties.ratioVisibleProperty": {

@@ -1,7 +1,7 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
 /**
- * OH- (hydroxide) molecule.
+ * OH- (hydroxide) ion
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

@@ -2,7 +2,7 @@
 
 /**
  * SolutionDerivedProperties models the Properties of a solution that are derived from pH and volume, including
- * concentration (mol/L), quantity (mol), and numbers of molecules. This class is separated from the solution
+ * concentration (mol/L), quantity (mol), and numbers of particles. This class is separated from the solution
  * model so that it can be used in different solution models via composition.
  *
  * This sim has different solution models because:
@@ -42,10 +42,10 @@ export default class SolutionDerivedProperties {
   public readonly quantityH3OProperty: TReadOnlyProperty<number> & LinkableElement;
   public readonly quantityOHProperty: TReadOnlyProperty<number> & LinkableElement;
 
-  // The number of H2O, H3O+, and OH- molecules in the solution
-  public readonly numberOfH2OMoleculesProperty: TReadOnlyProperty<number> & LinkableElement;
-  public readonly numberOfH3OMoleculesProperty: TReadOnlyProperty<number> & LinkableElement;
-  public readonly numberOfOHMoleculesProperty: TReadOnlyProperty<number> & LinkableElement;
+  // The number of H2O, H3O+, and OH- particles in the solution
+  public readonly particleCountH2OProperty: TReadOnlyProperty<number> & LinkableElement;
+  public readonly particleCountH3OProperty: TReadOnlyProperty<number> & LinkableElement;
+  public readonly particleCountOHProperty: TReadOnlyProperty<number> & LinkableElement;
 
   public constructor( pHProperty: TReadOnlyProperty<PHValue>,
                       totalVolumeProperty: TReadOnlyProperty<number>,
@@ -113,30 +113,30 @@ export default class SolutionDerivedProperties {
         phetioHighFrequency: true
       } );
 
-    this.numberOfH2OMoleculesProperty = new DerivedProperty(
+    this.particleCountH2OProperty = new DerivedProperty(
       [ this.concentrationH2OProperty, totalVolumeProperty ],
-      ( concentrationH2O, totalVolume ) => PHModel.computeMolecules( concentrationH2O, totalVolume ), {
-        tandem: options.tandem.createTandem( 'numberOfH2OMoleculesProperty' ),
+      ( concentrationH2O, totalVolume ) => PHModel.computeParticleCount( concentrationH2O, totalVolume ), {
+        tandem: options.tandem.createTandem( 'particleCountH2OProperty' ),
         phetioValueType: NumberIO,
         phetioDocumentation: 'number of H<sub>2</sub>O molecules in the solution',
         phetioHighFrequency: true
       } );
 
-    this.numberOfH3OMoleculesProperty = new DerivedProperty(
+    this.particleCountH3OProperty = new DerivedProperty(
       [ this.concentrationH3OProperty, totalVolumeProperty ],
-      ( concentrationH3O, totalVolume ) => PHModel.computeMolecules( concentrationH3O, totalVolume ), {
-        tandem: options.tandem.createTandem( 'numberOfH3OMoleculesProperty' ),
+      ( concentrationH3O, totalVolume ) => PHModel.computeParticleCount( concentrationH3O, totalVolume ), {
+        tandem: options.tandem.createTandem( 'particleCountH3OProperty' ),
         phetioValueType: NumberIO,
-        phetioDocumentation: 'number of H<sub>3</sub>O<sup>+</sup> molecules in the solution',
+        phetioDocumentation: 'number of H<sub>3</sub>O<sup>+</sup> ions in the solution',
         phetioHighFrequency: true
       } );
 
-    this.numberOfOHMoleculesProperty = new DerivedProperty(
+    this.particleCountOHProperty = new DerivedProperty(
       [ this.concentrationOHProperty, totalVolumeProperty ],
-      ( concentrationOH, totalVolume ) => PHModel.computeMolecules( concentrationOH, totalVolume ), {
-        tandem: options.tandem.createTandem( 'numberOfOHMoleculesProperty' ),
+      ( concentrationOH, totalVolume ) => PHModel.computeParticleCount( concentrationOH, totalVolume ), {
+        tandem: options.tandem.createTandem( 'particleCountOHProperty' ),
         phetioValueType: NumberIO,
-        phetioDocumentation: 'number of OH<sup>-</sup> molecules in the solution',
+        phetioDocumentation: 'number of OH<sup>-</sup> ions in the solution',
         phetioHighFrequency: true
       } );
   }

@@ -27,7 +27,7 @@ import Utils from '../../../../dot/js/Utils.js';
 import TModel from '../../../../joist/js/TModel.js';
 
 // constants
-const AVOGADROS_NUMBER = 6.023E23; // number of molecules in one mole of solution
+const AVOGADROS_NUMBER = 6.023E23; // number of particles in one mole of solution
 
 // null means 'no value', typically when we have no solution because the volume is zero.
 export type PHValue = number | null;
@@ -319,9 +319,9 @@ export default class PHModel<T extends Solution> implements TModel {
   }
 
   /**
-   * Computes the number of molecules in solution.
+   * Computes the number of particles in solution.
    */
-  public static computeMolecules( concentration: ConcentrationValue, volume: number ): number {
+  public static computeParticleCount( concentration: ConcentrationValue, volume: number ): number {
     return ( concentration === null ) ? 0 : ( concentration * volume * AVOGADROS_NUMBER );
   }
 

@@ -1,7 +1,7 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
 /**
- * H2O (water) molecule.
+ * H2O (water) molecule
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

@@ -18,7 +18,7 @@ const PHScaleQueryParameters = QueryStringMachine.getAll( {
     public: true
   },
 
-  // Shows the ratio (red/blue molecule counts) in the bottom of the beaker for the 'ratio' view.
+  // Shows the ratio (red/blue particle counts) in the bottom of the beaker for the 'ratio' view.
   // For internal use only.
   showRatio: {
     type: 'flag'

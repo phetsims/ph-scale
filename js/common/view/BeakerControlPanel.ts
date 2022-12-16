@@ -2,7 +2,7 @@
 
 /**
  * Controls for things that you see in the beaker.
- * This includes the 'H3O+/OH- ratio' and 'Molecule count' checkboxes.
+ * This includes the 'H3O+/OH- Ratio' and 'Particle Counts' checkboxes.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -32,7 +32,7 @@ type BeakerControlPanelOptions = SelfOptions & PickRequired<PanelOptions, 'tande
 
 export default class BeakerControlPanel extends Panel {
 
-  public constructor( ratioVisibleProperty: Property<boolean>, moleculeCountVisibleProperty: Property<boolean>,
+  public constructor( ratioVisibleProperty: Property<boolean>, particleCountsVisibleProperty: Property<boolean>,
                       providedOptions: BeakerControlPanelOptions ) {
 
     const options = optionize<BeakerControlPanelOptions, SelfOptions, PanelOptions>()( {
@@ -49,15 +49,15 @@ export default class BeakerControlPanel extends Panel {
     const ratioCheckbox = new RatioCheckbox( ratioVisibleProperty, options.tandem.createTandem( 'ratioCheckbox' ) );
     ratioCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );
 
-    // 'Molecule Count' checkbox
-    const moleculeCountCheckbox = new MoleculeCountCheckbox( moleculeCountVisibleProperty, options.tandem.createTandem( 'moleculeCountCheckbox' ) );
-    moleculeCountCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );
+    // 'Particle Counts' checkbox
+    const particleCountsCheckbox = new ParticleCountsCheckbox( particleCountsVisibleProperty, options.tandem.createTandem( 'particleCountsCheckbox' ) );
+    particleCountsCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );
 
     const content = new VBox( {
       children: [
         ratioCheckbox,
         new HSeparator(),
-        moleculeCountCheckbox
+        particleCountsCheckbox
       ],
       align: 'left',
       spacing: 10
@@ -77,8 +77,8 @@ class RatioCheckbox extends Checkbox {
     const stringProperty = new DerivedProperty(
       [ PhScaleStrings.ratioStringProperty ],
       ( ratioString: string ) => StringUtils.fillIn( `{{h3o}} / {{oh}} ${ratioString} `, {
-        h3o: `<span style="color:${PHScaleColors.H3O_MOLECULES.toCSS()}">${PHScaleConstants.H3O_FORMULA}</span>`,
-        oh: `<span style="color:${PHScaleColors.OH_MOLECULES.toCSS()}">${PHScaleConstants.OH_FORMULA}</span>`
+        h3o: `<span style="color:${PHScaleColors.H3O_PARTICLES.toCSS()}">${PHScaleConstants.H3O_FORMULA}</span>`,
+        oh: `<span style="color:${PHScaleColors.OH_PARTICLES.toCSS()}">${PHScaleConstants.OH_FORMULA}</span>`
       } ), {
         tandem: tandem.createTandem( RichText.STRING_PROPERTY_TANDEM_NAME ),
         phetioValueType: StringIO
@@ -95,18 +95,18 @@ class RatioCheckbox extends Checkbox {
 }
 
 /**
- * 'Molecule Count' checkbox
+ * 'Particle Counts' checkbox
  */
-class MoleculeCountCheckbox extends Checkbox {
+class ParticleCountsCheckbox extends Checkbox {
 
-  public constructor( moleculeCountVisibleProperty: Property<boolean>, tandem: Tandem ) {
+  public constructor( particleCountsVisibleProperty: Property<boolean>, tandem: Tandem ) {
 
-    const text = new Text( PhScaleStrings.moleculeCountStringProperty, {
+    const text = new Text( PhScaleStrings.particleCountsStringProperty, {
       font: FONT,
       tandem: tandem.createTandem( 'text' )
     } );
 
-    super( moleculeCountVisibleProperty, text, {
+    super( particleCountsVisibleProperty, text, {
       tandem: tandem
     } );
   }

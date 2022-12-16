@@ -1,7 +1,7 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
 /**
- * H3O+ (hydronium) molecule.
+ * H3O+ (hydronium) ion
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

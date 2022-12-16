@@ -1,7 +1,7 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
 /**
- * Displays the number of molecules in the beaker.
+ * Displays the number of particles in the beaker.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -30,7 +30,7 @@ export default class MoleculeCountNode extends Node {
     const options = optionize<MoleculeCountNodeOptions, SelfOptions, NodeOptions>()( {
 
       // NodeOptions
-      phetioDocumentation: 'displays the number of molecules in the solution'
+      phetioDocumentation: 'displays the number of particles (ions and molecules) in the solution'
     }, providedOptions );
 
     // margins and spacing
@@ -50,16 +50,16 @@ export default class MoleculeCountNode extends Node {
       xAlign: 'right',
       yAlign: 'center'
     };
-    const countH3ONode = new AlignBox( new ScientificNotationNode( derivedProperties.numberOfH3OMoleculesProperty, notationOptions ), countsAlignBoxOptions );
-    const countOHNode = new AlignBox( new ScientificNotationNode( derivedProperties.numberOfOHMoleculesProperty, notationOptions ), countsAlignBoxOptions );
-    const countH2ONode = new AlignBox( new ScientificNotationNode( derivedProperties.numberOfH2OMoleculesProperty,
+    const countH3ONode = new AlignBox( new ScientificNotationNode( derivedProperties.particleCountH3OProperty, notationOptions ), countsAlignBoxOptions );
+    const countOHNode = new AlignBox( new ScientificNotationNode( derivedProperties.particleCountOHProperty, notationOptions ), countsAlignBoxOptions );
+    const countH2ONode = new AlignBox( new ScientificNotationNode( derivedProperties.particleCountH2OProperty,
       combineOptions<ScientificNotationNodeOptions>( {}, notationOptions, { exponent: 25 } ) ), countsAlignBoxOptions );
 
     // Add an invisible count to the group, so that we get the correct (maximum) width.
     const invisibleCountNode = new AlignBox( new ScientificNotationNode( new Property( 1e16 ), notationOptions ), countsAlignBoxOptions );
     invisibleCountNode.visible = false;
 
-    // molecule icons
+    // particle icons
     const iconsAlignBoxOptions: AlignBoxOptions = {
       group: new AlignGroup(),
       xAlign: 'center',
@@ -116,16 +116,16 @@ export default class MoleculeCountNode extends Node {
     hboxH2O.center = backgroundH2O.center;
 
     // Links to the count Properties
-    this.addLinkedElement( derivedProperties.numberOfH3OMoleculesProperty, {
-      tandem: options.tandem.createTandem( 'numberOfH3OMoleculesProperty' )
+    this.addLinkedElement( derivedProperties.particleCountH3OProperty, {
+      tandem: options.tandem.createTandem( 'particleCountH3OProperty' )
     } );
 
-    this.addLinkedElement( derivedProperties.numberOfOHMoleculesProperty, {
-      tandem: options.tandem.createTandem( 'numberOfOHMoleculesProperty' )
+    this.addLinkedElement( derivedProperties.particleCountOHProperty, {
+      tandem: options.tandem.createTandem( 'particleCountOHProperty' )
     } );
 
-    this.addLinkedElement( derivedProperties.numberOfH2OMoleculesProperty, {
-      tandem: options.tandem.createTandem( 'numberOfH2OMoleculesProperty' )
+    this.addLinkedElement( derivedProperties.particleCountH2OProperty, {
+      tandem: options.tandem.createTandem( 'particleCountH2OProperty' )
     } );
   }
 }

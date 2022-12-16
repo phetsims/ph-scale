@@ -68,16 +68,16 @@ export default class MySolutionScreenView extends ScreenView {
       tandem: options.tandem.createTandem( 'ratioNode' )
     } );
 
-    // 'molecule count' representation
-    const moleculeCountNode = new MoleculeCountNode( model.solution.derivedProperties, {
-      visibleProperty: viewProperties.moleculeCountVisibleProperty,
-      tandem: options.tandem.createTandem( 'moleculeCountNode' )
+    // 'Particle Counts' representation
+    const particleCountsNode = new MoleculeCountNode( model.solution.derivedProperties, {
+      visibleProperty: viewProperties.particleCountsVisibleProperty,
+      tandem: options.tandem.createTandem( 'particleCountsNode' )
     } );
 
     // beaker controls
     const beakerControlPanel = new BeakerControlPanel(
       viewProperties.ratioVisibleProperty,
-      viewProperties.moleculeCountVisibleProperty, {
+      viewProperties.particleCountsVisibleProperty, {
         maxWidth: 0.85 * beakerNode.width,
         tandem: options.tandem.createTandem( 'beakerControlPanel' )
       } );
@@ -115,7 +115,7 @@ export default class MySolutionScreenView extends ScreenView {
         pHAccordionBox,
         ratioNode,
         beakerNode,
-        moleculeCountNode,
+        particleCountsNode,
         volumeIndicatorNode,
         beakerControlPanel,
         graphNode,
@@ -127,8 +127,8 @@ export default class MySolutionScreenView extends ScreenView {
     // Layout of nodes that don't have a position specified in the model
     pHAccordionBox.left = beakerNode.left;
     pHAccordionBox.top = pHAccordionBoxTop;
-    moleculeCountNode.centerX = beakerNode.centerX;
-    moleculeCountNode.bottom = beakerNode.bottom - 25;
+    particleCountsNode.centerX = beakerNode.centerX;
+    particleCountsNode.bottom = beakerNode.bottom - 25;
 
     beakerControlPanel.boundsProperty.link( bounds => {
       beakerControlPanel.centerX = beakerNode.centerX;

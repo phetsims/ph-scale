@@ -47,7 +47,7 @@ type StringsType = {
   'neutralStringProperty': LinkableProperty<string>;
   'concentrationStringProperty': LinkableProperty<string>;
   'quantityStringProperty': LinkableProperty<string>;
-  'moleculeCountStringProperty': LinkableProperty<string>;
+  'particleCountsStringProperty': LinkableProperty<string>;
   'ratioStringProperty': LinkableProperty<string>;
   'linearStringProperty': LinkableProperty<string>;
   'logarithmicStringProperty': LinkableProperty<string>;

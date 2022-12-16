@@ -14,7 +14,7 @@ import phScale from '../../phScale.js';
 export default class PHScaleViewProperties {
 
   public readonly ratioVisibleProperty: Property<boolean>;
-  public readonly moleculeCountVisibleProperty: Property<boolean>;
+  public readonly particleCountsVisibleProperty: Property<boolean>;
 
   public constructor( tandem: Tandem ) {
 
@@ -23,15 +23,15 @@ export default class PHScaleViewProperties {
       phetioDocumentation: 'controls visibility of the H3O+/OH- Ratio view'
     } );
 
-    this.moleculeCountVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'moleculeCountVisibleProperty' ),
-      phetioDocumentation: 'controls visibility of the Molecule Count view'
+    this.particleCountsVisibleProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'particleCountsVisibleProperty' ),
+      phetioDocumentation: 'controls visibility of the Particle Counts view'
     } );
   }
 
   public reset(): void {
     this.ratioVisibleProperty.reset();
-    this.moleculeCountVisibleProperty.reset();
+    this.particleCountsVisibleProperty.reset();
   }
 }
 

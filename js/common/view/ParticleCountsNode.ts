@@ -1,7 +1,13 @@
 // Copyright 2013-2022, University of Colorado Boulder
 
 /**
- * Displays the number of particles in the beaker.
+ * ParticleCountsNode displays a count for each type of particle in the beaker.
+ *
+ * NOTE: Prior to 12/15/2022, this class was named MoleculeCountNode. We discovered that 'molecule' was incorrect
+ * terminology here, because a molecule is neutral. While H2O is indeed a molecule, H3O+ and OH+ are charged
+ * and should be referred to as ions. Since 'particles can be atoms, molecules or ions', we chose the term
+ * 'particle' because we are displaying counts for both molecules and ions. This terminology change was made
+ * throughout the sim where appropriate. More at https://github.com/phetsims/ph-scale/issues/258
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

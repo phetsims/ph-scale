@@ -21,13 +21,13 @@ import OHNode from './molecules/OHNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type MoleculeCountNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
+type ParticleCountsNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem' | 'visibleProperty'>;
 
 export default class ParticleCountsNode extends Node {
 
-  public constructor( derivedProperties: SolutionDerivedProperties, providedOptions: MoleculeCountNodeOptions ) {
+  public constructor( derivedProperties: SolutionDerivedProperties, providedOptions: ParticleCountsNodeOptions ) {
 
-    const options = optionize<MoleculeCountNodeOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<ParticleCountsNodeOptions, SelfOptions, NodeOptions>()( {
 
       // NodeOptions
       phetioDocumentation: 'displays the number of particles (ions and molecules) in the solution'

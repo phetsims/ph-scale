@@ -21,9 +21,9 @@ import { AlignBox, AlignBoxOptions, AlignGroup, HBox, Node, NodeOptions, Rectang
 import phScale from '../../phScale.js';
 import SolutionDerivedProperties from '../model/SolutionDerivedProperties.js';
 import PHScaleColors from '../PHScaleColors.js';
-import H2ONode from './molecules/H2ONode.js';
-import H3ONode from './molecules/H3ONode.js';
-import OHNode from './molecules/OHNode.js';
+import H2ONode from './particles/H2ONode.js';
+import H3ONode from './particles/H3ONode.js';
+import OHNode from './particles/OHNode.js';
 
 type SelfOptions = EmptySelfOptions;
 

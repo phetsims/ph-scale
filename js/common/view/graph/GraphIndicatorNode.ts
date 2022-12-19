@@ -20,9 +20,9 @@ import { InteractiveHighlighting, Node, NodeOptions, NodeTranslationOptions, Pat
 import phScale from '../../../phScale.js';
 import PHScaleColors from '../../PHScaleColors.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
-import H2ONode from '../molecules/H2ONode.js';
-import H3ONode from '../molecules/H3ONode.js';
-import OHNode from '../molecules/OHNode.js';
+import H2ONode from '../particles/H2ONode.js';
+import H3ONode from '../particles/H3ONode.js';
+import OHNode from '../particles/OHNode.js';
 
 // constants
 const POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute width of the pointy part of the indicator

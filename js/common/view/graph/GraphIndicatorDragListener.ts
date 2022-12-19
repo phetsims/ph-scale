@@ -28,6 +28,7 @@ export default class GraphIndicatorDragListener extends DragListener {
    * @param yToValue - converts a y view coordinate to a model value
    * @param concentrationToPH - converts concentration to pH
    * @param molesToPH - converts moles + volume to pH
+   * @param startCallback - called when drag starts
    * @param tandem
    */
   public constructor( targetNode: Node,
@@ -37,6 +38,7 @@ export default class GraphIndicatorDragListener extends DragListener {
                       yToValue: ( y: number ) => number,
                       concentrationToPH: ( concentration: ConcentrationValue ) => PHValue,
                       molesToPH: ( moles: number, volume: number ) => PHValue,
+                      startCallback: () => void,
                       tandem: Tandem ) {
 
     let clickYOffset: number; // y-offset between initial click and indicator's origin
@@ -47,6 +49,7 @@ export default class GraphIndicatorDragListener extends DragListener {
 
       // Record the offset between the pointer and the indicator's origin.
       start: event => {
+        startCallback();
         clickYOffset = targetNode.globalToParentPoint( event.pointer.point ).y - targetNode.y;
       },
 

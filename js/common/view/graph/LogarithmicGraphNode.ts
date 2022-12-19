@@ -23,13 +23,12 @@ import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import { Font, Line, LinearGradient, Node, NodeOptions, NodeTranslationOptions, Rectangle, RichText, TColor } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
-import { PHValue } from '../../model/PHModel.js';
+import PHModel, { PHValue } from '../../model/PHModel.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
-import PHModel from '../../model/PHModel.js';
 import GraphIndicatorKeyboardDragListener from './GraphIndicatorKeyboardDragListener.js';
 
 type SelfOptions = {
@@ -256,7 +255,9 @@ export default class LogarithmicGraphNode extends Node {
       indicatorH3ONode.cursor = 'pointer';
       indicatorH3ONode.addInputListener(
         new GraphIndicatorDragListener( indicatorH3ONode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
-          PHModel.concentrationH3OToPH, PHModel.molesH3OToPH, indicatorH3ONode.tandem.createTandem( 'dragListener' )
+          PHModel.concentrationH3OToPH, PHModel.molesH3OToPH,
+          () => indicatorOHNode.interruptSubtreeInput(), // dragging is mutually exclusive, see https://github.com/phetsims/ph-scale/issues/261
+          indicatorH3ONode.tandem.createTandem( 'dragListener' )
         ) );
       indicatorH3ONode.addInputListener(
         new GraphIndicatorKeyboardDragListener( indicatorH3ONode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
@@ -267,11 +268,14 @@ export default class LogarithmicGraphNode extends Node {
       indicatorOHNode.cursor = 'pointer';
       indicatorOHNode.addInputListener(
         new GraphIndicatorDragListener( indicatorOHNode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
-          PHModel.concentrationOHToPH, PHModel.molesOHToPH, indicatorOHNode.tandem.createTandem( 'dragListener' )
+          PHModel.concentrationOHToPH, PHModel.molesOHToPH,
+          () => indicatorH3ONode.interruptSubtreeInput(), // dragging is mutually exclusive, see https://github.com/phetsims/ph-scale/issues/261
+          indicatorOHNode.tandem.createTandem( 'dragListener' )
         ) );
       indicatorOHNode.addInputListener(
         new GraphIndicatorKeyboardDragListener( indicatorOHNode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
-          PHModel.concentrationOHToPH, PHModel.molesOHToPH, indicatorOHNode.tandem.createTandem( 'keyboardDragListener' )
+          PHModel.concentrationOHToPH, PHModel.molesOHToPH,
+          indicatorOHNode.tandem.createTandem( 'keyboardDragListener' )
         ) );
 
       // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249

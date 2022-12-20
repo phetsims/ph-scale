@@ -91,7 +91,7 @@ export default class MacroPHMeterNode extends Node {
     const wireNode = new WireNode( meter.probe, scaleNode, probeNode );
 
     // rendering order
-    this.children = [ pHIndicatorNode, wireNode, probeNode, scaleNode ];
+    this.children = [ wireNode, probeNode, scaleNode, pHIndicatorNode ];
 
     // vertical position of the indicator
     meter.pHProperty.link( pH => {
@@ -350,9 +350,7 @@ class PHIndicatorNode extends Node {
 
   public constructor( pHProperty: Property<PHValue>, scaleWidth: number, providedOptions: PHIndicatorNodeOptions ) {
 
-    const options = providedOptions;
-
-    super( options );
+    const options = optionize<PHIndicatorNodeOptions, PHIndicatorNodeSelfOptions, NodeOptions>()( {}, providedOptions );
 
     // dashed line that extends across the scale
     const lineNode = new Line( 0, 0, scaleWidth, 0, {
@@ -420,14 +418,6 @@ class PHIndicatorNode extends Node {
       .close();
     const arrowNode = new Path( arrowShape, { fill: 'black' } );
 
-    // rendering order
-    this.addChild( arrowNode );
-    this.addChild( backgroundRectangle );
-    this.addChild( highlight );
-    this.addChild( pHText );
-    this.addChild( numberDisplay );
-    this.addChild( lineNode );
-
     // layout, origin at arrow tip
     lineNode.left = 0;
     lineNode.centerY = 0;
@@ -436,6 +426,17 @@ class PHIndicatorNode extends Node {
     backgroundRectangle.left = arrowNode.right - 1; // overlap to hide seam
     backgroundRectangle.centerY = arrowNode.centerY;
     highlight.center = backgroundRectangle.center;
+
+    options.children = [
+      arrowNode,
+      backgroundRectangle,
+      highlight,
+      pHText,
+      numberDisplay,
+      lineNode
+    ];
+
+    super( options );
 
     pHText.boundsProperty.link( bounds => {
       pHText.centerX = backgroundRectangle.centerX;

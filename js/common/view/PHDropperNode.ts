@@ -57,7 +57,8 @@ export default class PHDropperNode extends InteractiveHighlighting( EyeDropperNo
       positionProperty: dropper.positionProperty,
       dragBoundsProperty: new Property( dropper.dragBounds ),
       transform: modelViewTransform,
-      tandem: options.tandem.createTandem( 'dragListener' )
+      tandem: options.tandem.createTandem( 'dragListener' ),
+      phetioEnabledPropertyInstrumented: true // see https://github.com/phetsims/ph-scale/issues/263
     } ) );
 
     // NOTE: Moving the dropper via the keyboard is not necessary.

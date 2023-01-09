@@ -14,8 +14,8 @@ import phScale from '../../phScale.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 
 type SelfOptions = {
-  volume: number; // L
-  size: Dimension2;
+  volume?: number; // L
+  size?: Dimension2;
 };
 
 type BeakerOptions = SelfOptions;

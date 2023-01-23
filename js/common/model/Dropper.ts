@@ -38,7 +38,7 @@ export default class Dropper extends PHMovable {
   // See https://github.com/phetsims/ph-scale/issues/178
   public readonly visibleProperty: Property<boolean>;
 
-  public constructor( solute: Solute, position: Vector2, dragBounds: Bounds2, providedOptions: DropperOptions ) {
+  public constructor( solute: Solute, solutes: Solute[], position: Vector2, dragBounds: Bounds2, providedOptions: DropperOptions ) {
 
     const options = optionize<DropperOptions, SelfOptions, PHMovableOptions>()( {
 
@@ -59,6 +59,7 @@ export default class Dropper extends PHMovable {
     super( position, dragBounds, options );
 
     this.soluteProperty = new Property( solute, {
+      validValues: solutes,
       tandem: options.tandem.createTandem( 'soluteProperty' ),
       phetioValueType: Solute.SoluteIO,
       phetioDocumentation: 'the solute dispensed by the dropper'

@@ -25,7 +25,7 @@ type SoluteComboBoxOptions = SelfOptions &
 export default class SoluteComboBox extends ComboBox<Solute> {
 
   public constructor( selectedSoluteProperty: Property<Solute>,
-                      solutes: Solute[], soluteListParent: Node,
+                      soluteListParent: Node,
                       providedOptions: SoluteComboBoxOptions ) {
 
     const options = optionize<SoluteComboBoxOptions, SelfOptions, ComboBoxOptions>()( {
@@ -40,6 +40,9 @@ export default class SoluteComboBox extends ComboBox<Solute> {
     }, providedOptions );
 
     const items: ComboBoxItem<Solute>[] = [];
+
+    const solutes = selectedSoluteProperty.validValues!;
+    assert && assert( solutes );
 
     // Create items for the listbox
     solutes.forEach( solute => {

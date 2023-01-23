@@ -100,7 +100,7 @@ export default class PHModel<T extends Solution> implements TModel {
     this.beaker = new Beaker( PHScaleConstants.BEAKER_POSITION );
 
     const yDropper = this.beaker.position.y - this.beaker.size.height - 15;
-    this.dropper = new Dropper( Solute.WATER,
+    this.dropper = new Dropper( Solute.WATER, this.solutes,
       new Vector2( this.beaker.position.x - 50, yDropper ),
       new Bounds2( this.beaker.left + 40, yDropper, this.beaker.right - 200, yDropper ), {
         tandem: options.tandem.createTandem( 'dropper' )

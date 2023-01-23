@@ -9,11 +9,11 @@
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import optionize from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import phScale from '../../phScale.js';
-import PHMovable, { PHMovableOptions } from './PHMovable.js';
 import Solute from './Solute.js';
 
 type SelfOptions = {
@@ -25,10 +25,11 @@ type SelfOptions = {
   visible?: boolean; // is the dropper visible?
 };
 
-type DropperOptions = SelfOptions & PHMovableOptions;
+type DropperOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-export default class Dropper extends PHMovable {
+export default class Dropper {
 
+  public readonly position: Vector2;
   public readonly soluteProperty: Property<Solute>;
   public readonly flowRateProperty: Property<number>;
   public readonly isDispensingProperty: Property<boolean>;
@@ -38,9 +39,9 @@ export default class Dropper extends PHMovable {
   // See https://github.com/phetsims/ph-scale/issues/178
   public readonly visibleProperty: Property<boolean>;
 
-  public constructor( solute: Solute, solutes: Solute[], position: Vector2, dragBounds: Bounds2, providedOptions: DropperOptions ) {
+  public constructor( solute: Solute, solutes: Solute[], position: Vector2, providedOptions: DropperOptions ) {
 
-    const options = optionize<DropperOptions, SelfOptions, PHMovableOptions>()( {
+    const options = optionize<DropperOptions, SelfOptions>()( {
 
       // SelfOptions
       flowRate: 0,
@@ -48,15 +49,10 @@ export default class Dropper extends PHMovable {
       dispensing: false,
       empty: false,
       enabled: true,
-      visible: true,
-
-      // PHMovableOptions
-      positionPropertyOptions: {
-        phetioHighFrequency: true
-      }
+      visible: true
     }, providedOptions );
 
-    super( position, dragBounds, options );
+    this.position = position;
 
     this.soluteProperty = new Property( solute, {
       validValues: solutes,
@@ -105,8 +101,7 @@ export default class Dropper extends PHMovable {
     } );
   }
 
-  public override reset(): void {
-    super.reset();
+  public reset(): void {
     this.soluteProperty.reset();
     this.isDispensingProperty.reset();
     this.enabledProperty.reset();

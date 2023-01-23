@@ -7,7 +7,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Bounds2 from '../../../../dot/js/Bounds2.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PHModel, { PHModelOptions } from '../../common/model/PHModel.js';
@@ -32,10 +31,6 @@ export default class MicroModel extends PHModel<MicroSolution> {
     }, providedOptions );
 
     super( options );
-
-    // adjust the drag bounds of the dropper to account for different user-interface constraints
-    const yDropper = this.dropper.positionProperty.value.y;
-    this.dropper.dragBounds = new Bounds2( this.beaker.left + 120, yDropper, this.beaker.right - 170, yDropper );
   }
 }
 

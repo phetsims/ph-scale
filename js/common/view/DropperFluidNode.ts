@@ -29,16 +29,15 @@ export default class DropperFluidNode extends Rectangle {
 
       // shape
       if ( dropper.flowRateProperty.value > 0 ) {
-        this.setRect( -tipWidth / 2, 0, tipWidth, beaker.position.y - dropper.positionProperty.value.y );
+        this.setRect( -tipWidth / 2, 0, tipWidth, beaker.position.y - dropper.position.y );
       }
       else {
         this.setRect( 0, 0, 0, 0 );
       }
 
       // move this node to the dropper's position
-      this.translation = modelViewTransform.modelToViewPosition( dropper.positionProperty.value );
+      this.translation = modelViewTransform.modelToViewPosition( dropper.position );
     };
-    dropper.positionProperty.link( updateShapeAndPosition );
     dropper.flowRateProperty.link( updateShapeAndPosition );
 
     // set color to match solute

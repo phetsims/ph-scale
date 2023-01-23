@@ -8,7 +8,6 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -100,11 +99,9 @@ export default class PHModel<T extends Solution> implements TModel {
     this.beaker = new Beaker( PHScaleConstants.BEAKER_POSITION );
 
     const yDropper = this.beaker.position.y - this.beaker.size.height - 15;
-    this.dropper = new Dropper( Solute.WATER, this.solutes,
-      new Vector2( this.beaker.position.x - 50, yDropper ),
-      new Bounds2( this.beaker.left + 40, yDropper, this.beaker.right - 200, yDropper ), {
-        tandem: options.tandem.createTandem( 'dropper' )
-      } );
+    this.dropper = new Dropper( Solute.WATER, this.solutes, new Vector2( this.beaker.position.x - 50, yDropper ), {
+      tandem: options.tandem.createTandem( 'dropper' )
+    } );
 
     this.solution = options.createSolution( this.dropper.soluteProperty, this.beaker.volume,
       options.tandem.createTandem( 'solution' ) );

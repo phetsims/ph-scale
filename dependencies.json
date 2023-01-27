@@ -49,8 +49,8 @@
     "branch": "master"
   },
   "phet-io-sim-specific": {
-    "sha": "dd82e7709eca27d13debbd4894ebdf40dcd59205",
-    "branch": "master"
+    "sha": "beb3b05b3b58caa24ea3b70d8eafed6ce305475b",
+    "branch": "ph-scale-1.6"
   },
   "phet-io-wrappers": {
     "sha": "831c7320bceaf40903d576c6466e0a6e14eb5e73",

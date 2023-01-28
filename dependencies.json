@@ -49,7 +49,7 @@
     "branch": "master"
   },
   "phet-io-sim-specific": {
-    "sha": "beb3b05b3b58caa24ea3b70d8eafed6ce305475b",
+    "sha": "3896a99db8a1236790eaa1eba0b62e8bd595fce6",
     "branch": "HEAD"
   },
   "phet-io-wrappers": {

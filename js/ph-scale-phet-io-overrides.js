@@ -145,18 +145,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.microScreen.view.graphNode.linearGraphNode.zoomButtonGroup.visibleProperty": {
       "phetioFeatured": true
     },
-    "phScale.microScreen.view.graphNode.linearGraphNode.zoomButtonGroup.zoomInButton.enabledProperty": {
-      "phetioFeatured": false
-    },
-    "phScale.microScreen.view.graphNode.linearGraphNode.zoomButtonGroup.zoomInButton.visibleProperty": {
-      "phetioFeatured": false
-    },
-    "phScale.microScreen.view.graphNode.linearGraphNode.zoomButtonGroup.zoomOutButton.enabledProperty": {
-      "phetioFeatured": false
-    },
-    "phScale.microScreen.view.graphNode.linearGraphNode.zoomButtonGroup.zoomOutButton.visibleProperty": {
-      "phetioFeatured": false
-    },
     "phScale.microScreen.view.graphNode.logarithmicGraphNode.indicatorH2ONode.visibleProperty": {
       "phetioFeatured": true
     },

@@ -12,11 +12,10 @@ import phScale from '../../phScale.js';
 import { PHValue } from '../../common/model/PHModel.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import { LinkableElement } from '../../../../tandem/js/PhetioObject.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import LinkableReadOnlyProperty from '../../../../axon/js/LinkableReadOnlyProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -29,7 +28,7 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
    * @param probeYOffset - distance from top of meter to tip of probe, in view coordinate frame
    * @param [providedOptions]
    */
-  public constructor( pHProperty: TReadOnlyProperty<PHValue> & LinkableElement,
+  public constructor( pHProperty: LinkableReadOnlyProperty<PHValue>,
                       probeYOffset: number,
                       providedOptions: MicroPHAccordionBoxOptions ) {
 

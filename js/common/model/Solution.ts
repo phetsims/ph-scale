@@ -14,7 +14,7 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { Color } from '../../../../scenery/js/imports.js';
-import PhetioObject, { LinkableElement, PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
+import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import { PHValue } from './PHModel.js';
@@ -23,6 +23,7 @@ import Water from './Water.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import phScale from '../../phScale.js';
 import PHModel from './PHModel.js';
+import LinkableReadOnlyProperty from '../../../../axon/js/LinkableReadOnlyProperty.js';
 
 // constants
 const MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );
@@ -41,7 +42,7 @@ export default class Solution extends PhetioObject {
   public readonly soluteVolumeProperty: Property<number>;
   public readonly waterVolumeProperty: Property<number>;
   public readonly totalVolumeProperty: TReadOnlyProperty<number>;
-  public readonly pHProperty: TReadOnlyProperty<PHValue> & LinkableElement;
+  public readonly pHProperty: LinkableReadOnlyProperty<PHValue>;
   public readonly colorProperty: TReadOnlyProperty<Color>;
   public readonly maxVolume: number;
 

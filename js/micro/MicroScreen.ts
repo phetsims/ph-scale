@@ -25,7 +25,7 @@ type SelfOptions = EmptySelfOptions;
 
 type MicroScreenOptions = SelfOptions & PickRequired<ScreenOptions, 'tandem'>;
 
-class MicroScreen extends Screen<MicroModel, MicroScreenView> {
+export default class MicroScreen extends Screen<MicroModel, MicroScreenView> {
 
   public constructor( providedOptions: MicroScreenOptions ) {
 
@@ -59,4 +59,3 @@ class MicroScreen extends Screen<MicroModel, MicroScreenView> {
 }
 
 phScale.register( 'MicroScreen', MicroScreen );
-export default MicroScreen;

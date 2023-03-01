@@ -192,7 +192,7 @@ export default class RatioNode extends Node {
 
     // update ratio counts
     if ( this.ratioText ) {
-      this.ratioText.text = `${numberOfH3O} / ${numberOfOH}`;
+      this.ratioText.string = `${numberOfH3O} / ${numberOfOH}`;
       this.ratioText.centerX = this.beakerBounds.centerX;
       this.ratioText.bottom = this.beakerBounds.maxY - 20;
     }

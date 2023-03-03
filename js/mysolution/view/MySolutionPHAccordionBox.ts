@@ -1,4 +1,4 @@
-// Copyright 2022, University of Colorado Boulder
+// Copyright 2022-2023, University of Colorado Boulder
 
 /**
  * MySolutionPHAccordionBox is the pH accordion box (aka meter) for the 'My Solution' screen.

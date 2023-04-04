@@ -27,7 +27,9 @@ export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
       KeyboardHelpIconFactory.shiftPlusIcon( KeyboardHelpIconFactory.wasdRowIcon() )
     ] );
 
-    super( titleProperty, [ normalRow, slowerRow ] );
+    const rows = [ normalRow, slowerRow ];
+    super( titleProperty, rows );
+    this.disposeEmitter.addListener( () => rows.forEach( row => row.dispose() ) );
   }
 }
 

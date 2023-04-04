@@ -16,9 +16,12 @@ import FaucetControlsKeyboardHelpContent from '../../common/view/FaucetControlsK
 
 export default class MacroKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
 
+  private readonly disposeMacroKeyboardHelpContent: () => void;
+
   public constructor() {
 
-    const leftColumn = [
+    // Sections in the left column. They need to be disposed.
+    const leftSections = [
 
       // Move the pH Probe
       new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveThePHProbeStringProperty ),
@@ -27,7 +30,8 @@ export default class MacroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
       new FaucetControlsKeyboardHelpContent()
     ];
 
-    const rightColumn = [
+    // Sections in the right column. They need to be disposed.
+    const rightSections = [
 
       // Choose a Solute
       new ComboBoxKeyboardHelpSection( {
@@ -42,11 +46,16 @@ export default class MacroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
       } )
     ];
 
-    super( leftColumn, rightColumn );
+    super( leftSections, rightSections );
+
+    this.disposeMacroKeyboardHelpContent = () => {
+      leftSections.forEach( section => section.dispose() );
+      rightSections.forEach( section => section.dispose() );
+    };
   }
 
   public override dispose(): void {
-    assert && assert( false, 'dispose is not supported, exists for the lifetime of the sim' );
+    this.disposeMacroKeyboardHelpContent();
     super.dispose();
   }
 }

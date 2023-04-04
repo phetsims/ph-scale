@@ -15,15 +15,19 @@ import FaucetControlsKeyboardHelpContent from '../../common/view/FaucetControlsK
 
 export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
 
+  private readonly disposeMicroKeyboardHelpContent: () => void;
+
   public constructor() {
 
-    const leftColumn = [
+    // Sections in the left column. They need to be disposed.
+    const leftSections = [
 
       // Faucet Controls
       new FaucetControlsKeyboardHelpContent()
     ];
 
-    const rightColumn = [
+    // Sections in the right column. They need to be disposed.
+    const rightSections = [
 
       // Choose a Solute
       new ComboBoxKeyboardHelpSection( {
@@ -38,11 +42,16 @@ export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
       } )
     ];
 
-    super( leftColumn, rightColumn );
+    super( leftSections, rightSections );
+
+    this.disposeMicroKeyboardHelpContent = () => {
+      leftSections.forEach( section => section.dispose() );
+      rightSections.forEach( section => section.dispose() );
+    };
   }
 
   public override dispose(): void {
-    assert && assert( false, 'dispose is not supported, exists for the lifetime of the sim' );
+    this.disposeMicroKeyboardHelpContent();
     super.dispose();
   }
 }

@@ -15,21 +15,41 @@ import phScale from '../../phScale.js';
 
 export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
 
+  private readonly disposeMoveKeyboardHelpContent: () => void;
+
   public constructor( titleProperty: TReadOnlyProperty<string> ) {
 
-    // arrows or WASD
-    const normalRow = KeyboardHelpSectionRow.labelWithIcon( PhScaleStrings.keyboardHelpDialog.moveStringProperty,
-      KeyboardHelpIconFactory.arrowOrWasdKeysRowIcon() );
+    // Icons, which must be disposed
+    const arrowOrWasdKeysIcon = KeyboardHelpIconFactory.arrowOrWasdKeysRowIcon();
+    const arrowKeysIcon = KeyboardHelpIconFactory.arrowKeysRowIcon();
+    const wasdKeysIcon = KeyboardHelpIconFactory.wasdRowIcon();
+    const shiftPlusArrowKeysIcon = KeyboardHelpIconFactory.shiftPlusIcon( arrowKeysIcon );
+    const shiftPlusWASDKeysIcon = KeyboardHelpIconFactory.shiftPlusIcon( wasdKeysIcon );
+    const icons = [ arrowOrWasdKeysIcon, arrowKeysIcon, wasdKeysIcon, shiftPlusArrowKeysIcon, shiftPlusWASDKeysIcon ];
 
-    // Shift+arrows or Shift+WASD
-    const slowerRow = KeyboardHelpSectionRow.labelWithIconList( PhScaleStrings.keyboardHelpDialog.moveSlowerStringProperty, [
-      KeyboardHelpIconFactory.shiftPlusIcon( KeyboardHelpIconFactory.arrowKeysRowIcon() ),
-      KeyboardHelpIconFactory.shiftPlusIcon( KeyboardHelpIconFactory.wasdRowIcon() )
-    ] );
+    // Rows, which must be disposed
+    const rows = [
 
-    const rows = [ normalRow, slowerRow ];
+      // arrows or WASD, for normal speed
+      KeyboardHelpSectionRow.labelWithIcon( PhScaleStrings.keyboardHelpDialog.moveStringProperty,
+        arrowOrWasdKeysIcon ),
+
+      // Shift+arrows or Shift+WASD, for slower speed
+      KeyboardHelpSectionRow.labelWithIconList( PhScaleStrings.keyboardHelpDialog.moveSlowerStringProperty,
+        [ shiftPlusArrowKeysIcon, shiftPlusWASDKeysIcon ] )
+    ];
+
     super( titleProperty, rows );
-    this.disposeEmitter.addListener( () => rows.forEach( row => row.dispose() ) );
+
+    this.disposeMoveKeyboardHelpContent = () => {
+      icons.forEach( icon => icon.dispose() );
+      rows.forEach( row => row.dispose() );
+    };
+  }
+
+  public override dispose(): void {
+    this.disposeMoveKeyboardHelpContent();
+    super.dispose();
   }
 }
 

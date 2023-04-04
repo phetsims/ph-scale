@@ -14,15 +14,19 @@ import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboar
 
 export default class MySolutionKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
 
+  private readonly disposeMySolutionKeyboardHelpContent: () => void;
+
   public constructor() {
 
-    const leftColumn = [
+    // Sections in the left column. They need to be disposed.
+    const leftSections = [
 
       // Move the Dropper
       new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheGraphIndicatorsStringProperty )
     ];
 
-    const rightColumn = [
+    // Sections in the right column. They need to be disposed.
+    const rightSections = [
 
       // Basic Actions
       new BasicActionsKeyboardHelpSection( {
@@ -30,7 +34,17 @@ export default class MySolutionKeyboardHelpContent extends TwoColumnKeyboardHelp
       } )
     ];
 
-    super( leftColumn, rightColumn );
+    super( leftSections, rightSections );
+
+    this.disposeMySolutionKeyboardHelpContent = () => {
+      leftSections.forEach( section => section.dispose() );
+      rightSections.forEach( section => section.dispose() );
+    };
+  }
+
+  public override dispose(): void {
+    this.disposeMySolutionKeyboardHelpContent();
+    super.dispose();
   }
 }
 

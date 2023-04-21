@@ -16,6 +16,7 @@ import Property from '../../../../axon/js/Property.js';
 import { ScreenOptions } from '../../../../joist/js/Screen.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import { EmptySelfOptions, optionize3 } from '../../../../phet-core/js/optionize.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
@@ -49,9 +50,7 @@ export default class MicroScreenView extends ScreenView {
 
   public constructor( model: MicroModel, modelViewTransform: ModelViewTransform2, providedOptions: MicroScreenViewOptions ) {
 
-    const options = optionize3<MicroScreenViewOptions, SelfOptions, ScreenOptions>()( {},
-
-      // @ts-expect-error - chip away for https://github.com/phetsims/center-and-variability/issues/142
+    const options = optionize3<MicroScreenViewOptions, SelfOptions, StrictOmit<ScreenOptions, 'tandem'>>()( {},
       PHScaleConstants.SCREEN_VIEW_OPTIONS, providedOptions );
 
     super( options );

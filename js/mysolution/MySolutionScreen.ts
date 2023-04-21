@@ -20,6 +20,7 @@ import phScale from '../phScale.js';
 import PhScaleStrings from '../PhScaleStrings.js';
 import MySolutionModel from './model/MySolutionModel.js';
 import MySolutionScreenView from './view/MySolutionScreenView.js';
+import MySolutionKeyboardHelpContent from './view/MySolutionKeyboardHelpContent.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -41,9 +42,9 @@ export default class MySolutionScreen extends Screen<MySolutionModel, MySolution
       navigationBarIcon: new ScreenIcon( new Image( mySolutionNavbarIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
-      } )
+      } ),
       //TODO https://github.com/phetsims/ph-scale/issues/249 restore when work on alternative input resume
-      // createKeyboardHelpNode: () => new MySolutionKeyboardHelpContent()
+      createKeyboardHelpNode: () => new MySolutionKeyboardHelpContent()
     }, providedOptions );
 
     super(

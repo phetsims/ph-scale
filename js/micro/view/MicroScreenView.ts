@@ -50,6 +50,8 @@ export default class MicroScreenView extends ScreenView {
   public constructor( model: MicroModel, modelViewTransform: ModelViewTransform2, providedOptions: MicroScreenViewOptions ) {
 
     const options = optionize3<MicroScreenViewOptions, SelfOptions, ScreenOptions>()( {},
+
+      // @ts-expect-error - chip away for https://github.com/phetsims/center-and-variability/issues/142
       PHScaleConstants.SCREEN_VIEW_OPTIONS, providedOptions );
 
     super( options );

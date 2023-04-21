@@ -41,6 +41,8 @@ export default class MySolutionScreenView extends ScreenView {
   public constructor( model: MySolutionModel, modelViewTransform: ModelViewTransform2, provideOptions: MySolutionScreenViewOptions ) {
 
     const options = optionize3<MySolutionScreenViewOptions, SelfOptions, ScreenOptions>()( {},
+
+      // @ts-expect-error - chip away for https://github.com/phetsims/center-and-variability/issues/142
       PHScaleConstants.SCREEN_VIEW_OPTIONS, provideOptions );
 
     super( options );

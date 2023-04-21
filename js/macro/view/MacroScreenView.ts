@@ -40,6 +40,8 @@ export default class MacroScreenView extends ScreenView {
   public constructor( model: MacroModel, modelViewTransform: ModelViewTransform2, providedOptions: MacroScreenViewOptions ) {
 
     const options = optionize3<MacroScreenViewOptions, SelfOptions, ScreenOptions>()( {},
+
+      // @ts-expect-error - chip away for https://github.com/phetsims/center-and-variability/issues/142
       PHScaleConstants.SCREEN_VIEW_OPTIONS, providedOptions );
 
     super( options );

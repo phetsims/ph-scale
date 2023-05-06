@@ -118,6 +118,7 @@ export default class Solution extends PhetioObject {
         }
       }, {
         tandem: options.tandem.createTandem( 'pHProperty' ),
+        phetioFeatured: true,
         phetioValueType: NullableIO( NumberIO ),
         phetioDocumentation: 'pH of the solution',
         phetioHighFrequency: true

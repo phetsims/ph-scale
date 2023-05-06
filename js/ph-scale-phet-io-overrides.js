@@ -1,9 +1,6 @@
 /* eslint-disable */
 window.phet.preloads.phetio.phetioElementsOverrides =
   {
-    "phScale.macroScreen.model.solution.pHProperty": {
-      "phetioFeatured": true
-    },
     "phScale.macroScreen.model.solution.soluteVolumeProperty": {
       "phetioFeatured": true
     },
@@ -32,9 +29,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
       "phetioFeatured": true
     },
     "phScale.microScreen.model.solution.particleCountOHProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.model.solution.pHProperty": {
       "phetioFeatured": true
     },
     "phScale.microScreen.model.solution.quantityH2OProperty": {
@@ -134,9 +128,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.model.solution.particleCountOHProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.model.solution.pHProperty": {
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.model.solution.quantityH2OProperty": {

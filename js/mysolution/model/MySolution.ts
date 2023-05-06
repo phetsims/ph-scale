@@ -51,6 +51,7 @@ export default class MySolution extends PhetioObject {
     this.pHProperty = new NumberProperty( options.pH, {
       range: PHScaleConstants.PH_RANGE,
       tandem: options.tandem.createTandem( 'pHProperty' ),
+      phetioFeatured: true,
       phetioDocumentation: 'pH of the solution',
       phetioHighFrequency: true
     } );

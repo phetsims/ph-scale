@@ -35,21 +35,23 @@ export default class GraphScaleSwitch extends ABSwitch<GraphScale> {
 
     const textOptions = {
       font: PHScaleConstants.AB_SWITCH_FONT,
-      maxWidth: 125
+      maxWidth: 125,
+      phetioVisiblePropertyInstrumented: true,
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     };
 
     // Logarithmic label
-    const logarithmicText = new Text( PhScaleStrings.logarithmicStringProperty, combineOptions<TextOptions>(
-      {}, textOptions, {
-        tandem: options.tandem.createTandem( 'logarithmicText' ),
-        phetioVisiblePropertyInstrumented: true
+    const logarithmicText = new Text( PhScaleStrings.logarithmicStringProperty,
+      combineOptions<TextOptions>( {}, textOptions, {
+        tandem: options.tandem.createTandem( 'logarithmicText' )
       } ) );
 
     // Linear label
-    const linearText = new Text( PhScaleStrings.linearStringProperty, combineOptions<TextOptions>(
-      {}, textOptions, {
-        tandem: options.tandem.createTandem( 'linearText' ),
-        phetioVisiblePropertyInstrumented: true
+    const linearText = new Text( PhScaleStrings.linearStringProperty,
+      combineOptions<TextOptions>( {}, textOptions, {
+        tandem: options.tandem.createTandem( 'linearText' )
       } ) );
 
     super( graphScaleProperty, GraphScale.LOGARITHMIC, logarithmicText, GraphScale.LINEAR, linearText, options );

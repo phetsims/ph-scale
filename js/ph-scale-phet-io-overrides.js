@@ -1,9 +1,6 @@
 /* eslint-disable */
 window.phet.preloads.phetio.phetioElementsOverrides =
   {
-    "phScale.macroScreen.model.pHMeter.pHProperty": {
-      "phetioFeatured": true
-    },
     "phScale.macroScreen.model.solution.pHProperty": {
       "phetioFeatured": true
     },

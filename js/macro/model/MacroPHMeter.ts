@@ -44,6 +44,7 @@ export default class MacroPHMeter {
 
     this.pHProperty = new Property<PHValue>( null, {
       tandem: options.tandem.createTandem( 'pHProperty' ),
+      phetioFeatured: true,
       phetioValueType: NullableIO( NumberIO ),
       phetioReadOnly: true, // because this depends on where the probe is positioned
       phetioHighFrequency: true

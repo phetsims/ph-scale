@@ -29,7 +29,11 @@ export default class WaterFaucetNode extends Node {
   public constructor( faucet: Faucet, modelViewTransform: ModelViewTransform2, providedOptions: WaterFaucetNodeOptions ) {
 
     const options = optionize<WaterFaucetNodeOptions, SelfOptions, NodeOptions>()( {
-      // Empty optionize call is needed because we're setting options.children below.
+
+      // NodeOptions
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     }, providedOptions );
 
     const horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.position.x - faucet.pipeMinX ) ) / SCALE;
@@ -50,7 +54,10 @@ export default class WaterFaucetNode extends Node {
       left: faucetNode.left + 115,
       bottom: faucetNode.centerY - 40,
       tandem: options.tandem.createTandem( 'waterText' ),
-      phetioVisiblePropertyInstrumented: true
+      phetioVisiblePropertyInstrumented: true,
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     } );
 
     options.children = [ faucetNode, waterText ];

@@ -42,7 +42,10 @@ export default class BeakerControlPanel extends Panel {
       yMargin: 10,
       lineWidth: 2,
       fill: PHScaleColors.PANEL_FILL,
-      phetioDocumentation: 'control panel that appears below the beaker'
+      phetioDocumentation: 'control panel that appears below the beaker',
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     }, providedOptions );
 
     // 'H3O+ / OH- Ratio' checkbox

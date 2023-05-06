@@ -1,9 +1,6 @@
 /* eslint-disable */
 window.phet.preloads.phetio.phetioElementsOverrides =
   {
-    "phScale.microScreen.view.beakerControlPanel.visibleProperty": {
-      "phetioFeatured": true
-    },
     "phScale.microScreen.view.graphNode.expandedProperty": {
       "phetioFeatured": true
     },
@@ -62,9 +59,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
       "phetioFeatured": true
     },
     "phScale.microScreen.view.viewProperties.ratioVisibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.view.beakerControlPanel.visibleProperty": {
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.view.graphNode.expandedProperty": {

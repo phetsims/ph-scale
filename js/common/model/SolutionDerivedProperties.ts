@@ -58,6 +58,7 @@ export default class SolutionDerivedProperties {
       [ totalVolumeProperty ],
       totalVolume => PHModel.volumeToConcentrationH20( totalVolume ), {
         tandem: options.tandem.createTandem( 'concentrationH2OProperty' ),
+        phetioFeatured: true,
         phetioValueType: NullableIO( NumberIO ),
         units: 'mol/L',
         phetioDocumentation: 'concentration of H<sub>2</sub>O in the solution',
@@ -68,6 +69,7 @@ export default class SolutionDerivedProperties {
       [ pHProperty ],
       pH => PHModel.pHToConcentrationH3O( pH ), {
         tandem: options.tandem.createTandem( 'concentrationH3OProperty' ),
+        phetioFeatured: true,
         phetioValueType: NullableIO( NumberIO ),
         units: 'mol/L',
         phetioDocumentation: 'concentration of H<sub>3</sub>O<sup>+</sup> in the solution',
@@ -78,6 +80,7 @@ export default class SolutionDerivedProperties {
       [ pHProperty ],
       pH => PHModel.pHToConcentrationOH( pH ), {
         tandem: options.tandem.createTandem( 'concentrationOHProperty' ),
+        phetioFeatured: true,
         phetioValueType: NullableIO( NumberIO ),
         units: 'mol/L',
         phetioDocumentation: 'concentration of OH<sup>-</sup> in the solution',
@@ -88,6 +91,7 @@ export default class SolutionDerivedProperties {
       [ this.concentrationH2OProperty, totalVolumeProperty ],
       ( concentrationH2O, totalVolume ) => PHModel.computeMoles( concentrationH2O, totalVolume ), {
         tandem: options.tandem.createTandem( 'quantityH2OProperty' ),
+        phetioFeatured: true,
         phetioValueType: NumberIO,
         units: 'mol',
         phetioDocumentation: 'quantity of H<sub>2</sub>O in the solution',
@@ -98,6 +102,7 @@ export default class SolutionDerivedProperties {
       [ this.concentrationH3OProperty, totalVolumeProperty ],
       ( concentrationH3O, totalVolume ) => PHModel.computeMoles( concentrationH3O, totalVolume ), {
         tandem: options.tandem.createTandem( 'quantityH3OProperty' ),
+        phetioFeatured: true,
         phetioValueType: NumberIO,
         units: 'mol',
         phetioDocumentation: 'quantity of H<sub>3</sub>O<sup>+</sup> in the solution',
@@ -108,6 +113,7 @@ export default class SolutionDerivedProperties {
       [ this.concentrationOHProperty, totalVolumeProperty ],
       ( concentrationOH, totalVolume ) => PHModel.computeMoles( concentrationOH, totalVolume ), {
         tandem: options.tandem.createTandem( 'quantityOHProperty' ),
+        phetioFeatured: true,
         phetioValueType: NumberIO,
         units: 'mol',
         phetioDocumentation: 'quantity of OH<sup>-</sup> in the solution',
@@ -118,6 +124,7 @@ export default class SolutionDerivedProperties {
       [ this.concentrationH2OProperty, totalVolumeProperty ],
       ( concentrationH2O, totalVolume ) => PHModel.computeParticleCount( concentrationH2O, totalVolume ), {
         tandem: options.tandem.createTandem( 'particleCountH2OProperty' ),
+        phetioFeatured: true,
         phetioValueType: NumberIO,
         phetioDocumentation: 'number of H<sub>2</sub>O molecules in the solution',
         phetioHighFrequency: true
@@ -127,6 +134,7 @@ export default class SolutionDerivedProperties {
       [ this.concentrationH3OProperty, totalVolumeProperty ],
       ( concentrationH3O, totalVolume ) => PHModel.computeParticleCount( concentrationH3O, totalVolume ), {
         tandem: options.tandem.createTandem( 'particleCountH3OProperty' ),
+        phetioFeatured: true,
         phetioValueType: NumberIO,
         phetioDocumentation: 'number of H<sub>3</sub>O<sup>+</sup> ions in the solution',
         phetioHighFrequency: true
@@ -136,6 +144,7 @@ export default class SolutionDerivedProperties {
       [ this.concentrationOHProperty, totalVolumeProperty ],
       ( concentrationOH, totalVolume ) => PHModel.computeParticleCount( concentrationOH, totalVolume ), {
         tandem: options.tandem.createTandem( 'particleCountOHProperty' ),
+        phetioFeatured: true,
         phetioValueType: NumberIO,
         phetioDocumentation: 'number of OH<sup>-</sup> ions in the solution',
         phetioHighFrequency: true

@@ -1,33 +1,6 @@
 /* eslint-disable */
 window.phet.preloads.phetio.phetioElementsOverrides =
   {
-    "phScale.microScreen.model.solution.concentrationH2OProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.model.solution.concentrationH3OProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.model.solution.concentrationOHProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.model.solution.particleCountH2OProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.model.solution.particleCountH3OProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.model.solution.particleCountOHProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.model.solution.quantityH2OProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.model.solution.quantityH3OProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.model.solution.quantityOHProperty": {
-      "phetioFeatured": true
-    },
     "phScale.microScreen.view.beakerControlPanel.visibleProperty": {
       "phetioFeatured": true
     },
@@ -89,33 +62,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
       "phetioFeatured": true
     },
     "phScale.microScreen.view.viewProperties.ratioVisibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.model.solution.concentrationH2OProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.model.solution.concentrationH3OProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.model.solution.concentrationOHProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.model.solution.particleCountH2OProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.model.solution.particleCountH3OProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.model.solution.particleCountOHProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.model.solution.quantityH2OProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.model.solution.quantityH3OProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.model.solution.quantityOHProperty": {
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.model.solution.totalVolumeProperty": {

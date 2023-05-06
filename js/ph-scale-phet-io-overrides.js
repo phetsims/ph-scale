@@ -28,9 +28,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.microScreen.view.graphNode.logarithmicGraphNode.indicatorOHNode.visibleProperty": {
       "phetioFeatured": true
     },
-    "phScale.microScreen.view.pHAccordionBox.expandedProperty": {
-      "phetioFeatured": true
-    },
     "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH2ONode.visibleProperty": {
       "phetioFeatured": true
     },
@@ -38,9 +35,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorOHNode.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.view.pHAccordionBox.expandedProperty": {
       "phetioFeatured": true
     }
   };

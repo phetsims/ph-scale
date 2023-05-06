@@ -20,6 +20,7 @@ import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 // constants
 const Y_MARGIN = 10;
@@ -59,7 +60,11 @@ export default class PHAccordionBox extends AccordionBox {
       buttonXMargin: 14,
       buttonYMargin: Y_MARGIN,
       expandCollapseButtonOptions: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_OPTIONS,
-      contentYMargin: Y_MARGIN
+      contentYMargin: Y_MARGIN,
+      expandedProperty: new BooleanProperty( true, {
+        tandem: providedOptions.tandem.createTandem( 'expandedProperty' ),
+        phetioFeatured: true
+      } )
     }, providedOptions );
 
     super( contentNode, options );

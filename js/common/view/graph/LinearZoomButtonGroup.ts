@@ -29,6 +29,9 @@ export default class LinearZoomButtonGroup extends MagnifyingGlassZoomButtonGrou
       spacing: 25,
       magnifyingGlassNodeOptions: {
         glassRadius: 13
+      },
+      visiblePropertyOptions: {
+        phetioFeatured: true
       }
     }, providedOptions );
 

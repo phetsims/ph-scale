@@ -41,7 +41,10 @@ export default class VolumeIndicatorNode extends Node {
     const options = optionize<VolumeIndicatorNodeOptions, SelfOptions, NodeOptions>()( {
 
       // NodeOptions
-      phetioDocumentation: 'indicates the volume of the solution in the beaker'
+      phetioDocumentation: 'indicates the volume of the solution in the beaker',
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     }, providedOptions );
 
     // arrow head that points to the left

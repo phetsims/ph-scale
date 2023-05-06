@@ -10,13 +10,11 @@
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Node, NodeOptions, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
-import { PHValue } from '../../common/model/PHModel.js';
+import PHModel, { PHValue } from '../../common/model/PHModel.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
-import PHModel from '../../common/model/PHModel.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -26,10 +24,13 @@ export default class NeutralIndicatorNode extends Node {
 
   public constructor( pHProperty: TReadOnlyProperty<PHValue>, providedOptions: NeutralIndicatorNodeOptions ) {
 
-    const options = optionize<NeutralIndicatorNodeOptions, SelfOptions, PhetioObjectOptions>()( {
+    const options = optionize<NeutralIndicatorNodeOptions, SelfOptions, NodeOptions>()( {
 
       // NodeOptions
-      phetioDocumentation: 'becomes visible when the solution has neutral pH'
+      phetioDocumentation: 'becomes visible when the solution has neutral pH',
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     }, providedOptions );
 
     super( options );

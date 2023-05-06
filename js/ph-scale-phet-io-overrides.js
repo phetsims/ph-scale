@@ -25,13 +25,7 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.macroScreen.view.drainFaucetNode.visibleProperty": {
       "phetioFeatured": true
     },
-    "phScale.macroScreen.view.neutralIndicatorNode.visibleProperty": {
-      "phetioFeatured": true
-    },
     "phScale.macroScreen.view.pHMeterNode.pHIndicatorNode.numberDisplay.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.macroScreen.view.volumeIndicatorNode.visibleProperty": {
       "phetioFeatured": true
     },
     "phScale.microScreen.model.solution.concentrationH2OProperty": {
@@ -145,9 +139,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.microScreen.view.viewProperties.ratioVisibleProperty": {
       "phetioFeatured": true
     },
-    "phScale.microScreen.view.volumeIndicatorNode.visibleProperty": {
-      "phetioFeatured": true
-    },
     "phScale.mySolutionScreen.model.solution.concentrationH2OProperty": {
       "phetioFeatured": true
     },
@@ -227,9 +218,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.view.viewProperties.ratioVisibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.view.volumeIndicatorNode.visibleProperty": {
       "phetioFeatured": true
     }
   };

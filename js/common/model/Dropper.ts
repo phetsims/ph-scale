@@ -58,6 +58,7 @@ export default class Dropper {
       validValues: solutes,
       tandem: options.tandem.createTandem( 'soluteProperty' ),
       phetioValueType: Solute.SoluteIO,
+      phetioFeatured: true,
       phetioDocumentation: 'the solute dispensed by the dropper'
     } );
 
@@ -83,6 +84,7 @@ export default class Dropper {
 
     this.visibleProperty = new BooleanProperty( true, {
       tandem: options.tandem.createTandem( 'visibleProperty' ),
+      phetioFeatured: true,
       phetioDocumentation: 'whether the dropper is visible'
     } );
 

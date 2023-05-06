@@ -122,6 +122,7 @@ export default class PHModel<T extends Solution> implements TModel {
 
     this.autofillEnabledProperty = new BooleanProperty( PHScaleQueryParameters.autofill, {
       tandem: options.tandem.createTandem( 'autofillEnabledProperty' ),
+      phetioFeatured: true,
       phetioDocumentation: 'whether solute is automatically added to the beaker when the solute is changed'
     } );
 

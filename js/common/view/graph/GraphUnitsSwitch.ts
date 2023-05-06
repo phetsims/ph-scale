@@ -51,7 +51,10 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
       font: PHScaleConstants.AB_SWITCH_FONT,
       maxWidth: 125,
       tandem: concentrationTextTandem,
-      phetioVisiblePropertyInstrumented: true
+      phetioVisiblePropertyInstrumented: true,
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     } );
 
     // Quantity (mol)
@@ -67,7 +70,10 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
       font: PHScaleConstants.AB_SWITCH_FONT,
       maxWidth: 90,
       tandem: quantityTextTandem,
-      phetioVisiblePropertyInstrumented: true
+      phetioVisiblePropertyInstrumented: true,
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     } );
 
     super( graphUnitsProperty, GraphUnits.MOLES_PER_LITER, concentrationText, GraphUnits.MOLES, quantityText, options );

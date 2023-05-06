@@ -56,7 +56,8 @@ export default class GraphNode extends Node {
 
     // whether the graph is expanded or collapsed
     const expandedProperty = new BooleanProperty( true, {
-      tandem: options.tandem.createTandem( 'expandedProperty' )
+      tandem: options.tandem.createTandem( 'expandedProperty' ),
+      phetioFeatured: true
     } );
 
     // units used for the graph

@@ -1,15 +1,6 @@
 /* eslint-disable */
 window.phet.preloads.phetio.phetioElementsOverrides =
   {
-    "phScale.microScreen.view.graphNode.expandedProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationText.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityText.visibleProperty": {
-      "phetioFeatured": true
-    },
     "phScale.microScreen.view.graphNode.graphScaleSwitch.linearText.visibleProperty": {
       "phetioFeatured": true
     },
@@ -50,15 +41,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
       "phetioFeatured": true
     },
     "phScale.microScreen.view.viewProperties.ratioVisibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.view.graphNode.expandedProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.concentrationText.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.view.graphNode.graphControlPanel.graphUnitsSwitch.quantityText.visibleProperty": {
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.view.graphNode.logarithmicGraphNode.indicatorH2ONode.visibleProperty": {

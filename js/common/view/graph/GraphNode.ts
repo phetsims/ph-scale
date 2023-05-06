@@ -43,11 +43,18 @@ export default class GraphNode extends Node {
                       providedOptions: GraphNodeOptions ) {
 
     const options = optionize<GraphNodeOptions, SelfOptions, NodeOptions>()( {
+
+      // SelfOptions
       logScaleHeight: 500,
       linearScaleHeight: 500,
       units: GraphUnits.MOLES_PER_LITER,
       hasLinearFeature: false,
-      graphScale: GraphScale.LOGARITHMIC
+      graphScale: GraphScale.LOGARITHMIC,
+
+      // NodeOptions
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     }, providedOptions );
 
     super();

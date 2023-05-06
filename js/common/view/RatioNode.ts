@@ -113,6 +113,7 @@ export default class RatioNode extends Node {
         }
       }, {
         tandem: options.tandem.createTandem( 'ratioProperty' ),
+        phetioFeatured: true,
         phetioValueType: NullableIO( NumberIO ),
         phetioDocumentation: 'the H<sub>3</sub>O<sup>+</sup>/OH<sup>-</sup> ratio of the solution in the beaker, null if the beaker is empty',
         phetioHighFrequency: true

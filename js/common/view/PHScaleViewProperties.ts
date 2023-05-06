@@ -20,11 +20,13 @@ export default class PHScaleViewProperties {
 
     this.ratioVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'ratioVisibleProperty' ),
+      phetioFeatured: true,
       phetioDocumentation: 'controls visibility of the H3O+/OH- Ratio view'
     } );
 
     this.particleCountsVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'particleCountsVisibleProperty' ),
+      phetioFeatured: true,
       phetioDocumentation: 'controls visibility of the Particle Counts view'
     } );
   }

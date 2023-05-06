@@ -83,6 +83,7 @@ export default class Solution extends PhetioObject {
     this.soluteVolumeProperty = new NumberProperty( options.soluteVolume, {
       units: 'L',
       tandem: options.tandem.createTandem( 'soluteVolumeProperty' ),
+      phetioFeatured: true,
       phetioDocumentation: `Volume of solute in the solution. soluteVolumeProperty + waterVolumeProperty should be <= ${options.maxVolume}`,
       phetioHighFrequency: true
     } );
@@ -90,6 +91,7 @@ export default class Solution extends PhetioObject {
     this.waterVolumeProperty = new NumberProperty( options.waterVolume, {
       units: 'L',
       tandem: options.tandem.createTandem( 'waterVolumeProperty' ),
+      phetioFeatured: true,
       phetioDocumentation: `Volume of water in the solution. waterVolumeProperty + soluteVolumeProperty should be <= ${options.maxVolume}`,
       phetioHighFrequency: true
     } );
@@ -102,6 +104,7 @@ export default class Solution extends PhetioObject {
       ( soluteVolume, waterVolume ) => ( this.ignoreVolumeUpdate ) ? this.totalVolumeProperty.value : ( soluteVolume + waterVolume ), {
         units: 'L',
         tandem: options.tandem.createTandem( 'totalVolumeProperty' ),
+        phetioFeatured: true,
         phetioValueType: NumberIO,
         phetioDocumentation: 'total volume of the solution',
         phetioHighFrequency: true

@@ -1,15 +1,6 @@
 /* eslint-disable */
 window.phet.preloads.phetio.phetioElementsOverrides =
   {
-    "phScale.macroScreen.model.solution.soluteVolumeProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.macroScreen.model.solution.totalVolumeProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.macroScreen.model.solution.waterVolumeProperty": {
-      "phetioFeatured": true
-    },
     "phScale.macroScreen.view.pHMeterNode.pHIndicatorNode.numberDisplay.visibleProperty": {
       "phetioFeatured": true
     },
@@ -38,15 +29,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
       "phetioFeatured": true
     },
     "phScale.microScreen.model.solution.quantityOHProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.model.solution.soluteVolumeProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.model.solution.totalVolumeProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.model.solution.waterVolumeProperty": {
       "phetioFeatured": true
     },
     "phScale.microScreen.view.beakerControlPanel.visibleProperty": {

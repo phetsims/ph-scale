@@ -84,7 +84,10 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
 
       // NodeOptions
       scale: 0.75, // specified by design team
-      tagName: 'div'
+      tagName: 'div',
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     }, providedOptions );
 
     // Instrument interactiveProperty for interactive indicators.

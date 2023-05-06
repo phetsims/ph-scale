@@ -58,8 +58,9 @@ export default class MySolution extends PhetioObject {
 
     this.totalVolumeProperty = new NumberProperty( options.volume, {
       units: 'L',
-      tandem: options.tandem.createTandem( 'totalVolumeProperty' ),
       range: new Range( 0.01, options.maxVolume ), // must be > 0 !!
+      tandem: options.tandem.createTandem( 'totalVolumeProperty' ),
+      phetioFeatured: true,
       phetioDocumentation: 'total volume of the solution',
       phetioHighFrequency: true
     } );

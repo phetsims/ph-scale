@@ -64,9 +64,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.microScreen.view.viewProperties.ratioVisibleProperty": {
       "phetioFeatured": true
     },
-    "phScale.mySolutionScreen.model.solution.totalVolumeProperty": {
-      "phetioFeatured": true
-    },
     "phScale.mySolutionScreen.view.beakerControlPanel.visibleProperty": {
       "phetioFeatured": true
     },

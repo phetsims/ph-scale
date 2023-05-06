@@ -32,7 +32,10 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
       // ABSwitchOptions
       toggleSwitchOptions: { size: new Dimension2( 50, 25 ) },
       centerOnSwitch: true,
-      phetioDocumentation: 'A/B switch for switching units'
+      phetioDocumentation: 'A/B switch for switching units',
+      visiblePropertyOptions: {
+        phetioFeatured: false
+      }
     }, provideOptions );
 
     // Concentration (mol/L)

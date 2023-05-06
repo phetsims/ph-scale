@@ -61,7 +61,8 @@ export default class GraphNode extends Node {
 
     // units used for the graph
     const graphUnitsProperty = new EnumerationProperty( options.units, {
-      tandem: options.tandem.createTandem( 'graphUnitsProperty' )
+      tandem: options.tandem.createTandem( 'graphUnitsProperty' ),
+      phetioFeatured: true
     } );
 
     // control panel above the graph
@@ -106,7 +107,8 @@ export default class GraphNode extends Node {
 
       // scale (log, linear) of the graph
       graphScaleProperty = new EnumerationProperty( options.graphScale, {
-        tandem: options.tandem.createTandem( 'graphScaleProperty' )
+        tandem: options.tandem.createTandem( 'graphScaleProperty' ),
+        phetioFeatured: true
       } );
 
       // linear graph

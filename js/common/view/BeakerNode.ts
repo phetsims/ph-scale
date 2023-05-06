@@ -69,13 +69,19 @@ export default class BeakerNode extends Node {
     // horizontal tick marks on left and right edges, labels on right ticks, from bottom up
     const tickMarksTandem = options.tandem.createTandem( 'tickMarks' );
     const tickMarks = new Node( {
-      tandem: tickMarksTandem
+      tandem: tickMarksTandem,
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     } );
     this.addChild( tickMarks );
 
     // tickLabels are a child of tickMarks so that hiding tickMarks also hides labels
     const tickLabels = new Node( {
-      tandem: tickMarksTandem.createTandem( 'tickLabels' )
+      tandem: tickMarksTandem.createTandem( 'tickLabels' ),
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     } );
     tickMarks.addChild( tickLabels );
 

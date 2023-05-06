@@ -32,7 +32,10 @@ export default class DrainFaucetNode extends FaucetNode {
 
         // FaucetNodeOptions
         horizontalPipeLength: horizontalPipeLength,
-        verticalPipeLength: 5
+        verticalPipeLength: 5,
+        visiblePropertyOptions: {
+          phetioFeatured: true
+        }
       }, providedOptions );
 
     super( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, options );

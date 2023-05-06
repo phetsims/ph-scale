@@ -16,15 +16,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
     "phScale.macroScreen.model.solution.waterVolumeProperty": {
       "phetioFeatured": true
     },
-    "phScale.macroScreen.view.beakerNode.tickMarks.tickLabels.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.macroScreen.view.beakerNode.tickMarks.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.macroScreen.view.drainFaucetNode.visibleProperty": {
-      "phetioFeatured": true
-    },
     "phScale.macroScreen.view.pHMeterNode.pHIndicatorNode.numberDisplay.visibleProperty": {
       "phetioFeatured": true
     },
@@ -68,15 +59,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
       "phetioFeatured": true
     },
     "phScale.microScreen.view.beakerControlPanel.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.view.beakerNode.tickMarks.tickLabels.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.view.beakerNode.tickMarks.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.microScreen.view.drainFaucetNode.visibleProperty": {
       "phetioFeatured": true
     },
     "phScale.microScreen.view.graphNode.expandedProperty": {
@@ -173,12 +155,6 @@ window.phet.preloads.phetio.phetioElementsOverrides =
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.view.beakerControlPanel.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.view.beakerNode.tickMarks.tickLabels.visibleProperty": {
-      "phetioFeatured": true
-    },
-    "phScale.mySolutionScreen.view.beakerNode.tickMarks.visibleProperty": {
       "phetioFeatured": true
     },
     "phScale.mySolutionScreen.view.graphNode.expandedProperty": {

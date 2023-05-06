@@ -371,7 +371,10 @@ class PHIndicatorNode extends Node {
         font: new PhetFont( 28 ),
         stringPropertyOptions: { phetioHighFrequency: true }
       },
-      tandem: options.tandem.createTandem( 'numberDisplay' )
+      tandem: options.tandem.createTandem( 'numberDisplay' ),
+      visiblePropertyOptions: {
+        phetioFeatured: true
+      }
     } );
 
     // label above the value

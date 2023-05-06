@@ -1,9 +1,6 @@
 /* eslint-disable */
 window.phet.preloads.phetio.phetioElementsOverrides =
   {
-    "phScale.macroScreen.view.pHMeterNode.pHIndicatorNode.numberDisplay.visibleProperty": {
-      "phetioFeatured": true
-    },
     "phScale.microScreen.model.solution.concentrationH2OProperty": {
       "phetioFeatured": true
     },

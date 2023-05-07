@@ -1,4 +1,4 @@
-// Copyright 2014-2022, University of Colorado Boulder
+// Copyright 2014-2023, University of Colorado Boulder
 
 /**
  * PHAccordionBox is the base class for the pH accordion box (aka meter) in the 'Micro' and 'My Solution' screens.

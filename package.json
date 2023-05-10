@@ -28,7 +28,12 @@
       "compareDesignedAPIChanges": true
     },
     "supportsOutputJS": true,
-    "published": true
+    "published": true,
+    "screenNameKeys": [
+      "PH_SCALE/screen.macro",
+      "PH_SCALE/screen.micro",
+      "PH_SCALE/screen.mySolution"
+    ]
   },
   "eslintConfig": {
     "extends": "../chipper/eslint/sim_eslintrc.js",

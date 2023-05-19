@@ -18,7 +18,10 @@ const PHScaleConstants = {
 
   // ScreenView
   SCREEN_VIEW_OPTIONS: {
-    layoutBounds: new Bounds2( 0, 0, 1100, 700 ), //TODO https://github.com/phetsims/ph-scale/issues/255
+
+    // While these layoutBounds differ from the default, PhET-iO customizations may rely on these bounds.
+    // So do not change. See https://github.com/phetsims/ph-scale/issues/255
+    layoutBounds: new Bounds2( 0, 0, 1100, 700 ),
 
     // Workaround for things shifting around while dragging
     // See https://github.com/phetsims/scenery/issues/1289 and https://github.com/phetsims/ph-scale/issues/226

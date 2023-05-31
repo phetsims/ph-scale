@@ -24,6 +24,7 @@ import Solution from './Solution.js';
 import Water from './Water.js';
 import Utils from '../../../../dot/js/Utils.js';
 import TModel from '../../../../joist/js/TModel.js';
+import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
 
 // constants
 const AVOGADROS_NUMBER = 6.023E23; // number of particles in one mole of solution
@@ -138,7 +139,7 @@ export default class PHModel<T extends Solution> implements TModel {
     this.dropper.soluteProperty.link( () => {
 
       // Do not autofill when state is being restored, see https://github.com/phetsims/ph-scale/issues/223.
-      if ( !phet.joist.sim.isSettingPhetioStateProperty.value ) {
+      if ( !isSettingPhetioStateProperty.value ) {
 
         // disable the faucets to cancel any multi-touch interaction that may be in progress, see issue #28
         this.waterFaucet.enabledProperty.value = false;

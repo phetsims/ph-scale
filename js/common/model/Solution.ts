@@ -24,6 +24,7 @@ import PHScaleConstants from '../PHScaleConstants.js';
 import phScale from '../../phScale.js';
 import PHModel from './PHModel.js';
 import LinkableReadOnlyProperty from '../../../../axon/js/LinkableReadOnlyProperty.js';
+import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
 
 // constants
 const MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );
@@ -148,7 +149,7 @@ export default class Solution extends PhetioObject {
     // This is short-circuited while PhET-iO state is being restored. Otherwise, the restored state would be changed.
     // See https://github.com/phetsims/ph-scale/issues/132
     this.soluteProperty.link( () => {
-      if ( !phet.joist.sim.isSettingPhetioStateProperty.value ) {
+      if ( !isSettingPhetioStateProperty.value ) {
         this.waterVolumeProperty.reset();
         this.soluteVolumeProperty.reset();
       }

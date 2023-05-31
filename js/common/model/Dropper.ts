@@ -15,6 +15,7 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import phScale from '../../phScale.js';
 import Solute from './Solute.js';
+import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
 
 type SelfOptions = {
   flowRate?: number; // L/sec
@@ -90,14 +91,14 @@ export default class Dropper {
 
     // Turn off the dropper when it's disabled.
     this.enabledProperty.link( enabled => {
-      if ( !enabled && !phet.joist.sim.isSettingPhetioStateProperty.value ) {
+      if ( !enabled && !isSettingPhetioStateProperty.value ) {
         this.isDispensingProperty.value = false;
       }
     } );
 
     // Toggle the flow rate when the dropper is turned on/off.
     this.isDispensingProperty.link( dispensing => {
-      if ( !phet.joist.sim.isSettingPhetioStateProperty.value ) {
+      if ( !isSettingPhetioStateProperty.value ) {
         this.flowRateProperty.value = dispensing ? options.maxFlowRate : 0;
       }
     } );

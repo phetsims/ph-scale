@@ -14,8 +14,6 @@ import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboar
 
 export default class MySolutionKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
 
-  private readonly disposeMySolutionKeyboardHelpContent: () => void;
-
   public constructor() {
 
     // Sections in the left column. They need to be disposed.
@@ -35,15 +33,11 @@ export default class MySolutionKeyboardHelpContent extends TwoColumnKeyboardHelp
     ];
 
     super( leftSections, rightSections );
-
-    this.disposeMySolutionKeyboardHelpContent = () => {
-      leftSections.forEach( section => section.dispose() );
-      rightSections.forEach( section => section.dispose() );
-    };
   }
 
+  // See https://github.com/phetsims/ph-scale/issues/285
   public override dispose(): void {
-    this.disposeMySolutionKeyboardHelpContent();
+    assert && assert( false, 'dispose is not supported, exists for the lifetime of the sim' );
     super.dispose();
   }
 }

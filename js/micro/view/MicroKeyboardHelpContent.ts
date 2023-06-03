@@ -15,8 +15,6 @@ import FaucetControlsKeyboardHelpContent from '../../common/view/FaucetControlsK
 
 export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
 
-  private readonly disposeMicroKeyboardHelpContent: () => void;
-
   public constructor() {
 
     // Sections in the left column. They need to be disposed.
@@ -43,15 +41,11 @@ export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
     ];
 
     super( leftSections, rightSections );
-
-    this.disposeMicroKeyboardHelpContent = () => {
-      leftSections.forEach( section => section.dispose() );
-      rightSections.forEach( section => section.dispose() );
-    };
   }
 
+  // See https://github.com/phetsims/ph-scale/issues/285
   public override dispose(): void {
-    this.disposeMicroKeyboardHelpContent();
+    assert && assert( false, 'dispose is not supported, exists for the lifetime of the sim' );
     super.dispose();
   }
 }

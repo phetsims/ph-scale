@@ -15,8 +15,6 @@ import phScale from '../../phScale.js';
 
 export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
 
-  private readonly disposeMoveKeyboardHelpContent: () => void;
-
   public constructor( titleProperty: TReadOnlyProperty<string> ) {
 
     // Icons, which must be disposed
@@ -25,7 +23,6 @@ export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
     const wasdKeysIcon = KeyboardHelpIconFactory.wasdRowIcon();
     const shiftPlusArrowKeysIcon = KeyboardHelpIconFactory.shiftPlusIcon( arrowKeysIcon );
     const shiftPlusWASDKeysIcon = KeyboardHelpIconFactory.shiftPlusIcon( wasdKeysIcon );
-    const icons = [ arrowOrWasdKeysIcon, arrowKeysIcon, wasdKeysIcon, shiftPlusArrowKeysIcon, shiftPlusWASDKeysIcon ];
 
     // Rows, which must be disposed
     const rows = [
@@ -40,15 +37,11 @@ export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
     ];
 
     super( titleProperty, rows );
-
-    this.disposeMoveKeyboardHelpContent = () => {
-      icons.forEach( icon => icon.dispose() );
-      rows.forEach( row => row.dispose() );
-    };
   }
 
+  // See https://github.com/phetsims/ph-scale/issues/285
   public override dispose(): void {
-    this.disposeMoveKeyboardHelpContent();
+    assert && assert( false, 'dispose is not supported, exists for the lifetime of the sim' );
     super.dispose();
   }
 }

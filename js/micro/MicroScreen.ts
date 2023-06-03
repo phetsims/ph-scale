@@ -43,7 +43,6 @@ export default class MicroScreen extends Screen<MicroModel, MicroScreenView> {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),
-      //TODO https://github.com/phetsims/ph-scale/issues/249 restore when work on alternative input resume
       createKeyboardHelpNode: () => new MicroKeyboardHelpContent()
     }, providedOptions );
 

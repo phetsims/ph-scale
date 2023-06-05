@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.6.6-rc.1 Mon Jun 05 2023 14:33:13 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# ph-scale 1.6.6 Mon Jun 05 2023 15:05:54 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "c13a8c7741d95fbd8e37619c66ebcca8686dffe7",
     "branch": "HEAD"
@@ -37,7 +37,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "9d35120eb8b7f6abccd7effbbd8d9a9d76fa36de",
+    "sha": "aa742ab2734dbc3b7fe39e6a1b3a8662ff0160ac",
     "branch": "1.6"
   },
   "phet-core": {

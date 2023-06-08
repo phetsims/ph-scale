@@ -18,7 +18,7 @@ export default class MacroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
 
   public constructor() {
 
-    // Sections in the left column. They need to be disposed.
+    // Sections in the left column.
     const leftSections = [
 
       // Move the pH Probe
@@ -28,7 +28,7 @@ export default class MacroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
       new FaucetControlsKeyboardHelpContent()
     ];
 
-    // Sections in the right column. They need to be disposed.
+    // Sections in the right column.
     const rightSections = [
 
       // Choose a Solute

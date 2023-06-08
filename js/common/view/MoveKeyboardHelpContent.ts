@@ -16,15 +16,12 @@ import phScale from '../../phScale.js';
 export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
 
   public constructor( titleProperty: TReadOnlyProperty<string> ) {
-
-    // Icons, which must be disposed
     const arrowOrWasdKeysIcon = KeyboardHelpIconFactory.arrowOrWasdKeysRowIcon();
     const arrowKeysIcon = KeyboardHelpIconFactory.arrowKeysRowIcon();
     const wasdKeysIcon = KeyboardHelpIconFactory.wasdRowIcon();
     const shiftPlusArrowKeysIcon = KeyboardHelpIconFactory.shiftPlusIcon( arrowKeysIcon );
     const shiftPlusWASDKeysIcon = KeyboardHelpIconFactory.shiftPlusIcon( wasdKeysIcon );
 
-    // Rows, which must be disposed
     const rows = [
 
       // arrows or WASD, for normal speed

@@ -17,14 +17,14 @@ export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
 
   public constructor() {
 
-    // Sections in the left column. They need to be disposed.
+    // Sections in the left column.
     const leftSections = [
 
       // Faucet Controls
       new FaucetControlsKeyboardHelpContent()
     ];
 
-    // Sections in the right column. They need to be disposed.
+    // Sections in the right column.
     const rightSections = [
 
       // Choose a Solute

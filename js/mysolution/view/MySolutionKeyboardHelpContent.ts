@@ -16,14 +16,14 @@ export default class MySolutionKeyboardHelpContent extends TwoColumnKeyboardHelp
 
   public constructor() {
 
-    // Sections in the left column. They need to be disposed.
+    // Sections in the left column.
     const leftSections = [
 
       // Move the Dropper
       new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheGraphIndicatorsStringProperty )
     ];
 
-    // Sections in the right column. They need to be disposed.
+    // Sections in the right column.
     const rightSections = [
 
       // Basic Actions

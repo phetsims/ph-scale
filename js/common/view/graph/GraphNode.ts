@@ -174,24 +174,24 @@ export default class GraphNode extends Node {
 
     // Link to concentration Properties, see https://github.com/phetsims/ph-scale/issues/125
     this.addLinkedElement( derivedProperties.concentrationH2OProperty, {
-      tandem: options.tandem.createTandem( 'concentrationH2OProperty' )
+      tandemName: 'concentrationH2OProperty'
     } );
     this.addLinkedElement( derivedProperties.concentrationH3OProperty, {
-      tandem: options.tandem.createTandem( 'concentrationH3OProperty' )
+      tandemName: 'concentrationH3OProperty'
     } );
     this.addLinkedElement( derivedProperties.concentrationOHProperty, {
-      tandem: options.tandem.createTandem( 'concentrationOHProperty' )
+      tandemName: 'concentrationOHProperty'
     } );
 
     // Link to quantity Properties, see https://github.com/phetsims/ph-scale/issues/125
     this.addLinkedElement( derivedProperties.quantityH2OProperty, {
-      tandem: options.tandem.createTandem( 'quantityH2OProperty' )
+      tandemName: 'quantityH2OProperty'
     } );
     this.addLinkedElement( derivedProperties.quantityH3OProperty, {
-      tandem: options.tandem.createTandem( 'quantityH3OProperty' )
+      tandemName: 'quantityH3OProperty'
     } );
     this.addLinkedElement( derivedProperties.quantityOHProperty, {
-      tandem: options.tandem.createTandem( 'quantityOHProperty' )
+      tandemName: 'quantityOHProperty'
     } );
 
     // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249

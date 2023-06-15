@@ -49,7 +49,7 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
     super( contentNode, probeYOffset, providedOptions );
 
     this.addLinkedElement( pHProperty, {
-      tandem: providedOptions.tandem.createTandem( 'pHProperty' )
+      tandemName: 'pHProperty'
     } );
   }
 }

@@ -33,9 +33,7 @@ export default class MySolutionPHAccordionBox extends PHAccordionBox {
 
     super( contentNode, probeYOffset, providedOptions );
 
-    this.addLinkedElement( pHProperty, {
-      tandem: providedOptions.tandem.createTandem( pHProperty.tandem.name )
-    } );
+    this.addLinkedElement( pHProperty );
   }
 }
 

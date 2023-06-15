@@ -103,7 +103,7 @@ export default class Solute extends PhetioObject {
     this.colorStopRatio = options.colorStopRatio;
 
     this.addLinkedElement( nameProperty, {
-      tandem: options.tandem.createTandem( 'nameProperty' )
+      tandemName: 'nameProperty'
     } );
   }
 

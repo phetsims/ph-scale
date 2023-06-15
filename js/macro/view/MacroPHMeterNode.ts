@@ -126,7 +126,7 @@ export default class MacroPHMeterNode extends Node {
 
     // Create a link to pHProperty, so it's easier to find in Studio.
     this.addLinkedElement( meter.pHProperty, {
-      tandem: options.tandem.createTandem( 'pHProperty' )
+      tandemName: 'pHProperty'
     } );
   }
 }

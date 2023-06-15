@@ -76,7 +76,7 @@ export default class Solution extends PhetioObject {
     // Create a PhET-iO linked element that points to where soluteProperty lives (in Dropper).
     // This makes it easier to find soluteProperty in the Studio tree.
     this.addLinkedElement( this.soluteProperty, {
-      tandem: options.tandem.createTandem( 'soluteProperty' )
+      tandemName: 'soluteProperty'
     } );
 
     this.maxVolume = options.maxVolume;

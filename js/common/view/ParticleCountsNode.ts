@@ -123,15 +123,15 @@ export default class ParticleCountsNode extends Node {
 
     // Links to the count Properties
     this.addLinkedElement( derivedProperties.particleCountH3OProperty, {
-      tandem: options.tandem.createTandem( 'particleCountH3OProperty' )
+      tandemName: 'particleCountH3OProperty'
     } );
 
     this.addLinkedElement( derivedProperties.particleCountOHProperty, {
-      tandem: options.tandem.createTandem( 'particleCountOHProperty' )
+      tandemName: 'particleCountOHProperty'
     } );
 
     this.addLinkedElement( derivedProperties.particleCountH2OProperty, {
-      tandem: options.tandem.createTandem( 'particleCountH2OProperty' )
+      tandemName: 'particleCountH2OProperty'
     } );
   }
 }

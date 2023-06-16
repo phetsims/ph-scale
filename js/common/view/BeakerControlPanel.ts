@@ -83,7 +83,6 @@ class RatioCheckbox extends Checkbox {
         oh: `<span style="color:${PHScaleColors.OH_PARTICLES.toCSS()}">${PHScaleConstants.OH_FORMULA}</span>`
       } ), {
         tandem: tandem.createTandem( RichText.STRING_PROPERTY_TANDEM_NAME )
-
       } );
 
     const ratioText = new RichText( stringProperty, {

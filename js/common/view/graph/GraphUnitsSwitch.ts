@@ -43,7 +43,6 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
       [ PhScaleStrings.concentrationStringProperty, PhScaleStrings.units.molesPerLiterStringProperty ],
       ( concentrationString, molesPerLiterString ) => `${concentrationString}<br>(${molesPerLiterString})`, {
         tandem: concentrationTextTandem.createTandem( RichText.STRING_PROPERTY_TANDEM_NAME )
-
       } );
     const concentrationText = new RichText( concentrationStringProperty, {
       align: 'center',
@@ -62,7 +61,6 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
       [ PhScaleStrings.quantityStringProperty, PhScaleStrings.units.molesStringProperty ],
       ( quantityString, molesString ) => `${quantityString}<br>(${molesString})`, {
         tandem: quantityTextTandem.createTandem( RichText.STRING_PROPERTY_TANDEM_NAME )
-
       } );
     const quantityText = new RichText( quantityStringProperty, {
       align: 'center',

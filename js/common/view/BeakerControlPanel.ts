@@ -7,7 +7,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -17,11 +16,11 @@ import { HSeparator, RichText, Text, VBox } from '../../../../scenery/js/imports
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import StringIO from '../../../../tandem/js/types/StringIO.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
+import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 
 // constants
 const FONT = new PhetFont( 20 );
@@ -77,14 +76,14 @@ class RatioCheckbox extends Checkbox {
 
   public constructor( ratioVisibleProperty: Property<boolean>, tandem: Tandem ) {
 
-    const stringProperty = new DerivedProperty(
+    const stringProperty = new DerivedStringProperty(
       [ PhScaleStrings.ratioStringProperty ],
       ( ratioString: string ) => StringUtils.fillIn( `{{h3o}} / {{oh}} ${ratioString} `, {
         h3o: `<span style="color:${PHScaleColors.H3O_PARTICLES.toCSS()}">${PHScaleConstants.H3O_FORMULA}</span>`,
         oh: `<span style="color:${PHScaleColors.OH_PARTICLES.toCSS()}">${PHScaleConstants.OH_FORMULA}</span>`
       } ), {
-        tandem: tandem.createTandem( RichText.STRING_PROPERTY_TANDEM_NAME ),
-        phetioValueType: StringIO
+        tandem: tandem.createTandem( RichText.STRING_PROPERTY_TANDEM_NAME )
+
       } );
 
     const ratioText = new RichText( stringProperty, {

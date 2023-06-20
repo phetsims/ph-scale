@@ -5,61 +5,61 @@
  */
 /* eslint-disable */
 import getStringModule from '../../chipper/js/getStringModule.js';
-import LinkableProperty from '../../axon/js/LinkableProperty.js';
+import type LocalizedStringProperty from '../../chipper/js/LocalizedStringProperty.js';
 import phScale from './phScale.js';
 
 type StringsType = {
   'ph-scale': {
-    'titleStringProperty': LinkableProperty<string>;
+    'titleStringProperty': LocalizedStringProperty;
   };
   'screen': {
-    'macroStringProperty': LinkableProperty<string>;
-    'microStringProperty': LinkableProperty<string>;
-    'mySolutionStringProperty': LinkableProperty<string>;
+    'macroStringProperty': LocalizedStringProperty;
+    'microStringProperty': LocalizedStringProperty;
+    'mySolutionStringProperty': LocalizedStringProperty;
   };
   'choice': {
-    'milkStringProperty': LinkableProperty<string>;
-    'chickenSoupStringProperty': LinkableProperty<string>;
-    'batteryAcidStringProperty': LinkableProperty<string>;
-    'vomitStringProperty': LinkableProperty<string>;
-    'sodaStringProperty': LinkableProperty<string>;
-    'orangeJuiceStringProperty': LinkableProperty<string>;
-    'coffeeStringProperty': LinkableProperty<string>;
-    'spitStringProperty': LinkableProperty<string>;
-    'bloodStringProperty': LinkableProperty<string>;
-    'handSoapStringProperty': LinkableProperty<string>;
-    'waterStringProperty': LinkableProperty<string>;
-    'drainCleanerStringProperty': LinkableProperty<string>;
+    'milkStringProperty': LocalizedStringProperty;
+    'chickenSoupStringProperty': LocalizedStringProperty;
+    'batteryAcidStringProperty': LocalizedStringProperty;
+    'vomitStringProperty': LocalizedStringProperty;
+    'sodaStringProperty': LocalizedStringProperty;
+    'orangeJuiceStringProperty': LocalizedStringProperty;
+    'coffeeStringProperty': LocalizedStringProperty;
+    'spitStringProperty': LocalizedStringProperty;
+    'bloodStringProperty': LocalizedStringProperty;
+    'handSoapStringProperty': LocalizedStringProperty;
+    'waterStringProperty': LocalizedStringProperty;
+    'drainCleanerStringProperty': LocalizedStringProperty;
   };
   'units': {
-    'litersStringProperty': LinkableProperty<string>;
-    'molesStringProperty': LinkableProperty<string>;
-    'molesPerLiterStringProperty': LinkableProperty<string>;
+    'litersStringProperty': LocalizedStringProperty;
+    'molesStringProperty': LocalizedStringProperty;
+    'molesPerLiterStringProperty': LocalizedStringProperty;
   };
   'pattern': {
     '0value': {
-      '1unitsStringProperty': LinkableProperty<string>;
+      '1unitsStringProperty': LocalizedStringProperty;
     }
   };
-  'pHStringProperty': LinkableProperty<string>;
-  'acidicStringProperty': LinkableProperty<string>;
-  'basicStringProperty': LinkableProperty<string>;
-  'neutralStringProperty': LinkableProperty<string>;
-  'concentrationStringProperty': LinkableProperty<string>;
-  'quantityStringProperty': LinkableProperty<string>;
-  'particleCountsStringProperty': LinkableProperty<string>;
-  'ratioStringProperty': LinkableProperty<string>;
-  'linearStringProperty': LinkableProperty<string>;
-  'logarithmicStringProperty': LinkableProperty<string>;
-  'offScaleStringProperty': LinkableProperty<string>;
+  'pHStringProperty': LocalizedStringProperty;
+  'acidicStringProperty': LocalizedStringProperty;
+  'basicStringProperty': LocalizedStringProperty;
+  'neutralStringProperty': LocalizedStringProperty;
+  'concentrationStringProperty': LocalizedStringProperty;
+  'quantityStringProperty': LocalizedStringProperty;
+  'particleCountsStringProperty': LocalizedStringProperty;
+  'ratioStringProperty': LocalizedStringProperty;
+  'linearStringProperty': LocalizedStringProperty;
+  'logarithmicStringProperty': LocalizedStringProperty;
+  'offScaleStringProperty': LocalizedStringProperty;
   'keyboardHelpDialog': {
-    'chooseASoluteStringProperty': LinkableProperty<string>;
-    'soluteStringProperty': LinkableProperty<string>;
-    'solutesStringProperty': LinkableProperty<string>;
-    'moveThePHProbeStringProperty': LinkableProperty<string>;
-    'moveTheGraphIndicatorsStringProperty': LinkableProperty<string>;
-    'moveStringProperty': LinkableProperty<string>;
-    'moveSlowerStringProperty': LinkableProperty<string>;
+    'chooseASoluteStringProperty': LocalizedStringProperty;
+    'soluteStringProperty': LocalizedStringProperty;
+    'solutesStringProperty': LocalizedStringProperty;
+    'moveThePHProbeStringProperty': LocalizedStringProperty;
+    'moveTheGraphIndicatorsStringProperty': LocalizedStringProperty;
+    'moveStringProperty': LocalizedStringProperty;
+    'moveSlowerStringProperty': LocalizedStringProperty;
   }
 };
 

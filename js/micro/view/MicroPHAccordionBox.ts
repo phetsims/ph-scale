@@ -15,7 +15,7 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import LinkableReadOnlyProperty from '../../../../axon/js/LinkableReadOnlyProperty.js';
+import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -28,7 +28,7 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
    * @param probeYOffset - distance from top of meter to tip of probe, in view coordinate frame
    * @param [providedOptions]
    */
-  public constructor( pHProperty: LinkableReadOnlyProperty<PHValue>,
+  public constructor( pHProperty: ReadOnlyProperty<PHValue>,
                       probeYOffset: number,
                       providedOptions: MicroPHAccordionBoxOptions ) {
 

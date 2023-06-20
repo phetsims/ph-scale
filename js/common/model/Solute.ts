@@ -7,7 +7,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import LinkableProperty from '../../../../axon/js/LinkableProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
@@ -21,6 +20,7 @@ import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import Water from './Water.js';
+import PhetioProperty from '../../../../axon/js/PhetioProperty.js';
 
 // parent tandem for static instances of Solute, which are used across all screens
 const SOLUTES_TANDEM = Tandem.GLOBAL_MODEL.createTandem( 'solutes' );
@@ -69,7 +69,7 @@ export default class Solute extends PhetioObject {
    * @param stockColor - color of the solute in stock solution (no dilution)
    * @param [provideOptions]
    */
-  public constructor( nameProperty: LinkableProperty<string>, pH: number, stockColor: Color, provideOptions: SoluteOptions ) {
+  public constructor( nameProperty: PhetioProperty<string>, pH: number, stockColor: Color, provideOptions: SoluteOptions ) {
 
     assert && assert( PHScaleConstants.PH_RANGE.contains( pH ), `invalid pH: ${pH}` );
 

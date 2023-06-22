@@ -6,6 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import Disposable from '../../../../axon/js/Disposable.js';
 import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
 import phScale from '../../phScale.js';
 import MoveKeyboardHelpContent from '../../common/view/MoveKeyboardHelpContent.js';
@@ -37,7 +38,7 @@ export default class MySolutionKeyboardHelpContent extends TwoColumnKeyboardHelp
 
   // See https://github.com/phetsims/ph-scale/issues/285
   public override dispose(): void {
-    assert && assert( false, 'dispose is not supported, exists for the lifetime of the sim' );
+    Disposable.assertNotDisposable();
     super.dispose();
   }
 }

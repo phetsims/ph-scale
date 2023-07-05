@@ -43,7 +43,8 @@ export default class MicroScreen extends Screen<MicroModel, MicroScreenView> {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),
-      createKeyboardHelpNode: () => new MicroKeyboardHelpContent()
+      createKeyboardHelpNode: () => new MicroKeyboardHelpContent(),
+      isDisposable: false
     }, providedOptions );
 
     super(

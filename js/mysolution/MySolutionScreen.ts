@@ -6,7 +6,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Disposable from '../../../axon/js/Disposable.js';
 import Property from '../../../axon/js/Property.js';
 import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
@@ -44,7 +43,8 @@ export default class MySolutionScreen extends Screen<MySolutionModel, MySolution
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),
-      createKeyboardHelpNode: () => new MySolutionKeyboardHelpContent()
+      createKeyboardHelpNode: () => new MySolutionKeyboardHelpContent(),
+      isDisposable: false
     }, providedOptions );
 
     super(
@@ -56,11 +56,6 @@ export default class MySolutionScreen extends Screen<MySolutionModel, MySolution
       } ),
       options
     );
-  }
-
-  public override dispose(): void {
-    Disposable.assertNotDisposable();
-    super.dispose();
   }
 }
 

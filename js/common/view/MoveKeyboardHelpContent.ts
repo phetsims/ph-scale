@@ -6,7 +6,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Disposable from '../../../../axon/js/Disposable.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import KeyboardHelpIconFactory from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpIconFactory.js';
 import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
@@ -34,13 +33,9 @@ export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
         [ shiftPlusArrowKeysIcon, shiftPlusWASDKeysIcon ] )
     ];
 
-    super( titleProperty, rows );
-  }
-
-  // See https://github.com/phetsims/ph-scale/issues/285
-  public override dispose(): void {
-    Disposable.assertNotDisposable();
-    super.dispose();
+    super( titleProperty, rows, {
+      isDisposable: false // See https://github.com/phetsims/ph-scale/issues/285
+    } );
   }
 }
 

@@ -96,6 +96,8 @@ export default class GraphIndicatorDragListener extends DragListener {
       } );
       const exponent = +scientificNotation.exponent - PHScaleConstants.LOGARITHMIC_MANTISSA_DECIMAL_PLACES;
       const interval = Math.pow( 10, exponent );
+
+      assert && assert( Utils.numberOfDecimalPlaces( interval ) <= 100, 'Number of decimal places: ' + Utils.numberOfDecimalPlaces( interval ) + ', yView: ' + yView + ', value: ' + value + ', exponent: ' + exponent + ', interval: ' + interval + ', totalVolume = ' + totalVolume + ', graphUnits = ' + graphUnits );
       let adjustedValue = Utils.roundToInterval( value, interval );
 
       // Workaround for https://github.com/phetsims/ph-scale/issues/225.

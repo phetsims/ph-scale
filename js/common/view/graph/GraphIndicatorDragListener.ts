@@ -57,8 +57,12 @@ export default class GraphIndicatorDragListener extends DragListener {
       // When the indicator is dragged, create a custom solute that corresponds to the new pH.
       drag: event => {
 
+        // Prevent downstream RangeError in Number.toFixed. See https://github.com/phetsims/ph-scale/issues/286
+        const yPointer = Math.min( graphIndicatorNode.globalToParentPoint( event.pointer.point ).y,
+          PHScaleConstants.SCREEN_VIEW_OPTIONS.layoutBounds.height );
+
         // Adjust the y-coordinate for the offset between the pointer and the indicator's origin
-        const yView = graphIndicatorNode.globalToParentPoint( event.pointer.point ).y - clickYOffset;
+        const yView = yPointer - clickYOffset;
 
         GraphIndicatorDragListener.doDrag( yView, graphIndicatorNode, pHProperty, totalVolumeProperty.value,
           graphUnitsProperty.value, yToValue, concentrationToPH, molesToPH );

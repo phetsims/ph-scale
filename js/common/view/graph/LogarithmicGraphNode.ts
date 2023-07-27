@@ -174,18 +174,15 @@ export default class LogarithmicGraphNode extends Node {
     // Values displayed on the indicators
     const valueH2OProperty = new DerivedProperty(
       [ derivedProperties.concentrationH2OProperty, derivedProperties.quantityH2OProperty, graphUnitsProperty ],
-      ( concentration, quantity, graphUnits ) =>
-        ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
+      ( concentration, quantity, graphUnits ) => ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
     );
     const valueH3OProperty = new DerivedProperty(
       [ derivedProperties.concentrationH3OProperty, derivedProperties.quantityH3OProperty, graphUnitsProperty ],
-      ( concentration, quantity, graphUnits ) =>
-        ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
+      ( concentration, quantity, graphUnits ) => ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
     );
     const valueOHProperty = new DerivedProperty(
       [ derivedProperties.concentrationOHProperty, derivedProperties.quantityOHProperty, graphUnitsProperty ],
-      ( concentration, quantity, graphUnits ) =>
-        ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
+      ( concentration, quantity, graphUnits ) => ( graphUnits === GraphUnits.MOLES_PER_LITER ) ? concentration : quantity
     );
 
     // indicators

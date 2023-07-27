@@ -8,7 +8,7 @@
 
 import Utils from '../../../../../dot/js/Utils.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
-import { DragListener, Node } from '../../../../../scenery/js/imports.js';
+import { DragListener } from '../../../../../scenery/js/imports.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
@@ -17,11 +17,12 @@ import { ConcentrationValue, PHValue } from '../../model/PHModel.js';
 import Property from '../../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
+import GraphIndicatorNode from './GraphIndicatorNode.js';
 
 export default class GraphIndicatorDragListener extends DragListener {
 
   /**
-   * @param targetNode
+   * @param graphIndicatorNode
    * @param pHProperty - pH of the solution
    * @param totalVolumeProperty - volume of the solution
    * @param graphUnitsProperty
@@ -31,7 +32,7 @@ export default class GraphIndicatorDragListener extends DragListener {
    * @param startCallback - called when drag starts
    * @param tandem
    */
-  public constructor( targetNode: Node,
+  public constructor( graphIndicatorNode: GraphIndicatorNode,
                       pHProperty: Property<number>,
                       totalVolumeProperty: TReadOnlyProperty<number>,
                       graphUnitsProperty: EnumerationProperty<GraphUnits>,
@@ -50,16 +51,16 @@ export default class GraphIndicatorDragListener extends DragListener {
       // Record the offset between the pointer and the indicator's origin.
       start: event => {
         startCallback();
-        clickYOffset = targetNode.globalToParentPoint( event.pointer.point ).y - targetNode.y;
+        clickYOffset = graphIndicatorNode.globalToParentPoint( event.pointer.point ).y - graphIndicatorNode.y;
       },
 
       // When the indicator is dragged, create a custom solute that corresponds to the new pH.
       drag: event => {
 
         // Adjust the y-coordinate for the offset between the pointer and the indicator's origin
-        const yView = targetNode.globalToParentPoint( event.pointer.point ).y - clickYOffset;
+        const yView = graphIndicatorNode.globalToParentPoint( event.pointer.point ).y - clickYOffset;
 
-        GraphIndicatorDragListener.doDrag( yView, targetNode, pHProperty, totalVolumeProperty.value,
+        GraphIndicatorDragListener.doDrag( yView, graphIndicatorNode, pHProperty, totalVolumeProperty.value,
           graphUnitsProperty.value, yToValue, concentrationToPH, molesToPH );
       },
 
@@ -73,7 +74,7 @@ export default class GraphIndicatorDragListener extends DragListener {
    * This is used by both GraphIndicatorDragListener and GraphIndicatorKeyboardDragListener.
    */
   public static doDrag( yView: number,
-                        targetNode: Node,
+                        graphIndicatorNode: GraphIndicatorNode,
                         pHProperty: Property<number>,
                         totalVolume: number,
                         graphUnits: GraphUnits,

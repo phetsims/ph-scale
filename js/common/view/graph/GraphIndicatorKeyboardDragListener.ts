@@ -6,7 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { KeyboardDragListener, Node } from '../../../../../scenery/js/imports.js';
+import { KeyboardDragListener } from '../../../../../scenery/js/imports.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import GraphUnits from './GraphUnits.js';
@@ -15,11 +15,12 @@ import Property from '../../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
+import GraphIndicatorNode from './GraphIndicatorNode.js';
 
 export default class GraphIndicatorKeyboardDragListener extends KeyboardDragListener {
 
   /**
-   * @param targetNode
+   * @param graphIndicatorNode
    * @param pHProperty - pH of the solution
    * @param totalVolumeProperty - volume of the solution
    * @param graphUnitsProperty
@@ -28,7 +29,7 @@ export default class GraphIndicatorKeyboardDragListener extends KeyboardDragList
    * @param molesToPH - converts moles + volume to pH
    * @param tandem
    */
-  public constructor( targetNode: Node,
+  public constructor( graphIndicatorNode: GraphIndicatorNode,
                       pHProperty: Property<number>,
                       totalVolumeProperty: TReadOnlyProperty<number>,
                       graphUnitsProperty: EnumerationProperty<GraphUnits>,
@@ -38,7 +39,7 @@ export default class GraphIndicatorKeyboardDragListener extends KeyboardDragList
                       tandem: Tandem ) {
     super( {
       keyboardDragDirection: 'upDown', // constrained to vertical dragging
-      drag: viewDelta => GraphIndicatorDragListener.doDrag( targetNode.y + viewDelta.y, targetNode, pHProperty,
+      drag: viewDelta => GraphIndicatorDragListener.doDrag( graphIndicatorNode.y + viewDelta.y, graphIndicatorNode, pHProperty,
         totalVolumeProperty.value, graphUnitsProperty.value, yToValue, concentrationToPH, molesToPH ),
 
       // Velocity of the Node being dragged, in view coordinates per second.

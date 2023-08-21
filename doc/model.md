@@ -41,15 +41,18 @@ Number of molecules of _X_ = ( Number of moles of _X_ ) * N<sub>A</sub>
 
 #### pH
 
-If combining 2 acids (or acid and water), then pH = -log( ( 10<sup>-pH<sub>1</sub></sup> * V<sub>1</sub> + 10<sup>-pH<sub>2</sub></sup> * V<sub>2</sub> ) / V<sub>T</sub>)
+If combining 2 acids (or acid and water), then pH = -log( ( 10<sup>-pH<sub>1</sub></sup> * V<sub>1</sub> + 10<sup>
+-pH<sub>2</sub></sup> * V<sub>2</sub> ) / V<sub>T</sub>)
 
-If combining 2 bases (or base and water), then pH = 14 + log( ( 10<sup>pH<sub>1</sub>-14</sup> * V<sub>1</sub> + 10<sup>14-pH<sub>2</sub></sup> *V <sub>2</sub> ) / V<sub>T</sub> )
+If combining 2 bases (or base and water), then pH = 14 + log( ( 10<sup>pH<sub>1</sub>-14</sup> * V<sub>1</sub> + 10<sup>
+14-pH<sub>2</sub></sup> *V <sub>2</sub> ) / V<sub>T</sub> )
 
 If concentration of H<sub>3</sub>O<sup>+</sup> is changed, then pH = -log( [H<sub>3</sub>O<sup>+</sup>] )
 
 If concentration of OH is changed, then pH = 14 + log( [OH] )
 
-If #moles of H<sub>3</sub>O<sup>+</sup> is changed, then pH = -log( (#moles H<sub>3</sub>O<sup>+</sup>) / V<sub>T</sub> )
+If #moles of H<sub>3</sub>O<sup>+</sup> is changed, then pH = -log( (#moles H<sub>3</sub>O<sup>+</sup>) / V<sub>
+T</sub> )
 
 If #moles of OH is changed,, then pH = 14 + log( (#moles OH) / V<sub>T</sub>))
 

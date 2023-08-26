@@ -9,8 +9,6 @@
 import Property from '../../../axon/js/Property.js';
 import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
-import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
-import PickRequired from '../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import { Image } from '../../../scenery/js/imports.js';
 import mySolutionHomeScreenIcon_png from '../../images/mySolutionHomeScreenIcon_png.js';
@@ -21,16 +19,13 @@ import PhScaleStrings from '../PhScaleStrings.js';
 import MySolutionModel from './model/MySolutionModel.js';
 import MySolutionScreenView from './view/MySolutionScreenView.js';
 import MySolutionKeyboardHelpContent from './view/MySolutionKeyboardHelpContent.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type MySolutionScreenOptions = SelfOptions & PickRequired<ScreenOptions, 'tandem'>;
+import Tandem from '../../../tandem/js/Tandem.js';
 
 export default class MySolutionScreen extends Screen<MySolutionModel, MySolutionScreenView> {
 
-  public constructor( providedOptions: MySolutionScreenOptions ) {
+  public constructor( tandem: Tandem ) {
 
-    const options = optionize<MySolutionScreenOptions, SelfOptions, ScreenOptions>()( {
+    const options: ScreenOptions = {
 
       // ScreenOptions
       name: PhScaleStrings.screen.mySolutionStringProperty,
@@ -44,16 +39,13 @@ export default class MySolutionScreen extends Screen<MySolutionModel, MySolution
         maxIconHeightProportion: 1
       } ),
       createKeyboardHelpNode: () => new MySolutionKeyboardHelpContent(),
-      isDisposable: false
-    }, providedOptions );
+      isDisposable: false,
+      tandem: tandem
+    };
 
     super(
-      () => new MySolutionModel( {
-        tandem: options.tandem.createTandem( 'model' )
-      } ),
-      model => new MySolutionScreenView( model, ModelViewTransform2.createIdentity(), {
-        tandem: options.tandem.createTandem( 'view' )
-      } ),
+      () => new MySolutionModel( options.tandem.createTandem( 'model' ) ),
+      model => new MySolutionScreenView( model, ModelViewTransform2.createIdentity(), options.tandem.createTandem( 'view' ) ),
       options
     );
   }

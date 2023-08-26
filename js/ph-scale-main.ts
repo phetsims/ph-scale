@@ -18,15 +18,9 @@ import PhScaleStrings from './PhScaleStrings.js';
 simLauncher.launch( () => {
 
   const screens = [
-    new MacroScreen( {
-      tandem: Tandem.ROOT.createTandem( 'macroScreen' )
-    } ),
-    new MicroScreen( {
-      tandem: Tandem.ROOT.createTandem( 'microScreen' )
-    } ),
-    new MySolutionScreen( {
-      tandem: Tandem.ROOT.createTandem( 'mySolutionScreen' )
-    } )
+    new MacroScreen( Tandem.ROOT.createTandem( 'macroScreen' ) ),
+    new MicroScreen( Tandem.ROOT.createTandem( 'microScreen' ) ),
+    new MySolutionScreen( Tandem.ROOT.createTandem( 'mySolutionScreen' ) )
   ];
 
   const sim = new Sim( PhScaleStrings[ 'ph-scale' ].titleStringProperty, screens, {

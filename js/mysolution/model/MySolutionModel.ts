@@ -7,17 +7,11 @@
  */
 
 import TModel from '../../../../joist/js/TModel.js';
-import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import Beaker from '../../common/model/Beaker.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
 import MySolution from './MySolution.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type MySolutionModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class MySolutionModel implements TModel {
 
@@ -27,13 +21,13 @@ export default class MySolutionModel implements TModel {
   // solution in the beaker
   public readonly solution: MySolution;
 
-  public constructor( providedOptions: MySolutionModelOptions ) {
+  public constructor( tandem: Tandem ) {
 
     this.beaker = new Beaker( PHScaleConstants.BEAKER_POSITION );
 
     this.solution = new MySolution( {
       maxVolume: this.beaker.volume,
-      tandem: providedOptions.tandem.createTandem( 'solution' )
+      tandem: tandem.createTandem( 'solution' )
     } );
   }
 

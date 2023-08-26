@@ -7,30 +7,22 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import PHModel, { PHModelOptions } from '../../common/model/PHModel.js';
+import PHModel from '../../common/model/PHModel.js';
 import phScale from '../../phScale.js';
 import MicroSolution from './MicroSolution.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type MicroModelOptions = SelfOptions & PickRequired<PHModelOptions<MicroSolution>, 'tandem'>;
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class MicroModel extends PHModel<MicroSolution> {
 
-  public constructor( providedOptions: MicroModelOptions ) {
+  public constructor( tandem: Tandem ) {
 
-    const options = optionize<MicroModelOptions, SelfOptions, PHModelOptions<MicroSolution>>()( {
-
-      // Creates the solution needed by the Micro screen
+    super( {
       createSolution: ( solutionProperty, maxVolume, tandem ) => new MicroSolution( solutionProperty, {
         maxVolume: maxVolume,
         tandem: tandem
-      } )
-    }, providedOptions );
-
-    super( options );
+      } ),
+      tandem: tandem
+    } );
   }
 }
 

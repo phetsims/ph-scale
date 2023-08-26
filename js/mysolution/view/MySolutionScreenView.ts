@@ -12,11 +12,8 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { ScreenOptions } from '../../../../joist/js/Screen.js';
-import ScreenView from '../../../../joist/js/ScreenView.js';
-import { EmptySelfOptions, optionize3 } from '../../../../phet-core/js/optionize.js';
-import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import ScreenView, { ScreenViewOptions } from '../../../../joist/js/ScreenView.js';
+import { combineOptions } from '../../../../phet-core/js/optionize.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import { Node } from '../../../../scenery/js/imports.js';
@@ -32,26 +29,22 @@ import VolumeIndicatorNode from '../../common/view/VolumeIndicatorNode.js';
 import phScale from '../../phScale.js';
 import MySolutionModel from '../model/MySolutionModel.js';
 import MySolutionPHAccordionBox from './MySolutionPHAccordionBox.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type MySolutionScreenViewOptions = SelfOptions & PickRequired<ScreenOptions, 'tandem'>;
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class MySolutionScreenView extends ScreenView {
 
-  public constructor( model: MySolutionModel, modelViewTransform: ModelViewTransform2, provideOptions: MySolutionScreenViewOptions ) {
+  public constructor( model: MySolutionModel, modelViewTransform: ModelViewTransform2, tandem: Tandem ) {
 
-    const options = optionize3<MySolutionScreenViewOptions, SelfOptions, StrictOmit<ScreenOptions, 'tandem'>>()( {},
-      PHScaleConstants.SCREEN_VIEW_OPTIONS, provideOptions );
-
-    super( options );
+    super( combineOptions<ScreenViewOptions>( {
+      tandem: tandem
+    }, PHScaleConstants.SCREEN_VIEW_OPTIONS ) );
 
     // view-specific properties
-    const viewProperties = new PHScaleViewProperties( options.tandem.createTandem( 'viewProperties' ) );
+    const viewProperties = new PHScaleViewProperties( tandem.createTandem( 'viewProperties' ) );
 
     // beaker
     const beakerNode = new BeakerNode( model.beaker, modelViewTransform, {
-      tandem: options.tandem.createTandem( 'beakerNode' )
+      tandem: tandem.createTandem( 'beakerNode' )
     } );
 
     // solution in the beaker
@@ -60,19 +53,19 @@ export default class MySolutionScreenView extends ScreenView {
 
     // volume indicator along the right edge of the beaker
     const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.totalVolumeProperty, model.beaker, modelViewTransform, {
-      tandem: options.tandem.createTandem( 'volumeIndicatorNode' )
+      tandem: tandem.createTandem( 'volumeIndicatorNode' )
     } );
 
     // 'H3O+/OH- ratio' representation
     const ratioNode = new RatioNode( model.beaker, model.solution.pHProperty, model.solution.totalVolumeProperty, modelViewTransform, {
       visibleProperty: viewProperties.ratioVisibleProperty,
-      tandem: options.tandem.createTandem( 'ratioNode' )
+      tandem: tandem.createTandem( 'ratioNode' )
     } );
 
     // 'Particle Counts' representation
     const particleCountsNode = new ParticleCountsNode( model.solution.derivedProperties, {
       visibleProperty: viewProperties.particleCountsVisibleProperty,
-      tandem: options.tandem.createTandem( 'particleCountsNode' )
+      tandem: tandem.createTandem( 'particleCountsNode' )
     } );
 
     // beaker controls
@@ -80,21 +73,21 @@ export default class MySolutionScreenView extends ScreenView {
       viewProperties.ratioVisibleProperty,
       viewProperties.particleCountsVisibleProperty, {
         maxWidth: 0.85 * beakerNode.width,
-        tandem: options.tandem.createTandem( 'beakerControlPanel' )
+        tandem: tandem.createTandem( 'beakerControlPanel' )
       } );
 
     // graph
     const graphNode = new GraphNode( model.solution.totalVolumeProperty, model.solution.derivedProperties, {
       pHProperty: model.solution.pHProperty,
       logScaleHeight: 565,
-      tandem: options.tandem.createTandem( 'graphNode' )
+      tandem: tandem.createTandem( 'graphNode' )
     } );
 
     // pH meter
     const pHAccordionBoxTop = 15;
     const pHAccordionBox = new MySolutionPHAccordionBox( model.solution.pHProperty,
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHAccordionBoxTop, {
-        tandem: options.tandem.createTandem( 'pHAccordionBox' )
+        tandem: tandem.createTandem( 'pHAccordionBox' )
       } );
 
     const resetAllButton = new ResetAllButton( {
@@ -106,7 +99,7 @@ export default class MySolutionScreenView extends ScreenView {
         graphNode.reset();
         pHAccordionBox.reset();
       },
-      tandem: options.tandem.createTandem( 'resetAllButton' )
+      tandem: tandem.createTandem( 'resetAllButton' )
     } );
 
     // Parent for all nodes added to this screen

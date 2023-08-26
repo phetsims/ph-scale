@@ -6,7 +6,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import Property from '../../../axon/js/Property.js';
 import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
@@ -19,18 +18,14 @@ import phScale from '../phScale.js';
 import PhScaleStrings from '../PhScaleStrings.js';
 import MicroModel from './model/MicroModel.js';
 import MicroScreenView from './view/MicroScreenView.js';
-import PickRequired from '../../../phet-core/js/types/PickRequired.js';
 import MicroKeyboardHelpContent from './view/MicroKeyboardHelpContent.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type MicroScreenOptions = SelfOptions & PickRequired<ScreenOptions, 'tandem'>;
+import Tandem from '../../../tandem/js/Tandem.js';
 
 export default class MicroScreen extends Screen<MicroModel, MicroScreenView> {
 
-  public constructor( providedOptions: MicroScreenOptions ) {
+  public constructor( tandem: Tandem ) {
 
-    const options = optionize<MicroScreenOptions, SelfOptions, ScreenOptions>()( {
+    const options: ScreenOptions = {
 
       // ScreenOptions
       name: PhScaleStrings.screen.microStringProperty,
@@ -44,16 +39,13 @@ export default class MicroScreen extends Screen<MicroModel, MicroScreenView> {
         maxIconHeightProportion: 1
       } ),
       createKeyboardHelpNode: () => new MicroKeyboardHelpContent(),
-      isDisposable: false
-    }, providedOptions );
+      isDisposable: false,
+      tandem: tandem
+    };
 
     super(
-      () => new MicroModel( {
-        tandem: options.tandem.createTandem( 'model' )
-      } ),
-      model => new MicroScreenView( model, ModelViewTransform2.createIdentity(), {
-        tandem: options.tandem.createTandem( 'view' )
-      } ),
+      () => new MicroModel( options.tandem.createTandem( 'model' ) ),
+      model => new MicroScreenView( model, ModelViewTransform2.createIdentity(), options.tandem.createTandem( 'view' ) ),
       options
     );
   }

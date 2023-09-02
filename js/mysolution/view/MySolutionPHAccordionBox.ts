@@ -27,11 +27,11 @@ export default class MySolutionPHAccordionBox extends PHAccordionBox {
    */
   public constructor( pHProperty: Property<number>, probeYOffset: number, providedOptions: MySolutionPHAccordionBoxOptions ) {
 
-    const contentNode = new PHSpinnerNode( pHProperty, {
+    const spinner = new PHSpinnerNode( pHProperty, {
       tandem: providedOptions.tandem.createTandem( 'spinner' )
     } );
 
-    super( contentNode, probeYOffset, providedOptions );
+    super( spinner, probeYOffset, providedOptions );
 
     this.addLinkedElement( pHProperty );
   }

@@ -32,7 +32,7 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
                       probeYOffset: number,
                       providedOptions: MicroPHAccordionBoxOptions ) {
 
-    const contentNode = new NumberDisplay( pHProperty, PHScaleConstants.PH_RANGE, {
+    const numberDisplay = new NumberDisplay( pHProperty, PHScaleConstants.PH_RANGE, {
       decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
       cornerRadius: PHAccordionBox.CORNER_RADIUS,
       textOptions: {
@@ -46,7 +46,7 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
       tandem: providedOptions.tandem.createTandem( 'numberDisplay' )
     } );
 
-    super( contentNode, probeYOffset, providedOptions );
+    super( numberDisplay, probeYOffset, providedOptions );
 
     this.addLinkedElement( pHProperty, {
       tandemName: 'pHProperty'

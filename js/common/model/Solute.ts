@@ -40,9 +40,10 @@ type SelfOptions = {
 
 export type SoluteOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
-type SoluteStateObject = {
+type SoluteSelfStateObject = {
   pH: number;
-} & ReferenceIOState;
+};
+type SoluteStateObject = SoluteSelfStateObject & ReferenceIOState;
 
 export default class Solute extends PhetioObject {
 
@@ -151,7 +152,7 @@ export default class Solute extends PhetioObject {
    * stateSchema and toStateObject.
    * See https://github.com/phetsims/ph-scale/issues/205 and https://github.com/phetsims/ph-scale/issues/243.
    */
-  public static readonly SoluteIO = new IOType<Solute, SoluteStateObject>( 'SoluteIO', {
+  public static readonly SoluteIO = new IOType<Solute, SoluteStateObject, SoluteSelfStateObject>( 'SoluteIO', {
     valueType: Solute,
     supertype: ReferenceIO( IOType.ObjectIO ),
     stateSchema: {

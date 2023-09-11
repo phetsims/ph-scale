@@ -8,14 +8,15 @@
 
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Dimension2 from '../../../../../dot/js/Dimension2.js';
-import optionize, { combineOptions, EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
-import { NodeTranslationOptions, Text, TextOptions } from '../../../../../scenery/js/imports.js';
+import { NodeTranslationOptions, Text } from '../../../../../scenery/js/imports.js';
 import ABSwitch, { ABSwitchOptions } from '../../../../../sun/js/ABSwitch.js';
 import phScale from '../../../phScale.js';
 import PhScaleStrings from '../../../PhScaleStrings.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphScale from './GraphScale.js';
+import Tandem from '../../../../../tandem/js/Tandem.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -28,7 +29,10 @@ export default class GraphScaleSwitch extends ABSwitch<GraphScale> {
     const options = optionize<GraphScaleSwitchOptions, SelfOptions, ABSwitchOptions>()( {
 
       // ABSwitchOptions
-      toggleSwitchOptions: { size: new Dimension2( 50, 25 ) },
+      toggleSwitchOptions: {
+        size: new Dimension2( 50, 25 ),
+        tandem: Tandem.OPT_OUT // hiding or disabling just the toggle switch is not useful
+      },
       centerOnSwitch: true,
       phetioDocumentation: 'A/B switch for switching between logarithmic and linear scales'
     }, providedOptions );
@@ -43,16 +47,10 @@ export default class GraphScaleSwitch extends ABSwitch<GraphScale> {
     };
 
     // Logarithmic label
-    const logarithmicText = new Text( PhScaleStrings.logarithmicStringProperty,
-      combineOptions<TextOptions>( {}, textOptions, {
-        tandem: options.tandem.createTandem( 'logarithmicText' )
-      } ) );
+    const logarithmicText = new Text( PhScaleStrings.logarithmicStringProperty, textOptions );
 
     // Linear label
-    const linearText = new Text( PhScaleStrings.linearStringProperty,
-      combineOptions<TextOptions>( {}, textOptions, {
-        tandem: options.tandem.createTandem( 'linearText' )
-      } ) );
+    const linearText = new Text( PhScaleStrings.linearStringProperty, textOptions );
 
     super( graphScaleProperty, GraphScale.LOGARITHMIC, logarithmicText, GraphScale.LINEAR, linearText, options );
   }

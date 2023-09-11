@@ -53,6 +53,8 @@ export default class WaterFaucetNode extends Node {
       maxWidth: 85,
       left: faucetNode.left + 115,
       bottom: faucetNode.centerY - 40,
+
+      // Instrumented so that clients can hide this label.
       tandem: options.tandem.createTandem( 'waterText' ),
       phetioVisiblePropertyInstrumented: true,
       visiblePropertyOptions: {

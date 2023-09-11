@@ -103,8 +103,7 @@ class ParticleCountsCheckbox extends Checkbox {
   public constructor( particleCountsVisibleProperty: Property<boolean>, tandem: Tandem ) {
 
     const text = new Text( PhScaleStrings.particleCountsStringProperty, {
-      font: FONT,
-      tandem: tandem.createTandem( 'text' )
+      font: FONT
     } );
 
     super( particleCountsVisibleProperty, text, {

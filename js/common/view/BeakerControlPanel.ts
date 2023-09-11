@@ -10,7 +10,6 @@
 import Property from '../../../../axon/js/Property.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { HSeparator, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
@@ -20,7 +19,7 @@ import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
-import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 
 // constants
 const FONT = new PhetFont( 20 );
@@ -76,14 +75,13 @@ class RatioCheckbox extends Checkbox {
 
   public constructor( ratioVisibleProperty: Property<boolean>, tandem: Tandem ) {
 
-    const stringProperty = new DerivedStringProperty(
-      [ PhScaleStrings.ratioStringProperty ],
-      ( ratioString: string ) => StringUtils.fillIn( `{{h3o}} / {{oh}} ${ratioString} `, {
-        h3o: `<span style="color:${PHScaleColors.H3O_PARTICLES.toCSS()}">${PHScaleConstants.H3O_FORMULA}</span>`,
-        oh: `<span style="color:${PHScaleColors.OH_PARTICLES.toCSS()}">${PHScaleConstants.OH_FORMULA}</span>`
-      } ), {
-        tandem: tandem.createTandem( RichText.STRING_PROPERTY_TANDEM_NAME )
-      } );
+    const stringProperty = new PatternStringProperty( PhScaleStrings.pattern.H3O.OH.ratioStringProperty, {
+      H3O: `<span style="color:${PHScaleColors.H3O_PARTICLES.toCSS()}">${PHScaleConstants.H3O_FORMULA}</span>`,
+      OH: `<span style="color:${PHScaleColors.OH_PARTICLES.toCSS()}">${PHScaleConstants.OH_FORMULA}</span>`,
+      ratio: PhScaleStrings.ratioStringProperty
+    }, {
+      tandem: tandem.createTandem( RichText.STRING_PROPERTY_TANDEM_NAME )
+    } );
 
     const ratioText = new RichText( stringProperty, {
       font: FONT

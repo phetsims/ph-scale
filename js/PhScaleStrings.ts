@@ -39,6 +39,11 @@ type StringsType = {
   'pattern': {
     '0value': {
       '1unitsStringProperty': LocalizedStringProperty;
+    };
+    'H3O': {
+      'OH': {
+        'ratioStringProperty': LocalizedStringProperty;
+      }
     }
   };
   'pHStringProperty': LocalizedStringProperty;

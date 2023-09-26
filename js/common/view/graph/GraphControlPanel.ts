@@ -35,7 +35,7 @@ export default class GraphControlPanel extends Panel {
     const options = optionize<GraphControlPanelOptions, SelfOptions, PanelOptions>()( {
 
       // PanelOptions
-      fill: PHScaleColors.PANEL_FILL,
+      fill: PHScaleColors.panelFillProperty,
       lineWidth: 2,
       cornerRadius: 6,
       xMargin: 8,

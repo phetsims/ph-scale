@@ -39,7 +39,7 @@ export default class BeakerControlPanel extends Panel {
       xMargin: 15,
       yMargin: 10,
       lineWidth: 2,
-      fill: PHScaleColors.PANEL_FILL,
+      fill: PHScaleColors.panelFillProperty,
       phetioDocumentation: 'control panel that appears below the beaker',
       visiblePropertyOptions: {
         phetioFeatured: true

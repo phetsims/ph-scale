@@ -6,7 +6,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Property from '../../../axon/js/Property.js';
 import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
@@ -29,7 +28,7 @@ export default class MySolutionScreen extends Screen<MySolutionModel, MySolution
 
       // ScreenOptions
       name: PhScaleStrings.screen.mySolutionStringProperty,
-      backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
+      backgroundColorProperty: PHScaleColors.screenBackgroundColorProperty,
       homeScreenIcon: new ScreenIcon( new Image( mySolutionHomeScreenIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1

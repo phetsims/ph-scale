@@ -6,7 +6,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import Property from '../../../axon/js/Property.js';
 import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
@@ -27,7 +26,7 @@ export default class MacroScreen extends Screen<MacroModel, MacroScreenView> {
 
     const options: ScreenOptions = {
       name: PhScaleStrings.screen.macroStringProperty,
-      backgroundColorProperty: new Property( PHScaleColors.SCREEN_BACKGROUND ),
+      backgroundColorProperty: PHScaleColors.screenBackgroundColorProperty,
       homeScreenIcon: new ScreenIcon( new Image( macroHomeScreenIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1

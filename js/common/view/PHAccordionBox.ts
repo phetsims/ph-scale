@@ -45,7 +45,7 @@ export default class PHAccordionBox extends AccordionBox {
     const options = optionize<PHAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()( {
 
       // AccordionBoxOptions
-      fill: PHScaleColors.PANEL_FILL,
+      fill: PHScaleColors.panelFillProperty,
       lineWidth: 2,
       cornerRadius: PHAccordionBox.CORNER_RADIUS,
       contentYSpacing: 10,

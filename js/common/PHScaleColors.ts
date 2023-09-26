@@ -7,13 +7,17 @@
  */
 
 import PhetColorScheme from '../../../scenery-phet/js/PhetColorScheme.js';
-import { Color } from '../../../scenery/js/imports.js';
+import { Color, ProfileColorProperty } from '../../../scenery/js/imports.js';
 import phScale from '../phScale.js';
 
 const PHScaleColors = {
 
-  SCREEN_BACKGROUND: 'white',
-  PANEL_FILL: 'rgb( 230, 230, 230 )',
+  screenBackgroundColorProperty: new ProfileColorProperty( phScale, 'screenBackgroundColor', {
+    default: 'white'
+  } ),
+  panelFillProperty: new ProfileColorProperty( phScale, 'panelFill', {
+    default: 'rgb( 230, 230, 230 )'
+  } ),
 
   // pH range
   ACIDIC: new Color( 249, 106, 102 ),

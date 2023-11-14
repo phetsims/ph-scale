@@ -125,7 +125,8 @@ export default class Solution extends PhetioObject {
         phetioFeatured: true,
         phetioValueType: NullableIO( NumberIO ),
         phetioDocumentation: 'pH of the solution',
-        phetioHighFrequency: true
+        phetioHighFrequency: true,
+        accessNonDependencies: true
       } );
 
     this.colorProperty = new DerivedProperty(

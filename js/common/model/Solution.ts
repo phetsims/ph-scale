@@ -107,7 +107,8 @@ export default class Solution extends PhetioObject {
         phetioFeatured: true,
         phetioValueType: NumberIO,
         phetioDocumentation: 'total volume of the solution',
-        phetioHighFrequency: true
+        phetioHighFrequency: true,
+        accessNonDependencies: true
       } );
 
     this.pHProperty = new DerivedProperty(
@@ -142,6 +143,8 @@ export default class Solution extends PhetioObject {
         else {
           return solute.computeColor( soluteVolume / ( soluteVolume + waterVolume ) );
         }
+      }, {
+        accessNonDependencies: true
       } );
 
     // When the solute changes, reset to initial volumes.

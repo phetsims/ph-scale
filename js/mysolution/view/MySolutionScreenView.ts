@@ -86,9 +86,8 @@ export default class MySolutionScreenView extends ScreenView {
     // pH meter
     const pHAccordionBoxTop = 15;
     const pHAccordionBox = new MySolutionPHAccordionBox( model.solution.pHProperty,
-      modelViewTransform.modelToViewY( model.beaker.position.y ) - pHAccordionBoxTop, {
-        tandem: tandem.createTandem( 'pHAccordionBox' )
-      } );
+      modelViewTransform.modelToViewY( model.beaker.position.y ) - pHAccordionBoxTop,
+      tandem.createTandem( 'pHAccordionBox' ) );
 
     const resetAllButton = new ResetAllButton( {
       scale: 1.32,

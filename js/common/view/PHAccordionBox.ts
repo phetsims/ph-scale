@@ -1,7 +1,7 @@
 // Copyright 2014-2023, University of Colorado Boulder
 
 /**
- * PHAccordionBox is the base class for the pH accordion box (aka meter) in the 'Micro' and 'My Solution' screens.
+ * PHAccordionBox is the base class for the pH meter in the 'Micro' and 'My Solution' screens.
  * - Origin is at top left.
  * - Can be expanded and collapsed.
  * - Has a probe that extends down into the solution.
@@ -13,7 +13,7 @@
 import { Shape } from '../../../../kite/js/imports.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { LinearGradient, Node, NodeOptions, NodeTranslationOptions, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
-import AccordionBox, { AccordionBoxOptions } from '../../../../sun/js/AccordionBox.js';
+import AccordionBox from '../../../../sun/js/AccordionBox.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import PHScaleColors from '../PHScaleColors.js';
@@ -21,30 +21,35 @@ import PHScaleConstants from '../PHScaleConstants.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
+import Property from '../../../../axon/js/Property.js';
 
 // constants
 const Y_MARGIN = 10;
 
-type SelfOptions = EmptySelfOptions;
+export default class PHAccordionBox extends Node {
 
-export type PHAccordionBoxOptions = SelfOptions & PickRequired<AccordionBoxOptions, 'tandem'>;
-
-export default class PHAccordionBox extends AccordionBox {
+  protected readonly accordionBox: AccordionBox;
+  private readonly expandedProperty: Property<boolean>;
 
   protected static readonly CORNER_RADIUS = 8;
 
   /**
    * @param contentNode - Node that displays the pH value
    * @param probeYOffset - distance from top of meter to tip of probe, in view coordinate frame
-   * @param [providedOptions]
+   * @param accordionBoxTandem
    */
-  protected constructor( contentNode: Node,
-                         probeYOffset: number,
-                         providedOptions: PHAccordionBoxOptions ) {
+  protected constructor( contentNode: Node, probeYOffset: number, accordionBoxTandem: Tandem ) {
 
-    const options = optionize<PHAccordionBoxOptions, SelfOptions, AccordionBoxOptions>()( {
+    const expandedProperty = new BooleanProperty( true, {
+      tandem: accordionBoxTandem.createTandem( 'expandedProperty' ),
+      phetioFeatured: true
+    } );
 
-      // AccordionBoxOptions
+    // This class was rewritten to use AccordionBox via composition instead of inheritance. The class was not renamed
+    // because we did not want to change the PhET-iO API by having to rename 'pHAccordionBox' elements.
+    // See https://github.com/phetsims/sun/issues/860
+    const accordionBox = new AccordionBox( contentNode, {
       fill: PHScaleColors.panelFillProperty,
       lineWidth: 2,
       cornerRadius: PHAccordionBox.CORNER_RADIUS,
@@ -61,29 +66,25 @@ export default class PHAccordionBox extends AccordionBox {
       buttonYMargin: Y_MARGIN,
       expandCollapseButtonOptions: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_OPTIONS,
       contentYMargin: Y_MARGIN,
-      expandedProperty: new BooleanProperty( true, {
-        tandem: providedOptions.tandem.createTandem( 'expandedProperty' ),
-        phetioFeatured: true
-      } )
-    }, providedOptions );
+      expandedProperty: expandedProperty,
+      tandem: accordionBoxTandem
+    } );
 
-    super( contentNode, options );
-
-    // Decorate the AccordionBox with a probe, which is hidden when the AccordionBox is collapsed.
     const probeNode = new ProbeNode( probeYOffset, {
-      centerX: this.left + ( 0.75 * this.width ),
-      top: this.top
+      visibleProperty: expandedProperty,
+      centerX: accordionBox.left + ( 0.75 * accordionBox.width ),
+      top: accordionBox.top
     } );
-    this.addChild( probeNode );
-    probeNode.moveToBack();
 
-    this.expandedProperty.link( expanded => {
-      probeNode.visible = expanded;
+    super( {
+      children: [ probeNode, accordionBox ]
     } );
+
+    this.accordionBox = accordionBox;
+    this.expandedProperty = expandedProperty;
   }
 
-  public override reset(): void {
-    super.reset();
+  public reset(): void {
     this.expandedProperty.reset();
   }
 }
@@ -92,15 +93,11 @@ export default class PHAccordionBox extends AccordionBox {
  * Probe that extends out the bottom of the meter.
  */
 type ProbeNodeSelfOptions = EmptySelfOptions;
-type ProbeNodeOptions = ProbeNodeSelfOptions & NodeTranslationOptions;
+type ProbeNodeOptions = ProbeNodeSelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'visibleProperty'>;
 
 class ProbeNode extends Node {
 
   public constructor( probeHeight: number, providedOptions?: ProbeNodeOptions ) {
-
-    const options = optionize<ProbeNodeOptions, ProbeNodeSelfOptions, NodeOptions>()( {
-      // Empty optionize is needed because we're setting children below.
-    }, providedOptions );
 
     const PROBE_WIDTH = 20;
     const TIP_HEIGHT = 50;
@@ -132,7 +129,11 @@ class ProbeNode extends Node {
       top: shaftNode.bottom - OVERLAP
     } );
 
-    options.children = [ shaftNode, tipNode ];
+    const options = optionize<ProbeNodeOptions, ProbeNodeSelfOptions, NodeOptions>()( {
+
+      // NodeOptions
+      children: [ shaftNode, tipNode ]
+    }, providedOptions );
 
     super( options );
   }

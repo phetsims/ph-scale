@@ -7,33 +7,28 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import PHAccordionBox, { PHAccordionBoxOptions } from '../../common/view/PHAccordionBox.js';
+import PHAccordionBox from '../../common/view/PHAccordionBox.js';
 import phScale from '../../phScale.js';
-import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import Property from '../../../../axon/js/Property.js';
 import { PHSpinnerNode } from './PHSpinnerNode.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type MySolutionPHAccordionBoxOptions = SelfOptions & PickRequired<PHAccordionBoxOptions, 'tandem'>;
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class MySolutionPHAccordionBox extends PHAccordionBox {
 
   /**
    * @param pHProperty - pH of the solution
    * @param probeYOffset - distance from top of meter to tip of probe, in view coordinate frame
-   * @param [providedOptions]
+   * @param tandem
    */
-  public constructor( pHProperty: Property<number>, probeYOffset: number, providedOptions: MySolutionPHAccordionBoxOptions ) {
+  public constructor( pHProperty: Property<number>, probeYOffset: number, tandem: Tandem ) {
 
     const spinner = new PHSpinnerNode( pHProperty, {
-      tandem: providedOptions.tandem.createTandem( 'spinner' )
+      tandem: tandem.createTandem( 'spinner' )
     } );
 
-    super( spinner, probeYOffset, providedOptions );
+    super( spinner, probeYOffset, tandem );
 
-    this.addLinkedElement( pHProperty );
+    this.accordionBox.addLinkedElement( pHProperty );
   }
 }
 

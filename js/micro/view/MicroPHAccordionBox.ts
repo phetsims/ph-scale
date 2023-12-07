@@ -7,30 +7,23 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import PHAccordionBox, { PHAccordionBoxOptions } from '../../common/view/PHAccordionBox.js';
+import PHAccordionBox from '../../common/view/PHAccordionBox.js';
 import phScale from '../../phScale.js';
 import { PHValue } from '../../common/model/PHModel.js';
-import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
-
-type SelfOptions = EmptySelfOptions;
-
-type MicroPHAccordionBoxOptions = SelfOptions & PickRequired<PHAccordionBoxOptions, 'tandem'>;
+import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class MicroPHAccordionBox extends PHAccordionBox {
 
   /**
    * @param pHProperty - pH of the solution
    * @param probeYOffset - distance from top of meter to tip of probe, in view coordinate frame
-   * @param [providedOptions]
+   * @param tandem
    */
-  public constructor( pHProperty: ReadOnlyProperty<PHValue>,
-                      probeYOffset: number,
-                      providedOptions: MicroPHAccordionBoxOptions ) {
+  public constructor( pHProperty: ReadOnlyProperty<PHValue>, probeYOffset: number, tandem: Tandem ) {
 
     const numberDisplay = new NumberDisplay( pHProperty, PHScaleConstants.PH_RANGE, {
       decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
@@ -43,12 +36,12 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
       backgroundStroke: 'darkGray',
       xMargin: 8,
       yMargin: 5,
-      tandem: providedOptions.tandem.createTandem( 'numberDisplay' )
+      tandem: tandem.createTandem( 'numberDisplay' )
     } );
 
-    super( numberDisplay, probeYOffset, providedOptions );
+    super( numberDisplay, probeYOffset, tandem );
 
-    this.addLinkedElement( pHProperty, {
+    this.accordionBox.addLinkedElement( pHProperty, {
       tandemName: 'pHProperty'
     } );
   }

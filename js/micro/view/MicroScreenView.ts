@@ -121,9 +121,8 @@ export default class MicroScreenView extends ScreenView {
     // pH meter
     const pHMeterTop = 15;
     const pHAccordionBox = new MicroPHAccordionBox( model.solution.pHProperty,
-      modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop, {
-        tandem: tandem.createTandem( 'pHAccordionBox' )
-      } );
+      modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop,
+      tandem.createTandem( 'pHAccordionBox' ) );
 
     // solutes combo box
     const soluteListParent = new Node();

@@ -37,7 +37,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "7ff660b37dd7f3f5a53f8ab522e3667c5f601e20",
+    "sha": "0bfdfe565219094a6a14581dbcf47946136edb96",
     "branch": "1.6"
   },
   "phet-core": {
@@ -53,7 +53,7 @@
     "branch": "HEAD"
   },
   "phet-io-wrappers": {
-    "sha": "de51c1682898b2c143a7e9294a8c2b357d71052e",
+    "sha": "6aeb5be9a52911f2c7b6b9b31a49581548fdf2c2",
     "branch": "HEAD"
   },
   "phetcommon": {

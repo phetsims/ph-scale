@@ -108,7 +108,7 @@ export default class Solution extends PhetioObject {
         phetioValueType: NumberIO,
         phetioDocumentation: 'total volume of the solution',
         phetioHighFrequency: true,
-        accessNonDependencies: true //TODO https://github.com/phetsims/ph-scale/issues/290  dependency on itself
+        accessNonDependencies: true // see https://github.com/phetsims/ph-scale/issues/290#issuecomment-1861778018
       } );
 
     this.pHProperty = new DerivedProperty(
@@ -126,7 +126,7 @@ export default class Solution extends PhetioObject {
         phetioValueType: NullableIO( NumberIO ),
         phetioDocumentation: 'pH of the solution',
         phetioHighFrequency: true,
-        accessNonDependencies: true //TODO https://github.com/phetsims/ph-scale/issues/290  dependency on itself
+        accessNonDependencies: true // see https://github.com/phetsims/ph-scale/issues/290#issuecomment-1861778018
       } );
 
     this.colorProperty = new DerivedProperty(
@@ -145,7 +145,7 @@ export default class Solution extends PhetioObject {
           return solute.computeColor( soluteVolume / ( soluteVolume + waterVolume ) );
         }
       }, {
-        accessNonDependencies: true //TODO https://github.com/phetsims/ph-scale/issues/290 dependency on itself
+        accessNonDependencies: true // see https://github.com/phetsims/ph-scale/issues/290#issuecomment-1861778018
       } );
 
     // When the solute changes, reset to initial volumes.

@@ -37,7 +37,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "93bb0fbec430bd857937ef35d8c1e459c149768d",
+    "sha": "91be7c202b5082501f23295f94e5baa92b4ce1f0",
     "branch": "1.6"
   },
   "phet-core": {
@@ -85,7 +85,7 @@
     "branch": "HEAD"
   },
   "sun": {
-    "sha": "88d4a5ed925cce0b8680e59fac9539862a96262b",
+    "sha": "5bbb5d1e5c3963748b6d6ae5f0b9b362452d99f7",
     "branch": "HEAD"
   },
   "tambo": {

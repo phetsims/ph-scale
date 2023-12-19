@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "chipper": {
-    "sha": "77a67628025aecf210b3766305c2653241ad42fe",
+    "sha": "26f7fd03fbdd8decba2d7d407626e7f0f4344eb8",
     "branch": "HEAD"
   },
   "dot": {
@@ -37,7 +37,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "91be7c202b5082501f23295f94e5baa92b4ce1f0",
+    "sha": "b5d515882495541b3c802087f17117af42f1efab",
     "branch": "1.6"
   },
   "phet-core": {
@@ -49,11 +49,11 @@
     "branch": "HEAD"
   },
   "phet-io-sim-specific": {
-    "sha": "09069e00949cdab3123a63c9094a0d79d99a1ece",
+    "sha": "ccc0421329ea17376a3e8e6a9bf67b30025a579a",
     "branch": "HEAD"
   },
   "phet-io-wrappers": {
-    "sha": "fe5075401dcadc5a36963cb94837b35d20110513",
+    "sha": "d2bb5e96ebee0c050fb22fed4973f028703a16fa",
     "branch": "HEAD"
   },
   "phetcommon": {

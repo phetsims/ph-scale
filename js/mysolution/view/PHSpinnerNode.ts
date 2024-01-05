@@ -2,6 +2,8 @@
 
 /**
  * PHSpinnerNode is the spinner used to change the pH value, on the pH meter in the 'My Solution' screen.
+ *
+ * @author Chris Malley (PixelZoom, Inc.)
  */
 
 import Property from '../../../../axon/js/Property.js';

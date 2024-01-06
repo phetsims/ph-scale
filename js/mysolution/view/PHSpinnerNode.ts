@@ -1,4 +1,4 @@
-// Copyright 2022, University of Colorado Boulder
+// Copyright 2022-2024, University of Colorado Boulder
 
 /**
  * PHSpinnerNode is the spinner used to change the pH value, on the pH meter in the 'My Solution' screen.

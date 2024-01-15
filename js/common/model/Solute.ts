@@ -112,7 +112,7 @@ export default class Solute extends PhetioObject {
    * String representation of this Solute. For debugging only, do not depend on the format!
    */
   public override toString(): string {
-    return `Solution[name:${this.nameProperty.value}, pH:${this.pH}]`;
+    return `Solution[tandemName:${this.tandem.name}, pH:${this.pH}]`;
   }
 
   /**

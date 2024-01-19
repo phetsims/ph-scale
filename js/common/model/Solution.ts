@@ -111,7 +111,7 @@ export default class Solution extends PhetioObject {
 
         // This DerivedProperty has itself as a dependency, which is not supported by strictAxonDependencies.
         // So we need to opt out. See https://github.com/phetsims/ph-scale/issues/290#issuecomment-1861778018
-        strictAxonDependencies: false
+        strictAxonDependencies: false // has itself as a dependency
       } );
 
     this.pHProperty = new DerivedProperty(
@@ -132,7 +132,7 @@ export default class Solution extends PhetioObject {
 
         // This DerivedProperty has itself as a dependency, which is not supported by strictAxonDependencies.
         // So we need to opt out. See https://github.com/phetsims/ph-scale/issues/290#issuecomment-1861778018
-        strictAxonDependencies: false
+        strictAxonDependencies: false // has itself as a dependency
       } );
 
     this.colorProperty = new DerivedProperty(
@@ -154,7 +154,7 @@ export default class Solution extends PhetioObject {
 
         // This DerivedProperty has itself as a dependency, which is not supported by strictAxonDependencies.
         // So we need to opt out. See https://github.com/phetsims/ph-scale/issues/290#issuecomment-1861778018
-        strictAxonDependencies: false
+        strictAxonDependencies: false // has itself as a dependency
       } );
 
     // When the solute changes, reset to initial volumes.

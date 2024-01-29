@@ -285,8 +285,8 @@ class PHProbeNode extends InteractiveHighlighting( ProbeNode ) {
     } ) );
 
     this.addInputListener( new KeyboardDragListener( {
-      dragVelocity: 300, // velocity of the Node being dragged, in view coordinates per second
-      shiftDragVelocity: 20, // velocity with the Shift key pressed, typically slower than dragVelocity
+      dragSpeed: 300, // drag speed, in view coordinates per second
+      shiftDragSpeed: 20, // slower drag speed
       positionProperty: probe.positionProperty,
       dragBoundsProperty: dragBoundsProperty,
       transform: modelViewTransform,

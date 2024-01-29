@@ -42,12 +42,12 @@ export default class GraphIndicatorKeyboardDragListener extends KeyboardDragList
       drag: viewDelta => GraphIndicatorDragListener.doDrag( graphIndicatorNode.y + viewDelta.y, graphIndicatorNode, pHProperty,
         totalVolumeProperty.value, graphUnitsProperty.value, yToValue, concentrationToPH, molesToPH ),
 
-      // Velocity of the Node being dragged, in view coordinates per second.
-      dragVelocity: 300,
+      // Drag speed, in view coordinates per second.
+      dragSpeed: 300,
 
-      // Velocity with the Shift key pressed, typically slower than dragVelocity.
+      // Slower drag speed.
       // Careful! If this value is too small, the indicator will not move, due to the precision of the value.
-      shiftDragVelocity: 40,
+      shiftDragSpeed: 40,
       tandem: tandem
     } );
   }

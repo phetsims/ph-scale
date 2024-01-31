@@ -1,6 +1,6 @@
 // Copyright 2022, University of Colorado Boulder
 
-//TODO https://github.com/phetsims/scenery-phet/issues/773 move to scenery-phet
+//TODO https://github.com/phetsims/scenery-phet/issues/839 move to scenery-phet
 /**
  * FaucetControlsKeyboardHelpContent is the keyboard-help section that describes how to interact with FaucetNode.
  *
@@ -11,7 +11,7 @@ import StringProperty from '../../../../axon/js/StringProperty.js';
 import SliderControlsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/SliderControlsKeyboardHelpSection.js';
 import phScale from '../../phScale.js';
 
-//TODO https://github.com/phetsims/scenery-phet/issues/773 i18n, add to scenery-phet-strings_en.json
+//TODO https://github.com/phetsims/scenery-phet/issues/839 i18n, add to scenery-phet-strings_en.json
 const faucetControlsStringProperty = new StringProperty( 'Faucet Controls' );
 const fluidFlowStringProperty = new StringProperty( 'fluid flow' );
 

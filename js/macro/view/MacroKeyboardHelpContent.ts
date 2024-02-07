@@ -12,7 +12,7 @@ import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboar
 import ComboBoxKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/ComboBoxKeyboardHelpSection.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import MoveKeyboardHelpContent from '../../common/view/MoveKeyboardHelpContent.js';
-import FaucetControlsKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/FaucetControlsKeyboardHelpContent.js';
+import FaucetControlsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/FaucetControlsKeyboardHelpSection.js';
 
 export default class MacroKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
 
@@ -25,7 +25,7 @@ export default class MacroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
       new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveThePHProbeStringProperty ),
 
       // Faucet Controls
-      new FaucetControlsKeyboardHelpContent()
+      new FaucetControlsKeyboardHelpSection()
     ];
 
     // Sections in the right column.

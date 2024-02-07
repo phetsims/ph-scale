@@ -11,7 +11,7 @@ import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import ComboBoxKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/ComboBoxKeyboardHelpSection.js';
 import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/BasicActionsKeyboardHelpSection.js';
-import FaucetControlsKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/FaucetControlsKeyboardHelpContent.js';
+import FaucetControlsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/FaucetControlsKeyboardHelpSection.js';
 
 export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
 
@@ -21,7 +21,7 @@ export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
     const leftSections = [
 
       // Faucet Controls
-      new FaucetControlsKeyboardHelpContent()
+      new FaucetControlsKeyboardHelpSection()
     ];
 
     // Sections in the right column.

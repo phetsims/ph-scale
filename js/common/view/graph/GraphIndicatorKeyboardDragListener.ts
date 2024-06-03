@@ -39,7 +39,7 @@ export default class GraphIndicatorKeyboardDragListener extends KeyboardDragList
                       tandem: Tandem ) {
     super( {
       keyboardDragDirection: 'upDown', // constrained to vertical dragging
-      drag: ( event, listener ) => GraphIndicatorDragListener.doDrag( graphIndicatorNode.y + listener.vectorDelta.y, graphIndicatorNode, pHProperty,
+      drag: ( event, listener ) => GraphIndicatorDragListener.doDrag( graphIndicatorNode.y + listener.modelDelta.y, graphIndicatorNode, pHProperty,
         totalVolumeProperty.value, graphUnitsProperty.value, yToValue, concentrationToPH, molesToPH ),
 
       // Drag speed, in view coordinates per second.

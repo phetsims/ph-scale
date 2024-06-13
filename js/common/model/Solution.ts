@@ -107,11 +107,7 @@ export default class Solution extends PhetioObject {
         phetioFeatured: true,
         phetioValueType: NumberIO,
         phetioDocumentation: 'total volume of the solution',
-        phetioHighFrequency: true,
-
-        // This DerivedProperty has itself as a dependency, which is not supported by strictAxonDependencies.
-        // So we need to opt out. See https://github.com/phetsims/ph-scale/issues/290#issuecomment-1861778018
-        strictAxonDependencies: false // has itself as a dependency
+        phetioHighFrequency: true
       } );
 
     this.pHProperty = new DerivedProperty(
@@ -128,11 +124,7 @@ export default class Solution extends PhetioObject {
         phetioFeatured: true,
         phetioValueType: NullableIO( NumberIO ),
         phetioDocumentation: 'pH of the solution',
-        phetioHighFrequency: true,
-
-        // This DerivedProperty has itself as a dependency, which is not supported by strictAxonDependencies.
-        // So we need to opt out. See https://github.com/phetsims/ph-scale/issues/290#issuecomment-1861778018
-        strictAxonDependencies: false // has itself as a dependency
+        phetioHighFrequency: true
       } );
 
     this.colorProperty = new DerivedProperty(
@@ -150,11 +142,6 @@ export default class Solution extends PhetioObject {
         else {
           return solute.computeColor( soluteVolume / ( soluteVolume + waterVolume ) );
         }
-      }, {
-
-        // This DerivedProperty has itself as a dependency, which is not supported by strictAxonDependencies.
-        // So we need to opt out. See https://github.com/phetsims/ph-scale/issues/290#issuecomment-1861778018
-        strictAxonDependencies: false // has itself as a dependency
       } );
 
     // When the solute changes, reset to initial volumes.

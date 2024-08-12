@@ -206,6 +206,10 @@
       <iframe id="iframe" allowfullscreen scrolling="no" title="Interact with pH Scale"></iframe>
     </div>
     <div id="error-container"></div>
+    <div id="load-buttons">
+      <button id="load-logic">Load Logic</button>
+      <button id="load-english-strings">Load English Strings</button>
+    </div>
     <div id="alerts">
       <div class="activity-log-heading-container">
         <h3 class="activity-log-heading-item">Activity log of Responsive Descriptions</h3>
@@ -254,6 +258,25 @@
   // set the source of the sim iframe
   document.getElementById( 'iframe' ).setAttribute( 'src', simURL );
 
+  const loadFileAsync = file => {
+    return new Promise( ( resolve, reject ) => {
+      const request = new XMLHttpRequest();
+      request.addEventListener( 'load', () => {
+        resolve( request.responseText );
+      } );
+
+      request.addEventListener( 'error', err => {
+        reject( err );
+      } );
+
+      request.open( 'GET', `./js/description/${file}`, true );
+      request.send();
+    } );
+  };
+
+  const missingLogic = !localStorage.getItem( 'ph-scale-description-logic.js' );
+  const missingStrings = !localStorage.getItem( 'ph-scale-description-strings_en.js' );
+
   // eslint-disable-next-line no-undef
   const logicEditor = CodeMirror( document.querySelector( '#logic-editor' ), {
     lineNumbers: true,
@@ -274,6 +297,26 @@
     theme: 'monokai',
     lineWrapping: true
   } );
+
+  const reloadLogic = async () => {
+    const logic = await loadFileAsync( 'ph-scale-description-logic.js' );
+    logicEditor.setValue( logic );
+  };
+
+  const reloadStrings = async () => {
+    const strings = await loadFileAsync( 'ph-scale-description-strings_en.js' );
+    stringsEditor.setValue( strings );
+  };
+
+  document.getElementById( 'load-logic' ).addEventListener( 'click', reloadLogic );
+  document.getElementById( 'load-english-strings' ).addEventListener( 'click', reloadStrings );
+
+  if ( missingLogic ) {
+    reloadLogic();
+  }
+  if ( missingStrings ) {
+    reloadStrings();
+  }
 
   const runCode = async code => {
     const errorContainer = document.querySelector( '#error-container' );

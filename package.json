@@ -22,8 +22,6 @@
     ],
     "simFeatures": {
       "supportsDynamicLocale": true,
-      "supportsDescriptionPlugin": true,
-      "supportsInteractiveDescription": true,
       "colorProfiles": [
         "default"
       ]

@@ -29,6 +29,7 @@ import NeutralIndicatorNode from './NeutralIndicatorNode.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import MacroModel from '../model/MacroModel.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import DescriptionRegistry from '../../../../tandem/js/DescriptionRegistry.js';
 
 export default class MacroScreenView extends ScreenView {
 
@@ -99,6 +100,8 @@ export default class MacroScreenView extends ScreenView {
 
     // solutes combo box
     const soluteListParent = new Node();
+    // This does not have a phet-io tandem, but we will manually register it to this name for description plugin access.
+    DescriptionRegistry.add( tandem.createTandem( 'soluteListParent' ), soluteListParent );
     const soluteComboBox = new SoluteComboBox( model.dropper.soluteProperty, soluteListParent, {
       maxWidth: 400,
       tandem: tandem.createTandem( 'soluteComboBox' )
@@ -150,14 +153,16 @@ export default class MacroScreenView extends ScreenView {
     model.isAutofillingProperty.link( () => dropperNode.interruptSubtreeInput() );
 
     // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249
-    screenViewRootNode.pdomOrder = [
-      pHMeterNode,
-      soluteComboBox,
-      dropperNode,
-      waterFaucetNode,
-      drainFaucetNode,
-      resetAllButton
-    ];
+    if ( !phet.chipper.queryParameters.supportsDescriptionPlugin ) {
+      screenViewRootNode.pdomOrder = [
+        pHMeterNode,
+        soluteComboBox,
+        dropperNode,
+        waterFaucetNode,
+        drainFaucetNode,
+        resetAllButton
+      ];
+    }
   }
 }
 

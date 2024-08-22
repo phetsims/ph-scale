@@ -100,8 +100,10 @@ export default class MacroScreenView extends ScreenView {
 
     // solutes combo box
     const soluteListParent = new Node();
-    // This does not have a phet-io tandem, but we will manually register it to this name for description plugin access.
-    DescriptionRegistry.add( tandem.createTandem( 'soluteListParent' ), soluteListParent );
+    if ( phet.chipper.queryParameters.supportsDescriptionPlugin ) {
+      // This does not have a phet-io tandem, but we will manually register it to this name for description plugin access.
+      DescriptionRegistry.add( tandem.createTandem( 'soluteListParent' ), soluteListParent );
+    }
     const soluteComboBox = new SoluteComboBox( model.dropper.soluteProperty, soluteListParent, {
       maxWidth: 400,
       tandem: tandem.createTandem( 'soluteComboBox' )

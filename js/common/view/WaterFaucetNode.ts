@@ -42,6 +42,7 @@ export default class WaterFaucetNode extends Node {
       combineOptions<FaucetNodeOptions>( {}, PHScaleConstants.FAUCET_OPTIONS, {
         horizontalPipeLength: horizontalPipeLength,
         verticalPipeLength: 20,
+        reverseAlternativeInput: true,
         tandem: options.tandem.createTandem( 'faucetNode' )
       } ) );
     faucetNode.translation = modelViewTransform.modelToViewPosition( faucet.position );

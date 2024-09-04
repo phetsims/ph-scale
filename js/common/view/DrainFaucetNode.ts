@@ -33,6 +33,7 @@ export default class DrainFaucetNode extends FaucetNode {
         // FaucetNodeOptions
         horizontalPipeLength: horizontalPipeLength,
         verticalPipeLength: 5,
+        reverseAlternativeInput: true,
         visiblePropertyOptions: {
           phetioFeatured: true
         }

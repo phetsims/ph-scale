@@ -22,6 +22,14 @@ const PHScaleQueryParameters = QueryStringMachine.getAll( {
   // For internal use only.
   showRatio: {
     type: 'flag'
+  },
+
+  //TODO https://github.com/phetsims/ph-scale/issues/292
+  // Enables grab-drag interaction for the pH Probe in the Macro screen. For exploring the accessibility 1-step and
+  // 2-step drag patterns in interviews. One of those patterns should eventually be selected, the other deleted,
+  // and this query parameter should be deleted.
+  grabDragProbe: {
+    type: 'flag'
   }
 } );
 

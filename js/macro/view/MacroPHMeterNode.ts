@@ -27,8 +27,7 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import ProbeNode, { ProbeNodeOptions } from '../../../../scenery-phet/js/ProbeNode.js';
-import { DragListener, InteractiveHighlighting, KeyboardDragListener, Line, LinearGradient, Node, NodeOptions, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
+import { Line, LinearGradient, Node, NodeOptions, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import Dropper from '../../common/model/Dropper.js';
 import Water from '../../common/model/Water.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
@@ -39,6 +38,7 @@ import MacroPHMeter from '../model/MacroPHMeter.js';
 import Solution from '../../common/model/Solution.js';
 import { PHValue } from '../../common/model/PHModel.js';
 import PHMovable from '../../common/model/PHMovable.js';
+import { MacroPHProbeNode } from './MacroPHProbeNode.js';
 
 // constants
 const BACKGROUND_ENABLED_FILL = 'rgb( 31, 113, 2 )';
@@ -82,7 +82,7 @@ export default class MacroPHMeterNode extends Node {
     pHIndicatorNode.left = scaleNode.x;
 
     // interactive probe
-    const probeNode = new PHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode,
+    const probeNode = new MacroPHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode,
       waterFluidNode, drainFluidNode, {
         tandem: options.tandem.createTandem( 'probeNode' )
       } );
@@ -223,81 +223,6 @@ class ScaleNode extends Node {
   // needed for precise positioning of things that point to values on the scale
   public getBackgroundStrokeWidth(): number {
     return this.backgroundStrokeWidth;
-  }
-}
-
-/**
- * Meter probe, origin at center of crosshairs.
- */
-type PHProbeNodeSelfOptions = EmptySelfOptions;
-type PHProbeNodeOptions = PHProbeNodeSelfOptions & PickRequired<ProbeNodeOptions, 'tandem'>;
-
-class PHProbeNode extends InteractiveHighlighting( ProbeNode ) {
-
-  public readonly isInSolution: () => boolean;
-  public readonly isInWater: () => boolean;
-  public readonly isInDrainFluid: () => boolean;
-  public readonly isInDropperSolution: () => boolean;
-
-  public constructor( probe: PHMovable, modelViewTransform: ModelViewTransform2, solutionNode: Node,
-                      dropperFluidNode: Node, waterFluidNode: Node, drainFluidNode: Node,
-                      providedOptions: PHProbeNodeOptions ) {
-
-    const options = optionize<PHProbeNodeOptions, PHProbeNodeSelfOptions, ProbeNodeOptions>()( {
-      sensorTypeFunction: ProbeNode.crosshairs( {
-        intersectionRadius: 6
-      } ),
-      radius: 34,
-      innerRadius: 26,
-      handleWidth: 30,
-      handleHeight: 25,
-      handleCornerRadius: 12,
-      lightAngle: 0.85 * Math.PI,
-      color: 'rgb( 35, 129, 0 )',
-      rotation: Math.PI / 2,
-      cursor: 'pointer',
-      tagName: 'div',
-      focusable: true,
-      visiblePropertyOptions: {
-        phetioReadOnly: true
-      },
-      phetioInputEnabledPropertyInstrumented: true
-    }, providedOptions );
-
-    super( options );
-
-    // probe position
-    probe.positionProperty.link( position => {
-      this.translation = modelViewTransform.modelToViewPosition( position );
-    } );
-
-    // touch area
-    this.touchArea = this.localBounds.dilated( 20 );
-
-    const dragBoundsProperty = new Property( probe.dragBounds );
-
-    // drag listener
-    this.addInputListener( new DragListener( {
-      positionProperty: probe.positionProperty,
-      dragBoundsProperty: dragBoundsProperty,
-      transform: modelViewTransform,
-      tandem: options.tandem.createTandem( 'dragListener' )
-    } ) );
-
-    this.addInputListener( new KeyboardDragListener( {
-      dragSpeed: 300, // drag speed, in view coordinates per second
-      shiftDragSpeed: 20, // slower drag speed
-      positionProperty: probe.positionProperty,
-      dragBoundsProperty: dragBoundsProperty,
-      transform: modelViewTransform,
-      tandem: providedOptions.tandem.createTandem( 'keyboardDragListener' )
-    } ) );
-
-    const isInNode = ( node: Node ) => node.getBounds().containsPoint( probe.positionProperty.value );
-    this.isInSolution = () => isInNode( solutionNode );
-    this.isInWater = () => isInNode( waterFluidNode );
-    this.isInDrainFluid = () => isInNode( drainFluidNode );
-    this.isInDropperSolution = () => isInNode( dropperFluidNode );
   }
 }
 

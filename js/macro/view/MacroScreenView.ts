@@ -98,12 +98,14 @@ export default class MacroScreenView extends ScreenView {
         tandem: tandem.createTandem( 'pHMeterNode' )
       } );
 
-    // solutes combo box
     const soluteListParent = new Node();
+
+    //TODO https://github.com/phetsims/ph-scale/issues/294
+    // soluteListParent does not have a PhET-iO tandem, so manually register it for description plugin access.
     if ( phet.chipper.queryParameters.supportsDescriptionPlugin ) {
-      // This does not have a phet-io tandem, but we will manually register it to this name for description plugin access.
       DescriptionRegistry.add( tandem.createTandem( 'soluteListParent' ), soluteListParent );
     }
+
     const soluteComboBox = new SoluteComboBox( model.dropper.soluteProperty, soluteListParent, {
       maxWidth: 400,
       tandem: tandem.createTandem( 'soluteComboBox' )
@@ -154,7 +156,7 @@ export default class MacroScreenView extends ScreenView {
 
     model.isAutofillingProperty.link( () => dropperNode.interruptSubtreeInput() );
 
-    // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249
+    //TODO https://github.com/phetsims/ph-scale/issues/294 Setting pdomOrder conflicts with description plugin.
     if ( !phet.chipper.queryParameters.supportsDescriptionPlugin ) {
 
       // Play Area focus order

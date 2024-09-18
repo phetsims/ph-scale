@@ -57,6 +57,8 @@ type MacroPHMeterNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>
 
 export default class MacroPHMeterNode extends Node {
 
+  private readonly probeNode: MacroPHProbeNode;
+
   public constructor( meter: MacroPHMeter,
                       solution: Solution,
                       dropper: Dropper,
@@ -86,6 +88,7 @@ export default class MacroPHMeterNode extends Node {
       waterFluidNode, drainFluidNode, {
         tandem: options.tandem.createTandem( 'probeNode' )
       } );
+    this.probeNode = probeNode;
 
     // wire that connects the probe to the meter
     const wireNode = new WireNode( meter.probe, scaleNode, probeNode );
@@ -128,6 +131,10 @@ export default class MacroPHMeterNode extends Node {
     this.addLinkedElement( meter.pHProperty, {
       tandemName: 'pHProperty'
     } );
+  }
+
+  public reset(): void {
+    this.probeNode.reset();
   }
 }
 

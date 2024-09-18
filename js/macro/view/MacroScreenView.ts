@@ -116,6 +116,7 @@ export default class MacroScreenView extends ScreenView {
       listener: () => {
         this.interruptSubtreeInput();
         model.reset();
+        pHMeterNode.reset();
       },
       tandem: tandem.createTandem( 'resetAllButton' )
     } );

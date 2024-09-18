@@ -156,13 +156,20 @@ export default class MacroScreenView extends ScreenView {
 
     // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249
     if ( !phet.chipper.queryParameters.supportsDescriptionPlugin ) {
-      screenViewRootNode.pdomOrder = [
+
+      // Play Area focus order
+      this.pdomPlayAreaNode.pdomOrder = [
         pHMeterNode,
         soluteComboBox,
         dropperNode,
         waterFaucetNode,
         drainFaucetNode,
         resetAllButton
+      ];
+
+      // Control Area focus order
+      this.pdomControlAreaNode.pdomOrder = [
+        //TODO https://github.com/phetsims/ph-scale/issues/291
       ];
     }
   }

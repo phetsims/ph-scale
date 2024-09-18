@@ -133,12 +133,17 @@ export default class MySolutionScreenView extends ScreenView {
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
 
-    // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249
-    screenViewRootNode.pdomOrder = [
+    // Play Area focus order
+    this.pdomPlayAreaNode.pdomOrder = [
       pHAccordionBox,
       beakerControlPanel,
       graphNode,
       resetAllButton
+    ];
+
+    // Control Area focus order
+    this.pdomControlAreaNode.pdomOrder = [
+      //TODO https://github.com/phetsims/ph-scale/issues/291
     ];
   }
 }

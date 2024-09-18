@@ -100,14 +100,14 @@ export class MacroPHProbeNode extends InteractiveHighlighting( Node ) {
       } );
       this.grabDragInteraction = grabDragInteraction;
 
-      //TODO https://github.com/phetsims/ph-scale/issues/292 Move this into GrabDragInteraction?
+      //TODO https://github.com/phetsims/scenery-phet/issues/872 Move this into GrabDragInteraction?
       keyboardDragListener.isPressedProperty.lazyLink( isPressed => {
         if ( isPressed ) {
           grabDragInteraction.grabDragModel.grabDragUsageTracker.shouldShowDragCue = false;
         }
       } );
 
-      //TODO https://github.com/phetsims/ph-scale/issues/292 This should be unnecessary if matrix stuff is fixed in GrabDragInteraction.
+      //TODO https://github.com/phetsims/scenery-phet/issues/872 This should be unnecessary if matrix stuff is fixed in GrabDragInteraction.
       this.boundsProperty.link( () => {
         grabDragInteraction.grabCueNode.centerTop = probeNode.centerBottom.plusXY( 0, 6 );
         dragCueNode.center = probeNode.center;

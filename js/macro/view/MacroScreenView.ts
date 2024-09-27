@@ -33,6 +33,14 @@ import DescriptionRegistry from '../../../../tandem/js/DescriptionRegistry.js';
 
 export default class MacroScreenView extends ScreenView {
 
+  public readonly beakerNode: BeakerNode;
+  public readonly soluteComboBox: SoluteComboBox;
+  public readonly phMeterNode: MacroPHMeterNode;
+  public readonly dropperNode: PHDropperNode;
+  public readonly waterFaucetNode: WaterFaucetNode;
+  public readonly drainFaucetNode: DrainFaucetNode;
+  public readonly resetAllButton: ResetAllButton;
+
   public constructor( model: MacroModel, modelViewTransform: ModelViewTransform2, tandem: Tandem ) {
 
     super( combineOptions<ScreenViewOptions>( {
@@ -175,6 +183,15 @@ export default class MacroScreenView extends ScreenView {
         //TODO https://github.com/phetsims/ph-scale/issues/291
       ];
     }
+
+    // Components that are public only for description
+    this.beakerNode = beakerNode;
+    this.soluteComboBox = soluteComboBox;
+    this.waterFaucetNode = waterFaucetNode;
+    this.drainFaucetNode = drainFaucetNode;
+    this.dropperNode = dropperNode;
+    this.phMeterNode = pHMeterNode;
+    this.resetAllButton = resetAllButton;
   }
 }
 

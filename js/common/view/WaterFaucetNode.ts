@@ -26,6 +26,9 @@ type WaterFaucetNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
 
 export default class WaterFaucetNode extends Node {
 
+  // TODO: Made public for access by description tooling, see https://github.com/phetsims/joist/issues/941
+  public readonly faucetNode: FaucetNode;
+
   public constructor( faucet: Faucet, modelViewTransform: ModelViewTransform2, providedOptions: WaterFaucetNodeOptions ) {
 
     const options = optionize<WaterFaucetNodeOptions, SelfOptions, NodeOptions>()( {
@@ -66,6 +69,8 @@ export default class WaterFaucetNode extends Node {
     options.children = [ faucetNode, waterText ];
 
     super( options );
+
+    this.faucetNode = faucetNode;
   }
 }
 

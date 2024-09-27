@@ -57,7 +57,8 @@ type MacroPHMeterNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>
 
 export default class MacroPHMeterNode extends Node {
 
-  private readonly probeNode: MacroPHProbeNode;
+  // TODO: Public for the description prototype, see https://github.com/phetsims/joist/issues/941
+  public readonly probeNode: MacroPHProbeNode;
 
   public constructor( meter: MacroPHMeter,
                       solution: Solution,

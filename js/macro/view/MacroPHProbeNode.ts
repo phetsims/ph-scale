@@ -6,18 +6,19 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { DragListener, InteractiveHighlighting, KeyboardDragListener, Node } from '../../../../scenery/js/imports.js';
-import ProbeNode, { ProbeNodeOptions } from '../../../../scenery-phet/js/ProbeNode.js';
-import PHMovable from '../../common/model/PHMovable.js';
-import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Property from '../../../../axon/js/Property.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import phScale from '../../phScale.js';
-import PHScaleQueryParameters from '../../common/PHScaleQueryParameters.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import GrabDragInteraction from '../../../../scenery-phet/js/accessibility/grab-drag/GrabDragInteraction.js';
 import WASDCueNode from '../../../../scenery-phet/js/accessibility/nodes/WASDCueNode.js';
+import ProbeNode, { ProbeNodeOptions } from '../../../../scenery-phet/js/ProbeNode.js';
+import { DragListener, InteractiveHighlighting, KeyboardDragListener, Node } from '../../../../scenery/js/imports.js';
+import DescriptionRegistry from '../../../../tandem/js/DescriptionRegistry.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import PHMovable from '../../common/model/PHMovable.js';
+import PHScaleQueryParameters from '../../common/PHScaleQueryParameters.js';
+import phScale from '../../phScale.js';
 
 type SelfOptions = EmptySelfOptions;
 type MacroPHProbeNodeOptions = SelfOptions & PickRequired<ProbeNodeOptions, 'tandem'>;
@@ -106,6 +107,11 @@ export class MacroPHProbeNode extends InteractiveHighlighting( Node ) {
           grabDragInteraction.grabDragModel.grabDragUsageTracker.shouldShowDragCue = false;
         }
       } );
+
+      // TODO https://github.com/phetsims/ph-scale/issues/292, https://github.com/phetsims/ph-scale/issues/294, So the GrabDragInteraction can be controlled by the prototype description plugin
+      if ( phet.chipper.queryParameters.supportsDescriptionPlugin ) {
+        DescriptionRegistry.add( options.tandem.createTandem( 'grabDragInteraction' ), grabDragInteraction );
+      }
 
       //TODO https://github.com/phetsims/scenery-phet/issues/872 This should be unnecessary if matrix stuff is fixed in GrabDragInteraction.
       this.boundsProperty.link( () => {

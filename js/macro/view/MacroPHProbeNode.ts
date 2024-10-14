@@ -34,7 +34,7 @@ export class MacroPHProbeNode extends InteractiveHighlighting( Node ) {
 
   public constructor( probe: PHMovable, modelViewTransform: ModelViewTransform2, solutionNode: Node,
                       dropperFluidNode: Node, waterFluidNode: Node, drainFluidNode: Node,
-                      providedOptions: MacroPHProbeNodeOptions ) {
+                      interactionCueParentNode: Node, providedOptions: MacroPHProbeNodeOptions ) {
 
     //TODO https://github.com/phetsims/ph-scale/issues/292 GrabDragInteraction is very buggy for any Node whose
     // matrix is rotated, like our ProbeNode. The grabCueNode and dragCueNode will both be positioned incorrectly.
@@ -95,14 +95,14 @@ export class MacroPHProbeNode extends InteractiveHighlighting( Node ) {
 
       const dragCueNode = new WASDCueNode( this.boundsProperty );
 
-      const grabDragInteraction = new GrabDragInteraction( this, keyboardDragListener, {
+      const grabDragInteraction = new GrabDragInteraction( this, keyboardDragListener, interactionCueParentNode, {
         dragCueNode: dragCueNode,
         tandem: Tandem.OPT_OUT //TODO https://github.com/phetsims/ph-scale/issues/292 Add tandem when GrabDragInteraction is no longer created conditionally.
       } );
       this.grabDragInteraction = grabDragInteraction;
 
-      //TODO https://github.com/phetsims/scenery-phet/issues/872 Move this into GrabDragInteraction?
-      keyboardDragListener.isPressedProperty.lazyLink( isPressed => {
+      // TODO https://github.com/phetsims/scenery-phet/issues/872 Move this into GrabDragInteraction?
+      keyboardDragListener.isPressedProperty.link( isPressed => {
         if ( isPressed ) {
           grabDragInteraction.grabDragModel.grabDragUsageTracker.shouldShowDragCue = false;
         }
@@ -112,12 +112,6 @@ export class MacroPHProbeNode extends InteractiveHighlighting( Node ) {
       if ( phet.chipper.queryParameters.supportsDescriptionPlugin ) {
         DescriptionRegistry.add( options.tandem.createTandem( 'grabDragInteraction' ), grabDragInteraction );
       }
-
-      //TODO https://github.com/phetsims/scenery-phet/issues/872 This should be unnecessary if matrix stuff is fixed in GrabDragInteraction.
-      this.boundsProperty.link( () => {
-        grabDragInteraction.grabCueNode.centerTop = probeNode.centerBottom.plusXY( 0, 6 );
-        dragCueNode.center = probeNode.center;
-      } );
     }
     else {
       this.addInputListener( keyboardDragListener );

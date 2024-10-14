@@ -9,9 +9,12 @@
 import Property from '../../../../axon/js/Property.js';
 import ScreenView, { ScreenViewOptions } from '../../../../joist/js/ScreenView.js';
 import { combineOptions } from '../../../../phet-core/js/optionize.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import EyeDropperNode from '../../../../scenery-phet/js/EyeDropperNode.js';
 import { Node } from '../../../../scenery/js/imports.js';
+import DescriptionRegistry from '../../../../tandem/js/DescriptionRegistry.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import Water from '../../common/model/Water.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import BeakerNode from '../../common/view/BeakerNode.js';
@@ -24,12 +27,9 @@ import SolutionNode from '../../common/view/SolutionNode.js';
 import VolumeIndicatorNode from '../../common/view/VolumeIndicatorNode.js';
 import WaterFaucetNode from '../../common/view/WaterFaucetNode.js';
 import phScale from '../../phScale.js';
+import MacroModel from '../model/MacroModel.js';
 import MacroPHMeterNode from './MacroPHMeterNode.js';
 import NeutralIndicatorNode from './NeutralIndicatorNode.js';
-import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
-import MacroModel from '../model/MacroModel.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
-import DescriptionRegistry from '../../../../tandem/js/DescriptionRegistry.js';
 
 export default class MacroScreenView extends ScreenView {
 
@@ -93,8 +93,9 @@ export default class MacroScreenView extends ScreenView {
     } );
 
     // pH meter
+    const cueParentNode = new Node();
     const pHMeterNode = new MacroPHMeterNode( model.pHMeter, model.solution, model.dropper,
-      solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform, {
+      solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, cueParentNode, modelViewTransform, {
         tandem: tandem.createTandem( 'pHMeterNode' )
       } );
 
@@ -138,7 +139,8 @@ export default class MacroScreenView extends ScreenView {
         soluteComboBox,
         resetAllButton,
         pHMeterNode, // next to last so that probe doesn't get lost behind anything
-        soluteListParent // last, so that combo box list is on top
+        soluteListParent, // last, so that combo box list is on top
+        cueParentNode // top layer for things like interaction cues
       ]
     } );
     this.addChild( screenViewRootNode );

@@ -101,13 +101,6 @@ export class MacroPHProbeNode extends InteractiveHighlighting( Node ) {
       } );
       this.grabDragInteraction = grabDragInteraction;
 
-      // TODO https://github.com/phetsims/scenery-phet/issues/872 Move this into GrabDragInteraction?
-      keyboardDragListener.isPressedProperty.link( isPressed => {
-        if ( isPressed ) {
-          grabDragInteraction.grabDragModel.grabDragUsageTracker.shouldShowDragCue = false;
-        }
-      } );
-
       // TODO https://github.com/phetsims/ph-scale/issues/292, https://github.com/phetsims/ph-scale/issues/294, So the GrabDragInteraction can be controlled by the prototype description plugin
       if ( phet.chipper.queryParameters.supportsDescriptionPlugin ) {
         DescriptionRegistry.add( options.tandem.createTandem( 'grabDragInteraction' ), grabDragInteraction );

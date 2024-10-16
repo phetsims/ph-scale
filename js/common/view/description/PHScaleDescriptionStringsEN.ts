@@ -97,12 +97,3 @@ const PHScaleDescriptionStringsEN = {
 };
 
 export default PHScaleDescriptionStringsEN;
-
-// Notes:
-// Will static strings go in the "usual" strings file? Maybe this is JUST for dynamic strings?
-// Perhaps this is how we do translated "dynamic" strings?
-// Bring this into our normal translation system? This level of customization might be useful for visual strings too.
-// Strings don't need to be separated into "description strings" and "visual strings". It may be best for static
-// strings to appear in rosetta while dynamic strings appear in these JS files.
-// If we can get the strings in the normal system, we will get more translations.
-  // Perhaps it is worth the combinatorial explosion of strings (for all cases) just to get the translations.

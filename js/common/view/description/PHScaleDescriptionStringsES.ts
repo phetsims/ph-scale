@@ -90,13 +90,6 @@ const PHScaleDescriptionStringsES = {
   // Described when the solute has color and some added water.
   solutionAddedVolumeDescriptionWithWater: ( colorDescriptor: SoluteColorDescriptor, addedWaterVolumeEnum: WaterVolumeDescriptor ): string => {
     return `es más claro ${soluteColorMap[ colorDescriptor ]} con ${addedWaterVolumeMap[ addedWaterVolumeEnum ]} agua añadida`;
-
-    // If it is a "small" or "big" thing, it might need to be "pequeño" or pequena" depending on gender of the item.
-
-    // Instead of this string pattern, do we have a string for every single case?
-    // Explosion of strings. Also won't work when we insert numbers into string patterns.
-    //
-    // Provide different "tiers" of translation support?
   },
 
   // Describes the total volume of the solution.

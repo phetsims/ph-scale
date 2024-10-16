@@ -19,6 +19,7 @@ import { Node, NodeOptions, Path, Text } from '../../../../scenery/js/imports.js
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import Beaker from '../model/Beaker.js';
+import PHScaleDescriptionStrings from './description/PHScaleDescriptionStrings.js';
 
 // constants
 const RIM_OFFSET = 20;
@@ -135,6 +136,12 @@ export default class BeakerNode extends Node {
     }
 
     this.translation = modelViewTransform.modelToViewPosition( beaker.position );
+
+    // PDOM - Screen reader text
+    this.mutate( {
+      tagName: 'h3',
+      accessibleName: PHScaleDescriptionStrings.beakerHeading()
+    } );
   }
 }
 

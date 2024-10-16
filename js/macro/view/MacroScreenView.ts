@@ -18,6 +18,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import Water from '../../common/model/Water.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import BeakerNode from '../../common/view/BeakerNode.js';
+import PHScaleDescriptionStrings from '../../common/view/description/PHScaleDescriptionStrings.js';
 import DrainFaucetNode from '../../common/view/DrainFaucetNode.js';
 import DropperFluidNode from '../../common/view/DropperFluidNode.js';
 import FaucetFluidNode from '../../common/view/FaucetFluidNode.js';
@@ -45,8 +46,7 @@ export default class MacroScreenView extends ScreenView {
     } );
 
     // solution in the beaker
-    const solutionNode = new SolutionNode( model.solution.totalVolumeProperty, model.solution.colorProperty,
-      model.beaker, modelViewTransform );
+    const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
 
     // volume indicator on the right edge of beaker
     const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.totalVolumeProperty, model.beaker, modelViewTransform, {
@@ -122,6 +122,15 @@ export default class MacroScreenView extends ScreenView {
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
 
+    // PDOM - Screen summary content
+    this.screenSummaryContent = new Node( {
+      children: [
+        new Node( { tagName: 'p', accessibleName: PHScaleDescriptionStrings.screenSummaryOverview() } ),
+        new Node( { tagName: 'p', accessibleName: PHScaleDescriptionStrings.screenSummaryControlArea() } ),
+        new Node( { tagName: 'p', accessibleName: PHScaleDescriptionStrings.screenSummaryInteractionHint() } )
+      ]
+    } );
+
     // Parent for all nodes added to this screen
     const screenViewRootNode = new Node( {
       children: [
@@ -164,6 +173,8 @@ export default class MacroScreenView extends ScreenView {
 
       // Play Area focus order
       this.pdomPlayAreaNode.pdomOrder = [
+        beakerNode,
+        solutionNode,
         pHMeterNode,
         soluteComboBox,
         dropperNode,

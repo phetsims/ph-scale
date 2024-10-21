@@ -1,0 +1,303 @@
+{
+  "solutes": {
+    "batteryAcid": {
+      "value": "Ácido de batería"
+    },
+    "blood": {
+      "value": "Sangre"
+    },
+    "chickenSoup": {
+      "value": "Sopa de pollo"
+    },
+    "coffee": {
+      "value": "Café"
+    },
+    "drainCleaner": {
+      "value": "Limpiador de drenaje"
+    },
+    "handSoap": {
+      "value": "Jabón de manos"
+    },
+    "milk": {
+      "value": "Leche"
+    },
+    "orangeJuice": {
+      "value": "Jugo de naranja"
+    },
+    "sodaPop": {
+      "value": "Refresco"
+    },
+    "spit": {
+      "value": "Saliva"
+    },
+    "vomit": {
+      "value": "Vómito"
+    },
+    "water": {
+      "value": "Agua"
+    }
+  },
+  "addedWaterVolume": {
+    "no": {
+      "value": "no"
+    },
+    "aTinyBitOf": {
+      "value": "un poco de"
+    },
+    "aLittle": {
+      "value": "un poco"
+    },
+    "some": {
+      "value": "algo de"
+    },
+    "equalAmountsOf": {
+      "value": "cantidades iguales de"
+    },
+    "aFairAmountOf": {
+      "value": "una buena cantidad de"
+    },
+    "lotsOf": {
+      "value": "mucho"
+    },
+    "mostly": {
+      "value": "principalmente"
+    }
+  },
+  "totalWaterVolume": {
+    "empty": {
+      "value": "vacío"
+    },
+    "nearlyEmpty": {
+      "value": "casi vacío"
+    },
+    "underHalfFull": {
+      "value": "menos de medio lleno"
+    },
+    "halfFull": {
+      "value": "medio lleno"
+    },
+    "overHalfFull": {
+      "value": "más de medio lleno"
+    },
+    "nearlyFull": {
+      "value": "casi lleno"
+    },
+    "full": {
+      "value": "lleno"
+    }
+  },
+  "soluteColors": {
+    "brightYellow": {
+      "value": "amarillo brillante"
+    },
+    "red": {
+      "value": "rojo"
+    },
+    "darkYellow": {
+      "value": "amarillo oscuro"
+    },
+    "brown": {
+      "value": "marrón"
+    },
+    "lavender": {
+      "value": "lavanda"
+    },
+    "white": {
+      "value": "blanco"
+    },
+    "orange": {
+      "value": "naranja"
+    },
+    "limeGreen": {
+      "value": "verde lima"
+    },
+    "colorless": {
+      "value": "incoloro"
+    },
+    "salmon": {
+      "value": "salmón"
+    }
+  },
+  "phValues": {
+    "none": {
+      "value": "sonda no está en el vaso"
+    },
+    "extremelyAcidic": {
+      "value": "extremadamente ácido"
+    },
+    "highlyAcidic": {
+      "value": "muy ácido"
+    },
+    "moderatelyAcidic": {
+      "value": "moderadamente ácido"
+    },
+    "slightlyAcidic": {
+      "value": "ligeramente ácido"
+    },
+    "neutral": {
+      "value": "neutral"
+    },
+    "slightlyBasic": {
+      "value": "ligeramente básico"
+    },
+    "moderatelyBasic": {
+      "value": "moderadamente básico"
+    },
+    "highlyBasic": {
+      "value": "muy básico"
+    },
+    "extremelyBasic": {
+      "value": "extremadamente básico"
+    }
+  },
+  "faucetFlowRates": {
+    "closed": {
+      "value": "cerrado"
+    },
+    "openATinyBit": {
+      "value": "un poco abierto"
+    },
+    "openALittle": {
+      "value": "un poco abierto"
+    },
+    "somewhatOpen": {
+      "value": "algo abierto"
+    },
+    "halfwayOpen": {
+      "value": "medio abierto"
+    },
+    "openALot": {
+      "value": "muy abierto"
+    },
+    "fullyOpen": {
+      "value": "completamente abierto"
+    }
+  },
+  "screenSummary": {
+    "overview": {
+      "value": "La zona de juego contiene un vaso drenable, una pipeta de soluciones, un grifo de agua y una sonda de pH movible. El grifo de agua y la pipeta están sobre el vaso. La pipeta dispensa una serie de líquidos comunes uno a la vez."
+    },
+    "controlArea": {
+      "value": "El área de control tiene un botón para reiniciar la simulación."
+    },
+    "interactionHint": {
+      "value": "Añadir solución al vaso y jugar."
+    }
+  },
+  "dynamicScreenSummary": {
+    "case1": {
+      "value": "Actualmente, el vaso está {{totalVolume}}."
+    },
+    "case2": {
+      "value": "Actualmente, el vaso contiene {{solutionTotalVolume}} litros de {{solute}} y está {{totalVolume}}."
+    },
+    "case3": {
+      "value": "Actualmente, el vaso contiene {{solutionTotalVolume}} litros de {{solute}} y está {{totalVolume}}. {{solute}} tiene un pH de {{solutionPH}} y es {{phDescription}}."
+    },
+    "case4": {
+      "value": "Actualmente, la solución de {{solute}} es {{soluteColor}} con {{addedWaterColor}} {{solute}} y agua añadida. El vaso está {{totalVolume}} en {{solutionTotalVolume}} litros."
+    },
+    "case5": {
+      "value": "Actualmente, la solución de {{solute}} tiene un pH de {{solutionPH}} y es {{phDescription}}. La solución es {{soluteColor}} con {{addedWaterColor}} {{solute}} y agua añadida. El vaso está {{totalVolume}} en {{solutionTotalVolume}} litros."
+    },
+    "case6": {
+      "value": "Actualmente, la solución de {{solute}} es {{soluteColor}} con {{addedWaterColor}} agua añadida. El vaso está {{totalVolume}} en {{solutionTotalVolume}} litros."
+    },
+    "case7": {
+      "value": "Actualmente, la solución de {{solute}} es más clara {{soluteColor}} con {{addedWaterColor}} agua añadida. El vaso está {{totalVolume}} en {{solutionTotalVolume}} litros."
+    },
+    "case8": {
+      "value": "Actualmente, la solución de {{solute}} tiene un pH de {{solutionPH}} y es {{phDescription}}. La solución es {{soluteColor}} con {{addedWaterColor}} agua añadida. El vaso está {{totalVolume}} en {{solutionTotalVolume}} litros."
+    },
+    "case9": {
+      "value": "Actualmente, la solución de {{solute}} tiene un pH de {{solutionPH}} y es {{phDescription}}. La solución es más clara {{soluteColor}} con {{addedWaterColor}} agua añadida. El vaso está {{totalVolume}} en {{solutionTotalVolume}} litros."
+    }
+  },
+  "beakerInformation": {
+    "heading": {
+      "value": "Solución en el Vaso"
+    }
+  },
+  "solutionInformation": {
+    "isNeutral": {
+      "value": "es neutral"
+    },
+    "totalVolumeDescription": {
+      "value": "{{solutionTotalVolume}} litros, {{totalVolumeDescriptor}}"
+    },
+    "addedVolumeDescription": {
+      "value": "es {{colorDescriptor}} con {{addedWaterVolumeDescriptor}} agua añadida"
+    },
+    "addedVolumeDescriptionWithWater": {
+      "value": "es más claro {{colorDescriptor}} con {{addedWaterVolumeDescriptor}} agua añadida"
+    }
+  },
+  "phMeterInformation": {
+    "heading": {
+      "value": "Medidor de pH y Lectura"
+    },
+    "measuredPHDescription": {
+      "value": "tiene un pH de {{meterPH}}"
+    },
+    "qualitativePHDescription": {
+      "value": "es {{phDescriptor}}"
+    },
+    "probeAccessibleName": {
+      "value": "Sonda de pH"
+    },
+    "probeGrabAccessibleName": {
+      "value": "Tomar Sonda de pH"
+    },
+    "probeHelpText": {
+      "value": "Busca la sonda de pH para jugar. Una vez tomada, usa atajos de teclado para mover la sonda. Barra espaciadora para soltar."
+    }
+  },
+  "solutionAndPHMeterInformation": {
+    "controlsHeading": {
+      "value": "Controles de Solución y Medidor de pH"
+    },
+    "soluteComboBoxAccessibleName": {
+      "value": "Solución"
+    },
+    "soluteComboBoxHelpText": {
+      "value": "Elija un líquido común para la pipeta."
+    },
+    "dropperAccessibleName": {
+      "value": "Pipeta"
+    },
+    "waterFaucetAccessibleName": {
+      "value": "Grifo de Agua"
+    },
+    "waterFaucetHelpText": {
+      "value": "Añadir agua a la solución en el vaso."
+    },
+    "drainFaucetAccessibleName": {
+      "value": "Drenaje"
+    },
+    "drainFaucetHelpText": {
+      "value": "Abrir para drenar la solución del vaso."
+    },
+    "faucetAriaValueText": {
+      "value": "{{flowRateDescriptor}}"
+    }
+  },
+  "contextResponses": {
+    "faucetOn": {
+      "value": "El agua está fluyendo."
+    },
+    "faucetOff": {
+      "value": "El agua está cerrada."
+    }
+  },
+  "alerts": {
+    "liquidGoingUp": {
+      "value": "Nivel subiendo, ahora en {{totalVolumeValue}} litros."
+    },
+    "liquidGoingDown": {
+      "value": "Nivel bajando, ahora en {{totalVolumeValue}} litros."
+    },
+    "liquidChangingDone": {
+      "value": "Nivel estable, ahora en {{totalVolumeEnum}}."
+    }
+  }
+}

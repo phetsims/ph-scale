@@ -1,0 +1,303 @@
+{
+  "solutes": {
+    "batteryAcid": {
+      "value": "Battery Acid"
+    },
+    "blood": {
+      "value": "Blood"
+    },
+    "chickenSoup": {
+      "value": "Chicken Soup"
+    },
+    "coffee": {
+      "value": "Coffee"
+    },
+    "drainCleaner": {
+      "value": "Drain Cleaner"
+    },
+    "handSoap": {
+      "value": "Hand Soap"
+    },
+    "milk": {
+      "value": "Milk"
+    },
+    "orangeJuice": {
+      "value": "Orange Juice"
+    },
+    "sodaPop": {
+      "value": "Soda Pop"
+    },
+    "spit": {
+      "value": "Spit"
+    },
+    "vomit": {
+      "value": "Vomit"
+    },
+    "water": {
+      "value": "Water"
+    }
+  },
+  "addedWaterVolume": {
+    "no": {
+      "value": "no"
+    },
+    "aTinyBitOf": {
+      "value": "a tiny bit of"
+    },
+    "aLittle": {
+      "value": "a little"
+    },
+    "some": {
+      "value": "some"
+    },
+    "equalAmountsOf": {
+      "value": "equal amounts of"
+    },
+    "aFairAmountOf": {
+      "value": "a fair amount of"
+    },
+    "lotsOf": {
+      "value": "lots of"
+    },
+    "mostly": {
+      "value": "mostly"
+    }
+  },
+  "totalWaterVolume": {
+    "empty": {
+      "value": "empty"
+    },
+    "nearlyEmpty": {
+      "value": "nearly empty"
+    },
+    "underHalfFull": {
+      "value": "under half full"
+    },
+    "halfFull": {
+      "value": "half full"
+    },
+    "overHalfFull": {
+      "value": "over half full"
+    },
+    "nearlyFull": {
+      "value": "nearly full"
+    },
+    "full": {
+      "value": "full"
+    }
+  },
+  "soluteColors": {
+    "brightYellow": {
+      "value": "bright yellow"
+    },
+    "red": {
+      "value": "red"
+    },
+    "darkYellow": {
+      "value": "dark yellow"
+    },
+    "brown": {
+      "value": "brown"
+    },
+    "lavender": {
+      "value": "lavender"
+    },
+    "white": {
+      "value": "white"
+    },
+    "orange": {
+      "value": "orange"
+    },
+    "limeGreen": {
+      "value": "lime green"
+    },
+    "colorless": {
+      "value": "colorless"
+    },
+    "salmon": {
+      "value": "salmon"
+    }
+  },
+  "phValues": {
+    "none": {
+      "value": "probe is not in beaker"
+    },
+    "extremelyAcidic": {
+      "value": "extremely acidic"
+    },
+    "highlyAcidic": {
+      "value": "highly acidic"
+    },
+    "moderatelyAcidic": {
+      "value": "moderately acidic"
+    },
+    "slightlyAcidic": {
+      "value": "slightly acidic"
+    },
+    "neutral": {
+      "value": "neutral"
+    },
+    "slightlyBasic": {
+      "value": "slightly basic"
+    },
+    "moderatelyBasic": {
+      "value": "moderately basic"
+    },
+    "highlyBasic": {
+      "value": "highly basic"
+    },
+    "extremelyBasic": {
+      "value": "extremely basic"
+    }
+  },
+  "faucetFlowRates": {
+    "closed": {
+      "value": "closed"
+    },
+    "openATinyBit": {
+      "value": "open a tiny bit"
+    },
+    "openALittle": {
+      "value": "open a little"
+    },
+    "somewhatOpen": {
+      "value": "somewhat open"
+    },
+    "halfwayOpen": {
+      "value": "halfway open"
+    },
+    "openALot": {
+      "value": "open a lot"
+    },
+    "fullyOpen": {
+      "value": "fully open"
+    }
+  },
+  "screenSummary": {
+    "overview": {
+      "value": "The Play Area contains a drainable beaker, a solution dropper, water faucet, and a movable pH probe. Water faucet and solution dropper sit above the beaker. The dropper dispenses a number of everyday liquids one at a time."
+    },
+    "controlArea": {
+      "value": "The Control Area has a button to reset the sim."
+    },
+    "interactionHint": {
+      "value": "Add solution to beaker and play."
+    }
+  },
+  "dynamicScreenSummary": {
+    "case1": {
+      "value": "Currently, beaker is {{totalVolume}}."
+    },
+    "case2": {
+      "value": "Currently, beaker contains {{solutionTotalVolume}} liters of {{solute}} and is {{totalVolume}}."
+    },
+    "case3": {
+      "value": "Currently, beaker contains {{solutionTotalVolume}} liters of {{solute}} and is {{totalVolume}}. {{solute}} has a pH of {{solutionPH}} and is {{phDescription}}."
+    },
+    "case4": {
+      "value": "Currently, {{solute}} solution is {{soluteColor}} with {{addedWaterColor}} {{solute}} and added water. Beaker is {{totalVolume}} at {{solutionTotalVolume}} liters."
+    },
+    "case5": {
+      "value": "Currently, {{solute}} solution has a pH of {{solutionPH}} and is {{phDescription}}. Solution is {{soluteColor}} with {{addedWaterColor}} {{solute}} and added water. Beaker is {{totalVolume}} at {{solutionTotalVolume}} liters."
+    },
+    "case6": {
+      "value": "Currently, {{solute}} solution is {{soluteColor}} with {{addedWaterColor}} added water. Beaker is {{totalVolume}} at {{solutionTotalVolume}} liters."
+    },
+    "case7": {
+      "value": "Currently, {{solute}} solution is lighter {{soluteColor}} with {{addedWaterColor}} added water. Beaker is {{totalVolume}} at {{solutionTotalVolume}} liters."
+    },
+    "case8": {
+      "value": "Currently, {{solute}} solution has a pH of {{solutionPH}} and is {{phDescription}}. Solution is {{soluteColor}} with {{addedWaterColor}} added water. Beaker is {{totalVolume}} at {{solutionTotalVolume}} liters."
+    },
+    "case9": {
+      "value": "Currently, {{solute}} solution has a pH of {{solutionPH}} and is {{phDescription}}. Solution is lighter {{soluteColor}} with {{addedWaterColor}} added water. Beaker is {{totalVolume}} at {{solutionTotalVolume}} liters."
+    }
+  },
+  "beakerInformation": {
+    "heading": {
+      "value": "Solution in Beaker"
+    }
+  },
+  "solutionInformation": {
+    "isNeutral": {
+      "value": "is neutral"
+    },
+    "totalVolumeDescription": {
+      "value": "{{solutionTotalVolume}} liters, {{totalVolumeDescriptor}}"
+    },
+    "addedVolumeDescription": {
+      "value": "is {{colorDescriptor}} with {{addedWaterVolumeDescriptor}} added water"
+    },
+    "addedVolumeDescriptionWithWater": {
+      "value": "is lighter {{colorDescriptor}} with {{addedWaterVolumeDescriptor}} added water"
+    }
+  },
+  "phMeterInformation": {
+    "heading": {
+      "value": "pH Meter and Read Out"
+    },
+    "measuredPHDescription": {
+      "value": "has a pH of {{meterPH}}"
+    },
+    "qualitativePHDescription": {
+      "value": "is {{phDescriptor}}"
+    },
+    "probeAccessibleName": {
+      "value": "pH Probe"
+    },
+    "probeGrabAccessibleName": {
+      "value": "Grab pH Probe"
+    },
+    "probeHelpText": {
+      "value": "Look for pH probe to play. Once grabbed, use keyboard shortcuts to move probe. Space to release."
+    }
+  },
+  "solutionAndPHMeterInformation": {
+    "controlsHeading": {
+      "value": "Solution and pH Meter Controls"
+    },
+    "soluteComboBoxAccessibleName": {
+      "value": "Solution"
+    },
+    "soluteComboBoxHelpText": {
+      "value": "Choose an everyday liquid for the dropper."
+    },
+    "dropperAccessibleName": {
+      "value": "Dropper"
+    },
+    "waterFaucetAccessibleName": {
+      "value": "Water Faucet"
+    },
+    "waterFaucetHelpText": {
+      "value": "Add water to solution in beaker."
+    },
+    "drainFaucetAccessibleName": {
+      "value": "Drain"
+    },
+    "drainFaucetHelpText": {
+      "value": "Open to drain solution from beaker."
+    },
+    "faucetAriaValueText": {
+      "value": "{{flowRateDescriptor}}"
+    }
+  },
+  "contextResponses": {
+    "faucetOn": {
+      "value": "Water is flowing."
+    },
+    "faucetOff": {
+      "value": "Water is off."
+    }
+  },
+  "alerts": {
+    "liquidGoingUp": {
+      "value": "Level going up, now at {{totalVolumeValue}} liters."
+    },
+    "liquidGoingDown": {
+      "value": "Level going down, now at {{totalVolumeValue}} liters."
+    },
+    "liquidChangingDone": {
+      "value": "Level stable, now at {{totalVolumeEnum}}."
+    }
+  }
+}

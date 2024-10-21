@@ -1,0 +1,303 @@
+{
+  "solutes": {
+    "batteryAcid": {
+      "value": "حمض البطارية"
+    },
+    "blood": {
+      "value": "دم"
+    },
+    "chickenSoup": {
+      "value": "شوربة دجاج"
+    },
+    "coffee": {
+      "value": "قهوة"
+    },
+    "drainCleaner": {
+      "value": "منظف المصارف"
+    },
+    "handSoap": {
+      "value": "صابون يد"
+    },
+    "milk": {
+      "value": "حليب"
+    },
+    "orangeJuice": {
+      "value": "عصير برتقال"
+    },
+    "sodaPop": {
+      "value": "مشروب غازي"
+    },
+    "spit": {
+      "value": "لعاب"
+    },
+    "vomit": {
+      "value": "قيء"
+    },
+    "water": {
+      "value": "ماء"
+    }
+  },
+  "addedWaterVolume": {
+    "no": {
+      "value": "لا"
+    },
+    "aTinyBitOf": {
+      "value": "جزء صغير من"
+    },
+    "aLittle": {
+      "value": "قليل"
+    },
+    "some": {
+      "value": "بعض"
+    },
+    "equalAmountsOf": {
+      "value": "كميات متساوية من"
+    },
+    "aFairAmountOf": {
+      "value": "كمية مناسبة من"
+    },
+    "lotsOf": {
+      "value": "الكثير من"
+    },
+    "mostly": {
+      "value": "غالبًا"
+    }
+  },
+  "totalWaterVolume": {
+    "empty": {
+      "value": "فارغ"
+    },
+    "nearlyEmpty": {
+      "value": "تقريبًا فارغ"
+    },
+    "underHalfFull": {
+      "value": "أقل من نصف كامل"
+    },
+    "halfFull": {
+      "value": "نصف ممتلئ"
+    },
+    "overHalfFull": {
+      "value": "أكثر من نصف ممتلئ"
+    },
+    "nearlyFull": {
+      "value": "تقريبًا ممتلئ"
+    },
+    "full": {
+      "value": "ممتلئ"
+    }
+  },
+  "soluteColors": {
+    "brightYellow": {
+      "value": "أصفر ساطع"
+    },
+    "red": {
+      "value": "أحمر"
+    },
+    "darkYellow": {
+      "value": "أصفر داكن"
+    },
+    "brown": {
+      "value": "بني"
+    },
+    "lavender": {
+      "value": "لافندر"
+    },
+    "white": {
+      "value": "أبيض"
+    },
+    "orange": {
+      "value": "برتقالي"
+    },
+    "limeGreen": {
+      "value": "أخضر ليموني"
+    },
+    "colorless": {
+      "value": "بلا لون"
+    },
+    "salmon": {
+      "value": "سلمون"
+    }
+  },
+  "phValues": {
+    "none": {
+      "value": "المسبار ليس في الدورق"
+    },
+    "extremelyAcidic": {
+      "value": "حمضي للغاية"
+    },
+    "highlyAcidic": {
+      "value": "حمضي جداً"
+    },
+    "moderatelyAcidic": {
+      "value": "حمضي معتدل"
+    },
+    "slightlyAcidic": {
+      "value": "حمضي قليل"
+    },
+    "neutral": {
+      "value": "محايد"
+    },
+    "slightlyBasic": {
+      "value": "قاعدي قليل"
+    },
+    "moderatelyBasic": {
+      "value": "قاعدي معتدل"
+    },
+    "highlyBasic": {
+      "value": "قاعدي جداً"
+    },
+    "extremelyBasic": {
+      "value": "قاعدي للغاية"
+    }
+  },
+  "faucetFlowRates": {
+    "closed": {
+      "value": "مغلق"
+    },
+    "openATinyBit": {
+      "value": "مفتوح قليلاً جداً"
+    },
+    "openALittle": {
+      "value": "مفتوح قليلاً"
+    },
+    "somewhatOpen": {
+      "value": "مفتوح نوعاً ما"
+    },
+    "halfwayOpen": {
+      "value": "مفتوح نصفه"
+    },
+    "openALot": {
+      "value": "مفتوح كثيراً"
+    },
+    "fullyOpen": {
+      "value": "مفتوح بالكامل"
+    }
+  },
+  "screenSummary": {
+    "overview": {
+      "value": "تحتوي منطقة اللعب على دورق يمكن تصريفه، وماصة لحلول، وصنبور ماء، ومسبار pH متحرك. الصنبور والماصة فوق الدورق. تقوم الماصة بصرف عدد من السوائل اليومية واحداً في كل مرة."
+    },
+    "controlArea": {
+      "value": "تحتوي منطقة التحكم على زر لإعادة تعيين المحاكاة."
+    },
+    "interactionHint": {
+      "value": "أضف المحلول إلى الدورق واللعب."
+    }
+  },
+  "dynamicScreenSummary": {
+    "case1": {
+      "value": "حاليًا، الدورق {{totalVolume}}."
+    },
+    "case2": {
+      "value": "حاليًا، يحتوي الدورق على {{solutionTotalVolume}} لتر من {{solute}} وهو {{totalVolume}}."
+    },
+    "case3": {
+      "value": "حاليًا، يحتوي الدورق على {{solutionTotalVolume}} لتر من {{solute}} وهو {{totalVolume}}. {{solute}} لديه pH قدره {{solutionPH}} وهو {{phDescription}}."
+    },
+    "case4": {
+      "value": "حاليًا، محلول {{solute}} هو {{soluteColor}} مع {{addedWaterColor}} {{solute}} والماء المضاف. الدورق {{totalVolume}} عند {{solutionTotalVolume}} لتر."
+    },
+    "case5": {
+      "value": "حاليًا، محلول {{solute}} له pH بقيمة {{solutionPH}} وهو {{phDescription}}. المحلول {{soluteColor}} مع {{addedWaterColor}} {{solute}} والماء المضاف. الدورق {{totalVolume}} عند {{solutionTotalVolume}} لتر."
+    },
+    "case6": {
+      "value": "حاليًا، محلول {{solute}} هو {{soluteColor}} مع {{addedWaterColor}} الماء المضاف. الدورق {{totalVolume}} عند {{solutionTotalVolume}} لتر."
+    },
+    "case7": {
+      "value": "حاليًا، محلول {{solute}} أخف {{soluteColor}} مع {{addedWaterColor}} الماء المضاف. الدورق {{totalVolume}} عند {{solutionTotalVolume}} لتر."
+    },
+    "case8": {
+      "value": "حاليًا، محلول {{solute}} له pH بقيمة {{solutionPH}} وهو {{phDescription}}. المحلول {{soluteColor}} مع {{addedWaterColor}} الماء المضاف. الدورق {{totalVolume}} عند {{solutionTotalVolume}} لتر."
+    },
+    "case9": {
+      "value": "حاليًا، محلول {{solute}} له pH بقيمة {{solutionPH}} وهو {{phDescription}}. المحلول أخف {{soluteColor}} مع {{addedWaterColor}} الماء المضاف. الدورق {{totalVolume}} عند {{solutionTotalVolume}} لتر."
+    }
+  },
+  "beakerInformation": {
+    "heading": {
+      "value": "المحلول في الدورق"
+    }
+  },
+  "solutionInformation": {
+    "isNeutral": {
+      "value": "محايد"
+    },
+    "totalVolumeDescription": {
+      "value": "{{solutionTotalVolume}} لتر، {{totalVolumeDescriptor}}"
+    },
+    "addedVolumeDescription": {
+      "value": "هو {{colorDescriptor}} مع {{addedWaterVolumeDescriptor}} الماء المضاف"
+    },
+    "addedVolumeDescriptionWithWater": {
+      "value": "هو أخف {{colorDescriptor}} مع {{addedWaterVolumeDescriptor}} الماء المضاف"
+    }
+  },
+  "phMeterInformation": {
+    "heading": {
+      "value": "مقياس ومؤشر pH"
+    },
+    "measuredPHDescription": {
+      "value": "له pH قيمته {{meterPH}}"
+    },
+    "qualitativePHDescription": {
+      "value": "هو {{phDescriptor}}"
+    },
+    "probeAccessibleName": {
+      "value": "مسبار pH"
+    },
+    "probeGrabAccessibleName": {
+      "value": "أمسك مسبار pH"
+    },
+    "probeHelpText": {
+      "value": "ابحث عن مسبار pH للعب. عند الإمساك به، استخدم اختصارات لوحة المفاتيح لتحريك المسبار. المسافة للإفلات."
+    }
+  },
+  "solutionAndPHMeterInformation": {
+    "controlsHeading": {
+      "value": "عناصر التحكم في محلول و مقياس pH"
+    },
+    "soluteComboBoxAccessibleName": {
+      "value": "محلول"
+    },
+    "soluteComboBoxHelpText": {
+      "value": "اختر سائلاً يوميًا للماصة."
+    },
+    "dropperAccessibleName": {
+      "value": "ماصة"
+    },
+    "waterFaucetAccessibleName": {
+      "value": "صنبور الماء"
+    },
+    "waterFaucetHelpText": {
+      "value": "أضف الماء إلى المحلول في الدورق."
+    },
+    "drainFaucetAccessibleName": {
+      "value": "المصرف"
+    },
+    "drainFaucetHelpText": {
+      "value": "افتح لتصريف المحلول من الدورق."
+    },
+    "faucetAriaValueText": {
+      "value": "{{flowRateDescriptor}}"
+    }
+  },
+  "contextResponses": {
+    "faucetOn": {
+      "value": "الماء يتدفق."
+    },
+    "faucetOff": {
+      "value": "الماء مغلق."
+    }
+  },
+  "alerts": {
+    "liquidGoingUp": {
+      "value": "المستوى يرتفع، الآن عند {{totalVolumeValue}} لتر."
+    },
+    "liquidGoingDown": {
+      "value": "المستوى ينخفض، الآن عند {{totalVolumeValue}} لتر."
+    },
+    "liquidChangingDone": {
+      "value": "المستوى مستقر، الآن عند {{totalVolumeEnum}}."
+    }
+  }
+}

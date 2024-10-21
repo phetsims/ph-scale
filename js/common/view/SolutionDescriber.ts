@@ -19,6 +19,7 @@ export type SoluteDescriptor = 'batteryAcid' | 'blood' | 'chickenSoup' | 'coffee
 export type TotalVolumeDescriptor = 'empty' | 'nearlyEmpty' | 'underHalfFull' | 'halfFull' | 'overHalfFull' | 'nearlyFull' | 'full';
 export type WaterVolumeDescriptor = 'no' | 'aTinyBitOf' | 'aLittle' | 'some' | 'equalAmountsOf' | 'aFairAmountOf' | 'lotsOf' | 'mostly';
 export type SoluteColorDescriptor = 'brightYellow' | 'red' | 'darkYellow' | 'brown' | 'lavender' | 'white' | 'orange' | 'limeGreen' | 'salmon' | 'colorless';
+export type PHValueDescriptor = 'none' | 'extremelyAcidic' | 'highlyAcidic' | 'moderatelyAcidic' | 'slightlyAcidic' | 'neutral' | 'slightlyBasic' | 'moderatelyBasic' | 'highlyBasic' | 'extremelyBasic';
 
 export default class SolutionDescriber {
 
@@ -37,6 +38,9 @@ export default class SolutionDescriber {
   // Formatted volume string, as it should appear when displayed to the user.
   public readonly formattedVolumeStringProperty: TReadOnlyProperty<string>;
 
+  // An enumeration value used to describe the pH value of the solution.
+  public readonly phValueDescriptorProperty: TReadOnlyProperty<PHValueDescriptor>;
+
   public constructor( solution: Solution ) {
     this.formattedVolumeStringProperty = new DerivedProperty( [ solution.totalVolumeProperty ], totalVolume => Utils.toFixed( totalVolume, 2 ) );
 
@@ -54,6 +58,10 @@ export default class SolutionDescriber {
 
     this.addedWaterVolumeDescriptorProperty = new DerivedProperty( [ solution.waterVolumeProperty, solution.totalVolumeProperty ], ( waterVolume, totalVolume ) => {
       return SolutionDescriber.addedWaterVolumeToEnum( waterVolume, totalVolume );
+    } );
+
+    this.phValueDescriptorProperty = new DerivedProperty( [ solution.pHProperty ], phValue => {
+      return SolutionDescriber.phValueToEnum( phValue );
     } );
   }
 
@@ -203,6 +211,39 @@ export default class SolutionDescriber {
     }
     else {
       return 'colorless';
+    }
+  }
+
+  private static phValueToEnum( phValue: number | null ): PHValueDescriptor {
+    if ( phValue === null ) {
+      return 'none';
+    }
+    else if ( phValue <= 1 ) {
+      return 'extremelyAcidic';
+    }
+    else if ( phValue <= 3 ) {
+      return 'highlyAcidic';
+    }
+    else if ( phValue <= 5 ) {
+      return 'moderatelyAcidic';
+    }
+    else if ( phValue < 7 ) {
+      return 'slightlyAcidic';
+    }
+    else if ( phValue === 7 ) {
+      return 'neutral';
+    }
+    else if ( phValue < 9 ) {
+      return 'slightlyBasic';
+    }
+    else if ( phValue < 11 ) {
+      return 'moderatelyBasic';
+    }
+    else if ( phValue < 13 ) {
+      return 'highlyBasic';
+    }
+    else {
+      return 'extremelyBasic';
     }
   }
 }

@@ -32,6 +32,7 @@ import Dropper from '../../common/model/Dropper.js';
 import Water from '../../common/model/Water.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
+import PHScaleDescriptionStrings from '../../common/view/description/PHScaleDescriptionStrings.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import MacroPHMeter from '../model/MacroPHMeter.js';
@@ -132,6 +133,21 @@ export default class MacroPHMeterNode extends Node {
     this.addLinkedElement( meter.pHProperty, {
       tandemName: 'pHProperty'
     } );
+
+    this.mutate( {
+      tagName: 'div',
+      labelTagName: 'h3',
+      labelContent: PHScaleDescriptionStrings.phMeterHeading()
+    } );
+
+    const descriptionListNode = new Node( {
+      tagName: 'ul',
+      children: [
+        new Node( { tagName: 'li' } ),
+        new Node( { tagName: 'li' } )
+      ]
+    } );
+    this.addChild( descriptionListNode );
   }
 
   public reset(): void {

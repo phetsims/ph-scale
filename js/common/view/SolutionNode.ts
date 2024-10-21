@@ -17,9 +17,11 @@ import Beaker from '../model/Beaker.js';
 import Solution from '../model/Solution.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import PHScaleDescriptionStrings from './description/PHScaleDescriptionStrings.js';
-import SolutionDescriber from './description/SolutionDescriber.js';
+import SolutionDescriber from './SolutionDescriber.js';
 
 export default class SolutionNode extends Rectangle {
+
+  public readonly solutionDescriber: SolutionDescriber;
 
   public constructor( solution: Solution,
                       beaker: Beaker,
@@ -56,12 +58,12 @@ export default class SolutionNode extends Rectangle {
       this.setRect( viewPosition.x - ( viewWidth / 2 ), viewPosition.y - viewHeight, viewWidth, viewHeight );
     } );
 
-    const solutionDescriber = new SolutionDescriber( solution );
+    this.solutionDescriber = new SolutionDescriber( solution );
 
     const solutionParagraph = new Node( {
       tagName: 'p',
       visibleProperty: new DerivedProperty( [ solution.soluteVolumeProperty ], soluteVolume => soluteVolume !== 0 ),
-      accessibleName: PHScaleDescriptionStrings.solutionParagraph( solutionDescriber.soluteDescriptorProperty )
+      accessibleName: PHScaleDescriptionStrings.solutionParagraph( this.solutionDescriber.soluteDescriptorProperty )
     } );
 
     const solutionUnorderedList = new Node( { tagName: 'ul' } );
@@ -70,22 +72,22 @@ export default class SolutionNode extends Rectangle {
 
     const addedWaterVolumeListItem = new Node( {
       tagName: 'li',
-      visibleProperty: new DerivedProperty( [ solutionDescriber.totalVolumeDescriptorProperty ], totalVolumeDescriptor => totalVolumeDescriptor !== 'empty' )
+      visibleProperty: new DerivedProperty( [ this.solutionDescriber.totalVolumeDescriptorProperty ], totalVolumeDescriptor => totalVolumeDescriptor !== 'empty' )
     } );
     const totalSolutionVolumeListItem = new Node( { tagName: 'li' } );
 
     solutionUnorderedList.children = [ addedWaterVolumeListItem, totalSolutionVolumeListItem ];
 
     const solutionIsNeutralStringProperty = PHScaleDescriptionStrings.solutionIsNeutral();
-    const solutionAddedVolumeStringProperty = PHScaleDescriptionStrings.solutionAddedVolumeDescription( solutionDescriber.soluteColorDescriptorProperty, solutionDescriber.addedWaterVolumeDescriptorProperty );
-    const solutionAddedVolumeWithWaterStringProperty = PHScaleDescriptionStrings.solutionAddedVolumeDescriptionWithWater( solutionDescriber.soluteColorDescriptorProperty, solutionDescriber.addedWaterVolumeDescriptorProperty );
+    const solutionAddedVolumeStringProperty = PHScaleDescriptionStrings.solutionAddedVolumeDescription( this.solutionDescriber.soluteColorDescriptorProperty, this.solutionDescriber.addedWaterVolumeDescriptorProperty );
+    const solutionAddedVolumeWithWaterStringProperty = PHScaleDescriptionStrings.solutionAddedVolumeDescriptionWithWater( this.solutionDescriber.soluteColorDescriptorProperty, this.solutionDescriber.addedWaterVolumeDescriptorProperty );
 
     Multilink.multilink( [
 
       // The Properties controlling the logic for the list item content.
-      solutionDescriber.soluteDescriptorProperty,
-      solutionDescriber.soluteColorDescriptorProperty,
-      solutionDescriber.addedWaterVolumeDescriptorProperty,
+      this.solutionDescriber.soluteDescriptorProperty,
+      this.solutionDescriber.soluteColorDescriptorProperty,
+      this.solutionDescriber.addedWaterVolumeDescriptorProperty,
       solution.soluteVolumeProperty,
 
       // Also observing the actual strings as they will change when the language changes.
@@ -114,7 +116,7 @@ export default class SolutionNode extends Rectangle {
       }
     } );
 
-    totalSolutionVolumeListItem.innerContent = PHScaleDescriptionStrings.solutionTotalVolumeDescription( solutionDescriber.totalVolumeDescriptorProperty, solutionDescriber.formattedVolumeStringProperty );
+    totalSolutionVolumeListItem.innerContent = PHScaleDescriptionStrings.solutionTotalVolumeDescription( this.solutionDescriber.totalVolumeDescriptorProperty, this.solutionDescriber.formattedVolumeStringProperty );
   }
 }
 

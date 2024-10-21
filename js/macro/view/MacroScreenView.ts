@@ -123,13 +123,27 @@ export default class MacroScreenView extends ScreenView {
     } );
 
     // PDOM - Screen summary content
+    const dynamicSummaryNode = new Node
+    ( { tagName: 'p' } );
     this.screenSummaryContent = new Node( {
       children: [
         new Node( { tagName: 'p', accessibleName: PHScaleDescriptionStrings.screenSummaryOverview() } ),
         new Node( { tagName: 'p', accessibleName: PHScaleDescriptionStrings.screenSummaryControlArea() } ),
+        dynamicSummaryNode,
         new Node( { tagName: 'p', accessibleName: PHScaleDescriptionStrings.screenSummaryInteractionHint() } )
       ]
     } );
+
+    dynamicSummaryNode.accessibleName = PHScaleDescriptionStrings.screenSummaryDynamic(
+      solutionNode.solutionDescriber.soluteDescriptorProperty,
+      solutionNode.solutionDescriber.totalVolumeDescriptorProperty,
+      model.solution.pHProperty,
+      model.pHMeter.pHProperty,
+      solutionNode.solutionDescriber.phValueDescriptorProperty,
+      solutionNode.solutionDescriber.formattedVolumeStringProperty,
+      solutionNode.solutionDescriber.soluteColorDescriptorProperty,
+      solutionNode.solutionDescriber.addedWaterVolumeDescriptorProperty
+    );
 
     // Parent for all nodes added to this screen
     const screenViewRootNode = new Node( {

@@ -210,10 +210,10 @@ const PHScaleDescriptionStringsES = {
     return `es ${phValueMap[ phDescriptor ]}`;
   },
   meterDescription(): string {
-    return '(marcador para la descripción del medidor)'
+    return '(marcador para la descripción del medidor)';
   },
   probeLocation(): string {
-    return '(marcador para la ubicación de la sonda)'
+    return '(marcador para la ubicación de la sonda)';
   },
   phMeterProbeAccessibleName(): string { return 'Sonda de pH'; },
   phMeterProbeGrabAccessibleName(): string { return 'Agarrar Sonda de pH'; },
@@ -250,22 +250,22 @@ const PHScaleDescriptionStringsES = {
 //***********************************************************************************
 // Context responses about water flow.
 //***********************************************************************************
-  faucetOnContextResponse() {
+  faucetOnContextResponse(): string {
     return 'El agua está fluyendo.';
   },
-  faucetOffContextResponse() {
+  faucetOffContextResponse(): string {
     return 'El agua está cerrada.';
   },
 
   liquidChangingAlert(
     goingUp: boolean, // Is the water level going up? True or false.
     totalVolumeValue: string // The total volume of the solution.
-  ) {
+  ): string {
     return `El nivel subiendo ${goingUp ? 'subiendo' : 'bajando'}, ahora en ${totalVolumeValue} litros.`;
   },
   liquidChangingDoneAlert(
     totalVolumeEnum: TotalVolumeDescriptor
-  ) {
+  ): string {
     return `El nivel estable, ahora en ${totalVolumeMap[ totalVolumeEnum ]}.`;
   }
 };

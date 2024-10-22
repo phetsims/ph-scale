@@ -49,8 +49,8 @@ export default class PHDropperNode extends EyeDropperNode {
     this.button.accessibleName = PHScaleDescriptionStrings.dropperAccessibleName();
 
     // Demo example for simple object response.
-    const dispensingObjectResponse = PHScaleDescriptionStrings.dropperDispensingAlert( dropper.isDispensingProperty );
-    dispensingObjectResponse.lazyLink( dispensingAlert => {
+    const dispensingObjectResponseProperty = PHScaleDescriptionStrings.dropperDispensingAlert( dropper.isDispensingProperty );
+    dispensingObjectResponseProperty.lazyLink( dispensingAlert => {
       this.button.alertDescriptionUtterance( dispensingAlert );
     } );
   }

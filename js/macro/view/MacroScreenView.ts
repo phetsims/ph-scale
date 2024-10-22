@@ -133,8 +133,7 @@ export default class MacroScreenView extends ScreenView {
     } );
 
     // PDOM - Screen summary content
-    const dynamicSummaryNode = new Node
-    ( { tagName: 'p' } );
+    const dynamicSummaryNode = new Node( { tagName: 'p' } );
     this.screenSummaryContent = new Node( {
       children: [
         new Node( { tagName: 'p', accessibleName: PHScaleDescriptionStrings.screenSummaryOverview() } ),

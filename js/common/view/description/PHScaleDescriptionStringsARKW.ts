@@ -210,10 +210,10 @@ const PHScaleDescriptionStringsARKW = {
     return `هو ${phValueMap[ phDescriptor ]}`;
   },
   meterDescription(): string {
-    return '(عنصر نائب لوصف الجهاز)'
+    return '(عنصر نائب لوصف الجهاز)';
   },
   probeLocation(): string {
-    return '(عنصر نائب لموقع المجس)'
+    return '(عنصر نائب لموقع المجس)';
   },
   phMeterProbeAccessibleName(): string { return 'مجس pH'; },
   phMeterProbeGrabAccessibleName(): string { return 'أمسك مجس pH'; },
@@ -250,22 +250,22 @@ const PHScaleDescriptionStringsARKW = {
 //***********************************************************************************
 // Context responses about water flow.
 //***********************************************************************************
-  faucetOnContextResponse() {
+  faucetOnContextResponse(): string {
     return 'الماء يتدفق.';
   },
-  faucetOffContextResponse() {
+  faucetOffContextResponse(): string {
     return 'تم فصل الماء.';
   },
 
   liquidChangingAlert(
     goingUp: boolean, // Is the water level going up? True or false.
     totalVolumeValue: string // The total volume of the solution.
-  ) {
+  ): string {
     return `المستوى ${goingUp ? 'يصعد' : 'ينخفض'}, الآن عند ${totalVolumeValue} لتر.`;
   },
   liquidChangingDoneAlert(
     totalVolumeEnum: TotalVolumeDescriptor
-  ) {
+  ): string {
     return `المستوى مستقر، الآن عند ${totalVolumeMap[ totalVolumeEnum ]}.`;
   }
 };

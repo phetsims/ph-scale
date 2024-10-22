@@ -43,7 +43,7 @@ export default class FlowDescriber {
       return 'halfwayOpen';
     }
     else if ( flowRate < 1.00 * 0.25 ) {
-      return 'openALot'
+      return 'openALot';
     }
     else {
       return 'fullyOpen';

@@ -7,15 +7,15 @@ import { PHValueDescriptor, SoluteColorDescriptor, SoluteDescriptor, TotalVolume
 
 // Maps the SoluteDescriptor to a string that describes the name of the solution.
 const soluteMap: Record<SoluteDescriptor, string> = {
-  batteryAcid: 'Ácido de batería',
+  batteryAcid: 'Ácido de Batería',
   blood: 'Sangre',
-  chickenSoup: 'Sopa de pollo',
+  chickenSoup: 'Sopa de Pollo',
   coffee: 'Café',
-  drainCleaner: 'Limpiador de desagües',
-  handSoap: 'Jabón de manos',
+  drainCleaner: 'Limpiador de Drenaje',
+  handSoap: 'Jabón de Manos',
   milk: 'Leche',
-  orangeJuice: 'Jugo de naranja',
-  sodaPop: 'Refresco',
+  orangeJuice: 'Jugo de Naranja',
+  sodaPop: 'Gaseosa',
   spit: 'Saliva',
   vomit: 'Vómito',
   water: 'Agua'
@@ -25,11 +25,11 @@ const soluteMap: Record<SoluteDescriptor, string> = {
 const addedWaterVolumeMap: Record<WaterVolumeDescriptor, string> = {
   no: 'sin',
   aTinyBitOf: 'un poquito de',
-  aLittle: 'un poco',
+  aLittle: 'un poco de',
   some: 'algo de',
   equalAmountsOf: 'cantidades iguales de',
-  aFairAmountOf: 'una cantidad razonable de',
-  lotsOf: 'mucho',
+  aFairAmountOf: 'una cantidad considerable de',
+  lotsOf: 'mucho de',
   mostly: 'principalmente'
 };
 
@@ -37,9 +37,9 @@ const addedWaterVolumeMap: Record<WaterVolumeDescriptor, string> = {
 const totalVolumeMap: Record<TotalVolumeDescriptor, string> = {
   empty: 'vacío',
   nearlyEmpty: 'casi vacío',
-  underHalfFull: 'menos de la mitad lleno',
-  halfFull: 'mitad lleno',
-  overHalfFull: 'más de la mitad lleno',
+  underHalfFull: 'menos de medio lleno',
+  halfFull: 'medio lleno',
+  overHalfFull: 'más de medio lleno',
   nearlyFull: 'casi lleno',
   full: 'lleno'
 };
@@ -60,7 +60,7 @@ const soluteColorMap: Record<SoluteColorDescriptor, string> = {
 
 // Solutions/Solutes
 const phValueMap = {
-  none: 'la sonda no está en el vaso',
+  none: 'no en el vaso',
   extremelyAcidic: 'extremadamente ácido',
   highlyAcidic: 'muy ácido',
   moderatelyAcidic: 'moderadamente ácido',
@@ -76,25 +76,25 @@ const flowRateMap = {
   closed: 'cerrado',
   openATinyBit: 'abierto un poquito',
   openALittle: 'abierto un poco',
-  somewhatOpen: 'parcialmente abierto',
+  somewhatOpen: 'algo abierto',
   halfwayOpen: 'medio abierto',
-  openALot: 'abierto bastante',
-  fullyOpen: 'completamente abierto'
+  openALot: 'muy abierto',
+  fullyOpen: 'totalmente abierto'
 };
 
 const PHScaleDescriptionStringsES = {
 
-  //***********************************************************************************
-  // Screen Summary State Descriptions
-  //***********************************************************************************
-  screenSummaryOverview(): string { return 'El área de juego contiene un vaso drenable, un gotero de solución, un grifo de agua y una sonda de pH móvil. El grifo de agua y el gotero están sobre el vaso. El gotero dispensa una serie de líquidos cotidianos uno a la vez.'; },
-  screenSummaryControlArea(): string { return 'El área de control tiene un botón para reiniciar la simulación.'; },
-  screenSummaryInteractionHint(): string { return 'Agrega solución al vaso y juega.'; },
+//***********************************************************************************
+// Screen Summary State Descriptions
+//***********************************************************************************
+  screenSummaryOverview(): string { return 'El Área de Juego contiene un vaso que se puede drenar, un gotero de solución, un grifo de agua y una sonda de pH móvil. El gotero y el grifo de agua están sobre el vaso. El gotero dispensa una serie de líquidos cotidianos uno a la vez.'; },
+  screenSummaryControlArea(): string { return 'El Área de Control tiene un botón para reiniciar la simulación.'; },
+  screenSummaryInteractionHint(): string { return 'Agregue solución al vaso y juegue.'; },
 
-  //***********************************************************************************
-  // Alternative form of screen summary, with complicated sentence. Cases are broken
-  // up with logic.
-  //***********************************************************************************
+//***********************************************************************************
+// Alternative form of screen summary, with complicated sentence. Cases are broken
+// up with logic.
+//***********************************************************************************
   screenSummaryDynamic(
     soluteDescriptor: SoluteDescriptor,
     totalVolumeDescriptor: TotalVolumeDescriptor,
@@ -121,7 +121,7 @@ const PHScaleDescriptionStringsES = {
       else {
 
         // The meter is measuring a value.
-        return `Actualmente, el vaso contiene ${solutionTotalVolume} litros de ${soluteMap[ soluteDescriptor ]} y está ${totalVolumeMap[ totalVolumeDescriptor ]}. El ${soluteMap[ soluteDescriptor ]} tiene un pH de ${solutionPH} y es ${phValueMap[ solutionPHDescriptor ]}.`;
+        return `Actualmente, el vaso contiene ${solutionTotalVolume} litros de ${soluteMap[ soluteDescriptor ]} y está ${totalVolumeMap[ totalVolumeDescriptor ]}. ${soluteMap[ soluteDescriptor ]} tiene un pH de ${solutionPH} y es ${phValueMap[ solutionPHDescriptor ]}.`;
       }
     }
     else if ( addedWaterVolumeDescriptor === 'equalAmountsOf' ) {
@@ -130,12 +130,12 @@ const PHScaleDescriptionStringsES = {
       if ( meterPH === null ) {
 
         // The meter is not measuring any value.
-        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} es ${soluteColorMap[ soluteColorDescriptor ]} con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} ${soluteMap[ soluteDescriptor ]} y agua agregada. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
+        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} es ${soluteColorMap[ soluteColorDescriptor ]} con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} ${soluteMap[ soluteDescriptor ]} y agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
       }
       else {
 
         // The meter is measuring a value.
-        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} tiene un pH de ${solutionPH} y es ${phValueMap[ solutionPHDescriptor ]}. La solución es ${soluteColorMap[ soluteColorDescriptor ]} con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} ${soluteMap[ soluteDescriptor ]} y agua agregada. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
+        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} tiene un pH de ${solutionPH} y es ${phValueMap[ solutionPHDescriptor ]}. La solución es ${soluteColorMap[ soluteColorDescriptor ]} con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} ${soluteMap[ soluteDescriptor ]} y agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
       }
     }
     else if ( meterPH === null ) {
@@ -144,12 +144,13 @@ const PHScaleDescriptionStringsES = {
       if ( addedWaterVolumeDescriptor === 'no' || soluteColorDescriptor === 'colorless' ) {
 
         // There is no water or the solute has no color, describe the color of the solution
-        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} es ${soluteColorMap[ soluteColorDescriptor ]} con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua agregada. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
+        // In this case, there is some amount of water and solute (other than equal)
+        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} es ${soluteColorMap[ soluteColorDescriptor ]} con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
       }
       else {
 
         // There is water and solute, and the solute has a color - describe that it is of a lighter color.
-        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} es ${soluteColorMap[ soluteColorDescriptor ]} más clara con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua agregada. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
+        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} es ${soluteColorMap[ soluteColorDescriptor ]} más clara con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
       }
     }
     else {
@@ -157,65 +158,71 @@ const PHScaleDescriptionStringsES = {
       if ( addedWaterVolumeDescriptor === 'no' || soluteColorDescriptor === 'colorless' ) {
 
         // There is no water or the solute has no color, describe the color of the solution
-        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} tiene un pH de ${solutionPH} y es ${phValueMap[ solutionPHDescriptor ]}. La solución es ${soluteColorMap[ soluteColorDescriptor ]} con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua agregada. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
+        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} tiene un pH de ${solutionPH} y es ${phValueMap[ solutionPHDescriptor ]}. La solución es ${soluteColorMap[ soluteColorDescriptor ]} con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
       }
       else {
 
         // There is water and solute, and the solute has a color - describe that it is of a lighter color.
-        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} tiene un pH de ${solutionPH} y es ${phValueMap[ solutionPHDescriptor ]}. La solución es ${soluteColorMap[ soluteColorDescriptor ]} más clara con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua agregada. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
+        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} tiene un pH de ${solutionPH} y es ${phValueMap[ solutionPHDescriptor ]}. La solución es ${soluteColorMap[ soluteColorDescriptor ]} más clara con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
       }
     }
   },
 
-  //***********************************************************************************
-  // Beaker Information
-  //***********************************************************************************
+//***********************************************************************************
+// Beaker Information
+//***********************************************************************************
   beakerHeading(): string { return 'Solución en el Vaso'; },
 
-  //***********************************************************************************
-  // Solution Information
-  //***********************************************************************************
-  // The selected solution.
+//***********************************************************************************
+// Solution Information
+//***********************************************************************************
+// The selected solution.
   solutionParagraph( solute: SoluteDescriptor ): string { return `${soluteMap[ solute ]}`; },
 
-  // Described when the solution is neutral.
+// Described when the solution is neutral.
   solutionIsNeutral(): string { return 'es neutral'; },
 
-  // Described when the solution has solute with no added water, or the solute is colorless.
+// Described when the solution has solute with no added water, or the solute is colorless.
   solutionAddedVolumeDescription( colorDescriptor: SoluteColorDescriptor, addedWaterVolumeDescriptor: WaterVolumeDescriptor ): string {
-    return `es ${soluteColorMap[ colorDescriptor ]} con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua agregada`;
+    return `es ${soluteColorMap[ colorDescriptor ]} con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida`;
   },
 
-  // Described when the solute has color and some added water.
+// Described when the solute has color and some added water.
   solutionAddedVolumeDescriptionWithWater( colorDescriptor: SoluteColorDescriptor, addedWaterVolumeDescriptor: WaterVolumeDescriptor ): string {
-    return `es ${soluteColorMap[ colorDescriptor ]} más clara con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua agregada`;
+    return `es ${soluteColorMap[ colorDescriptor ]} más clara con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida`;
   },
 
-  // Describes the total volume of the solution.
+// Describes the total volume of the solution.
   solutionTotalVolumeDescription( totalVolumeDescriptor: TotalVolumeDescriptor, solutionTotalVolume: string ): string {
     return `${solutionTotalVolume} litros, ${totalVolumeMap[ totalVolumeDescriptor ]}`;
   },
 
-  //***********************************************************************************
-  // pH Meter Information
-  //***********************************************************************************
+//***********************************************************************************
+// pH Meter Information
+//***********************************************************************************
   phMeterHeading(): string {
-    return 'Medidor de pH y Visualización';
+    return 'Medidor de pH y Lectura';
   },
-  measuredPHDescription( meterPH: number ): string {
+  measuredPHDescription( meterPH: number | null ): string {
     return `tiene un pH de ${meterPH}`;
   },
   qualitativePHDescription( phDescriptor: PHValueDescriptor ): string {
     return `es ${phValueMap[ phDescriptor ]}`;
   },
+  meterDescription(): string {
+    return '(marcador para la descripción del medidor)'
+  },
+  probeLocation(): string {
+    return '(marcador para la ubicación de la sonda)'
+  },
   phMeterProbeAccessibleName(): string { return 'Sonda de pH'; },
   phMeterProbeGrabAccessibleName(): string { return 'Agarrar Sonda de pH'; },
-  phMeterProbeHelpText(): string { return 'Busca la sonda de pH para jugar. Una vez agarrada, utiliza atajos de teclado para mover la sonda. Presiona espacio para soltar.'; },
+  phMeterProbeHelpText(): string { return 'Busque la sonda de pH para jugar. Una vez agarrada, use atajos de teclado para mover la sonda. Espacio para soltar.'; },
 
-  //***********************************************************************************
-  // Solution and pH Meter Information
-  //***********************************************************************************
-  controlsHeading(): string {
+//***********************************************************************************
+// Solution and pH Meter Information
+//***********************************************************************************
+  solutionControls(): string {
     return 'Controles de Solución y Medidor de pH';
   },
   soluteComboBoxAccessibleName(): string {
@@ -224,12 +231,15 @@ const PHScaleDescriptionStringsES = {
   soluteName( solute: SoluteDescriptor ): string {
     return soluteMap[ solute ];
   },
-  soluteComboBoxHelpText(): string { return 'Elige un líquido cotidiano para el gotero.'; },
+  soluteComboBoxHelpText(): string { return 'Elija un líquido cotidiano para el gotero.'; },
   dropperAccessibleName(): string { return 'Gotero'; },
+  dropperDispensingAlert( isDispensing: boolean ): string {
+    return isDispensing ? 'Dispensando.' : 'No dispensando.';
+  },
   waterFaucetAccessibleName(): string { return 'Grifo de Agua'; },
-  waterFaucetHelpText(): string { return 'Agrega agua a la solución en el vaso.'; },
-  drainFaucetAccessibleName(): string { return 'Drenar'; },
-  drainFaucetHelpText(): string { return 'Abre para drenar la solución del vaso.'; },
+  waterFaucetHelpText(): string { return 'Agregue agua a la solución en el vaso.'; },
+  drainFaucetAccessibleName(): string { return 'Desagüe'; },
+  drainFaucetHelpText(): string { return 'Abra para drenar la solución del vaso.'; },
   faucetAriaValueText(
     flowRateDescriptor: FlowRateDescriptor
   ): string {
@@ -237,9 +247,9 @@ const PHScaleDescriptionStringsES = {
     return `${flowRateMap[ flowRateDescriptor ]}`;
   },
 
-  //***********************************************************************************
-  // Context responses about water flow.
-  //***********************************************************************************
+//***********************************************************************************
+// Context responses about water flow.
+//***********************************************************************************
   faucetOnContextResponse() {
     return 'El agua está fluyendo.';
   },
@@ -251,12 +261,12 @@ const PHScaleDescriptionStringsES = {
     goingUp: boolean, // Is the water level going up? True or false.
     totalVolumeValue: string // The total volume of the solution.
   ) {
-    return `Nivel subiendo ${goingUp ? 'arriba' : 'abajo'}, ahora en ${totalVolumeValue} litros.`;
+    return `El nivel subiendo ${goingUp ? 'subiendo' : 'bajando'}, ahora en ${totalVolumeValue} litros.`;
   },
   liquidChangingDoneAlert(
     totalVolumeEnum: TotalVolumeDescriptor
   ) {
-    return `Nivel estable, ahora en ${totalVolumeMap[ totalVolumeEnum ]}.`;
+    return `El nivel estable, ahora en ${totalVolumeMap[ totalVolumeEnum ]}.`;
   }
 };
 

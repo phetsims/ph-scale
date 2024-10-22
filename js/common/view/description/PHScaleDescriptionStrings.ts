@@ -15,7 +15,9 @@ import PHScaleDescriptionStringsES from './PHScaleDescriptionStringsES.js';
 const PHScaleDescriptionStrings = combineConcreteTypesToPropertyType<typeof PHScaleDescriptionStringsEN>( new Map( [
   [ 'en', PHScaleDescriptionStringsEN ],
   [ 'es', PHScaleDescriptionStringsES ],
-  [ 'ar-kw', PHScaleDescriptionStringsARKW ]
+
+  // ar-kw doesnt seem to load with ?locale=ar-KW, is that expected?
+  [ 'ar', PHScaleDescriptionStringsARKW ]
 ] ) );
 
 export default PHScaleDescriptionStrings;

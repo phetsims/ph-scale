@@ -60,7 +60,7 @@ const soluteColorMap: Record<SoluteColorDescriptor, string> = {
 
 // Solutions/Solutes
 const phValueMap = {
-  none: 'probe is not in beaker',
+  none: 'not in beaker',
   extremelyAcidic: 'extremely acidic',
   highlyAcidic: 'highly acidic',
   moderatelyAcidic: 'moderately acidic',
@@ -203,11 +203,17 @@ const PHScaleDescriptionStringsEN = {
   phMeterHeading(): string {
     return 'pH Meter and Read Out';
   },
-  measuredPHDescription( meterPH: number ): string {
+  measuredPHDescription( meterPH: number | null ): string {
     return `has a pH of ${meterPH}`;
   },
   qualitativePHDescription( phDescriptor: PHValueDescriptor ): string {
     return `is ${phValueMap[ phDescriptor ]}`;
+  },
+  meterDescription(): string {
+    return '(placeholder for meter description)'
+  },
+  probeLocation(): string {
+    return '(placeholder for probe location)'
   },
   phMeterProbeAccessibleName(): string { return 'pH Probe'; },
   phMeterProbeGrabAccessibleName(): string { return 'Grab pH Probe'; },
@@ -216,7 +222,7 @@ const PHScaleDescriptionStringsEN = {
   //***********************************************************************************
   // Solution and pH Meter Information
   //***********************************************************************************
-  controlsHeading(): string {
+  solutionControls(): string {
     return 'Solution and pH Meter Controls';
   },
   soluteComboBoxAccessibleName(): string {
@@ -227,6 +233,9 @@ const PHScaleDescriptionStringsEN = {
   },
   soluteComboBoxHelpText(): string { return 'Choose an everyday liquid for the dropper.'; },
   dropperAccessibleName(): string { return 'Dropper'; },
+  dropperDispensingAlert( isDispensing: boolean ): string {
+    return isDispensing ? 'Dispensing.' : 'Not dispensing.';
+  },
   waterFaucetAccessibleName(): string { return 'Water Faucet'; },
   waterFaucetHelpText(): string { return 'Add water to solution in beaker.'; },
   drainFaucetAccessibleName(): string { return 'Drain'; },

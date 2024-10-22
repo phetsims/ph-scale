@@ -13,6 +13,8 @@ import Faucet from '../model/Faucet.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import { EmptySelfOptions, optionize4 } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import PHScaleDescriptionStrings from './description/PHScaleDescriptionStrings.js';
+import FlowDescriber from './FlowDescriber.js';
 
 // constants
 const SCALE = 0.6;
@@ -27,6 +29,10 @@ export default class DrainFaucetNode extends FaucetNode {
 
     const horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.position.x - faucet.pipeMinX ) ) / SCALE;
 
+    // Responsible for generating descriptions related to the flow rate.
+    const flowDescriber = new FlowDescriber( faucet.flowRateProperty );
+    const ariaValueTextStringProperty = PHScaleDescriptionStrings.faucetAriaValueText( flowDescriber.flowRateDescriptorProperty );
+
     const options = optionize4<DrainFaucetNodeOptions, SelfOptions, FaucetNodeOptions>()( {},
       PHScaleConstants.FAUCET_OPTIONS, {
 
@@ -36,7 +42,15 @@ export default class DrainFaucetNode extends FaucetNode {
         reverseAlternativeInput: true,
         visiblePropertyOptions: {
           phetioFeatured: true
+        },
+
+        // pdom
+        accessibleName: PHScaleDescriptionStrings.drainFaucetAccessibleName(),
+        helpText: PHScaleDescriptionStrings.drainFaucetHelpText(),
+        pdomCreateAriaValueText: () => {
+          return ariaValueTextStringProperty;
         }
+
       }, providedOptions );
 
     super( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, options );

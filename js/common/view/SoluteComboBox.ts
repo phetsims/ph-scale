@@ -15,6 +15,8 @@ import { HBox, Node, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import ComboBox, { ComboBoxItem, ComboBoxOptions } from '../../../../sun/js/ComboBox.js';
 import phScale from '../../phScale.js';
 import Solute from '../model/Solute.js';
+import PHScaleDescriptionStrings from './description/PHScaleDescriptionStrings.js';
+import SolutionDescriber from './SolutionDescriber.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -36,7 +38,11 @@ export default class SoluteComboBox extends ComboBox<Solute> {
       yMargin: 16,
       highlightFill: 'rgb( 218, 255, 255 )',
       buttonLineWidth: 2,
-      cornerRadius: 10
+      cornerRadius: 10,
+
+      // pdom
+      accessibleName: PHScaleDescriptionStrings.soluteComboBoxAccessibleName(),
+      helpText: PHScaleDescriptionStrings.soluteComboBoxHelpText()
     }, providedOptions );
 
     const items: ComboBoxItem<Solute>[] = [];
@@ -64,9 +70,14 @@ export default class SoluteComboBox extends ComboBox<Solute> {
         children: [ colorNode, labelText ]
       } );
 
+      // TODO: need to wrap this in a Property because PHScaleDEscriptionStrings require properties?
+      //   See https://github.com/phetsims/ph-scale/issues/299
+      const soluteDescriptorProperty = new Property( SolutionDescriber.soluteToSoluteDescriptor( solute ) );
+
       items.push( {
         value: solute,
         createNode: () => hBox,
+        a11yName: PHScaleDescriptionStrings.soluteName( soluteDescriptorProperty ),
         tandemName: `${solute.tandemName}Item`
       } );
     } );

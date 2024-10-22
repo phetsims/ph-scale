@@ -15,6 +15,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import Property from '../../../../axon/js/Property.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
@@ -29,16 +30,17 @@ import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Line, LinearGradient, Node, NodeOptions, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import Dropper from '../../common/model/Dropper.js';
+import { PHValue } from '../../common/model/PHModel.js';
+import PHMovable from '../../common/model/PHMovable.js';
+import Solution from '../../common/model/Solution.js';
 import Water from '../../common/model/Water.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import PHScaleDescriptionStrings from '../../common/view/description/PHScaleDescriptionStrings.js';
+import SolutionNode from '../../common/view/SolutionNode.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import MacroPHMeter from '../model/MacroPHMeter.js';
-import Solution from '../../common/model/Solution.js';
-import { PHValue } from '../../common/model/PHModel.js';
-import PHMovable from '../../common/model/PHMovable.js';
 import { MacroPHProbeNode } from './MacroPHProbeNode.js';
 
 // constants
@@ -58,12 +60,13 @@ type MacroPHMeterNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>
 
 export default class MacroPHMeterNode extends Node {
 
-  private readonly probeNode: MacroPHProbeNode;
+  // Public so it can be added to the right place in the PDOM order.
+  public readonly probeNode: MacroPHProbeNode;
 
   public constructor( meter: MacroPHMeter,
                       solution: Solution,
                       dropper: Dropper,
-                      solutionNode: Node,
+                      solutionNode: SolutionNode,
                       dropperFluidNode: Node,
                       waterFluidNode: Node,
                       drainFluidNode: Node,
@@ -140,11 +143,32 @@ export default class MacroPHMeterNode extends Node {
       labelContent: PHScaleDescriptionStrings.phMeterHeading()
     } );
 
+    // PDOM content - a description of the probe's location.
+    const probeLocationNode = new Node( {
+      tagName: 'p',
+      accessibleName: PHScaleDescriptionStrings.probeLocation()
+    } );
+    this.addChild( probeLocationNode );
+
+    // PDOM content - a list describing the measured pH. Some content is only shown when there is a reading.
+    const pHMeasuredProperty = new DerivedProperty( [ meter.pHProperty ], pH => pH !== null );
     const descriptionListNode = new Node( {
       tagName: 'ul',
       children: [
-        new Node( { tagName: 'li' } ),
-        new Node( { tagName: 'li' } )
+        new Node( {
+          tagName: 'li',
+          accessibleName: PHScaleDescriptionStrings.measuredPHDescription( meter.pHProperty ),
+          visibleProperty: pHMeasuredProperty
+        } ),
+        new Node( {
+          tagName: 'li',
+          accessibleName: PHScaleDescriptionStrings.qualitativePHDescription( solutionNode.solutionDescriber.phValueDescriptorProperty ),
+          visibleProperty: pHMeasuredProperty
+        } ),
+        new Node( {
+          tagName: 'li',
+          accessibleName: PHScaleDescriptionStrings.meterDescription()
+        } )
       ]
     } );
     this.addChild( descriptionListNode );

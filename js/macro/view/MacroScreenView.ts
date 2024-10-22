@@ -70,6 +70,16 @@ export default class MacroScreenView extends ScreenView {
         visibleProperty: model.dropper.visibleProperty
       } );
 
+    // A heading for the solution and ph meter controls
+    const solutionControlsNode = new Node( {
+
+      // A div because many components will be added under this Node in the PDOM order
+      // (but not in the children order).
+      tagName: 'div',
+      labelTagName: 'h3',
+      labelContent: PHScaleDescriptionStrings.solutionControls()
+    } );
+
     // faucets
     const waterFaucetNode = new WaterFaucetNode( model.waterFaucet, modelViewTransform, {
       tandem: tandem.createTandem( 'waterFaucetNode' )
@@ -161,6 +171,7 @@ export default class MacroScreenView extends ScreenView {
         volumeIndicatorNode,
         soluteComboBox,
         resetAllButton,
+        solutionControlsNode, // Not visual, but added to graph so it can be used in PDOM order
         pHMeterNode, // next to last so that probe doesn't get lost behind anything
         soluteListParent, // last, so that combo box list is on top
         cueParentNode // top layer for things like interaction cues
@@ -190,16 +201,22 @@ export default class MacroScreenView extends ScreenView {
         beakerNode,
         solutionNode,
         pHMeterNode,
+        solutionControlsNode
+      ];
+
+      // Order for components that should appear under the solution controls heading.
+      solutionControlsNode.pdomOrder = [
         soluteComboBox,
         dropperNode,
+        pHMeterNode.probeNode,
         waterFaucetNode,
-        drainFaucetNode,
-        resetAllButton
+        drainFaucetNode
       ];
 
       // Control Area focus order
       this.pdomControlAreaNode.pdomOrder = [
         //TODO https://github.com/phetsims/ph-scale/issues/291
+        resetAllButton
       ];
     }
   }

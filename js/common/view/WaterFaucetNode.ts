@@ -1,4 +1,4 @@
-  // Copyright 2013-2022, University of Colorado Boulder
+// Copyright 2013-2022, University of Colorado Boulder
 
 /**
  * Faucet that dispenses water (the solvent).
@@ -8,14 +8,16 @@
 
 import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import FaucetNode, { FaucetNodeOptions } from '../../../../scenery-phet/js/FaucetNode.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
 import phScale from '../../phScale.js';
+import Faucet from '../model/Faucet.js';
 import Water from '../model/Water.js';
 import PHScaleConstants from '../PHScaleConstants.js';
-import Faucet from '../model/Faucet.js';
-import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
+import PHScaleDescriptionStrings from './description/PHScaleDescriptionStrings.js';
+import FlowDescriber from './FlowDescriber.js';
 
 // constants
 const SCALE = 0.6;
@@ -38,11 +40,24 @@ export default class WaterFaucetNode extends Node {
 
     const horizontalPipeLength = Math.abs( modelViewTransform.modelToViewX( faucet.position.x - faucet.pipeMinX ) ) / SCALE;
 
+    // Creates PDOM text describing the open state of the faucet.
+    const flowDescriber = new FlowDescriber( faucet.flowRateProperty );
+    const ariaValueTextStringProperty = PHScaleDescriptionStrings.faucetAriaValueText( flowDescriber.flowRateDescriptorProperty );
+
     const faucetNode = new FaucetNode( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty,
       combineOptions<FaucetNodeOptions>( {}, PHScaleConstants.FAUCET_OPTIONS, {
         horizontalPipeLength: horizontalPipeLength,
         verticalPipeLength: 20,
         reverseAlternativeInput: true,
+
+        // pdom
+        accessibleName: PHScaleDescriptionStrings.waterFaucetAccessibleName(),
+        helpText: PHScaleDescriptionStrings.waterFaucetHelpText(),
+        pdomCreateAriaValueText: () => {
+          return ariaValueTextStringProperty;
+        },
+
+        // phet-io
         tandem: options.tandem.createTandem( 'faucetNode' )
       } ) );
     faucetNode.translation = modelViewTransform.modelToViewPosition( faucet.position );

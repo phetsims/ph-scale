@@ -8,12 +8,22 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import TProperty from '../../../../axon/js/TProperty.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import phScale from '../../phScale.js';
 
 export type FlowRateDescriptor = 'closed' | 'openATinyBit' | 'openALittle' | 'somewhatOpen' | 'halfwayOpen' | 'openALot' | 'fullyOpen';
 
-export default class SolutionDescriber {
-  public constructor() {
+export default class FlowDescriber {
+
+  // A value used to describe the flow rate for this describer.
+  public readonly flowRateDescriptorProperty: TReadOnlyProperty<FlowRateDescriptor>;
+
+  public constructor( flowRateProperty: TProperty<number> ) {
+    this.flowRateDescriptorProperty = new DerivedProperty( [ flowRateProperty ], flowRate => {
+      return FlowDescriber.flowRateToEnum( flowRate );
+    } );
   }
 
   public static flowRateToEnum( flowRate: number ): FlowRateDescriptor {
@@ -41,4 +51,4 @@ export default class SolutionDescriber {
   }
 }
 
-phScale.register( 'SolutionDescriber', SolutionDescriber );
+phScale.register( 'FlowDescriber', FlowDescriber );

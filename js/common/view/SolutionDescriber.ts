@@ -95,7 +95,7 @@ export default class SolutionDescriber {
   /**
    * Maps the solute to one of the enumeration values used to describe the solute of the solution.
    */
-  private static soluteToSoluteDescriptor( solute: Solute ): SoluteDescriptor {
+  public static soluteToSoluteDescriptor( solute: Solute ): SoluteDescriptor {
     if ( solute === Solute.BATTERY_ACID ) {
       return 'batteryAcid';
     }

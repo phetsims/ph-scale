@@ -14,6 +14,7 @@ import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransfo
 import EyeDropperNode, { EyeDropperNodeOptions } from '../../../../scenery-phet/js/EyeDropperNode.js';
 import phScale from '../../phScale.js';
 import Dropper from '../model/Dropper.js';
+import PHScaleDescriptionStrings from './description/PHScaleDescriptionStrings.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -42,6 +43,15 @@ export default class PHDropperNode extends EyeDropperNode {
     // change fluid color when the solute changes
     dropper.soluteProperty.link( solute => {
       this.setFluidColor( solute.stockColor );
+    } );
+
+    // PDOM content (could move into EyeDropperNode)
+    this.button.accessibleName = PHScaleDescriptionStrings.dropperAccessibleName();
+
+    // Demo example for simple object response.
+    const dispensingObjectResponse = PHScaleDescriptionStrings.dropperDispensingAlert( dropper.isDispensingProperty );
+    dispensingObjectResponse.lazyLink( dispensingAlert => {
+      this.button.alertDescriptionUtterance( dispensingAlert );
     } );
   }
 }

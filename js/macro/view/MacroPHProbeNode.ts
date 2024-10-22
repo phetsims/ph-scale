@@ -18,6 +18,7 @@ import DescriptionRegistry from '../../../../tandem/js/DescriptionRegistry.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import PHMovable from '../../common/model/PHMovable.js';
 import PHScaleQueryParameters from '../../common/PHScaleQueryParameters.js';
+import PHScaleDescriptionStrings from '../../common/view/description/PHScaleDescriptionStrings.js';
 import phScale from '../../phScale.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -97,6 +98,12 @@ export class MacroPHProbeNode extends InteractiveHighlighting( Node ) {
 
       const grabDragInteraction = new GrabDragInteraction( this, keyboardDragListener, interactionCueParentNode, {
         dragCueNode: dragCueNode,
+
+        // pdom
+        idleStateAccessibleName: PHScaleDescriptionStrings.phMeterProbeGrabAccessibleName(),
+        objectToGrabString: PHScaleDescriptionStrings.phMeterProbeAccessibleName(),
+        keyboardHelpText: PHScaleDescriptionStrings.phMeterProbeHelpText(),
+
         tandem: Tandem.OPT_OUT //TODO https://github.com/phetsims/ph-scale/issues/292 Add tandem when GrabDragInteraction is no longer created conditionally.
       } );
       this.grabDragInteraction = grabDragInteraction;
@@ -108,6 +115,10 @@ export class MacroPHProbeNode extends InteractiveHighlighting( Node ) {
     }
     else {
       this.addInputListener( keyboardDragListener );
+
+      // Not using GrabDragInteraction so the content would be set directly on the Node.
+      this.accessibleName = PHScaleDescriptionStrings.phMeterProbeAccessibleName();
+      this.helpText = PHScaleDescriptionStrings.phMeterProbeHelpText();
     }
 
     const isInNode = ( node: Node ) => node.getBounds().containsPoint( probe.positionProperty.value );

@@ -9,13 +9,13 @@
 
 import combineConcreteTypesToPropertyType from './combineConcreteTypesToPropertyType.js';
 import PHScaleDescriptionStringsEN from './PHScaleDescriptionStringsEN.js';
-import PHScaleDescriptionStringsARWK from './PHScaleDescriptionStringsARKW.js';
+import PHScaleDescriptionStringsARKW from './PHScaleDescriptionStringsARKW.js';
 import PHScaleDescriptionStringsES from './PHScaleDescriptionStringsES.js';
 
 const PHScaleDescriptionStrings = combineConcreteTypesToPropertyType<typeof PHScaleDescriptionStringsEN>( new Map( [
   [ 'en', PHScaleDescriptionStringsEN ],
   [ 'es', PHScaleDescriptionStringsES ],
-  [ 'en-kw', PHScaleDescriptionStringsARWK ]
+  [ 'ar-kw', PHScaleDescriptionStringsARKW ]
 ] ) );
 
 export default PHScaleDescriptionStrings;

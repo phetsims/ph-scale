@@ -216,8 +216,12 @@ const PHScaleDescriptionStringsARKW = {
     return '(عنصر نائب لموقع المجس)';
   },
   phMeterProbeAccessibleName(): string { return 'مجس pH'; },
+  phMeterProbeHelpText(): string { return 'Move probe with Arrow keys or other keyboard shortcuts.'; }, 
+  // Move or jump probe with keyboard shortcuts.
+  // Move probe with keyboard shortcuts.
+
   phMeterProbeGrabAccessibleName(): string { return 'أمسك مجس pH'; },
-  phMeterProbeHelpText(): string { return 'ابحث عن مجس pH للعب. بمجرد الإمساك به، استخدم اختصارات لوحة المفاتيح لتحريك المجس. اضغط المسافة للإفلات.'; },
+  phMeterProbeGrabDragHelpText(): string { return 'ابحث عن مجس pH للعب. بمجرد الإمساك به، استخدم اختصارات لوحة المفاتيح لتحريك المجس. اضغط المسافة للإفلات.'; },
 
 //***********************************************************************************
 // Solution and pH Meter Information

@@ -216,8 +216,12 @@ const PHScaleDescriptionStringsES = {
     return '(marcador para la ubicación de la sonda)';
   },
   phMeterProbeAccessibleName(): string { return 'Sonda de pH'; },
+  phMeterProbeHelpText(): string { return 'Move probe with Arrow keys or other keyboard shortcuts.'; }, 
+  // Move or jump probe with keyboard shortcuts.
+  // Move probe with keyboard shortcuts.
+
   phMeterProbeGrabAccessibleName(): string { return 'Agarrar Sonda de pH'; },
-  phMeterProbeHelpText(): string { return 'Busque la sonda de pH para jugar. Una vez agarrada, use atajos de teclado para mover la sonda. Espacio para soltar.'; },
+  phMeterProbeGrabDragHelpText(): string { return 'Busque la sonda de pH para jugar. Una vez agarrada, use atajos de teclado para mover la sonda. Espacio para soltar.'; },
 
 //***********************************************************************************
 // Solution and pH Meter Information

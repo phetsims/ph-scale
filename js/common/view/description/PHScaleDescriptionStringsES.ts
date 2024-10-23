@@ -40,7 +40,7 @@ const totalVolumeMap: Record<TotalVolumeDescriptor, string> = {
   underHalfFull: 'menos de medio lleno',
   halfFull: 'medio lleno',
   overHalfFull: 'más de medio lleno',
-  nearlyFull: 'casi lleno',
+  nearly full: 'casi lleno',
   full: 'lleno'
 };
 
@@ -61,6 +61,7 @@ const soluteColorMap: Record<SoluteColorDescriptor, string> = {
 // Solutions/Solutes
 const phValueMap = {
   none: 'no en el vaso',
+  //review where this word appers in the sim
   extremelyAcidic: 'extremadamente ácido',
   highlyAcidic: 'muy ácido',
   moderatelyAcidic: 'moderadamente ácido',
@@ -83,11 +84,11 @@ const flowRateMap = {
 };
 
 const probeLocationMap = {
-  homePosition: 'outside heaker, near pH Meter',
-  atBottom: 'at bottom of beaker,
-  underDropper: 'just under Drpper',
-  underWaterFaucet: 'under Water Faucet',
-  halfwayOpen: 'under adrain'
+  homePosition: 'fuera del vaso, cerca del medidor de pH',
+  atBottom: 'en el fondo del vaso'
+  underDropper: 'debajo del gotero',
+  underWaterFaucet: 'debajo del grifo',
+  underDrain: 'debajo del desagüe'
 };
 
 const PHScaleDescriptionStringsES = {
@@ -97,7 +98,7 @@ const PHScaleDescriptionStringsES = {
 //***********************************************************************************
   screenSummaryOverview(): string { return 'El Área de Juego contiene un vaso que se puede drenar, un gotero de solución, un grifo de agua y una sonda de pH móvil. El gotero y el grifo de agua están sobre el vaso. El gotero dispensa una serie de líquidos cotidianos uno a la vez.'; },
   screenSummaryControlArea(): string { return 'El Área de Control tiene un botón para reiniciar la simulación.'; },
-  screenSummaryInteractionHint(): string { return 'Agregue solución al vaso y juegue.'; },
+  screenSummaryInteractionHint(): string { return 'Agrega solución al vaso y juega.'; },
 
 //***********************************************************************************
 // Alternative form of screen summary, with complicated sentence. Cases are broken
@@ -138,12 +139,12 @@ const PHScaleDescriptionStringsES = {
       if ( meterPH === null ) {
 
         // The meter is not measuring any value.
-        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} es ${soluteColorMap[ soluteColorDescriptor ]} con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} ${soluteMap[ soluteDescriptor ]} y agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
+        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} es ${soluteColorMap[ soluteColorDescriptor ]} ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} ${soluteMap[ soluteDescriptor ]} y agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
       }
       else {
 
         // The meter is measuring a value.
-        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} tiene un pH de ${solutionPH} y es ${phValueMap[ solutionPHDescriptor ]}. La solución es ${soluteColorMap[ soluteColorDescriptor ]} con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} ${soluteMap[ soluteDescriptor ]} y agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
+        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} tiene un pH de ${solutionPH} y es ${phValueMap[ solutionPHDescriptor ]}. La solución es ${soluteColorMap[ soluteColorDescriptor ]} ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} ${soluteMap[ soluteDescriptor ]} y agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
       }
     }
     else if ( meterPH === null ) {
@@ -158,7 +159,7 @@ const PHScaleDescriptionStringsES = {
       else {
 
         // There is water and solute, and the solute has a color - describe that it is of a lighter color.
-        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} es ${soluteColorMap[ soluteColorDescriptor ]} más clara con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
+        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} es ${soluteColorMap[ soluteColorDescriptor ]} más clara ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
       }
     }
     else {
@@ -166,12 +167,12 @@ const PHScaleDescriptionStringsES = {
       if ( addedWaterVolumeDescriptor === 'no' || soluteColorDescriptor === 'colorless' ) {
 
         // There is no water or the solute has no color, describe the color of the solution
-        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} tiene un pH de ${solutionPH} y es ${phValueMap[ solutionPHDescriptor ]}. La solución es ${soluteColorMap[ soluteColorDescriptor ]} con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
+        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} tiene un pH de ${solutionPH} y es ${phValueMap[ solutionPHDescriptor ]}. La solución es ${soluteColorMap[ soluteColorDescriptor ]} ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
       }
       else {
 
         // There is water and solute, and the solute has a color - describe that it is of a lighter color.
-        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} tiene un pH de ${solutionPH} y es ${phValueMap[ solutionPHDescriptor ]}. La solución es ${soluteColorMap[ soluteColorDescriptor ]} más clara con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
+        return `Actualmente, la solución de ${soluteMap[ soluteDescriptor ]} tiene un pH de ${solutionPH} y es ${phValueMap[ solutionPHDescriptor ]}. La solución es ${soluteColorMap[ soluteColorDescriptor ]} más clara ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida. El vaso está ${totalVolumeMap[ totalVolumeDescriptor ]} con ${solutionTotalVolume} litros.`;
       }
     }
   },
@@ -188,16 +189,16 @@ const PHScaleDescriptionStringsES = {
   solutionParagraph( solute: SoluteDescriptor ): string { return `${soluteMap[ solute ]}`; },
 
 // Described when the solution is neutral.
-  solutionIsNeutral(): string { return 'es neutral'; },
+  solutionIsNeutral(): string { return 'es neutra'; },
 
 // Described when the solution has solute with no added water, or the solute is colorless.
   solutionAddedVolumeDescription( colorDescriptor: SoluteColorDescriptor, addedWaterVolumeDescriptor: WaterVolumeDescriptor ): string {
-    return `es ${soluteColorMap[ colorDescriptor ]} con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida`;
+    return `es ${soluteColorMap[ colorDescriptor ]} ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida`;
   },
 
 // Described when the solute has color and some added water.
   solutionAddedVolumeDescriptionWithWater( colorDescriptor: SoluteColorDescriptor, addedWaterVolumeDescriptor: WaterVolumeDescriptor ): string {
-    return `es ${soluteColorMap[ colorDescriptor ]} más clara con ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida`;
+    return `es ${soluteColorMap[ colorDescriptor ]} más clara ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} agua añadida`;
   },
 
 // Describes the total volume of the solution.
@@ -224,12 +225,14 @@ const PHScaleDescriptionStringsES = {
     return '(marcador para la ubicación de la sonda)';
   },
   phMeterProbeAccessibleName(): string { return 'Sonda de pH'; },
-  phMeterProbeHelpText(): string { return 'Move probe with Arrow keys or other keyboard shortcuts.'; }, 
-  // Move or jump probe with keyboard shortcuts.
-  // Move probe with keyboard shortcuts.
+  phMeterProbeHelpText(): string { return 'Mueva la sonda con las teclas de flecha u otros atajos del teclado.'; }, 
+  // Move or jump probe with keyboard shortcuts. Mueve o salte la sonda con atajos de teclado.
+  // Move probe with keyboard shortcuts. Mueve la sonda con atajos de teclado.
+  
+
 
   phMeterProbeGrabAccessibleName(): string { return 'Agarrar Sonda de pH'; },
-  phMeterProbeGrabDragHelpText(): string { return 'Busque la sonda de pH para jugar. Una vez agarrada, use atajos de teclado para mover la sonda. Espacio para soltar.'; },
+  phMeterProbeGrabDragHelpText(): string { return 'Busque la sonda de pH para jugar. Una vez agarrada, use los atajos del teclado para mover la sonda. Presione espacio para soltar.'; },
 
 //***********************************************************************************
 // Solution and pH Meter Information
@@ -243,7 +246,7 @@ const PHScaleDescriptionStringsES = {
   soluteName( solute: SoluteDescriptor ): string {
     return soluteMap[ solute ];
   },
-  soluteComboBoxHelpText(): string { return 'Elija un líquido cotidiano para el gotero.'; },
+  soluteComboBoxHelpText(): string { return 'Elige un líquido cotidiano para el gotero.'; },
   dropperAccessibleName(): string { return 'Gotero'; },
   dropperDispensingAlert( isDispensing: boolean ): string {
     return isDispensing ? 'Dispensando.' : 'No dispensando.';
@@ -266,19 +269,19 @@ const PHScaleDescriptionStringsES = {
     return 'El agua está fluyendo.';
   },
   faucetOffContextResponse(): string {
-    return 'El agua está cerrada.';
+    return 'El grifo está cerrado.';
   },
 
   liquidChangingAlert(
     goingUp: boolean, // Is the water level going up? True or false.
     totalVolumeValue: string // The total volume of the solution.
   ): string {
-    return `El nivel subiendo ${goingUp ? 'subiendo' : 'bajando'}, ahora en ${totalVolumeValue} litros.`;
+    return `El nivel esta ${goingUp ? 'subiendo' : 'bajando'}, ahora en ${totalVolumeValue} litros.`;
   },
   liquidChangingDoneAlert(
     totalVolumeEnum: TotalVolumeDescriptor
   ): string {
-    return `El nivel estable, ahora en ${totalVolumeMap[ totalVolumeEnum ]}.`;
+    return `El nivel es estable, ahora en ${totalVolumeMap[ totalVolumeEnum ]}.`;
   }
 };
 

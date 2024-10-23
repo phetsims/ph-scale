@@ -81,13 +81,13 @@ const flowRateMap = {
   openALot: 'open a lot',
   fullyOpen: 'fully open'
 };
-// Needs checking
+// Not implemented yet. Needs probeKeyLocationDescriptor.
 const probeKeyLocationMap = {
   homePosition: 'outside beaker, near pH meter',
   atBottom: 'at bottom of beaker',
   underDropper: 'just under dropper',
   underWaterFaucet: 'under water faucet',
-  halfwayOpen: 'under drain'
+  halfwayOpen: 'under drain',
   otherLocationNotInSolution: 'not in solution'
 };
 
@@ -221,10 +221,10 @@ const PHScaleDescriptionStringsEN = {
   meterDescription(): string {
     return '(placeholder for meter description)';
   },
-// Needs checking
-  probeLocation(( probeDescriptor: probeKeyLocationDescriptor ): string {
-    return 'Probe is ${probeKeyLocationMap[ probeDescriptor ]}';
-  },
+// Commneted out until we have a probeKeyLocationDescriptor
+//  probeLocation( probeDescriptor: probeKeyLocationDescriptor ): string {
+//    return `Probe is ${probeKeyLocationMap[ probeDescriptor ]}`;
+//  },
   phMeterProbeAccessibleName(): string { return 'pH Probe'; },
   phMeterProbeHelpText(): string { return 'Move probe with Arrow keys or other keyboard shortcuts.'; }, 
   // Other help text options

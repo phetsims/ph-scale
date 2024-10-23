@@ -102,7 +102,7 @@ export class MacroPHProbeNode extends InteractiveHighlighting( Node ) {
         // pdom
         idleStateAccessibleName: PHScaleDescriptionStrings.phMeterProbeGrabAccessibleName(),
         objectToGrabString: PHScaleDescriptionStrings.phMeterProbeAccessibleName(),
-        keyboardHelpText: PHScaleDescriptionStrings.phMeterProbeHelpText(),
+        keyboardHelpText: PHScaleDescriptionStrings.phMeterProbeGrabDragHelpText(),
 
         tandem: Tandem.OPT_OUT //TODO https://github.com/phetsims/ph-scale/issues/292 Add tandem when GrabDragInteraction is no longer created conditionally.
       } );

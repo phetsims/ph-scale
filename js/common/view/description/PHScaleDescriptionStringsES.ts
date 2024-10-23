@@ -82,6 +82,14 @@ const flowRateMap = {
   fullyOpen: 'totalmente abierto'
 };
 
+const probeLocationMap = {
+  homePosition: 'home position, near pH Meter',
+  atBottom: 'at bottom of beaker,
+  underDropper: 'just under Drpper',
+  underWaterFaucet: 'under Water Faucet',
+  halfwayOpen: 'under adrain'
+};
+
 const PHScaleDescriptionStringsES = {
 
 //***********************************************************************************

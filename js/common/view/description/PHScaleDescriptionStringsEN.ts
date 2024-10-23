@@ -216,8 +216,12 @@ const PHScaleDescriptionStringsEN = {
     return '(placeholder for probe location)';
   },
   phMeterProbeAccessibleName(): string { return 'pH Probe'; },
+  phMeterProbeHelpText(): string { return 'Move probe with Arrow keys or other keyboard shortcuts.'; }, 
+  // Move or jump probe with keyboard shortcuts.
+  // Move probe with keyboard shortcuts.
+
   phMeterProbeGrabAccessibleName(): string { return 'Grab pH Probe'; },
-  phMeterProbeHelpText(): string { return 'Look for pH probe to play. Once grabbed, use keyboard shortcuts to move probe. Space to release.'; },
+  phMeterProbeGrabDragHelpText(): string { return 'Look for pH probe to play. Once grabbed, use keyboard shortcuts to move probe. Space to release.'; },
 
   //***********************************************************************************
   // Solution and pH Meter Information
@@ -239,7 +243,7 @@ const PHScaleDescriptionStringsEN = {
   waterFaucetAccessibleName(): string { return 'Water Faucet'; },
   waterFaucetHelpText(): string { return 'Add water to solution in beaker.'; },
   drainFaucetAccessibleName(): string { return 'Drain'; },
-  drainFaucetHelpText(): string { return 'Open to drain solution from beaker.'; },
+  drainFaucetHelpText(): string { return 'Open, to drain solution from beaker.'; },
   faucetAriaValueText(
     flowRateDescriptor: FlowRateDescriptor
   ): string {

@@ -89,7 +89,7 @@ const probeLocationMap = {
   underDropper: 'debajo del gotero',
   underWaterFaucet: 'debajo del grifo',
   underDrain: 'debajo del desagüe',
-  otherLocationNotInSolution: 'not in solution'
+  otherLocationNotInSolution: 'no esta dentro de la solución'
 };
 
 const PHScaleDescriptionStringsES = {

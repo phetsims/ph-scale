@@ -83,11 +83,12 @@ const flowRateMap = {
 };
 
 const probeLocationMap = {
-  homePosition: 'outside beaker, near pH Meter',
-  atBottom: 'at bottom of beaker,
-  underDropper: 'just under Drpper',
-  underWaterFaucet: 'under Water Faucet',
-  halfwayOpen: 'under adrain'
+  homePosition: 'outside beaker, near pH meter',
+  atBottom: 'at bottom of beaker',
+  underDropper: 'just under dropper',
+  underWaterFaucet: 'under water faucet',
+  underDrain: 'under drain',
+  otherLocationNotInSolution: 'not in solution'
 };
 
 const PHScaleDescriptionStringsARKW = {

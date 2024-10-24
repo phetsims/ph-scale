@@ -87,7 +87,7 @@ const probeKeyLocationMap = {
   atBottom: 'at bottom of beaker',
   underDropper: 'just under dropper',
   underWaterFaucet: 'under water faucet',
-  halfwayOpen: 'under drain',
+  underDrain: 'under drain',
   otherLocationNotInSolution: 'not in solution'
 };
 

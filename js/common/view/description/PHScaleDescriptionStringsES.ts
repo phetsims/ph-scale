@@ -40,7 +40,7 @@ const totalVolumeMap: Record<TotalVolumeDescriptor, string> = {
   underHalfFull: 'menos de medio lleno',
   halfFull: 'medio lleno',
   overHalfFull: 'más de medio lleno',
-  nearly full: 'casi lleno',
+  nearlyFull: 'casi lleno',
   full: 'lleno'
 };
 
@@ -85,7 +85,7 @@ const flowRateMap = {
 
 const probeLocationMap = {
   homePosition: 'fuera del vaso, cerca del medidor de pH',
-  atBottom: 'en el fondo del vaso'
+  atBottom: 'en el fondo del vaso',
   underDropper: 'debajo del gotero',
   underWaterFaucet: 'debajo del grifo',
   underDrain: 'debajo del desagüe',

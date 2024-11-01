@@ -24,12 +24,12 @@ import DropperFluidNode from '../../common/view/DropperFluidNode.js';
 import FaucetFluidNode from '../../common/view/FaucetFluidNode.js';
 import PHDropperNode from '../../common/view/PHDropperNode.js';
 import SoluteComboBox from '../../common/view/SoluteComboBox.js';
-import SolutionNode from '../../common/view/SolutionNode.js';
 import VolumeIndicatorNode from '../../common/view/VolumeIndicatorNode.js';
 import WaterFaucetNode from '../../common/view/WaterFaucetNode.js';
 import phScale from '../../phScale.js';
 import MacroModel from '../model/MacroModel.js';
 import MacroPHMeterNode from './MacroPHMeterNode.js';
+import MacroSolutionNode from './MacroSolutionNode.js';
 import NeutralIndicatorNode from './NeutralIndicatorNode.js';
 
 export default class MacroScreenView extends ScreenView {
@@ -46,7 +46,7 @@ export default class MacroScreenView extends ScreenView {
     } );
 
     // solution in the beaker
-    const solutionNode = new SolutionNode( model.solution, model.beaker, modelViewTransform );
+    const solutionNode = new MacroSolutionNode( model.solution, model.beaker, modelViewTransform );
 
     // volume indicator on the right edge of beaker
     const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.totalVolumeProperty, model.beaker, modelViewTransform, {

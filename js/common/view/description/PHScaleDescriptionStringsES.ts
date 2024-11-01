@@ -83,14 +83,14 @@ const flowRateMap = {
   fullyOpen: 'totalmente abierto'
 };
 
-const probeLocationMap = {
-  homePosition: 'fuera del vaso, cerca del medidor de pH',
-  atBottom: 'en el fondo del vaso',
-  underDropper: 'debajo del gotero',
-  underWaterFaucet: 'debajo del grifo',
-  underDrain: 'debajo del desagüe',
-  otherLocationNotInSolution: 'no esta dentro de la solución'
-};
+// const probeLocationMap = {
+//   homePosition: 'fuera del vaso, cerca del medidor de pH',
+//   atBottom: 'en el fondo del vaso',
+//   underDropper: 'debajo del gotero',
+//   underWaterFaucet: 'debajo del grifo',
+//   underDrain: 'debajo del desagüe',
+//   otherLocationNotInSolution: 'no esta dentro de la solución'
+// };
 
 const PHScaleDescriptionStringsES = {
 
@@ -226,10 +226,9 @@ const PHScaleDescriptionStringsES = {
     return '(marcador para la ubicación de la sonda)';
   },
   phMeterProbeAccessibleName(): string { return 'Sonda de pH'; },
-  phMeterProbeHelpText(): string { return 'Mueva la sonda con las teclas de flecha u otros atajos del teclado.'; }, 
+  phMeterProbeHelpText(): string { return 'Mueva la sonda con las teclas de flecha u otros atajos del teclado.'; },
   // Move or jump probe with keyboard shortcuts. Mueve o salte la sonda con atajos de teclado.
   // Move probe with keyboard shortcuts. Mueve la sonda con atajos de teclado.
-  
 
 
   phMeterProbeGrabAccessibleName(): string { return 'Agarrar Sonda de pH'; },

@@ -37,11 +37,11 @@ import Water from '../../common/model/Water.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import PHScaleDescriptionStrings from '../../common/view/description/PHScaleDescriptionStrings.js';
-import SolutionNode from '../../common/view/SolutionNode.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import MacroPHMeter from '../model/MacroPHMeter.js';
 import { MacroPHProbeNode } from './MacroPHProbeNode.js';
+import MacroSolutionNode from './MacroSolutionNode.js';
 
 // constants
 const BACKGROUND_ENABLED_FILL = 'rgb( 31, 113, 2 )';
@@ -66,7 +66,7 @@ export default class MacroPHMeterNode extends Node {
   public constructor( meter: MacroPHMeter,
                       solution: Solution,
                       dropper: Dropper,
-                      solutionNode: SolutionNode,
+                      solutionNode: MacroSolutionNode,
                       dropperFluidNode: Node,
                       waterFluidNode: Node,
                       drainFluidNode: Node,
@@ -145,7 +145,7 @@ export default class MacroPHMeterNode extends Node {
 
     // PDOM content - a description of the probe's location.
     const probeLocationNode = new Node( {
-      tagName: 'p',
+      tagName: 'p'
       // accessibleName: PHScaleDescriptionStrings.probeLocation()
     } );
     this.addChild( probeLocationNode );

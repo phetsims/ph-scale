@@ -82,14 +82,14 @@ const flowRateMap = {
   fullyOpen: 'مفتوح بالكامل'
 };
 
-const probeLocationMap = {
-  homePosition: 'outside beaker, near pH meter',
-  atBottom: 'at bottom of beaker',
-  underDropper: 'just under dropper',
-  underWaterFaucet: 'under water faucet',
-  underDrain: 'under drain',
-  otherLocationNotInSolution: 'not in solution'
-};
+// const probeLocationMap = {
+//   homePosition: 'outside beaker, near pH meter',
+//   atBottom: 'at bottom of beaker',
+//   underDropper: 'just under dropper',
+//   underWaterFaucet: 'under water faucet',
+//   underDrain: 'under drain',
+//   otherLocationNotInSolution: 'not in solution'
+// };
 
 const PHScaleDescriptionStringsARKW = {
 
@@ -225,7 +225,9 @@ const PHScaleDescriptionStringsARKW = {
     return '(عنصر نائب لموقع المجس)';
   },
   phMeterProbeAccessibleName(): string { return 'مجس pH'; },
-  phMeterProbeHelpText(): string { return 'Move probe with Arrow keys or other keyboard shortcuts.'; }, 
+  phMeterProbeHelpText(): string {
+    return 'Move probe with Arrow keys or other keyboard shortcuts.';
+  },
   // Move or jump probe with keyboard shortcuts.
   // Move probe with keyboard shortcuts.
 

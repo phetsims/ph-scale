@@ -146,7 +146,7 @@ export default class MacroPHMeterNode extends Node {
     // PDOM content - a description of the probe's location.
     const probeLocationNode = new Node( {
       tagName: 'p',
-      accessibleName: PHScaleDescriptionStrings.probeLocation()
+      // accessibleName: PHScaleDescriptionStrings.probeLocation()
     } );
     this.addChild( probeLocationNode );
 

@@ -7,14 +7,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import PHAccordionBox from '../../common/view/PHAccordionBox.js';
-import phScale from '../../phScale.js';
-import { PHValue } from '../../common/model/PHModel.js';
-import PHScaleConstants from '../../common/PHScaleConstants.js';
+import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import { PHValue } from '../../common/model/PHModel.js';
+import PHScaleConstants from '../../common/PHScaleConstants.js';
+import PHAccordionBox from '../../common/view/PHAccordionBox.js';
+import phScale from '../../phScale.js';
 
 export default class MicroPHAccordionBox extends PHAccordionBox {
 

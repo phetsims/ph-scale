@@ -7,10 +7,10 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import Tandem from '../../../../tandem/js/Tandem.js';
 import PHModel from '../../common/model/PHModel.js';
 import phScale from '../../phScale.js';
 import MicroSolution from './MicroSolution.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class MicroModel extends PHModel<MicroSolution> {
 

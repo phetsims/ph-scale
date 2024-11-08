@@ -7,11 +7,11 @@
  */
 
 import TModel from '../../../../joist/js/TModel.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import Beaker from '../../common/model/Beaker.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
 import MySolution from './MySolution.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class MySolutionModel implements TModel {
 

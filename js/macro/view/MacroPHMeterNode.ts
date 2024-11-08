@@ -29,15 +29,15 @@ import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Line, LinearGradient, Node, NodeOptions, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import Dropper from '../../common/model/Dropper.js';
+import { PHValue } from '../../common/model/PHModel.js';
+import PHMovable from '../../common/model/PHMovable.js';
+import Solution from '../../common/model/Solution.js';
 import Water from '../../common/model/Water.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import MacroPHMeter from '../model/MacroPHMeter.js';
-import Solution from '../../common/model/Solution.js';
-import { PHValue } from '../../common/model/PHModel.js';
-import PHMovable from '../../common/model/PHMovable.js';
 import { MacroPHProbeNode } from './MacroPHProbeNode.js';
 
 // constants

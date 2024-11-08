@@ -8,23 +8,23 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
+import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import TModel from '../../../../joist/js/TModel.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
+import phScale from '../../phScale.js';
+import PHScaleConstants from '../PHScaleConstants.js';
+import PHScaleQueryParameters from '../PHScaleQueryParameters.js';
 import Beaker from './Beaker.js';
 import Dropper from './Dropper.js';
 import Faucet from './Faucet.js';
 import Solute from './Solute.js';
-import PHScaleConstants from '../PHScaleConstants.js';
-import PHScaleQueryParameters from '../PHScaleQueryParameters.js';
-import phScale from '../../phScale.js';
 import Solution from './Solution.js';
 import Water from './Water.js';
-import Utils from '../../../../dot/js/Utils.js';
-import TModel from '../../../../joist/js/TModel.js';
-import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
 
 // constants
 const AVOGADROS_NUMBER = 6.023E23; // number of particles in one mole of solution

@@ -12,11 +12,11 @@ import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optioni
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import { NodeTranslationOptions, Text } from '../../../../../scenery/js/imports.js';
 import ABSwitch, { ABSwitchOptions } from '../../../../../sun/js/ABSwitch.js';
+import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import PhScaleStrings from '../../../PhScaleStrings.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphScale from './GraphScale.js';
-import Tandem from '../../../../../tandem/js/Tandem.js';
 
 type SelfOptions = EmptySelfOptions;
 

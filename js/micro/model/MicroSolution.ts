@@ -9,8 +9,8 @@
 import Property from '../../../../axon/js/Property.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Solute from '../../common/model/Solute.js';
-import SolutionDerivedProperties from '../../common/model/SolutionDerivedProperties.js';
 import Solution, { SolutionOptions } from '../../common/model/Solution.js';
+import SolutionDerivedProperties from '../../common/model/SolutionDerivedProperties.js';
 import phScale from '../../phScale.js';
 
 type SelfOptions = EmptySelfOptions;

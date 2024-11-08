@@ -27,9 +27,9 @@ import PHModel, { PHValue } from '../../model/PHModel.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
+import GraphIndicatorKeyboardDragListener from './GraphIndicatorKeyboardDragListener.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
-import GraphIndicatorKeyboardDragListener from './GraphIndicatorKeyboardDragListener.js';
 
 type SelfOptions = {
 

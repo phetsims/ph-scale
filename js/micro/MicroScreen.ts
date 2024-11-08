@@ -10,15 +10,15 @@ import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import { Image } from '../../../scenery/js/imports.js';
+import Tandem from '../../../tandem/js/Tandem.js';
 import microHomeScreenIcon_png from '../../images/microHomeScreenIcon_png.js';
 import microNavbarIcon_png from '../../images/microNavbarIcon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
 import phScale from '../phScale.js';
 import PhScaleStrings from '../PhScaleStrings.js';
 import MicroModel from './model/MicroModel.js';
-import MicroScreenView from './view/MicroScreenView.js';
 import MicroKeyboardHelpContent from './view/MicroKeyboardHelpContent.js';
-import Tandem from '../../../tandem/js/Tandem.js';
+import MicroScreenView from './view/MicroScreenView.js';
 
 export default class MicroScreen extends Screen<MicroModel, MicroScreenView> {
 

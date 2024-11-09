@@ -1,4 +1,4 @@
-// Copyright 2022-2023, University of Colorado Boulder
+// Copyright 2022-2024, University of Colorado Boulder
 
 /**
  * MySolutionKeyboardHelpContent is the keyboard-help content for the 'My Solution' screen.

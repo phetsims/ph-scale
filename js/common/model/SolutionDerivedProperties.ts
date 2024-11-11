@@ -1,4 +1,4 @@
-// Copyright 2021-2023, University of Colorado Boulder
+// Copyright 2021-2024, University of Colorado Boulder
 
 /**
  * SolutionDerivedProperties models the Properties of a solution that are derived from pH and volume, including
@@ -16,15 +16,15 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import PHModel, { ConcentrationValue, PHValue } from './PHModel.js';
 import phScale from '../../phScale.js';
-import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
+import PHModel, { ConcentrationValue, PHValue } from './PHModel.js';
 
 type SelfOptions = EmptySelfOptions;
 

@@ -1,4 +1,4 @@
-// Copyright 2022-2023, University of Colorado Boulder
+// Copyright 2022-2024, University of Colorado Boulder
 
 /**
  * MySolutionPHAccordionBox is the pH accordion box (aka meter) for the 'My Solution' screen.
@@ -7,11 +7,11 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import Property from '../../../../axon/js/Property.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import PHAccordionBox from '../../common/view/PHAccordionBox.js';
 import phScale from '../../phScale.js';
-import Property from '../../../../axon/js/Property.js';
 import { PHSpinnerNode } from './PHSpinnerNode.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class MySolutionPHAccordionBox extends PHAccordionBox {
 

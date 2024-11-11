@@ -1,4 +1,4 @@
-// Copyright 2013-2023, University of Colorado Boulder
+// Copyright 2013-2024, University of Colorado Boulder
 
 /**
  * Graph with a logarithmic scale, for displaying concentration (mol/L) and quantity (moles).
@@ -27,9 +27,9 @@ import PHModel, { PHValue } from '../../model/PHModel.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
+import GraphIndicatorKeyboardDragListener from './GraphIndicatorKeyboardDragListener.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
-import GraphIndicatorKeyboardDragListener from './GraphIndicatorKeyboardDragListener.js';
 
 type SelfOptions = {
 

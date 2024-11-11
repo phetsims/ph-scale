@@ -1,4 +1,4 @@
-// Copyright 2020-2023, University of Colorado Boulder
+// Copyright 2020-2024, University of Colorado Boulder
 
 /**
  * GraphScaleSwitch is the control for switching between Concentration and Quantity units for the graphs.
@@ -6,18 +6,18 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedStringProperty from '../../../../../axon/js/DerivedStringProperty.js';
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Dimension2 from '../../../../../dot/js/Dimension2.js';
 import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import { NodeTranslationOptions, RichText } from '../../../../../scenery/js/imports.js';
 import ABSwitch, { ABSwitchOptions } from '../../../../../sun/js/ABSwitch.js';
+import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import PhScaleStrings from '../../../PhScaleStrings.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphUnits from './GraphUnits.js';
-import DerivedStringProperty from '../../../../../axon/js/DerivedStringProperty.js';
-import Tandem from '../../../../../tandem/js/Tandem.js';
 
 type SelfOptions = EmptySelfOptions;
 

@@ -6,13 +6,13 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import phScale from '../../phScale.js';
-import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
 import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/BasicActionsKeyboardHelpSection.js';
 import ComboBoxKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/ComboBoxKeyboardHelpSection.js';
-import PhScaleStrings from '../../PhScaleStrings.js';
-import MoveKeyboardHelpContent from '../../common/view/MoveKeyboardHelpContent.js';
 import FaucetControlsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/FaucetControlsKeyboardHelpSection.js';
+import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
+import MoveKeyboardHelpContent from '../../common/view/MoveKeyboardHelpContent.js';
+import phScale from '../../phScale.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
 
 export default class MacroKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
 

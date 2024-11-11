@@ -1,4 +1,4 @@
-// Copyright 2022-2023, University of Colorado Boulder
+// Copyright 2022-2024, University of Colorado Boulder
 
 /**
  * MacroModel is the model for the 'Micro' screen.  It extends the PHModel, substituting a different solution
@@ -7,13 +7,13 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import Vector2 from '../../../../dot/js/Vector2.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import PHModel from '../../common/model/PHModel.js';
+import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
 import MacroPHMeter from './MacroPHMeter.js';
-import PHScaleConstants from '../../common/PHScaleConstants.js';
-import Vector2 from '../../../../dot/js/Vector2.js';
 import MacroSolution from './MacroSolution.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class MacroModel extends PHModel<MacroSolution> {
 

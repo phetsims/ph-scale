@@ -17,6 +17,7 @@ import { combineOptions } from '../../../../phet-core/js/optionize.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import { Node } from '../../../../scenery/js/imports.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import BeakerControlPanel from '../../common/view/BeakerControlPanel.js';
 import BeakerNode from '../../common/view/BeakerNode.js';
@@ -29,7 +30,6 @@ import VolumeIndicatorNode from '../../common/view/VolumeIndicatorNode.js';
 import phScale from '../../phScale.js';
 import MySolutionModel from '../model/MySolutionModel.js';
 import MySolutionPHAccordionBox from './MySolutionPHAccordionBox.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class MySolutionScreenView extends ScreenView {
 

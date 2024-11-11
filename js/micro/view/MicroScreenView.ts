@@ -19,6 +19,7 @@ import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransfo
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import EyeDropperNode from '../../../../scenery-phet/js/EyeDropperNode.js';
 import { Node } from '../../../../scenery/js/imports.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import Water from '../../common/model/Water.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import BeakerControlPanel from '../../common/view/BeakerControlPanel.js';
@@ -29,7 +30,6 @@ import FaucetFluidNode from '../../common/view/FaucetFluidNode.js';
 import GraphNode from '../../common/view/graph/GraphNode.js';
 import ParticleCountsNode from '../../common/view/ParticleCountsNode.js';
 import PHDropperNode from '../../common/view/PHDropperNode.js';
-import MicroPHAccordionBox from './MicroPHAccordionBox.js';
 import PHScaleViewProperties from '../../common/view/PHScaleViewProperties.js';
 import RatioNode from '../../common/view/RatioNode.js';
 import SoluteComboBox from '../../common/view/SoluteComboBox.js';
@@ -38,7 +38,7 @@ import VolumeIndicatorNode from '../../common/view/VolumeIndicatorNode.js';
 import WaterFaucetNode from '../../common/view/WaterFaucetNode.js';
 import phScale from '../../phScale.js';
 import MicroModel from '../model/MicroModel.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import MicroPHAccordionBox from './MicroPHAccordionBox.js';
 
 export default class MicroScreenView extends ScreenView {
 

@@ -6,16 +6,16 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
+import Property from '../../../../../axon/js/Property.js';
+import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import { KeyboardDragListener } from '../../../../../scenery/js/imports.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
-import GraphUnits from './GraphUnits.js';
 import { ConcentrationValue, PHValue } from '../../model/PHModel.js';
-import Property from '../../../../../axon/js/Property.js';
-import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
-import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
+import GraphUnits from './GraphUnits.js';
 
 export default class GraphIndicatorKeyboardDragListener extends KeyboardDragListener {
 

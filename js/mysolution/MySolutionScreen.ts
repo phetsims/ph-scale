@@ -1,4 +1,4 @@
-// Copyright 2013-2023, University of Colorado Boulder
+// Copyright 2013-2024, University of Colorado Boulder
 
 /**
  * The 'My Solution' screen.
@@ -10,15 +10,15 @@ import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import { Image } from '../../../scenery/js/imports.js';
+import Tandem from '../../../tandem/js/Tandem.js';
 import mySolutionHomeScreenIcon_png from '../../images/mySolutionHomeScreenIcon_png.js';
 import mySolutionNavbarIcon_png from '../../images/mySolutionNavbarIcon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
 import phScale from '../phScale.js';
 import PhScaleStrings from '../PhScaleStrings.js';
 import MySolutionModel from './model/MySolutionModel.js';
-import MySolutionScreenView from './view/MySolutionScreenView.js';
 import MySolutionKeyboardHelpContent from './view/MySolutionKeyboardHelpContent.js';
-import Tandem from '../../../tandem/js/Tandem.js';
+import MySolutionScreenView from './view/MySolutionScreenView.js';
 
 export default class MySolutionScreen extends Screen<MySolutionModel, MySolutionScreenView> {
 

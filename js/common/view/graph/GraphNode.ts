@@ -1,4 +1,4 @@
-// Copyright 2013-2023, University of Colorado Boulder
+// Copyright 2013-2024, University of Colorado Boulder
 
 /**
  * Container for all components related to the graph feature.
@@ -11,6 +11,9 @@
 
 import BooleanProperty from '../../../../../axon/js/BooleanProperty.js';
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
+import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
+import optionize from '../../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import { Line, Node, NodeOptions } from '../../../../../scenery/js/imports.js';
 import phScale from '../../../phScale.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
@@ -20,9 +23,6 @@ import GraphScaleSwitch from './GraphScaleSwitch.js';
 import GraphUnits from './GraphUnits.js';
 import LinearGraphNode from './LinearGraphNode.js';
 import LogarithmicGraphNode, { LogarithmicGraphNodeOptions } from './LogarithmicGraphNode.js';
-import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
-import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
-import optionize from '../../../../../phet-core/js/optionize.js';
 
 type SelfOptions = {
   logScaleHeight?: number;

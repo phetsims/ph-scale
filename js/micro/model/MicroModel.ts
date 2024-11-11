@@ -1,4 +1,4 @@
-// Copyright 2013-2023, University of Colorado Boulder
+// Copyright 2013-2024, University of Colorado Boulder
 
 /**
  * MicroModel is the model for the 'Micro' screen.  It extends the PHModel, substituting a different solution
@@ -7,10 +7,10 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import Tandem from '../../../../tandem/js/Tandem.js';
 import PHModel from '../../common/model/PHModel.js';
 import phScale from '../../phScale.js';
 import MicroSolution from './MicroSolution.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 
 export default class MicroModel extends PHModel<MicroSolution> {
 

@@ -1,4 +1,4 @@
-// Copyright 2013-2023, University of Colorado Boulder
+// Copyright 2013-2024, University of Colorado Boulder
 
 /**
  * Model of the pH meter.
@@ -18,9 +18,9 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
+import { PHValue } from '../../common/model/PHModel.js';
 import PHMovable from '../../common/model/PHMovable.js';
 import phScale from '../../phScale.js';
-import { PHValue } from '../../common/model/PHModel.js';
 
 type SelfOptions = EmptySelfOptions;
 

@@ -30,7 +30,7 @@ const addedWaterVolumeMap: Record<WaterVolumeDescriptor, string> = {
   equalAmountsOf: 'كميات متساوية من',
   aFairAmountOf: 'كمية معقولة من',
   lotsOf: 'كثير من',
-  mostly: 'بالأساس'
+  mostly: 'الغالب'
 };
 
 // Maps the TotalVolumeDescriptor to a string that describes the total volume of the solution.
@@ -154,7 +154,7 @@ const PHScaleDescriptionStringsARKW = {
 
         // There is no water or the solute has no color, describe the color of the solution
         // In this case, there is some amount of water and solute (other than equal)
-        return `حاليًا، لون محلول ${soluteMap[ soluteDescriptor ]} هو ${soluteColorMap[ soluteColorDescriptor ]} مع ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} الماء المضاف. الكأس هو ${totalVolumeMap[ totalVolumeDescriptor ]} مع ${solutionTotalVolume} لتر.`;
+        return `حاليًا، لون محلول ${soluteMap[ soluteDescriptor ]} هو ${soluteColorMap[ soluteColorDescriptor ]} ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} ماء مضاف. الكأس هو ${totalVolumeMap[ totalVolumeDescriptor ]} مع ${solutionTotalVolume} لتر.`;
       }
       else {
 

@@ -50,7 +50,7 @@ const soluteColorMap: Record<SoluteColorDescriptor, string> = {
   red: 'أحمر',
   darkYellow: 'أصفر غامق',
   brown: 'بني',
-  lavender: 'خزامى',
+  lavender: 'بنفسجي',
   white: 'أبيض',
   orange: 'برتقالي',
   limeGreen: 'أخضر ليموني',

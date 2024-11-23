@@ -8,17 +8,17 @@ import { PHValueDescriptor, SoluteColorDescriptor, SoluteDescriptor, TotalVolume
 // Maps the SoluteDescriptor to a string that describes the name of the solution.
 const soluteMap: Record<SoluteDescriptor, string> = {
   batteryAcid: 'حمض البطارية',
-  blood: 'دم',
-  chickenSoup: 'حساء دجاج',
-  coffee: 'قهوة',
-  drainCleaner: 'منظف ​​مصرف',
-  handSoap: 'صابون يد',
-  milk: 'حليب',
-  orangeJuice: 'عصير برتقال',
-  sodaPop: 'مشروب غازي',
-  spit: 'بصق',
-  vomit: 'قيء',
-  water: 'ماء'
+  blood: 'الدم',
+  chickenSoup: 'شوربة الدجاج',
+  coffee: 'القهوة',
+  drainCleaner: 'منظف البالوعة',
+  handSoap: 'صابون اليد',
+  milk: 'الحليب',
+  orangeJuice: 'عصير البرتقال',
+  sodaPop: 'المشروب الغازي',
+  spit: 'اللعاب',
+  vomit: 'القيء',
+  water: 'الماء'
 };
 
 // Maps the WaterVolumeDescriptor to a string that describes the volume of water added to the solution.

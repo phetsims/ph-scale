@@ -65,7 +65,7 @@ const phValueMap = {
   highlyAcidic: 'حمضي جدًا',
   moderatelyAcidic: 'حمضي معتدل',
   slightlyAcidic: 'حمضي قليلاً',
-  neutral: 'محايد',
+  neutral: 'متعادل',
   slightlyBasic: 'قلوي قليلاً',
   moderatelyBasic: 'قلوي معتدل',
   highlyBasic: 'قلوي جدًا',
@@ -77,7 +77,7 @@ const flowRateMap = {
   openATinyBit: 'مفتوح قليلاً جداً',
   openALittle: 'مفتوح قليلاً',
   somewhatOpen: 'مفتوح جزئياً',
-  halfwayOpen: 'مفتوح نصفياً',
+  halfwayOpen: 'نصف مفتوح',
   openALot: 'مفتوح كثيراً',
   fullyOpen: 'مفتوح بالكامل'
 };

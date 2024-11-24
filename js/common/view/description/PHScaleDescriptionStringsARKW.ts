@@ -210,7 +210,7 @@ const PHScaleDescriptionStringsARKW = {
 // pH Meter Information
 //***********************************************************************************
   phMeterHeading(): string {
-    return 'جهاز قياس درجة حموضة';
+    return 'جهاز قياس درجة الحموضة';
   },
   measuredPHDescription( meterPH: number | null ): string {
     return `لديه درجة حموضة تساوي ${meterPH}`;

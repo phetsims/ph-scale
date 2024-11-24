@@ -96,7 +96,7 @@ const PHScaleDescriptionStringsARKW = {
 //***********************************************************************************
 // Screen Summary State Descriptions
 //***********************************************************************************
-  screenSummaryOverview(): string { return 'تحتوي منطقة اللعب على كأس يمكن تصريفه، قطارة محلول، صنبور مياه، ومجس pH يمكن تحريكه. الصنبور وقطارة المحلول فوق الكأس. القطارة تصرف مجموعة من السوائل اليومية واحدة تلو الأخرى.'; },
+  screenSummaryOverview(): string { return 'تحتوي منطقة اللعب على كأس يمكن تصريفه، قطارة محلول، صنبور مياه، ومجس درجة الحموضة يمكن تحريكه. الصنبور وقطارة المحلول فوق الكأس. القطارة تصرف مجموعة من السوائل اليومية واحدة تلو الأخرى.'; },
   screenSummaryControlArea(): string { return 'تحتوي منطقة التحكم على زر لإعادة ضبط المحاكاة.'; },
   screenSummaryInteractionHint(): string { return 'أضف محلولًا إلى الكأس والعب.'; },
 
@@ -130,7 +130,7 @@ const PHScaleDescriptionStringsARKW = {
       else {
 
         // The meter is measuring a value.
-        return `حاليًا، الكأس يحتوي على ${solutionTotalVolume} لتر من ${soluteMap[ soluteDescriptor ]} وهو ${totalVolumeMap[ totalVolumeDescriptor ]}. ${soluteMap[ soluteDescriptor ]} لديه pH قدره ${solutionPH} وهو ${phValueMap[ solutionPHDescriptor ]}.`;
+        return `حاليًا، الكأس يحتوي على ${solutionTotalVolume} لتر من ${soluteMap[ soluteDescriptor ]} وهو ${totalVolumeMap[ totalVolumeDescriptor ]}. ${soluteMap[ soluteDescriptor ]} لديه درجة حموضة تساوي ${solutionPH} وهو ${phValueMap[ solutionPHDescriptor ]}.`;
       }
     }
     else if ( addedWaterVolumeDescriptor === 'equalAmountsOf' ) {
@@ -144,7 +144,7 @@ const PHScaleDescriptionStringsARKW = {
       else {
 
         // The meter is measuring a value.
-        return `حاليًا، محلول ${soluteMap[ soluteDescriptor ]} لديه pH قدره ${solutionPH} وهو ${phValueMap[ solutionPHDescriptor ]}. لون المحلول هو ${soluteColorMap[ soluteColorDescriptor ]} مع ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} ${soluteMap[ soluteDescriptor ]} والماء المضاف. الكأس هو ${totalVolumeMap[ totalVolumeDescriptor ]} مع ${solutionTotalVolume} لتر.`;
+        return `حاليًا، محلول ${soluteMap[ soluteDescriptor ]} لديه درجة حموضة تساوي ${solutionPH} وهو ${phValueMap[ solutionPHDescriptor ]}. لون المحلول هو ${soluteColorMap[ soluteColorDescriptor ]} مع ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} ${soluteMap[ soluteDescriptor ]} والماء المضاف. الكأس هو ${totalVolumeMap[ totalVolumeDescriptor ]} مع ${solutionTotalVolume} لتر.`;
       }
     }
     else if ( meterPH === null ) {
@@ -167,12 +167,12 @@ const PHScaleDescriptionStringsARKW = {
       if ( addedWaterVolumeDescriptor === 'no' || soluteColorDescriptor === 'colorless' ) {
 
         // There is no water or the solute has no color, describe the color of the solution
-        return `حاليًا، محلول ${soluteMap[ soluteDescriptor ]} لديه pH قدره ${solutionPH} وهو ${phValueMap[ solutionPHDescriptor ]}. لون المحلول هو ${soluteColorMap[ soluteColorDescriptor ]} مع ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} الماء المضاف. الكأس هو ${totalVolumeMap[ totalVolumeDescriptor ]} مع ${solutionTotalVolume} لتر.`;
+        return `حاليًا، محلول ${soluteMap[ soluteDescriptor ]} لديه درجة حموضة تساوي ${solutionPH} وهو ${phValueMap[ solutionPHDescriptor ]}. لون المحلول هو ${soluteColorMap[ soluteColorDescriptor ]} مع ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} الماء المضاف. الكأس هو ${totalVolumeMap[ totalVolumeDescriptor ]} مع ${solutionTotalVolume} لتر.`;
       }
       else {
 
         // There is water and solute, and the solute has a color - describe that it is of a lighter color.
-        return `حاليًا، محلول ${soluteMap[ soluteDescriptor ]} لديه pH قدره ${solutionPH} وهو ${phValueMap[ solutionPHDescriptor ]}. لون المحلول هو ${soluteColorMap[ soluteColorDescriptor ]} أفتح مع ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} الماء المضاف. الكأس هو ${totalVolumeMap[ totalVolumeDescriptor ]} مع ${solutionTotalVolume} لتر.`;
+        return `حاليًا، محلول ${soluteMap[ soluteDescriptor ]} لديه درجة حموضة تساوي ${solutionPH} وهو ${phValueMap[ solutionPHDescriptor ]}. لون المحلول هو ${soluteColorMap[ soluteColorDescriptor ]} أفتح مع ${addedWaterVolumeMap[ addedWaterVolumeDescriptor ]} الماء المضاف. الكأس هو ${totalVolumeMap[ totalVolumeDescriptor ]} مع ${solutionTotalVolume} لتر.`;
       }
     }
   },
@@ -210,10 +210,10 @@ const PHScaleDescriptionStringsARKW = {
 // pH Meter Information
 //***********************************************************************************
   phMeterHeading(): string {
-    return 'جهاز قياس pH والقراءة';
+    return 'جهاز قياس درجة حموضة';
   },
   measuredPHDescription( meterPH: number | null ): string {
-    return `لديه pH قدره ${meterPH}`;
+    return `لديه درجة حموضة تساوي ${meterPH}`;
   },
   qualitativePHDescription( phDescriptor: PHValueDescriptor ): string {
     return `هو ${phValueMap[ phDescriptor ]}`;
@@ -231,8 +231,8 @@ const PHScaleDescriptionStringsARKW = {
   // Move or jump probe with keyboard shortcuts.
   // Move probe with keyboard shortcuts.
 
-  phMeterProbeGrabAccessibleName(): string { return 'أمسك مجس pH'; },
-  phMeterProbeGrabDragHelpText(): string { return 'ابحث عن مجس pH للعب. بمجرد الإمساك به، استخدم اختصارات لوحة المفاتيح لتحريك المجس. اضغط المسافة للإفلات.'; },
+  phMeterProbeGrabAccessibleName(): string { return 'أمسك مجس درجة الحموضة'; },
+  phMeterProbeGrabDragHelpText(): string { return 'ابحث عن مجس درجة الحموضة للعب. بمجرد الإمساك به، استخدم اختصارات لوحة المفاتيح لتحريك المجس. اضغط المسافة للإفلات.'; },
 
 //***********************************************************************************
 // Solution and pH Meter Information

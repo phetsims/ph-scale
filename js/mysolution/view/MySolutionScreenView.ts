@@ -92,7 +92,6 @@ export default class MySolutionScreenView extends ScreenView {
     const resetAllButton = new ResetAllButton( {
       scale: 1.32,
       listener: () => {
-        this.interruptSubtreeInput();
         model.reset();
         viewProperties.reset();
         graphNode.reset();

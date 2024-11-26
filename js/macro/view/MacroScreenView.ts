@@ -115,7 +115,6 @@ export default class MacroScreenView extends ScreenView {
     const resetAllButton = new ResetAllButton( {
       scale: 1.32,
       listener: () => {
-        this.interruptSubtreeInput();
         model.reset();
         pHMeterNode.reset();
       },

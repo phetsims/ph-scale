@@ -10,8 +10,8 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import KeyboardHelpIconFactory from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpIconFactory.js';
 import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
 import KeyboardHelpSectionRow from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSectionRow.js';
-import PhScaleStrings from '../../PhScaleStrings.js';
 import phScale from '../../phScale.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
 
 export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
 

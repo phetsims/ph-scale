@@ -6,18 +6,18 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import FaucetNode, { FaucetNodeOptions } from '../../../../scenery-phet/js/FaucetNode.js';
-import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
-import phScale from '../../phScale.js';
-import Water from '../model/Water.js';
-import PHScaleConstants from '../PHScaleConstants.js';
-import Faucet from '../model/Faucet.js';
-import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
+  import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+  import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+  import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
+  import FaucetNode, { FaucetNodeOptions } from '../../../../scenery-phet/js/FaucetNode.js';
+  import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+  import { Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
+  import phScale from '../../phScale.js';
+  import Faucet from '../model/Faucet.js';
+  import Water from '../model/Water.js';
+  import PHScaleConstants from '../PHScaleConstants.js';
 
-// constants
+  // constants
 const SCALE = 0.6;
 
 type SelfOptions = EmptySelfOptions;

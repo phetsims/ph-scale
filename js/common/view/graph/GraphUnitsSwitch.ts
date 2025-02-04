@@ -31,8 +31,7 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
 
       // ABSwitchOptions
       toggleSwitchOptions: {
-        size: new Dimension2( 50, 25 ),
-        tandem: Tandem.OPT_OUT // hiding or disabling just the toggle switch is not useful
+        size: new Dimension2( 50, 25 )
       },
       centerOnSwitch: true,
       phetioDocumentation: 'A/B switch for switching units',

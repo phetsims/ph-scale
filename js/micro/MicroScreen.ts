@@ -9,7 +9,7 @@
 import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
-import { Image } from '../../../scenery/js/imports.js';
+import Image from '../../../scenery/js/nodes/Image.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import microHomeScreenIcon_png from '../../images/microHomeScreenIcon_png.js';
 import microNavbarIcon_png from '../../images/microNavbarIcon_png.js';

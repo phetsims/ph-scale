@@ -6,7 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { Node } from '../../../../../scenery/js/imports.js';
+import Node from '../../../../../scenery/js/nodes/Node.js';
 import phScale from '../../../phScale.js';
 import HydrogenNode from './HydrogenNode.js';
 import OxygenNode from './OxygenNode.js';

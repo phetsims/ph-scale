@@ -13,7 +13,10 @@ import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransfo
 import GrabDragInteraction from '../../../../scenery-phet/js/accessibility/grab-drag/GrabDragInteraction.js';
 import WASDCueNode from '../../../../scenery-phet/js/accessibility/nodes/WASDCueNode.js';
 import ProbeNode, { ProbeNodeOptions } from '../../../../scenery-phet/js/ProbeNode.js';
-import { DragListener, InteractiveHighlighting, KeyboardDragListener, Node } from '../../../../scenery/js/imports.js';
+import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
+import DragListener from '../../../../scenery/js/listeners/DragListener.js';
+import KeyboardDragListener from '../../../../scenery/js/listeners/KeyboardDragListener.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
 import DescriptionRegistry from '../../../../tandem/js/DescriptionRegistry.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import PHMovable from '../../common/model/PHMovable.js';

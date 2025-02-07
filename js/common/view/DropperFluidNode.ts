@@ -9,7 +9,7 @@
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
-import { Rectangle, RectangleOptions } from '../../../../scenery/js/imports.js';
+import Rectangle, { RectangleOptions } from '../../../../scenery/js/nodes/Rectangle.js';
 import phScale from '../../phScale.js';
 import Beaker from '../model/Beaker.js';
 import Dropper from '../model/Dropper.js';

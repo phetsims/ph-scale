@@ -10,13 +10,18 @@
 
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import Matrix3 from '../../../../../dot/js/Matrix3.js';
-import { Shape } from '../../../../../kite/js/imports.js';
+import Shape from '../../../../../kite/js/Shape.js';
 import optionize, { combineOptions } from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import ArrowNode from '../../../../../scenery-phet/js/ArrowNode.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
-import { InteractiveHighlighting, Node, NodeOptions, NodeTranslationOptions, Path, Rectangle, RichText, TColor } from '../../../../../scenery/js/imports.js';
+import InteractiveHighlighting from '../../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
+import Node, { NodeOptions, NodeTranslationOptions } from '../../../../../scenery/js/nodes/Node.js';
+import Path from '../../../../../scenery/js/nodes/Path.js';
+import Rectangle from '../../../../../scenery/js/nodes/Rectangle.js';
+import RichText from '../../../../../scenery/js/nodes/RichText.js';
+import TColor from '../../../../../scenery/js/util/TColor.js';
 import phScale from '../../../phScale.js';
 import PHScaleColors from '../../PHScaleColors.js';
 import PHScaleConstants from '../../PHScaleConstants.js';

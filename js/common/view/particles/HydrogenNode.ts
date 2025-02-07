@@ -8,7 +8,8 @@
 
 import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optionize.js';
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../../scenery-phet/js/ShadedSphereNode.js';
-import { Color, NodeTranslationOptions } from '../../../../../scenery/js/imports.js';
+import { NodeTranslationOptions } from '../../../../../scenery/js/nodes/Node.js';
+import Color from '../../../../../scenery/js/util/Color.js';
 import phScale from '../../../phScale.js';
 import PHScaleColors from '../../PHScaleColors.js';
 

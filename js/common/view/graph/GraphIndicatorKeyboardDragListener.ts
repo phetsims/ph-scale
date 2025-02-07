@@ -9,7 +9,7 @@
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Property from '../../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
-import { KeyboardDragListener } from '../../../../../scenery/js/imports.js';
+import KeyboardDragListener from '../../../../../scenery/js/listeners/KeyboardDragListener.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import { ConcentrationValue, PHValue } from '../../model/PHModel.js';

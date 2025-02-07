@@ -17,7 +17,11 @@ import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-co
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import ScientificNotationNode, { ScientificNotationNodeOptions } from '../../../../scenery-phet/js/ScientificNotationNode.js';
-import { AlignBox, AlignBoxOptions, AlignGroup, HBox, Node, NodeOptions, Rectangle, RectangleOptions } from '../../../../scenery/js/imports.js';
+import AlignGroup from '../../../../scenery/js/layout/constraints/AlignGroup.js';
+import AlignBox, { AlignBoxOptions } from '../../../../scenery/js/layout/nodes/AlignBox.js';
+import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
+import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
+import Rectangle, { RectangleOptions } from '../../../../scenery/js/nodes/Rectangle.js';
 import phScale from '../../phScale.js';
 import SolutionDerivedProperties from '../model/SolutionDerivedProperties.js';
 import PHScaleColors from '../PHScaleColors.js';

@@ -11,7 +11,8 @@
   import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
   import FaucetNode, { FaucetNodeOptions } from '../../../../scenery-phet/js/FaucetNode.js';
   import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-  import { Node, NodeOptions, Text } from '../../../../scenery/js/imports.js';
+  import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
+  import Text from '../../../../scenery/js/nodes/Text.js';
   import phScale from '../../phScale.js';
   import Faucet from '../model/Faucet.js';
   import Water from '../model/Water.js';

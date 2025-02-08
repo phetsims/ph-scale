@@ -1,4 +1,4 @@
-// Copyright 2020-2023, University of Colorado Boulder
+// Copyright 2020-2025, University of Colorado Boulder
 
 /**
  * GraphControlPanel is the control panel that appears above the graph.  It contains controls to collapse the graph,

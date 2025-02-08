@@ -1,4 +1,4 @@
-// Copyright 2020-2023, University of Colorado Boulder
+// Copyright 2020-2025, University of Colorado Boulder
 
 /**
  * LinearZoomButtonGroup is the group of zoom button for the 'Linear' graph.

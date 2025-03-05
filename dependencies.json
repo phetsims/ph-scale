@@ -9,11 +9,11 @@
     "branch": "HEAD"
   },
   "brand": {
-    "sha": "c73b827b08b394ced9442e88e5ef33755f50ad73",
+    "sha": "5fb4e869ee3fe3e51fdb7d0953fcf3cdcd747366",
     "branch": "HEAD"
   },
   "chipper": {
-    "sha": "0c5d1b04349b25d5d201ff86730c26abda5aab44",
+    "sha": "4e5cc3f886097bf2e5f2e3ed59b3dcfcb3e8ddd0",
     "branch": "HEAD"
   },
   "dot": {
@@ -21,7 +21,7 @@
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "10e1a57df14dd6a3c8cfb47cbeec7f3dd4f26c00",
+    "sha": "fad178f04e29cae9766718dc3a21ac9a15a6681c",
     "branch": "HEAD"
   },
   "kite": {
@@ -37,7 +37,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "29b877299e3996ec539390f20807baab8342e70b",
+    "sha": "a4f509e252d8522a723423e4553e51128b1d57f1",
     "branch": "1.6"
   },
   "phet-core": {

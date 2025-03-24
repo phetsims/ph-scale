@@ -17,7 +17,6 @@ import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicin
 import DragListener from '../../../../scenery/js/listeners/DragListener.js';
 import KeyboardDragListener from '../../../../scenery/js/listeners/KeyboardDragListener.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
-import DescriptionRegistry from '../../../../tandem/js/DescriptionRegistry.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import PHMovable from '../../common/model/PHMovable.js';
 import PHScaleQueryParameters from '../../common/PHScaleQueryParameters.js';
@@ -103,11 +102,6 @@ export class MacroPHProbeNode extends InteractiveHighlighting( Node ) {
         tandem: Tandem.OPT_OUT //TODO https://github.com/phetsims/ph-scale/issues/292 Add tandem when GrabDragInteraction is no longer created conditionally.
       } );
       this.grabDragInteraction = grabDragInteraction;
-
-      // TODO https://github.com/phetsims/ph-scale/issues/292, https://github.com/phetsims/ph-scale/issues/294, So the GrabDragInteraction can be controlled by the prototype description plugin
-      if ( phet.chipper.queryParameters.supportsDescriptionPlugin ) {
-        DescriptionRegistry.add( options.tandem.createTandem( 'grabDragInteraction' ), grabDragInteraction );
-      }
     }
     else {
       this.addInputListener( keyboardDragListener );

@@ -13,7 +13,6 @@ import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransfo
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import EyeDropperNode from '../../../../scenery-phet/js/EyeDropperNode.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
-import DescriptionRegistry from '../../../../tandem/js/DescriptionRegistry.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import Water from '../../common/model/Water.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
@@ -101,12 +100,6 @@ export default class MacroScreenView extends ScreenView {
 
     const soluteListParent = new Node();
 
-    //TODO https://github.com/phetsims/ph-scale/issues/294
-    // soluteListParent does not have a PhET-iO tandem, so manually register it for description plugin access.
-    if ( phet.chipper.queryParameters.supportsDescriptionPlugin ) {
-      DescriptionRegistry.add( tandem.createTandem( 'soluteListParent' ), soluteListParent );
-    }
-
     const soluteComboBox = new SoluteComboBox( model.dropper.soluteProperty, soluteListParent, {
       maxWidth: 400,
       tandem: tandem.createTandem( 'soluteComboBox' )
@@ -158,24 +151,20 @@ export default class MacroScreenView extends ScreenView {
 
     model.isAutofillingProperty.link( () => dropperNode.interruptSubtreeInput() );
 
-    //TODO https://github.com/phetsims/ph-scale/issues/294 Setting pdomOrder conflicts with description plugin.
-    if ( !phet.chipper.queryParameters.supportsDescriptionPlugin ) {
+    // Play Area focus order
+    this.pdomPlayAreaNode.pdomOrder = [
+      pHMeterNode,
+      soluteComboBox,
+      dropperNode,
+      waterFaucetNode,
+      drainFaucetNode,
+      resetAllButton
+    ];
 
-      // Play Area focus order
-      this.pdomPlayAreaNode.pdomOrder = [
-        pHMeterNode,
-        soluteComboBox,
-        dropperNode,
-        waterFaucetNode,
-        drainFaucetNode,
-        resetAllButton
-      ];
-
-      // Control Area focus order
-      this.pdomControlAreaNode.pdomOrder = [
-        //TODO https://github.com/phetsims/ph-scale/issues/291
-      ];
-    }
+    // Control Area focus order
+    this.pdomControlAreaNode.pdomOrder = [
+      //TODO https://github.com/phetsims/ph-scale/issues/291
+    ];
   }
 }
 

@@ -51,7 +51,7 @@ export default class Solute extends PhetioObject {
   public readonly nameProperty: TReadOnlyProperty<string>;
 
   // pH value of the solute
-  public readonly pH: number;
+  public pH: number; // settable only by the IOType
 
   // Color of the stock (undiluted) color
   public readonly stockColor: Color;
@@ -139,7 +139,7 @@ export default class Solute extends PhetioObject {
   }
 
   public toStateObject(): SoluteStateObject {
-    const soluteReference = ReferenceIO( IOType.ObjectIO ).toStateObject( this );
+    const soluteReference = ReferenceIO( IOType.ObjectIO ).toStateObject( this ) as Solute;
     soluteReference.pH = this.pH;
     return soluteReference;
   }

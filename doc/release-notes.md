@@ -41,4 +41,12 @@ For an exemplar, see https://github.com/phetsims/balancing-chemical-equations/bl
 ### New Features
 * PhET-iO
 
+## 1.4 (skipped, see https://github.com/phetsims/ph-scale/issues/166#issuecomment-678486036)
+
+## 1.3 (2019-08-07)
+
+## 1.2 (2015-11-17)
+
+## 1.1 (2014-08-25)
+
 ## 1.0 (2014-08-22)

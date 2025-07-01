@@ -33,7 +33,7 @@ For an exemplar, see https://github.com/phetsims/balancing-chemical-equations/bl
 ### New Features
 * Alt input
 * UI sounds
-* Tier 1 description
+* Core description
 
 ### Changes
 * Improved color contrast

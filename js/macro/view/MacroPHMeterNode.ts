@@ -170,7 +170,7 @@ class ScaleNode extends Node {
     this.backgroundStrokeWidth = 2;
     const backgroundNode = new Rectangle( 0, 0, options.size.width, options.size.height, {
       fill: new LinearGradient( 0, 0, 0, options.size.height )
-        .addColorStop( 0, PHScaleColors.basicColorProperty   )
+        .addColorStop( 0, PHScaleColors.basicColorProperty )
         .addColorStop( 0.5, PHScaleColors.neutralColorProperty )
         .addColorStop( 1, PHScaleColors.acidicColorProperty ),
       stroke: 'black',

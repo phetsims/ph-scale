@@ -170,9 +170,9 @@ class ScaleNode extends Node {
     this.backgroundStrokeWidth = 2;
     const backgroundNode = new Rectangle( 0, 0, options.size.width, options.size.height, {
       fill: new LinearGradient( 0, 0, 0, options.size.height )
-        .addColorStop( 0, PHScaleColors.BASIC )
-        .addColorStop( 0.5, PHScaleColors.NEUTRAL )
-        .addColorStop( 1, PHScaleColors.ACIDIC ),
+        .addColorStop( 0, PHScaleColors.basicColorProperty   )
+        .addColorStop( 0.5, PHScaleColors.neutralColorProperty )
+        .addColorStop( 1, PHScaleColors.acidicColorProperty ),
       stroke: 'black',
       lineWidth: this.backgroundStrokeWidth
     } );
@@ -225,7 +225,7 @@ class ScaleNode extends Node {
     neutralLineNode.centerY = options.size.height / 2;
     this.addChild( neutralLineNode );
     const neutralText = new Text( '7', {
-      fill: PHScaleColors.NEUTRAL,
+      fill: PHScaleColors.neutralColorProperty,
       font: new PhetFont( { family: 'Arial black', size: 28, weight: 'bold' } )
     } );
     this.addChild( neutralText );

@@ -21,19 +21,27 @@ const PHScaleColors = {
   } ),
 
   // pH range
-  ACIDIC: new Color( 249, 106, 102 ),
-  BASIC: new Color( 106, 126, 195 ),
-  NEUTRAL: new Color( 164, 58, 149 ),
+  acidicColorProperty: new ProfileColorProperty( phScale, 'acidicColor', {
+    default: 'rgb( 249, 106, 102 )'
+  } ),
+  basicColorProperty: new ProfileColorProperty( phScale, 'basicColorProperty', {
+    default: 'rgb( 106, 126, 195 )'
+  } ),
+  neutralColorProperty: new ProfileColorProperty( phScale, 'neutralColor', {
+    default: 'rgb( 164, 58, 149 )'
+  } ),
 
-  // atom colors
-  OXYGEN: PhetColorScheme.RED_COLORBLIND,
-  HYDROGEN: new Color( 255, 255, 255 ),
+  // background on various features
+  h2OBackgroundColorProperty: new ProfileColorProperty( phScale, 'h2OBackgroundColor', {
+    default: 'rgb( 20, 184, 238 )'
+  } ),
 
   // water
   WATER: new Color( 224, 255, 255 ),
 
-  // background on various features
-  H2O_BACKGROUND: new Color( 20, 184, 238 ),
+  // atom colors
+  OXYGEN: PhetColorScheme.RED_COLORBLIND,
+  HYDROGEN: new Color( 255, 255, 255 ),
 
   // base colors for particles in 'ratio' view, alpha added later
   H3O_PARTICLES: new Color( 204, 0, 0 ),

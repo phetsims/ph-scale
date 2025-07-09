@@ -101,11 +101,11 @@ export default class ParticleCountsNode extends Node {
       backgroundStroke: 'rgb( 200, 200, 200 )'
     };
     const backgroundH3O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, combineOptions<RectangleOptions>(
-      {}, backgroundOptions, { fill: PHScaleColors.ACIDIC } ) );
+      {}, backgroundOptions, { fill: PHScaleColors.acidicColorProperty } ) );
     const backgroundOH = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, combineOptions<RectangleOptions>(
-      {}, backgroundOptions, { fill: PHScaleColors.BASIC } ) );
+      {}, backgroundOptions, { fill: PHScaleColors.basicColorProperty } ) );
     const backgroundH2O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, combineOptions<RectangleOptions>(
-      {}, backgroundOptions, { fill: PHScaleColors.H2O_BACKGROUND } ) );
+      {}, backgroundOptions, { fill: PHScaleColors.h2OBackgroundColorProperty } ) );
 
     options.children = [
       backgroundH3O, hboxH3O,

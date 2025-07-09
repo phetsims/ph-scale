@@ -247,7 +247,7 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
       new H2ONode(),
       new RichText( PHScaleConstants.H2O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
       combineOptions<GraphIndicatorNodeOptions>( {
-        backgroundFill: PHScaleColors.H2O_BACKGROUND,
+        backgroundFill: PHScaleColors.h2OBackgroundColorProperty,
         pointerPosition: 'bottomLeft',
         mantissaDecimalPlaces: 0,
         exponent: 0
@@ -263,7 +263,7 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
       new H3ONode(),
       new RichText( PHScaleConstants.H3O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
       combineOptions<GraphIndicatorNodeOptions>( {
-        backgroundFill: PHScaleColors.ACIDIC,
+        backgroundFill: PHScaleColors.acidicColorProperty,
         pointerPosition: 'topRight'
       }, options ) );
   }
@@ -277,7 +277,7 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
       new OHNode(),
       new RichText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
       combineOptions<GraphIndicatorNodeOptions>( {
-        backgroundFill: PHScaleColors.BASIC,
+        backgroundFill: PHScaleColors.basicColorProperty,
         pointerPosition: 'topLeft'
       }, options ) );
   }

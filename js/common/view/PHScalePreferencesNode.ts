@@ -31,6 +31,7 @@ class PHScalePreferencesNode extends PreferencesPanelContentNode {
       controlNode: autoFillSwitch,
       tandem: tandem.createTandem( 'autoFillControl' )
     } );
+    autoFillControl.addLinkedElement( PHScalePreferences.autoFillEnabledProperty );
 
     super( {
       content: [ autoFillControl ],

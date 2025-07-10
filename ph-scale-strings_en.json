@@ -115,5 +115,11 @@
   },
   "keyboardHelpDialog.moveSlower": {
     "value": "Move slower"
+  },
+  "autoFill": {
+    "value": "Autofill"
+  },
+  "autoFillDescription": {
+    "value": "Automatically dispenses some liquid from the dropper."
   }
 }

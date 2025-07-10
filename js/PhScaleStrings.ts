@@ -68,7 +68,9 @@ type StringsType = {
     'moveTheGraphIndicatorsStringProperty': LocalizedStringProperty;
     'moveStringProperty': LocalizedStringProperty;
     'moveSlowerStringProperty': LocalizedStringProperty;
-  }
+  };
+  'autoFillStringProperty': LocalizedStringProperty;
+  'autoFillDescriptionStringProperty': LocalizedStringProperty;
 };
 
 const PhScaleStrings = getStringModule( 'PH_SCALE' ) as StringsType;

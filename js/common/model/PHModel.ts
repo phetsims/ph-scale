@@ -8,7 +8,6 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import TModel from '../../../../joist/js/TModel.js';
 import optionize from '../../../../phet-core/js/optionize.js';
@@ -18,13 +17,15 @@ import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import phScale from '../../phScale.js';
 import PHScaleConstants from '../PHScaleConstants.js';
-import PHScaleQueryParameters from '../PHScaleQueryParameters.js';
 import Beaker from './Beaker.js';
 import Dropper from './Dropper.js';
 import Faucet from './Faucet.js';
 import Solute from './Solute.js';
 import Solution from './Solution.js';
 import Water from './Water.js';
+import PHScalePreferences from './PHScalePreferences.js';
+import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
+import { log10 } from '../../../../dot/js/util/log10.js';
 
 // constants
 const AVOGADROS_NUMBER = 6.023E23; // number of particles in one mole of solution
@@ -65,9 +66,6 @@ export default class PHModel<T extends Solution> implements TModel {
 
   // drain faucet, at the beaker's bottom-left
   public readonly drainFaucet: Faucet;
-
-  // whether the autofill feature is enabled, see https://github.com/phetsims/ph-scale/issues/104
-  private readonly autofillEnabledProperty: Property<boolean>;
 
   // how much (L) to autofill when the solute changes
   private readonly autofillVolume: number;
@@ -121,12 +119,6 @@ export default class PHModel<T extends Solution> implements TModel {
         tandem: options.tandem.createTandem( 'drainFaucet' )
       } );
 
-    this.autofillEnabledProperty = new BooleanProperty( PHScaleQueryParameters.autofill, {
-      tandem: options.tandem.createTandem( 'autofillEnabledProperty' ),
-      phetioFeatured: true,
-      phetioDocumentation: 'whether solute is automatically added to the beaker when the solute is changed'
-    } );
-
     this.autofillVolume = options.autofillVolume;
 
     this.isAutofillingProperty = new BooleanProperty( false, {
@@ -153,6 +145,12 @@ export default class PHModel<T extends Solution> implements TModel {
     // Enable faucets and dropper based on amount of solution in the beaker.
     this.solution.totalVolumeProperty.link( volume => {
       this.updateFaucetsAndDropper();
+    } );
+
+    PHScalePreferences.autoFillEnabledProperty.link( enabled => {
+      // Stop autofill if it was in progress. This is most noticeable when the user disables autofill in the home screen
+      // before navigating to a sim screen.
+      !enabled && this.stopAutofill();
     } );
   }
 
@@ -192,7 +190,7 @@ export default class PHModel<T extends Solution> implements TModel {
    * Starts the autofill animation.
    */
   private startAutofill(): void {
-    if ( this.autofillEnabledProperty.value && this.autofillVolume > 0 ) {
+    if ( PHScalePreferences.autoFillEnabledProperty.value && this.autofillVolume > 0 ) {
       this.isAutofillingProperty.value = true;
       this.dropper.isDispensingProperty.value = true;
       this.dropper.flowRateProperty.value = 0.75; // faster than standard flow rate
@@ -242,10 +240,10 @@ export default class PHModel<T extends Solution> implements TModel {
       pH = Water.pH; // to prevent floating-point error in log10 computations
     }
     else if ( solutePH < 7 ) {
-      pH = -Utils.log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -Water.pH ) * waterVolume ) / totalVolume );
+      pH = -log10( ( Math.pow( 10, -solutePH ) * soluteVolume + Math.pow( 10, -Water.pH ) * waterVolume ) / totalVolume );
     }
     else {
-      pH = 14 + Utils.log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, Water.pH - 14 ) * waterVolume ) / totalVolume );
+      pH = 14 + log10( ( Math.pow( 10, solutePH - 14 ) * soluteVolume + Math.pow( 10, Water.pH - 14 ) * waterVolume ) / totalVolume );
     }
     return pH;
   }
@@ -256,7 +254,7 @@ export default class PHModel<T extends Solution> implements TModel {
    * @returns pH, null if concentration is zero
    */
   public static concentrationH3OToPH( concentration: ConcentrationValue ): PHValue {
-    return ( concentration === null || concentration === 0 ) ? null : -Utils.log10( concentration );
+    return ( concentration === null || concentration === 0 ) ? null : -log10( concentration );
   }
 
   /**
@@ -337,7 +335,7 @@ export default class PHModel<T extends Solution> implements TModel {
    */
   public static isEquivalentToWater( pH: PHValue ): boolean {
     return ( pH !== null ) &&
-           ( Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === Water.pH );
+           ( toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === Water.pH );
   }
 }
 

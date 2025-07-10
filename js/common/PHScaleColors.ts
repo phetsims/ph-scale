@@ -22,13 +22,13 @@ const PHScaleColors = {
 
   // pH range
   acidicColorProperty: new ProfileColorProperty( phScale, 'acidicColor', {
-    default: 'rgb( 249, 106, 102 )'
+    default: 'rgb( 238, 79, 73 )'
   } ),
   basicColorProperty: new ProfileColorProperty( phScale, 'basicColorProperty', {
-    default: 'rgb( 106, 126, 195 )'
+    default: 'rgb( 70, 129, 206 )'
   } ),
   neutralColorProperty: new ProfileColorProperty( phScale, 'neutralColor', {
-    default: 'rgb( 164, 58, 149 )'
+    default: 'rgb( 255, 255, 255 )'
   } ),
 
   // background on various features

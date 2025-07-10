@@ -226,7 +226,7 @@ class ScaleNode extends Node {
     neutralLineNode.centerY = options.size.height / 2;
     this.addChild( neutralLineNode );
     const neutralText = new Text( '7', {
-      fill: PHScaleColors.neutralColorProperty,
+      fill: 'black',
       font: new PhetFont( { family: 'Arial black', size: 28, weight: 'bold' } )
     } );
     this.addChild( neutralText );

@@ -28,6 +28,8 @@ import PHScaleColors from '../PHScaleColors.js';
 import H2ONode from './particles/H2ONode.js';
 import H3ONode from './particles/H3ONode.js';
 import OHNode from './particles/OHNode.js';
+import RichText from '../../../../scenery/js/nodes/RichText.js';
+import PHScaleConstants from '../PHScaleConstants.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -52,8 +54,12 @@ export default class ParticleCountsNode extends Node {
     // count values
     const notationOptions: ScientificNotationNodeOptions = {
       font: new PhetFont( 22 ),
-      fill: 'white',
+      fill: 'black',
       mantissaDecimalPlaces: 2
+    };
+    const formulaOptions = {
+      font: new PhetFont( 22 ),
+      fill: 'black'
     };
     const countsAlignBoxOptions: AlignBoxOptions = {
       group: new AlignGroup(),
@@ -69,6 +75,11 @@ export default class ParticleCountsNode extends Node {
     const invisibleCountNode = new AlignBox( new ScientificNotationNode( new Property( 1e16 ), notationOptions ), countsAlignBoxOptions );
     invisibleCountNode.visible = false;
 
+    // formulas
+    const formulaH3O = new RichText( PHScaleConstants.H3O_FORMULA, formulaOptions );
+    const formulaOH = new RichText( PHScaleConstants.OH_FORMULA, formulaOptions );
+    const formulaH2O = new RichText( PHScaleConstants.H2O_FORMULA, formulaOptions );
+
     // particle icons
     const iconsAlignBoxOptions: AlignBoxOptions = {
       group: new AlignGroup(),
@@ -81,15 +92,15 @@ export default class ParticleCountsNode extends Node {
 
     // HBoxes for layout
     const hboxH3O = new HBox( {
-      children: [ countH3ONode, iconH3O ],
+      children: [ countH3ONode, formulaH3O, iconH3O ],
       spacing: xSpacing
     } );
     const hboxOH = new HBox( {
-      children: [ countOHNode, iconOH ],
+      children: [ countOHNode, formulaOH, iconOH ],
       spacing: xSpacing
     } );
     const hboxH2O = new HBox( {
-      children: [ countH2ONode, iconH2O ],
+      children: [ countH2ONode, formulaH2O, iconH2O ],
       spacing: xSpacing
     } );
 

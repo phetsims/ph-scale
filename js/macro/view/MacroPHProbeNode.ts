@@ -21,6 +21,7 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import PHMovable from '../../common/model/PHMovable.js';
 import PHScaleQueryParameters from '../../common/PHScaleQueryParameters.js';
 import phScale from '../../phScale.js';
+import PHScaleColors from '../../common/PHScaleColors.js';
 
 type SelfOptions = EmptySelfOptions;
 type MacroPHProbeNodeOptions = SelfOptions & PickRequired<ProbeNodeOptions, 'tandem'>;
@@ -52,7 +53,7 @@ export class MacroPHProbeNode extends InteractiveHighlighting( Node ) {
       handleHeight: 25,
       handleCornerRadius: 12,
       lightAngle: 0.85 * Math.PI,
-      color: 'rgb( 35, 129, 0 )'
+      color: PHScaleColors.pHProbeColorProperty
     } );
 
     const options = optionize<MacroPHProbeNodeOptions, SelfOptions, ProbeNodeOptions>()( {

@@ -36,6 +36,13 @@ const PHScaleColors = {
     default: 'rgb( 20, 184, 238 )'
   } ),
 
+  pHProbeColorProperty: new ProfileColorProperty( phScale, 'pHProbeColor', {
+    default: '#102D06'
+  } ),
+  pHMeterDisabledColorProperty: new ProfileColorProperty( phScale, 'pHMeterDisabledColor', {
+    default: '#757575'
+  } ),
+
   // water
   WATER: new Color( 224, 255, 255 ),
 

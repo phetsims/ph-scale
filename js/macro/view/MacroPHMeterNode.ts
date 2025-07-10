@@ -19,7 +19,6 @@ import Multilink from '../../../../axon/js/Multilink.js';
 import Property from '../../../../axon/js/Property.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Range from '../../../../dot/js/Range.js';
-import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Shape from '../../../../kite/js/Shape.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
@@ -44,10 +43,12 @@ import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import MacroPHMeter from '../model/MacroPHMeter.js';
 import { MacroPHProbeNode } from './MacroPHProbeNode.js';
+import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
+import { linear } from '../../../../dot/js/util/linear.js';
 
 // constants
-const BACKGROUND_ENABLED_FILL = 'rgb( 31, 113, 2 )';
-const BACKGROUND_DISABLED_FILL = 'rgb( 178, 178, 178 )';
+const BACKGROUND_ENABLED_FILL_PROPERTY = PHScaleColors.pHProbeColorProperty;
+const BACKGROUND_DISABLED_FILL_PROPERTY = PHScaleColors.pHMeterDisabledColorProperty;
 const SCALE_SIZE = new Dimension2( 55, 450 );
 const SCALE_LABEL_FONT = new PhetFont( { size: 30, weight: 'bold' } );
 const TICK_LENGTH = 15;
@@ -104,7 +105,7 @@ export default class MacroPHMeterNode extends Node {
 
     // vertical position of the indicator
     meter.pHProperty.link( pH => {
-      pHIndicatorNode.centerY = scaleNode.y + Utils.linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, pH || 7 );
+      pHIndicatorNode.centerY = scaleNode.y + linear( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max, SCALE_SIZE.height, 0, pH || 7 );
     } );
 
     const updateValue = () => {
@@ -264,7 +265,7 @@ class WireNode extends Path {
 
       // control points
       // The y coordinate of the body's control point varies with the x distance between the body and probe.
-      const c1Offset = new Vector2( 0, Utils.linear( 0, 800, 0, 300, probeNode.left - scaleCenterX ) ); // x distance -> y coordinate
+      const c1Offset = new Vector2( 0, linear( 0, 800, 0, 300, probeNode.left - scaleCenterX ) ); // x distance -> y coordinate
       const c2Offset = new Vector2( -50, 0 );
       const c1 = new Vector2( bodyConnectionPoint.x + c1Offset.x, bodyConnectionPoint.y + c1Offset.y );
       const c2 = new Vector2( probeConnectionPoint.x + c2Offset.x, probeConnectionPoint.y + c2Offset.y );
@@ -330,7 +331,7 @@ class PHIndicatorNode extends Node {
     const backgroundHeight = pHText.height + numberDisplay.height + backgroundYSpacing + ( 2 * backgroundYMargin );
     const backgroundRectangle = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, {
       cornerRadius: CORNER_RADIUS,
-      fill: BACKGROUND_ENABLED_FILL
+      fill: BACKGROUND_ENABLED_FILL_PROPERTY
     } );
 
     // highlight around the background
@@ -391,11 +392,11 @@ class PHIndicatorNode extends Node {
 
       // make the indicator look enabled or disabled
       const enabled = ( pH !== null );
-      backgroundRectangle.fill = enabled ? BACKGROUND_ENABLED_FILL : BACKGROUND_DISABLED_FILL;
+      backgroundRectangle.fill = enabled ? BACKGROUND_ENABLED_FILL_PROPERTY : BACKGROUND_DISABLED_FILL_PROPERTY;
       arrowNode.visible = lineNode.visible = enabled;
 
       // Highlight the indicator when displayed pH === 7
-      highlight.visible = ( pH !== null ) && ( Utils.toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === 7 );
+      highlight.visible = ( pH !== null ) && ( toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === 7 );
     } );
   }
 }

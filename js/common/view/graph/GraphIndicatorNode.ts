@@ -28,10 +28,12 @@ import PHScaleConstants from '../../PHScaleConstants.js';
 import H2ONode from '../particles/H2ONode.js';
 import H3ONode from '../particles/H3ONode.js';
 import OHNode from '../particles/OHNode.js';
+import HBox from '../../../../../scenery/js/layout/nodes/HBox.js';
 
 // constants
 const POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute width of the pointy part of the indicator
 const POINTER_HEIGHT_PERCENTAGE = 0.5; // used to compute height of the pointy part of the indicator
+const INDICATOR_TEXT_FILL = 'black'; // color of the value text
 
 type PointerPosition = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
@@ -157,11 +159,10 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
     valueNode.setScaleMagnitude( 0.7 );
 
     // particle and formula, scaled to fit available height
-    const particleAndFormula = new Node();
-    particleAndFormula.addChild( particleNode );
-    particleAndFormula.addChild( formulaNode );
-    formulaNode.left = particleNode.right + options.xSpacing;
-    formulaNode.centerY = particleNode.centerY;
+    const particleAndFormula = new HBox( {
+      children: [ formulaNode, particleNode ],
+      spacing: options.xSpacing
+    } );
     particleAndFormula.setScaleMagnitude( 0.7 );
 
     // rendering order
@@ -245,7 +246,7 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
                                     options: GraphIndicatorNodeOptions ): GraphIndicatorNode {
     return new GraphIndicatorNode( valueProperty,
       new H2ONode(),
-      new RichText( PHScaleConstants.H2O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
+      new RichText( PHScaleConstants.H2O_FORMULA, { font: new PhetFont( 28 ), fill: INDICATOR_TEXT_FILL } ),
       combineOptions<GraphIndicatorNodeOptions>( {
         backgroundFill: PHScaleColors.h2OBackgroundColorProperty,
         pointerPosition: 'bottomLeft',
@@ -261,7 +262,7 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
                                     options: GraphIndicatorNodeOptions ): GraphIndicatorNode {
     return new GraphIndicatorNode( valueProperty,
       new H3ONode(),
-      new RichText( PHScaleConstants.H3O_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
+      new RichText( PHScaleConstants.H3O_FORMULA, { font: new PhetFont( 28 ), fill: INDICATOR_TEXT_FILL } ),
       combineOptions<GraphIndicatorNodeOptions>( {
         backgroundFill: PHScaleColors.acidicColorProperty,
         pointerPosition: 'topRight'
@@ -275,7 +276,7 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
                                    options: GraphIndicatorNodeOptions ): GraphIndicatorNode {
     return new GraphIndicatorNode( valueProperty,
       new OHNode(),
-      new RichText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: 'white' } ),
+      new RichText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: INDICATOR_TEXT_FILL } ),
       combineOptions<GraphIndicatorNodeOptions>( {
         backgroundFill: PHScaleColors.basicColorProperty,
         pointerPosition: 'topLeft'

@@ -180,7 +180,7 @@ class ScaleNode extends Node {
     this.addChild( backgroundNode );
 
     // 'Acidic' label
-    const textOptions = { fill: 'white', font: SCALE_LABEL_FONT, maxWidth: 0.45 * options.size.height };
+    const textOptions = { fill: 'black', font: SCALE_LABEL_FONT, maxWidth: 0.45 * options.size.height };
     const acidicText = new Text( PhScaleStrings.acidicStringProperty, textOptions );
     acidicText.rotation = -Math.PI / 2;
     this.addChild( acidicText );

@@ -71,6 +71,9 @@ type StringsType = {
   };
   'autoFillStringProperty': LocalizedStringProperty;
   'autoFillDescriptionStringProperty': LocalizedStringProperty;
+  'a11y': {
+    'ratioCheckboxAccessibleNameStringProperty': LocalizedStringProperty;
+  }
 };
 
 const PhScaleStrings = getStringModule( 'PH_SCALE' ) as StringsType;

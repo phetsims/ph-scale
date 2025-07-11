@@ -33,7 +33,9 @@ import WithRequired from '../../../../phet-core/js/types/WithRequired.js';
 type SelfOptions = {
   isBasicsVersion?: boolean; // true if this is the 'pH Scale: Basics' version of the sim
 };
+
 export type MacroScreenViewOptions = SelfOptions & WithRequired<ScreenViewOptions, 'tandem'>;
+
 export default class MacroScreenView extends ScreenView {
 
   public constructor( model: MacroModel, modelViewTransform: ModelViewTransform2, providedOptions: MacroScreenViewOptions ) {

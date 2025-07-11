@@ -27,6 +27,7 @@ type SelfOptions = {
 };
 
 type MacroScreenOptions = SelfOptions & WithRequired<ScreenOptions, 'tandem'>;
+
 export default class MacroScreen extends Screen<MacroModel, MacroScreenView> {
 
   public constructor( providedOptions: NestedStrictOmit<MacroScreenOptions, 'macroScreenViewOptions', 'tandem'> ) {

@@ -91,6 +91,11 @@ class RatioCheckbox extends Checkbox {
     } );
 
     super( ratioVisibleProperty, ratioText, {
+      accessibleName: new PatternStringProperty( PhScaleStrings.pattern.H3O.OH.ratioStringProperty, {
+        H3O: PHScaleConstants.H3O_FORMULA,
+        OH: PHScaleConstants.OH_FORMULA,
+        ratio: PhScaleStrings.ratioStringProperty
+      } ),
       tandem: tandem
     } );
   }

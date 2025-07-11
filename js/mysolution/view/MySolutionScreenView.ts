@@ -136,13 +136,12 @@ export default class MySolutionScreenView extends ScreenView {
     this.pdomPlayAreaNode.pdomOrder = [
       pHAccordionBox,
       beakerControlPanel,
-      graphNode,
-      resetAllButton
+      graphNode
     ];
 
     // Control Area focus order
     this.pdomControlAreaNode.pdomOrder = [
-      //TODO https://github.com/phetsims/ph-scale/issues/291
+      resetAllButton
     ];
   }
 }

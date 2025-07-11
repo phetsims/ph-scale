@@ -13,7 +13,6 @@ import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Multilink from '../../../../../axon/js/Multilink.js';
 import NumberProperty from '../../../../../axon/js/NumberProperty.js';
-import Utils from '../../../../../dot/js/Utils.js';
 import Shape from '../../../../../kite/js/Shape.js';
 import optionize from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
@@ -32,6 +31,7 @@ import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
 import LinearZoomButtonGroup from './LinearZoomButtonGroup.js';
+import { linear } from '../../../../../dot/js/util/linear.js';
 
 // constants
 const MANTISSA_RANGE = PHScaleConstants.LINEAR_MANTISSA_RANGE;
@@ -62,6 +62,9 @@ type LinearGraphNodeOptions = SelfOptions & NodeTranslationOptions & PickRequire
 export default class LinearGraphNode extends Node {
 
   private readonly exponentProperty: NumberProperty;
+
+  // We expose this node to be able to pull it out for pdom order.
+  public readonly zoomButtonGroup: Node;
 
   public constructor( derivedProperties: SolutionDerivedProperties,
                       graphUnitsProperty: EnumerationProperty<GraphUnits>,
@@ -226,7 +229,7 @@ export default class LinearGraphNode extends Node {
         return arrowNode.top + ( 0.8 * arrowHeadHeight ) + ( offScaleYOffset || 0 );
       }
       else {
-        return Utils.linear( 0, topTickValue, tickLabels[ 0 ].centerY, tickLabels[ tickLabels.length - 1 ].centerY, value );
+        return linear( 0, topTickValue, tickLabels[ 0 ].centerY, tickLabels[ tickLabels.length - 1 ].centerY, value );
       }
     };
 
@@ -242,12 +245,12 @@ export default class LinearGraphNode extends Node {
     this.exponentProperty.link( exponent => updateTickLabels( exponent ) );
 
     // zoom buttons
-    const zoomButtonGroup = new LinearZoomButtonGroup( this.exponentProperty, {
+    this.zoomButtonGroup = new LinearZoomButtonGroup( this.exponentProperty, {
       centerX: scaleNode.centerX,
       top: scaleNode.bottom + 44,
       tandem: options.tandem.createTandem( 'zoomButtonGroup' )
     } );
-    this.addChild( zoomButtonGroup );
+    this.addChild( this.zoomButtonGroup );
 
     // Move the indicators
     Multilink.multilink( [ valueH2OProperty, graphUnitsProperty, this.exponentProperty ],

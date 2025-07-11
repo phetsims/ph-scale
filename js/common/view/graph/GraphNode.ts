@@ -39,6 +39,9 @@ export default class GraphNode extends Node {
 
   private readonly resetGraphNode: () => void;
 
+  // For pdom order, these nodes should be part of the control area.
+  public readonly controlNodes: Node[] = [];
+
   public constructor( totalVolumeProperty: TReadOnlyProperty<number>,
                       derivedProperties: SolutionDerivedProperties,
                       providedOptions: GraphNodeOptions ) {
@@ -136,7 +139,6 @@ export default class GraphNode extends Node {
         graphScaleSwitch.centerX = lineToPanel.centerX;
         graphScaleSwitch.top = linearGraphNode.bottom + 15;
       } );
-      pdomOrder.push( graphScaleSwitch );
       pdomOrder.push( linearGraphNode );
 
       // vertical line that connects bottom of graph to top of scale switch
@@ -161,6 +163,8 @@ export default class GraphNode extends Node {
         logarithmicGraphNode.visible = ( graphScale === GraphScale.LOGARITHMIC );
         linearGraphNode.visible = ( graphScale === GraphScale.LINEAR );
       } );
+
+      this.controlNodes.push( graphScaleSwitch, linearGraphNode.zoomButtonGroup );
     }
     pdomOrder.push( logarithmicGraphNode );
 

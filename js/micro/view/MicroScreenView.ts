@@ -193,13 +193,13 @@ export default class MicroScreenView extends ScreenView {
       waterFaucetNode,
       drainFaucetNode,
       beakerControlPanel,
-      graphNode,
-      resetAllButton
+      graphNode
     ];
 
     // Control Area focus order
     this.pdomControlAreaNode.pdomOrder = [
-      //TODO https://github.com/phetsims/ph-scale/issues/291
+      ...graphNode.controlNodes,
+      resetAllButton
     ];
   }
 }

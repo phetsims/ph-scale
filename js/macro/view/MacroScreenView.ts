@@ -157,13 +157,12 @@ export default class MacroScreenView extends ScreenView {
       soluteComboBox,
       dropperNode,
       waterFaucetNode,
-      drainFaucetNode,
-      resetAllButton
+      drainFaucetNode
     ];
 
     // Control Area focus order
     this.pdomControlAreaNode.pdomOrder = [
-      //TODO https://github.com/phetsims/ph-scale/issues/291
+      resetAllButton
     ];
   }
 }

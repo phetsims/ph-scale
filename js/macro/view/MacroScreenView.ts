@@ -8,11 +8,12 @@
 
 import Property from '../../../../axon/js/Property.js';
 import ScreenView, { ScreenViewOptions } from '../../../../joist/js/ScreenView.js';
-import optionize, { combineOptions } from '../../../../phet-core/js/optionize.js';
+import { combineOptions } from '../../../../phet-core/js/optionize.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import EyeDropperNode from '../../../../scenery-phet/js/EyeDropperNode.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import Water from '../../common/model/Water.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import BeakerNode from '../../common/view/BeakerNode.js';
@@ -28,21 +29,10 @@ import phScale from '../../phScale.js';
 import MacroModel from '../model/MacroModel.js';
 import MacroPHMeterNode from './MacroPHMeterNode.js';
 import NeutralIndicatorNode from './NeutralIndicatorNode.js';
-import WithRequired from '../../../../phet-core/js/types/WithRequired.js';
-
-type SelfOptions = {
-  isBasicsVersion?: boolean; // true if this is the 'pH Scale: Basics' version of the sim
-};
-
-export type MacroScreenViewOptions = SelfOptions & WithRequired<ScreenViewOptions, 'tandem'>;
 
 export default class MacroScreenView extends ScreenView {
 
-  public constructor( model: MacroModel, modelViewTransform: ModelViewTransform2, providedOptions: MacroScreenViewOptions ) {
-    const options = optionize<MacroScreenViewOptions, SelfOptions, ScreenViewOptions>()( {
-      isBasicsVersion: false // default to the 'pH Scale' version of the sim
-    }, providedOptions );
-    const tandem = options.tandem;
+  public constructor( model: MacroModel, modelViewTransform: ModelViewTransform2, tandem: Tandem ) {
 
     super( combineOptions<ScreenViewOptions>( {
       tandem: tandem
@@ -162,24 +152,13 @@ export default class MacroScreenView extends ScreenView {
     model.isAutofillingProperty.link( () => dropperNode.interruptSubtreeInput() );
 
     // Play Area focus order
-    if ( options.isBasicsVersion ) {
-      this.pdomPlayAreaNode.pdomOrder = [
-        soluteComboBox,
-        dropperNode,
-        pHMeterNode,
-        waterFaucetNode,
-        drainFaucetNode
-      ];
-    }
-    else {
-      this.pdomPlayAreaNode.pdomOrder = [
-        pHMeterNode,
-        soluteComboBox,
-        dropperNode,
-        waterFaucetNode,
-        drainFaucetNode
-      ];
-    }
+    this.pdomPlayAreaNode.pdomOrder = [
+      pHMeterNode,
+      soluteComboBox,
+      dropperNode,
+      waterFaucetNode,
+      drainFaucetNode
+    ];
 
     // Control Area focus order
     this.pdomControlAreaNode.pdomOrder = [

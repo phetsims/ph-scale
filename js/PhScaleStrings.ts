@@ -68,11 +68,21 @@ type StringsType = {
     'moveTheGraphIndicatorsStringProperty': LocalizedStringProperty;
     'moveStringProperty': LocalizedStringProperty;
     'moveSlowerStringProperty': LocalizedStringProperty;
+    'jumpToPositionStringProperty': LocalizedStringProperty;
   };
   'autoFillStringProperty': LocalizedStringProperty;
   'autoFillDescriptionStringProperty': LocalizedStringProperty;
   'a11y': {
     'ratioCheckboxAccessibleNameStringProperty': LocalizedStringProperty;
+    'probe': {
+      'accessibleObjectResponses': {
+        'insideBeakerStringProperty': LocalizedStringProperty;
+        'underWaterFaucetStringProperty': LocalizedStringProperty;
+        'underDropperStringProperty': LocalizedStringProperty;
+        'underDrainFaucetStringProperty': LocalizedStringProperty;
+        'outsideBeakerStringProperty': LocalizedStringProperty;
+      }
+    }
   }
 };
 

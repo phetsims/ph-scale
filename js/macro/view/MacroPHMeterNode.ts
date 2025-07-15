@@ -45,6 +45,7 @@ import MacroPHMeter from '../model/MacroPHMeter.js';
 import { MacroPHProbeNode } from './MacroPHProbeNode.js';
 import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import { linear } from '../../../../dot/js/util/linear.js';
+import JumpPosition from '../model/JumpPosition.js';
 
 // constants
 const BACKGROUND_ENABLED_FILL_PROPERTY = PHScaleColors.pHProbeColorProperty;
@@ -73,6 +74,8 @@ export default class MacroPHMeterNode extends Node {
                       waterFluidNode: Node,
                       drainFluidNode: Node,
                       modelViewTransform: ModelViewTransform2,
+                      jumpPositions: JumpPosition[],
+                      jumpPositionIndexProperty: Property<number>,
                       providedOptions: MacroPHMeterNodeOptions ) {
 
     const options = providedOptions;
@@ -91,7 +94,7 @@ export default class MacroPHMeterNode extends Node {
 
     // interactive probe
     const probeNode = new MacroPHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode,
-      waterFluidNode, drainFluidNode, {
+      waterFluidNode, drainFluidNode, jumpPositions, jumpPositionIndexProperty, {
         tandem: options.tandem.createTandem( 'probeNode' )
       } );
     this.probeNode = probeNode;

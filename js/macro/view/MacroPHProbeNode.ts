@@ -18,6 +18,10 @@ import PHMovable from '../../common/model/PHMovable.js';
 import phScale from '../../phScale.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
 import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragListener.js';
+import HotkeyData from '../../../../scenery/js/input/HotkeyData.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
+import JumpToPositionListener from './JumpToPositionListener.js';
+import JumpPosition from '../model/JumpPosition.js';
 
 export const DEFAULT_MACRO_PH_PROBE_NODE_OPTIONS = {
   rotation: Math.PI / 2,
@@ -36,7 +40,11 @@ type SelfOptions = EmptySelfOptions;
 type MacroPHProbeNodeOptions = SelfOptions & PickRequired<ProbeNodeOptions, 'tandem'>;
 
 export class MacroPHProbeNode extends InteractiveHighlighting( ProbeNode ) {
-
+  public static readonly JUMP_TO_POSITION_HOTKEY_DATA = new HotkeyData( {
+    keyStringProperties: [ new Property( 'j' ) ],
+    repoName: phScale.name,
+    keyboardHelpDialogLabelStringProperty: PhScaleStrings.keyboardHelpDialog.jumpToPositionStringProperty
+  } );
   public readonly isInSolution: () => boolean;
   public readonly isInWater: () => boolean;
   public readonly isInDrainFluid: () => boolean;
@@ -45,19 +53,19 @@ export class MacroPHProbeNode extends InteractiveHighlighting( ProbeNode ) {
   private readonly grabDragInteraction?: GrabDragInteraction;
 
   public constructor( probe: PHMovable, modelViewTransform: ModelViewTransform2, solutionNode: Node,
-                      dropperFluidNode: Node, waterFluidNode: Node, drainFluidNode: Node,
-                      providedOptions: MacroPHProbeNodeOptions ) {
+                      dropperFluidNode: Node, waterFluidNode: Node, drainFluidNode: Node, jumpPositions: JumpPosition[],
+                      jumpPositionIndexProperty: Property<number>, providedOptions: MacroPHProbeNodeOptions ) {
 
     const options = optionize4<MacroPHProbeNodeOptions, SelfOptions, ProbeNodeOptions>()( {},
       DEFAULT_MACRO_PH_PROBE_NODE_OPTIONS, {
-      cursor: 'pointer',
-      tagName: 'div',
-      focusable: true,
-      visiblePropertyOptions: {
-        phetioReadOnly: true
-      },
-      phetioInputEnabledPropertyInstrumented: true
-    }, providedOptions );
+        cursor: 'pointer',
+        tagName: 'div',
+        focusable: true,
+        visiblePropertyOptions: {
+          phetioReadOnly: true
+        },
+        phetioInputEnabledPropertyInstrumented: true
+      }, providedOptions );
 
     super( options );
 
@@ -79,6 +87,8 @@ export class MacroPHProbeNode extends InteractiveHighlighting( ProbeNode ) {
       transform: modelViewTransform,
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
+    this.addInputListener( new JumpToPositionListener( this, MacroPHProbeNode.JUMP_TO_POSITION_HOTKEY_DATA,
+      probe.positionProperty, jumpPositions, jumpPositionIndexProperty ) );
 
     const isInNode = ( node: Node ) => node.getBounds().containsPoint( probe.positionProperty.value );
     this.isInSolution = () => isInNode( solutionNode );

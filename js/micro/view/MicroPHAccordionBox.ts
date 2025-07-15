@@ -39,7 +39,11 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
       tandem: tandem.createTandem( 'numberDisplay' )
     } );
 
-    super( numberDisplay, probeYOffset, tandem );
+    super( numberDisplay, probeYOffset, {
+      accordionBoxOptions: {
+        tandem: tandem
+      }
+    } );
 
     this.accordionBox.addLinkedElement( pHProperty, {
       tandemName: 'pHProperty'

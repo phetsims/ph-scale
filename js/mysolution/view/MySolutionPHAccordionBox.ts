@@ -26,7 +26,12 @@ export default class MySolutionPHAccordionBox extends PHAccordionBox {
       tandem: tandem.createTandem( 'spinner' )
     } );
 
-    super( spinner, probeYOffset, tandem );
+    super( spinner, probeYOffset, {
+      probeCenterX: 0.5, // center the probe in the accordion box
+      accordionBoxOptions: {
+        tandem: tandem
+      }
+    } );
 
     this.accordionBox.addLinkedElement( pHProperty );
   }

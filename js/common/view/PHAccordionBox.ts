@@ -13,7 +13,7 @@
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Shape from '../../../../kite/js/Shape.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Node, { NodeOptions, NodeTranslationOptions } from '../../../../scenery/js/nodes/Node.js';
@@ -21,16 +21,21 @@ import Path from '../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
-import AccordionBox from '../../../../sun/js/AccordionBox.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
+import AccordionBox, { AccordionBoxOptions } from '../../../../sun/js/AccordionBox.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 // constants
 const Y_MARGIN = 10;
 
+type SelfOptions = {
+  probeCenterX?: number; // centerX of the probe, relative to the accordion box where 0 is the left edge and 1 is the right edge.
+  accordionBoxOptions: PickRequired<AccordionBoxOptions, 'tandem'>;
+};
+type PHAccordionBoxOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 export default class PHAccordionBox extends Node {
 
   protected readonly accordionBox: AccordionBox;
@@ -41,19 +46,16 @@ export default class PHAccordionBox extends Node {
   /**
    * @param contentNode - Node that displays the pH value
    * @param probeYOffset - distance from top of meter to tip of probe, in view coordinate frame
-   * @param accordionBoxTandem
+   * @param providedOptions - options for the Node and associated AccordionBox
    */
-  protected constructor( contentNode: Node, probeYOffset: number, accordionBoxTandem: Tandem ) {
+  protected constructor( contentNode: Node, probeYOffset: number, providedOptions: PHAccordionBoxOptions ) {
 
     const expandedProperty = new BooleanProperty( true, {
-      tandem: accordionBoxTandem.createTandem( 'expandedProperty' ),
+      tandem: providedOptions.accordionBoxOptions.tandem.createTandem( 'expandedProperty' ),
       phetioFeatured: true
     } );
 
-    // This class was rewritten to use AccordionBox via composition instead of inheritance. The class was not renamed
-    // because we did not want to change the PhET-iO API by having to rename 'pHAccordionBox' elements.
-    // See https://github.com/phetsims/sun/issues/860
-    const accordionBox = new AccordionBox( contentNode, {
+    const accordionBoxOptions = combineOptions<AccordionBoxOptions>( {
       fill: PHScaleColors.panelFillProperty,
       lineWidth: 2,
       cornerRadius: PHAccordionBox.CORNER_RADIUS,
@@ -70,19 +72,26 @@ export default class PHAccordionBox extends Node {
       buttonYMargin: Y_MARGIN,
       expandCollapseButtonOptions: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_OPTIONS,
       contentYMargin: Y_MARGIN,
-      expandedProperty: expandedProperty,
-      tandem: accordionBoxTandem
-    } );
+      expandedProperty: expandedProperty
+    }, providedOptions.accordionBoxOptions );
+
+    // This class was rewritten to use AccordionBox via composition instead of inheritance. The class was not renamed
+    // because we did not want to change the PhET-iO API by having to rename 'pHAccordionBox' elements.
+    // See https://github.com/phetsims/sun/issues/860
+    const accordionBox = new AccordionBox( contentNode, accordionBoxOptions );
+
+    const options = optionize<PHAccordionBoxOptions, SelfOptions, NodeOptions>()( {
+      probeCenterX: 0.75
+    }, providedOptions );
 
     const probeNode = new ProbeNode( probeYOffset, {
       visibleProperty: expandedProperty,
-      centerX: accordionBox.left + ( 0.75 * accordionBox.width ),
+      centerX: accordionBox.left + ( options.probeCenterX * accordionBox.width ),
       top: accordionBox.top
     } );
 
-    super( {
-      children: [ probeNode, accordionBox ]
-    } );
+    options.children = [ probeNode, accordionBox ];
+    super( options );
 
     this.accordionBox = accordionBox;
     this.expandedProperty = expandedProperty;

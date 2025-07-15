@@ -11,22 +11,18 @@ import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import GrabDragInteraction from '../../../../scenery-phet/js/accessibility/grab-drag/GrabDragInteraction.js';
-import WASDCueNode from '../../../../scenery-phet/js/accessibility/nodes/WASDCueNode.js';
 import ProbeNode, { ProbeNodeOptions } from '../../../../scenery-phet/js/ProbeNode.js';
 import InteractiveHighlighting from '../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
-import DragListener from '../../../../scenery/js/listeners/DragListener.js';
-import KeyboardDragListener from '../../../../scenery/js/listeners/KeyboardDragListener.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 import PHMovable from '../../common/model/PHMovable.js';
-import PHScaleQueryParameters from '../../common/PHScaleQueryParameters.js';
 import phScale from '../../phScale.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
+import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragListener.js';
 
 type SelfOptions = EmptySelfOptions;
 type MacroPHProbeNodeOptions = SelfOptions & PickRequired<ProbeNodeOptions, 'tandem'>;
 
-export class MacroPHProbeNode extends InteractiveHighlighting( Node ) {
+export class MacroPHProbeNode extends InteractiveHighlighting( ProbeNode ) {
 
   public readonly isInSolution: () => boolean;
   public readonly isInWater: () => boolean;
@@ -37,12 +33,9 @@ export class MacroPHProbeNode extends InteractiveHighlighting( Node ) {
 
   public constructor( probe: PHMovable, modelViewTransform: ModelViewTransform2, solutionNode: Node,
                       dropperFluidNode: Node, waterFluidNode: Node, drainFluidNode: Node,
-                      interactionCueParentNode: Node, providedOptions: MacroPHProbeNodeOptions ) {
+                      providedOptions: MacroPHProbeNodeOptions ) {
 
-    //TODO https://github.com/phetsims/ph-scale/issues/292 GrabDragInteraction is very buggy for any Node whose
-    // matrix is rotated, like our ProbeNode. The grabCueNode and dragCueNode will both be positioned incorrectly.
-    // Work around that problem by using composition instead of inheritance for the pH probe.
-    const probeNode = new ProbeNode( {
+    const options = optionize<MacroPHProbeNodeOptions, SelfOptions, ProbeNodeOptions>()( {
       rotation: Math.PI / 2,
       sensorTypeFunction: ProbeNode.crosshairs( {
         intersectionRadius: 6
@@ -53,11 +46,7 @@ export class MacroPHProbeNode extends InteractiveHighlighting( Node ) {
       handleHeight: 25,
       handleCornerRadius: 12,
       lightAngle: 0.85 * Math.PI,
-      color: PHScaleColors.pHProbeColorProperty
-    } );
-
-    const options = optionize<MacroPHProbeNodeOptions, SelfOptions, ProbeNodeOptions>()( {
-      children: [ probeNode ],
+      color: PHScaleColors.pHProbeColorProperty,
       cursor: 'pointer',
       tagName: 'div',
       focusable: true,
@@ -77,36 +66,16 @@ export class MacroPHProbeNode extends InteractiveHighlighting( Node ) {
 
     const dragBoundsProperty = new Property( probe.dragBounds );
 
-    this.addInputListener( new DragListener( {
+    this.addInputListener( new SoundRichDragListener( {
+      keyboardDragListenerOptions: {
+        dragSpeed: 300, // drag speed, in view coordinates per second
+        shiftDragSpeed: 20 // slower drag speed
+      },
       positionProperty: probe.positionProperty,
       dragBoundsProperty: dragBoundsProperty,
       transform: modelViewTransform,
       tandem: options.tandem.createTandem( 'dragListener' )
     } ) );
-
-    const keyboardDragListener = new KeyboardDragListener( {
-      dragSpeed: 300, // drag speed, in view coordinates per second
-      shiftDragSpeed: 20, // slower drag speed
-      positionProperty: probe.positionProperty,
-      dragBoundsProperty: dragBoundsProperty,
-      transform: modelViewTransform,
-      tandem: providedOptions.tandem.createTandem( 'keyboardDragListener' )
-    } );
-
-    //TODO https://github.com/phetsims/ph-scale/issues/292 Keep one of these interaction patterns, delete the other.
-    if ( PHScaleQueryParameters.grabDragProbe ) {
-
-      const dragCueNode = new WASDCueNode( this.boundsProperty );
-
-      const grabDragInteraction = new GrabDragInteraction( this, keyboardDragListener, interactionCueParentNode, {
-        dragCueNode: dragCueNode,
-        tandem: Tandem.OPT_OUT //TODO https://github.com/phetsims/ph-scale/issues/292 Add tandem when GrabDragInteraction is no longer created conditionally.
-      } );
-      this.grabDragInteraction = grabDragInteraction;
-    }
-    else {
-      this.addInputListener( keyboardDragListener );
-    }
 
     const isInNode = ( node: Node ) => node.getBounds().containsPoint( probe.positionProperty.value );
     this.isInSolution = () => isInNode( solutionNode );

@@ -92,9 +92,8 @@ export default class MacroScreenView extends ScreenView {
     } );
 
     // pH meter
-    const cueParentNode = new Node();
     const pHMeterNode = new MacroPHMeterNode( model.pHMeter, model.solution, model.dropper,
-      solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, cueParentNode, modelViewTransform, {
+      solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform, {
         tandem: tandem.createTandem( 'pHMeterNode' )
       } );
 
@@ -131,8 +130,7 @@ export default class MacroScreenView extends ScreenView {
         soluteComboBox,
         resetAllButton,
         pHMeterNode, // next to last so that probe doesn't get lost behind anything
-        soluteListParent, // last, so that combo box list is on top
-        cueParentNode // top layer for things like interaction cues
+        soluteListParent // last, so that combo box list is on top
       ]
     } );
     this.addChild( screenViewRootNode );

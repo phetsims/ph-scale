@@ -72,7 +72,6 @@ export default class MacroPHMeterNode extends Node {
                       dropperFluidNode: Node,
                       waterFluidNode: Node,
                       drainFluidNode: Node,
-                      interactionCueParentNode: Node,
                       modelViewTransform: ModelViewTransform2,
                       providedOptions: MacroPHMeterNodeOptions ) {
 
@@ -92,7 +91,7 @@ export default class MacroPHMeterNode extends Node {
 
     // interactive probe
     const probeNode = new MacroPHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode,
-      waterFluidNode, drainFluidNode, interactionCueParentNode, {
+      waterFluidNode, drainFluidNode, {
         tandem: options.tandem.createTandem( 'probeNode' )
       } );
     this.probeNode = probeNode;

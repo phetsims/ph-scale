@@ -39,6 +39,9 @@ const PHScaleColors = {
   pHProbeColorProperty: new ProfileColorProperty( phScale, 'pHProbeColor', {
     default: 'rgb( 64, 0, 111 )'
   } ),
+  pHProbeWireColorProperty: new ProfileColorProperty( phScale, 'pHProbeWireColor', {
+    default: 'rgb( 80, 80, 80 )'
+  } ),
   pHMeterDisabledColorProperty: new ProfileColorProperty( phScale, 'pHMeterDisabledColor', {
     default: '#757575'
   } ),

@@ -7,7 +7,7 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import { EmptySelfOptions, optionize4 } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import GrabDragInteraction from '../../../../scenery-phet/js/accessibility/grab-drag/GrabDragInteraction.js';
@@ -19,6 +19,19 @@ import phScale from '../../phScale.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
 import SoundRichDragListener from '../../../../scenery-phet/js/SoundRichDragListener.js';
 
+export const DEFAULT_MACRO_PH_PROBE_NODE_OPTIONS = {
+  rotation: Math.PI / 2,
+  sensorTypeFunction: ProbeNode.crosshairs( {
+    intersectionRadius: 6
+  } ),
+  radius: 34,
+  innerRadius: 26,
+  handleWidth: 30,
+  handleHeight: 25,
+  handleCornerRadius: 12,
+  lightAngle: 0.85 * Math.PI,
+  color: PHScaleColors.pHProbeColorProperty
+};
 type SelfOptions = EmptySelfOptions;
 type MacroPHProbeNodeOptions = SelfOptions & PickRequired<ProbeNodeOptions, 'tandem'>;
 
@@ -35,18 +48,8 @@ export class MacroPHProbeNode extends InteractiveHighlighting( ProbeNode ) {
                       dropperFluidNode: Node, waterFluidNode: Node, drainFluidNode: Node,
                       providedOptions: MacroPHProbeNodeOptions ) {
 
-    const options = optionize<MacroPHProbeNodeOptions, SelfOptions, ProbeNodeOptions>()( {
-      rotation: Math.PI / 2,
-      sensorTypeFunction: ProbeNode.crosshairs( {
-        intersectionRadius: 6
-      } ),
-      radius: 34,
-      innerRadius: 26,
-      handleWidth: 30,
-      handleHeight: 25,
-      handleCornerRadius: 12,
-      lightAngle: 0.85 * Math.PI,
-      color: PHScaleColors.pHProbeColorProperty,
+    const options = optionize4<MacroPHProbeNodeOptions, SelfOptions, ProbeNodeOptions>()( {},
+      DEFAULT_MACRO_PH_PROBE_NODE_OPTIONS, {
       cursor: 'pointer',
       tagName: 'div',
       focusable: true,

@@ -153,9 +153,7 @@ type ScaleNodeSelfOptions = {
 };
 type ScaleNodeOptions = ScaleNodeSelfOptions;
 
-class ScaleNode extends Node {
-
-  private readonly backgroundStrokeWidth: number;
+export class ScaleNode extends Node {
 
   public constructor( providedOptions?: ScaleNodeOptions ) {
 
@@ -167,15 +165,8 @@ class ScaleNode extends Node {
     super();
 
     // gradient background
-    this.backgroundStrokeWidth = 2;
-    const backgroundNode = new Rectangle( 0, 0, options.size.width, options.size.height, {
-      fill: new LinearGradient( 0, 0, 0, options.size.height )
-        .addColorStop( 0, PHScaleColors.basicColorProperty )
-        .addColorStop( 0.5, PHScaleColors.neutralColorProperty )
-        .addColorStop( 1, PHScaleColors.acidicColorProperty ),
-      stroke: 'black',
-      lineWidth: this.backgroundStrokeWidth
-    } );
+    const backgroundStrokeWidth = 2;
+    const backgroundNode = ScaleNode.createBackground( options.size, backgroundStrokeWidth );
     this.addChild( backgroundNode );
 
     // 'Acidic' label
@@ -233,9 +224,15 @@ class ScaleNode extends Node {
     neutralText.centerY = neutralLineNode.centerY;
   }
 
-  // needed for precise positioning of things that point to values on the scale
-  public getBackgroundStrokeWidth(): number {
-    return this.backgroundStrokeWidth;
+  public static createBackground( size: Dimension2, lineWidth: number ): Node {
+    return new Rectangle( 0, 0, size.width, size.height, {
+      fill: new LinearGradient( 0, 0, 0, size.height )
+        .addColorStop( 0, PHScaleColors.basicColorProperty )
+        .addColorStop( 0.5, PHScaleColors.neutralColorProperty )
+        .addColorStop( 1, PHScaleColors.acidicColorProperty ),
+      stroke: 'black',
+      lineWidth: lineWidth
+    } );
   }
 }
 

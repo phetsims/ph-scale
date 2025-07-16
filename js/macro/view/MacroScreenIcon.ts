@@ -1,4 +1,4 @@
-// Copyright 2024, University of Colorado Boulder
+// Copyright 2025, University of Colorado Boulder
 /**
  * Creates the screen icon for the Macro screen which includes a pH gradient scale and probe.
  *

@@ -1,4 +1,4 @@
-// Copyright 2022-2024, University of Colorado Boulder
+// Copyright 2022-2025, University of Colorado Boulder
 
 /**
  * MacroModel is the model for the 'Micro' screen.  It extends the PHModel, substituting a different solution

@@ -31,17 +31,11 @@ export default class JumpToPositionListener extends KeyboardListener<OneKeyStrok
         if ( hotkeyData.hasKeyStroke( keysPressed ) ) {
           phet.log && phet.log( `hotkey J, jumpPositionIndex=${jumpPositionIndexProperty.value}` );
 
-          // Find the next relevant jump point, avoiding infinite loop.
-          const maxIterations = jumpPositions.length - 1;
-          let iterations = 0;
-          while ( iterations < maxIterations ) {
-            if ( jumpPositionIndexProperty.value < jumpPositions.length - 1 ) {
-              jumpPositionIndexProperty.value++;
-            }
-            else {
-              jumpPositionIndexProperty.value = 0;
-            }
-            iterations++;
+          if ( jumpPositionIndexProperty.value < jumpPositions.length - 1 ) {
+            jumpPositionIndexProperty.value++;
+          }
+          else {
+            jumpPositionIndexProperty.value = 0;
           }
 
           // Jump to the next position.

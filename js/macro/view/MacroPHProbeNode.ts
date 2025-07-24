@@ -41,7 +41,7 @@ type MacroPHProbeNodeOptions = SelfOptions & PickRequired<ProbeNodeOptions, 'tan
 
 export class MacroPHProbeNode extends InteractiveHighlighting( ProbeNode ) {
   public static readonly JUMP_TO_POSITION_HOTKEY_DATA = new HotkeyData( {
-    keyStringProperties: [ new Property( 'j' ) ],
+    keys: [ 'j' ],
     repoName: phScale.name,
     keyboardHelpDialogLabelStringProperty: PhScaleStrings.keyboardHelpDialog.jumpToPositionStringProperty
   } );

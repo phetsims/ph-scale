@@ -13,6 +13,7 @@ import FaucetNode, { FaucetNodeOptions } from '../../../../scenery-phet/js/Fauce
 import phScale from '../../phScale.js';
 import Faucet from '../model/Faucet.js';
 import PHScaleConstants from '../PHScaleConstants.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
 
 // constants
 const SCALE = 0.6;
@@ -36,7 +37,9 @@ export default class DrainFaucetNode extends FaucetNode {
         reverseAlternativeInput: true,
         visiblePropertyOptions: {
           phetioFeatured: true
-        }
+        },
+        accessibleName: PhScaleStrings.a11y.beakerControls.drainFaucet.accessibleNameStringProperty,
+        accessibleHelpText: PhScaleStrings.a11y.beakerControls.drainFaucet.accessibleHelpTextStringProperty
       }, providedOptions );
 
     super( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, options );

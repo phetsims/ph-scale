@@ -29,6 +29,7 @@ import phScale from '../../phScale.js';
 import MacroModel from '../model/MacroModel.js';
 import MacroPHMeterNode from './MacroPHMeterNode.js';
 import NeutralIndicatorNode from './NeutralIndicatorNode.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
 
 export default class MacroScreenView extends ScreenView {
 
@@ -95,6 +96,7 @@ export default class MacroScreenView extends ScreenView {
     const pHMeterNode = new MacroPHMeterNode( model.pHMeter, model.solution, model.dropper,
       solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform,
       model.probeJumpPositions, model.probeJumpPositionIndexProperty, {
+        accessibleHeading: PhScaleStrings.a11y.pHMeter.headingStringProperty,
         tandem: tandem.createTandem( 'pHMeterNode' )
       } );
 

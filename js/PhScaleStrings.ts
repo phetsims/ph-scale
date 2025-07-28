@@ -74,7 +74,14 @@ type StringsType = {
   'autoFillDescriptionStringProperty': LocalizedStringProperty;
   'a11y': {
     'ratioCheckboxAccessibleNameStringProperty': LocalizedStringProperty;
+    'pHMeter': {
+      'headingStringProperty': LocalizedStringProperty;
+      'descriptionStringProperty': LocalizedStringProperty;
+      'pHValuePatternStringProperty': LocalizedStringProperty;
+    };
     'probe': {
+      'accessibleNameStringProperty': LocalizedStringProperty;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleObjectResponses': {
         'insideBeakerStringProperty': LocalizedStringProperty;
         'underWaterFaucetStringProperty': LocalizedStringProperty;
@@ -82,6 +89,51 @@ type StringsType = {
         'underDrainFaucetStringProperty': LocalizedStringProperty;
         'outsideBeakerStringProperty': LocalizedStringProperty;
       }
+    };
+    'beakerControls': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'soluteComboBox': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'batteryAcidAccessibleNameStringProperty': LocalizedStringProperty;
+        'bloodAccessibleNameStringProperty': LocalizedStringProperty;
+        'chickenSoupAccessibleNameStringProperty': LocalizedStringProperty;
+        'coffeeAccessibleNameStringProperty': LocalizedStringProperty;
+        'drainCleanerAccessibleNameStringProperty': LocalizedStringProperty;
+        'handSoapAccessibleNameStringProperty': LocalizedStringProperty;
+        'milkAccessibleNameStringProperty': LocalizedStringProperty;
+        'orangeJuiceAccessibleNameStringProperty': LocalizedStringProperty;
+        'sodaPopAccessibleNameStringProperty': LocalizedStringProperty;
+        'spitAccessibleNameStringProperty': LocalizedStringProperty;
+        'vomitAccessibleNameStringProperty': LocalizedStringProperty;
+        'waterAccessibleNameStringProperty': LocalizedStringProperty;
+      };
+      'dropper': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseStringProperty': LocalizedStringProperty;
+      };
+      'waterFaucet': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'drainFaucet': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'faucetAccessibleObjectResponses': {
+        'closedStringProperty': LocalizedStringProperty;
+        'openATinyBitStringProperty': LocalizedStringProperty;
+        'openALittleStringProperty': LocalizedStringProperty;
+        'openSomewhatStringProperty': LocalizedStringProperty;
+        'halfwayOpenStringProperty': LocalizedStringProperty;
+        'openALotStringProperty': LocalizedStringProperty;
+        'fullyOpenStringProperty': LocalizedStringProperty;
+      };
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'addSoluteButtonStringProperty': LocalizedStringProperty;
+      'moveProbeButtonStringProperty': LocalizedStringProperty;
+      'dispenseLiquidButtonStringProperty': LocalizedStringProperty;
     }
   }
 };

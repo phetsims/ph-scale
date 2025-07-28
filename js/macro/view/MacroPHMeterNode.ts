@@ -40,12 +40,13 @@ import Water from '../../common/model/Water.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import phScale from '../../phScale.js';
-import PhScaleStrings from '../../PhScaleStrings.js';
 import MacroPHMeter from '../model/MacroPHMeter.js';
 import { MacroPHProbeNode } from './MacroPHProbeNode.js';
 import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import { linear } from '../../../../dot/js/util/linear.js';
 import JumpPosition from '../model/JumpPosition.js';
+import WithRequired from '../../../../phet-core/js/types/WithRequired.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
 
 // constants
 const BACKGROUND_ENABLED_FILL_PROPERTY = PHScaleColors.pHProbeColorProperty;
@@ -60,7 +61,7 @@ const CORNER_RADIUS = 12;
 
 type SelfOptions = EmptySelfOptions;
 
-type MacroPHMeterNodeOptions = SelfOptions & PickRequired<NodeOptions, 'tandem'>;
+type MacroPHMeterNodeOptions = SelfOptions & WithRequired<NodeOptions, 'tandem'>;
 
 export default class MacroPHMeterNode extends Node {
 
@@ -83,7 +84,10 @@ export default class MacroPHMeterNode extends Node {
     super( options );
 
     // the vertical scale, positioned at the meter 'body' position
-    const scaleNode = new ScaleNode( { size: SCALE_SIZE } );
+    const scaleNode = new ScaleNode( {
+      size: SCALE_SIZE,
+      accessibleParagraph: PhScaleStrings.a11y.pHMeter.descriptionStringProperty
+    } );
     scaleNode.translation = modelViewTransform.modelToViewPosition( meter.bodyPosition );
 
     // indicator that slides vertically along scale
@@ -95,6 +99,8 @@ export default class MacroPHMeterNode extends Node {
     // interactive probe
     const probeNode = new MacroPHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode,
       waterFluidNode, drainFluidNode, jumpPositions, jumpPositionIndexProperty, {
+        accessibleName: PhScaleStrings.a11y.probe.accessibleNameStringProperty,
+        accessibleHelpText: PhScaleStrings.a11y.probe.accessibleHelpTextStringProperty,
         tandem: options.tandem.createTandem( 'probeNode' )
       } );
     this.probeNode = probeNode;
@@ -154,7 +160,7 @@ type ScaleNodeSelfOptions = {
   range?: Range;
   size?: Dimension2;
 };
-type ScaleNodeOptions = ScaleNodeSelfOptions;
+type ScaleNodeOptions = ScaleNodeSelfOptions & NodeOptions;
 
 export class ScaleNode extends Node {
 

@@ -8,7 +8,6 @@
 
 import Property from '../../../../axon/js/Property.js';
 import { EmptySelfOptions, optionize4 } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import GrabDragInteraction from '../../../../scenery-phet/js/accessibility/grab-drag/GrabDragInteraction.js';
 import ProbeNode, { ProbeNodeOptions } from '../../../../scenery-phet/js/ProbeNode.js';
@@ -22,6 +21,7 @@ import HotkeyData from '../../../../scenery/js/input/HotkeyData.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import JumpToPositionListener from './JumpToPositionListener.js';
 import JumpPosition from '../model/JumpPosition.js';
+import WithRequired from '../../../../phet-core/js/types/WithRequired.js';
 
 export const DEFAULT_MACRO_PH_PROBE_NODE_OPTIONS = {
   rotation: Math.PI / 2,
@@ -37,7 +37,7 @@ export const DEFAULT_MACRO_PH_PROBE_NODE_OPTIONS = {
   color: PHScaleColors.pHProbeColorProperty
 };
 type SelfOptions = EmptySelfOptions;
-type MacroPHProbeNodeOptions = SelfOptions & PickRequired<ProbeNodeOptions, 'tandem'>;
+type MacroPHProbeNodeOptions = SelfOptions & WithRequired<ProbeNodeOptions, 'tandem'>;
 
 export class MacroPHProbeNode extends InteractiveHighlighting( ProbeNode ) {
   public static readonly JUMP_TO_POSITION_HOTKEY_DATA = new HotkeyData( {

@@ -9,26 +9,38 @@
  */
 
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import EyeDropperNode, { EyeDropperNodeOptions } from '../../../../scenery-phet/js/EyeDropperNode.js';
 import phScale from '../../phScale.js';
 import Dropper from '../model/Dropper.js';
+import WithRequired from '../../../../phet-core/js/types/WithRequired.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
+import DynamicProperty from '../../../../axon/js/DynamicProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type PHDropperNodeOptions = SelfOptions & PickRequired<EyeDropperNodeOptions, 'tandem' | 'visibleProperty'>;
+type PHDropperNodeOptions = SelfOptions & WithRequired<EyeDropperNodeOptions, 'tandem' | 'visibleProperty'>;
 
 export default class PHDropperNode extends EyeDropperNode {
 
   public constructor( dropper: Dropper, modelViewTransform: ModelViewTransform2, providedOptions: PHDropperNodeOptions ) {
+    const soluteStringProperty = new DynamicProperty( dropper.soluteProperty, {
+      derive: 'nameProperty'
+    } );
+    const dropperAccessibleNameStringProperty = new PatternStringProperty( PhScaleStrings.a11y.beakerControls.dropper.accessibleNameStringProperty, {
+      solute: soluteStringProperty
+    } );
 
     const options = optionize<PHDropperNodeOptions, SelfOptions, EyeDropperNodeOptions>()( {
 
       // EyeDropperNodeOptions
       isDispensingProperty: dropper.isDispensingProperty,
       buttonOptions: {
-        enabledProperty: dropper.enabledProperty
+        enabledProperty: dropper.enabledProperty,
+        accessibleName: dropperAccessibleNameStringProperty,
+        accessibleHelpText: PhScaleStrings.a11y.beakerControls.dropper.accessibleHelpTextStringProperty,
+        accessibleContextResponseValueOn: PhScaleStrings.a11y.beakerControls.dropper.accessibleContextResponseStringProperty
       },
       cursor: null,
       phetioInputEnabledPropertyInstrumented: true

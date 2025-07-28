@@ -17,6 +17,7 @@
   import Faucet from '../model/Faucet.js';
   import Water from '../model/Water.js';
   import PHScaleConstants from '../PHScaleConstants.js';
+  import PhScaleStrings from '../../PhScaleStrings.js';
 
   // constants
 const SCALE = 0.6;
@@ -44,6 +45,8 @@ export default class WaterFaucetNode extends Node {
         horizontalPipeLength: horizontalPipeLength,
         verticalPipeLength: 20,
         reverseAlternativeInput: true,
+        accessibleName: PhScaleStrings.a11y.beakerControls.waterFaucet.accessibleNameStringProperty,
+        accessibleHelpText: PhScaleStrings.a11y.beakerControls.waterFaucet.accessibleHelpTextStringProperty,
         tandem: options.tandem.createTandem( 'faucetNode' )
       } ) );
     faucetNode.translation = modelViewTransform.modelToViewPosition( faucet.position );

@@ -70,7 +70,8 @@ export default class SoluteComboBox extends ComboBox<Solute> {
       items.push( {
         value: solute,
         createNode: () => hBox,
-        tandemName: `${solute.tandemName}Item`
+        tandemName: `${solute.tandemName}Item`,
+        accessibleName: solute.accessibleNameProperty
       } );
     } );
 

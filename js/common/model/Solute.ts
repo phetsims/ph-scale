@@ -68,9 +68,10 @@ export default class Solute extends PhetioObject {
    * @param nameProperty - the name of the solute, displayed to the user
    * @param pH - the pH of the solute
    * @param stockColor - color of the solute in stock solution (no dilution)
+   * @param accessibleNameProperty - a property that provides the accessible name of the solute, used for a11y
    * @param [provideOptions]
    */
-  public constructor( nameProperty: PhetioProperty<string>, pH: number, stockColor: Color, provideOptions: SoluteOptions ) {
+  public constructor( nameProperty: PhetioProperty<string>, pH: number, stockColor: Color, public readonly accessibleNameProperty: TReadOnlyProperty<string>, provideOptions: SoluteOptions ) {
 
     assert && assert( PHScaleConstants.PH_RANGE.contains( pH ), `invalid pH: ${pH}` );
 
@@ -161,60 +162,72 @@ export default class Solute extends PhetioObject {
     toStateObject: solute => solute.toStateObject()
   } );
 
-  public static readonly BATTERY_ACID = new Solute( PhScaleStrings.choice.batteryAcidStringProperty, 1, new Color( 255, 255, 0 ), {
+  public static readonly BATTERY_ACID = new Solute( PhScaleStrings.choice.batteryAcidStringProperty, 1, new Color( 255, 255, 0 ),
+    PhScaleStrings.a11y.beakerControls.soluteComboBox.batteryAcidAccessibleNameStringProperty, {
     colorStopColor: new Color( 255, 224, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'batteryAcid' )
   } );
 
-  public static readonly BLOOD = new Solute( PhScaleStrings.choice.bloodStringProperty, 7.4, new Color( 211, 79, 68 ), {
+  public static readonly BLOOD = new Solute( PhScaleStrings.choice.bloodStringProperty, 7.4, new Color( 211, 79, 68 ),
+    PhScaleStrings.a11y.beakerControls.soluteComboBox.bloodAccessibleNameStringProperty, {
     colorStopColor: new Color( 255, 207, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'blood' )
   } );
 
-  public static readonly CHICKEN_SOUP = new Solute( PhScaleStrings.choice.chickenSoupStringProperty, 5.8, new Color( 255, 240, 104 ), {
+  public static readonly CHICKEN_SOUP = new Solute( PhScaleStrings.choice.chickenSoupStringProperty, 5.8, new Color( 255, 240, 104 ),
+    PhScaleStrings.a11y.beakerControls.soluteComboBox.chickenSoupAccessibleNameStringProperty, {
     colorStopColor: new Color( 255, 250, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'chickenSoup' )
   } );
 
-  public static readonly COFFEE = new Solute( PhScaleStrings.choice.coffeeStringProperty, 5, new Color( 164, 99, 7 ), {
+  public static readonly COFFEE = new Solute( PhScaleStrings.choice.coffeeStringProperty, 5, new Color( 164, 99, 7 ),
+    PhScaleStrings.a11y.beakerControls.soluteComboBox.coffeeAccessibleNameStringProperty, {
     colorStopColor: new Color( 255, 240, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'coffee' )
   } );
 
-  public static readonly DRAIN_CLEANER = new Solute( PhScaleStrings.choice.drainCleanerStringProperty, 13, new Color( 255, 255, 0 ), {
+  public static readonly DRAIN_CLEANER = new Solute( PhScaleStrings.choice.drainCleanerStringProperty, 13, new Color( 255, 255, 0 ),
+    PhScaleStrings.a11y.beakerControls.soluteComboBox.drainCleanerAccessibleNameStringProperty, {
     colorStopColor: new Color( 255, 255, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'drainCleaner' )
   } );
 
-  public static readonly HAND_SOAP = new Solute( PhScaleStrings.choice.handSoapStringProperty, 10, new Color( 224, 141, 242 ), {
+  public static readonly HAND_SOAP = new Solute( PhScaleStrings.choice.handSoapStringProperty, 10, new Color( 224, 141, 242 ),
+    PhScaleStrings.a11y.beakerControls.soluteComboBox.handSoapAccessibleNameStringProperty, {
     colorStopColor: new Color( 232, 204, 255 ),
     tandem: SOLUTES_TANDEM.createTandem( 'handSoap' )
   } );
 
-  public static readonly MILK = new Solute( PhScaleStrings.choice.milkStringProperty, 6.5, new Color( 250, 250, 250 ), {
+  public static readonly MILK = new Solute( PhScaleStrings.choice.milkStringProperty, 6.5, new Color( 250, 250, 250 ),
+    PhScaleStrings.a11y.beakerControls.soluteComboBox.milkAccessibleNameStringProperty, {
     tandem: SOLUTES_TANDEM.createTandem( 'milk' )
   } );
 
-  public static readonly ORANGE_JUICE = new Solute( PhScaleStrings.choice.orangeJuiceStringProperty, 3.5, new Color( 255, 180, 0 ), {
+  public static readonly ORANGE_JUICE = new Solute( PhScaleStrings.choice.orangeJuiceStringProperty, 3.5, new Color( 255, 180, 0 ),
+    PhScaleStrings.a11y.beakerControls.soluteComboBox.orangeJuiceAccessibleNameStringProperty, {
     colorStopColor: new Color( 255, 242, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'orangeJuice' )
   } );
 
-  public static readonly SODA = new Solute( PhScaleStrings.choice.sodaStringProperty, 2.5, new Color( 204, 255, 102 ), {
+  public static readonly SODA = new Solute( PhScaleStrings.choice.sodaStringProperty, 2.5, new Color( 204, 255, 102 ),
+    PhScaleStrings.a11y.beakerControls.soluteComboBox.sodaPopAccessibleNameStringProperty, {
     colorStopColor: new Color( 238, 255, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'soda' )
   } );
 
-  public static readonly SPIT = new Solute( PhScaleStrings.choice.spitStringProperty, 7.4, new Color( 202, 240, 239 ), {
+  public static readonly SPIT = new Solute( PhScaleStrings.choice.spitStringProperty, 7.4, new Color( 202, 240, 239 ),
+    PhScaleStrings.a11y.beakerControls.soluteComboBox.spitAccessibleNameStringProperty, {
     tandem: SOLUTES_TANDEM.createTandem( 'spit' )
   } );
 
-  public static readonly VOMIT = new Solute( PhScaleStrings.choice.vomitStringProperty, 2, new Color( 255, 171, 120 ), {
+  public static readonly VOMIT = new Solute( PhScaleStrings.choice.vomitStringProperty, 2, new Color( 255, 171, 120 ),
+    PhScaleStrings.a11y.beakerControls.soluteComboBox.vomitAccessibleNameStringProperty, {
     colorStopColor: new Color( 255, 224, 204 ),
     tandem: SOLUTES_TANDEM.createTandem( 'vomit' )
   } );
 
-  public static readonly WATER = new Solute( Water.nameProperty, Water.pH, Water.color, {
+  public static readonly WATER = new Solute( Water.nameProperty, Water.pH, Water.color,
+    PhScaleStrings.a11y.beakerControls.soluteComboBox.waterAccessibleNameStringProperty, {
     tandem: SOLUTES_TANDEM.createTandem( 'water' )
   } );
 }

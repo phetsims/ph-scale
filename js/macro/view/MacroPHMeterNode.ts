@@ -22,7 +22,6 @@ import Range from '../../../../dot/js/Range.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Shape from '../../../../kite/js/Shape.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
@@ -47,6 +46,9 @@ import { linear } from '../../../../dot/js/util/linear.js';
 import JumpPosition from '../model/JumpPosition.js';
 import WithRequired from '../../../../phet-core/js/types/WithRequired.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 
 // constants
 const BACKGROUND_ENABLED_FILL_PROPERTY = PHScaleColors.pHProbeColorProperty;
@@ -171,7 +173,7 @@ export class ScaleNode extends Node {
       size: new Dimension2( 75, 450 )
     }, providedOptions );
 
-    super();
+    super( options );
 
     // gradient background
     const backgroundStrokeWidth = 2;
@@ -288,13 +290,66 @@ class WireNode extends Path {
  * When there is no pH value, it points to 'neutral' but does not display a value.
  */
 type PHIndicatorNodeSelfOptions = EmptySelfOptions;
-type PHIndicatorNodeOptions = PHIndicatorNodeSelfOptions & PickRequired<NodeOptions, 'tandem'>;
+type PHIndicatorNodeOptions = PHIndicatorNodeSelfOptions & WithRequired<NodeOptions, 'tandem'> & StrictOmit<NodeOptions, 'children'>;
 
 class PHIndicatorNode extends Node {
 
   public constructor( pHProperty: Property<PHValue>, scaleWidth: number, providedOptions: PHIndicatorNodeOptions ) {
 
-    const options = optionize<PHIndicatorNodeOptions, PHIndicatorNodeSelfOptions, NodeOptions>()( {}, providedOptions );
+    // Create the qualitative pH description for the pdom.
+    const pHDescriptionStringProperty = new DerivedProperty( [ pHProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.extremelyBasicStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.highlyBasicStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.moderatelyBasicStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.slightlyBasicStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.neutralStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.slightlyAcidicStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.moderatelyAcidicStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.highlyAcidicStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.extremelyAcidicStringProperty ],
+      ( pHValue, extremelyBasic, highlyBasic, moderatelyBasic, slightlyBasic, neutral, slightlyAcidic, moderatelyAcidic, highlyAcidic, extremelyAcidic ) => {
+        if ( pHValue === null ) {
+          return 'undefined';
+        }
+        else if ( pHValue <= 14 && pHValue >= 13 ) {
+          return extremelyBasic;
+        }
+        else if ( pHValue < 13 && pHValue >= 11 ) {
+          return highlyBasic;
+        }
+        else if ( pHValue < 11 && pHValue >= 9 ) {
+          return moderatelyBasic;
+        }
+        else if ( pHValue < 9 && pHValue > 7 ) {
+          return slightlyBasic;
+        }
+        else if ( pHValue === 7 ) {
+          return neutral;
+        }
+        else if ( pHValue < 7 && pHValue >= 5 ) {
+          return slightlyAcidic;
+        }
+        else if ( pHValue < 5 && pHValue >= 3 ) {
+          return moderatelyAcidic;
+        }
+        else if ( pHValue < 3 && pHValue >= 1 ) {
+          return highlyAcidic;
+        }
+        else if ( pHValue < 1 && pHValue >= 0 ) {
+          return extremelyAcidic;
+        }
+        else {
+          return 'undefined';
+        }
+      } );
+    const pHValuePatternStringProperty = new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+      pHValue: pHProperty,
+      pHDescription: pHDescriptionStringProperty
+    } );
+
+    const options = optionize<PHIndicatorNodeOptions, PHIndicatorNodeSelfOptions, NodeOptions>()( {
+      accessibleParagraph: pHValuePatternStringProperty
+    }, providedOptions );
 
     // dashed line that extends across the scale
     const lineNode = new Line( 0, 0, scaleWidth, 0, {

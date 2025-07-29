@@ -74,10 +74,21 @@ type StringsType = {
   'autoFillDescriptionStringProperty': LocalizedStringProperty;
   'a11y': {
     'ratioCheckboxAccessibleNameStringProperty': LocalizedStringProperty;
+    'pHValuePatternStringProperty': LocalizedStringProperty;
+    'qualitativePHDescription': {
+      'extremelyBasicStringProperty': LocalizedStringProperty;
+      'highlyBasicStringProperty': LocalizedStringProperty;
+      'moderatelyBasicStringProperty': LocalizedStringProperty;
+      'slightlyBasicStringProperty': LocalizedStringProperty;
+      'neutralStringProperty': LocalizedStringProperty;
+      'slightlyAcidicStringProperty': LocalizedStringProperty;
+      'moderatelyAcidicStringProperty': LocalizedStringProperty;
+      'highlyAcidicStringProperty': LocalizedStringProperty;
+      'extremelyAcidicStringProperty': LocalizedStringProperty;
+    };
     'pHMeter': {
       'headingStringProperty': LocalizedStringProperty;
       'descriptionStringProperty': LocalizedStringProperty;
-      'pHValuePatternStringProperty': LocalizedStringProperty;
     };
     'probe': {
       'accessibleNameStringProperty': LocalizedStringProperty;

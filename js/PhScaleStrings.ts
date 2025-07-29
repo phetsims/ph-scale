@@ -75,6 +75,8 @@ type StringsType = {
   'a11y': {
     'ratioCheckboxAccessibleNameStringProperty': LocalizedStringProperty;
     'pHValuePatternStringProperty': LocalizedStringProperty;
+    'pHValueUnknownStringProperty': LocalizedStringProperty;
+    'unknownStringProperty': LocalizedStringProperty;
     'qualitativePHDescription': {
       'extremelyBasicStringProperty': LocalizedStringProperty;
       'highlyBasicStringProperty': LocalizedStringProperty;
@@ -85,6 +87,20 @@ type StringsType = {
       'moderatelyAcidicStringProperty': LocalizedStringProperty;
       'highlyAcidicStringProperty': LocalizedStringProperty;
       'extremelyAcidicStringProperty': LocalizedStringProperty;
+    };
+    'macroScreenSummary': {
+      'playAreaStringProperty': LocalizedStringProperty;
+      'controlAreaStringProperty': LocalizedStringProperty;
+      'currentDetails': {
+        'emptyBeakerStringProperty': LocalizedStringProperty;
+        'currentlyStringProperty': LocalizedStringProperty;
+        'beakerWithSolutionStringProperty': LocalizedStringProperty;
+        'pHValueStringProperty': LocalizedStringProperty;
+      };
+      'interactionHint': {
+        'emptyBeakerStringProperty': LocalizedStringProperty;
+        'beakerWithSolutionStringProperty': LocalizedStringProperty;
+      }
     };
     'pHMeter': {
       'headingStringProperty': LocalizedStringProperty;
@@ -131,15 +147,6 @@ type StringsType = {
       'drainFaucet': {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      };
-      'faucetAccessibleObjectResponses': {
-        'closedStringProperty': LocalizedStringProperty;
-        'openATinyBitStringProperty': LocalizedStringProperty;
-        'openALittleStringProperty': LocalizedStringProperty;
-        'openSomewhatStringProperty': LocalizedStringProperty;
-        'halfwayOpenStringProperty': LocalizedStringProperty;
-        'openALotStringProperty': LocalizedStringProperty;
-        'fullyOpenStringProperty': LocalizedStringProperty;
       };
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'addSoluteButtonStringProperty': LocalizedStringProperty;

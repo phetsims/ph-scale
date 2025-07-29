@@ -49,6 +49,7 @@ import PhScaleStrings from '../../PhScaleStrings.js';
 import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 // constants
 const BACKGROUND_ENABLED_FILL_PROPERTY = PHScaleColors.pHProbeColorProperty;
@@ -152,6 +153,55 @@ export default class MacroPHMeterNode extends Node {
 
   public reset(): void {
     this.probeNode.reset();
+  }
+
+  // Create the qualitative pH description used in the pdom.
+  public static createPHDescriptionStringProperty( pHProperty: Property<PHValue> ): TReadOnlyProperty<string> {
+    return new DerivedProperty( [ pHProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.extremelyBasicStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.highlyBasicStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.moderatelyBasicStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.slightlyBasicStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.neutralStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.slightlyAcidicStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.moderatelyAcidicStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.highlyAcidicStringProperty,
+        PhScaleStrings.a11y.qualitativePHDescription.extremelyAcidicStringProperty ],
+      ( pHValue, extremelyBasic, highlyBasic, moderatelyBasic, slightlyBasic, neutral, slightlyAcidic, moderatelyAcidic, highlyAcidic, extremelyAcidic ) => {
+        if ( pHValue === null ) {
+          return 'undefined';
+        }
+        else if ( pHValue <= 14 && pHValue >= 13 ) {
+          return extremelyBasic;
+        }
+        else if ( pHValue < 13 && pHValue >= 11 ) {
+          return highlyBasic;
+        }
+        else if ( pHValue < 11 && pHValue >= 9 ) {
+          return moderatelyBasic;
+        }
+        else if ( pHValue < 9 && pHValue > 7 ) {
+          return slightlyBasic;
+        }
+        else if ( pHValue === 7 ) {
+          return neutral;
+        }
+        else if ( pHValue < 7 && pHValue >= 5 ) {
+          return slightlyAcidic;
+        }
+        else if ( pHValue < 5 && pHValue >= 3 ) {
+          return moderatelyAcidic;
+        }
+        else if ( pHValue < 3 && pHValue >= 1 ) {
+          return highlyAcidic;
+        }
+        else if ( pHValue < 1 && pHValue >= 0 ) {
+          return extremelyAcidic;
+        }
+        else {
+          return 'undefined';
+        }
+      } );
   }
 }
 
@@ -296,55 +346,9 @@ class PHIndicatorNode extends Node {
 
   public constructor( pHProperty: Property<PHValue>, scaleWidth: number, providedOptions: PHIndicatorNodeOptions ) {
 
-    // Create the qualitative pH description for the pdom.
-    const pHDescriptionStringProperty = new DerivedProperty( [ pHProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.extremelyBasicStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.highlyBasicStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.moderatelyBasicStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.slightlyBasicStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.neutralStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.slightlyAcidicStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.moderatelyAcidicStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.highlyAcidicStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.extremelyAcidicStringProperty ],
-      ( pHValue, extremelyBasic, highlyBasic, moderatelyBasic, slightlyBasic, neutral, slightlyAcidic, moderatelyAcidic, highlyAcidic, extremelyAcidic ) => {
-        if ( pHValue === null ) {
-          return 'undefined';
-        }
-        else if ( pHValue <= 14 && pHValue >= 13 ) {
-          return extremelyBasic;
-        }
-        else if ( pHValue < 13 && pHValue >= 11 ) {
-          return highlyBasic;
-        }
-        else if ( pHValue < 11 && pHValue >= 9 ) {
-          return moderatelyBasic;
-        }
-        else if ( pHValue < 9 && pHValue > 7 ) {
-          return slightlyBasic;
-        }
-        else if ( pHValue === 7 ) {
-          return neutral;
-        }
-        else if ( pHValue < 7 && pHValue >= 5 ) {
-          return slightlyAcidic;
-        }
-        else if ( pHValue < 5 && pHValue >= 3 ) {
-          return moderatelyAcidic;
-        }
-        else if ( pHValue < 3 && pHValue >= 1 ) {
-          return highlyAcidic;
-        }
-        else if ( pHValue < 1 && pHValue >= 0 ) {
-          return extremelyAcidic;
-        }
-        else {
-          return 'undefined';
-        }
-      } );
     const pHValuePatternStringProperty = new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
       pHValue: pHProperty,
-      pHDescription: pHDescriptionStringProperty
+      pHDescription: MacroPHMeterNode.createPHDescriptionStringProperty( pHProperty )
     } );
 
     const options = optionize<PHIndicatorNodeOptions, PHIndicatorNodeSelfOptions, NodeOptions>()( {

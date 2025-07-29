@@ -132,6 +132,12 @@
     "pHValuePattern": {
       "value": "pH is {{pHValue}}, {{pHDescription}}."
     },
+    "pHValueUnknown": {
+      "value": "pH is unknown."
+    },
+    "unknown": {
+      "value": "unknown"
+    },
     "qualitativePHDescription": {
       "extremelyBasic": {
         "value": "Extremely Basic"
@@ -159,6 +165,36 @@
       },
       "extremelyAcidic": {
         "value": "Extremely Acidic"
+      }
+    },
+    "macroScreenSummary": {
+      "playArea": {
+        "value": "A solution dropper and water faucet sit above a drainable beaker. The dropper dispenses a number of everyday solutions one at a time. On the left, is a movable pH probe connected to a scaled pH meter. "
+      },
+      "controlArea": {
+        "value": "Reset sim to start over."
+      },
+      "currentDetails": {
+        "emptyBeaker": {
+          "value": "beaker is empty."
+        },
+        "currently": {
+            "value": "Currently,"
+        },
+        "beakerWithSolution": {
+          "value": "beaker contains {{solute}} solution."
+        },
+        "pHValue": {
+          "value": "pH value is {{pHValue}}."
+        }
+      },
+      "interactionHint": {
+        "emptyBeaker": {
+          "value": "Add a solution to beaker and play."
+        },
+        "beakerWithSolution": {
+          "value": "Move pH probe to start exploring."
+        }
       }
     },
     "pHMeter": {
@@ -267,29 +303,6 @@
         },
         "accessibleHelpText": {
           "value": "Open to drain solution from beaker."
-        }
-      },
-      "faucetAccessibleObjectResponses": {
-        "closed": {
-          "value": "Closed"
-        },
-        "openATinyBit": {
-          "value": "Open a Tiny Bit"
-        },
-        "openALittle": {
-          "value": "Open a Little"
-        },
-        "openSomewhat": {
-          "value": "Open Somewhat"
-        },
-        "halfwayOpen": {
-          "value": "Halfway Open"
-        },
-        "openALot": {
-          "value": "Open a Lot"
-        },
-        "fullyOpen": {
-          "value": "Fully Open"
         }
       },
       "accessibleHelpText": {

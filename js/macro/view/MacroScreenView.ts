@@ -29,6 +29,7 @@ import phScale from '../../phScale.js';
 import MacroModel from '../model/MacroModel.js';
 import MacroPHMeterNode from './MacroPHMeterNode.js';
 import NeutralIndicatorNode from './NeutralIndicatorNode.js';
+import MacroScreenSummaryContent from './MacroScreenSummaryContent.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 
 export default class MacroScreenView extends ScreenView {
@@ -36,7 +37,8 @@ export default class MacroScreenView extends ScreenView {
   public constructor( model: MacroModel, modelViewTransform: ModelViewTransform2, tandem: Tandem ) {
 
     super( combineOptions<ScreenViewOptions>( {
-      tandem: tandem
+      tandem: tandem,
+      screenSummaryContent: new MacroScreenSummaryContent( model )
     }, PHScaleConstants.SCREEN_VIEW_OPTIONS ) );
 
     // beaker

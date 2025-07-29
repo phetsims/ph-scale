@@ -3,7 +3,7 @@
 
 The project is a web-based interactive simulation built with TypeScript. It follows a Model-View-Controller (MVC) like pattern, with clear separation of concerns. The directory structure is well-organized, with distinct folders for source code (`js`), assets (`images`, `sounds`), documentation (`doc`), and build artifacts (`build`).
 
-The codebase is organized by screens: SimpleDiffusion, FacilitatedDiffusion, ActiveTransport, and Playground. Common code is located in `js/common/`, further divided into `model/` and `view/` directories. Shared values are often stored in `MembraneTransportConstants`.
+The codebase is organized by screens: SimpleDiffusion, FacilitatedDiffusion, ActiveTransport, and Playground. Common code is located in `js/common/`, further divided into `model/` and `view/` directories. Shared values are often stored in `PHScaleConstants`.
 
 This project is developed as part of a PhET monorepo. You can follow import paths to explore dependencies, but be aware that TypeScript files (`.ts`) are often imported with a `.js` extension.
 
@@ -36,7 +36,7 @@ This project is developed as part of a PhET monorepo. You can follow import path
 - Follows PhET MVC (Model-View-Controller) pattern
 - Organized by screens: SimpleDiffusion, FacilitatedDiffusion, ActiveTransport, Playground
 - Common code in js/common/, divided into model/ and view/
-- Use MembraneTransportConstants for shared values
+- Use PHScaleConstants for shared values
 - Follow PhET naming conventions: PascalCase for classes, camelCase for variables
 - JS/TS files do not end with newlines
 - Line comments are preceded by a blank line
@@ -78,10 +78,11 @@ This project is developed as part of a PhET monorepo. You can follow import path
     *   Document expected behaviors in code comments.
 
 ## Internationalization (i18n)
-- **Source of Truth:** All new strings must be added to the `membrane-transport-strings_en.yaml` file. The `grunt modulify` command will then automatically update the `membrane-transport-strings_en.json` and `MembraneTransportStrings.ts` files.
-- Strings in `membrane-transport-strings_en.json` follow a nested structure that must be mirrored in MembraneTransportStrings.ts
-- The `grunt modulify` command automatically updates the MembraneTransportStrings.ts when strings are changed
+- **Source of Truth:** All new strings must be added to the `ph-scale-strings_en.json` file. The `grunt modulify` command will then automatically update the `ph-scale-strings_en.json` and `PhScaleStrings.ts` files.
+- Strings in `ph-scale-strings_en.json` follow a nested structure that must be mirrored in PhScaleStrings.ts
+- The `grunt modulify` command automatically updates the PhScaleStrings.ts when strings are changed
 - A11y strings often need deeper nesting (component > subcomponent > feature > property)
+- Use `PatternStringProperty` for string formatting with placeholders instead of `StringUtils.fillIn`.
 - When adding new accessibility text, check existing patterns for proper nesting structure
 
 ## Development Workflow
@@ -92,7 +93,7 @@ This project is developed as part of a PhET monorepo. You can follow import path
 *   **Git-Based File Operations:** All file system modifications (renaming, deleting) must be done through `git` commands (`git mv`, `git rm`) to ensure the project history is preserved.
 
 ## Learned Conventions and Tricky Workflows
-*   **Commit Message Format:** All git commits **must** be a single line and include a full URL to a corresponding GitHub issue at the end of the message. Do not use conventional commit prefixes like "Feat:" or "Refactor:". For example: `git commit -m "Improve performance, see https://github.com/phetsims/membrane-transport/issues/123"`.
+*   **Commit Message Format:** All git commits **must** be a single line and include a full URL to a corresponding GitHub issue at the end of the message. Do not use conventional commit prefixes like "Feat:" or "Refactor:". For example: `git commit -m "Improve performance, see https://github.com/phetsims/ph-scale/issues/315"`.
 *   **Asset Renaming Workflow:** Renaming an image asset requires a specific, manual workflow:
     1.  Use `git mv` to rename the asset file (e.g., `images/foo.svg`).
     2.  Use `git mv` to rename the corresponding generated TypeScript module (e.g., `images/foo_svg.ts`).

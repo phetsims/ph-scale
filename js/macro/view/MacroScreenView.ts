@@ -117,10 +117,23 @@ export default class MacroScreenView extends ScreenView {
       },
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
+    const beakerControlsHeading = new Node( {
+      pdomOrder: [
+        soluteComboBox,
+        dropperNode,
+        waterFaucetNode,
+        drainFaucetNode
+      ],
+      accessibleHeading: PhScaleStrings.a11y.beakerControls.accessibleHeadingStringProperty
+    } );
 
     // Parent for all nodes added to this screen
     const screenViewRootNode = new Node( {
       children: [
+
+        // Accessible headings can be put anywhere in rendering order because they have no children. Put them all first.
+        beakerControlsHeading,
+
         // nodes are rendered in this order
         waterFluidNode,
         waterFaucetNode,
@@ -157,10 +170,7 @@ export default class MacroScreenView extends ScreenView {
     // Play Area focus order
     this.pdomPlayAreaNode.pdomOrder = [
       pHMeterNode,
-      soluteComboBox,
-      dropperNode,
-      waterFaucetNode,
-      drainFaucetNode
+      beakerControlsHeading
     ];
 
     // Control Area focus order

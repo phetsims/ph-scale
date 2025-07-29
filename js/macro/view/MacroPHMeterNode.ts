@@ -50,6 +50,8 @@ import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js'
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import Faucet from '../../common/model/Faucet.js';
+import { roundToInterval } from '../../../../dot/js/util/roundToInterval.js';
 
 // constants
 const BACKGROUND_ENABLED_FILL_PROPERTY = PHScaleColors.pHProbeColorProperty;
@@ -73,6 +75,8 @@ export default class MacroPHMeterNode extends Node {
   public constructor( meter: MacroPHMeter,
                       solution: Solution,
                       dropper: Dropper,
+                      waterFaucet: Faucet,
+                      drainFaucet: Faucet,
                       solutionNode: Node,
                       dropperFluidNode: Node,
                       waterFluidNode: Node,
@@ -105,6 +109,14 @@ export default class MacroPHMeterNode extends Node {
         accessibleName: PhScaleStrings.a11y.probe.accessibleNameStringProperty,
         accessibleHelpText: PhScaleStrings.a11y.probe.accessibleHelpTextStringProperty,
         tandem: options.tandem.createTandem( 'probeNode' )
+      } );
+    Multilink.multilink( [ meter.pHProperty, dropper.isDispensingProperty, waterFaucet.flowRateProperty, drainFaucet.flowRateProperty ],
+      ( pH, dropperIsDispensing, waterFaucetFlowRate, drainFaucetFlowRate ) => {
+        pH !== null && !dropperIsDispensing && waterFaucetFlowRate === 0 && drainFaucetFlowRate === 0 && probeNode.addAccessibleContextResponse(
+          new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+            pHValue: roundToInterval( pH, 0.01 )
+          } )
+        );
       } );
     this.probeNode = probeNode;
 

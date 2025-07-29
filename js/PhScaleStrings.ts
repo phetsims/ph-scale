@@ -74,8 +74,9 @@ type StringsType = {
   'autoFillDescriptionStringProperty': LocalizedStringProperty;
   'a11y': {
     'ratioCheckboxAccessibleNameStringProperty': LocalizedStringProperty;
-    'pHValuePatternStringProperty': LocalizedStringProperty;
+    'qualitativePHValuePatternStringProperty': LocalizedStringProperty;
     'pHValueUnknownStringProperty': LocalizedStringProperty;
+    'pHValuePatternStringProperty': LocalizedStringProperty;
     'unknownStringProperty': LocalizedStringProperty;
     'qualitativePHDescription': {
       'extremelyBasicStringProperty': LocalizedStringProperty;
@@ -95,7 +96,6 @@ type StringsType = {
         'emptyBeakerStringProperty': LocalizedStringProperty;
         'currentlyStringProperty': LocalizedStringProperty;
         'beakerWithSolutionStringProperty': LocalizedStringProperty;
-        'pHValueStringProperty': LocalizedStringProperty;
       };
       'interactionHint': {
         'emptyBeakerStringProperty': LocalizedStringProperty;

@@ -41,7 +41,7 @@ export default class MacroScreenSummaryContent extends ScreenSummaryContent {
         visibleProperty: DerivedProperty.valueNotEqualsConstant( model.solution.totalVolumeProperty, 0 )
       },
       {
-        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.qualitativePHValuePatternStringProperty, {
           pHValue: pHValueStringProperty,
           pHDescription: MacroPHMeterNode.createPHDescriptionStringProperty( model.pHMeter.pHProperty )
         } ),

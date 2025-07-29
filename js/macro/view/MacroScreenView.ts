@@ -96,8 +96,8 @@ export default class MacroScreenView extends ScreenView {
 
     // pH meter
     const pHMeterNode = new MacroPHMeterNode( model.pHMeter, model.solution, model.dropper,
-      solutionNode, dropperFluidNode, waterFluidNode, drainFluidNode, modelViewTransform,
-      model.probeJumpPositions, model.probeJumpPositionIndexProperty, {
+      model.waterFaucet, model.drainFaucet, solutionNode, dropperFluidNode, waterFluidNode,
+      drainFluidNode, modelViewTransform, model.probeJumpPositions, model.probeJumpPositionIndexProperty, {
         accessibleHeading: PhScaleStrings.a11y.pHMeter.headingStringProperty,
         tandem: tandem.createTandem( 'pHMeterNode' )
       } );

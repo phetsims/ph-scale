@@ -129,11 +129,14 @@
     "ratioCheckboxAccessibleName": {
       "value": "H 3 O Plus To O H Minus Ratio"
     },
-    "pHValuePattern": {
+    "qualitativePHValuePattern": {
       "value": "pH is {{pHValue}}, {{pHDescription}}."
     },
     "pHValueUnknown": {
       "value": "pH is unknown."
+    },
+    "pHValuePattern": {
+      "value": "pH value is {{pHValue}}."
     },
     "unknown": {
       "value": "unknown"
@@ -183,9 +186,6 @@
         },
         "beakerWithSolution": {
           "value": "beaker contains {{solute}} solution."
-        },
-        "pHValue": {
-          "value": "pH value is {{pHValue}}."
         }
       },
       "interactionHint": {

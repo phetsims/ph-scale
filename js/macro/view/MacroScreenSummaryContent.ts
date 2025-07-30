@@ -13,10 +13,9 @@ import MacroModel from '../model/MacroModel.js';
 import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
-import { toFixed } from '../../../../dot/js/util/toFixed.js';
-import PHScaleConstants from '../../common/PHScaleConstants.js';
 import MacroPHMeterNode from './MacroPHMeterNode.js';
 import AccessibleListNode from '../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
+import Solute from '../../common/model/Solute.js';
 
 export default class MacroScreenSummaryContent extends ScreenSummaryContent {
 
@@ -26,31 +25,50 @@ export default class MacroScreenSummaryContent extends ScreenSummaryContent {
       [ model.solution.soluteProperty, ...model.solutes.map( solute => solute.nameProperty ) ],
       () => model.solution.soluteProperty.value.nameProperty.value );
 
-    const pHValueStringProperty = new DerivedStringProperty( [ model.pHMeter.pHProperty, PhScaleStrings.a11y.unknownStringProperty ],
-      ( ph, unknown ) => ( ph === null ) ? unknown : toFixed( ph, PHScaleConstants.PH_METER_DECIMAL_PLACES ) );
+    const pHValueStringProperty = MacroPHMeterNode.createPHValueStringProperty( model.pHMeter.pHProperty );
+
+    // Derived Properties to determine which list items can be shown.
+    const isBeakerEmptyProperty = DerivedProperty.valueEqualsConstant( model.solution.totalVolumeProperty, 0 );
+    const isWaterAndBeakerNotEmptyProperty = new DerivedProperty( [ model.solution.soluteProperty, isBeakerEmptyProperty ],
+      ( solute, empty ) => solute === Solute.WATER && !empty );
+    const isNotWaterAndBeakerNotEmptyProperty = new DerivedProperty( [ model.solution.soluteProperty, isBeakerEmptyProperty ],
+      ( solute, empty ) => solute !== Solute.WATER && !empty );
+    const isNotWaterAndPHIsDefinedProperty = new DerivedProperty( [ isWaterAndBeakerNotEmptyProperty, model.pHMeter.pHProperty, isBeakerEmptyProperty ],
+      ( isWater, pH, empty ) => !isWater && pH !== null && !empty );
+    const isNotWaterAndPHIsNotDefinedProperty = new DerivedProperty( [ isWaterAndBeakerNotEmptyProperty, model.pHMeter.pHProperty, isBeakerEmptyProperty ],
+      ( isWater, pH, empty ) => !isWater && pH === null && !empty );
 
     const currentDetailsNode = new AccessibleListNode( [
       {
         stringProperty: PhScaleStrings.a11y.macroScreenSummary.currentDetails.emptyBeakerStringProperty,
-        visibleProperty: DerivedProperty.valueEqualsConstant( model.solution.totalVolumeProperty, 0 )
+        visibleProperty: isBeakerEmptyProperty
       },
       {
         stringProperty: new PatternStringProperty( PhScaleStrings.a11y.macroScreenSummary.currentDetails.beakerWithSolutionStringProperty, {
           solute: solutionNameProperty
         } ),
-        visibleProperty: DerivedProperty.valueNotEqualsConstant( model.solution.totalVolumeProperty, 0 )
+        visibleProperty: isNotWaterAndBeakerNotEmptyProperty
       },
       {
         stringProperty: new PatternStringProperty( PhScaleStrings.a11y.qualitativePHValuePatternStringProperty, {
           pHValue: pHValueStringProperty,
           pHDescription: MacroPHMeterNode.createPHDescriptionStringProperty( model.pHMeter.pHProperty )
         } ),
-        visibleProperty: DerivedProperty.valueNotEqualsConstant( model.pHMeter.pHProperty, null )
+        visibleProperty: isNotWaterAndPHIsDefinedProperty
       },
       {
         stringProperty: PhScaleStrings.a11y.pHValueUnknownStringProperty,
-        visibleProperty: new DerivedProperty( [ model.pHMeter.pHProperty, model.solution.totalVolumeProperty ],
-          ( pH, volume ) => pH === null && volume > 0 )
+        visibleProperty: isNotWaterAndPHIsNotDefinedProperty
+      },
+      {
+        stringProperty: PhScaleStrings.a11y.macroScreenSummary.currentDetails.beakerWithWaterStringProperty,
+        visibleProperty: isWaterAndBeakerNotEmptyProperty
+      },
+      {
+        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.macroScreenSummary.currentDetails.waterPHValuePatternStringProperty, {
+          value: pHValueStringProperty
+        } ),
+        visibleProperty: isWaterAndBeakerNotEmptyProperty
       }
     ], {
       leadingParagraphStringProperty: PhScaleStrings.a11y.macroScreenSummary.currentDetails.currentlyStringProperty

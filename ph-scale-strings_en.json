@@ -186,6 +186,12 @@
         },
         "beakerWithSolution": {
           "value": "beaker contains {{solute}} solution."
+        },
+        "beakerWithWater": {
+          "value": "beaker contains Water."
+        },
+        "waterPHValuePattern": {
+          "value": "pH is {{value}}, neutral."
         }
       },
       "interactionHint": {

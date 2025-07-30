@@ -52,6 +52,8 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Faucet from '../../common/model/Faucet.js';
 import { roundToInterval } from '../../../../dot/js/util/roundToInterval.js';
+import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
+import { toFixed } from '../../../../dot/js/util/toFixed.js';
 
 // constants
 const BACKGROUND_ENABLED_FILL_PROPERTY = PHScaleColors.pHProbeColorProperty;
@@ -215,6 +217,11 @@ export default class MacroPHMeterNode extends Node {
         }
       } );
   }
+
+  public static createPHValueStringProperty( pHProperty: Property<PHValue> ): TReadOnlyProperty<string> {
+    return new DerivedStringProperty( [ pHProperty, PhScaleStrings.a11y.unknownStringProperty ],
+      ( ph, unknown ) => ( ph === null ) ? unknown : toFixed( ph, PHScaleConstants.PH_METER_DECIMAL_PLACES ) );
+  }
 }
 
 /**
@@ -357,9 +364,8 @@ type PHIndicatorNodeOptions = PHIndicatorNodeSelfOptions & WithRequired<NodeOpti
 class PHIndicatorNode extends Node {
 
   public constructor( pHProperty: Property<PHValue>, scaleWidth: number, providedOptions: PHIndicatorNodeOptions ) {
-
-    const pHValuePatternStringProperty = new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
-      pHValue: pHProperty,
+    const pHValuePatternStringProperty = new PatternStringProperty( PhScaleStrings.a11y.qualitativePHValuePatternStringProperty, {
+      pHValue: MacroPHMeterNode.createPHValueStringProperty( pHProperty ),
       pHDescription: MacroPHMeterNode.createPHDescriptionStringProperty( pHProperty )
     } );
 

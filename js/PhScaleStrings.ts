@@ -96,6 +96,8 @@ type StringsType = {
         'emptyBeakerStringProperty': LocalizedStringProperty;
         'currentlyStringProperty': LocalizedStringProperty;
         'beakerWithSolutionStringProperty': LocalizedStringProperty;
+        'beakerWithWaterStringProperty': LocalizedStringProperty;
+        'waterPHValuePatternStringProperty': LocalizedStringProperty;
       };
       'interactionHint': {
         'emptyBeakerStringProperty': LocalizedStringProperty;

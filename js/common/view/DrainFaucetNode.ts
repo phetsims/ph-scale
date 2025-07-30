@@ -14,6 +14,8 @@ import phScale from '../../phScale.js';
 import Faucet from '../model/Faucet.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
+import { toFixed } from '../../../../dot/js/util/toFixed.js';
 
 // constants
 const SCALE = 0.6;
@@ -39,7 +41,17 @@ export default class DrainFaucetNode extends FaucetNode {
           phetioFeatured: true
         },
         accessibleName: PhScaleStrings.a11y.beakerControls.drainFaucet.accessibleNameStringProperty,
-        accessibleHelpText: PhScaleStrings.a11y.beakerControls.drainFaucet.accessibleHelpTextStringProperty
+        accessibleHelpText: PhScaleStrings.a11y.beakerControls.drainFaucet.accessibleHelpTextStringProperty,
+        pdomCreateAriaValueText: flowRate => {
+          return new PatternStringProperty( PhScaleStrings.a11y.beakerControls.faucetCommon.accessibleObjectResponseStringProperty, {
+            value: toFixed( faucet.flowRateProperty.rangeProperty.value.max - flowRate, 3 )
+          } );
+        },
+
+        // Dynamic dependencies used in pdomCreateAriaValueText.
+        pdomDependencies: [
+          PhScaleStrings.a11y.beakerControls.faucetCommon.accessibleObjectResponseStringProperty
+        ]
       }, providedOptions );
 
     super( faucet.maxFlowRate, faucet.flowRateProperty, faucet.enabledProperty, options );

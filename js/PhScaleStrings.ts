@@ -140,6 +140,9 @@ type StringsType = {
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
         'accessibleContextResponseStringProperty': LocalizedStringProperty;
       };
+      'faucetCommon': {
+        'accessibleObjectResponseStringProperty': LocalizedStringProperty;
+      };
       'waterFaucet': {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;

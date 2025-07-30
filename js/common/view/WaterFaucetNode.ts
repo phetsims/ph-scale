@@ -1,4 +1,4 @@
-  // Copyright 2013-2022, University of Colorado Boulder
+// Copyright 2013-2022, University of Colorado Boulder
 
 /**
  * Faucet that dispenses water (the solvent).
@@ -6,20 +6,22 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-  import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-  import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-  import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
-  import FaucetNode, { FaucetNodeOptions } from '../../../../scenery-phet/js/FaucetNode.js';
-  import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-  import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
-  import Text from '../../../../scenery/js/nodes/Text.js';
-  import phScale from '../../phScale.js';
-  import Faucet from '../model/Faucet.js';
-  import Water from '../model/Water.js';
-  import PHScaleConstants from '../PHScaleConstants.js';
-  import PhScaleStrings from '../../PhScaleStrings.js';
+import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
+import FaucetNode, { FaucetNodeOptions } from '../../../../scenery-phet/js/FaucetNode.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
+import Text from '../../../../scenery/js/nodes/Text.js';
+import phScale from '../../phScale.js';
+import Faucet from '../model/Faucet.js';
+import Water from '../model/Water.js';
+import PHScaleConstants from '../PHScaleConstants.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
+import { toFixed } from '../../../../dot/js/util/toFixed.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 
-  // constants
+// constants
 const SCALE = 0.6;
 
 type SelfOptions = EmptySelfOptions;
@@ -47,6 +49,17 @@ export default class WaterFaucetNode extends Node {
         reverseAlternativeInput: true,
         accessibleName: PhScaleStrings.a11y.beakerControls.waterFaucet.accessibleNameStringProperty,
         accessibleHelpText: PhScaleStrings.a11y.beakerControls.waterFaucet.accessibleHelpTextStringProperty,
+        // aria-valuetext: {{flowRate}} {{units}}
+        pdomCreateAriaValueText: flowRate => {
+          return new PatternStringProperty( PhScaleStrings.a11y.beakerControls.faucetCommon.accessibleObjectResponseStringProperty, {
+            value: toFixed( faucet.flowRateProperty.rangeProperty.value.max - flowRate, 3 )
+          } );
+        },
+
+        // Dynamic dependencies used in pdomCreateAriaValueText.
+        pdomDependencies: [
+          PhScaleStrings.a11y.beakerControls.faucetCommon.accessibleObjectResponseStringProperty
+        ],
         tandem: options.tandem.createTandem( 'faucetNode' )
       } ) );
     faucetNode.translation = modelViewTransform.modelToViewPosition( faucet.position );

@@ -13,6 +13,7 @@ import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import MagnifyingGlassZoomButtonGroup, { MagnifyingGlassZoomButtonGroupOptions } from '../../../../../scenery-phet/js/MagnifyingGlassZoomButtonGroup.js';
 import { NodeTranslationOptions } from '../../../../../scenery/js/nodes/Node.js';
 import phScale from '../../../phScale.js';
+import PhScaleStrings from '../../../PhScaleStrings.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -32,7 +33,11 @@ export default class LinearZoomButtonGroup extends MagnifyingGlassZoomButtonGrou
       },
       visiblePropertyOptions: {
         phetioFeatured: true
-      }
+      },
+      zoomInAccessibleName: PhScaleStrings.a11y.graph.zoomInButton.accessibleNameStringProperty,
+      zoomOutAccessibleName: PhScaleStrings.a11y.graph.zoomOutButton.accessibleNameStringProperty,
+      zoomInAccessibleHelpText: PhScaleStrings.a11y.graph.zoomInButton.accessibleHelpTextStringProperty,
+      zoomOutAccessibleHelpText: PhScaleStrings.a11y.graph.zoomOutButton.accessibleHelpTextStringProperty
     }, providedOptions );
 
     const range = exponentProperty.range;

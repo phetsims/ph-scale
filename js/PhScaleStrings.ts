@@ -73,11 +73,11 @@ type StringsType = {
   'autoFillStringProperty': LocalizedStringProperty;
   'autoFillDescriptionStringProperty': LocalizedStringProperty;
   'a11y': {
-    'ratioCheckboxAccessibleNameStringProperty': LocalizedStringProperty;
     'qualitativePHValuePatternStringProperty': LocalizedStringProperty;
     'pHValueUnknownStringProperty': LocalizedStringProperty;
     'pHValuePatternStringProperty': LocalizedStringProperty;
     'unknownStringProperty': LocalizedStringProperty;
+    'scientificNotationPatternStringProperty': LocalizedStringProperty;
     'qualitativePHDescription': {
       'extremelyBasicStringProperty': LocalizedStringProperty;
       'highlyBasicStringProperty': LocalizedStringProperty;
@@ -153,10 +153,48 @@ type StringsType = {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
       };
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'addSoluteButtonStringProperty': LocalizedStringProperty;
-      'moveProbeButtonStringProperty': LocalizedStringProperty;
-      'dispenseLiquidButtonStringProperty': LocalizedStringProperty;
+      'ratioCheckbox': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'particleCountsCheckbox': {
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      }
+    };
+    'graph': {
+      'units': {
+        'molesPerLiterStringProperty': LocalizedStringProperty;
+        'molesStringProperty': LocalizedStringProperty;
+      };
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleNameStringProperty': LocalizedStringProperty;
+      'unitsSwitch': {
+        'molesPerLiterAccessibleNameStringProperty': LocalizedStringProperty;
+        'molesAccessibleNameStringProperty': LocalizedStringProperty;
+      };
+      'scaleListItem': {
+        'patternStringProperty': LocalizedStringProperty;
+        'logarithmicStringProperty': LocalizedStringProperty;
+        'linearStringProperty': LocalizedStringProperty;
+      };
+      'rangeListItem': {
+        'patternStringProperty': LocalizedStringProperty;
+        'baseToExponentPatternStringProperty': LocalizedStringProperty;
+      };
+      'h3OListItemPatternStringProperty': LocalizedStringProperty;
+      'oHMinusListItemPatternStringProperty': LocalizedStringProperty;
+      'waterListItemPatternStringProperty': LocalizedStringProperty;
+      'scaleSwitch': {
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'zoomInButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'zoomOutButton': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      }
     }
   }
 };

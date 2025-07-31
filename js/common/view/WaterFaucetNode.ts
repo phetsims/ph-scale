@@ -19,7 +19,7 @@ import Water from '../model/Water.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import { toFixed } from '../../../../dot/js/util/toFixed.js';
-import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
+import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 
 // constants
 const SCALE = 0.6;
@@ -51,7 +51,7 @@ export default class WaterFaucetNode extends Node {
         accessibleHelpText: PhScaleStrings.a11y.beakerControls.waterFaucet.accessibleHelpTextStringProperty,
         // aria-valuetext: {{flowRate}} {{units}}
         pdomCreateAriaValueText: flowRate => {
-          return new PatternStringProperty( PhScaleStrings.a11y.beakerControls.faucetCommon.accessibleObjectResponseStringProperty, {
+          return StringUtils.fillIn( PhScaleStrings.a11y.beakerControls.faucetCommon.accessibleObjectResponseStringProperty, {
             value: toFixed( faucet.flowRateProperty.rangeProperty.value.max - flowRate, 3 )
           } );
         },

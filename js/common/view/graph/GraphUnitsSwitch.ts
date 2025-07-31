@@ -37,7 +37,9 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
       phetioDocumentation: 'A/B switch for switching units',
       visiblePropertyOptions: {
         phetioFeatured: false
-      }
+      },
+      valueAAccessibleName: PhScaleStrings.a11y.graph.unitsSwitch.molesPerLiterAccessibleNameStringProperty,
+      valueBAccessibleName: PhScaleStrings.a11y.graph.unitsSwitch.molesAccessibleNameStringProperty
     }, provideOptions );
 
     // Concentration (mol/L)

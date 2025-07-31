@@ -39,6 +39,7 @@ import WaterFaucetNode from '../../common/view/WaterFaucetNode.js';
 import phScale from '../../phScale.js';
 import MicroModel from '../model/MicroModel.js';
 import MicroPHAccordionBox from './MicroPHAccordionBox.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
 
 export default class MicroScreenView extends ScreenView {
 
@@ -120,7 +121,8 @@ export default class MicroScreenView extends ScreenView {
 
     // pH meter
     const pHMeterTop = 15;
-    const pHAccordionBox = new MicroPHAccordionBox( model.solution.pHProperty,
+    const pHAccordionBox = new MicroPHAccordionBox( model.solution.pHProperty, model.dropper.isDispensingProperty,
+      model.waterFaucet.flowRateProperty, model.drainFaucet.flowRateProperty,
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop,
       tandem.createTandem( 'pHAccordionBox' ) );
 
@@ -142,9 +144,24 @@ export default class MicroScreenView extends ScreenView {
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
 
+    const beakerControlsHeading = new Node( {
+      pdomOrder: [
+        soluteComboBox,
+        dropperNode,
+        waterFaucetNode,
+        drainFaucetNode,
+        beakerControlPanel
+      ],
+      accessibleHeading: PhScaleStrings.a11y.beakerControls.accessibleHeadingStringProperty
+    } );
+
     // Parent for all nodes added to this screen
     const screenViewRootNode = new Node( {
       children: [
+
+        // Accessible headings can be put anywhere in rendering order because they have no children. Put them all first.
+        beakerControlsHeading,
+
         // nodes are rendered in this order
         waterFluidNode,
         waterFaucetNode,
@@ -188,11 +205,7 @@ export default class MicroScreenView extends ScreenView {
     // Play Area focus order
     this.pdomPlayAreaNode.pdomOrder = [
       pHAccordionBox,
-      soluteComboBox,
-      dropperNode,
-      waterFaucetNode,
-      drainFaucetNode,
-      beakerControlPanel,
+      beakerControlsHeading,
       graphNode
     ];
 

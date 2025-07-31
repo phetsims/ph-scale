@@ -91,7 +91,8 @@ class RatioCheckbox extends Checkbox {
     } );
 
     super( ratioVisibleProperty, ratioText, {
-      accessibleName: PhScaleStrings.a11y.ratioCheckboxAccessibleNameStringProperty,
+      accessibleName: PhScaleStrings.a11y.beakerControls.ratioCheckbox.accessibleNameStringProperty,
+      accessibleHelpText: PhScaleStrings.a11y.beakerControls.ratioCheckbox.accessibleHelpTextStringProperty,
       tandem: tandem
     } );
   }
@@ -109,6 +110,7 @@ class ParticleCountsCheckbox extends Checkbox {
     } );
 
     super( particleCountsVisibleProperty, text, {
+      accessibleHelpText: PhScaleStrings.a11y.beakerControls.particleCountsCheckbox.accessibleHelpTextStringProperty,
       tandem: tandem
     } );
   }

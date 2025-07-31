@@ -33,6 +33,9 @@ export default class GraphScaleSwitch extends ABSwitch<GraphScale> {
         size: new Dimension2( 50, 25 )
       },
       centerOnSwitch: true,
+      valueAAccessibleName: PhScaleStrings.logarithmicStringProperty,
+      valueBAccessibleName: PhScaleStrings.linearStringProperty,
+      accessibleHelpText: PhScaleStrings.a11y.graph.scaleSwitch.accessibleHelpTextStringProperty,
       phetioDocumentation: 'A/B switch for switching between logarithmic and linear scales'
     }, providedOptions );
 

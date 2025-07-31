@@ -16,6 +16,7 @@ import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js'
 import MacroPHMeterNode from './MacroPHMeterNode.js';
 import AccessibleListNode from '../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
 import Solute from '../../common/model/Solute.js';
+import PHScaleConstants from '../../common/PHScaleConstants.js';
 
 export default class MacroScreenSummaryContent extends ScreenSummaryContent {
 
@@ -24,8 +25,6 @@ export default class MacroScreenSummaryContent extends ScreenSummaryContent {
     const solutionNameProperty = DerivedProperty.deriveAny(
       [ model.solution.soluteProperty, ...model.solutes.map( solute => solute.nameProperty ) ],
       () => model.solution.soluteProperty.value.nameProperty.value );
-
-    const pHValueStringProperty = MacroPHMeterNode.createPHValueStringProperty( model.pHMeter.pHProperty );
 
     // Derived Properties to determine which list items can be shown.
     const isBeakerEmptyProperty = DerivedProperty.valueEqualsConstant( model.solution.totalVolumeProperty, 0 );
@@ -51,7 +50,7 @@ export default class MacroScreenSummaryContent extends ScreenSummaryContent {
       },
       {
         stringProperty: new PatternStringProperty( PhScaleStrings.a11y.qualitativePHValuePatternStringProperty, {
-          pHValue: pHValueStringProperty,
+          pHValue: PHScaleConstants.CREATE_PH_VALUE_PATTERN_STRING_PROPERTY( model.pHMeter.pHProperty ),
           pHDescription: MacroPHMeterNode.createPHDescriptionStringProperty( model.pHMeter.pHProperty )
         } ),
         visibleProperty: isNotWaterAndPHIsDefinedProperty
@@ -66,7 +65,7 @@ export default class MacroScreenSummaryContent extends ScreenSummaryContent {
       },
       {
         stringProperty: new PatternStringProperty( PhScaleStrings.a11y.macroScreenSummary.currentDetails.waterPHValuePatternStringProperty, {
-          value: pHValueStringProperty
+          value: PHScaleConstants.CREATE_PH_VALUE_PATTERN_STRING_PROPERTY( model.pHMeter.pHProperty )
         } ),
         visibleProperty: isWaterAndBeakerNotEmptyProperty
       }

@@ -13,6 +13,11 @@ import RangeWithValue from '../../../dot/js/RangeWithValue.js';
 import Vector2 from '../../../dot/js/Vector2.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import phScale from '../phScale.js';
+import PatternStringProperty from '../../../axon/js/PatternStringProperty.js';
+import PhScaleStrings from '../PhScaleStrings.js';
+import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
+import DerivedStringProperty from '../../../axon/js/DerivedStringProperty.js';
+import { toFixed } from '../../../dot/js/util/toFixed.js';
 
 const PHScaleConstants = {
 
@@ -54,6 +59,11 @@ const PHScaleConstants = {
   // pH
   PH_RANGE: new RangeWithValue( -1, 15, 7 ),
   PH_METER_DECIMAL_PLACES: 2,
+  CREATE_PH_VALUE_PATTERN_STRING_PROPERTY: ( pHProperty: TReadOnlyProperty<number | null> ): TReadOnlyProperty<string> =>
+    new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+      pHValue: new DerivedStringProperty( [ pHProperty, PhScaleStrings.a11y.unknownStringProperty ],
+        ( ph, unknown ) => ( ph === null ) ? unknown : toFixed( ph, PHScaleConstants.PH_METER_DECIMAL_PLACES ) )
+    } ),
 
   // volume
   VOLUME_DECIMAL_PLACES: 2,

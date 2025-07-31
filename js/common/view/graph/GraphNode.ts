@@ -24,6 +24,10 @@ import GraphScaleSwitch from './GraphScaleSwitch.js';
 import GraphUnits from './GraphUnits.js';
 import LinearGraphNode from './LinearGraphNode.js';
 import LogarithmicGraphNode, { LogarithmicGraphNodeOptions } from './LogarithmicGraphNode.js';
+import PhScaleStrings from '../../../PhScaleStrings.js';
+import AccessibleListNode from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
+import PatternStringProperty from '../../../../../axon/js/PatternStringProperty.js';
+import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 
 type SelfOptions = {
   logScaleHeight?: number;
@@ -58,7 +62,8 @@ export default class GraphNode extends Node {
       // NodeOptions
       visiblePropertyOptions: {
         phetioFeatured: true
-      }
+      },
+      accessibleHeading: PhScaleStrings.a11y.graph.accessibleHeadingStringProperty
     }, providedOptions );
 
     super();
@@ -101,7 +106,19 @@ export default class GraphNode extends Node {
 
     // parent for things whose visibility will be controlled by expandProperty
     const parentNode = new Node( {
-      children: [ lineToPanel, logarithmicGraphNode ],
+      children: [ lineToPanel, logarithmicGraphNode, new AccessibleListNode( [
+        {
+          stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.waterListItemPatternStringProperty, {
+            value: new DerivedProperty( [ graphUnitsProperty, derivedProperties.concentrationH2OProperty,
+                derivedProperties.quantityH2OProperty, PhScaleStrings.a11y.unknownStringProperty ],
+              ( graphUnits, concentrationH2O, quantityH2O, unknownString ) =>
+                concentrationH2O === null || quantityH2O === null ? unknownString :
+                graphUnits === GraphUnits.MOLES_PER_LITER ? concentrationH2O : quantityH2O ),
+            units: new DerivedProperty( [ graphUnitsProperty, PhScaleStrings.a11y.graph.units.molesPerLiterStringProperty, PhScaleStrings.a11y.graph.units.molesStringProperty ],
+              ( graphUnits, molesPerLiterString, molesString ) => graphUnits === GraphUnits.MOLES_PER_LITER ? molesPerLiterString : molesString )
+          } )
+        }
+      ] ) ],
       centerX: graphControlPanel.centerX,
       y: graphControlPanel.bottom // y, not top
     } );

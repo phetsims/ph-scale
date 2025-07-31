@@ -72,7 +72,8 @@ export default class PHAccordionBox extends Node {
       buttonYMargin: Y_MARGIN,
       expandCollapseButtonOptions: PHScaleConstants.EXPAND_COLLAPSE_BUTTON_OPTIONS,
       contentYMargin: Y_MARGIN,
-      expandedProperty: expandedProperty
+      expandedProperty: expandedProperty,
+      accessibleName: PhScaleStrings.a11y.pHMeter.headingStringProperty
     }, providedOptions.accordionBoxOptions );
 
     // This class was rewritten to use AccordionBox via composition instead of inheritance. The class was not renamed

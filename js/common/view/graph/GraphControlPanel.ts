@@ -20,6 +20,7 @@ import PHScaleColors from '../../PHScaleColors.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphUnits from './GraphUnits.js';
 import GraphUnitsSwitch from './GraphUnitsSwitch.js';
+import PhScaleStrings from '../../../PhScaleStrings.js';
 
 const MIN_HEIGHT = 50;
 
@@ -60,6 +61,7 @@ export default class GraphControlPanel extends Panel {
       combineOptions<ExpandCollapseButtonOptions>( {}, PHScaleConstants.EXPAND_COLLAPSE_BUTTON_OPTIONS, {
         right: rectangle.right,
         top: rectangle.top,
+        accessibleName: PhScaleStrings.a11y.graph.accessibleNameStringProperty,
         tandem: options.tandem.createTandem( 'expandCollapseButton' )
       } ) );
 

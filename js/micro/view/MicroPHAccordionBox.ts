@@ -18,6 +18,7 @@ import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Multilink from '../../../../axon/js/Multilink.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 
 export default class MicroPHAccordionBox extends PHAccordionBox {
 
@@ -31,7 +32,9 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
    */
   public constructor( pHProperty: ReadOnlyProperty<PHValue>, isDispensingProperty: TReadOnlyProperty<boolean>, waterFaucetFlowRateProperty: TReadOnlyProperty<number>,
                       drainFaucetFlowRateProperty: TReadOnlyProperty<number>, probeYOffset: number, tandem: Tandem ) {
-    const pHValuePatternStringProperty = PHScaleConstants.CREATE_PH_VALUE_PATTERN_STRING_PROPERTY( pHProperty );
+    const pHValuePatternStringProperty = new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+      pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( pHProperty )
+    } );
     const numberDisplay = new NumberDisplay( pHProperty, PHScaleConstants.PH_RANGE, {
       decimalPlaces: PHScaleConstants.PH_METER_DECIMAL_PLACES,
       cornerRadius: PHAccordionBox.CORNER_RADIUS,

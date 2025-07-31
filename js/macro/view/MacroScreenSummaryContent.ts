@@ -50,7 +50,7 @@ export default class MacroScreenSummaryContent extends ScreenSummaryContent {
       },
       {
         stringProperty: new PatternStringProperty( PhScaleStrings.a11y.qualitativePHValuePatternStringProperty, {
-          pHValue: PHScaleConstants.CREATE_PH_VALUE_PATTERN_STRING_PROPERTY( model.pHMeter.pHProperty ),
+          pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( model.pHMeter.pHProperty ),
           pHDescription: MacroPHMeterNode.createPHDescriptionStringProperty( model.pHMeter.pHProperty )
         } ),
         visibleProperty: isNotWaterAndPHIsDefinedProperty
@@ -65,7 +65,7 @@ export default class MacroScreenSummaryContent extends ScreenSummaryContent {
       },
       {
         stringProperty: new PatternStringProperty( PhScaleStrings.a11y.macroScreenSummary.currentDetails.waterPHValuePatternStringProperty, {
-          value: PHScaleConstants.CREATE_PH_VALUE_PATTERN_STRING_PROPERTY( model.pHMeter.pHProperty )
+          pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( model.pHMeter.pHProperty )
         } ),
         visibleProperty: isWaterAndBeakerNotEmptyProperty
       }

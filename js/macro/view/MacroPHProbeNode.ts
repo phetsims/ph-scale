@@ -34,6 +34,8 @@ export const DEFAULT_MACRO_PH_PROBE_NODE_OPTIONS = {
   handleHeight: 25,
   handleCornerRadius: 12,
   lightAngle: 0.85 * Math.PI,
+  accessibleName: PhScaleStrings.a11y.macroProbe.accessibleNameStringProperty,
+  accessibleHelpText: PhScaleStrings.a11y.macroProbe.accessibleHelpTextStringProperty,
   color: PHScaleColors.pHProbeColorProperty
 };
 type SelfOptions = EmptySelfOptions;

@@ -106,8 +106,6 @@ export default class MacroPHMeterNode extends Node {
     // interactive probe
     const probeNode = new MacroPHProbeNode( meter.probe, modelViewTransform, solutionNode, dropperFluidNode,
       waterFluidNode, drainFluidNode, jumpPositions, jumpPositionIndexProperty, {
-        accessibleName: PhScaleStrings.a11y.macroProbe.accessibleNameStringProperty,
-        accessibleHelpText: PhScaleStrings.a11y.macroProbe.accessibleHelpTextStringProperty,
         tandem: options.tandem.createTandem( 'probeNode' )
       } );
     Multilink.multilink( [ meter.pHProperty, dropper.isDispensingProperty, waterFaucet.flowRateProperty, drainFaucet.flowRateProperty ],
@@ -359,7 +357,9 @@ class PHIndicatorNode extends Node {
   public constructor( pHProperty: Property<PHValue>, scaleWidth: number, providedOptions: PHIndicatorNodeOptions ) {
 
     const options = optionize<PHIndicatorNodeOptions, PHIndicatorNodeSelfOptions, NodeOptions>()( {
-      accessibleParagraph: PHScaleConstants.CREATE_PH_VALUE_PATTERN_STRING_PROPERTY( pHProperty )
+      accessibleParagraph: new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+        pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( pHProperty )
+      } )
     }, providedOptions );
 
     // dashed line that extends across the scale

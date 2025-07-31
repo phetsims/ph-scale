@@ -12,12 +12,11 @@ import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import Matrix3 from '../../../../../dot/js/Matrix3.js';
 import Shape from '../../../../../kite/js/Shape.js';
 import optionize, { combineOptions } from '../../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import ArrowNode from '../../../../../scenery-phet/js/ArrowNode.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
 import InteractiveHighlighting from '../../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
-import Node, { NodeOptions, NodeTranslationOptions } from '../../../../../scenery/js/nodes/Node.js';
+import Node, { NodeOptions } from '../../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../../scenery/js/nodes/Rectangle.js';
 import RichText from '../../../../../scenery/js/nodes/RichText.js';
@@ -29,6 +28,8 @@ import H2ONode from '../particles/H2ONode.js';
 import H3ONode from '../particles/H3ONode.js';
 import OHNode from '../particles/OHNode.js';
 import HBox from '../../../../../scenery/js/layout/nodes/HBox.js';
+import PhScaleStrings from '../../../PhScaleStrings.js';
+import WithRequired from '../../../../../phet-core/js/types/WithRequired.js';
 
 // constants
 const POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute width of the pointy part of the indicator
@@ -58,7 +59,7 @@ type SelfOptions = {
   arrowXSpacing?: number;
 };
 
-type GraphIndicatorNodeOptions = SelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'tandem'>;
+type GraphIndicatorNodeOptions = SelfOptions & WithRequired<NodeOptions, 'tandem'>;
 
 export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) {
 
@@ -265,7 +266,9 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
       new RichText( PHScaleConstants.H3O_FORMULA, { font: new PhetFont( 28 ), fill: INDICATOR_TEXT_FILL } ),
       combineOptions<GraphIndicatorNodeOptions>( {
         backgroundFill: PHScaleColors.acidicColorProperty,
-        pointerPosition: 'topRight'
+        pointerPosition: 'topRight',
+        accessibleName: options.isInteractive ? PhScaleStrings.a11y.graph.h3OIndicator.accessibleNameStringProperty : null,
+        accessibleHelpText: options.isInteractive ? PhScaleStrings.a11y.graph.h3OIndicator.accessibleHelpTextStringProperty : null
       }, options ) );
   }
 
@@ -279,7 +282,9 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
       new RichText( PHScaleConstants.OH_FORMULA, { font: new PhetFont( 28 ), fill: INDICATOR_TEXT_FILL } ),
       combineOptions<GraphIndicatorNodeOptions>( {
         backgroundFill: PHScaleColors.basicColorProperty,
-        pointerPosition: 'topLeft'
+        pointerPosition: 'topLeft',
+        accessibleName: options.isInteractive ? PhScaleStrings.a11y.graph.oHIndicator.accessibleNameStringProperty : null,
+        accessibleHelpText: options.isInteractive ? PhScaleStrings.a11y.graph.oHIndicator.accessibleHelpTextStringProperty : null
       }, options ) );
   }
 }

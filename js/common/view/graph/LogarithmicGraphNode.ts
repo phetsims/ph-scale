@@ -17,7 +17,6 @@ import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Multilink from '../../../../../axon/js/Multilink.js';
 import Property from '../../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
-import Utils from '../../../../../dot/js/Utils.js';
 import optionize from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
@@ -36,6 +35,8 @@ import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
 import GraphIndicatorKeyboardDragListener from './GraphIndicatorKeyboardDragListener.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
+import { log10 } from '../../../../../dot/js/util/log10.js';
+import { linear } from '../../../../../dot/js/util/linear.js';
 
 type SelfOptions = {
 
@@ -223,7 +224,7 @@ export default class LogarithmicGraphNode extends Node {
         const maxHeight = ( options.scaleHeight - 2 * options.scaleYMargin );
         const maxExponent = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max;
         const minExponent = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min;
-        const valueExponent = Utils.log10( value );
+        const valueExponent = log10( value );
         return options.scaleYMargin + maxHeight - ( maxHeight * ( valueExponent - minExponent ) / ( maxExponent - minExponent ) );
       }
     };
@@ -232,7 +233,7 @@ export default class LogarithmicGraphNode extends Node {
     const yToValue = ( y: number ) => {
       const yOffset = y - options.scaleYMargin; // distance between indicator's origin and top tick mark
       const maxHeight = ( options.scaleHeight - 2 * options.scaleYMargin ); // distance between top and bottom tick marks
-      const exponent = Utils.linear( 0, maxHeight, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, yOffset );
+      const exponent = linear( 0, maxHeight, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, yOffset );
       return Math.pow( 10, exponent );
     };
 

@@ -105,20 +105,22 @@ export default class GraphNode extends Node {
     } );
 
     // parent for things whose visibility will be controlled by expandProperty
+    const graphDescriptionListNode = new AccessibleListNode( [
+      {
+        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.waterListItemPatternStringProperty, {
+          value: new DerivedProperty( [ graphUnitsProperty, derivedProperties.concentrationH2OProperty,
+              derivedProperties.quantityH2OProperty, PhScaleStrings.a11y.unknownStringProperty ],
+            ( graphUnits, concentrationH2O, quantityH2O, unknownString ) =>
+              concentrationH2O === null || quantityH2O === null ? unknownString :
+              graphUnits === GraphUnits.MOLES_PER_LITER ? concentrationH2O : quantityH2O ),
+          units: new DerivedProperty( [ graphUnitsProperty, PhScaleStrings.a11y.graph.units.molesPerLiterStringProperty, PhScaleStrings.a11y.graph.units.molesStringProperty ],
+            ( graphUnits, molesPerLiterString, molesString ) => graphUnits === GraphUnits.MOLES_PER_LITER ? molesPerLiterString : molesString )
+        } )
+      }
+    ] );
+    pdomOrder.push( graphDescriptionListNode );
     const parentNode = new Node( {
-      children: [ lineToPanel, logarithmicGraphNode, new AccessibleListNode( [
-        {
-          stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.waterListItemPatternStringProperty, {
-            value: new DerivedProperty( [ graphUnitsProperty, derivedProperties.concentrationH2OProperty,
-                derivedProperties.quantityH2OProperty, PhScaleStrings.a11y.unknownStringProperty ],
-              ( graphUnits, concentrationH2O, quantityH2O, unknownString ) =>
-                concentrationH2O === null || quantityH2O === null ? unknownString :
-                graphUnits === GraphUnits.MOLES_PER_LITER ? concentrationH2O : quantityH2O ),
-            units: new DerivedProperty( [ graphUnitsProperty, PhScaleStrings.a11y.graph.units.molesPerLiterStringProperty, PhScaleStrings.a11y.graph.units.molesStringProperty ],
-              ( graphUnits, molesPerLiterString, molesString ) => graphUnits === GraphUnits.MOLES_PER_LITER ? molesPerLiterString : molesString )
-          } )
-        }
-      ] ) ],
+      children: [ lineToPanel, logarithmicGraphNode, graphDescriptionListNode ],
       centerX: graphControlPanel.centerX,
       y: graphControlPanel.bottom // y, not top
     } );

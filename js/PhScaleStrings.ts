@@ -197,6 +197,16 @@ type StringsType = {
       'zoomOutButton': {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'h3OIndicator': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleObjectResponseStringProperty': LocalizedStringProperty;
+      };
+      'oHIndicator': {
+        'accessibleNameStringProperty': LocalizedStringProperty;
+        'accessibleHelpTextStringProperty': LocalizedStringProperty;
+        'accessibleObjectResponseStringProperty': LocalizedStringProperty;
       }
     }
   }

@@ -7,12 +7,13 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import Utils from '../../../../dot/js/Utils.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import NumberSpinner, { NumberSpinnerOptions } from '../../../../sun/js/NumberSpinner.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
+import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -27,13 +28,13 @@ export class PHSpinnerNode extends NumberSpinner {
     // When using the spinner to change pH, constrain pHProperty to be exactly the value displayed by the spinner.
     // See https://github.com/phetsims/ph-scale/issues/143
     const incrementFunction = ( value: number ) => {
-      value = Utils.toFixedNumber( value, PHScaleConstants.PH_METER_DECIMAL_PLACES );
-      return Utils.toFixedNumber( value + pHDelta, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      value = toFixedNumber( value, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      return toFixedNumber( value + pHDelta, PHScaleConstants.PH_METER_DECIMAL_PLACES );
     };
 
     const decrementFunction = ( value: number ) => {
-      value = Utils.toFixedNumber( value, PHScaleConstants.PH_METER_DECIMAL_PLACES );
-      return Utils.toFixedNumber( value - pHDelta, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      value = toFixedNumber( value, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      return toFixedNumber( value - pHDelta, PHScaleConstants.PH_METER_DECIMAL_PLACES );
     };
 
     const options = optionize<PHSpinnerNodeOptions, SelfOptions, NumberSpinnerOptions>()( {
@@ -56,7 +57,9 @@ export class PHSpinnerNode extends NumberSpinner {
       xSpacing: 6,
       ySpacing: 4,
       touchAreaXDilation: 15,
-      touchAreaYDilation: 2
+      touchAreaYDilation: 2,
+      accessibleName: PhScaleStrings.pHStringProperty,
+      accessibleHelpText: PhScaleStrings.a11y.mySolutionProbe.accessibleHelpTextStringProperty
     }, providedOptions );
 
     super( pHProperty, new Property( PHScaleConstants.PH_RANGE ), options );

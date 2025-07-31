@@ -54,31 +54,31 @@ export default class MacroModel extends PHModel<MacroSolution> {
       // Inside the beaker, bottom center.
       new JumpPosition( {
         positionProperty: new Vector2Property( this.beaker.position.plusXY( 0, -0.0001 ) ),
-        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.probe.accessibleObjectResponses.insideBeakerStringProperty
+        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.macroProbe.accessibleObjectResponses.insideBeakerStringProperty
       } ),
 
       // Below the water faucet, close to the spigot, and above the max solution level in the beaker.
       new JumpPosition( {
         positionProperty: new Vector2Property( this.waterFaucet.position.plusXY( 0, 10 ) ),
-        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.probe.accessibleObjectResponses.underWaterFaucetStringProperty
+        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.macroProbe.accessibleObjectResponses.underWaterFaucetStringProperty
       } ),
 
       // Below the dropper, and above the max solution level in the beaker.
       new JumpPosition( {
         positionProperty: new Vector2Property( this.dropper.position.plusXY( 0, 10 ) ),
-        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.probe.accessibleObjectResponses.underDropperStringProperty
+        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.macroProbe.accessibleObjectResponses.underDropperStringProperty
       } ),
 
       // Below the drain faucet, close to the spigot.
       new JumpPosition( {
         positionProperty: new Vector2Property( this.drainFaucet.position.plusXY( 0, 10 ) ),
-        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.probe.accessibleObjectResponses.underDrainFaucetStringProperty
+        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.macroProbe.accessibleObjectResponses.underDrainFaucetStringProperty
       } ),
 
       // Outside the beaker, where the probe is initially positioned.
       new JumpPosition( {
         positionProperty: new Vector2Property( this.pHMeter.probe.positionProperty.value ),
-        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.probe.accessibleObjectResponses.outsideBeakerStringProperty
+        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.macroProbe.accessibleObjectResponses.outsideBeakerStringProperty
       } )
     ];
 

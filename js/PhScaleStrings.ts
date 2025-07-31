@@ -108,7 +108,7 @@ type StringsType = {
       'headingStringProperty': LocalizedStringProperty;
       'descriptionStringProperty': LocalizedStringProperty;
     };
-    'probe': {
+    'macroProbe': {
       'accessibleNameStringProperty': LocalizedStringProperty;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'accessibleObjectResponses': {
@@ -118,6 +118,9 @@ type StringsType = {
         'underDrainFaucetStringProperty': LocalizedStringProperty;
         'outsideBeakerStringProperty': LocalizedStringProperty;
       }
+    };
+    'mySolutionProbe': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
     'beakerControls': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;

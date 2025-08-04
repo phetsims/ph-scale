@@ -7,7 +7,7 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import { EmptySelfOptions, optionize4 } from '../../../../phet-core/js/optionize.js';
+import { combineOptions, EmptySelfOptions, optionize4 } from '../../../../phet-core/js/optionize.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import GrabDragInteraction from '../../../../scenery-phet/js/accessibility/grab-drag/GrabDragInteraction.js';
 import ProbeNode, { ProbeNodeOptions } from '../../../../scenery-phet/js/ProbeNode.js';
@@ -22,8 +22,9 @@ import PhScaleStrings from '../../PhScaleStrings.js';
 import JumpToPositionListener from './JumpToPositionListener.js';
 import JumpPosition from '../model/JumpPosition.js';
 import WithRequired from '../../../../phet-core/js/types/WithRequired.js';
+import AccessibleDraggableOptions from '../../../../scenery-phet/js/accessibility/grab-drag/AccessibleDraggableOptions.js';
 
-export const DEFAULT_MACRO_PH_PROBE_NODE_OPTIONS = {
+export const DEFAULT_MACRO_PH_PROBE_NODE_OPTIONS = combineOptions<ProbeNodeOptions>( {
   rotation: Math.PI / 2,
   sensorTypeFunction: ProbeNode.crosshairs( {
     intersectionRadius: 6
@@ -37,7 +38,7 @@ export const DEFAULT_MACRO_PH_PROBE_NODE_OPTIONS = {
   accessibleName: PhScaleStrings.a11y.macroProbe.accessibleNameStringProperty,
   accessibleHelpText: PhScaleStrings.a11y.macroProbe.accessibleHelpTextStringProperty,
   color: PHScaleColors.pHProbeColorProperty
-};
+}, AccessibleDraggableOptions );
 type SelfOptions = EmptySelfOptions;
 type MacroPHProbeNodeOptions = SelfOptions & WithRequired<ProbeNodeOptions, 'tandem'>;
 

@@ -52,6 +52,7 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Faucet from '../../common/model/Faucet.js';
 import { roundToInterval } from '../../../../dot/js/util/roundToInterval.js';
+import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 
 // constants
 const BACKGROUND_ENABLED_FILL_PROPERTY = PHScaleColors.pHProbeColorProperty;
@@ -108,14 +109,49 @@ export default class MacroPHMeterNode extends Node {
       waterFluidNode, drainFluidNode, jumpPositions, jumpPositionIndexProperty, {
         tandem: options.tandem.createTandem( 'probeNode' )
       } );
+
+    /**
+     * Add accessible context responses for the probe as the pH value changes.
+     *
+     * When the probe is in the solution we only want to announce the pH value when the dropper or faucets
+     * are not dispensing, and therefore pH value is not changing rapidly. For this scenario we use a Multilink.
+     */
     Multilink.multilink( [ meter.pHProperty, dropper.isDispensingProperty, waterFaucet.flowRateProperty, drainFaucet.flowRateProperty ],
       ( pH, dropperIsDispensing, waterFaucetFlowRate, drainFaucetFlowRate ) => {
-        pH !== null && !dropperIsDispensing && waterFaucetFlowRate === 0 && drainFaucetFlowRate === 0 && probeNode.addAccessibleContextResponse(
-          new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
-            pHValue: roundToInterval( pH, 0.01 )
-          } )
-        );
+        if ( pH !== null ) {
+          if ( probeNode.isInSolution() ) {
+            !dropperIsDispensing && waterFaucetFlowRate === 0 && drainFaucetFlowRate === 0 && probeNode.addAccessibleContextResponse(
+              StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+                pHValue: roundToInterval( pH, 0.01 )
+              } ), 'queue' );
+          }
+        }
       } );
+
+    // For all other scenarios not covered by the Multilink above, we only announce when the pH value changes and we do
+    // not care if the dropper or faucets are dispensing.
+    meter.pHProperty.link( pH => {
+      if ( pH !== null ) {
+        if ( probeNode.isInWater() ) {
+          probeNode.addAccessibleContextResponse( StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+            pHValue: roundToInterval( pH, 0.01 )
+          } ), 'queue' );
+        }
+        if ( probeNode.isInDropperSolution() ) {
+          probeNode.addAccessibleContextResponse( StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+            pHValue: roundToInterval( pH, 0.01 )
+          } ), 'queue' );
+        }
+        if ( probeNode.isInDrainFluid() ) {
+          probeNode.addAccessibleContextResponse( StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+            pHValue: roundToInterval( pH, 0.01 )
+          } ), 'queue' );
+        }
+      }
+      else {
+        probeNode.addAccessibleContextResponse( PhScaleStrings.a11y.pHValueUnknownStringProperty );
+      }
+    } );
     this.probeNode = probeNode;
 
     // wire that connects the probe to the meter

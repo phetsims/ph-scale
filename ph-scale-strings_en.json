@@ -133,7 +133,7 @@
       "value": "pH is unknown."
     },
     "pHValuePattern": {
-      "value": "pH value is {{pHValue}}."
+      "value": "pH is {{pHValue}}."
     },
     "unknown": {
       "value": "unknown"

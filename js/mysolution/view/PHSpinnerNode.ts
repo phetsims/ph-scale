@@ -8,16 +8,16 @@
 
 import Property from '../../../../axon/js/Property.js';
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import NumberSpinner, { NumberSpinnerOptions } from '../../../../sun/js/NumberSpinner.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
+import WithRequired from '../../../../phet-core/js/types/WithRequired.js';
 
 type SelfOptions = EmptySelfOptions;
 
-type PHSpinnerNodeOptions = SelfOptions & PickRequired<NumberSpinnerOptions, 'tandem'>;
+type PHSpinnerNodeOptions = SelfOptions & WithRequired<NumberSpinnerOptions, 'tandem'>;
 
 export class PHSpinnerNode extends NumberSpinner {
 

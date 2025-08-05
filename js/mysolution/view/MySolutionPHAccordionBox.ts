@@ -17,6 +17,7 @@ import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtte
 import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import Multilink from '../../../../axon/js/Multilink.js';
+import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 
 export default class MySolutionPHAccordionBox extends PHAccordionBox {
 
@@ -33,6 +34,7 @@ export default class MySolutionPHAccordionBox extends PHAccordionBox {
       } )
     } );
     const spinner = new PHSpinnerNode( pHProperty, {
+      pdomMapPDOMValue: value => toFixedNumber( value, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
       tandem: tandem.createTandem( 'spinner' )
     } );
 

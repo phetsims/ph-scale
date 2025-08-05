@@ -19,6 +19,7 @@ import PhScaleStrings from '../../PhScaleStrings.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
+import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtterance.js';
 
 export default class MicroPHAccordionBox extends PHAccordionBox {
 
@@ -61,10 +62,17 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
       tandemName: 'pHProperty'
     } );
 
+    /**
+     * Add accessible context responses for the probe as the pH value changes.
+     *
+     * When the accordion box is expanded, we only want to announce the pH value when the dropper or faucets
+     * are not dispensing.
+     */
+    const responseUtterance = new ValueChangeUtterance( { alert: pHValuePatternStringProperty } );
     Multilink.multilink( [ pHProperty, isDispensingProperty, waterFaucetFlowRateProperty, drainFaucetFlowRateProperty, this.accordionBox.expandedProperty ],
-      ( pH, isDispensing, waterFlowRate, drainFlowRate, expanded ) => {
-        pH !== null && !isDispensing && waterFlowRate === 0 && drainFlowRate === 0 && expanded &&
-        numberDisplay.addAccessibleContextResponse( pHValuePatternStringProperty );
+      ( pH, dropperIsDispensing, waterFaucetFlowRate, drainFaucetFlowRate, expanded ) => {
+        !dropperIsDispensing && waterFaucetFlowRate === 0 && drainFaucetFlowRate === 0 && expanded &&
+        numberDisplay.addAccessibleContextResponse( responseUtterance, 'queue' );
       } );
   }
 }

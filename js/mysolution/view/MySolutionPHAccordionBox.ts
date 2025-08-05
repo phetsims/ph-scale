@@ -12,6 +12,11 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import PHAccordionBox from '../../common/view/PHAccordionBox.js';
 import phScale from '../../phScale.js';
 import { PHSpinnerNode } from './PHSpinnerNode.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
+import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtterance.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
+import PHScaleConstants from '../../common/PHScaleConstants.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 
 export default class MySolutionPHAccordionBox extends PHAccordionBox {
 
@@ -22,6 +27,11 @@ export default class MySolutionPHAccordionBox extends PHAccordionBox {
    */
   public constructor( pHProperty: Property<number>, probeYOffset: number, tandem: Tandem ) {
 
+    const responseUtterance = new ValueChangeUtterance( {
+      alert: new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+        pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( pHProperty )
+      } )
+    } );
     const spinner = new PHSpinnerNode( pHProperty, {
       tandem: tandem.createTandem( 'spinner' )
     } );
@@ -31,6 +41,10 @@ export default class MySolutionPHAccordionBox extends PHAccordionBox {
       accordionBoxOptions: {
         tandem: tandem
       }
+    } );
+
+    Multilink.multilink( [ pHProperty, this.accordionBox.expandedProperty ], ( pHValue, expanded ) => {
+      expanded && spinner.addAccessibleContextResponse( responseUtterance );
     } );
 
     this.accordionBox.addLinkedElement( pHProperty );

@@ -150,7 +150,8 @@ export default class MicroScreenView extends ScreenView {
         dropperNode,
         waterFaucetNode,
         drainFaucetNode,
-        beakerControlPanel
+        beakerControlPanel,
+        particleCountsNode
       ],
       accessibleHeading: PhScaleStrings.a11y.beakerControls.accessibleHeadingStringProperty
     } );

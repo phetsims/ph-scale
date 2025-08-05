@@ -30,6 +30,11 @@ import H3ONode from './particles/H3ONode.js';
 import OHNode from './particles/OHNode.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import PHScaleConstants from '../PHScaleConstants.js';
+import AccessibleListNode from '../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -118,7 +123,38 @@ export default class ParticleCountsNode extends Node {
     const backgroundH2O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, combineOptions<RectangleOptions>(
       {}, backgroundOptions, { fill: PHScaleColors.h2OBackgroundColorProperty } ) );
 
+    const particleCountsListNode = new AccessibleListNode( [
+      {
+        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.beakerControls.particleCountValues.h3OPatternStringProperty, {
+          value: new DerivedProperty( [ derivedProperties.particleCountH3OProperty, PhScaleStrings.a11y.scientificNotationPatternStringProperty ],
+            ( count, string ) => {
+            const scientificNotation = ScientificNotationNode.toScientificNotation( count, { mantissaDecimalPlaces: 2 } );
+            return StringUtils.fillIn( string, { mantissa: scientificNotation.mantissa, exponent: scientificNotation.exponent } );
+            } )
+        } )
+      },
+      {
+        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.beakerControls.particleCountValues.oHPatternStringProperty, {
+          value: new DerivedProperty( [ derivedProperties.particleCountOHProperty, PhScaleStrings.a11y.scientificNotationPatternStringProperty ],
+            ( count, string ) => {
+              const scientificNotation = ScientificNotationNode.toScientificNotation( count, { mantissaDecimalPlaces: 2 } );
+              return StringUtils.fillIn( string, { mantissa: scientificNotation.mantissa, exponent: scientificNotation.exponent } );
+            } )
+        } )
+      },
+      {
+        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.beakerControls.particleCountValues.waterPatternStringProperty, {
+          value: new DerivedProperty( [ derivedProperties.particleCountH2OProperty, PhScaleStrings.a11y.scientificNotationPatternStringProperty ],
+            ( count, string ) => {
+              const scientificNotation = ScientificNotationNode.toScientificNotation( count, { mantissaDecimalPlaces: 2 } );
+              return StringUtils.fillIn( string, { mantissa: scientificNotation.mantissa, exponent: scientificNotation.exponent } );
+            } )
+        } )
+      }
+    ] );
+
     options.children = [
+      particleCountsListNode,
       backgroundH3O, hboxH3O,
       backgroundOH, hboxOH,
       backgroundH2O, hboxH2O

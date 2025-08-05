@@ -162,6 +162,11 @@ type StringsType = {
       };
       'particleCountsCheckbox': {
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      };
+      'particleCountValues': {
+        'h3OPatternStringProperty': LocalizedStringProperty;
+        'oHPatternStringProperty': LocalizedStringProperty;
+        'waterPatternStringProperty': LocalizedStringProperty;
       }
     };
     'graph': {

@@ -53,6 +53,7 @@ import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Faucet from '../../common/model/Faucet.js';
 import { roundToInterval } from '../../../../dot/js/util/roundToInterval.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
+import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtterance.js';
 
 // constants
 const BACKGROUND_ENABLED_FILL_PROPERTY = PHScaleColors.pHProbeColorProperty;
@@ -116,14 +117,17 @@ export default class MacroPHMeterNode extends Node {
      * When the probe is in the solution we only want to announce the pH value when the dropper or faucets
      * are not dispensing, and therefore pH value is not changing rapidly. For this scenario we use a Multilink.
      */
+    const responseUtterance = new ValueChangeUtterance();
     Multilink.multilink( [ meter.pHProperty, dropper.isDispensingProperty, waterFaucet.flowRateProperty, drainFaucet.flowRateProperty ],
       ( pH, dropperIsDispensing, waterFaucetFlowRate, drainFaucetFlowRate ) => {
         if ( pH !== null ) {
           if ( probeNode.isInSolution() ) {
-            !dropperIsDispensing && waterFaucetFlowRate === 0 && drainFaucetFlowRate === 0 && probeNode.addAccessibleContextResponse(
-              StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+            if ( !dropperIsDispensing && waterFaucetFlowRate === 0 && drainFaucetFlowRate === 0 ) {
+              responseUtterance.alert = StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
                 pHValue: roundToInterval( pH, 0.01 )
-              } ), 'queue' );
+              } );
+              probeNode.addAccessibleContextResponse( responseUtterance, 'queue' );
+            }
           }
         }
       } );
@@ -133,24 +137,26 @@ export default class MacroPHMeterNode extends Node {
     meter.pHProperty.link( pH => {
       if ( pH !== null ) {
         if ( probeNode.isInWater() ) {
-          probeNode.addAccessibleContextResponse( StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+          responseUtterance.alert = StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
             pHValue: roundToInterval( pH, 0.01 )
-          } ), 'queue' );
+          } );
+
         }
         if ( probeNode.isInDropperSolution() ) {
-          probeNode.addAccessibleContextResponse( StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+          responseUtterance.alert = StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
             pHValue: roundToInterval( pH, 0.01 )
-          } ), 'queue' );
+          } );
         }
         if ( probeNode.isInDrainFluid() ) {
-          probeNode.addAccessibleContextResponse( StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+          responseUtterance.alert = StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
             pHValue: roundToInterval( pH, 0.01 )
-          } ), 'queue' );
+          } );
         }
       }
       else {
-        probeNode.addAccessibleContextResponse( PhScaleStrings.a11y.pHValueUnknownStringProperty );
+        responseUtterance.alert = PhScaleStrings.a11y.pHValueUnknownStringProperty;
       }
+      probeNode.addAccessibleContextResponse( responseUtterance, 'queue' );
     } );
     this.probeNode = probeNode;
 

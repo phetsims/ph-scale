@@ -61,7 +61,7 @@ type LinearGraphNodeOptions = SelfOptions & NodeTranslationOptions & PickRequire
 
 export default class LinearGraphNode extends Node {
 
-  private readonly exponentProperty: NumberProperty;
+  public readonly exponentProperty: NumberProperty;
 
   // We expose this node to be able to pull it out for pdom order.
   public readonly zoomButtonGroup: Node;

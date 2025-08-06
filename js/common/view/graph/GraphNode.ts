@@ -2,7 +2,7 @@
 
 /**
  * Container for all components related to the graph feature.
- * It has an expand/collapse bar at the top of it, and can switch between 'concentration' and 'quantity'.
+ * It has an expand/collapse bar at the top and can switch between 'concentration' and 'quantity'.
  * Logarithmic graph is the standard scale. Interactivity and a linear scale are optional.
  * Origin is at top-left of the expand/collapse bar.
  *
@@ -28,6 +28,8 @@ import PhScaleStrings from '../../../PhScaleStrings.js';
 import AccessibleListNode from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
 import PatternStringProperty from '../../../../../axon/js/PatternStringProperty.js';
 import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
+import PHScaleConstants from '../../PHScaleConstants.js';
+import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
 
 type SelfOptions = {
   logScaleHeight?: number;
@@ -103,24 +105,15 @@ export default class GraphNode extends Node {
       y: 30, // y, not top
       tandem: options.tandem.createTandem( 'logarithmicGraphNode' )
     } );
+    const logarithmicRangeMinPatternStringProperty = new PatternStringProperty( PhScaleStrings.a11y.graph.rangeListItem.baseToExponentPatternStringProperty, {
+      exponent: PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min
+    } );
+    const logarithmicRangeMaxPatternStringProperty = new PatternStringProperty( PhScaleStrings.a11y.graph.rangeListItem.baseToExponentPatternStringProperty, {
+      exponent: PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max
+    } );
 
-    // parent for things whose visibility will be controlled by expandProperty
-    const graphDescriptionListNode = new AccessibleListNode( [
-      {
-        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.waterListItemPatternStringProperty, {
-          value: new DerivedProperty( [ graphUnitsProperty, derivedProperties.concentrationH2OProperty,
-              derivedProperties.quantityH2OProperty, PhScaleStrings.a11y.unknownStringProperty ],
-            ( graphUnits, concentrationH2O, quantityH2O, unknownString ) =>
-              concentrationH2O === null || quantityH2O === null ? unknownString :
-              graphUnits === GraphUnits.MOLES_PER_LITER ? concentrationH2O : quantityH2O ),
-          units: new DerivedProperty( [ graphUnitsProperty, PhScaleStrings.a11y.graph.units.molesPerLiterStringProperty, PhScaleStrings.a11y.graph.units.molesStringProperty ],
-            ( graphUnits, molesPerLiterString, molesString ) => graphUnits === GraphUnits.MOLES_PER_LITER ? molesPerLiterString : molesString )
-        } )
-      }
-    ] );
-    pdomOrder.push( graphDescriptionListNode );
     const parentNode = new Node( {
-      children: [ lineToPanel, logarithmicGraphNode, graphDescriptionListNode ],
+      children: [ lineToPanel, logarithmicGraphNode ],
       centerX: graphControlPanel.centerX,
       y: graphControlPanel.bottom // y, not top
     } );
@@ -134,6 +127,9 @@ export default class GraphNode extends Node {
     // optional linear graph
     let linearGraphNode: LinearGraphNode;
     let graphScaleProperty: EnumerationProperty<GraphScale>;
+    let scaleTypeStringProperty: TReadOnlyProperty<string> = PhScaleStrings.a11y.graph.scaleListItem.logarithmicStringProperty;
+    let scaleRangeMinStringProperty: TReadOnlyProperty<string> = logarithmicRangeMinPatternStringProperty;
+    let scaleRangeMaxStringProperty: TReadOnlyProperty<string> = logarithmicRangeMaxPatternStringProperty;
     if ( options.hasLinearFeature ) {
 
       // scale (log, linear) of the graph
@@ -141,6 +137,9 @@ export default class GraphNode extends Node {
         tandem: options.tandem.createTandem( 'graphScaleProperty' ),
         phetioFeatured: true
       } );
+      scaleTypeStringProperty = new DerivedProperty( [ graphScaleProperty, PhScaleStrings.a11y.graph.scaleListItem.logarithmicStringProperty,
+          PhScaleStrings.a11y.graph.scaleListItem.linearStringProperty ],
+        ( graphScale, logarithmicString, linearString ) => graphScale === GraphScale.LOGARITHMIC ? logarithmicString : linearString );
 
       // linear graph
       linearGraphNode = new LinearGraphNode( derivedProperties, graphUnitsProperty, {
@@ -149,6 +148,23 @@ export default class GraphNode extends Node {
         centerX: logarithmicGraphNode.centerX,
         tandem: options.tandem.createTandem( 'linearGraphNode' )
       } );
+
+      // Create the range string Properties, which depend on the graphScaleProperty and exponentProperty
+      // The linear range is 0 and will always be zero even as we zoom in and out. So we will not use scientific notation for the min.
+      const linearScaleRangeMinString = `${PHScaleConstants.LINEAR_MANTISSA_RANGE.min}`;
+      const linearScaleRangeMaxStringProperty = new DerivedProperty( [ PhScaleStrings.a11y.scientificNotationPatternStringProperty, linearGraphNode.exponentProperty ],
+        ( scientificNotationPattern, exponent ) => StringUtils.fillIn( scientificNotationPattern, {
+          mantissa: PHScaleConstants.LINEAR_MANTISSA_RANGE.max,
+          exponent: exponent
+        } ) );
+
+      // Redefine the scaleRange string Properties to use the logarithmic or linear range depending on the graphScaleProperty
+      scaleRangeMinStringProperty = new DerivedProperty( [ graphScaleProperty, logarithmicRangeMinPatternStringProperty ],
+        ( graphScale, logarithmicMinPatternString ) =>
+          graphScale === GraphScale.LOGARITHMIC ? logarithmicMinPatternString : linearScaleRangeMinString );
+      scaleRangeMaxStringProperty = new DerivedProperty( [ graphScaleProperty, logarithmicRangeMaxPatternStringProperty, linearScaleRangeMaxStringProperty ],
+        ( graphScale, logarithmicMaxPatternString, linearMaxPatternString ) =>
+          graphScale === GraphScale.LOGARITHMIC ? logarithmicMaxPatternString : linearMaxPatternString );
 
       // scale switch (Logarithmic vs Linear)
       const graphScaleSwitch = new GraphScaleSwitch( graphScaleProperty, {
@@ -185,6 +201,34 @@ export default class GraphNode extends Node {
 
       this.controlNodes.push( graphScaleSwitch, linearGraphNode.zoomButtonGroup );
     }
+
+    const graphDescriptionListNode = new AccessibleListNode( [
+      {
+        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.scaleListItem.patternStringProperty, {
+          type: scaleTypeStringProperty
+        } )
+      },
+      {
+        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.rangeListItem.patternStringProperty, {
+          min: scaleRangeMinStringProperty,
+          max: scaleRangeMaxStringProperty
+        } )
+      },
+      {
+        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.waterListItemPatternStringProperty, {
+          value: new DerivedProperty( [ graphUnitsProperty, derivedProperties.concentrationH2OProperty,
+              derivedProperties.quantityH2OProperty, PhScaleStrings.a11y.unknownStringProperty ],
+            ( graphUnits, concentrationH2O, quantityH2O, unknownString ) =>
+              concentrationH2O === null || quantityH2O === null ? unknownString :
+              graphUnits === GraphUnits.MOLES_PER_LITER ? concentrationH2O : quantityH2O ),
+          units: new DerivedProperty( [ graphUnitsProperty, PhScaleStrings.a11y.graph.units.molesPerLiterStringProperty,
+              PhScaleStrings.a11y.graph.units.molesStringProperty ],
+            ( graphUnits, molesPerLiterString, molesString ) => graphUnits === GraphUnits.MOLES_PER_LITER ? molesPerLiterString : molesString )
+        } )
+      }
+    ] );
+    parentNode.addChild( graphDescriptionListNode );
+    pdomOrder.push( graphDescriptionListNode );
     pdomOrder.push( logarithmicGraphNode );
 
     this.mutate( options );

@@ -47,8 +47,10 @@ export default class MacroScreenView extends ScreenView {
     } );
 
     // solution in the beaker
-    const solutionNode = new SolutionNode( model.solution.totalVolumeProperty, model.solution.colorProperty,
-      model.beaker, modelViewTransform );
+    const solutionNode = new SolutionNode( model.solution.totalVolumeProperty, model.solution.pHProperty,
+      model.solution.colorProperty, model.beaker, modelViewTransform, {
+        soluteProperty: model.dropper.soluteProperty
+      } );
 
     // volume indicator on the right edge of beaker
     const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.totalVolumeProperty, model.beaker, modelViewTransform, {
@@ -154,13 +156,13 @@ export default class MacroScreenView extends ScreenView {
     this.addChild( screenViewRootNode );
 
     // Layout of nodes that don't have a position specified in the model
-    soluteComboBox.left = modelViewTransform.modelToViewX( model.beaker.left ) - 20; // anchor on left, so it grows to the right during i18n
+    soluteComboBox.left = modelViewTransform.modelToViewX( model.beaker.left ) - 20; // anchor on the left, so it grows to the right during i18n
     soluteComboBox.top = this.layoutBounds.top + 15;
     resetAllButton.right = this.layoutBounds.right - 40;
     resetAllButton.bottom = this.layoutBounds.bottom - 20;
 
     // Keep the neutral indicator centered in the bottom of the beaker.
-    neutralIndicatorNode.boundsProperty.link( bounds => {
+    neutralIndicatorNode.boundsProperty.link( () => {
       neutralIndicatorNode.centerX = beakerNode.centerX;
       neutralIndicatorNode.bottom = beakerNode.bottom - 30;
     } );
@@ -170,6 +172,7 @@ export default class MacroScreenView extends ScreenView {
     // Play Area focus order
     this.pdomPlayAreaNode.pdomOrder = [
       pHMeterNode,
+      solutionNode,
       beakerControlsHeading
     ];
 

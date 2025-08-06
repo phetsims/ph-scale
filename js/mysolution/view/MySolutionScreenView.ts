@@ -48,8 +48,11 @@ export default class MySolutionScreenView extends ScreenView {
     } );
 
     // solution in the beaker
-    const solutionNode = new SolutionNode( model.solution.totalVolumeProperty, model.solution.colorProperty,
-      model.beaker, modelViewTransform );
+    const solutionNode = new SolutionNode( model.solution.totalVolumeProperty, model.solution.pHProperty,
+      model.solution.colorProperty, model.beaker, modelViewTransform, {
+        quantityH3OProperty: model.solution.derivedProperties.quantityH3OProperty,
+        quantityOHProperty: model.solution.derivedProperties.quantityOHProperty
+      } );
 
     // volume indicator along the right edge of the beaker
     const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.totalVolumeProperty, model.beaker, modelViewTransform, {
@@ -135,6 +138,7 @@ export default class MySolutionScreenView extends ScreenView {
     // Play Area focus order
     this.pdomPlayAreaNode.pdomOrder = [
       pHAccordionBox,
+      solutionNode,
       beakerControlPanel,
       graphNode
     ];

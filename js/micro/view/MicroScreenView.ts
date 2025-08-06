@@ -58,8 +58,12 @@ export default class MicroScreenView extends ScreenView {
     } );
 
     // solution
-    const solutionNode = new SolutionNode( model.solution.totalVolumeProperty, model.solution.colorProperty,
-      model.beaker, modelViewTransform );
+    const solutionNode = new SolutionNode( model.solution.totalVolumeProperty, model.solution.pHProperty, model.solution.colorProperty,
+      model.beaker, modelViewTransform, {
+        quantityH3OProperty: model.solution.derivedProperties.quantityH3OProperty,
+        quantityOHProperty: model.solution.derivedProperties.quantityOHProperty,
+        soluteProperty: model.dropper.soluteProperty
+      } );
 
     // volume indicator on right side of beaker
     const volumeIndicatorNode = new VolumeIndicatorNode( model.solution.totalVolumeProperty, model.beaker, modelViewTransform, {
@@ -206,6 +210,7 @@ export default class MicroScreenView extends ScreenView {
     // Play Area focus order
     this.pdomPlayAreaNode.pdomOrder = [
       pHAccordionBox,
+      solutionNode,
       beakerControlsHeading,
       graphNode
     ];

@@ -122,6 +122,17 @@ type StringsType = {
     'mySolutionProbe': {
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
     };
+    'beaker': {
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'emptyStringProperty': LocalizedStringProperty;
+      'solutionPatternStringProperty': LocalizedStringProperty;
+      'waterPatternStringProperty': LocalizedStringProperty;
+      'ionComparisonPatternStringProperty': LocalizedStringProperty;
+      'lessThanStringProperty': LocalizedStringProperty;
+      'greaterThanStringProperty': LocalizedStringProperty;
+      'equalToStringProperty': LocalizedStringProperty;
+      'unknownSolutionStringProperty': LocalizedStringProperty;
+    };
     'beakerControls': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
       'soluteComboBox': {

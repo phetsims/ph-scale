@@ -30,6 +30,8 @@ import PatternStringProperty from '../../../../../axon/js/PatternStringProperty.
 import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
+import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
+import { toFixed } from '../../../../../dot/js/util/toFixed.js';
 
 type SelfOptions = {
   logScaleHeight?: number;
@@ -202,6 +204,22 @@ export default class GraphNode extends Node {
       this.controlNodes.push( graphScaleSwitch, linearGraphNode.zoomButtonGroup );
     }
 
+    // Description list for the graph
+    const h3OConcentrationScientificNotationProperty = new DerivedProperty( [ derivedProperties.concentrationH3OProperty ],
+      h3OConcentration => h3OConcentration !== null ? ScientificNotationNode.toScientificNotation( h3OConcentration ) :
+        { mantissa: 'null', exponent: 'null' } );
+    const h3OQuantityScientificNotationProperty = new DerivedProperty( [ derivedProperties.quantityH3OProperty ],
+      h3OQuantity => h3OQuantity !== null ? ScientificNotationNode.toScientificNotation( h3OQuantity ) :
+        { mantissa: 'null', exponent: 'null' } );
+    const oHMinusConcentrationScientificNotationProperty = new DerivedProperty( [ derivedProperties.concentrationOHProperty ],
+      oHMinusConcentration => oHMinusConcentration !== null ? ScientificNotationNode.toScientificNotation( oHMinusConcentration ) :
+        { mantissa: 'null', exponent: 'null' } );
+    const oHMinusQuantityScientificNotationProperty = new DerivedProperty( [ derivedProperties.quantityOHProperty ],
+      oHMinusQuantity => oHMinusQuantity !== null ? ScientificNotationNode.toScientificNotation( oHMinusQuantity ) :
+        { mantissa: 'null', exponent: 'null' } );
+    const unitsStringProperty = new DerivedProperty( [ graphUnitsProperty, PhScaleStrings.a11y.graph.units.molesPerLiterStringProperty, PhScaleStrings.a11y.graph.units.molesStringProperty ],
+      ( graphUnits, molesPerLiterString, molesString ) => graphUnits === GraphUnits.MOLES_PER_LITER ? molesPerLiterString : molesString );
+    const beakerHasLiquidProperty = DerivedProperty.valueNotEqualsConstant( totalVolumeProperty, 0 );
     const graphDescriptionListNode = new AccessibleListNode( [
       {
         stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.scaleListItem.patternStringProperty, {
@@ -215,16 +233,43 @@ export default class GraphNode extends Node {
         } )
       },
       {
+        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.h3OListItemPatternStringProperty, {
+          value: new PatternStringProperty( PhScaleStrings.a11y.scientificNotationPatternStringProperty, {
+            mantissa: new DerivedProperty( [ h3OConcentrationScientificNotationProperty, h3OQuantityScientificNotationProperty, graphUnitsProperty ],
+              ( concentrationH3O, quantityH3O, graphUnits ) => graphUnits === GraphUnits.MOLES_PER_LITER ?
+                                                               concentrationH3O.mantissa : quantityH3O.mantissa ),
+            exponent: new DerivedProperty( [ h3OConcentrationScientificNotationProperty, h3OQuantityScientificNotationProperty, graphUnitsProperty ],
+              ( concentrationH3O, quantityH3O, graphUnits ) => graphUnits === GraphUnits.MOLES_PER_LITER ?
+                                                               concentrationH3O.exponent : quantityH3O.exponent )
+          } ),
+          units: unitsStringProperty
+        } ),
+        visibleProperty: beakerHasLiquidProperty
+      },
+      {
+        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.oHMinusListItemPatternStringProperty, {
+          value: new PatternStringProperty( PhScaleStrings.a11y.scientificNotationPatternStringProperty, {
+            mantissa: new DerivedProperty( [ oHMinusConcentrationScientificNotationProperty, oHMinusQuantityScientificNotationProperty, graphUnitsProperty ],
+              ( concentrationOH, quantityOH, graphUnits ) => graphUnits === GraphUnits.MOLES_PER_LITER ?
+                                                               concentrationOH.mantissa : quantityOH.mantissa ),
+            exponent: new DerivedProperty( [ oHMinusConcentrationScientificNotationProperty, oHMinusQuantityScientificNotationProperty, graphUnitsProperty ],
+              ( concentrationOH, quantityOH, graphUnits ) => graphUnits === GraphUnits.MOLES_PER_LITER ?
+                                                               concentrationOH.exponent : quantityOH.exponent )
+          } ),
+          units: unitsStringProperty
+        } ),
+        visibleProperty: beakerHasLiquidProperty
+      },
+      {
         stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.waterListItemPatternStringProperty, {
           value: new DerivedProperty( [ graphUnitsProperty, derivedProperties.concentrationH2OProperty,
-              derivedProperties.quantityH2OProperty, PhScaleStrings.a11y.unknownStringProperty ],
-            ( graphUnits, concentrationH2O, quantityH2O, unknownString ) =>
-              concentrationH2O === null || quantityH2O === null ? unknownString :
-              graphUnits === GraphUnits.MOLES_PER_LITER ? concentrationH2O : quantityH2O ),
-          units: new DerivedProperty( [ graphUnitsProperty, PhScaleStrings.a11y.graph.units.molesPerLiterStringProperty,
-              PhScaleStrings.a11y.graph.units.molesStringProperty ],
-            ( graphUnits, molesPerLiterString, molesString ) => graphUnits === GraphUnits.MOLES_PER_LITER ? molesPerLiterString : molesString )
-        } )
+              derivedProperties.quantityH2OProperty ],
+            ( graphUnits, concentrationH2O, quantityH2O ) =>
+              concentrationH2O === null || quantityH2O === null ? 'null' :
+              graphUnits === GraphUnits.MOLES_PER_LITER ? toFixed( concentrationH2O, 0 ) : toFixed( quantityH2O, 0 ) ),
+          units: unitsStringProperty
+        } ),
+        visibleProperty: beakerHasLiquidProperty
       }
     ] );
     parentNode.addChild( graphDescriptionListNode );

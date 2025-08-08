@@ -30,7 +30,7 @@ import PatternStringProperty from '../../../../../axon/js/PatternStringProperty.
 import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
-import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
+import { ScientificNotation } from '../../../../../scenery-phet/js/ScientificNotationNode.js';
 import { toFixed } from '../../../../../dot/js/util/toFixed.js';
 
 type SelfOptions = {
@@ -205,18 +205,7 @@ export default class GraphNode extends Node {
     }
 
     // Description list for the graph
-    const h3OConcentrationScientificNotationProperty = new DerivedProperty( [ derivedProperties.concentrationH3OProperty ],
-      h3OConcentration => h3OConcentration !== null ? ScientificNotationNode.toScientificNotation( h3OConcentration ) :
-        { mantissa: 'null', exponent: 'null' } );
-    const h3OQuantityScientificNotationProperty = new DerivedProperty( [ derivedProperties.quantityH3OProperty ],
-      h3OQuantity => h3OQuantity !== null ? ScientificNotationNode.toScientificNotation( h3OQuantity ) :
-        { mantissa: 'null', exponent: 'null' } );
-    const oHMinusConcentrationScientificNotationProperty = new DerivedProperty( [ derivedProperties.concentrationOHProperty ],
-      oHMinusConcentration => oHMinusConcentration !== null ? ScientificNotationNode.toScientificNotation( oHMinusConcentration ) :
-        { mantissa: 'null', exponent: 'null' } );
-    const oHMinusQuantityScientificNotationProperty = new DerivedProperty( [ derivedProperties.quantityOHProperty ],
-      oHMinusQuantity => oHMinusQuantity !== null ? ScientificNotationNode.toScientificNotation( oHMinusQuantity ) :
-        { mantissa: 'null', exponent: 'null' } );
+
     const unitsStringProperty = new DerivedProperty( [ graphUnitsProperty, PhScaleStrings.a11y.graph.units.molesPerLiterStringProperty, PhScaleStrings.a11y.graph.units.molesStringProperty ],
       ( graphUnits, molesPerLiterString, molesString ) => graphUnits === GraphUnits.MOLES_PER_LITER ? molesPerLiterString : molesString );
     const beakerHasLiquidProperty = DerivedProperty.valueNotEqualsConstant( totalVolumeProperty, 0 );
@@ -234,28 +223,16 @@ export default class GraphNode extends Node {
       },
       {
         stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.h3OListItemPatternStringProperty, {
-          value: new PatternStringProperty( PhScaleStrings.a11y.scientificNotationPatternStringProperty, {
-            mantissa: new DerivedProperty( [ h3OConcentrationScientificNotationProperty, h3OQuantityScientificNotationProperty, graphUnitsProperty ],
-              ( concentrationH3O, quantityH3O, graphUnits ) => graphUnits === GraphUnits.MOLES_PER_LITER ?
-                                                               concentrationH3O.mantissa : quantityH3O.mantissa ),
-            exponent: new DerivedProperty( [ h3OConcentrationScientificNotationProperty, h3OQuantityScientificNotationProperty, graphUnitsProperty ],
-              ( concentrationH3O, quantityH3O, graphUnits ) => graphUnits === GraphUnits.MOLES_PER_LITER ?
-                                                               concentrationH3O.exponent : quantityH3O.exponent )
-          } ),
+          value: GraphNode.createScientificNotationStringProperty( derivedProperties.concentrationH3OScientificNotationProperty,
+            derivedProperties.quantityH3OScientificNotationProperty, graphUnitsProperty ),
           units: unitsStringProperty
         } ),
         visibleProperty: beakerHasLiquidProperty
       },
       {
         stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.oHMinusListItemPatternStringProperty, {
-          value: new PatternStringProperty( PhScaleStrings.a11y.scientificNotationPatternStringProperty, {
-            mantissa: new DerivedProperty( [ oHMinusConcentrationScientificNotationProperty, oHMinusQuantityScientificNotationProperty, graphUnitsProperty ],
-              ( concentrationOH, quantityOH, graphUnits ) => graphUnits === GraphUnits.MOLES_PER_LITER ?
-                                                               concentrationOH.mantissa : quantityOH.mantissa ),
-            exponent: new DerivedProperty( [ oHMinusConcentrationScientificNotationProperty, oHMinusQuantityScientificNotationProperty, graphUnitsProperty ],
-              ( concentrationOH, quantityOH, graphUnits ) => graphUnits === GraphUnits.MOLES_PER_LITER ?
-                                                               concentrationOH.exponent : quantityOH.exponent )
-          } ),
+          value: GraphNode.createScientificNotationStringProperty( derivedProperties.concentrationOHScientificNotationProperty,
+            derivedProperties.quantityOHScientificNotationProperty, graphUnitsProperty ),
           units: unitsStringProperty
         } ),
         visibleProperty: beakerHasLiquidProperty
@@ -313,6 +290,19 @@ export default class GraphNode extends Node {
 
   public reset(): void {
     this.resetGraphNode();
+  }
+
+  public static createScientificNotationStringProperty( concentrationProperty: TReadOnlyProperty<ScientificNotation>,
+                                                        quantityProperty: TReadOnlyProperty<ScientificNotation>,
+                                                        graphUnitsProperty: TReadOnlyProperty<GraphUnits> ): TReadOnlyProperty<string> {
+    return new PatternStringProperty( PhScaleStrings.a11y.scientificNotationPatternStringProperty, {
+      mantissa: new DerivedProperty( [ concentrationProperty, quantityProperty, graphUnitsProperty ],
+        ( concentration, quantity, graphUnits ) => graphUnits === GraphUnits.MOLES_PER_LITER ?
+                                                   concentration.mantissa : quantity.mantissa ),
+      exponent: new DerivedProperty( [ concentrationProperty, quantityProperty, graphUnitsProperty ],
+        ( concentration, quantity, graphUnits ) => graphUnits === GraphUnits.MOLES_PER_LITER ?
+                                                   concentration.exponent : quantity.exponent )
+    } );
   }
 }
 

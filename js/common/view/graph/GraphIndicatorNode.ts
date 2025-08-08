@@ -267,8 +267,8 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
       combineOptions<GraphIndicatorNodeOptions>( {
         backgroundFill: PHScaleColors.acidicColorProperty,
         pointerPosition: 'topRight',
-        accessibleName: options.isInteractive ? PhScaleStrings.a11y.graph.h3OIndicator.accessibleNameStringProperty : null,
-        accessibleHelpText: options.isInteractive ? PhScaleStrings.a11y.graph.h3OIndicator.accessibleHelpTextStringProperty : null
+        accessibleName: options.isInteractive ? PhScaleStrings.a11y.graph.indicatorH3O.accessibleNameStringProperty : null,
+        accessibleHelpText: options.isInteractive ? PhScaleStrings.a11y.graph.indicatorH3O.accessibleHelpTextStringProperty : null
       }, options ) );
   }
 
@@ -283,8 +283,8 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
       combineOptions<GraphIndicatorNodeOptions>( {
         backgroundFill: PHScaleColors.basicColorProperty,
         pointerPosition: 'topLeft',
-        accessibleName: options.isInteractive ? PhScaleStrings.a11y.graph.oHIndicator.accessibleNameStringProperty : null,
-        accessibleHelpText: options.isInteractive ? PhScaleStrings.a11y.graph.oHIndicator.accessibleHelpTextStringProperty : null
+        accessibleName: options.isInteractive ? PhScaleStrings.a11y.graph.indicatorOH.accessibleNameStringProperty : null,
+        accessibleHelpText: options.isInteractive ? PhScaleStrings.a11y.graph.indicatorOH.accessibleHelpTextStringProperty : null
       }, options ) );
   }
 }

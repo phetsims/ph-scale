@@ -214,12 +214,12 @@ type StringsType = {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
       };
-      'h3OIndicator': {
+      'indicatorH3O': {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
         'accessibleObjectResponseStringProperty': LocalizedStringProperty;
       };
-      'oHIndicator': {
+      'indicatorOH': {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
         'accessibleObjectResponseStringProperty': LocalizedStringProperty;

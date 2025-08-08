@@ -30,6 +30,7 @@ import VolumeIndicatorNode from '../../common/view/VolumeIndicatorNode.js';
 import phScale from '../../phScale.js';
 import MySolutionModel from '../model/MySolutionModel.js';
 import MySolutionPHAccordionBox from './MySolutionPHAccordionBox.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
 
 export default class MySolutionScreenView extends ScreenView {
 
@@ -103,9 +104,20 @@ export default class MySolutionScreenView extends ScreenView {
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
 
+    const beakerControlsHeading = new Node( {
+      pdomOrder: [
+        beakerControlPanel,
+        particleCountsNode
+      ],
+      accessibleHeading: PhScaleStrings.a11y.beakerControls.accessibleHeadingStringProperty
+    } );
+
     // Parent for all nodes added to this screen
     const screenViewRootNode = new Node( {
       children: [
+        // Accessible headings can be put anywhere in rendering order because they have no children. Put them all first.
+        beakerControlsHeading,
+
         solutionNode,
         pHAccordionBox,
         ratioNode,
@@ -139,7 +151,7 @@ export default class MySolutionScreenView extends ScreenView {
     this.pdomPlayAreaNode.pdomOrder = [
       pHAccordionBox,
       solutionNode,
-      beakerControlPanel,
+      beakerControlsHeading,
       graphNode
     ];
 

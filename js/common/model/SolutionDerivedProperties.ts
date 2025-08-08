@@ -25,6 +25,7 @@ import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import phScale from '../../phScale.js';
 import PHModel, { ConcentrationValue, PHValue } from './PHModel.js';
+import ScientificNotationNode, { ScientificNotation } from '../../../../scenery-phet/js/ScientificNotationNode.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -46,6 +47,13 @@ export default class SolutionDerivedProperties {
   public readonly particleCountH2OProperty: ReadOnlyProperty<number>;
   public readonly particleCountH3OProperty: ReadOnlyProperty<number>;
   public readonly particleCountOHProperty: ReadOnlyProperty<number>;
+
+  // The scientific notation of concentration (mol/L) and quantity (mol) of H3O+, and OH- in the solution
+  // These Properties are for a11y, to fill in pattern strings in the pdom.
+  public readonly concentrationH3OScientificNotationProperty: TReadOnlyProperty<ScientificNotation>;
+  public readonly concentrationOHScientificNotationProperty: TReadOnlyProperty<ScientificNotation>;
+  public readonly quantityH3OScientificNotationProperty: TReadOnlyProperty<ScientificNotation>;
+  public readonly quantityOHScientificNotationProperty: TReadOnlyProperty<ScientificNotation>;
 
   public constructor( pHProperty: TReadOnlyProperty<PHValue>,
                       totalVolumeProperty: TReadOnlyProperty<number>,
@@ -148,6 +156,19 @@ export default class SolutionDerivedProperties {
         phetioDocumentation: 'number of OH<sup>-</sup> ions in the solution',
         phetioHighFrequency: true
       } );
+
+    this.concentrationH3OScientificNotationProperty = new DerivedProperty( [ this.concentrationH3OProperty ],
+      h3OConcentration => h3OConcentration !== null ? ScientificNotationNode.toScientificNotation( h3OConcentration ) :
+        { mantissa: 'null', exponent: 'null' } );
+    this.quantityH3OScientificNotationProperty = new DerivedProperty( [ this.quantityH3OProperty ],
+      h3OQuantity => h3OQuantity !== null ? ScientificNotationNode.toScientificNotation( h3OQuantity ) :
+        { mantissa: 'null', exponent: 'null' } );
+    this.concentrationOHScientificNotationProperty = new DerivedProperty( [ this.concentrationOHProperty ],
+      oHMinusConcentration => oHMinusConcentration !== null ? ScientificNotationNode.toScientificNotation( oHMinusConcentration ) :
+        { mantissa: 'null', exponent: 'null' } );
+    this.quantityOHScientificNotationProperty = new DerivedProperty( [ this.quantityOHProperty ],
+      oHMinusQuantity => oHMinusQuantity !== null ? ScientificNotationNode.toScientificNotation( oHMinusQuantity ) :
+        { mantissa: 'null', exponent: 'null' } );
   }
 }
 

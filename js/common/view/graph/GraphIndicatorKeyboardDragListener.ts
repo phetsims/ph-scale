@@ -16,6 +16,7 @@ import { ConcentrationValue, PHValue } from '../../model/PHModel.js';
 import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
+import ValueChangeUtterance from '../../../../../utterance-queue/js/ValueChangeUtterance.js';
 
 export default class GraphIndicatorKeyboardDragListener extends KeyboardDragListener {
 
@@ -27,6 +28,7 @@ export default class GraphIndicatorKeyboardDragListener extends KeyboardDragList
    * @param yToValue - converts a y view coordinate to a model value
    * @param concentrationToPH - converts concentration to pH
    * @param molesToPH - converts moles + volume to pH
+   * @param objectResponseStringProperty - for a11y
    * @param tandem
    */
   public constructor( graphIndicatorNode: GraphIndicatorNode,
@@ -36,11 +38,15 @@ export default class GraphIndicatorKeyboardDragListener extends KeyboardDragList
                       yToValue: ( y: number ) => number,
                       concentrationToPH: ( concentration: ConcentrationValue ) => PHValue,
                       molesToPH: ( moles: number, volume: number ) => PHValue,
+                      objectResponseStringProperty: TReadOnlyProperty<string>,
                       tandem: Tandem ) {
+    const objectResponseUtterance = new ValueChangeUtterance( {
+      alert: objectResponseStringProperty
+    } );
     super( {
       keyboardDragDirection: 'upDown', // constrained to vertical dragging
-      drag: ( event, listener ) => GraphIndicatorDragListener.doDrag( graphIndicatorNode.y + listener.modelDelta.y, graphIndicatorNode, pHProperty,
-        totalVolumeProperty.value, graphUnitsProperty.value, yToValue, concentrationToPH, molesToPH ),
+      drag: ( event, listener ) => GraphIndicatorDragListener.doDrag( graphIndicatorNode.y + listener.modelDelta.y, graphIndicatorNode, objectResponseUtterance,
+        pHProperty, totalVolumeProperty.value, graphUnitsProperty.value, yToValue, concentrationToPH, molesToPH ),
 
       // Drag speed, in view coordinates per second.
       dragSpeed: 300,

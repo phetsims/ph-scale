@@ -9,7 +9,6 @@
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Property from '../../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
-import Utils from '../../../../../dot/js/Utils.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
 import DragListener from '../../../../../scenery/js/listeners/DragListener.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
@@ -18,6 +17,11 @@ import { ConcentrationValue, PHValue } from '../../model/PHModel.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
+import { numberOfDecimalPlaces } from '../../../../../dot/js/util/numberOfDecimalPlaces.js';
+import { roundToInterval } from '../../../../../dot/js/util/roundToInterval.js';
+import { clamp } from '../../../../../dot/js/util/clamp.js';
+import ValueChangeUtterance from '../../../../../utterance-queue/js/ValueChangeUtterance.js';
+import Utterance from '../../../../../utterance-queue/js/Utterance.js';
 
 export default class GraphIndicatorDragListener extends DragListener {
 
@@ -29,6 +33,7 @@ export default class GraphIndicatorDragListener extends DragListener {
    * @param yToValue - converts a y view coordinate to a model value
    * @param concentrationToPH - converts concentration to pH
    * @param molesToPH - converts moles + volume to pH
+   * @param objectResponseStringProperty - for a11y
    * @param startCallback - called when drag starts
    * @param tandem
    */
@@ -39,11 +44,14 @@ export default class GraphIndicatorDragListener extends DragListener {
                       yToValue: ( y: number ) => number,
                       concentrationToPH: ( concentration: ConcentrationValue ) => PHValue,
                       molesToPH: ( moles: number, volume: number ) => PHValue,
+                      objectResponseStringProperty: TReadOnlyProperty<string>,
                       startCallback: () => void,
                       tandem: Tandem ) {
 
     let clickYOffset: number; // y-offset between initial click and indicator's origin
-
+    const objectResponseUtterance = new ValueChangeUtterance( {
+      alert: objectResponseStringProperty
+    } );
     super( {
 
       allowTouchSnag: true,
@@ -64,7 +72,7 @@ export default class GraphIndicatorDragListener extends DragListener {
         // Adjust the y-coordinate for the offset between the pointer and the indicator's origin
         const yView = yPointer - clickYOffset;
 
-        GraphIndicatorDragListener.doDrag( yView, graphIndicatorNode, pHProperty, totalVolumeProperty.value,
+        GraphIndicatorDragListener.doDrag( yView, graphIndicatorNode, objectResponseUtterance, pHProperty, totalVolumeProperty.value,
           graphUnitsProperty.value, yToValue, concentrationToPH, molesToPH );
       },
 
@@ -79,6 +87,7 @@ export default class GraphIndicatorDragListener extends DragListener {
    */
   public static doDrag( yView: number,
                         graphIndicatorNode: GraphIndicatorNode,
+                        objectResponseUtterance: Utterance,
                         pHProperty: Property<number>,
                         totalVolume: number,
                         graphUnits: GraphUnits,
@@ -102,8 +111,8 @@ export default class GraphIndicatorDragListener extends DragListener {
       const exponent = +scientificNotation.exponent - PHScaleConstants.LOGARITHMIC_MANTISSA_DECIMAL_PLACES;
       const interval = Math.pow( 10, exponent );
 
-      assert && assert( Utils.numberOfDecimalPlaces( interval ) <= 100, 'Number of decimal places: ' + Utils.numberOfDecimalPlaces( interval ) + ', yView: ' + yView + ', value: ' + value + ', exponent: ' + exponent + ', interval: ' + interval + ', totalVolume = ' + totalVolume + ', graphUnits = ' + graphUnits );
-      let adjustedValue = Utils.roundToInterval( value, interval );
+      assert && assert( numberOfDecimalPlaces( interval ) <= 100, 'Number of decimal places: ' + numberOfDecimalPlaces( interval ) + ', yView: ' + yView + ', value: ' + value + ', exponent: ' + exponent + ', interval: ' + interval + ', totalVolume = ' + totalVolume + ', graphUnits = ' + graphUnits );
+      let adjustedValue = roundToInterval( value, interval );
 
       // Workaround for https://github.com/phetsims/ph-scale/issues/225.
       // For one value (9.9e-8), the precision of what we're displaying results in a situation where we have
@@ -120,12 +129,13 @@ export default class GraphIndicatorDragListener extends DragListener {
 
       // Constrain the pH to the valid range
       assert && assert( pH !== null, 'pH is not expected to be null here, because we checked that totalVolume !== 0 above' );
-      pH = Utils.clamp( pH!, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+      pH = clamp( pH!, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
 
       phet.log && phet.log( `value=${value} adjustedValue=${adjustedValue} pH=${pH}` );
 
       // Set the solution's pH
       pHProperty.value = pH;
+      graphIndicatorNode.addAccessibleObjectResponse( objectResponseUtterance, 'queue' );
     }
   }
 }

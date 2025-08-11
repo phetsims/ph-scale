@@ -19,11 +19,12 @@ import PhScaleStrings from '../PhScaleStrings.js';
 import MicroModel from './model/MicroModel.js';
 import MicroKeyboardHelpContent from './view/MicroKeyboardHelpContent.js';
 import MicroScreenView from './view/MicroScreenView.js';
+import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 
 export default class MicroScreen extends Screen<MicroModel, MicroScreenView> {
 
   public constructor( tandem: Tandem ) {
-
+    const activeProperty = new BooleanProperty( false );
     const options: ScreenOptions = {
 
       // ScreenOptions
@@ -45,9 +46,11 @@ export default class MicroScreen extends Screen<MicroModel, MicroScreenView> {
 
     super(
       () => new MicroModel( options.tandem.createTandem( 'model' ) ),
-      model => new MicroScreenView( model, ModelViewTransform2.createIdentity(), options.tandem.createTandem( 'view' ) ),
+      model => new MicroScreenView( model, activeProperty, ModelViewTransform2.createIdentity(), options.tandem.createTandem( 'view' ) ),
       options
     );
+
+    this.activeProperty.link( active => { activeProperty.value = active; } );
   }
 }
 

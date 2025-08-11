@@ -25,13 +25,15 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
 
   /**
    * @param pHProperty - pH of the solution
+   * @param isScreenActiveProperty - true if the screen is active
    * @param isDispensingProperty - true if the dropper is dispensing
    * @param waterFaucetFlowRateProperty - flow rate of the water faucet, in liters/second
    * @param drainFaucetFlowRateProperty - flow rate of the drain faucet, in liters/second
    * @param probeYOffset - distance from top of meter to tip of probe, in view coordinate frame
    * @param tandem
    */
-  public constructor( pHProperty: ReadOnlyProperty<PHValue>, isDispensingProperty: TReadOnlyProperty<boolean>, waterFaucetFlowRateProperty: TReadOnlyProperty<number>,
+  public constructor( pHProperty: ReadOnlyProperty<PHValue>, isScreenActiveProperty: TReadOnlyProperty<boolean>,
+                      isDispensingProperty: TReadOnlyProperty<boolean>, waterFaucetFlowRateProperty: TReadOnlyProperty<number>,
                       drainFaucetFlowRateProperty: TReadOnlyProperty<number>, probeYOffset: number, tandem: Tandem ) {
     const pHValuePatternStringProperty = new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
       pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( pHProperty )
@@ -71,7 +73,7 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
     const responseUtterance = new ValueChangeUtterance( { alert: pHValuePatternStringProperty } );
     Multilink.multilink( [ pHProperty, isDispensingProperty, waterFaucetFlowRateProperty, drainFaucetFlowRateProperty, this.accordionBox.expandedProperty ],
       ( pH, dropperIsDispensing, waterFaucetFlowRate, drainFaucetFlowRate, expanded ) => {
-        !dropperIsDispensing && waterFaucetFlowRate === 0 && drainFaucetFlowRate === 0 && expanded &&
+        isScreenActiveProperty.value && !dropperIsDispensing && waterFaucetFlowRate === 0 && drainFaucetFlowRate === 0 && expanded &&
         numberDisplay.addAccessibleContextResponse( responseUtterance, 'queue' );
       } );
   }

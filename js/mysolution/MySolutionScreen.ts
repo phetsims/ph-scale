@@ -38,6 +38,7 @@ export default class MySolutionScreen extends Screen<MySolutionModel, MySolution
         maxIconHeightProportion: 1
       } ),
       createKeyboardHelpNode: () => new MySolutionKeyboardHelpContent(),
+      screenButtonsHelpText: PhScaleStrings.a11y.mySolutionScreenButton.accessibleHelpTextStringProperty,
       isDisposable: false,
       tandem: tandem
     };

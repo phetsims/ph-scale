@@ -40,12 +40,14 @@ import phScale from '../../phScale.js';
 import MicroModel from '../model/MicroModel.js';
 import MicroPHAccordionBox from './MicroPHAccordionBox.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
+import MicroScreenSummaryContent from './MicroScreenSummaryContent.js';
 
 export default class MicroScreenView extends ScreenView {
 
   public constructor( model: MicroModel, modelViewTransform: ModelViewTransform2, tandem: Tandem ) {
 
     super( combineOptions<ScreenViewOptions>( {
+      screenSummaryContent: new MicroScreenSummaryContent( model.solution.totalVolumeProperty ),
       tandem: tandem
     }, PHScaleConstants.SCREEN_VIEW_OPTIONS ) );
 

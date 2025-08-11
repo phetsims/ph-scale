@@ -9,89 +9,35 @@
 import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
-import MacroModel from '../model/MacroModel.js';
 import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
-import MacroPHMeterNode from './MacroPHMeterNode.js';
-import AccessibleListNode from '../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
-import Solute from '../../common/model/Solute.js';
-import PHScaleConstants from '../../common/PHScaleConstants.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 export default class MacroScreenSummaryContent extends ScreenSummaryContent {
 
-  public constructor( model: MacroModel ) {
+  public constructor( totalVolumeProperty: TReadOnlyProperty<number> ) {
+    const isBeakerEmptyProperty = DerivedProperty.valueEqualsConstant( totalVolumeProperty, 0 );
 
-    const solutionNameProperty = DerivedProperty.deriveAny(
-      [ model.solution.soluteProperty, ...model.solutes.map( solute => solute.nameProperty ) ],
-      () => model.solution.soluteProperty.value.nameProperty.value );
-
-    // Derived Properties to determine which list items can be shown.
-    const isBeakerEmptyProperty = DerivedProperty.valueEqualsConstant( model.solution.totalVolumeProperty, 0 );
-    const isWaterAndBeakerNotEmptyProperty = new DerivedProperty( [ model.solution.soluteProperty, isBeakerEmptyProperty ],
-      ( solute, empty ) => solute === Solute.WATER && !empty );
-    const isNotWaterAndBeakerNotEmptyProperty = new DerivedProperty( [ model.solution.soluteProperty, isBeakerEmptyProperty ],
-      ( solute, empty ) => solute !== Solute.WATER && !empty );
-    const isNotWaterAndPHIsDefinedProperty = new DerivedProperty( [ isWaterAndBeakerNotEmptyProperty, model.pHMeter.pHProperty, isBeakerEmptyProperty ],
-      ( isWater, pH, empty ) => !isWater && pH !== null && !empty );
-    const isNotWaterAndPHIsNotDefinedProperty = new DerivedProperty( [ isWaterAndBeakerNotEmptyProperty, model.pHMeter.pHProperty, isBeakerEmptyProperty ],
-      ( isWater, pH, empty ) => !isWater && pH === null && !empty );
-
-    const currentDetailsNode = new AccessibleListNode( [
-      {
-        stringProperty: PhScaleStrings.a11y.macroScreenSummary.currentDetails.emptyBeakerStringProperty,
-        visibleProperty: isBeakerEmptyProperty
-      },
-      {
-        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.macroScreenSummary.currentDetails.beakerWithSolutionStringProperty, {
-          solute: solutionNameProperty
-        } ),
-        visibleProperty: isNotWaterAndBeakerNotEmptyProperty
-      },
-      {
-        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.qualitativePHValuePatternStringProperty, {
-          pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( model.pHMeter.pHProperty ),
-          pHDescription: MacroPHMeterNode.createPHDescriptionStringProperty( model.pHMeter.pHProperty )
-        } ),
-        visibleProperty: isNotWaterAndPHIsDefinedProperty
-      },
-      {
-        stringProperty: PhScaleStrings.a11y.pHValueUnknownStringProperty,
-        visibleProperty: isNotWaterAndPHIsNotDefinedProperty
-      },
-      {
-        stringProperty: PhScaleStrings.a11y.macroScreenSummary.currentDetails.beakerWithWaterStringProperty,
-        visibleProperty: isWaterAndBeakerNotEmptyProperty
-      },
-      {
-        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.macroScreenSummary.currentDetails.waterPHValuePatternStringProperty, {
-          pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( model.pHMeter.pHProperty )
-        } ),
-        visibleProperty: isWaterAndBeakerNotEmptyProperty
-      }
-    ], {
-      leadingParagraphStringProperty: PhScaleStrings.a11y.macroScreenSummary.currentDetails.currentlyStringProperty
-    } );
-
+    // The interaction hint changes depending on whether the beaker is empty or not.
     const interactionHintStringProperty = new DerivedStringProperty( [
-        model.solution.totalVolumeProperty,
+        isBeakerEmptyProperty,
         PhScaleStrings.a11y.macroScreenSummary.interactionHint.emptyBeakerStringProperty,
         PhScaleStrings.a11y.macroScreenSummary.interactionHint.beakerWithSolutionStringProperty
       ],
-      ( totalVolume, emptyBeaker, beakerWithSolution ) => {
-        if ( totalVolume === 0 ) {
-          return emptyBeaker;
-        }
-        else {
-          return beakerWithSolution;
-        }
-      } );
+      ( isEmpty, emptyString, withSolutionString ) => isEmpty ? emptyString : withSolutionString );
+
+    // The current details change depending on whether the beaker is empty or not.
+    const currentDetailsStringProperty = new DerivedStringProperty( [
+      isBeakerEmptyProperty,
+      PhScaleStrings.a11y.commonScreenSummary.currentDetails.emptyBeakerStringProperty,
+      PhScaleStrings.a11y.commonScreenSummary.currentDetails.beakerWithSolutionStringProperty
+    ], ( isEmpty, emptyString, withSolutionString ) => isEmpty ? emptyString : withSolutionString );
 
     super( {
       isDisposable: false,
       playAreaContent: PhScaleStrings.a11y.macroScreenSummary.playAreaStringProperty,
       controlAreaContent: PhScaleStrings.a11y.macroScreenSummary.controlAreaStringProperty,
-      currentDetailsContent: currentDetailsNode,
+      currentDetailsContent: currentDetailsStringProperty,
       interactionHintContent: interactionHintStringProperty
     } );
   }

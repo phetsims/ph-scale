@@ -31,12 +31,14 @@ import phScale from '../../phScale.js';
 import MySolutionModel from '../model/MySolutionModel.js';
 import MySolutionPHAccordionBox from './MySolutionPHAccordionBox.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
+import MySolutionScreenSummaryContent from './MySolutionScreenSummaryContent.js';
 
 export default class MySolutionScreenView extends ScreenView {
 
   public constructor( model: MySolutionModel, modelViewTransform: ModelViewTransform2, tandem: Tandem ) {
 
     super( combineOptions<ScreenViewOptions>( {
+      screenSummaryContent: new MySolutionScreenSummaryContent( model.solution.totalVolumeProperty ),
       tandem: tandem
     }, PHScaleConstants.SCREEN_VIEW_OPTIONS ) );
 

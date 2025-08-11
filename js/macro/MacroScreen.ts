@@ -27,6 +27,7 @@ export default class MacroScreen extends Screen<MacroModel, MacroScreenView> {
       homeScreenIcon: new MacroScreenIcon(),
       navigationBarIcon: new MacroScreenIcon(),
       createKeyboardHelpNode: () => new MacroKeyboardHelpContent(),
+      screenButtonsHelpText: PhScaleStrings.a11y.macroScreenButton.accessibleHelpTextStringProperty,
       isDisposable: false,
       tandem: tandem
     };

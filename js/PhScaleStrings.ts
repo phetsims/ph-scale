@@ -73,6 +73,21 @@ type StringsType = {
   'autoFillStringProperty': LocalizedStringProperty;
   'autoFillDescriptionStringProperty': LocalizedStringProperty;
   'a11y': {
+    'commonScreenSummary': {
+      'currentDetails': {
+        'emptyBeakerStringProperty': LocalizedStringProperty;
+        'beakerWithSolutionStringProperty': LocalizedStringProperty;
+      }
+    };
+    'macroScreenButton': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+    };
+    'microScreenButton': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+    };
+    'mySolutionScreenButton': {
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+    };
     'qualitativePHValuePatternStringProperty': LocalizedStringProperty;
     'pHValueUnknownStringProperty': LocalizedStringProperty;
     'pHValuePatternStringProperty': LocalizedStringProperty;
@@ -89,20 +104,23 @@ type StringsType = {
       'highlyAcidicStringProperty': LocalizedStringProperty;
       'extremelyAcidicStringProperty': LocalizedStringProperty;
     };
+    'microScreenSummary': {
+      'playAreaStringProperty': LocalizedStringProperty;
+      'controlAreaStringProperty': LocalizedStringProperty;
+      'interactionHintStringProperty': LocalizedStringProperty;
+    };
     'macroScreenSummary': {
       'playAreaStringProperty': LocalizedStringProperty;
       'controlAreaStringProperty': LocalizedStringProperty;
-      'currentDetails': {
-        'emptyBeakerStringProperty': LocalizedStringProperty;
-        'currentlyStringProperty': LocalizedStringProperty;
-        'beakerWithSolutionStringProperty': LocalizedStringProperty;
-        'beakerWithWaterStringProperty': LocalizedStringProperty;
-        'waterPHValuePatternStringProperty': LocalizedStringProperty;
-      };
       'interactionHint': {
         'emptyBeakerStringProperty': LocalizedStringProperty;
         'beakerWithSolutionStringProperty': LocalizedStringProperty;
       }
+    };
+    'mySolutionScreenSummary': {
+      'playAreaStringProperty': LocalizedStringProperty;
+      'controlAreaStringProperty': LocalizedStringProperty;
+      'interactionHintStringProperty': LocalizedStringProperty;
     };
     'pHMeter': {
       'headingStringProperty': LocalizedStringProperty;

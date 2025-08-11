@@ -38,7 +38,7 @@ export default class MacroScreenView extends ScreenView {
 
     super( combineOptions<ScreenViewOptions>( {
       tandem: tandem,
-      screenSummaryContent: new MacroScreenSummaryContent( model )
+      screenSummaryContent: new MacroScreenSummaryContent( model.solution.totalVolumeProperty )
     }, PHScaleConstants.SCREEN_VIEW_OPTIONS ) );
 
     // beaker

@@ -15,11 +15,10 @@ import phScale from '../../phScale.js';
 import MacroPHMeter from './MacroPHMeter.js';
 import MacroSolution from './MacroSolution.js';
 import JumpPosition from './JumpPosition.js';
-import PhScaleStrings from '../../PhScaleStrings.js';
-import Vector2Property from '../../../../dot/js/Vector2Property.js';
 import Property from '../../../../axon/js/Property.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Range from '../../../../dot/js/Range.js';
+import ProbeJumpPositions from './ProbeJumpPositions.js';
 
 export default class MacroModel extends PHModel<MacroSolution> {
 
@@ -49,38 +48,7 @@ export default class MacroModel extends PHModel<MacroSolution> {
         tandem: tandem.createTandem( 'pHMeter' )
       } );
 
-    this.probeJumpPositions = [
-
-      // Inside the beaker, bottom center.
-      new JumpPosition( {
-        positionProperty: new Vector2Property( this.beaker.position.plusXY( 0, -0.0001 ) ),
-        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.macroProbe.accessibleObjectResponses.insideBeakerStringProperty
-      } ),
-
-      // Below the water faucet, close to the spigot, and above the max solution level in the beaker.
-      new JumpPosition( {
-        positionProperty: new Vector2Property( this.waterFaucet.position.plusXY( 0, 10 ) ),
-        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.macroProbe.accessibleObjectResponses.underWaterFaucetStringProperty
-      } ),
-
-      // Below the dropper, and above the max solution level in the beaker.
-      new JumpPosition( {
-        positionProperty: new Vector2Property( this.dropper.position.plusXY( 0, 10 ) ),
-        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.macroProbe.accessibleObjectResponses.underDropperStringProperty
-      } ),
-
-      // Below the drain faucet, close to the spigot.
-      new JumpPosition( {
-        positionProperty: new Vector2Property( this.drainFaucet.position.plusXY( 0, 10 ) ),
-        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.macroProbe.accessibleObjectResponses.underDrainFaucetStringProperty
-      } ),
-
-      // Outside the beaker, where the probe is initially positioned.
-      new JumpPosition( {
-        positionProperty: new Vector2Property( this.pHMeter.probe.positionProperty.value ),
-        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.macroProbe.accessibleObjectResponses.outsideBeakerStringProperty
-      } )
-    ];
+    this.probeJumpPositions = new ProbeJumpPositions( this );
 
     // Instantiated to the last position, so that the first jump (via keyboard shortcut) wraps around
     // to the first position in the JumpToPositionListener.

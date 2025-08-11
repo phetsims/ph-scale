@@ -10,7 +10,6 @@ import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Property from '../../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
-import DragListener from '../../../../../scenery/js/listeners/DragListener.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import { ConcentrationValue, PHValue } from '../../model/PHModel.js';
@@ -22,8 +21,9 @@ import { roundToInterval } from '../../../../../dot/js/util/roundToInterval.js';
 import { clamp } from '../../../../../dot/js/util/clamp.js';
 import ValueChangeUtterance from '../../../../../utterance-queue/js/ValueChangeUtterance.js';
 import Utterance from '../../../../../utterance-queue/js/Utterance.js';
+import SoundDragListener from '../../../../../scenery-phet/js/SoundDragListener.js';
 
-export default class GraphIndicatorDragListener extends DragListener {
+export default class GraphIndicatorDragListener extends SoundDragListener {
 
   /**
    * @param graphIndicatorNode

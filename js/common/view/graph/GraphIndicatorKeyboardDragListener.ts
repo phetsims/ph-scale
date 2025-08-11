@@ -9,7 +9,6 @@
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Property from '../../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
-import KeyboardDragListener from '../../../../../scenery/js/listeners/KeyboardDragListener.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import { ConcentrationValue, PHValue } from '../../model/PHModel.js';
@@ -17,8 +16,9 @@ import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
 import ValueChangeUtterance from '../../../../../utterance-queue/js/ValueChangeUtterance.js';
+import SoundKeyboardDragListener from '../../../../../scenery-phet/js/SoundKeyboardDragListener.js';
 
-export default class GraphIndicatorKeyboardDragListener extends KeyboardDragListener {
+export default class GraphIndicatorKeyboardDragListener extends SoundKeyboardDragListener {
 
   /**
    * @param graphIndicatorNode

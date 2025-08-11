@@ -54,6 +54,7 @@ import Faucet from '../../common/model/Faucet.js';
 import { roundToInterval } from '../../../../dot/js/util/roundToInterval.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtterance.js';
+import DynamicProperty from '../../../../axon/js/DynamicProperty.js';
 
 // constants
 const BACKGROUND_ENABLED_FILL_PROPERTY = PHScaleColors.pHProbeColorProperty;
@@ -206,55 +207,6 @@ export default class MacroPHMeterNode extends Node {
   public reset(): void {
     this.probeNode.reset();
   }
-
-  // Create the qualitative pH description used in the pdom.
-  public static createPHDescriptionStringProperty( pHProperty: Property<PHValue> ): TReadOnlyProperty<string> {
-    return new DerivedProperty( [ pHProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.extremelyBasicStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.highlyBasicStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.moderatelyBasicStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.slightlyBasicStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.neutralStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.slightlyAcidicStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.moderatelyAcidicStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.highlyAcidicStringProperty,
-        PhScaleStrings.a11y.qualitativePHDescription.extremelyAcidicStringProperty ],
-      ( pHValue, extremelyBasic, highlyBasic, moderatelyBasic, slightlyBasic, neutral, slightlyAcidic, moderatelyAcidic, highlyAcidic, extremelyAcidic ) => {
-        if ( pHValue === null ) {
-          return 'undefined';
-        }
-        else if ( pHValue <= 14 && pHValue >= 13 ) {
-          return extremelyBasic;
-        }
-        else if ( pHValue < 13 && pHValue >= 11 ) {
-          return highlyBasic;
-        }
-        else if ( pHValue < 11 && pHValue >= 9 ) {
-          return moderatelyBasic;
-        }
-        else if ( pHValue < 9 && pHValue > 7 ) {
-          return slightlyBasic;
-        }
-        else if ( pHValue === 7 ) {
-          return neutral;
-        }
-        else if ( pHValue < 7 && pHValue >= 5 ) {
-          return slightlyAcidic;
-        }
-        else if ( pHValue < 5 && pHValue >= 3 ) {
-          return moderatelyAcidic;
-        }
-        else if ( pHValue < 3 && pHValue >= 1 ) {
-          return highlyAcidic;
-        }
-        else if ( pHValue < 1 && pHValue >= 0 ) {
-          return extremelyAcidic;
-        }
-        else {
-          return 'undefined';
-        }
-      } );
-  }
 }
 
 /**
@@ -397,10 +349,11 @@ type PHIndicatorNodeOptions = PHIndicatorNodeSelfOptions & WithRequired<NodeOpti
 class PHIndicatorNode extends Node {
 
   public constructor( pHProperty: Property<PHValue>, scaleWidth: number, providedOptions: PHIndicatorNodeOptions ) {
-
+    const pHDescriptionStringProperty = new DynamicProperty( new DerivedProperty( [ pHProperty ], pH => PHIndicatorNode.getQualitativePHValue( pH ) ) );
     const options = optionize<PHIndicatorNodeOptions, PHIndicatorNodeSelfOptions, NodeOptions>()( {
-      accessibleParagraph: new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
-        pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( pHProperty )
+      accessibleParagraph: new PatternStringProperty( PhScaleStrings.a11y.qualitativePHValuePatternStringProperty, {
+        pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( pHProperty ),
+        pHDescription: pHDescriptionStringProperty
       } )
     }, providedOptions );
 
@@ -511,6 +464,55 @@ class PHIndicatorNode extends Node {
       // Highlight the indicator when displayed pH === 7
       highlight.visible = ( pH !== null ) && ( toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === 7 );
     } );
+  }
+
+  /**
+   * Extremely Basic [13, 14]
+   * Highly Basic [11, 13)
+   * Moderately Basic [9, 11)
+   * Slightly Basic (7, 9)
+   * Neutral 7
+   * Slightly Acidic (5, 7)
+   * Moderately Acidic (3, 5]
+   * Highly Acidic (1, 3]
+   * Extremely Acidic [0, 1]
+   * @param pH
+   */
+  private static getQualitativePHValue( pH: number | null ): TReadOnlyProperty<string> {
+    if ( pH === null ) {
+      return PhScaleStrings.a11y.unknownStringProperty;
+    }
+    else if ( pH === 7 ) {
+      return PhScaleStrings.a11y.qualitativePHDescription.neutralStringProperty;
+    }
+    else if ( pH > 13 && pH <= 14 ) {
+      return PhScaleStrings.a11y.qualitativePHDescription.extremelyBasicStringProperty;
+    }
+    else if ( pH > 11 && pH <= 13 ) {
+      return PhScaleStrings.a11y.qualitativePHDescription.highlyBasicStringProperty;
+    }
+    else if ( pH > 9 && pH <= 11 ) {
+      return PhScaleStrings.a11y.qualitativePHDescription.moderatelyBasicStringProperty;
+    }
+    else if ( pH > 7 && pH <= 9 ) {
+      return PhScaleStrings.a11y.qualitativePHDescription.slightlyBasicStringProperty;
+    }
+    else if ( pH < 7 && pH >= 5 ) {
+      return PhScaleStrings.a11y.qualitativePHDescription.slightlyAcidicStringProperty;
+    }
+    else if ( pH < 5 && pH >= 3 ) {
+      return PhScaleStrings.a11y.qualitativePHDescription.moderatelyAcidicStringProperty;
+    }
+    else if ( pH < 3 && pH >= 1 ) {
+      return PhScaleStrings.a11y.qualitativePHDescription.highlyAcidicStringProperty;
+    }
+    else if ( pH >= 0 && pH < 1 ) {
+      return PhScaleStrings.a11y.qualitativePHDescription.extremelyAcidicStringProperty;
+    }
+    else {
+      assert && assert( false, `Unexpected pH value: ${pH}` );
+      return PhScaleStrings.a11y.unknownStringProperty;
+    }
   }
 }
 

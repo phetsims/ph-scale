@@ -18,6 +18,10 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import ComboBox, { ComboBoxItem, ComboBoxOptions } from '../../../../sun/js/ComboBox.js';
 import phScale from '../../phScale.js';
 import Solute from '../model/Solute.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
+import DynamicProperty from '../../../../axon/js/DynamicProperty.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -39,7 +43,11 @@ export default class SoluteComboBox extends ComboBox<Solute> {
       yMargin: 16,
       highlightFill: 'rgb( 218, 255, 255 )',
       buttonLineWidth: 2,
-      cornerRadius: 10
+      cornerRadius: 10,
+      accessibleName: new PatternStringProperty( PhScaleStrings.a11y.beakerControls.soluteComboBox.accessibleNameStringProperty, {
+        solute: new DynamicProperty( new DerivedProperty( [ selectedSoluteProperty ], solute => solute.accessibleNameProperty ) )
+      } ),
+      accessibleHelpText: PhScaleStrings.a11y.beakerControls.soluteComboBox.accessibleHelpTextStringProperty
     }, providedOptions );
 
     const items: ComboBoxItem<Solute>[] = [];

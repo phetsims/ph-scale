@@ -82,7 +82,9 @@ export default class MacroModel extends PHModel<MacroSolution> {
       } )
     ];
 
-    this.probeJumpPositionIndexProperty = new NumberProperty( 0, {
+    // Instantiated to the last position, so that the first jump (via keyboard shortcut) wraps around
+    // to the first position in the JumpToPositionListener.
+    this.probeJumpPositionIndexProperty = new NumberProperty( this.probeJumpPositions.length - 1, {
       numberType: 'Integer',
       range: new Range( 0, this.probeJumpPositions.length - 1 )
     } );

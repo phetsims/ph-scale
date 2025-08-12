@@ -105,7 +105,7 @@ export default class SolutionNode extends Rectangle {
     // Update the color of the solution, accounting for saturation.
     solutionColorProperty.link( color => {
       this.fill = color;
-      this.stroke = color.darkerColor();
+      this.stroke = color.darkerColor( 0.5 );
     } );
 
     // Update the amount of stuff in the beaker, based on the solution's total volume.

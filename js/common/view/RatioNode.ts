@@ -48,10 +48,10 @@ const OH_RADIUS = H3O_RADIUS;
 
 const MAJORITY_ALPHA = 0.55; // alpha of the majority species, [0-1], transparent-opaque
 const MINORITY_ALPHA = 1.0; // alpha of the minority species, [0-1], transparent-opaque
-const H3O_STROKE = 'black'; // optional stroke around H3O+ particles
-const H3O_LINE_WIDTH = 0.25; // width of stroke around H3O+ particles, ignored if H3O_STROKE is null
+const H3O_STROKE = PHScaleColors.H3O_PARTICLES_STROKE; // optional stroke around H3O+ particles
+const H3O_LINE_WIDTH = 0.5; // width of stroke around H3O+ particles, ignored if H3O_STROKE is null
 const OH_STROKE = 'black'; // optional stroke around OH- particles
-const OH_LINE_WIDTH = 0.25; // width of stroke around OH- particles, ignored if OH_STROKE is null
+const OH_LINE_WIDTH = 0.5; // width of stroke around OH- particles, ignored if OH_STROKE is null
 
 type SelfOptions = EmptySelfOptions;
 

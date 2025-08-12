@@ -55,6 +55,7 @@ const PHScaleColors = {
 
   // base colors for particles in 'ratio' view, alpha added later
   H3O_PARTICLES: new Color( 204, 0, 0 ),
+  H3O_PARTICLES_STROKE: new Color( 249, 210, 194 ),
   OH_PARTICLES: new Color( 0, 0, 255 )
 };
 

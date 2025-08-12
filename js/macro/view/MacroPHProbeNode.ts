@@ -92,6 +92,9 @@ export class MacroPHProbeNode extends InteractiveHighlighting( ProbeNode ) {
     } ) );
     this.addInputListener( new JumpToPositionListener( this, MacroPHProbeNode.JUMP_TO_POSITION_HOTKEY_DATA,
       probe.positionProperty, jumpPositions, jumpPositionIndexProperty ) );
+    this.focusedProperty.lazyLink( focused => {
+      focused && jumpPositionIndexProperty.reset(); // reset the jump position index when focused
+    } );
 
     const isInNode = ( node: Node ) => node.getBounds().containsPoint( probe.positionProperty.value );
     this.isInSolution = () => isInNode( solutionNode );

@@ -27,6 +27,9 @@ export default class MacroModel extends PHModel<MacroSolution> {
   // Useful positions for the probe to jump to. Cycle through these positions via a keyboard shortcut.
   // Uses the same implementation as Beer's Law Lab, see: https://github.com/phetsims/ph-scale/issues/307#issuecomment-3074343507
   public readonly probeJumpPositions: JumpPosition[];
+
+  // Index into the probeJumpPositions array, which is used to determine the next position to jump to when
+  // the keyboard shortcut is pressed.
   public readonly probeJumpPositionIndexProperty: Property<number>;
 
   public constructor( tandem: Tandem ) {
@@ -50,9 +53,8 @@ export default class MacroModel extends PHModel<MacroSolution> {
 
     this.probeJumpPositions = new ProbeJumpPositions( this );
 
-    // Instantiated to the last position, so that the first jump (via keyboard shortcut) wraps around
-    // to the first position in the JumpToPositionListener.
-    this.probeJumpPositionIndexProperty = new NumberProperty( this.probeJumpPositions.length - 1, {
+    // Instantiated to the first position in the array.
+    this.probeJumpPositionIndexProperty = new NumberProperty( 0, {
       numberType: 'Integer',
       range: new Range( 0, this.probeJumpPositions.length - 1 )
     } );

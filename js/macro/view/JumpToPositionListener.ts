@@ -31,6 +31,12 @@ export default class JumpToPositionListener extends KeyboardListener<OneKeyStrok
         if ( hotkeyData.hasKeyStroke( keysPressed ) ) {
           phet.log && phet.log( `hotkey J, jumpPositionIndex=${jumpPositionIndexProperty.value}` );
 
+          // Jump to the next position.
+          positionProperty.value = jumpPositions[ jumpPositionIndexProperty.value ].positionProperty.value;
+
+          // Add the accessible object response associated with the jump position.
+          targetNode.addAccessibleObjectResponse( jumpPositions[ jumpPositionIndexProperty.value ].accessibleObjectResponseStringProperty, 'queue' );
+
           // Adjust the index into the jumpPositions array, with wrap around.
           if ( jumpPositionIndexProperty.value < jumpPositions.length - 1 ) {
             jumpPositionIndexProperty.value++;
@@ -38,12 +44,6 @@ export default class JumpToPositionListener extends KeyboardListener<OneKeyStrok
           else {
             jumpPositionIndexProperty.value = 0;
           }
-
-          // Jump to the next position.
-          positionProperty.value = jumpPositions[ jumpPositionIndexProperty.value ].positionProperty.value;
-
-          // Add the accessible object response associated with the jump position.
-          targetNode.addAccessibleObjectResponse( jumpPositions[ jumpPositionIndexProperty.value ].accessibleObjectResponseStringProperty, 'queue' );
         }
       }
     } );

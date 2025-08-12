@@ -1,4 +1,4 @@
-// Copyright 2024, University of Colorado Boulder
+// Copyright 2025, University of Colorado Boulder
 /**
  * MySolutionScreenSummaryContent is the description screen summary for the "My Solution" screen.
  *

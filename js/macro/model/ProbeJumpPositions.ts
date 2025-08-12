@@ -1,4 +1,4 @@
-// Copyright 2024, University of Colorado Boulder
+// Copyright 2025, University of Colorado Boulder
 /**
  * ProbeJumpPositions is the set of jump positions for the macro probe, used by the 'J' shortcut.
  *

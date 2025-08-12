@@ -274,8 +274,8 @@ export default class LogarithmicGraphNode extends Node {
           indicatorH3ONode.tandem.createTandem( 'dragListener' )
         ) );
       indicatorH3ONode.addInputListener(
-        new GraphIndicatorKeyboardDragListener( indicatorH3ONode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
-          PHModel.concentrationH3OToPH, PHModel.molesH3OToPH, objectResponseH3OStringProperty,
+        new GraphIndicatorKeyboardDragListener( indicatorH3ONode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue, valueToY,
+          PHModel.concentrationH3OToPH, derivedProperties.concentrationH3OProperty, PHModel.molesH3OToPH, derivedProperties.quantityH3OProperty, objectResponseH3OStringProperty,
           indicatorH3ONode.tandem.createTandem( 'keyboardDragListener' )
         ) );
 
@@ -295,8 +295,8 @@ export default class LogarithmicGraphNode extends Node {
           indicatorOHNode.tandem.createTandem( 'dragListener' )
         ) );
       indicatorOHNode.addInputListener(
-        new GraphIndicatorKeyboardDragListener( indicatorOHNode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
-          PHModel.concentrationOHToPH, PHModel.molesOHToPH, objectResponseOHStringProperty,
+        new GraphIndicatorKeyboardDragListener( indicatorOHNode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue, valueToY,
+          PHModel.concentrationOHToPH, derivedProperties.concentrationOHProperty, PHModel.molesOHToPH, derivedProperties.quantityOHProperty, objectResponseOHStringProperty,
           indicatorOHNode.tandem.createTandem( 'keyboardDragListener' )
         ) );
 

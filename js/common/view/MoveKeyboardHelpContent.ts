@@ -12,6 +12,7 @@ import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/Keybo
 import KeyboardHelpSectionRow from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSectionRow.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
+import { MacroPHProbeNode } from '../../macro/view/MacroPHProbeNode.js';
 
 export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
 
@@ -30,7 +31,11 @@ export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
 
       // Shift+arrows or Shift+WASD, for slower speed
       KeyboardHelpSectionRow.labelWithIconList( PhScaleStrings.keyboardHelpDialog.moveSlowerStringProperty,
-        [ shiftPlusArrowKeysIcon, shiftPlusWASDKeysIcon ] )
+        [ shiftPlusArrowKeysIcon, shiftPlusWASDKeysIcon ] ),
+
+      // Hotkey to jump the pH Probe to specific positions
+      KeyboardHelpSectionRow.labelWithIcon( PhScaleStrings.keyboardHelpDialog.jumpPHProbeStringProperty,
+        KeyboardHelpIconFactory.fromHotkeyData( MacroPHProbeNode.JUMP_TO_POSITION_HOTKEY_DATA ) )
     ];
 
     super( titleProperty, rows, {

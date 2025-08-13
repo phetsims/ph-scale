@@ -65,6 +65,7 @@ type StringsType = {
     'soluteStringProperty': LocalizedStringProperty;
     'solutesStringProperty': LocalizedStringProperty;
     'moveThePHProbeStringProperty': LocalizedStringProperty;
+    'jumpPHProbeStringProperty': LocalizedStringProperty;
     'moveTheGraphIndicatorsStringProperty': LocalizedStringProperty;
     'moveStringProperty': LocalizedStringProperty;
     'moveSlowerStringProperty': LocalizedStringProperty;

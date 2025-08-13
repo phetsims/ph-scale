@@ -39,9 +39,7 @@ export default class MacroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
       } ),
 
       // Basic Actions
-      new BasicActionsKeyboardHelpSection( {
-        withCheckboxContent: true
-      } )
+      new BasicActionsKeyboardHelpSection()
     ];
 
     super( leftSections, rightSections, {

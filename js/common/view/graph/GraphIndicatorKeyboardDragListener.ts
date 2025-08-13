@@ -81,6 +81,12 @@ export default class GraphIndicatorKeyboardDragListener extends SoundKeyboardDra
 
         // Adjust the mantissa by the appropriate delta and convert back to a value
         const scientificNotation = toScientificNotation( valueProperty.value! );
+
+        // If the mantissa is 1, and we are moving down the scale, we need to adjust the exponent instead of the mantissa
+        if ( scientificNotation.mantissa === 1 && listener.movingDown() ) {
+          scientificNotation.exponent -= 1;
+          scientificNotation.mantissa = 10; // Mantissa is now 10, so we can drag down again
+        }
         const newValue = scientificNotationToValue( { mantissa: scientificNotation.mantissa + mantissaDelta, exponent: scientificNotation.exponent } );
         const newShiftValue = scientificNotationToValue( {
           mantissa: scientificNotation.mantissa + shiftMantissaDelta,

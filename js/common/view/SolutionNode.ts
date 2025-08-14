@@ -24,10 +24,11 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import { linear } from '../../../../dot/js/util/linear.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
+import { ConcentrationValue } from '../model/PHModel.js';
 
 type SelfOptions = {
-  quantityH3OProperty?: TReadOnlyProperty<number> | null; // for a11y
-  quantityOHProperty?: TReadOnlyProperty<number> | null; // for a11y
+  concentrationH3OProperty?: TReadOnlyProperty<ConcentrationValue> | null; // for a11y
+  concentrationOHProperty?: TReadOnlyProperty<ConcentrationValue> | null; // for a11y
   soluteProperty?: TReadOnlyProperty<Solute> | null; // for a11y
 };
 
@@ -43,8 +44,8 @@ export default class SolutionNode extends Rectangle {
                       providedOptions?: SolutionNodeOptions
   ) {
     const options = optionize<SolutionNodeOptions, SelfOptions, RectangleOptions>()( {
-      quantityH3OProperty: null,
-      quantityOHProperty: null,
+      concentrationH3OProperty: null,
+      concentrationOHProperty: null,
       soluteProperty: null,
 
       // The solution node has the information needed to describe the contents of the beaker. To provide the
@@ -87,13 +88,24 @@ export default class SolutionNode extends Rectangle {
             visibleProperty: new DerivedProperty( [ solutionVolumeProperty, phProperty ],
               ( volume, pH ) => volume > 0 && pH === 7 )
           },
-          ...( providedOptions?.quantityOHProperty && providedOptions.quantityH3OProperty ? [ {
+          ...( providedOptions?.concentrationOHProperty && providedOptions.concentrationH3OProperty ? [ {
             stringProperty: new PatternStringProperty( PhScaleStrings.a11y.beaker.ionComparisonPatternStringProperty, {
-              comparison: new DerivedProperty( [ providedOptions.quantityH3OProperty, providedOptions.quantityOHProperty,
+              comparison: new DerivedProperty( [ providedOptions.concentrationH3OProperty, providedOptions.concentrationOHProperty,
                   PhScaleStrings.a11y.beaker.greaterThanStringProperty, PhScaleStrings.a11y.beaker.lessThanStringProperty,
                   PhScaleStrings.a11y.beaker.equalToStringProperty ],
-                ( quantityH3O, quantityOH, greaterThanString, lessThanString, equalToString ) =>
-                  quantityH3O > quantityOH ? greaterThanString : quantityH3O < quantityOH ? lessThanString : equalToString )
+                ( concentrationH3O, concentrationOH, greaterThanString, lessThanString, equalToString ) => {
+                  if ( concentrationH3O === null || concentrationOH === null ) {
+                    return PhScaleStrings.a11y.unknownStringProperty;
+                  }
+                  else {
+                    // Rounding to nine decimal places was empirically determined to provide consistent results with the pH scale.
+                    const roundedH3O = toFixed( concentrationH3O, 9 );
+                    const roundedOH = toFixed( concentrationOH, 9 );
+                    return roundedH3O > roundedOH ? greaterThanString : roundedH3O < roundedOH ? lessThanString : equalToString;
+                  }
+
+
+                } )
             } ),
             visibleProperty: DerivedProperty.valueNotEqualsConstant( solutionVolumeProperty, 0 )
           } ] : [] )

@@ -309,7 +309,7 @@
       },
       "soluteComboBox": {
         "accessibleName": {
-          "value": "Solution: {{solute}}"
+          "value": "Solution"
         },
         "accessibleHelpText": {
           "value": "Choose everyday liquid for dropper."
@@ -469,7 +469,7 @@
           "value": "Linear Graph Zoom In"
         },
         "accessibleHelpText": {
-          "value": "Adjust visual range."
+          "value": "Adjust graph range."
         }
       },
       "zoomOutButton": {
@@ -477,7 +477,7 @@
           "value": "Linear Graph Zoom Out"
         },
         "accessibleHelpText": {
-          "value": "Adjust visual range."
+          "value": "Adjust graph range."
         }
       },
       "indicatorH3O": {

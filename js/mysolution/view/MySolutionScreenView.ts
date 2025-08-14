@@ -53,8 +53,8 @@ export default class MySolutionScreenView extends ScreenView {
     // solution in the beaker
     const solutionNode = new SolutionNode( model.solution.totalVolumeProperty, model.solution.pHProperty,
       model.solution.colorProperty, model.beaker, modelViewTransform, {
-        quantityH3OProperty: model.solution.derivedProperties.quantityH3OProperty,
-        quantityOHProperty: model.solution.derivedProperties.quantityOHProperty
+        concentrationH3OProperty: model.solution.derivedProperties.concentrationH3OProperty,
+        concentrationOHProperty: model.solution.derivedProperties.concentrationOHProperty
       } );
 
     // volume indicator along the right edge of the beaker

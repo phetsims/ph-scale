@@ -11,6 +11,7 @@ import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/h
 import MoveKeyboardHelpContent from '../../common/view/MoveKeyboardHelpContent.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
+import SliderControlsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/SliderControlsKeyboardHelpSection.js';
 
 export default class MySolutionKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
 
@@ -27,7 +28,12 @@ export default class MySolutionKeyboardHelpContent extends TwoColumnKeyboardHelp
 
     // Sections in the right column.
     const rightSections = [
-
+      new SliderControlsKeyboardHelpSection( {
+        headingStringProperty: PhScaleStrings.keyboardHelpDialog.spinnerHeadingStringProperty,
+        adjustSliderStringProperty: PhScaleStrings.keyboardHelpDialog.adjustSpinnerStringProperty,
+        includeSmallerStepsRow: false,
+        includeLargerStepsRow: false
+      } ),
       // Basic Actions
       new BasicActionsKeyboardHelpSection( {
         withCheckboxContent: true

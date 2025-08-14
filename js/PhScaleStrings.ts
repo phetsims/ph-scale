@@ -69,6 +69,8 @@ type StringsType = {
     'moveTheGraphIndicatorsStringProperty': LocalizedStringProperty;
     'moveStringProperty': LocalizedStringProperty;
     'moveSlowerStringProperty': LocalizedStringProperty;
+    'adjustSpinnerStringProperty': LocalizedStringProperty;
+    'spinnerHeadingStringProperty': LocalizedStringProperty;
     'jumpToPositionStringProperty': LocalizedStringProperty;
   };
   'autoFillStringProperty': LocalizedStringProperty;

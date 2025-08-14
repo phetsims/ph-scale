@@ -8,18 +8,26 @@
 
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import KeyboardHelpIconFactory from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpIconFactory.js';
-import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
+import KeyboardHelpSection, { KeyboardHelpSectionOptions } from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
 import KeyboardHelpSectionRow from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSectionRow.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import { MacroPHProbeNode } from '../../macro/view/MacroPHProbeNode.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 
+type SelfOptions = {
+  dragDirection?: 'upDown' | 'both';
+};
+type MoveKeyboardHelpContentOptions = SelfOptions & KeyboardHelpSectionOptions;
 export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
 
-  public constructor( titleProperty: TReadOnlyProperty<string> ) {
-    const arrowOrWasdKeysIcon = KeyboardHelpIconFactory.arrowOrWasdKeysRowIcon();
-    const arrowKeysIcon = KeyboardHelpIconFactory.arrowKeysRowIcon();
-    const wasdKeysIcon = KeyboardHelpIconFactory.wasdRowIcon();
+  public constructor( titleProperty: TReadOnlyProperty<string>, providedOptions?: MoveKeyboardHelpContentOptions ) {
+    const options = optionize<MoveKeyboardHelpContentOptions, SelfOptions, KeyboardHelpSectionOptions>()( {
+      dragDirection: 'both'
+    }, providedOptions );
+    const arrowOrWasdKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.arrowOrWasdKeysRowIcon() : KeyboardHelpIconFactory.upDownOrWSKeysRowIcon();
+    const arrowKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.arrowKeysRowIcon() : KeyboardHelpIconFactory.upDownArrowKeysRowIcon();
+    const wasdKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.wasdRowIcon() : KeyboardHelpIconFactory.wSKeysRowIcon();
     const shiftPlusArrowKeysIcon = KeyboardHelpIconFactory.shiftPlusIcon( arrowKeysIcon );
     const shiftPlusWASDKeysIcon = KeyboardHelpIconFactory.shiftPlusIcon( wasdKeysIcon );
 

@@ -21,7 +21,14 @@ export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
     const leftSections = [
 
       // Faucet Controls
-      new FaucetControlsKeyboardHelpSection()
+      new FaucetControlsKeyboardHelpSection(),
+
+      // Choose a Solute
+      new ComboBoxKeyboardHelpSection( {
+        headingString: PhScaleStrings.keyboardHelpDialog.chooseASoluteStringProperty,
+        thingAsLowerCaseSingular: PhScaleStrings.keyboardHelpDialog.soluteStringProperty,
+        thingAsLowerCasePlural: PhScaleStrings.keyboardHelpDialog.solutesStringProperty
+      } )
     ];
 
     // Sections in the right column.

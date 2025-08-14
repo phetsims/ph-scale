@@ -20,7 +20,9 @@ export default class MySolutionKeyboardHelpContent extends TwoColumnKeyboardHelp
     const leftSections = [
 
       // Move the Dropper
-      new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheGraphIndicatorsStringProperty )
+      new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheGraphIndicatorsStringProperty, {
+        dragDirection: 'upDown' // The graph indicators can only be dragged up and down.
+      } )
     ];
 
     // Sections in the right column.

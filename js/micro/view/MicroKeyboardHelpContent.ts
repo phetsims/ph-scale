@@ -34,13 +34,6 @@ export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
     // Sections in the right column.
     const rightSections = [
 
-      // Choose a Solute
-      new ComboBoxKeyboardHelpSection( {
-        headingString: PhScaleStrings.keyboardHelpDialog.chooseASoluteStringProperty,
-        thingAsLowerCaseSingular: PhScaleStrings.keyboardHelpDialog.soluteStringProperty,
-        thingAsLowerCasePlural: PhScaleStrings.keyboardHelpDialog.solutesStringProperty
-      } ),
-
       // Basic Actions
       new BasicActionsKeyboardHelpSection( {
         withCheckboxContent: true

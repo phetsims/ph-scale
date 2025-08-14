@@ -17,13 +17,15 @@ import optionize from '../../../../phet-core/js/optionize.js';
 
 type SelfOptions = {
   dragDirection?: 'upDown' | 'both';
+  includeJumpToPosition?: boolean; // Whether to include the jump to position hotkey
 };
 type MoveKeyboardHelpContentOptions = SelfOptions & KeyboardHelpSectionOptions;
 export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
 
   public constructor( titleProperty: TReadOnlyProperty<string>, providedOptions?: MoveKeyboardHelpContentOptions ) {
     const options = optionize<MoveKeyboardHelpContentOptions, SelfOptions, KeyboardHelpSectionOptions>()( {
-      dragDirection: 'both'
+      dragDirection: 'both',
+      includeJumpToPosition: false // Whether to include the jump to position hotkey
     }, providedOptions );
     const arrowOrWasdKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.arrowOrWasdKeysRowIcon() : KeyboardHelpIconFactory.upDownOrWSKeysRowIcon();
     const arrowKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.arrowKeysRowIcon() : KeyboardHelpIconFactory.upDownArrowKeysRowIcon();
@@ -42,8 +44,8 @@ export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
         [ shiftPlusArrowKeysIcon, shiftPlusWASDKeysIcon ] ),
 
       // Hotkey to jump the pH Probe to specific positions
-      KeyboardHelpSectionRow.labelWithIcon( PhScaleStrings.keyboardHelpDialog.jumpPHProbeStringProperty,
-        KeyboardHelpIconFactory.fromHotkeyData( MacroPHProbeNode.JUMP_TO_POSITION_HOTKEY_DATA ) )
+      ...( options.includeJumpToPosition ? [ KeyboardHelpSectionRow.labelWithIcon( PhScaleStrings.keyboardHelpDialog.jumpPHProbeStringProperty,
+        KeyboardHelpIconFactory.fromHotkeyData( MacroPHProbeNode.JUMP_TO_POSITION_HOTKEY_DATA ) ) ] : [] )
     ];
 
     super( titleProperty, rows, {

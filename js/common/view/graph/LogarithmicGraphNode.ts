@@ -27,7 +27,6 @@ import RichText from '../../../../../scenery/js/nodes/RichText.js';
 import Font from '../../../../../scenery/js/util/Font.js';
 import LinearGradient from '../../../../../scenery/js/util/LinearGradient.js';
 import TColor from '../../../../../scenery/js/util/TColor.js';
-import phScale from '../../../phScale.js';
 import PHModel, { PHValue } from '../../model/PHModel.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
@@ -40,6 +39,8 @@ import { linear } from '../../../../../dot/js/util/linear.js';
 import PhScaleStrings from '../../../PhScaleStrings.js';
 import GraphNode from './GraphNode.js';
 import PatternStringProperty from '../../../../../axon/js/PatternStringProperty.js';
+import KeyboardListener from '../../../../../scenery/js/listeners/KeyboardListener.js';
+import phScale from '../../../phScale.js';
 
 type SelfOptions = {
 
@@ -258,6 +259,20 @@ export default class LogarithmicGraphNode extends Node {
     if ( isInteractive ) {
       const pHProperty = options.pHProperty as Property<number>;
 
+      const createHomeAndEndKeyboardListener = ( homeValue: number, endValue: number ) => new KeyboardListener( {
+        keys: [ 'home', 'end' ],
+        fire: ( event, keysPressed ) => {
+          if ( totalVolumeProperty.value !== 0 ) {
+            if ( keysPressed === 'home' ) {
+              pHProperty.value = homeValue;
+            }
+            else if ( keysPressed === 'end' ) {
+              pHProperty.value = endValue;
+            }
+          }
+        }
+      } );
+
       // H3O+ indicator
       indicatorH3ONode.cursor = 'pointer';
       const objectResponseH3OStringProperty = new PatternStringProperty( PhScaleStrings.a11y.graph.indicatorH3O.accessibleObjectResponseStringProperty, {
@@ -278,6 +293,7 @@ export default class LogarithmicGraphNode extends Node {
           PHModel.concentrationH3OToPH, derivedProperties.concentrationH3OProperty, PHModel.molesH3OToPH, derivedProperties.quantityH3OProperty, objectResponseH3OStringProperty,
           indicatorH3ONode.tandem.createTandem( 'keyboardDragListener' )
         ) );
+      indicatorH3ONode.addInputListener( createHomeAndEndKeyboardListener( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_RANGE.min ) );
 
       // OH- indicator
       indicatorOHNode.cursor = 'pointer';
@@ -299,6 +315,7 @@ export default class LogarithmicGraphNode extends Node {
           PHModel.concentrationOHToPH, derivedProperties.concentrationOHProperty, PHModel.molesOHToPH, derivedProperties.quantityOHProperty, objectResponseOHStringProperty,
           indicatorOHNode.tandem.createTandem( 'keyboardDragListener' )
         ) );
+      indicatorOHNode.addInputListener( createHomeAndEndKeyboardListener( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max ) );
 
       // keyboard traversal order, see https://github.com/phetsims/ph-scale/issues/249
       this.pdomOrder = [

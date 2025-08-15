@@ -23,17 +23,19 @@ export default class MySolutionKeyboardHelpContent extends TwoColumnKeyboardHelp
       // Move the Dropper
       new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheGraphIndicatorsStringProperty, {
         dragDirection: 'upDown' // The graph indicators can only be dragged up and down.
-      } )
-    ];
-
-    // Sections in the right column.
-    const rightSections = [
+      } ),
+      
       new SliderControlsKeyboardHelpSection( {
         headingStringProperty: PhScaleStrings.keyboardHelpDialog.spinnerHeadingStringProperty,
         adjustSliderStringProperty: PhScaleStrings.keyboardHelpDialog.adjustSpinnerStringProperty,
         includeSmallerStepsRow: false,
         includeLargerStepsRow: false
-      } ),
+      } )
+    ];
+
+    // Sections in the right column.
+    const rightSections = [
+
       // Basic Actions
       new BasicActionsKeyboardHelpSection( {
         withCheckboxContent: true

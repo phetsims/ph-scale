@@ -76,6 +76,17 @@ type StringsType = {
   'autoFillStringProperty': LocalizedStringProperty;
   'autoFillDescriptionStringProperty': LocalizedStringProperty;
   'a11y': {
+    'keyboardHelpDialog': {
+      'movePHProbe': {
+        'moveStringProperty': LocalizedStringProperty;
+        'moveSlowerStringProperty': LocalizedStringProperty;
+        'jumpStringProperty': LocalizedStringProperty;
+      };
+      'moveGraphIndicators': {
+        'moveStringProperty': LocalizedStringProperty;
+        'moveSlowerStringProperty': LocalizedStringProperty;
+      }
+    };
     'commonScreenSummary': {
       'currentDetails': {
         'emptyBeakerStringProperty': LocalizedStringProperty;

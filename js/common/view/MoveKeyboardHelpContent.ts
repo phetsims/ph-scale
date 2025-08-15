@@ -32,20 +32,30 @@ export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
     const wasdKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.wasdRowIcon() : KeyboardHelpIconFactory.wSKeysRowIcon();
     const shiftPlusArrowKeysIcon = KeyboardHelpIconFactory.shiftPlusIcon( arrowKeysIcon );
     const shiftPlusWASDKeysIcon = KeyboardHelpIconFactory.shiftPlusIcon( wasdKeysIcon );
+    const moveLabelInnerContentStringProperty = options.dragDirection === 'both' ? PhScaleStrings.a11y.keyboardHelpDialog.movePHProbe.moveStringProperty :
+                                  PhScaleStrings.a11y.keyboardHelpDialog.moveGraphIndicators.moveStringProperty;
+    const moveSlowerLabelInnerContentStringProperty = options.dragDirection === 'both' ? PhScaleStrings.a11y.keyboardHelpDialog.movePHProbe.moveSlowerStringProperty :
+                                  PhScaleStrings.a11y.keyboardHelpDialog.moveGraphIndicators.moveSlowerStringProperty;
 
     const rows = [
 
       // arrows or WASD, for normal speed
       KeyboardHelpSectionRow.labelWithIcon( PhScaleStrings.keyboardHelpDialog.moveStringProperty,
-        arrowOrWasdKeysIcon ),
+        arrowOrWasdKeysIcon, {
+        labelInnerContent: moveLabelInnerContentStringProperty
+        } ),
 
       // Shift+arrows or Shift+WASD, for slower speed
       KeyboardHelpSectionRow.labelWithIconList( PhScaleStrings.keyboardHelpDialog.moveSlowerStringProperty,
-        [ shiftPlusArrowKeysIcon, shiftPlusWASDKeysIcon ] ),
+        [ shiftPlusArrowKeysIcon, shiftPlusWASDKeysIcon ], {
+        labelInnerContent: moveSlowerLabelInnerContentStringProperty
+        } ),
 
       // Hotkey to jump the pH Probe to specific positions
       ...( options.includeJumpToPosition ? [ KeyboardHelpSectionRow.labelWithIcon( PhScaleStrings.keyboardHelpDialog.jumpPHProbeStringProperty,
-        KeyboardHelpIconFactory.fromHotkeyData( MacroPHProbeNode.JUMP_TO_POSITION_HOTKEY_DATA ) ) ] : [] )
+        KeyboardHelpIconFactory.fromHotkeyData( MacroPHProbeNode.JUMP_TO_POSITION_HOTKEY_DATA ), {
+        labelInnerContent: PhScaleStrings.a11y.keyboardHelpDialog.movePHProbe.jumpStringProperty
+      } ) ] : [] )
     ];
 
     super( titleProperty, rows, {

@@ -22,7 +22,8 @@ export default class MySolutionKeyboardHelpContent extends TwoColumnKeyboardHelp
 
       // Move the Dropper
       new MoveKeyboardHelpContent( PhScaleStrings.keyboardHelpDialog.moveTheGraphIndicatorsStringProperty, {
-        dragDirection: 'upDown' // The graph indicators can only be dragged up and down.
+        dragDirection: 'upDown', // The graph indicators can only be dragged up and down.
+        includeHomeAndEnd: true
       } ),
       
       new SliderControlsKeyboardHelpSection( {

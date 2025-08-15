@@ -46,7 +46,7 @@ export class MacroPHProbeNode extends InteractiveHighlighting( ProbeNode ) {
   public static readonly JUMP_TO_POSITION_HOTKEY_DATA = new HotkeyData( {
     keys: [ 'j' ],
     repoName: phScale.name,
-    keyboardHelpDialogLabelStringProperty: PhScaleStrings.keyboardHelpDialog.jumpToPositionStringProperty
+    keyboardHelpDialogLabelStringProperty: PhScaleStrings.keyboardHelpDialog.jumpPHProbeStringProperty
   } );
   public readonly isInSolution: () => boolean;
   public readonly isInWater: () => boolean;

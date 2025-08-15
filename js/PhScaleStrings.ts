@@ -71,7 +71,6 @@ type StringsType = {
     'moveSlowerStringProperty': LocalizedStringProperty;
     'adjustSpinnerStringProperty': LocalizedStringProperty;
     'spinnerHeadingStringProperty': LocalizedStringProperty;
-    'jumpToPositionStringProperty': LocalizedStringProperty;
   };
   'autoFillStringProperty': LocalizedStringProperty;
   'autoFillDescriptionStringProperty': LocalizedStringProperty;

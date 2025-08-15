@@ -40,7 +40,7 @@ export default class PHDropperNode extends EyeDropperNode {
         enabledProperty: dropper.enabledProperty,
         accessibleName: dropperAccessibleNameStringProperty,
         accessibleHelpText: PhScaleStrings.a11y.beakerControls.dropper.accessibleHelpTextStringProperty,
-        accessibleContextResponseValueOn: PhScaleStrings.a11y.beakerControls.dropper.accessibleContextResponseStringProperty
+        accessibleContextResponseValueOn: PhScaleStrings.a11y.beakerControls.dropper.accessibleContextResponseOnStringProperty
       },
       cursor: null,
       phetioInputEnabledPropertyInstrumented: true
@@ -54,6 +54,10 @@ export default class PHDropperNode extends EyeDropperNode {
     // change fluid color when the solute changes
     dropper.soluteProperty.link( solute => {
       this.setFluidColor( solute.stockColor );
+    } );
+
+    dropper.isDispensingProperty.link( isDispensing => {
+      !isDispensing && this.addAccessibleContextResponse( PhScaleStrings.a11y.beakerControls.dropper.accessibleContextResponseOffStringProperty );
     } );
   }
 }

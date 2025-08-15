@@ -186,7 +186,8 @@ type StringsType = {
       'dropper': {
         'accessibleNameStringProperty': LocalizedStringProperty;
         'accessibleHelpTextStringProperty': LocalizedStringProperty;
-        'accessibleContextResponseStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseOnStringProperty': LocalizedStringProperty;
+        'accessibleContextResponseOffStringProperty': LocalizedStringProperty;
       };
       'faucetCommon': {
         'accessibleObjectResponseStringProperty': LocalizedStringProperty;

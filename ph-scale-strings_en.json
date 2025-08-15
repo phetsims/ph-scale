@@ -385,8 +385,11 @@
         "accessibleHelpText": {
           "value": "Add solution to beaker."
         },
-        "accessibleContextResponse": {
+        "accessibleContextResponseOn": {
           "value": "dispensing"
+        },
+        "accessibleContextResponseOff": {
+          "value": "dispensing ended"
         }
       },
       "faucetCommon": {

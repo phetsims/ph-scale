@@ -51,10 +51,10 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Faucet from '../../common/model/Faucet.js';
-import { roundToInterval } from '../../../../dot/js/util/roundToInterval.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtterance.js';
 import DynamicProperty from '../../../../axon/js/DynamicProperty.js';
+import { toFixed } from '../../../../dot/js/util/toFixed.js';
 
 // constants
 const BACKGROUND_ENABLED_FILL_PROPERTY = PHScaleColors.pHProbeColorProperty;
@@ -125,7 +125,7 @@ export default class MacroPHMeterNode extends Node {
           if ( probeNode.isInSolution() ) {
             if ( !dropperIsDispensing && waterFaucetFlowRate === 0 && drainFaucetFlowRate === 0 ) {
               responseUtterance.alert = StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
-                pHValue: roundToInterval( pH, 0.01 )
+                pHValue: toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES )
               } );
               probeNode.addAccessibleContextResponse( responseUtterance, 'queue' );
             }
@@ -139,18 +139,18 @@ export default class MacroPHMeterNode extends Node {
       if ( pH !== null ) {
         if ( probeNode.isInWater() ) {
           responseUtterance.alert = StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
-            pHValue: roundToInterval( pH, 0.01 )
+            pHValue: toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES )
           } );
 
         }
         if ( probeNode.isInDropperSolution() ) {
           responseUtterance.alert = StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
-            pHValue: roundToInterval( pH, 0.01 )
+            pHValue: toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES )
           } );
         }
         if ( probeNode.isInDrainFluid() ) {
           responseUtterance.alert = StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
-            pHValue: roundToInterval( pH, 0.01 )
+            pHValue: toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES )
           } );
         }
       }

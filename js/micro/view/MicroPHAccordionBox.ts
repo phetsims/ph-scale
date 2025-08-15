@@ -70,7 +70,9 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
      * When the accordion box is expanded, we only want to announce the pH value when the dropper or faucets
      * are not dispensing.
      */
-    const responseUtterance = new ValueChangeUtterance( { alert: pHValuePatternStringProperty } );
+    const responseUtterance = new ValueChangeUtterance( { alert: new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
+        pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( pHProperty )
+      } ) } );
     Multilink.multilink( [ pHProperty, isDispensingProperty, waterFaucetFlowRateProperty, drainFaucetFlowRateProperty, this.accordionBox.expandedProperty ],
       ( pH, dropperIsDispensing, waterFaucetFlowRate, drainFaucetFlowRate, expanded ) => {
         isScreenActiveProperty.value && !dropperIsDispensing && waterFaucetFlowRate === 0 && drainFaucetFlowRate === 0 && expanded &&

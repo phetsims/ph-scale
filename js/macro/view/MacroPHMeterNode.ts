@@ -202,6 +202,10 @@ export default class MacroPHMeterNode extends Node {
     this.addLinkedElement( meter.pHProperty, {
       tandemName: 'pHProperty'
     } );
+
+    this.pdomOrder = [
+      scaleNode, pHIndicatorNode, probeNode
+    ];
   }
 
   public reset(): void {
@@ -350,11 +354,14 @@ class PHIndicatorNode extends Node {
 
   public constructor( pHProperty: Property<PHValue>, scaleWidth: number, providedOptions: PHIndicatorNodeOptions ) {
     const pHDescriptionStringProperty = new DynamicProperty( new DerivedProperty( [ pHProperty ], pH => PHIndicatorNode.getQualitativePHValue( pH ) ) );
+    const qualitativePHValueStringProperty = new PatternStringProperty( PhScaleStrings.a11y.qualitativePHValuePatternStringProperty, {
+      pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( pHProperty ),
+      pHDescription: pHDescriptionStringProperty
+    } );
+    const accessibleParagraphStringProperty = new DerivedProperty( [ pHProperty, qualitativePHValueStringProperty, PhScaleStrings.a11y.pHValueUnknownStringProperty ],
+      ( pH, qualitativePHValue, pHValueUnknown ) => pH === null ? pHValueUnknown : qualitativePHValue );
     const options = optionize<PHIndicatorNodeOptions, PHIndicatorNodeSelfOptions, NodeOptions>()( {
-      accessibleParagraph: new PatternStringProperty( PhScaleStrings.a11y.qualitativePHValuePatternStringProperty, {
-        pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( pHProperty ),
-        pHDescription: pHDescriptionStringProperty
-      } )
+      accessibleParagraph: accessibleParagraphStringProperty
     }, providedOptions );
 
     // dashed line that extends across the scale
@@ -482,36 +489,39 @@ class PHIndicatorNode extends Node {
     if ( pH === null ) {
       return PhScaleStrings.a11y.unknownStringProperty;
     }
-    else if ( pH === 7 ) {
-      return PhScaleStrings.a11y.qualitativePHDescription.neutralStringProperty;
-    }
-    else if ( pH > 13 && pH <= 14 ) {
-      return PhScaleStrings.a11y.qualitativePHDescription.extremelyBasicStringProperty;
-    }
-    else if ( pH > 11 && pH <= 13 ) {
-      return PhScaleStrings.a11y.qualitativePHDescription.highlyBasicStringProperty;
-    }
-    else if ( pH > 9 && pH <= 11 ) {
-      return PhScaleStrings.a11y.qualitativePHDescription.moderatelyBasicStringProperty;
-    }
-    else if ( pH > 7 && pH <= 9 ) {
-      return PhScaleStrings.a11y.qualitativePHDescription.slightlyBasicStringProperty;
-    }
-    else if ( pH < 7 && pH >= 5 ) {
-      return PhScaleStrings.a11y.qualitativePHDescription.slightlyAcidicStringProperty;
-    }
-    else if ( pH < 5 && pH >= 3 ) {
-      return PhScaleStrings.a11y.qualitativePHDescription.moderatelyAcidicStringProperty;
-    }
-    else if ( pH < 3 && pH >= 1 ) {
-      return PhScaleStrings.a11y.qualitativePHDescription.highlyAcidicStringProperty;
-    }
-    else if ( pH >= 0 && pH < 1 ) {
-      return PhScaleStrings.a11y.qualitativePHDescription.extremelyAcidicStringProperty;
-    }
     else {
-      assert && assert( false, `Unexpected pH value: ${pH}` );
-      return PhScaleStrings.a11y.unknownStringProperty;
+      const pHRounded = toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES );
+      if ( pHRounded === 7 ) {
+        return PhScaleStrings.a11y.qualitativePHDescription.neutralStringProperty;
+      }
+      else if ( pHRounded > 13 && pHRounded <= 14 ) {
+        return PhScaleStrings.a11y.qualitativePHDescription.extremelyBasicStringProperty;
+      }
+      else if ( pHRounded > 11 && pHRounded <= 13 ) {
+        return PhScaleStrings.a11y.qualitativePHDescription.highlyBasicStringProperty;
+      }
+      else if ( pHRounded > 9 && pHRounded <= 11 ) {
+        return PhScaleStrings.a11y.qualitativePHDescription.moderatelyBasicStringProperty;
+      }
+      else if ( pHRounded > 7 && pHRounded <= 9 ) {
+        return PhScaleStrings.a11y.qualitativePHDescription.slightlyBasicStringProperty;
+      }
+      else if ( pHRounded < 7 && pHRounded >= 5 ) {
+        return PhScaleStrings.a11y.qualitativePHDescription.slightlyAcidicStringProperty;
+      }
+      else if ( pHRounded < 5 && pHRounded >= 3 ) {
+        return PhScaleStrings.a11y.qualitativePHDescription.moderatelyAcidicStringProperty;
+      }
+      else if ( pHRounded < 3 && pHRounded >= 1 ) {
+        return PhScaleStrings.a11y.qualitativePHDescription.highlyAcidicStringProperty;
+      }
+      else if ( pHRounded >= 0 && pHRounded < 1 ) {
+        return PhScaleStrings.a11y.qualitativePHDescription.extremelyAcidicStringProperty;
+      }
+      else {
+        assert && assert( false, `Unexpected pH value: ${pHRounded}` );
+        return PhScaleStrings.a11y.unknownStringProperty;
+      }
     }
   }
 }

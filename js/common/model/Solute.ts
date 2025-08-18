@@ -69,9 +69,9 @@ export default class Solute extends PhetioObject {
    * @param pH - the pH of the solute
    * @param stockColor - color of the solute in stock solution (no dilution)
    * @param accessibleNameProperty - a property that provides the accessible name of the solute, used for a11y
-   * @param [provideOptions]
+   * @param [providedOptions]
    */
-  public constructor( nameProperty: PhetioProperty<string>, pH: number, stockColor: Color, public readonly accessibleNameProperty: TReadOnlyProperty<string>, provideOptions: SoluteOptions ) {
+  public constructor( nameProperty: PhetioProperty<string>, pH: number, stockColor: Color, public readonly accessibleNameProperty: TReadOnlyProperty<string>, providedOptions: SoluteOptions ) {
 
     assert && assert( PHScaleConstants.PH_RANGE.contains( pH ), `invalid pH: ${pH}` );
 
@@ -87,7 +87,7 @@ export default class Solute extends PhetioObject {
       // PhetioObjectOptions
       phetioType: Solute.SoluteIO,
       phetioState: false
-    }, provideOptions );
+    }, providedOptions );
 
     assert && assert( options.colorStopRatio > 0 && options.colorStopRatio < 1,
       `invalid colorStopRatio: ${options.colorStopRatio}` );

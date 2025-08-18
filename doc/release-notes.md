@@ -31,9 +31,9 @@ For an exemplar, see https://github.com/phetsims/balancing-chemical-equations/bl
 ## 1.7 (In Progress)
 
 ### New Features
-* Alt input
+* Alt Input
 * Basic Sound
-* Core Sescription
+* Core Description
 
 ### Changes
 * Improved color contrast

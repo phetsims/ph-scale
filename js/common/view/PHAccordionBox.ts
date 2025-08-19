@@ -32,6 +32,8 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 const Y_MARGIN = 10;
 
 type SelfOptions = {
+
+  // TODO: Can this be named something more like a ratio? The current name sounds a lot like a screen coordinate value, see https://github.com/phetsims/ph-scale/issues/323
   probeCenterX?: number; // centerX of the probe, relative to the accordion box where 0 is the left edge and 1 is the right edge.
   accordionBoxOptions: PickRequired<AccordionBoxOptions, 'tandem'>;
 };

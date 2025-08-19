@@ -127,6 +127,8 @@ export default class ParticleCountsNode extends Node {
       {
         stringProperty: new PatternStringProperty( PhScaleStrings.a11y.beakerControls.particleCountValues.h3OPatternStringProperty, {
           value: new DerivedProperty( [ derivedProperties.particleCountH3OProperty, PhScaleStrings.a11y.scientificNotationPatternStringProperty ],
+
+            // TODO: This pattern is duplicated 3x times in this file, can it be deduplicated? See https://github.com/phetsims/ph-scale/issues/323
             ( count, string ) => {
             const scientificNotation = ScientificNotationNode.toScientificNotation( count, { mantissaDecimalPlaces: 2 } );
             return StringUtils.fillIn( string, { mantissa: scientificNotation.mantissa, exponent: scientificNotation.exponent } );

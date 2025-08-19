@@ -157,6 +157,7 @@ export default class SolutionDerivedProperties {
         phetioHighFrequency: true
       } );
 
+    // TODO: Should this code (following 12 lines) be de-duplicated? see https://github.com/phetsims/ph-scale/issues/323
     this.concentrationH3OScientificNotationProperty = new DerivedProperty( [ this.concentrationH3OProperty ],
       h3OConcentration => h3OConcentration !== null ? ScientificNotationNode.toScientificNotation( h3OConcentration ) :
         { mantissa: 'null', exponent: 'null' } );

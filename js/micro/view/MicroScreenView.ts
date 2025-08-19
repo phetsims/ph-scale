@@ -131,6 +131,8 @@ export default class MicroScreenView extends ScreenView {
     const pHAccordionBox = new MicroPHAccordionBox( model.solution.pHProperty, isScreenActiveProperty,
       model.dropper.isDispensingProperty,
       model.waterFaucet.flowRateProperty, model.drainFaucet.flowRateProperty,
+
+      // TODO: https://github.com/phetsims/ph-scale/issues/323 document this layout. What coordinate frame, what is above what? How does that align with other UI components?
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop,
       tandem.createTandem( 'pHAccordionBox' ) );
 

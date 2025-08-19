@@ -16,7 +16,7 @@ See [PHModel.ts](https://github.com/phetsims/ph-scale/blob/main/js/common/model/
 ## Units
 
 * Quantity: moles (mol)
-* Volume: literes (L)
+* Volume: liters (L)
 * Concentration: moles per liter (mol/L)
 
 ## Computations
@@ -54,7 +54,7 @@ If concentration of OH is changed, then pH = 14 + log( [OH] )
 If #moles of H<sub>3</sub>O<sup>+</sup> is changed, then pH = -log( (#moles H<sub>3</sub>O<sup>+</sup>) / V<sub>
 T</sub> )
 
-If #moles of OH is changed,, then pH = 14 + log( (#moles OH) / V<sub>T</sub>))
+If #moles of OH is changed, then pH = 14 + log( (#moles OH) / V<sub>T</sub>))
 
 ## Limits
 

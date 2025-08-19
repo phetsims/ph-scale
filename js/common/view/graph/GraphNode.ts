@@ -161,12 +161,13 @@ export default class GraphNode extends Node {
         } ) );
 
       // Redefine the scaleRange string Properties to use the logarithmic or linear range depending on the graphScaleProperty
+      // TODO: I renamed some variables here to help me read it, can you spot check the change? See https://github.com/phetsims/ph-scale/issues/323
       scaleRangeMinStringProperty = new DerivedProperty( [ graphScaleProperty, logarithmicRangeMinPatternStringProperty ],
-        ( graphScale, logarithmicMinPatternString ) =>
-          graphScale === GraphScale.LOGARITHMIC ? logarithmicMinPatternString : linearScaleRangeMinString );
+        ( graphScale, logarithmicRangeMinPatternString ) =>
+          graphScale === GraphScale.LOGARITHMIC ? logarithmicRangeMinPatternString : linearScaleRangeMinString );
       scaleRangeMaxStringProperty = new DerivedProperty( [ graphScaleProperty, logarithmicRangeMaxPatternStringProperty, linearScaleRangeMaxStringProperty ],
-        ( graphScale, logarithmicMaxPatternString, linearMaxPatternString ) =>
-          graphScale === GraphScale.LOGARITHMIC ? logarithmicMaxPatternString : linearMaxPatternString );
+        ( graphScale, logarithmicRangeMaxPatternString, linearScaleRangeMaxString ) =>
+          graphScale === GraphScale.LOGARITHMIC ? logarithmicRangeMaxPatternString : linearScaleRangeMaxString );
 
       // scale switch (Logarithmic vs Linear)
       const graphScaleSwitch = new GraphScaleSwitch( graphScaleProperty, {
@@ -201,6 +202,7 @@ export default class GraphNode extends Node {
         linearGraphNode.visible = ( graphScale === GraphScale.LINEAR );
       } );
 
+      // TODO: What would go wrong if the whole linearGraphNode was added here instead of just its zoomButtonGroup? Would it still work correctly? See https://github.com/phetsims/ph-scale/issues/323
       this.controlNodes.push( graphScaleSwitch, linearGraphNode.zoomButtonGroup );
     }
 
@@ -242,6 +244,8 @@ export default class GraphNode extends Node {
           value: new DerivedProperty( [ graphUnitsProperty, derivedProperties.concentrationH2OProperty,
               derivedProperties.quantityH2OProperty ],
             ( graphUnits, concentrationH2O, quantityH2O ) =>
+
+              // TODO: Why a 'null' string? Where is the 'null' used downstream, or is it presented to the user? See https://github.com/phetsims/ph-scale/issues/323
               concentrationH2O === null || quantityH2O === null ? 'null' :
               graphUnits === GraphUnits.MOLES_PER_LITER ? toFixed( concentrationH2O, 0 ) : toFixed( quantityH2O, 0 ) ),
           units: unitsStringProperty

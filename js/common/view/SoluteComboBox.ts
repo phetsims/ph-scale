@@ -53,6 +53,8 @@ export default class SoluteComboBox extends ComboBox<Solute> {
     const items: ComboBoxItem<Solute>[] = [];
 
     const solutes = selectedSoluteProperty.validValues!;
+
+    // TODO: If we use affirm, we will not need the type assertion above, see https://github.com/phetsims/ph-scale/issues/323
     assert && assert( solutes );
 
     // Create items for the listbox

@@ -46,12 +46,18 @@ export default class WaterFaucetNode extends Node {
       combineOptions<FaucetNodeOptions>( {}, PHScaleConstants.FAUCET_OPTIONS, {
         horizontalPipeLength: horizontalPipeLength,
         verticalPipeLength: 20,
+
+        // TODO: Document why this sim reverses alternative input in this case, see https://github.com/phetsims/ph-scale/issues/323
         reverseAlternativeInput: true,
         accessibleName: PhScaleStrings.a11y.beakerControls.waterFaucet.accessibleNameStringProperty,
         accessibleHelpText: PhScaleStrings.a11y.beakerControls.waterFaucet.accessibleHelpTextStringProperty,
+
+        // TODO: Is commented out line this helpful? See https://github.com/phetsims/ph-scale/issues/323
         // aria-valuetext: {{flowRate}} {{units}}
         pdomCreateAriaValueText: flowRate => {
           return StringUtils.fillIn( PhScaleStrings.a11y.beakerControls.faucetCommon.accessibleObjectResponseStringProperty, {
+
+            // TODO: Why does this sim use max - flowRate here and elsewhere, please document, see https://github.com/phetsims/ph-scale/issues/323
             value: toFixed( faucet.flowRateProperty.rangeProperty.value.max - flowRate, 3 )
           } );
         },

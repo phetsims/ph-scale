@@ -6,20 +6,20 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 import KeyboardHelpIconFactory from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpIconFactory.js';
 import KeyboardHelpSection, { KeyboardHelpSectionOptions } from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
 import KeyboardHelpSectionRow from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSectionRow.js';
+import SceneryPhetStrings from '../../../../scenery-phet/js/SceneryPhetStrings.js';
+import AccessibleValueHandlerHotkeyDataCollection from '../../../../sun/js/accessibility/AccessibleValueHandlerHotkeyDataCollection.js';
+import { MacroPHProbeNode } from '../../macro/view/MacroPHProbeNode.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
-import { MacroPHProbeNode } from '../../macro/view/MacroPHProbeNode.js';
-import optionize from '../../../../phet-core/js/optionize.js';
-import AccessibleValueHandlerHotkeyDataCollection from '../../../../sun/js/accessibility/AccessibleValueHandlerHotkeyDataCollection.js';
-import SceneryPhetStrings from '../../../../scenery-phet/js/SceneryPhetStrings.js';
-import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 
 type SelfOptions = {
-  dragDirection?: 'upDown' | 'both';
+  dragDirection?: 'upDown' | 'both'; // TODO: Does both mean left/right? https://github.com/phetsims/ph-scale/issues/323
   includeHomeAndEnd?: boolean; // Whether to include the home and end hotkeys
   includeJumpToPosition?: boolean; // Whether to include the jump to position hotkey
 };
@@ -32,6 +32,8 @@ export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
       includeJumpToPosition: false,
       includeHomeAndEnd: false
     }, providedOptions );
+
+    // TODO: Can these lines be shortened to make it easier for me to read? see https://github.com/phetsims/ph-scale/issues/323
     const arrowOrWasdKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.arrowOrWasdKeysRowIcon() : KeyboardHelpIconFactory.upDownOrWSKeysRowIcon();
     const arrowKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.arrowKeysRowIcon() : KeyboardHelpIconFactory.upDownArrowKeysRowIcon();
     const wasdKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.wasdRowIcon() : KeyboardHelpIconFactory.wSKeysRowIcon();

@@ -55,6 +55,8 @@ export default class SolutionNode extends Rectangle {
       // Add list items to the pdom to describe the solution in the beaker. Only provide the ion comparison if provided
       // by the screenView, since it is not pedagogically relevant for all screens.
       children: [
+
+        // TODO: Would this be clearer in a separate file, like SoluteAccessibleListNode? See https://github.com/phetsims/ph-scale/issues/323
         new AccessibleListNode( [
           {
             stringProperty: PhScaleStrings.a11y.beaker.emptyStringProperty,
@@ -69,6 +71,8 @@ export default class SolutionNode extends Rectangle {
             }, {
               maps: {
                 volume: volume => toFixed( volume, PHScaleConstants.VOLUME_DECIMAL_PLACES ),
+
+                // TODO: What does this identity map do? Is it necessary? See https://github.com/phetsims/ph-scale/issues/323
                 solute: solute => solute
               }
             } ),

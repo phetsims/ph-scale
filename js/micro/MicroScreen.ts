@@ -6,6 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
@@ -19,11 +20,12 @@ import PhScaleStrings from '../PhScaleStrings.js';
 import MicroModel from './model/MicroModel.js';
 import MicroKeyboardHelpContent from './view/MicroKeyboardHelpContent.js';
 import MicroScreenView from './view/MicroScreenView.js';
-import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 
 export default class MicroScreen extends Screen<MicroModel, MicroScreenView> {
 
   public constructor( tandem: Tandem ) {
+
+    // TODO: Add documentation for activeProperty, why is it needed? (I remember we just worked on it, but I forgot and it would be good to document here). See https://github.com/phetsims/ph-scale/issues/323
     const activeProperty = new BooleanProperty( false );
     const options: ScreenOptions = {
 

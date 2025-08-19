@@ -6,17 +6,17 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedStringProperty from '../../../axon/js/DerivedStringProperty.js';
+import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
 import Dimension2 from '../../../dot/js/Dimension2.js';
 import Range from '../../../dot/js/Range.js';
 import RangeWithValue from '../../../dot/js/RangeWithValue.js';
+import { toFixed } from '../../../dot/js/util/toFixed.js';
 import Vector2 from '../../../dot/js/Vector2.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import phScale from '../phScale.js';
 import PhScaleStrings from '../PhScaleStrings.js';
-import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
-import DerivedStringProperty from '../../../axon/js/DerivedStringProperty.js';
-import { toFixed } from '../../../dot/js/util/toFixed.js';
 
 const PHScaleConstants = {
 
@@ -58,9 +58,11 @@ const PHScaleConstants = {
   // pH
   PH_RANGE: new RangeWithValue( -1, 15, 7 ),
   PH_METER_DECIMAL_PLACES: 2,
+
+  // TODO document the intention: https://github.com/phetsims/ph-scale/issues/323
   CREATE_PH_VALUE_FIXED_PROPERTY: ( pHProperty: TReadOnlyProperty<number | null> ): TReadOnlyProperty<number | string> =>
     new DerivedStringProperty( [ pHProperty, PhScaleStrings.a11y.unknownStringProperty ],
-      ( ph, unknown ) => ( ph === null ) ? unknown : toFixed( ph, PHScaleConstants.PH_METER_DECIMAL_PLACES ) ),
+      ( pH, unknownString ) => ( pH === null ) ? unknownString : toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) ),
 
   // volume
   VOLUME_DECIMAL_PLACES: 2,

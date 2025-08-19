@@ -18,6 +18,8 @@ export default class ProbeJumpPositions extends Array<JumpPosition> {
   public constructor( model: MacroModel ) {
    super( // Inside the beaker, bottom center.
      new JumpPosition( {
+
+       // TODO: Can these be made constants, instead of axon Property instances? see https://github.com/phetsims/ph-scale/issues/323
        positionProperty: new Vector2Property( model.beaker.position.plusXY( 0, -0.0001 ) ),
        accessibleObjectResponseStringProperty: PhScaleStrings.a11y.macroProbe.accessibleObjectResponses.insideBeakerStringProperty
      } ),

@@ -15,11 +15,15 @@
 import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Multilink from '../../../../../axon/js/Multilink.js';
+import PatternStringProperty from '../../../../../axon/js/PatternStringProperty.js';
 import Property from '../../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
+import { linear } from '../../../../../dot/js/util/linear.js';
+import { log10 } from '../../../../../dot/js/util/log10.js';
 import optionize from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
+import KeyboardListener from '../../../../../scenery/js/listeners/KeyboardListener.js';
 import Line from '../../../../../scenery/js/nodes/Line.js';
 import Node, { NodeOptions, NodeTranslationOptions } from '../../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../../scenery/js/nodes/Rectangle.js';
@@ -27,20 +31,16 @@ import RichText from '../../../../../scenery/js/nodes/RichText.js';
 import Font from '../../../../../scenery/js/util/Font.js';
 import LinearGradient from '../../../../../scenery/js/util/LinearGradient.js';
 import TColor from '../../../../../scenery/js/util/TColor.js';
+import phScale from '../../../phScale.js';
+import PhScaleStrings from '../../../PhScaleStrings.js';
 import PHModel, { PHValue } from '../../model/PHModel.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
 import GraphIndicatorKeyboardDragListener from './GraphIndicatorKeyboardDragListener.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
-import GraphUnits from './GraphUnits.js';
-import { log10 } from '../../../../../dot/js/util/log10.js';
-import { linear } from '../../../../../dot/js/util/linear.js';
-import PhScaleStrings from '../../../PhScaleStrings.js';
 import GraphNode from './GraphNode.js';
-import PatternStringProperty from '../../../../../axon/js/PatternStringProperty.js';
-import KeyboardListener from '../../../../../scenery/js/listeners/KeyboardListener.js';
-import phScale from '../../../phScale.js';
+import GraphUnits from './GraphUnits.js';
 
 type SelfOptions = {
 
@@ -215,8 +215,9 @@ export default class LogarithmicGraphNode extends Node {
     this.addChild( indicatorH3ONode );
     this.addChild( indicatorOHNode );
 
+    // TODO: These methods seem brittle, should we add tests or unit tests to guarantee their behavior? https://github.com/phetsims/ph-scale/issues/323
     /**
-     * Given a value, compute it's y position relative to the top of the scale.
+     * Given a value, compute its y position relative to the top of the scale.
      */
     const valueToY = ( value: number | null ) => {
       if ( value === 0 || value === null ) {
@@ -241,6 +242,16 @@ export default class LogarithmicGraphNode extends Node {
       return Math.pow( 10, exponent );
     };
 
+    // TODO: These tests mostly worked, you can remove if you want, see https://github.com/phetsims/ph-scale/issues/323
+    // for ( let i = 0; i < 1000; i++ ) {
+    //   const m = dotRandom.nextDoubleBetween( 0, 10 );
+    //   const result = valueToY( yToValue( m ) );
+    //   affirm( Math.abs( result - m ) < 0.0001, `valueToY(${m}) = ${result}, yToValue(${result}) = ${yToValue( result )}` );
+    // }
+    // affirm( valueToY( yToValue( 3 ) ) === 3 );
+    // affirm( valueToY( yToValue( 4 ) ) === 4 );
+    // affirm( valueToY( yToValue( 5 ) ) === 5 );
+
     // Move the indicators
     Multilink.multilink( [ valueH2OProperty, graphUnitsProperty ],
       ( valueH2O, graphUnits ) => {
@@ -260,6 +271,10 @@ export default class LogarithmicGraphNode extends Node {
       const pHProperty = options.pHProperty as Property<number>;
 
       const createHomeAndEndKeyboardListener = ( homeValue: number, endValue: number ) => new KeyboardListener( {
+
+        // TODO: Would HotkeyData help here? The code review checklist said:
+        // >  Does this sim use KeyboardListener? If so, keys should be defined with HotkeyData
+        // see https://github.com/phetsims/ph-scale/issues/323
         keys: [ 'home', 'end' ],
         fire: ( event, keysPressed ) => {
           if ( totalVolumeProperty.value !== 0 ) {
@@ -298,6 +313,7 @@ export default class LogarithmicGraphNode extends Node {
       // OH- indicator
       indicatorOHNode.cursor = 'pointer';
       const objectResponseOHStringProperty = new PatternStringProperty( PhScaleStrings.a11y.graph.indicatorOH.accessibleObjectResponseStringProperty, {
+
         valueH3O: GraphNode.createScientificNotationStringProperty( derivedProperties.concentrationH3OScientificNotationProperty,
           derivedProperties.quantityH3OScientificNotationProperty, graphUnitsProperty ),
         valueOH: GraphNode.createScientificNotationStringProperty( derivedProperties.concentrationOHScientificNotationProperty,

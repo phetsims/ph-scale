@@ -138,6 +138,8 @@ export default class MacroPHMeterNode extends Node {
     meter.pHProperty.link( pH => {
       if ( pH !== null ) {
         if ( probeNode.isInWater() ) {
+
+          // TODO: Eliminate duplication in the next 16 lines, see https://github.com/phetsims/ph-scale/issues/323
           responseUtterance.alert = StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
             pHValue: toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES )
           } );
@@ -222,6 +224,7 @@ type ScaleNodeSelfOptions = {
 };
 type ScaleNodeOptions = ScaleNodeSelfOptions & NodeOptions;
 
+// TODO: I recommend moving some of the auxiliary classes here to separate files, even though they are only used in this context, it will make it easier to read, understand, and mantain, see https://github.com/phetsims/ph-scale/issues/323
 export class ScaleNode extends Node {
 
   public constructor( providedOptions?: ScaleNodeOptions ) {
@@ -308,6 +311,7 @@ export class ScaleNode extends Node {
 /**
  * Wire that connects the body and probe.
  */
+// TODO: I recommend moving some of the auxiliary classes here to separate files, even though they are only used in this context, it will make it easier to read, understand, and mantain, see https://github.com/phetsims/ph-scale/issues/323
 class WireNode extends Path {
 
   public constructor( probe: PHMovable, bodyNode: Node, probeNode: Node ) {
@@ -350,6 +354,7 @@ class WireNode extends Path {
 type PHIndicatorNodeSelfOptions = EmptySelfOptions;
 type PHIndicatorNodeOptions = PHIndicatorNodeSelfOptions & WithRequired<NodeOptions, 'tandem'> & StrictOmit<NodeOptions, 'children'>;
 
+// TODO: I recommend moving some of the auxiliary classes here to separate files, even though they are only used in this context, it will make it easier to read, understand, and mantain, see https://github.com/phetsims/ph-scale/issues/323
 class PHIndicatorNode extends Node {
 
   public constructor( pHProperty: Property<PHValue>, scaleWidth: number, providedOptions: PHIndicatorNodeOptions ) {
@@ -506,6 +511,8 @@ class PHIndicatorNode extends Node {
       else if ( pHRounded > 7 && pHRounded <= 9 ) {
         return PhScaleStrings.a11y.qualitativePHDescription.slightlyBasicStringProperty;
       }
+
+      // TODO: Some of these are backwards, recommended to always have the low number, then the high number, for readability, see https://github.com/phetsims/ph-scale/issues/323
       else if ( pHRounded < 7 && pHRounded >= 5 ) {
         return PhScaleStrings.a11y.qualitativePHDescription.slightlyAcidicStringProperty;
       }

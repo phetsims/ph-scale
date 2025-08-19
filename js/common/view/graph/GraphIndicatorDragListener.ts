@@ -128,6 +128,7 @@ export default class GraphIndicatorDragListener extends SoundDragListener {
       let pH = isConcentration ? concentrationToPH( adjustedValue ) : molesToPH( adjustedValue, totalVolume );
 
       // Constrain the pH to the valid range
+      // TODO: If we use affirm, we will not need the type assertion, see https://github.com/phetsims/ph-scale/issues/323
       assert && assert( pH !== null, 'pH is not expected to be null here, because we checked that totalVolume !== 0 above' );
       pH = clamp( pH!, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
 
@@ -135,6 +136,8 @@ export default class GraphIndicatorDragListener extends SoundDragListener {
 
       // Set the solution's pH
       pHProperty.value = pH;
+
+      // TODO: Should we document why 'queue' in cases like this? See https://github.com/phetsims/ph-scale/issues/323
       graphIndicatorNode.addAccessibleObjectResponse( objectResponseUtterance, 'queue' );
     }
   }

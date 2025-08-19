@@ -23,6 +23,8 @@ class PHScalePreferencesNode extends PreferencesPanelContentNode {
     // Create the preference for whether the autofill feature is enabled, see https://github.com/phetsims/ph-scale/issues/104
     const autoFillLabel = new Text( PhScaleStrings.autoFillStringProperty, PreferencesDialogConstants.CONTROL_LABEL_OPTIONS );
     const autoFillDescription = new Text( PhScaleStrings.autoFillDescriptionStringProperty, PreferencesDialogConstants.CONTROL_DESCRIPTION_OPTIONS );
+
+    // TODO: Should this use OnOffSwitch? see https://github.com/phetsims/ph-scale/issues/323
     const autoFillSwitch = new ToggleSwitch( PHScalePreferences.autoFillEnabledProperty, false, true,
       PreferencesDialogConstants.TOGGLE_SWITCH_OPTIONS );
     const autoFillControl = new PreferencesControl( {

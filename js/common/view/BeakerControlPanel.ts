@@ -80,7 +80,6 @@ class RatioCheckbox extends Checkbox {
 
     const stringProperty = new PatternStringProperty( PhScaleStrings.pattern.H3O.OH.ratioStringProperty, {
 
-      // TODO: If these strings change, will it cause a problem for translators or rosetta? In the prior publication it was h3o and oh. Will we have to notify translators or automatically change submissions? See https://github.com/phetsims/ph-scale/issues/323
       H3O: `<span style="color:${PHScaleColors.H3O_PARTICLES.toCSS()}">${PHScaleConstants.H3O_FORMULA}</span>`,
       OH: `<span style="color:${PHScaleColors.OH_PARTICLES.toCSS()}">${PHScaleConstants.OH_FORMULA}</span>`,
       ratio: PhScaleStrings.ratioStringProperty

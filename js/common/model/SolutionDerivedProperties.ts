@@ -157,19 +157,14 @@ export default class SolutionDerivedProperties {
         phetioHighFrequency: true
       } );
 
-    // TODO: Should this code (following 12 lines) be de-duplicated? see https://github.com/phetsims/ph-scale/issues/323
-    this.concentrationH3OScientificNotationProperty = new DerivedProperty( [ this.concentrationH3OProperty ],
-      h3OConcentration => h3OConcentration !== null ? ScientificNotationNode.toScientificNotation( h3OConcentration ) :
-        { mantissa: 'null', exponent: 'null' } );
-    this.quantityH3OScientificNotationProperty = new DerivedProperty( [ this.quantityH3OProperty ],
-      h3OQuantity => h3OQuantity !== null ? ScientificNotationNode.toScientificNotation( h3OQuantity ) :
-        { mantissa: 'null', exponent: 'null' } );
-    this.concentrationOHScientificNotationProperty = new DerivedProperty( [ this.concentrationOHProperty ],
-      oHMinusConcentration => oHMinusConcentration !== null ? ScientificNotationNode.toScientificNotation( oHMinusConcentration ) :
-        { mantissa: 'null', exponent: 'null' } );
-    this.quantityOHScientificNotationProperty = new DerivedProperty( [ this.quantityOHProperty ],
-      oHMinusQuantity => oHMinusQuantity !== null ? ScientificNotationNode.toScientificNotation( oHMinusQuantity ) :
-        { mantissa: 'null', exponent: 'null' } );
+    const createScientificNotationProperty = <T>( property: ReadOnlyProperty<T> ): TReadOnlyProperty<ScientificNotation> =>
+      new DerivedProperty( [ this.concentrationH3OProperty ],
+        h3OConcentration => h3OConcentration !== null ? ScientificNotationNode.toScientificNotation( h3OConcentration ) :
+          { mantissa: 'null', exponent: 'null' } );
+    this.concentrationH3OScientificNotationProperty = createScientificNotationProperty( this.concentrationH3OProperty );
+    this.quantityH3OScientificNotationProperty = createScientificNotationProperty( this.quantityH3OProperty );
+    this.concentrationOHScientificNotationProperty = createScientificNotationProperty( this.concentrationOHProperty );
+    this.quantityOHScientificNotationProperty = createScientificNotationProperty( this.quantityOHProperty );
   }
 }
 

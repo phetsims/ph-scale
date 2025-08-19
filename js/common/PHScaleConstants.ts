@@ -59,7 +59,7 @@ const PHScaleConstants = {
   PH_RANGE: new RangeWithValue( -1, 15, 7 ),
   PH_METER_DECIMAL_PLACES: 2,
 
-  // TODO document the intention: https://github.com/phetsims/ph-scale/issues/323
+  // Create a string property that formats pH values to a fixed number of decimal places or returns a string for null pH values.
   CREATE_PH_VALUE_FIXED_PROPERTY: ( pHProperty: TReadOnlyProperty<number | null> ): TReadOnlyProperty<number | string> =>
     new DerivedStringProperty( [ pHProperty, PhScaleStrings.a11y.unknownStringProperty ],
       ( pH, unknownString ) => ( pH === null ) ? unknownString : toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) ),

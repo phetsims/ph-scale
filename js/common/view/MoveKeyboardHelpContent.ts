@@ -18,8 +18,10 @@ import { MacroPHProbeNode } from '../../macro/view/MacroPHProbeNode.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 
+// The direction in which the draggable can be moved, Both means it can be moved both vertically and horizontally
+type DragDirection = 'upDown' | 'both';
 type SelfOptions = {
-  dragDirection?: 'upDown' | 'both'; // TODO: Does both mean left/right? https://github.com/phetsims/ph-scale/issues/323
+  dragDirection?: DragDirection;
   includeHomeAndEnd?: boolean; // Whether to include the home and end hotkeys
   includeJumpToPosition?: boolean; // Whether to include the jump to position hotkey
 };
@@ -33,12 +35,17 @@ export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
       includeHomeAndEnd: false
     }, providedOptions );
 
-    // TODO: Can these lines be shortened to make it easier for me to read? see https://github.com/phetsims/ph-scale/issues/323
-    const arrowOrWasdKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.arrowOrWasdKeysRowIcon() : KeyboardHelpIconFactory.upDownOrWSKeysRowIcon();
-    const arrowKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.arrowKeysRowIcon() : KeyboardHelpIconFactory.upDownArrowKeysRowIcon();
-    const wasdKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.wasdRowIcon() : KeyboardHelpIconFactory.wSKeysRowIcon();
+    // Create the icons that will be used in the section rows.
+    const arrowOrWasdKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.arrowOrWasdKeysRowIcon() :
+                                KeyboardHelpIconFactory.upDownOrWSKeysRowIcon();
+    const arrowKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.arrowKeysRowIcon() :
+                          KeyboardHelpIconFactory.upDownArrowKeysRowIcon();
+    const wasdKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.wasdRowIcon() :
+                         KeyboardHelpIconFactory.wSKeysRowIcon();
     const shiftPlusArrowKeysIcon = KeyboardHelpIconFactory.shiftPlusIcon( arrowKeysIcon );
     const shiftPlusWASDKeysIcon = KeyboardHelpIconFactory.shiftPlusIcon( wasdKeysIcon );
+
+    // Create the inner content strings for the section rows.
     const moveLabelInnerContentStringProperty = options.dragDirection === 'both' ? PhScaleStrings.a11y.keyboardHelpDialog.movePHProbe.moveStringProperty :
                                                 PhScaleStrings.a11y.keyboardHelpDialog.moveGraphIndicators.moveStringProperty;
     const moveSlowerLabelInnerContentStringProperty = options.dragDirection === 'both' ? PhScaleStrings.a11y.keyboardHelpDialog.movePHProbe.moveSlowerStringProperty :

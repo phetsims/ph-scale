@@ -45,7 +45,7 @@ export default class DrainFaucetNode extends FaucetNode {
         pdomCreateAriaValueText: flowRate => {
           return StringUtils.fillIn( PhScaleStrings.a11y.beakerControls.faucetCommon.accessibleObjectResponseStringProperty, {
 
-            // TODO: Why is the value max minus rate? see https://github.com/phetsims/ph-scale/issues/323
+            // We need to invert the value since the faucet is `reverseAlternativeInput = true`.
             value: toFixed( faucet.flowRateProperty.rangeProperty.value.max - flowRate, 3 )
           } );
         },

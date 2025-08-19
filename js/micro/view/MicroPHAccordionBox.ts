@@ -25,7 +25,6 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
 
   /**
    * @param pHProperty - pH of the solution
-   * @param isScreenActiveProperty - true if the screen is active
    * @param isDispensingProperty - true if the dropper is dispensing
    * @param waterFaucetFlowRateProperty - flow rate of the water faucet, in liters/second
    * @param drainFaucetFlowRateProperty - flow rate of the drain faucet, in liters/second
@@ -33,8 +32,8 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
    * @param tandem
    */
   // TODO: Should we try to simplify this constructor signature? See https://github.com/phetsims/ph-scale/issues/323
-  public constructor( pHProperty: ReadOnlyProperty<PHValue>, isScreenActiveProperty: TReadOnlyProperty<boolean>,
-                      isDispensingProperty: TReadOnlyProperty<boolean>, waterFaucetFlowRateProperty: TReadOnlyProperty<number>,
+  public constructor( pHProperty: ReadOnlyProperty<PHValue>, isDispensingProperty: TReadOnlyProperty<boolean>,
+                      waterFaucetFlowRateProperty: TReadOnlyProperty<number>,
                       drainFaucetFlowRateProperty: TReadOnlyProperty<number>, probeYOffset: number, tandem: Tandem ) {
     const pHValuePatternStringProperty = new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
       pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( pHProperty )
@@ -82,7 +81,7 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
       // TODO: Is there a listener order dependency, where this code relies on the above responseUtterance.alert being updated before this is called?
       // If so, should we document it or specify hasListenerOrderDependencies: true? See https://github.com/phetsims/ph-scale/issues/323
       ( pH, dropperIsDispensing, waterFaucetFlowRate, drainFaucetFlowRate, expanded ) => {
-        isScreenActiveProperty.value && !dropperIsDispensing && waterFaucetFlowRate === 0 && drainFaucetFlowRate === 0 && expanded &&
+        !dropperIsDispensing && waterFaucetFlowRate === 0 && drainFaucetFlowRate === 0 && expanded &&
         numberDisplay.addAccessibleContextResponse( responseUtterance, 'queue' );
       } );
   }

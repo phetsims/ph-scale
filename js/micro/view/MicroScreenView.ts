@@ -41,11 +41,10 @@ import MicroModel from '../model/MicroModel.js';
 import MicroPHAccordionBox from './MicroPHAccordionBox.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import MicroScreenSummaryContent from './MicroScreenSummaryContent.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 export default class MicroScreenView extends ScreenView {
 
-  public constructor( model: MicroModel, isScreenActiveProperty: TReadOnlyProperty<boolean>, modelViewTransform: ModelViewTransform2, tandem: Tandem ) {
+  public constructor( model: MicroModel, modelViewTransform: ModelViewTransform2, tandem: Tandem ) {
 
     super( combineOptions<ScreenViewOptions>( {
       screenSummaryContent: new MicroScreenSummaryContent( model.solution.totalVolumeProperty ),
@@ -128,11 +127,11 @@ export default class MicroScreenView extends ScreenView {
 
     // pH meter
     const pHMeterTop = 15;
-    const pHAccordionBox = new MicroPHAccordionBox( model.solution.pHProperty, isScreenActiveProperty,
-      model.dropper.isDispensingProperty,
+    const pHAccordionBox = new MicroPHAccordionBox( model.solution.pHProperty, model.dropper.isDispensingProperty,
       model.waterFaucet.flowRateProperty, model.drainFaucet.flowRateProperty,
 
-      // TODO: https://github.com/phetsims/ph-scale/issues/323 document this layout. What coordinate frame, what is above what? How does that align with other UI components?
+      // TODO: https://github.com/phetsims/ph-scale/issues/323 document this layout. What coordinate frame, what is above what? How does that align with other
+      // UI components?
       modelViewTransform.modelToViewY( model.beaker.position.y ) - pHMeterTop,
       tandem.createTandem( 'pHAccordionBox' ) );
 

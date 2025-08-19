@@ -6,7 +6,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
@@ -25,8 +24,6 @@ export default class MicroScreen extends Screen<MicroModel, MicroScreenView> {
 
   public constructor( tandem: Tandem ) {
 
-    // TODO: Add documentation for activeProperty, why is it needed? (I remember we just worked on it, but I forgot and it would be good to document here). See https://github.com/phetsims/ph-scale/issues/323
-    const activeProperty = new BooleanProperty( false );
     const options: ScreenOptions = {
 
       // ScreenOptions
@@ -47,11 +44,9 @@ export default class MicroScreen extends Screen<MicroModel, MicroScreenView> {
 
     super(
       () => new MicroModel( options.tandem.createTandem( 'model' ) ),
-      model => new MicroScreenView( model, activeProperty, ModelViewTransform2.createIdentity(), options.tandem.createTandem( 'view' ) ),
+      model => new MicroScreenView( model, ModelViewTransform2.createIdentity(), options.tandem.createTandem( 'view' ) ),
       options
     );
-
-    this.activeProperty.link( active => { activeProperty.value = active; } );
   }
 }
 

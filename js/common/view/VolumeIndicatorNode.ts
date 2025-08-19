@@ -1,7 +1,7 @@
 // Copyright 2013-2025, University of Colorado Boulder
 
 /**
- * Displays a volume value, with an left-pointing arrow to the left of the value.
+ * Displays a volume value, with a left-pointing arrow to the left of the value.
  * The origin is at the tip of the arrowhead.
  *
  * @author Chris Malley (PixelZoom, Inc.)

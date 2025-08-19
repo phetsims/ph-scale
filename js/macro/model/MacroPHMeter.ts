@@ -4,7 +4,7 @@
  * Model of the pH meter.
  * <p/>
  * NOTE: Determining when the probe is in one of the various fluids is handled in the view,
- * where testing node intersections simplifies the process. Otherwise we'd need to
+ * where testing node intersections simplifies the process. Otherwise, we'd need to
  * model the shapes of the various fluids, an unnecessary complication.
  *
  * @author Chris Malley (PixelZoom, Inc.)

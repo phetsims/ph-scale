@@ -133,7 +133,7 @@ export default class MacroPHMeterNode extends Node {
         }
       } );
 
-    // For all other scenarios not covered by the Multilink above, we only announce when the pH value changes and we do
+    // For all other scenarios not covered by the Multilink above, we only announce when the pH value changes, and we do
     // not care if the dropper or faucets are dispensing.
     meter.pHProperty.link( pH => {
       if ( pH !== null ) {
@@ -224,7 +224,7 @@ type ScaleNodeSelfOptions = {
 };
 type ScaleNodeOptions = ScaleNodeSelfOptions & NodeOptions;
 
-// TODO: I recommend moving some of the auxiliary classes here to separate files, even though they are only used in this context, it will make it easier to read, understand, and mantain, see https://github.com/phetsims/ph-scale/issues/323
+// TODO: I recommend moving some of the auxiliary classes here to separate files, even though they are only used in this context, it will make it easier to read, understand, and maintain, see https://github.com/phetsims/ph-scale/issues/323
 export class ScaleNode extends Node {
 
   public constructor( providedOptions?: ScaleNodeOptions ) {
@@ -311,7 +311,7 @@ export class ScaleNode extends Node {
 /**
  * Wire that connects the body and probe.
  */
-// TODO: I recommend moving some of the auxiliary classes here to separate files, even though they are only used in this context, it will make it easier to read, understand, and mantain, see https://github.com/phetsims/ph-scale/issues/323
+// TODO: I recommend moving some of the auxiliary classes here to separate files, even though they are only used in this context, it will make it easier to read, understand, and maintain, see https://github.com/phetsims/ph-scale/issues/323
 class WireNode extends Path {
 
   public constructor( probe: PHMovable, bodyNode: Node, probeNode: Node ) {
@@ -354,7 +354,7 @@ class WireNode extends Path {
 type PHIndicatorNodeSelfOptions = EmptySelfOptions;
 type PHIndicatorNodeOptions = PHIndicatorNodeSelfOptions & WithRequired<NodeOptions, 'tandem'> & StrictOmit<NodeOptions, 'children'>;
 
-// TODO: I recommend moving some of the auxiliary classes here to separate files, even though they are only used in this context, it will make it easier to read, understand, and mantain, see https://github.com/phetsims/ph-scale/issues/323
+// TODO: I recommend moving some of the auxiliary classes here to separate files, even though they are only used in this context, it will make it easier to read, understand, and maintain, see https://github.com/phetsims/ph-scale/issues/323
 class PHIndicatorNode extends Node {
 
   public constructor( pHProperty: Property<PHValue>, scaleWidth: number, providedOptions: PHIndicatorNodeOptions ) {

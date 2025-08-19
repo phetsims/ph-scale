@@ -42,7 +42,6 @@ export default class MicroScreen extends Screen<MicroModel, MicroScreenView> {
       } ),
       createKeyboardHelpNode: () => new MicroKeyboardHelpContent(),
       screenButtonsHelpText: PhScaleStrings.a11y.microScreenButton.accessibleHelpTextStringProperty,
-      isDisposable: false,
       tandem: tandem
     };
 

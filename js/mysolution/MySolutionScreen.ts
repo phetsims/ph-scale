@@ -39,7 +39,6 @@ export default class MySolutionScreen extends Screen<MySolutionModel, MySolution
       } ),
       createKeyboardHelpNode: () => new MySolutionKeyboardHelpContent(),
       screenButtonsHelpText: PhScaleStrings.a11y.mySolutionScreenButton.accessibleHelpTextStringProperty,
-      isDisposable: false,
       tandem: tandem
     };
 

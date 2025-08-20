@@ -55,6 +55,7 @@ import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtterance.js';
 import DynamicProperty from '../../../../axon/js/DynamicProperty.js';
 import { toFixed } from '../../../../dot/js/util/toFixed.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 // constants
 const BACKGROUND_ENABLED_FILL_PROPERTY = PHScaleColors.pHProbeColorProperty;
@@ -511,22 +512,20 @@ class PHIndicatorNode extends Node {
       else if ( pHRounded > 7 && pHRounded <= 9 ) {
         return PhScaleStrings.a11y.qualitativePHDescription.slightlyBasicStringProperty;
       }
-
-      // TODO: Some of these are backwards, recommended to always have the low number, then the high number, for readability, see https://github.com/phetsims/ph-scale/issues/323
-      else if ( pHRounded < 7 && pHRounded >= 5 ) {
+      else if ( pHRounded >= 5 && pHRounded < 7 ) {
         return PhScaleStrings.a11y.qualitativePHDescription.slightlyAcidicStringProperty;
       }
-      else if ( pHRounded < 5 && pHRounded >= 3 ) {
+      else if ( pHRounded >= 3 && pHRounded < 5 ) {
         return PhScaleStrings.a11y.qualitativePHDescription.moderatelyAcidicStringProperty;
       }
-      else if ( pHRounded < 3 && pHRounded >= 1 ) {
+      else if ( pHRounded >= 1 && pHRounded < 3 ) {
         return PhScaleStrings.a11y.qualitativePHDescription.highlyAcidicStringProperty;
       }
-      else if ( pHRounded >= 0 && pHRounded < 1 ) {
+      else if ( pHRounded < 1 && pHRounded >= 0 ) {
         return PhScaleStrings.a11y.qualitativePHDescription.extremelyAcidicStringProperty;
       }
       else {
-        assert && assert( false, `Unexpected pH value: ${pHRounded}` );
+        affirm( false, `Unexpected pH value: ${pHRounded}` );
         return PhScaleStrings.a11y.unknownStringProperty;
       }
     }

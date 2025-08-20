@@ -62,12 +62,6 @@ export class MacroPHProbeNode extends InteractiveHighlighting( ProbeNode ) {
     const options = optionize4<MacroPHProbeNodeOptions, SelfOptions, ProbeNodeOptions>()( {},
       DEFAULT_MACRO_PH_PROBE_NODE_OPTIONS, {
         cursor: 'pointer',
-
-        // TODO: It looks like this is already in the DEFAULT_MACRO_PH_PROBE_NODE_OPTIONS, should it be removed? See https://github.com/phetsims/ph-scale/issues/323
-        tagName: 'div',
-
-        // TODO: It looks like this is already in the DEFAULT_MACRO_PH_PROBE_NODE_OPTIONS, should it be removed? See https://github.com/phetsims/ph-scale/issues/323
-        focusable: true,
         visiblePropertyOptions: {
           phetioReadOnly: true
         },

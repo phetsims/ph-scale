@@ -72,7 +72,7 @@ export default class SolutionNode extends Rectangle {
               maps: {
                 volume: volume => toFixed( volume, PHScaleConstants.VOLUME_DECIMAL_PLACES ),
 
-                // TODO: What does this identity map do? Is it necessary? See https://github.com/phetsims/ph-scale/issues/323
+                // This map is necessary to avoid a type error.
                 solute: solute => solute
               }
             } ),

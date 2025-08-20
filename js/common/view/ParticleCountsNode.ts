@@ -35,6 +35,7 @@ import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js'
 import PhScaleStrings from '../../PhScaleStrings.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
+import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -123,36 +124,22 @@ export default class ParticleCountsNode extends Node {
     const backgroundH2O = new Rectangle( 0, 0, backgroundWidth, backgroundHeight, combineOptions<RectangleOptions>(
       {}, backgroundOptions, { fill: PHScaleColors.h2OBackgroundColorProperty } ) );
 
-    const particleCountsListNode = new AccessibleListNode( [
-      {
-        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.beakerControls.particleCountValues.h3OPatternStringProperty, {
-          value: new DerivedProperty( [ derivedProperties.particleCountH3OProperty, PhScaleStrings.a11y.scientificNotationPatternStringProperty ],
+    const createListItem = ( patternStringProperty: TReadOnlyProperty<string>, valueProperty: TReadOnlyProperty<number> ) => {
+      return { stringProperty: new PatternStringProperty( patternStringProperty, {
+          value: new DerivedProperty( [ valueProperty, PhScaleStrings.a11y.scientificNotationPatternStringProperty ],
 
             // TODO: This pattern is duplicated 3x times in this file, can it be deduplicated? See https://github.com/phetsims/ph-scale/issues/323
             ( count, string ) => {
-            const scientificNotation = ScientificNotationNode.toScientificNotation( count, { mantissaDecimalPlaces: 2 } );
-            return StringUtils.fillIn( string, { mantissa: scientificNotation.mantissa, exponent: scientificNotation.exponent } );
-            } )
-        } )
-      },
-      {
-        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.beakerControls.particleCountValues.oHPatternStringProperty, {
-          value: new DerivedProperty( [ derivedProperties.particleCountOHProperty, PhScaleStrings.a11y.scientificNotationPatternStringProperty ],
-            ( count, string ) => {
               const scientificNotation = ScientificNotationNode.toScientificNotation( count, { mantissaDecimalPlaces: 2 } );
               return StringUtils.fillIn( string, { mantissa: scientificNotation.mantissa, exponent: scientificNotation.exponent } );
             } )
-        } )
-      },
-      {
-        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.beakerControls.particleCountValues.waterPatternStringProperty, {
-          value: new DerivedProperty( [ derivedProperties.particleCountH2OProperty, PhScaleStrings.a11y.scientificNotationPatternStringProperty ],
-            ( count, string ) => {
-              const scientificNotation = ScientificNotationNode.toScientificNotation( count, { mantissaDecimalPlaces: 2 } );
-              return StringUtils.fillIn( string, { mantissa: scientificNotation.mantissa, exponent: scientificNotation.exponent } );
-            } )
-        } )
-      }
+        } ) };
+    };
+
+    const particleCountsListNode = new AccessibleListNode( [
+      createListItem( PhScaleStrings.a11y.beakerControls.particleCountValues.h3OPatternStringProperty, derivedProperties.particleCountH3OProperty ),
+      createListItem( PhScaleStrings.a11y.beakerControls.particleCountValues.oHPatternStringProperty, derivedProperties.particleCountOHProperty ),
+      createListItem( PhScaleStrings.a11y.beakerControls.particleCountValues.waterPatternStringProperty, derivedProperties.particleCountH2OProperty )
     ] );
 
     options.children = [

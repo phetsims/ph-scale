@@ -39,7 +39,7 @@ export default class MySolutionPHAccordionBox extends PHAccordionBox {
     } );
 
     super( spinner, probeYOffset, {
-      probeCenterX: 0.5, // center the probe in the accordion box
+      probeCenterXRatio: 0.5, // center the probe in the accordion box
       accordionBoxOptions: {
         tandem: tandem
       }

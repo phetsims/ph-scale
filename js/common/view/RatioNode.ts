@@ -36,6 +36,8 @@ import PHModel, { PHValue } from '../model/PHModel.js';
 import PHScaleColors from '../PHScaleColors.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import PHScaleQueryParameters from '../PHScaleQueryParameters.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
+import { roundSymmetric } from '../../../../dot/js/util/roundSymmetric.js';
 
 // constants
 const TOTAL_PARTICLES_AT_PH_7 = 100;
@@ -51,8 +53,7 @@ const MINORITY_ALPHA = 1.0; // alpha of the minority species, [0-1], transparent
 const H3O_STROKE = PHScaleColors.H3O_PARTICLES_STROKE; // optional stroke around H3O+ particles
 const H3O_LINE_WIDTH = 0.5; // width of stroke around H3O+ particles, ignored if H3O_STROKE is null
 
-// TODO: Should this be adjacent to PHScaleColors.H3O_PARTICLES_STROKE? see https://github.com/phetsims/ph-scale/issues/323
-const OH_STROKE = 'black'; // optional stroke around OH- particles
+const OH_STROKE = PHScaleColors.OH_Particles_Stroke; // optional stroke around OH- particles
 const OH_LINE_WIDTH = 0.5; // width of stroke around OH- particles, ignored if OH_STROKE is null
 
 type SelfOptions = EmptySelfOptions;
@@ -112,12 +113,10 @@ export default class RatioNode extends Node {
         else {
           const concentrationH3O = PHModel.pHToConcentrationH3O( pH )!;
 
-          // TODO: If we use affirm, we will not need the type assertion above, see https://github.com/phetsims/ph-scale/issues/323
-          assert && assert( concentrationH3O !== null );
-          const concentrationOH = PHModel.pHToConcentrationOH( pH )!;
+          affirm( concentrationH3O !== null );
+          const concentrationOH = PHModel.pHToConcentrationOH( pH );
 
-          // TODO: If we use affirm, we will not need the type assertion above, see https://github.com/phetsims/ph-scale/issues/323
-          assert && assert( concentrationOH !== null && concentrationOH !== 0 );
+          affirm( concentrationOH !== null && concentrationOH !== 0 );
           return concentrationH3O / concentrationOH;
         }
       }, {
@@ -227,11 +226,9 @@ function computeNumberOfH3O( pH: PHValue ): number {
   else {
     const concentrationH3O = PHModel.pHToConcentrationH3O( pH )!;
 
-    // TODO: If we use affirm, we will not need the type assertion above, see https://github.com/phetsims/ph-scale/issues/323
-    assert && assert( concentrationH3O !== null, 'concentrationH3O is not expected to be null when pH !== null' );
+    affirm( concentrationH3O !== null, 'concentrationH3O is not expected to be null when pH !== null' );
 
-    // TODO: Recommended to use roundSymmetric directly here and elsewhere, see https://github.com/phetsims/ph-scale/issues/323
-    return Utils.roundSymmetric( concentrationH3O * ( TOTAL_PARTICLES_AT_PH_7 / 2 ) / 1E-7 );
+    return roundSymmetric( concentrationH3O * ( TOTAL_PARTICLES_AT_PH_7 / 2 ) / 1E-7 );
   }
 }
 
@@ -382,14 +379,11 @@ class ParticlesCanvas extends CanvasNode {
   private drawParticles( context: CanvasRenderingContext2D, image: HTMLCanvasElement, particleCount: number,
                          xCoordinates: Float32Array, yCoordinates: Float32Array ): void {
 
-    // TODO: If we use affirm, we will not need if statement below, see https://github.com/phetsims/ph-scale/issues/323
-    assert && assert( image, 'HTMLCanvasElement is not loaded yet' );
+    affirm( image, 'HTMLCanvasElement is not loaded yet' );
 
     // images are generated asynchronously, so test just in case they aren't available when this is first called
-    if ( image ) {
-      for ( let i = 0; i < particleCount; i++ ) {
-        context.drawImage( image, xCoordinates[ i ], yCoordinates[ i ] );
-      }
+    for ( let i = 0; i < particleCount; i++ ) {
+      context.drawImage( image, xCoordinates[ i ], yCoordinates[ i ] );
     }
   }
 }

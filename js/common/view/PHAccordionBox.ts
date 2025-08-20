@@ -33,8 +33,7 @@ const Y_MARGIN = 10;
 
 type SelfOptions = {
 
-  // TODO: Can this be named something more like a ratio? The current name sounds a lot like a screen coordinate value, see https://github.com/phetsims/ph-scale/issues/323
-  probeCenterX?: number; // centerX of the probe, relative to the accordion box where 0 is the left edge and 1 is the right edge.
+  probeCenterXRatio?: number; // centerX of the probe, relative to the accordion box where 0 is the left edge and 1 is the right edge.
   accordionBoxOptions: PickRequired<AccordionBoxOptions, 'tandem'>;
 };
 type PHAccordionBoxOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
@@ -84,12 +83,12 @@ export default class PHAccordionBox extends Node {
     const accordionBox = new AccordionBox( contentNode, accordionBoxOptions );
 
     const options = optionize<PHAccordionBoxOptions, SelfOptions, NodeOptions>()( {
-      probeCenterX: 0.75
+      probeCenterXRatio: 0.75
     }, providedOptions );
 
     const probeNode = new ProbeNode( probeYOffset, {
       visibleProperty: expandedProperty,
-      centerX: accordionBox.left + ( options.probeCenterX * accordionBox.width ),
+      centerX: accordionBox.left + ( options.probeCenterXRatio * accordionBox.width ),
       top: accordionBox.top
     } );
 

@@ -23,7 +23,6 @@ type SelfOptions = {
 
 type JumpPositionOptions = SelfOptions;
 
-// TODO: Would it be simpler to define type JumpPosition = { position: Vector2, accessibleObjectResponseString: string } instead of using a class + Property? See https://github.com/phetsims/ph-scale/issues/323
 export default class JumpPosition {
 
   public readonly positionProperty: TReadOnlyProperty<Vector2>;

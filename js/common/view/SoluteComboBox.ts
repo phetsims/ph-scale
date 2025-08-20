@@ -22,6 +22,7 @@ import PhScaleStrings from '../../PhScaleStrings.js';
 import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import DynamicProperty from '../../../../axon/js/DynamicProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -54,8 +55,7 @@ export default class SoluteComboBox extends ComboBox<Solute> {
 
     const solutes = selectedSoluteProperty.validValues!;
 
-    // TODO: If we use affirm, we will not need the type assertion above, see https://github.com/phetsims/ph-scale/issues/323
-    assert && assert( solutes );
+    affirm( solutes );
 
     // Create items for the listbox
     solutes.forEach( solute => {

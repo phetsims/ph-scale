@@ -14,8 +14,8 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import PHScalePreferences from '../model/PHScalePreferences.js';
 import PreferencesControl from '../../../../joist/js/preferences/PreferencesControl.js';
 import PreferencesPanelContentNode from '../../../../joist/js/preferences/PreferencesPanelContentNode.js';
-import ToggleSwitch from '../../../../sun/js/ToggleSwitch.js';
 import PreferencesDialogConstants from '../../../../joist/js/preferences/PreferencesDialogConstants.js';
+import OnOffSwitch from '../../../../sun/js/OnOffSwitch.js';
 
 class PHScalePreferencesNode extends PreferencesPanelContentNode {
   public constructor( tandem: Tandem ) {
@@ -24,8 +24,7 @@ class PHScalePreferencesNode extends PreferencesPanelContentNode {
     const autoFillLabel = new Text( PhScaleStrings.autoFillStringProperty, PreferencesDialogConstants.CONTROL_LABEL_OPTIONS );
     const autoFillDescription = new Text( PhScaleStrings.autoFillDescriptionStringProperty, PreferencesDialogConstants.CONTROL_DESCRIPTION_OPTIONS );
 
-    // TODO: Should this use OnOffSwitch? see https://github.com/phetsims/ph-scale/issues/323
-    const autoFillSwitch = new ToggleSwitch( PHScalePreferences.autoFillEnabledProperty, false, true,
+    const autoFillSwitch = new OnOffSwitch( PHScalePreferences.autoFillEnabledProperty,
       PreferencesDialogConstants.TOGGLE_SWITCH_OPTIONS );
     const autoFillControl = new PreferencesControl( {
       labelNode: autoFillLabel,

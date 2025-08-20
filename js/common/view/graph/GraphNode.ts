@@ -161,7 +161,6 @@ export default class GraphNode extends Node {
         } ) );
 
       // Redefine the scaleRange string Properties to use the logarithmic or linear range depending on the graphScaleProperty
-      // TODO: I renamed some variables here to help me read it, can you spot check the change? See https://github.com/phetsims/ph-scale/issues/323
       scaleRangeMinStringProperty = new DerivedProperty( [ graphScaleProperty, logarithmicRangeMinPatternStringProperty ],
         ( graphScale, logarithmicRangeMinPatternString ) =>
           graphScale === GraphScale.LOGARITHMIC ? logarithmicRangeMinPatternString : linearScaleRangeMinString );

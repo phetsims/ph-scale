@@ -22,6 +22,7 @@ import { clamp } from '../../../../../dot/js/util/clamp.js';
 import ValueChangeUtterance from '../../../../../utterance-queue/js/ValueChangeUtterance.js';
 import Utterance from '../../../../../utterance-queue/js/Utterance.js';
 import SoundDragListener from '../../../../../scenery-phet/js/SoundDragListener.js';
+import affirm from '../../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 export default class GraphIndicatorDragListener extends SoundDragListener {
 
@@ -128,16 +129,15 @@ export default class GraphIndicatorDragListener extends SoundDragListener {
       let pH = isConcentration ? concentrationToPH( adjustedValue ) : molesToPH( adjustedValue, totalVolume );
 
       // Constrain the pH to the valid range
-      // TODO: If we use affirm, we will not need the type assertion, see https://github.com/phetsims/ph-scale/issues/323
-      assert && assert( pH !== null, 'pH is not expected to be null here, because we checked that totalVolume !== 0 above' );
-      pH = clamp( pH!, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
+      affirm( pH !== null, 'pH is not expected to be null here, because we checked that totalVolume !== 0 above' );
+      pH = clamp( pH, PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max );
 
       phet.log && phet.log( `value=${value} adjustedValue=${adjustedValue} pH=${pH}` );
 
       // Set the solution's pH
       pHProperty.value = pH;
 
-      // TODO: Should we document why 'queue' in cases like this? See https://github.com/phetsims/ph-scale/issues/323
+      // We do not want to interrupt other responses so we queue.
       graphIndicatorNode.addAccessibleObjectResponse( objectResponseUtterance, 'queue' );
     }
   }

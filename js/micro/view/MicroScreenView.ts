@@ -112,7 +112,8 @@ export default class MicroScreenView extends ScreenView {
     const beakerControlPanel = new BeakerControlPanel(
       viewProperties.ratioVisibleProperty,
       viewProperties.particleCountsVisibleProperty, {
-        maxWidth: 0.85 * beakerNode.width,
+        textMaxWidth: 0.85 * beakerNode.width - PHScaleConstants.CHECKBOX_WIDTH,
+        checkboxWidth: PHScaleConstants.CHECKBOX_WIDTH,
         tandem: tandem.createTandem( 'beakerControlPanel' )
       } );
 

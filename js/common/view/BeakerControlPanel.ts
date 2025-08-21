@@ -9,7 +9,7 @@
 
 import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import HSeparator from '../../../../scenery/js/layout/nodes/HSeparator.js';
@@ -18,7 +18,6 @@ import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import Panel, { PanelOptions } from '../../../../sun/js/Panel.js';
-import Tandem from '../../../../tandem/js/Tandem.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import PHScaleColors from '../PHScaleColors.js';
@@ -26,10 +25,15 @@ import PHScaleConstants from '../PHScaleConstants.js';
 
 // constants
 const FONT = new PhetFont( 20 );
+const CHECKBOX_TOUCH_AREA_X_DILATION = 10;
+const CHECKBOX_TOUCH_AREA_Y_DILATION = 6;
 
-type SelfOptions = EmptySelfOptions;
+type SelfOptions = {
+  textMaxWidth: number;
+  checkboxWidth: number; // width of the checkbox
+};
 
-type BeakerControlPanelOptions = SelfOptions & PickRequired<PanelOptions, 'tandem' | 'maxWidth'>;
+type BeakerControlPanelOptions = SelfOptions & PickRequired<PanelOptions, 'tandem'>;
 
 export default class BeakerControlPanel extends Panel {
 
@@ -50,11 +54,32 @@ export default class BeakerControlPanel extends Panel {
     }, providedOptions );
 
     // 'H3O+ / OH- Ratio' checkbox
-    const ratioCheckbox = new RatioCheckbox( ratioVisibleProperty, options.tandem.createTandem( 'ratioCheckbox' ) );
-    ratioCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );
+    const ratioText = new RichText( new PatternStringProperty( PhScaleStrings.pattern.H3O.OH.ratioStringProperty, {
+
+      H3O: `<span style="color:${PHScaleColors.H3O_PARTICLES.toCSS()}">${PHScaleConstants.H3O_FORMULA}</span>`,
+      OH: `<span style="color:${PHScaleColors.OH_PARTICLES.toCSS()}">${PHScaleConstants.OH_FORMULA}</span>`,
+      ratio: PhScaleStrings.ratioStringProperty
+    } ), {
+      font: FONT,
+      maxWidth: options.textMaxWidth
+    } );
+
+    const ratioCheckbox = new Checkbox( ratioVisibleProperty, ratioText, {
+      touchAreaXDilation: CHECKBOX_TOUCH_AREA_X_DILATION,
+      touchAreaYDilation: CHECKBOX_TOUCH_AREA_Y_DILATION,
+      tandem: options.tandem.createTandem( 'ratioCheckbox' )
+    } );
 
     // 'Particle Counts' checkbox
-    const particleCountsCheckbox = new ParticleCountsCheckbox( particleCountsVisibleProperty, options.tandem.createTandem( 'particleCountsCheckbox' ) );
+    const particleCountsText = new Text( PhScaleStrings.particleCountsStringProperty, {
+      font: FONT,
+      maxWidth: options.textMaxWidth
+    } );
+    const particleCountsCheckbox = new Checkbox( particleCountsVisibleProperty, particleCountsText, {
+      touchAreaXDilation: CHECKBOX_TOUCH_AREA_X_DILATION,
+      touchAreaYDilation: CHECKBOX_TOUCH_AREA_Y_DILATION,
+      tandem: options.tandem.createTandem( 'particleCountsCheckbox' )
+    } );
     particleCountsCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );
 
     const content = new VBox( {
@@ -68,52 +93,6 @@ export default class BeakerControlPanel extends Panel {
     } );
 
     super( content, options );
-  }
-}
-
-/**
- * 'H3O+ / OH- Ratio' checkbox, with color-coded symbols
- */
-class RatioCheckbox extends Checkbox {
-
-  public constructor( ratioVisibleProperty: Property<boolean>, tandem: Tandem ) {
-
-    const stringProperty = new PatternStringProperty( PhScaleStrings.pattern.H3O.OH.ratioStringProperty, {
-
-      H3O: `<span style="color:${PHScaleColors.H3O_PARTICLES.toCSS()}">${PHScaleConstants.H3O_FORMULA}</span>`,
-      OH: `<span style="color:${PHScaleColors.OH_PARTICLES.toCSS()}">${PHScaleConstants.OH_FORMULA}</span>`,
-      ratio: PhScaleStrings.ratioStringProperty
-    }, {
-      tandem: tandem.createTandem( RichText.STRING_PROPERTY_TANDEM_NAME )
-    } );
-
-    const ratioText = new RichText( stringProperty, {
-      font: FONT
-    } );
-
-    super( ratioVisibleProperty, ratioText, {
-      accessibleName: PhScaleStrings.a11y.beakerControls.ratioCheckbox.accessibleNameStringProperty,
-      accessibleHelpText: PhScaleStrings.a11y.beakerControls.ratioCheckbox.accessibleHelpTextStringProperty,
-      tandem: tandem
-    } );
-  }
-}
-
-/**
- * 'Particle Counts' checkbox
- */
-class ParticleCountsCheckbox extends Checkbox {
-
-  public constructor( particleCountsVisibleProperty: Property<boolean>, tandem: Tandem ) {
-
-    const text = new Text( PhScaleStrings.particleCountsStringProperty, {
-      font: FONT
-    } );
-
-    super( particleCountsVisibleProperty, text, {
-      accessibleHelpText: PhScaleStrings.a11y.beakerControls.particleCountsCheckbox.accessibleHelpTextStringProperty,
-      tandem: tandem
-    } );
   }
 }
 

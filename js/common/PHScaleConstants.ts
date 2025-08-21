@@ -54,6 +54,7 @@ const PHScaleConstants = {
   BEAKER_VOLUME: 1.2, // L
   BEAKER_POSITION: new Vector2( 750, 580 ),
   BEAKER_SIZE: new Dimension2( 450, 300 ),
+  CHECKBOX_WIDTH: 21,
 
   // pH
   PH_RANGE: new RangeWithValue( -1, 15, 7 ),

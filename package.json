@@ -11,9 +11,6 @@
   },
   "phet": {
     "requirejsNamespace": "PH_SCALE",
-    "phetLibs": [
-      "nitroglycerin"
-    ],
     "runnable": true,
     "supportedBrands": [
       "phet",

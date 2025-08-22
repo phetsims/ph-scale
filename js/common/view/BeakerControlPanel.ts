@@ -67,6 +67,8 @@ export default class BeakerControlPanel extends Panel {
     const ratioCheckbox = new Checkbox( ratioVisibleProperty, ratioText, {
       touchAreaXDilation: CHECKBOX_TOUCH_AREA_X_DILATION,
       touchAreaYDilation: CHECKBOX_TOUCH_AREA_Y_DILATION,
+      accessibleName: PhScaleStrings.a11y.beakerControls.ratioCheckbox.accessibleNameStringProperty,
+      accessibleHelpText: PhScaleStrings.a11y.beakerControls.ratioCheckbox.accessibleHelpTextStringProperty,
       tandem: options.tandem.createTandem( 'ratioCheckbox' )
     } );
 
@@ -78,6 +80,7 @@ export default class BeakerControlPanel extends Panel {
     const particleCountsCheckbox = new Checkbox( particleCountsVisibleProperty, particleCountsText, {
       touchAreaXDilation: CHECKBOX_TOUCH_AREA_X_DILATION,
       touchAreaYDilation: CHECKBOX_TOUCH_AREA_Y_DILATION,
+      accessibleHelpText: PhScaleStrings.a11y.beakerControls.particleCountsCheckbox.accessibleHelpTextStringProperty,
       tandem: options.tandem.createTandem( 'particleCountsCheckbox' )
     } );
     particleCountsCheckbox.touchArea = ratioCheckbox.localBounds.dilatedXY( 10, 6 );

@@ -10,7 +10,6 @@ import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Property from '../../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
-import Tandem from '../../../../../tandem/js/Tandem.js';
 import phScale from '../../../phScale.js';
 import { ConcentrationValue, PHValue } from '../../model/PHModel.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
@@ -21,9 +20,16 @@ import { roundToInterval } from '../../../../../dot/js/util/roundToInterval.js';
 import { clamp } from '../../../../../dot/js/util/clamp.js';
 import ValueChangeUtterance from '../../../../../utterance-queue/js/ValueChangeUtterance.js';
 import Utterance from '../../../../../utterance-queue/js/Utterance.js';
-import SoundDragListener from '../../../../../scenery-phet/js/SoundDragListener.js';
+import SoundDragListener, { SoundDragListenerOptions } from '../../../../../scenery-phet/js/SoundDragListener.js';
 import affirm from '../../../../../perennial-alias/js/browser-and-node/affirm.js';
+import LogarithmicGraphNode from './LogarithmicGraphNode.js';
+import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 
+type SelfOptions = {
+  scaleHeight: number; // height of the graph's scale
+  objectResponseStringProperty: TReadOnlyProperty<string>; // for a11y
+};
+type GraphIndicatorDragListenerOptions = SelfOptions & PickRequired<SoundDragListenerOptions, 'tandem'>;
 export default class GraphIndicatorDragListener extends SoundDragListener {
 
   /**
@@ -31,27 +37,24 @@ export default class GraphIndicatorDragListener extends SoundDragListener {
    * @param pHProperty - pH of the solution
    * @param totalVolumeProperty - volume of the solution
    * @param graphUnitsProperty
-   * @param yToValue - converts a y view coordinate to a model value
    * @param concentrationToPH - converts concentration to pH
    * @param molesToPH - converts moles + volume to pH
-   * @param objectResponseStringProperty - for a11y
    * @param startCallback - called when drag starts
-   * @param tandem
+   * @param providedOptions
    */
   public constructor( graphIndicatorNode: GraphIndicatorNode,
                       pHProperty: Property<number>,
                       totalVolumeProperty: TReadOnlyProperty<number>,
                       graphUnitsProperty: EnumerationProperty<GraphUnits>,
-                      yToValue: ( y: number ) => number,
                       concentrationToPH: ( concentration: ConcentrationValue ) => PHValue,
                       molesToPH: ( moles: number, volume: number ) => PHValue,
-                      objectResponseStringProperty: TReadOnlyProperty<string>,
                       startCallback: () => void,
-                      tandem: Tandem ) {
+                      providedOptions: GraphIndicatorDragListenerOptions ) {
+    const options = providedOptions;
 
     let clickYOffset: number; // y-offset between initial click and indicator's origin
     const objectResponseUtterance = new ValueChangeUtterance( {
-      alert: objectResponseStringProperty
+      alert: options.objectResponseStringProperty
     } );
     super( {
 
@@ -74,11 +77,11 @@ export default class GraphIndicatorDragListener extends SoundDragListener {
         const yView = yPointer - clickYOffset;
 
         GraphIndicatorDragListener.doDrag( yView, graphIndicatorNode, objectResponseUtterance, pHProperty, totalVolumeProperty.value,
-          graphUnitsProperty.value, yToValue, concentrationToPH, molesToPH );
+          graphUnitsProperty.value, concentrationToPH, molesToPH, options.scaleHeight );
       },
 
       // phet-io
-      tandem: tandem
+      tandem: options.tandem
     } );
   }
 
@@ -92,16 +95,16 @@ export default class GraphIndicatorDragListener extends SoundDragListener {
                         pHProperty: Property<number>,
                         totalVolume: number,
                         graphUnits: GraphUnits,
-                        yToValue: ( y: number ) => number,
                         concentrationToPH: ( concentration: ConcentrationValue ) => PHValue,
-                        molesToPH: ( moles: number, volume: number ) => PHValue ): void {
+                        molesToPH: ( moles: number, volume: number ) => PHValue,
+                        scaleHeight: number ): void {
 
     // If the solution volume is zero (empty beaker), then we have no solution, and therefore no pH, so do nothing.
     if ( totalVolume !== 0 ) {
 
       // Convert the y-coordinate to a model value.
-      const value = yToValue( yView );
-      assert && assert( value > 0 );
+      const value = LogarithmicGraphNode.yToValue( yView, scaleHeight );
+      affirm( value > 0 );
 
       // Round the model value to the first 2 non-zero decimal places. This prevents continuous dragging from
       // creating values that have too much precision, which can result in pH = 7.00 with unequal amounts of
@@ -112,7 +115,7 @@ export default class GraphIndicatorDragListener extends SoundDragListener {
       const exponent = +scientificNotation.exponent - PHScaleConstants.LOGARITHMIC_MANTISSA_DECIMAL_PLACES;
       const interval = Math.pow( 10, exponent );
 
-      assert && assert( numberOfDecimalPlaces( interval ) <= 100, 'Number of decimal places: ' + numberOfDecimalPlaces( interval ) + ', yView: ' + yView + ', value: ' + value + ', exponent: ' + exponent + ', interval: ' + interval + ', totalVolume = ' + totalVolume + ', graphUnits = ' + graphUnits );
+      affirm( numberOfDecimalPlaces( interval ) <= 100, 'Number of decimal places: ' + numberOfDecimalPlaces( interval ) + ', yView: ' + yView + ', value: ' + value + ', exponent: ' + exponent + ', interval: ' + interval + ', totalVolume = ' + totalVolume + ', graphUnits = ' + graphUnits );
       let adjustedValue = roundToInterval( value, interval );
 
       // Workaround for https://github.com/phetsims/ph-scale/issues/225.

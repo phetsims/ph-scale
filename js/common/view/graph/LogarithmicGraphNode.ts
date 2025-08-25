@@ -41,6 +41,8 @@ import GraphIndicatorKeyboardDragListener from './GraphIndicatorKeyboardDragList
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphNode from './GraphNode.js';
 import GraphUnits from './GraphUnits.js';
+import affirm from '../../../../../perennial-alias/js/browser-and-node/affirm.js';
+import { equalsEpsilon } from '../../../../../dot/js/util/equalsEpsilon.js';
 
 type SelfOptions = {
 
@@ -52,7 +54,6 @@ type SelfOptions = {
   // scale
   scaleHeight?: number;
   minScaleWidth?: number;
-  scaleYMargin?: number; // space above/below top/bottom tick marks
   scaleCornerRadius?: number;
   scaleStroke?: TColor;
   scaleLineWidth?: number;
@@ -75,6 +76,8 @@ type SelfOptions = {
 
 export type LogarithmicGraphNodeOptions = SelfOptions & NodeTranslationOptions & PickRequired<NodeOptions, 'tandem'>;
 
+// constants
+const SCALE_Y_MARGIN = 30; // space above/below top/bottom tick marks
 export default class LogarithmicGraphNode extends Node {
 
   public constructor( totalVolumeProperty: TReadOnlyProperty<number>,
@@ -87,7 +90,6 @@ export default class LogarithmicGraphNode extends Node {
       // SelfOptions
       scaleHeight: 100,
       minScaleWidth: 100,
-      scaleYMargin: 30,
       scaleCornerRadius: 20,
       scaleStroke: 'black',
       scaleLineWidth: 2,
@@ -123,7 +125,7 @@ export default class LogarithmicGraphNode extends Node {
 
     // tick marks
     const numberOfTicks = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.getLength() + 1;
-    const ySpacing = ( options.scaleHeight - ( 2 * options.scaleYMargin ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
+    const ySpacing = ( options.scaleHeight - ( 2 * SCALE_Y_MARGIN ) ) / ( numberOfTicks - 1 ); // vertical space between ticks
     let exponent;
     let tickLabel;
     let tickLineLeft;
@@ -153,7 +155,7 @@ export default class LogarithmicGraphNode extends Node {
 
         // layout
         tickLineLeft.left = backgroundNode.left;
-        tickLineLeft.centerY = options.scaleYMargin + ( i * ySpacing );
+        tickLineLeft.centerY = SCALE_Y_MARGIN + ( i * ySpacing );
         tickLineRight.right = backgroundNode.right;
         tickLineRight.centerY = tickLineLeft.centerY;
         tickLabel.centerX = backgroundNode.centerX;
@@ -176,7 +178,7 @@ export default class LogarithmicGraphNode extends Node {
 
         // layout
         tickLineLeft.left = backgroundNode.left;
-        tickLineLeft.centerY = options.scaleYMargin + ( i * ySpacing );
+        tickLineLeft.centerY = SCALE_Y_MARGIN + ( i * ySpacing );
         tickLineRight.right = backgroundNode.right;
         tickLineRight.centerY = tickLineLeft.centerY;
       }
@@ -215,55 +217,29 @@ export default class LogarithmicGraphNode extends Node {
     this.addChild( indicatorH3ONode );
     this.addChild( indicatorOHNode );
 
-    // TODO: These methods seem brittle, should we add tests or unit tests to guarantee their behavior? https://github.com/phetsims/ph-scale/issues/323
     /**
-     * Given a value, compute its y position relative to the top of the scale.
+     * Before using them, run the valueToY and yToValue static methods through some simple tests to prevent
+     * regression errors in future edits.
      */
-    const valueToY = ( value: number | null ) => {
-      if ( value === 0 || value === null ) {
-        // below the bottom tick
-        return options.scaleHeight - ( 0.5 * options.scaleYMargin );
-      }
-      else {
-        // between the top and bottom tick
-        const maxHeight = ( options.scaleHeight - 2 * options.scaleYMargin );
-        const maxExponent = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max;
-        const minExponent = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min;
-        const valueExponent = log10( value );
-        return options.scaleYMargin + maxHeight - ( maxHeight * ( valueExponent - minExponent ) / ( maxExponent - minExponent ) );
-      }
-    };
-
-    // Given a y position relative to the top of the scale, compute a value.
-    const yToValue = ( y: number ) => {
-      const yOffset = y - options.scaleYMargin; // distance between indicator's origin and top tick mark
-      const maxHeight = ( options.scaleHeight - 2 * options.scaleYMargin ); // distance between top and bottom tick marks
-      const exponent = linear( 0, maxHeight, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, yOffset );
-      return Math.pow( 10, exponent );
-    };
-
-    // TODO: These tests mostly worked, you can remove if you want, see https://github.com/phetsims/ph-scale/issues/323
-    // for ( let i = 0; i < 1000; i++ ) {
-    //   const m = dotRandom.nextDoubleBetween( 0, 10 );
-    //   const result = valueToY( yToValue( m ) );
-    //   affirm( Math.abs( result - m ) < 0.0001, `valueToY(${m}) = ${result}, yToValue(${result}) = ${yToValue( result )}` );
-    // }
-    // affirm( valueToY( yToValue( 3 ) ) === 3 );
-    // affirm( valueToY( yToValue( 4 ) ) === 4 );
-    // affirm( valueToY( yToValue( 5 ) ) === 5 );
+    affirm( equalsEpsilon( LogarithmicGraphNode.valueToY( LogarithmicGraphNode.yToValue( 3, options.scaleHeight ), options.scaleHeight ), 3, 0.001 ) );
+    affirm( equalsEpsilon( LogarithmicGraphNode.valueToY( LogarithmicGraphNode.yToValue( 4, options.scaleHeight ), options.scaleHeight ), 4, 0.001 ) );
+    affirm( equalsEpsilon( LogarithmicGraphNode.valueToY( LogarithmicGraphNode.yToValue( 5, options.scaleHeight ), options.scaleHeight ), 5, 0.001 ) );
+    affirm( equalsEpsilon( LogarithmicGraphNode.yToValue( LogarithmicGraphNode.valueToY( 3, options.scaleHeight ), options.scaleHeight ), 3, 0.001 ) );
+    affirm( equalsEpsilon( LogarithmicGraphNode.yToValue( LogarithmicGraphNode.valueToY( 4, options.scaleHeight ), options.scaleHeight ), 4, 0.001 ) );
+    affirm( equalsEpsilon( LogarithmicGraphNode.yToValue( LogarithmicGraphNode.valueToY( 5, options.scaleHeight ), options.scaleHeight ), 5, 0.001 ) );
 
     // Move the indicators
     Multilink.multilink( [ valueH2OProperty, graphUnitsProperty ],
-      ( valueH2O, graphUnits ) => {
-        indicatorH2ONode.y = valueToY( valueH2O );
+      valueH2O => {
+        indicatorH2ONode.y = LogarithmicGraphNode.valueToY( valueH2O, options.scaleHeight );
       } );
     Multilink.multilink( [ valueH3OProperty, graphUnitsProperty ],
-      ( valueH3O, graphUnits ) => {
-        indicatorH3ONode.y = valueToY( valueH3O );
+      valueH3O => {
+        indicatorH3ONode.y = LogarithmicGraphNode.valueToY( valueH3O, options.scaleHeight );
       } );
     Multilink.multilink( [ valueOHProperty, graphUnitsProperty ],
-      ( valueOH, graphUnits ) => {
-        indicatorOHNode.y = valueToY( valueOH );
+      valueOH => {
+        indicatorOHNode.y = LogarithmicGraphNode.valueToY( valueOH, options.scaleHeight );
       } );
 
     // Add drag handlers for H3O+ and OH-
@@ -297,16 +273,23 @@ export default class LogarithmicGraphNode extends Node {
           derivedProperties.quantityOHScientificNotationProperty, graphUnitsProperty )
       } );
       indicatorH3ONode.addInputListener(
-        new GraphIndicatorDragListener( indicatorH3ONode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
+        new GraphIndicatorDragListener( indicatorH3ONode, pHProperty, totalVolumeProperty, graphUnitsProperty,
           PHModel.concentrationH3OToPH, PHModel.molesH3OToPH,
-          objectResponseH3OStringProperty,
           () => indicatorOHNode.interruptSubtreeInput(), // dragging is mutually exclusive, see https://github.com/phetsims/ph-scale/issues/261
-          indicatorH3ONode.tandem.createTandem( 'dragListener' )
+          {
+            scaleHeight: options.scaleHeight,
+            objectResponseStringProperty: objectResponseH3OStringProperty,
+            tandem: indicatorH3ONode.tandem.createTandem( 'dragListener' )
+          }
         ) );
       indicatorH3ONode.addInputListener(
-        new GraphIndicatorKeyboardDragListener( indicatorH3ONode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue, valueToY,
-          PHModel.concentrationH3OToPH, derivedProperties.concentrationH3OProperty, PHModel.molesH3OToPH, derivedProperties.quantityH3OProperty, objectResponseH3OStringProperty,
-          indicatorH3ONode.tandem.createTandem( 'keyboardDragListener' )
+        new GraphIndicatorKeyboardDragListener( indicatorH3ONode, pHProperty, totalVolumeProperty, graphUnitsProperty,
+          PHModel.concentrationH3OToPH, derivedProperties.concentrationH3OProperty, PHModel.molesH3OToPH, derivedProperties.quantityH3OProperty,
+          {
+            scaleHeight: options.scaleHeight,
+            objectResponseStringProperty: objectResponseH3OStringProperty,
+            tandem: indicatorH3ONode.tandem.createTandem( 'keyboardDragListener' )
+          }
         ) );
       indicatorH3ONode.addInputListener( createHomeAndEndKeyboardListener( PHScaleConstants.PH_RANGE.max, PHScaleConstants.PH_RANGE.min ) );
 
@@ -320,16 +303,23 @@ export default class LogarithmicGraphNode extends Node {
           derivedProperties.quantityOHScientificNotationProperty, graphUnitsProperty )
       } );
       indicatorOHNode.addInputListener(
-        new GraphIndicatorDragListener( indicatorOHNode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue,
+        new GraphIndicatorDragListener( indicatorOHNode, pHProperty, totalVolumeProperty, graphUnitsProperty,
           PHModel.concentrationOHToPH, PHModel.molesOHToPH,
-          objectResponseOHStringProperty,
           () => indicatorH3ONode.interruptSubtreeInput(), // dragging is mutually exclusive, see https://github.com/phetsims/ph-scale/issues/261
-          indicatorOHNode.tandem.createTandem( 'dragListener' )
+          {
+            scaleHeight: options.scaleHeight,
+            objectResponseStringProperty: objectResponseOHStringProperty,
+            tandem: indicatorOHNode.tandem.createTandem( 'dragListener' )
+          }
         ) );
       indicatorOHNode.addInputListener(
-        new GraphIndicatorKeyboardDragListener( indicatorOHNode, pHProperty, totalVolumeProperty, graphUnitsProperty, yToValue, valueToY,
-          PHModel.concentrationOHToPH, derivedProperties.concentrationOHProperty, PHModel.molesOHToPH, derivedProperties.quantityOHProperty, objectResponseOHStringProperty,
-          indicatorOHNode.tandem.createTandem( 'keyboardDragListener' )
+        new GraphIndicatorKeyboardDragListener( indicatorOHNode, pHProperty, totalVolumeProperty, graphUnitsProperty,
+          PHModel.concentrationOHToPH, derivedProperties.concentrationOHProperty, PHModel.molesOHToPH, derivedProperties.quantityOHProperty,
+          {
+            scaleHeight: options.scaleHeight,
+            objectResponseStringProperty: objectResponseOHStringProperty,
+            tandem: indicatorOHNode.tandem.createTandem( 'keyboardDragListener' )
+          }
         ) );
       indicatorOHNode.addInputListener( createHomeAndEndKeyboardListener( PHScaleConstants.PH_RANGE.min, PHScaleConstants.PH_RANGE.max ) );
 
@@ -341,6 +331,37 @@ export default class LogarithmicGraphNode extends Node {
     }
 
     this.mutate( options );
+  }
+
+  /**
+   * Given a value, compute its y position relative to the top of the scale.
+   */
+  public static yToValue( y: number, scaleHeight: number ): number {
+    const yOffset = y - SCALE_Y_MARGIN; // distance between indicator's origin and top tick mark
+    const maxHeight = ( scaleHeight - 2 * SCALE_Y_MARGIN ); // distance between top and bottom tick marks
+    const exponent = linear( 0, maxHeight, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max, PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min, yOffset );
+    return Math.pow( 10, exponent );
+  }
+
+  /**
+   * Given a y position relative to the top of the scale, compute a value.
+   *
+   * @param value
+   * @param scaleHeight
+   */
+  public static valueToY( value: number | null, scaleHeight: number ): number {
+    if ( value === 0 || value === null ) {
+      // below the bottom tick
+      return scaleHeight - ( 0.5 * SCALE_Y_MARGIN );
+    }
+    else {
+      // between the top and bottom tick
+      const maxHeight = ( scaleHeight - 2 * SCALE_Y_MARGIN );
+      const maxExponent = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.max;
+      const minExponent = PHScaleConstants.LOGARITHMIC_EXPONENT_RANGE.min;
+      const valueExponent = log10( value );
+      return SCALE_Y_MARGIN + maxHeight - ( maxHeight * ( valueExponent - minExponent ) / ( maxExponent - minExponent ) );
+    }
   }
 }
 

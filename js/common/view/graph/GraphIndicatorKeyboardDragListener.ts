@@ -19,6 +19,7 @@ import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
 import GraphUnits from './GraphUnits.js';
+import affirm from '../../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 // CONSTANTS
 const MANTISSA_DELTA = 1; // delta for mantissa when dragging up or down
@@ -90,11 +91,10 @@ export default class GraphIndicatorKeyboardDragListener extends SoundKeyboardDra
         // Identify the value that is being dragged, based on the graph units
         const valueProperty = graphUnitsProperty.value === GraphUnits.MOLES ? quantityProperty : concentrationProperty;
 
-        // TODO: If we use affirm, we will not need the type assertion below, see https://github.com/phetsims/ph-scale/issues/323
-        assert && assert( valueProperty.value !== null, 'valueProperty should not be null in the My Solution screen' );
+        affirm( valueProperty.value !== null, 'valueProperty should not be null in the My Solution screen' );
 
         // Adjust the mantissa by the appropriate delta and convert back to a value
-        const scientificNotation = toScientificNotation( valueProperty.value! );
+        const scientificNotation = toScientificNotation( valueProperty.value );
 
         // If the mantissa is 1, and we are moving down the scale, we need to adjust the exponent instead of the mantissa
         if ( scientificNotation.mantissa === 1 && listener.movingDown() ) {

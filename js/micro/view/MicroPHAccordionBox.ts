@@ -9,32 +9,29 @@
 
 import Multilink from '../../../../axon/js/Multilink.js';
 import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
-import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtterance.js';
-import { PHValue } from '../../common/model/PHModel.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import PHAccordionBox from '../../common/view/PHAccordionBox.js';
 import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
+import MicroModel from '../model/MicroModel.js';
 
 export default class MicroPHAccordionBox extends PHAccordionBox {
 
   /**
-   * @param pHProperty - pH of the solution
-   * @param isDispensingProperty - true if the dropper is dispensing
-   * @param waterFaucetFlowRateProperty - flow rate of the water faucet, in liters/second
-   * @param drainFaucetFlowRateProperty - flow rate of the drain faucet, in liters/second
+   * @param model - the MicroModel
    * @param probeYOffset - distance from top of meter to tip of probe, in view coordinate frame
    * @param tandem
    */
-  // TODO: Should we try to simplify this constructor signature? See https://github.com/phetsims/ph-scale/issues/323
-  public constructor( pHProperty: ReadOnlyProperty<PHValue>, isDispensingProperty: TReadOnlyProperty<boolean>,
-                      waterFaucetFlowRateProperty: TReadOnlyProperty<number>,
-                      drainFaucetFlowRateProperty: TReadOnlyProperty<number>, probeYOffset: number, tandem: Tandem ) {
+  public constructor( model: MicroModel, probeYOffset: number, tandem: Tandem ) {
+    const pHProperty = model.solution.pHProperty;
+    const isDispensingProperty = model.dropper.isDispensingProperty;
+    const waterFaucetFlowRateProperty = model.waterFaucet.flowRateProperty;
+    const drainFaucetFlowRateProperty = model.drainFaucet.flowRateProperty;
+
     const pHValuePatternStringProperty = new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
       pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( pHProperty )
     } );
@@ -73,13 +70,12 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
     const responseUtterance = new ValueChangeUtterance( {
       alert: new PatternStringProperty( PhScaleStrings.a11y.pHValuePatternStringProperty, {
         pHValue: PHScaleConstants.CREATE_PH_VALUE_FIXED_PROPERTY( pHProperty )
+      }, {
+        hasListenerOrderDependencies: true // This PatternStringProperty must update before the multilink below.
       } )
     } );
 
     Multilink.multilink( [ pHProperty, isDispensingProperty, waterFaucetFlowRateProperty, drainFaucetFlowRateProperty, this.accordionBox.expandedProperty ],
-
-      // TODO: Is there a listener order dependency, where this code relies on the above responseUtterance.alert being updated before this is called?
-      // If so, should we document it or specify hasListenerOrderDependencies: true? See https://github.com/phetsims/ph-scale/issues/323
       ( pH, dropperIsDispensing, waterFaucetFlowRate, drainFaucetFlowRate, expanded ) => {
         !dropperIsDispensing && waterFaucetFlowRate === 0 && drainFaucetFlowRate === 0 && expanded &&
         numberDisplay.addAccessibleContextResponse( responseUtterance, 'queue' );

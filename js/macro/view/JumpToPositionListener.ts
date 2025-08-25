@@ -32,11 +32,11 @@ export default class JumpToPositionListener extends KeyboardListener<OneKeyStrok
           phet.log && phet.log( `hotkey J, jumpPositionIndex=${jumpPositionIndexProperty.value}` );
 
           // Jump to the next position.
-          // TODO: Factor out local const jumpPosition = jumpPositions[ jumpPositionIndexProperty.value ]? See https://github.com/phetsims/ph-scale/issues/323
-          positionProperty.value = jumpPositions[ jumpPositionIndexProperty.value ].positionProperty.value;
+          const jumpPosition = jumpPositions[ jumpPositionIndexProperty.value ];
+          positionProperty.value = jumpPosition.position;
 
           // Add the accessible object response associated with the jump position.
-          targetNode.addAccessibleObjectResponse( jumpPositions[ jumpPositionIndexProperty.value ].accessibleObjectResponseStringProperty, 'queue' );
+          targetNode.addAccessibleObjectResponse( jumpPosition.accessibleObjectResponseStringProperty, 'queue' );
 
           // Adjust the index into the jumpPositions array, with wrap around.
           if ( jumpPositionIndexProperty.value < jumpPositions.length - 1 ) {

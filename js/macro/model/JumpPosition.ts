@@ -15,7 +15,7 @@ import phScale from '../../phScale.js';
 type SelfOptions = {
 
   // The position to jump to, possibly dynamic.
-  positionProperty: TReadOnlyProperty<Vector2>;
+  position: Vector2;
 
   // The accessibleObjectResponse that is added when the keyboard shortcut is used to jump to this position.
   accessibleObjectResponseStringProperty: TReadOnlyProperty<string>;
@@ -25,12 +25,12 @@ type JumpPositionOptions = SelfOptions;
 
 export default class JumpPosition {
 
-  public readonly positionProperty: TReadOnlyProperty<Vector2>;
+  public readonly position: Vector2;
   public readonly accessibleObjectResponseStringProperty: TReadOnlyProperty<string>;
 
   public constructor( providedOptions: JumpPositionOptions ) {
 
-    this.positionProperty = providedOptions.positionProperty;
+    this.position = providedOptions.position;
     this.accessibleObjectResponseStringProperty = providedOptions.accessibleObjectResponseStringProperty;
   }
 }

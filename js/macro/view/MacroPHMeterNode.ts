@@ -138,20 +138,7 @@ export default class MacroPHMeterNode extends Node {
     // not care if the dropper or faucets are dispensing.
     meter.pHProperty.link( pH => {
       if ( pH !== null ) {
-        if ( probeNode.isInWater() ) {
-
-          // TODO: Eliminate duplication in the next 16 lines, see https://github.com/phetsims/ph-scale/issues/323
-          responseUtterance.alert = StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
-            pHValue: toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES )
-          } );
-
-        }
-        if ( probeNode.isInDropperSolution() ) {
-          responseUtterance.alert = StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
-            pHValue: toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES )
-          } );
-        }
-        if ( probeNode.isInDrainFluid() ) {
+        if ( probeNode.isInWater() || probeNode.isInDropperSolution() || probeNode.isInDrainFluid() ) {
           responseUtterance.alert = StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
             pHValue: toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES )
           } );

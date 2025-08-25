@@ -193,7 +193,10 @@ export default class PHModel<T extends Solution> implements TModel {
     if ( PHScalePreferences.autoFillEnabledProperty.value && this.autofillVolume > 0 ) {
       this.isAutofillingProperty.value = true;
       this.dropper.isDispensingProperty.value = true;
-      this.dropper.flowRateProperty.value = 0.75; // faster than standard flow rate
+
+      // faster than the standard flow rate, but slow enough for the pH value context response to be
+      // read after the alertStableDelay
+      this.dropper.flowRateProperty.value = 0.45;
     }
     else {
       this.updateFaucetsAndDropper();

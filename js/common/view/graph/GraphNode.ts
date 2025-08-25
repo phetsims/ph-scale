@@ -201,7 +201,7 @@ export default class GraphNode extends Node {
         linearGraphNode.visible = ( graphScale === GraphScale.LINEAR );
       } );
 
-      // TODO: What would go wrong if the whole linearGraphNode was added here instead of just its zoomButtonGroup? Would it still work correctly? See https://github.com/phetsims/ph-scale/issues/323
+      // Only add the zoomButtonGroup since the linearGraphNode is already in the pdomOrder.
       this.controlNodes.push( graphScaleSwitch, linearGraphNode.zoomButtonGroup );
     }
 
@@ -244,7 +244,7 @@ export default class GraphNode extends Node {
               derivedProperties.quantityH2OProperty ],
             ( graphUnits, concentrationH2O, quantityH2O ) =>
 
-              // TODO: Why a 'null' string? Where is the 'null' used downstream, or is it presented to the user? See https://github.com/phetsims/ph-scale/issues/323
+              // 'null' is used as a fill-in and indicates that the user will never see this value.
               concentrationH2O === null || quantityH2O === null ? 'null' :
               graphUnits === GraphUnits.MOLES_PER_LITER ? toFixed( concentrationH2O, 0 ) : toFixed( quantityH2O, 0 ) ),
           units: unitsStringProperty

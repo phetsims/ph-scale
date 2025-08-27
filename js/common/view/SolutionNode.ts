@@ -15,12 +15,8 @@ import phScale from '../../phScale.js';
 import Beaker from '../model/Beaker.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import Solute from '../model/Solute.js';
-import AccessibleListNode from '../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
-import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
+import SoluteAccessibleListNode from './particles/SoluteAccessibleListNode.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
-import DynamicProperty from '../../../../axon/js/DynamicProperty.js';
-import { toFixed } from '../../../../dot/js/util/toFixed.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import { linear } from '../../../../dot/js/util/linear.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
@@ -55,65 +51,13 @@ export default class SolutionNode extends Rectangle {
       // Add list items to the pdom to describe the solution in the beaker. Only provide the ion comparison if provided
       // by the screenView, since it is not pedagogically relevant for all screens.
       children: [
-
-        // TODO: Would this be clearer in a separate file, like SoluteAccessibleListNode? See https://github.com/phetsims/ph-scale/issues/323
-        new AccessibleListNode( [
-          {
-            stringProperty: PhScaleStrings.a11y.beaker.emptyStringProperty,
-            visibleProperty: DerivedProperty.valueEqualsConstant( solutionVolumeProperty, 0 )
-          },
-          {
-            stringProperty: new PatternStringProperty( PhScaleStrings.a11y.beaker.solutionPatternStringProperty, {
-              volume: solutionVolumeProperty,
-              solute: providedOptions?.soluteProperty ?
-                      new DynamicProperty<string, string, Solute>( providedOptions.soluteProperty, { derive: 'nameProperty' } ) :
-                      PhScaleStrings.a11y.beaker.unknownSolutionStringProperty
-            }, {
-              maps: {
-                volume: volume => toFixed( volume, PHScaleConstants.VOLUME_DECIMAL_PLACES ),
-
-                // This map is necessary to avoid a type error.
-                solute: solute => solute
-              }
-            } ),
-
-            // We only want to show this list item when there is a solution in the beaker (i.e. volume > 0 and not pure water).
-            visibleProperty: new DerivedProperty( [ solutionVolumeProperty, phProperty ],
-              ( volume, pH ) => volume > 0 && pH !== 7 )
-          },
-          {
-            stringProperty: new PatternStringProperty( PhScaleStrings.a11y.beaker.waterPatternStringProperty, {
-              volume: solutionVolumeProperty
-            }, {
-              maps: {
-                volume: volume => toFixed( volume, PHScaleConstants.VOLUME_DECIMAL_PLACES )
-              }
-            } ),
-            visibleProperty: new DerivedProperty( [ solutionVolumeProperty, phProperty ],
-              ( volume, pH ) => volume > 0 && pH === 7 )
-          },
-          ...( providedOptions?.concentrationOHProperty && providedOptions.concentrationH3OProperty ? [ {
-            stringProperty: new PatternStringProperty( PhScaleStrings.a11y.beaker.ionComparisonPatternStringProperty, {
-              comparison: new DerivedProperty( [ providedOptions.concentrationH3OProperty, providedOptions.concentrationOHProperty,
-                  PhScaleStrings.a11y.beaker.greaterThanStringProperty, PhScaleStrings.a11y.beaker.lessThanStringProperty,
-                  PhScaleStrings.a11y.beaker.equalToStringProperty ],
-                ( concentrationH3O, concentrationOH, greaterThanString, lessThanString, equalToString ) => {
-                  if ( concentrationH3O === null || concentrationOH === null ) {
-                    return PhScaleStrings.a11y.unknownStringProperty;
-                  }
-                  else {
-                    // Rounding to nine decimal places was empirically determined to provide consistent results with the pH scale.
-                    const roundedH3O = toFixed( concentrationH3O, 9 );
-                    const roundedOH = toFixed( concentrationOH, 9 );
-                    return roundedH3O > roundedOH ? greaterThanString : roundedH3O < roundedOH ? lessThanString : equalToString;
-                  }
-
-
-                } )
-            } ),
-            visibleProperty: DerivedProperty.valueNotEqualsConstant( solutionVolumeProperty, 0 )
-          } ] : [] )
-        ] ) ]
+        new SoluteAccessibleListNode(
+          solutionVolumeProperty,
+          phProperty,
+          providedOptions?.soluteProperty || null,
+          providedOptions?.concentrationH3OProperty || null,
+          providedOptions?.concentrationOHProperty || null
+        ) ]
     }, providedOptions );
 
     super( 0, 0, 1, 1, options ); // the correct size will be set below

@@ -17,7 +17,7 @@
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';

@@ -8,7 +8,7 @@
 
 import AccessibleListNode from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
 import phScale from '../../../phScale.js';
-import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
+import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import { ConcentrationValue } from '../../model/PHModel.js';
 import Solute from '../../model/Solute.js';
 import PhScaleStrings from '../../../PhScaleStrings.js';

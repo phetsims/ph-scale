@@ -9,7 +9,7 @@
 import phScale from '../../phScale.js';
 import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 

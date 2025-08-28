@@ -8,7 +8,7 @@
 
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Property from '../../../../../axon/js/Property.js';
-import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
+import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
 import phScale from '../../../phScale.js';
 import { ConcentrationValue, PHValue } from '../../model/PHModel.js';

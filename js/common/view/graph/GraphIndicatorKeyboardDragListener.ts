@@ -8,7 +8,7 @@
 
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Property from '../../../../../axon/js/Property.js';
-import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
+import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import SoundKeyboardDragListener, { SoundKeyboardDragListenerOptions } from '../../../../../scenery-phet/js/SoundKeyboardDragListener.js';
 import ValueChangeUtterance from '../../../../../utterance-queue/js/ValueChangeUtterance.js';
 import phScale from '../../../phScale.js';

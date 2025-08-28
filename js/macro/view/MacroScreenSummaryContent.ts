@@ -11,7 +11,7 @@ import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 
 export default class MacroScreenSummaryContent extends ScreenSummaryContent {
 

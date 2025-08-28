@@ -17,7 +17,7 @@ import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
 import Multilink from '../../../../../axon/js/Multilink.js';
 import PatternStringProperty from '../../../../../axon/js/PatternStringProperty.js';
 import Property from '../../../../../axon/js/Property.js';
-import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
+import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import { linear } from '../../../../../dot/js/util/linear.js';
 import { log10 } from '../../../../../dot/js/util/log10.js';
 import optionize from '../../../../../phet-core/js/optionize.js';

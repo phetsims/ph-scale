@@ -35,7 +35,7 @@ import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js'
 import PhScaleStrings from '../../PhScaleStrings.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
-import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 

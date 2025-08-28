@@ -8,7 +8,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
+import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import Matrix3 from '../../../../../dot/js/Matrix3.js';
 import Shape from '../../../../../kite/js/Shape.js';
 import optionize, { combineOptions } from '../../../../../phet-core/js/optionize.js';

@@ -11,7 +11,7 @@
 
 import BooleanProperty from '../../../../../axon/js/BooleanProperty.js';
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
-import TReadOnlyProperty from '../../../../../axon/js/TReadOnlyProperty.js';
+import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import optionize from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import Line from '../../../../../scenery/js/nodes/Line.js';

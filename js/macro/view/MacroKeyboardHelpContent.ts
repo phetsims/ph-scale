@@ -27,7 +27,9 @@ export default class MacroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
       } ),
 
       // Faucet Controls
-      new FaucetControlsKeyboardHelpSection()
+      new FaucetControlsKeyboardHelpSection( {
+        tapToDispenseEnabled: true
+      } )
     ];
 
     // Sections in the right column.

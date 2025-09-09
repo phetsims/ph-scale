@@ -21,7 +21,9 @@ export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
     const leftSections = [
 
       // Faucet Controls
-      new FaucetControlsKeyboardHelpSection(),
+      new FaucetControlsKeyboardHelpSection( {
+        tapToDispenseEnabled: true
+      } ),
 
       // Choose a Solute
       new ComboBoxKeyboardHelpSection( {

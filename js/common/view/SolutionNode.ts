@@ -23,6 +23,7 @@ import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import { ConcentrationValue } from '../model/PHModel.js';
 
 type SelfOptions = {
+  ratioVisibleProperty?: TReadOnlyProperty<boolean> | null; // for a11y
   concentrationH3OProperty?: TReadOnlyProperty<ConcentrationValue> | null; // for a11y
   concentrationOHProperty?: TReadOnlyProperty<ConcentrationValue> | null; // for a11y
   soluteProperty?: TReadOnlyProperty<Solute> | null; // for a11y
@@ -43,6 +44,7 @@ export default class SolutionNode extends Rectangle {
       concentrationH3OProperty: null,
       concentrationOHProperty: null,
       soluteProperty: null,
+      ratioVisibleProperty: null,
 
       // The solution node has the information needed to describe the contents of the beaker. To provide the
       // right pdom structure, we put the accessibleHeading on the solution node.
@@ -56,7 +58,8 @@ export default class SolutionNode extends Rectangle {
           phProperty,
           providedOptions?.soluteProperty || null,
           providedOptions?.concentrationH3OProperty || null,
-          providedOptions?.concentrationOHProperty || null
+          providedOptions?.concentrationOHProperty || null,
+          providedOptions?.ratioVisibleProperty || null
         ) ]
     }, providedOptions );
 

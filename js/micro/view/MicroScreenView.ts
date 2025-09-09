@@ -60,8 +60,9 @@ export default class MicroScreenView extends ScreenView {
     } );
 
     // solution
-    const solutionNode = new SolutionNode( model.solution.totalVolumeProperty, model.solution.pHProperty, model.solution.colorProperty,
-      model.beaker, modelViewTransform, {
+    const solutionNode = new SolutionNode( model.solution.totalVolumeProperty, model.solution.pHProperty,
+      model.solution.colorProperty, model.beaker, modelViewTransform, {
+        ratioVisibleProperty: viewProperties.ratioVisibleProperty,
         concentrationH3OProperty: model.solution.derivedProperties.concentrationH3OProperty,
         concentrationOHProperty: model.solution.derivedProperties.concentrationOHProperty,
         soluteProperty: model.dropper.soluteProperty

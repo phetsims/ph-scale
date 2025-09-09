@@ -53,6 +53,7 @@ export default class MySolutionScreenView extends ScreenView {
     // solution in the beaker
     const solutionNode = new SolutionNode( model.solution.totalVolumeProperty, model.solution.pHProperty,
       model.solution.colorProperty, model.beaker, modelViewTransform, {
+        ratioVisibleProperty: viewProperties.ratioVisibleProperty,
         concentrationH3OProperty: model.solution.derivedProperties.concentrationH3OProperty,
         concentrationOHProperty: model.solution.derivedProperties.concentrationOHProperty
       } );

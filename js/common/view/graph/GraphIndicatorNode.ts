@@ -12,24 +12,25 @@ import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import Matrix3 from '../../../../../dot/js/Matrix3.js';
 import Shape from '../../../../../kite/js/Shape.js';
 import optionize, { combineOptions } from '../../../../../phet-core/js/optionize.js';
+import WithRequired from '../../../../../phet-core/js/types/WithRequired.js';
+import AccessibleDraggableOptions from '../../../../../scenery-phet/js/accessibility/grab-drag/AccessibleDraggableOptions.js';
 import ArrowNode from '../../../../../scenery-phet/js/ArrowNode.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import ScientificNotationNode from '../../../../../scenery-phet/js/ScientificNotationNode.js';
 import InteractiveHighlighting from '../../../../../scenery/js/accessibility/voicing/InteractiveHighlighting.js';
+import HBox from '../../../../../scenery/js/layout/nodes/HBox.js';
 import Node, { NodeOptions } from '../../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../../scenery/js/nodes/Rectangle.js';
 import RichText from '../../../../../scenery/js/nodes/RichText.js';
 import TColor from '../../../../../scenery/js/util/TColor.js';
 import phScale from '../../../phScale.js';
+import PhScaleStrings from '../../../PhScaleStrings.js';
 import PHScaleColors from '../../PHScaleColors.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import H2ONode from '../particles/H2ONode.js';
 import H3ONode from '../particles/H3ONode.js';
 import OHNode from '../particles/OHNode.js';
-import HBox from '../../../../../scenery/js/layout/nodes/HBox.js';
-import PhScaleStrings from '../../../PhScaleStrings.js';
-import WithRequired from '../../../../../phet-core/js/types/WithRequired.js';
 
 // constants
 const POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute width of the pointy part of the indicator
@@ -68,7 +69,7 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
                       formulaNode: Node,
                       providedOptions: GraphIndicatorNodeOptions ) {
 
-    const options = optionize<GraphIndicatorNodeOptions, SelfOptions, NodeOptions>()( {
+    let options = optionize<GraphIndicatorNodeOptions, SelfOptions, NodeOptions>()( {
 
       // SelfOptions
       pointerPosition: 'topRight',
@@ -92,7 +93,6 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
 
       // NodeOptions
       scale: 0.75, // specified by design team
-      tagName: 'div',
       visiblePropertyOptions: {
         phetioFeatured: true
       }
@@ -100,7 +100,7 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
 
     // Instrument interactiveProperty for interactive indicators.
     if ( options.isInteractive ) {
-      options.focusable = true;
+      options = combineOptions<typeof options>( {}, AccessibleDraggableOptions, options );
       options.phetioInputEnabledPropertyInstrumented = true;
     }
 

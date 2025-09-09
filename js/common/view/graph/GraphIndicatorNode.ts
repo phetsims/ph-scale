@@ -33,8 +33,8 @@ import H3ONode from '../particles/H3ONode.js';
 import OHNode from '../particles/OHNode.js';
 
 // constants
-const POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute width of the pointy part of the indicator
-const POINTER_HEIGHT_PERCENTAGE = 0.5; // used to compute height of the pointy part of the indicator
+const POINTER_WIDTH_PERCENTAGE = 0.15; // used to compute the width of the pointy part of the indicator
+const POINTER_HEIGHT_PERCENTAGE = 0.5; // used to compute the height of the pointy part of the indicator
 const INDICATOR_TEXT_FILL = 'black'; // color of the value text
 
 type PointerPosition = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
@@ -92,7 +92,7 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
       arrowXSpacing: 5,
 
       // NodeOptions
-      scale: 0.75, // specified by design team
+      scale: 0.75, // specified by the design team
       visiblePropertyOptions: {
         phetioFeatured: true
       }
@@ -106,10 +106,10 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
 
     super();
 
-    // Transform shapes to support various orientations of pointer.
+    // Transform shapes to support various orientations of the pointer.
     let shapeMatrix;
     if ( options.pointerPosition === 'topRight' ) {
-      shapeMatrix = Matrix3.identity(); // background shape will be drawn with pointer at top-right
+      shapeMatrix = Matrix3.identity(); // the background shape will be drawn with the pointer at top-right
     }
     else if ( options.pointerPosition === 'topLeft' ) {
       shapeMatrix = Matrix3.scaling( -1, 1 );

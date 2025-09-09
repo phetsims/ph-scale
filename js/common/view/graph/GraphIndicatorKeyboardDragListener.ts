@@ -44,7 +44,6 @@ export default class GraphIndicatorKeyboardDragListener extends SoundKeyboardDra
    * @param quantityProperty - the quantity of the solute in the solution, used for MOLES graph units
    * @param providedOptions
    */
-  // TODO: This constructor is very long, consider refactoring to reduce the number of parameters, see https://github.com/phetsims/ph-scale/issues/323
   public constructor( graphIndicatorNode: GraphIndicatorNode,
                       pHProperty: Property<number>,
                       totalVolumeProperty: TReadOnlyProperty<number>,

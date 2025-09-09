@@ -157,9 +157,9 @@ export default class SolutionDerivedProperties {
         phetioHighFrequency: true
       } );
 
-    const createScientificNotationProperty = <T>( property: ReadOnlyProperty<T> ): TReadOnlyProperty<ScientificNotation> =>
-      new DerivedProperty( [ this.concentrationH3OProperty ],
-        h3OConcentration => h3OConcentration !== null ? ScientificNotationNode.toScientificNotation( h3OConcentration ) :
+    const createScientificNotationProperty = <T extends number | null>( property: ReadOnlyProperty<T> ): TReadOnlyProperty<ScientificNotation> =>
+      new DerivedProperty( [ property ],
+        value => value !== null ? ScientificNotationNode.toScientificNotation( value ) :
           { mantissa: 'null', exponent: 'null' } );
     this.concentrationH3OScientificNotationProperty = createScientificNotationProperty( this.concentrationH3OProperty );
     this.quantityH3OScientificNotationProperty = createScientificNotationProperty( this.quantityH3OProperty );

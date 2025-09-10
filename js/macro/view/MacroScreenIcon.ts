@@ -9,7 +9,7 @@
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import ScreenIcon from '../../../../joist/js/ScreenIcon.js';
 import phScale from '../../phScale.js';
-import { ScaleNode } from './MacroPHMeterNode.js';
+import ScaleNode from './ScaleNode.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import ProbeNode from '../../../../scenery-phet/js/ProbeNode.js';
 import { DEFAULT_MACRO_PH_PROBE_NODE_OPTIONS } from './MacroPHProbeNode.js';

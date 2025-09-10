@@ -74,7 +74,7 @@ export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
         KeyboardHelpSectionRow.labelWithIcon( SceneryPhetStrings.keyboardHelpDialog.jumpToMaximumStringProperty,
           KeyboardHelpIconFactory.fromHotkeyData( AccessibleValueHandlerHotkeyDataCollection.END_HOTKEY_DATA ), {
             labelInnerContent: new PatternStringProperty( SceneryPhetStrings.a11y.keyboardHelpDialog.slider.jumpToMaximumDescriptionPatternStringProperty, {
-              maximum: SceneryPhetStrings.keyboardHelpDialog.minimumStringProperty
+              maximum: SceneryPhetStrings.keyboardHelpDialog.maximumStringProperty
             } )
           } ) ] : [] ),
 

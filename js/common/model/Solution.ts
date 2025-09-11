@@ -24,6 +24,7 @@ import PHScaleConstants from '../PHScaleConstants.js';
 import PHModel, { PHValue } from './PHModel.js';
 import Solute from './Solute.js';
 import Water from './Water.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 // constants
 const MIN_VOLUME = Math.pow( 10, -PHScaleConstants.VOLUME_DECIMAL_PLACES );
@@ -39,8 +40,8 @@ export type SolutionOptions = SelfOptions & PickRequired<PhetioObjectOptions, 't
 export default class Solution extends PhetioObject {
 
   public readonly soluteProperty: Property<Solute>;
-  public readonly soluteVolumeProperty: Property<number>;
-  public readonly waterVolumeProperty: Property<number>;
+  private readonly soluteVolumeProperty: Property<number>;
+  private readonly waterVolumeProperty: Property<number>;
   public readonly totalVolumeProperty: TReadOnlyProperty<number>;
   public readonly pHProperty: ReadOnlyProperty<PHValue>;
   public readonly colorProperty: TReadOnlyProperty<Color>;
@@ -63,10 +64,10 @@ export default class Solution extends PhetioObject {
       phetioDocumentation: 'solution in the beaker'
     }, providedOptions );
 
-    assert && assert( options.soluteVolume >= 0 );
-    assert && assert( options.waterVolume >= 0 );
-    assert && assert( options.maxVolume > 0 );
-    assert && assert( options.soluteVolume + options.waterVolume <= options.maxVolume );
+    affirm( options.soluteVolume >= 0 );
+    affirm( options.waterVolume >= 0 );
+    affirm( options.maxVolume > 0 );
+    affirm( options.soluteVolume + options.waterVolume <= options.maxVolume );
 
     super( options );
 

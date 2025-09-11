@@ -31,14 +31,14 @@ export default class MacroPHMeter {
   // pH value displayed by the meter, null if the meter is not reading a value
   public readonly pHProperty: Property<PHValue>;
 
-  // fixed position of the meter's body
-  public readonly bodyPosition: Vector2;
-
   // movable probe
   public readonly probe: PHMovable;
 
-  public constructor( bodyPosition: Vector2, probePosition: Vector2, probeDragBounds: Bounds2,
-                      providedOptions: MacroPHMeterOptions ) {
+  public constructor(
+    public readonly bodyPosition: Vector2, // fixed position of the meter's body
+    probePosition: Vector2,
+    probeDragBounds: Bounds2,
+    providedOptions: MacroPHMeterOptions ) {
 
     const options = providedOptions;
 
@@ -49,8 +49,6 @@ export default class MacroPHMeter {
       phetioReadOnly: true, // because this depends on where the probe is positioned
       phetioHighFrequency: true
     } );
-
-    this.bodyPosition = bodyPosition;
 
     this.probe = new PHMovable( probePosition, probeDragBounds, {
       tandem: options.tandem.createTandem( 'probe' ),

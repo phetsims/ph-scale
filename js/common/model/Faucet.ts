@@ -29,8 +29,6 @@ type FaucetOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 export default class Faucet {
 
-  public readonly position: Vector2;
-  public readonly pipeMinX: number;
   public readonly spoutWidth: number;
   public readonly maxFlowRate: number;
   public readonly flowRateProperty: NumberProperty;
@@ -41,7 +39,7 @@ export default class Faucet {
    * @param pipeMinX - x-coordinate of where the pipe starts
    * @param [providedOptions]
    */
-  public constructor( position: Vector2, pipeMinX: number, providedOptions: FaucetOptions ) {
+  public constructor( public readonly position: Vector2, public readonly pipeMinX: number, providedOptions: FaucetOptions ) {
 
     const options = optionize<FaucetOptions, SelfOptions>()( {
 
@@ -52,8 +50,6 @@ export default class Faucet {
       enabled: true
     }, providedOptions );
 
-    this.position = position;
-    this.pipeMinX = pipeMinX;
     this.spoutWidth = options.spoutWidth;
     this.maxFlowRate = options.maxFlowRate;
 

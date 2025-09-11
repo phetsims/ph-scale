@@ -40,7 +40,7 @@ type PHAccordionBoxOptions = SelfOptions & StrictOmit<NodeOptions, 'children'>;
 export default class PHAccordionBox extends Node {
 
   protected readonly accordionBox: AccordionBox;
-  private readonly expandedProperty: Property<boolean>;
+  protected readonly expandedProperty: Property<boolean>;
 
   protected static readonly CORNER_RADIUS = 8;
 

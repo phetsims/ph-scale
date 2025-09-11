@@ -22,7 +22,6 @@ type BeakerOptions = SelfOptions;
 
 export default class Beaker {
 
-  public readonly position: Vector2;
   public readonly size: Dimension2;
   public readonly volume: number; // L
 
@@ -31,7 +30,7 @@ export default class Beaker {
   public readonly right: number;
   public readonly bounds: Bounds2;
 
-  public constructor( position: Vector2, providedOptions?: BeakerOptions ) {
+  public constructor( public readonly position: Vector2, providedOptions?: BeakerOptions ) {
 
     const options = optionize<BeakerOptions, SelfOptions>()( {
 
@@ -40,7 +39,6 @@ export default class Beaker {
       size: PHScaleConstants.BEAKER_SIZE
     }, providedOptions );
 
-    this.position = position;
     this.size = options.size;
     this.volume = options.volume;
 

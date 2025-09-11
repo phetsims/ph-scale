@@ -37,6 +37,7 @@ For an exemplar, see https://github.com/phetsims/balancing-chemical-equations/bl
 
 ### Changes
 * Improved color contrast
+* auto-fill query parameter added to preferences
   
 ## 1.6 (2023-02-07)
 

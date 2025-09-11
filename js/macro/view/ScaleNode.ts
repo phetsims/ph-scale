@@ -1,4 +1,4 @@
-// Copyright 2024, University of Colorado Boulder
+// Copyright 2025, University of Colorado Boulder
 
 /**
  * The meter's vertical scale.

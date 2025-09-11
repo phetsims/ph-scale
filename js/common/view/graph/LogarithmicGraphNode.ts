@@ -43,6 +43,8 @@ import GraphNode from './GraphNode.js';
 import GraphUnits from './GraphUnits.js';
 import affirm from '../../../../../perennial-alias/js/browser-and-node/affirm.js';
 import { equalsEpsilon } from '../../../../../dot/js/util/equalsEpsilon.js';
+import HotkeyData from '../../../../../scenery/js/input/HotkeyData.js';
+import AccessibleValueHandlerHotkeyDataCollection from '../../../../../sun/js/accessibility/AccessibleValueHandlerHotkeyDataCollection.js';
 
 type SelfOptions = {
 
@@ -245,13 +247,9 @@ export default class LogarithmicGraphNode extends Node {
     // Add drag handlers for H3O+ and OH-
     if ( isInteractive ) {
       const pHProperty = options.pHProperty as Property<number>;
-
       const createHomeAndEndKeyboardListener = ( homeValue: number, endValue: number ) => new KeyboardListener( {
-
-        // TODO: Would HotkeyData help here? The code review checklist said:
-        // >  Does this sim use KeyboardListener? If so, keys should be defined with HotkeyData
-        // see https://github.com/phetsims/ph-scale/issues/323
-        keys: [ 'home', 'end' ],
+        keyStringProperties: HotkeyData.combineKeyStringProperties(
+          [ AccessibleValueHandlerHotkeyDataCollection.HOME_HOTKEY_DATA, AccessibleValueHandlerHotkeyDataCollection.END_HOTKEY_DATA ] ),
         fire: ( event, keysPressed ) => {
           if ( totalVolumeProperty.value !== 0 ) {
             if ( keysPressed === 'home' ) {

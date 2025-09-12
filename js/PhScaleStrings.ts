@@ -163,6 +163,7 @@ type StringsType = {
       'greaterThanStringProperty': LocalizedStringProperty;
       'equalToStringProperty': LocalizedStringProperty;
       'unknownSolutionStringProperty': LocalizedStringProperty;
+      'neutralIndicatorAccessibleParagraphStringProperty': LocalizedStringProperty;
     };
     'beakerControls': {
       'accessibleHeadingStringProperty': LocalizedStringProperty;

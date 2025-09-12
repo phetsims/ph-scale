@@ -30,6 +30,7 @@ export default class NeutralIndicatorNode extends Node {
 
       // NodeOptions
       phetioDocumentation: 'becomes visible when the solution has neutral pH',
+      accessibleParagraph: PhScaleStrings.a11y.beaker.neutralIndicatorAccessibleParagraphStringProperty,
       visiblePropertyOptions: {
         phetioFeatured: true
       }

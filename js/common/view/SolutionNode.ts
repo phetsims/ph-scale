@@ -21,6 +21,7 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import { linear } from '../../../../dot/js/util/linear.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import { ConcentrationValue } from '../model/PHModel.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 
 type SelfOptions = {
   ratioVisibleProperty?: TReadOnlyProperty<boolean> | null; // for a11y
@@ -32,6 +33,10 @@ type SelfOptions = {
 // PhET-iO: do not instrument. See https://github.com/phetsims/ph-scale/issues/108
 type SolutionNodeOptions = SelfOptions & StrictOmit<RectangleOptions, 'fill' | 'stroke' | 'tandem' | 'children'>;
 export default class SolutionNode extends Rectangle {
+
+  // This class property is used in the MacroScreenView to define the pdom structure of content that is nested under
+  // the beaker heading.
+  public readonly soluteAccessibleListNode: SoluteAccessibleListNode;
 
   public constructor( solutionVolumeProperty: TReadOnlyProperty<number>,
                       phProperty: TReadOnlyProperty<number | null>,
@@ -48,19 +53,7 @@ export default class SolutionNode extends Rectangle {
 
       // The solution node has the information needed to describe the contents of the beaker. To provide the
       // right pdom structure, we put the accessibleHeading on the solution node.
-      accessibleHeading: PhScaleStrings.a11y.beaker.accessibleHeadingStringProperty,
-
-      // Add list items to the pdom to describe the solution in the beaker. Only provide the ion comparison if provided
-      // by the screenView, since it is not pedagogically relevant for all screens.
-      children: [
-        new SoluteAccessibleListNode(
-          solutionVolumeProperty,
-          phProperty,
-          providedOptions?.soluteProperty || null,
-          providedOptions?.concentrationH3OProperty || null,
-          providedOptions?.concentrationOHProperty || null,
-          providedOptions?.ratioVisibleProperty || null
-        ) ]
+      accessibleHeading: PhScaleStrings.a11y.beaker.accessibleHeadingStringProperty
     }, providedOptions );
 
     super( 0, 0, 1, 1, options ); // the correct size will be set below
@@ -75,7 +68,7 @@ export default class SolutionNode extends Rectangle {
     const viewPosition = modelViewTransform.modelToViewPosition( beaker.position );
     const viewWidth = modelViewTransform.modelToViewDeltaX( beaker.size.width );
     solutionVolumeProperty.link( solutionVolume => {
-      assert && assert( solutionVolume >= 0 );
+      affirm( solutionVolume >= 0 );
 
       // min non-zero volume, so that the solution is visible to the user and detectable by the concentration probe
       if ( solutionVolume !== 0 && solutionVolume < PHScaleConstants.MIN_SOLUTION_VOLUME ) {
@@ -91,6 +84,18 @@ export default class SolutionNode extends Rectangle {
       // shape
       this.setRect( viewPosition.x - ( viewWidth / 2 ), viewPosition.y - viewHeight, viewWidth, viewHeight );
     } );
+
+    // Add list items to the pdom to describe the solution in the beaker. Only provide the ion comparison if provided
+    // by the screenView, since it is not pedagogically relevant for all screens.
+    this.soluteAccessibleListNode = new SoluteAccessibleListNode(
+      solutionVolumeProperty,
+      phProperty,
+      options.soluteProperty,
+      options.concentrationH3OProperty,
+      options.concentrationOHProperty,
+      options.ratioVisibleProperty
+    );
+    this.addChild( this.soluteAccessibleListNode );
   }
 }
 

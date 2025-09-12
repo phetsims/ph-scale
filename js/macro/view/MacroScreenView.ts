@@ -61,6 +61,7 @@ export default class MacroScreenView extends ScreenView {
     const neutralIndicatorNode = new NeutralIndicatorNode( model.solution.pHProperty, {
       tandem: tandem.createTandem( 'neutralIndicatorNode' )
     } );
+    solutionNode.pdomOrder = [ solutionNode.soluteAccessibleListNode, neutralIndicatorNode ];
 
     // dropper
     const DROPPER_SCALE = 0.85;

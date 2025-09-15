@@ -26,7 +26,6 @@ export default class MicroScreenSummaryContent extends ScreenSummaryContent {
 
 
     super( {
-      isDisposable: false,
       playAreaContent: PhScaleStrings.a11y.microScreenSummary.playAreaStringProperty,
       controlAreaContent: PhScaleStrings.a11y.microScreenSummary.controlAreaStringProperty,
       currentDetailsContent: currentDetailsStringProperty,

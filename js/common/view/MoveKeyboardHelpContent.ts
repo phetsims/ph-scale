@@ -86,7 +86,6 @@ export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
     ];
 
     super( titleProperty, rows, {
-      isDisposable: false // See https://github.com/phetsims/ph-scale/issues/285
     } );
   }
 }

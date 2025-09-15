@@ -17,3 +17,8 @@ in [PHModel.ts](https://github.com/phetsims/ph-scale/blob/main/js/common/model/P
 [SolutionDerivedProperties.ts](https://github.com/phetsims/ph-scale/blob/main/js/common/model/SolutionDerivedProperties.ts)
 models Properties of a solution that are derived from pH and volume. It is separated from the solution model so that it
 can be used in different solution models via composition. Read the documentation for more details.
+
+### Memory Management
+
+- Static Allocation: All objects in this sim are allocated at startup and exist for the lifetime of the simulation.
+- Listeners: Unless otherwise noted in the code, all uses of link, `addListener`, etc. do NOT need a corresponding `unlink`, `removeListener`, etc.

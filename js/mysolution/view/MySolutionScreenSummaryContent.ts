@@ -25,7 +25,6 @@ export default class MySolutionScreenSummaryContent extends ScreenSummaryContent
 
 
     super( {
-      isDisposable: false,
       playAreaContent: PhScaleStrings.a11y.mySolutionScreenSummary.playAreaStringProperty,
       controlAreaContent: PhScaleStrings.a11y.mySolutionScreenSummary.controlAreaStringProperty,
       currentDetailsContent: currentDetailsStringProperty,

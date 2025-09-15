@@ -34,7 +34,6 @@ export default class MacroScreenSummaryContent extends ScreenSummaryContent {
     ], ( isEmpty, emptyString, withSolutionString ) => isEmpty ? emptyString : withSolutionString );
 
     super( {
-      isDisposable: false,
       playAreaContent: PhScaleStrings.a11y.macroScreenSummary.playAreaStringProperty,
       controlAreaContent: PhScaleStrings.a11y.macroScreenSummary.controlAreaStringProperty,
       currentDetailsContent: currentDetailsStringProperty,

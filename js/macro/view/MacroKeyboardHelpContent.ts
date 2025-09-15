@@ -46,9 +46,7 @@ export default class MacroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
       new BasicActionsKeyboardHelpSection()
     ];
 
-    super( leftSections, rightSections, {
-      isDisposable: false // See https://github.com/phetsims/ph-scale/issues/285
-    } );
+    super( leftSections, rightSections );
   }
 }
 

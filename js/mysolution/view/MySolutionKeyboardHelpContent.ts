@@ -43,9 +43,7 @@ export default class MySolutionKeyboardHelpContent extends TwoColumnKeyboardHelp
       } )
     ];
 
-    super( leftSections, rightSections, {
-      isDisposable: false // See https://github.com/phetsims/ph-scale/issues/285
-    } );
+    super( leftSections, rightSections );
   }
 }
 

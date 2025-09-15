@@ -30,7 +30,6 @@ export default class NeutralIndicatorNode extends Node {
 
       // NodeOptions
       phetioDocumentation: 'becomes visible when the solution has neutral pH',
-      accessibleParagraph: PhScaleStrings.a11y.beaker.neutralIndicatorAccessibleParagraphStringProperty,
       visiblePropertyOptions: {
         phetioFeatured: true
       }
@@ -58,7 +57,8 @@ export default class NeutralIndicatorNode extends Node {
     // Wrap things in a parentNode, so that this feature can be permanently disabled via PhET-iO via
     // this.visibleProperty. See https://github.com/phetsims/ph-scale/issues/102
     const parentNode = new Node( {
-      children: [ background, labelText ]
+      children: [ background, labelText ],
+      accessibleParagraph: PhScaleStrings.a11y.beaker.neutralIndicatorAccessibleParagraphStringProperty
     } );
     this.addChild( parentNode );
 

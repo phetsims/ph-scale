@@ -97,6 +97,10 @@ export default class PHAccordionBox extends Node {
 
     this.accordionBox = accordionBox;
     this.expandedProperty = expandedProperty;
+
+    // Since this class was rewritten to use composition instead of inheritance, we need to forward the visibleProperty
+    // from the internal AccordionBox to the parent Node so that the same visibleProperty functionality is preserved.
+    this.visibleProperty = accordionBox.visibleProperty;
   }
 
   public reset(): void {

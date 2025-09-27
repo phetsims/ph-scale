@@ -17,6 +17,7 @@ import WithRequired from '../../../../phet-core/js/types/WithRequired.js';
 import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import DynamicProperty from '../../../../axon/js/DynamicProperty.js';
+import isResettingAllProperty from '../../../../scenery-phet/js/isResettingAllProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -57,7 +58,7 @@ export default class PHDropperNode extends EyeDropperNode {
     } );
 
     dropper.isDispensingProperty.link( isDispensing => {
-      !isDispensing && this.addAccessibleContextResponse( PhScaleStrings.a11y.beakerControls.dropper.accessibleContextResponseOffStringProperty );
+      !isDispensing && !isResettingAllProperty.value && this.addAccessibleContextResponse( PhScaleStrings.a11y.beakerControls.dropper.accessibleContextResponseOffStringProperty, 'queue' );
     } );
   }
 }

@@ -31,7 +31,10 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
 
       // ABSwitchOptions
       toggleSwitchOptions: {
-        size: new Dimension2( 50, 25 )
+        size: new Dimension2( 50, 25 ),
+        visiblePropertyOptions: {
+          phetioFeatured: false
+        }
       },
       centerOnSwitch: true,
       phetioDocumentation: 'A/B switch for switching units',

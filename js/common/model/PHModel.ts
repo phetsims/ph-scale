@@ -151,6 +151,9 @@ export default class PHModel<T extends Solution> implements TModel {
       // Stop autofill if it was in progress. This is most noticeable when the user disables autofill in the home screen
       // before navigating to a sim screen.
       !enabled && this.stopAutofill();
+
+      // Start autofill if the beaker is not full.
+      enabled && this.startAutofill();
     } );
   }
 

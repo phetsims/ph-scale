@@ -30,7 +30,10 @@ export default class GraphScaleSwitch extends ABSwitch<GraphScale> {
 
       // ABSwitchOptions
       toggleSwitchOptions: {
-        size: new Dimension2( 50, 25 )
+        size: new Dimension2( 50, 25 ),
+        visiblePropertyOptions: {
+          phetioFeatured: false
+        }
       },
       centerOnSwitch: true,
       valueAAccessibleName: PhScaleStrings.logarithmicStringProperty,

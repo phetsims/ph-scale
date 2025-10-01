@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.7.0-rc.5 Mon Sep 15 2025 13:49:11 GMT-0700 (Pacific Daylight Time)",
+  "comment": "# ph-scale 1.7.0-rc.5 Tue Sep 30 2025 13:10:01 GMT-0700 (Pacific Daylight Time)",
   "assert": {
     "sha": "1a4637cfff70e7e8b0844dc43848a86ae89b4cf5",
     "branch": "HEAD"
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "f7adb12a2d44fd3bc3768abcd4b5d5967007130f",
+    "sha": "0dfbf8623f8e0d4ea4d5d7c57749edb7283a5e97",
     "branch": "1.7"
   },
   "phet-core": {
@@ -45,8 +45,8 @@
     "branch": "HEAD"
   },
   "phet-io-sim-specific": {
-    "sha": "9a374546a6117adf291601664789072ca4ee489c",
-    "branch": "HEAD"
+    "sha": "b938feafab06308cf6b7a47dd9162c7ea1ebca70",
+    "branch": "ph-scale-1.7"
   },
   "phet-io-wrappers": {
     "sha": "161c0378b9d64222d346d94bd9a87955c4524697",

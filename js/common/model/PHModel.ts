@@ -212,7 +212,7 @@ export default class PHModel<T extends Solution> implements TModel {
   private stepAutofill( dt: number ): void {
     this.solution.addSolute( Math.min( this.dropper.flowRateProperty.value * dt,
       this.autofillVolume - this.solution.totalVolumeProperty.value ) );
-    if ( this.solution.totalVolumeProperty.value === this.autofillVolume ) {
+    if ( this.solution.totalVolumeProperty.value >= this.autofillVolume ) {
       this.stopAutofill();
     }
   }

@@ -1,5 +1,5 @@
 {
-  "comment": "# ph-scale 1.7.0-rc.6 Tue Sep 30 2025 18:45:22 GMT-0700 (Pacific Daylight Time)",
+  "comment": "# ph-scale 1.7.0-rc.7 Thu Oct 02 2025 16:18:15 GMT-0700 (Pacific Daylight Time)",
   "assert": {
     "sha": "1a4637cfff70e7e8b0844dc43848a86ae89b4cf5",
     "branch": "HEAD"
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "a2d45e54a3505deabfc8b4ed5265049fa62a8d61",
+    "sha": "5d0d3b7317e88af1910470873905a67f6fca21e2",
     "branch": "1.7"
   },
   "phet-core": {

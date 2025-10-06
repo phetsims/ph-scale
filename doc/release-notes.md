@@ -28,7 +28,7 @@ For an exemplar, see https://github.com/phetsims/balancing-chemical-equations/bl
 * ⚠️ Use this icon for a change that is breaking, removes a feature, etc. 
 *
 -->
-## 1.7 (In Progress)
+## 1.7 (2025-10-06)
 
 ### New Features
 * Alt Input

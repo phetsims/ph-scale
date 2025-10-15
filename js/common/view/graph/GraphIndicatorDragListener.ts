@@ -141,7 +141,7 @@ export default class GraphIndicatorDragListener extends SoundDragListener {
       pHProperty.value = pH;
 
       // We do not want to interrupt other responses so we queue.
-      graphIndicatorNode.addAccessibleObjectResponse( objectResponseUtterance, 'queue' );
+      graphIndicatorNode.addAccessibleObjectResponse( objectResponseUtterance, { alertBehavior: 'queue' } );
     }
   }
 }

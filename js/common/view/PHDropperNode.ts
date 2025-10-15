@@ -58,7 +58,7 @@ export default class PHDropperNode extends EyeDropperNode {
     } );
 
     dropper.isDispensingProperty.link( isDispensing => {
-      !isDispensing && !isResettingAllProperty.value && this.addAccessibleContextResponse( PhScaleStrings.a11y.beakerControls.dropper.accessibleContextResponseOffStringProperty, 'queue' );
+      !isDispensing && !isResettingAllProperty.value && this.addAccessibleContextResponse( PhScaleStrings.a11y.beakerControls.dropper.accessibleContextResponseOffStringProperty, { alertBehavior: 'queue' } );
     } );
   }
 }

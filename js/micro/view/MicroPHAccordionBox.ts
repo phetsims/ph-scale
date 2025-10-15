@@ -78,7 +78,7 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
     Multilink.multilink( [ pHProperty, isDispensingProperty, waterFaucetFlowRateProperty, drainFaucetFlowRateProperty, this.accordionBox.expandedProperty ],
       ( pH, dropperIsDispensing, waterFaucetFlowRate, drainFaucetFlowRate, expanded ) => {
         !dropperIsDispensing && waterFaucetFlowRate === 0 && drainFaucetFlowRate === 0 && expanded &&
-        numberDisplay.addAccessibleContextResponse( responseUtterance, 'queue' );
+        numberDisplay.addAccessibleContextResponse( responseUtterance, { alertBehavior: 'queue' } );
       } );
   }
 }

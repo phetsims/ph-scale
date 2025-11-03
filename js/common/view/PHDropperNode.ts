@@ -41,7 +41,7 @@ export default class PHDropperNode extends EyeDropperNode {
         enabledProperty: dropper.enabledProperty,
         accessibleName: dropperAccessibleNameStringProperty,
         accessibleHelpText: PhScaleStrings.a11y.beakerControls.dropper.accessibleHelpTextStringProperty,
-        accessibleContextResponseValueOn: PhScaleStrings.a11y.beakerControls.dropper.accessibleContextResponseOnStringProperty
+        accessibleContextResponseOn: PhScaleStrings.a11y.beakerControls.dropper.accessibleContextResponseOnStringProperty
       },
       cursor: null,
       phetioInputEnabledPropertyInstrumented: true

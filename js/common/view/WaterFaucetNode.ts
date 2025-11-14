@@ -61,7 +61,7 @@ export default class WaterFaucetNode extends Node {
         },
 
         // Dynamic dependencies used in pdomCreateAriaValueText.
-        pdomDependencies: [
+        descriptionDependencies: [
           PhScaleStrings.a11y.beakerControls.faucetCommon.accessibleObjectResponseStringProperty
         ],
         tandem: options.tandem.createTandem( 'faucetNode' )

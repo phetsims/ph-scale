@@ -51,7 +51,7 @@ export default class DrainFaucetNode extends FaucetNode {
         },
 
         // Dynamic dependencies used in pdomCreateAriaValueText.
-        pdomDependencies: [
+        descriptionDependencies: [
           PhScaleStrings.a11y.beakerControls.faucetCommon.accessibleObjectResponseStringProperty
         ]
       }, providedOptions );

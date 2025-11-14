@@ -51,7 +51,7 @@ export default class WaterFaucetNode extends Node {
         reverseAlternativeInput: true,
         accessibleName: PhScaleStrings.a11y.beakerControls.waterFaucet.accessibleNameStringProperty,
         accessibleHelpText: PhScaleStrings.a11y.beakerControls.waterFaucet.accessibleHelpTextStringProperty,
-        pdomCreateAriaValueText: flowRate => {
+        createAriaValueText: flowRate => {
           return StringUtils.fillIn( PhScaleStrings.a11y.beakerControls.faucetCommon.accessibleObjectResponseStringProperty, {
 
             // Since our pdom value is inverted when `reverseAlternativeInput: true` we need to invert it again here to
@@ -60,7 +60,7 @@ export default class WaterFaucetNode extends Node {
           } );
         },
 
-        // Dynamic dependencies used in pdomCreateAriaValueText.
+        // Dynamic dependencies used in createAriaValueText.
         descriptionDependencies: [
           PhScaleStrings.a11y.beakerControls.faucetCommon.accessibleObjectResponseStringProperty
         ],

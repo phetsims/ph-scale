@@ -34,7 +34,7 @@ export default class MySolutionPHAccordionBox extends PHAccordionBox {
       } )
     } );
     const spinner = new PHSpinnerNode( pHProperty, {
-      pdomMapPDOMValue: value => toFixedNumber( value, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
+      mapPDOMValue: value => toFixedNumber( value, PHScaleConstants.PH_METER_DECIMAL_PLACES ),
       tandem: tandem.createTandem( 'spinner' )
     } );
 

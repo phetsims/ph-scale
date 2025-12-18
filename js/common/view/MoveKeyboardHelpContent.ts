@@ -12,7 +12,7 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import KeyboardHelpIconFactory from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpIconFactory.js';
 import KeyboardHelpSection, { KeyboardHelpSectionOptions } from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
 import KeyboardHelpSectionRow from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSectionRow.js';
-import SceneryPhetStrings from '../../../../scenery-phet/js/SceneryPhetStrings.js';
+import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
 import AccessibleValueHandlerHotkeyDataCollection from '../../../../sun/js/accessibility/AccessibleValueHandlerHotkeyDataCollection.js';
 import { MacroPHProbeNode } from '../../macro/view/MacroPHProbeNode.js';
 import phScale from '../../phScale.js';
@@ -65,16 +65,16 @@ export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
           labelInnerContent: moveSlowerLabelInnerContentStringProperty
         } ),
       ...( options.includeHomeAndEnd ? [
-        KeyboardHelpSectionRow.labelWithIcon( SceneryPhetStrings.keyboardHelpDialog.jumpToMinimumStringProperty,
+        KeyboardHelpSectionRow.labelWithIcon( SceneryPhetFluent.keyboardHelpDialog.jumpToMinimumStringProperty,
           KeyboardHelpIconFactory.fromHotkeyData( AccessibleValueHandlerHotkeyDataCollection.HOME_HOTKEY_DATA ), {
-            labelInnerContent: new PatternStringProperty( SceneryPhetStrings.a11y.keyboardHelpDialog.slider.jumpToMinimumDescriptionPatternStringProperty, {
-              minimum: SceneryPhetStrings.keyboardHelpDialog.minimumStringProperty
+            labelInnerContent: new PatternStringProperty( SceneryPhetFluent.a11y.keyboardHelpDialog.slider.jumpToMinimumDescriptionPatternStringProperty, {
+              minimum: SceneryPhetFluent.keyboardHelpDialog.minimumStringProperty
             } )
           } ),
-        KeyboardHelpSectionRow.labelWithIcon( SceneryPhetStrings.keyboardHelpDialog.jumpToMaximumStringProperty,
+        KeyboardHelpSectionRow.labelWithIcon( SceneryPhetFluent.keyboardHelpDialog.jumpToMaximumStringProperty,
           KeyboardHelpIconFactory.fromHotkeyData( AccessibleValueHandlerHotkeyDataCollection.END_HOTKEY_DATA ), {
-            labelInnerContent: new PatternStringProperty( SceneryPhetStrings.a11y.keyboardHelpDialog.slider.jumpToMaximumDescriptionPatternStringProperty, {
-              maximum: SceneryPhetStrings.keyboardHelpDialog.maximumStringProperty
+            labelInnerContent: new PatternStringProperty( SceneryPhetFluent.a11y.keyboardHelpDialog.slider.jumpToMaximumDescriptionPatternStringProperty, {
+              maximum: SceneryPhetFluent.keyboardHelpDialog.maximumStringProperty
             } )
           } ) ] : [] ),
 

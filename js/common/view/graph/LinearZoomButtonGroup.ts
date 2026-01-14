@@ -34,10 +34,14 @@ export default class LinearZoomButtonGroup extends MagnifyingGlassZoomButtonGrou
       visiblePropertyOptions: {
         phetioFeatured: true
       },
-      accessibleNameZoomIn: PhScaleStrings.a11y.graph.zoomInButton.accessibleNameStringProperty,
-      accessibleNameZoomOut: PhScaleStrings.a11y.graph.zoomOutButton.accessibleNameStringProperty,
-      accessibleHelpTextZoomIn: PhScaleStrings.a11y.graph.zoomInButton.accessibleHelpTextStringProperty,
-      accessibleHelpTextZoomOut: PhScaleStrings.a11y.graph.zoomOutButton.accessibleHelpTextStringProperty
+      zoomInButtonOptions: {
+        accessibleName: PhScaleStrings.a11y.graph.zoomInButton.accessibleNameStringProperty,
+        accessibleHelpText: PhScaleStrings.a11y.graph.zoomInButton.accessibleHelpTextStringProperty
+      },
+      zoomOutButtonOptions: {
+        accessibleName: PhScaleStrings.a11y.graph.zoomOutButton.accessibleNameStringProperty,
+        accessibleHelpText: PhScaleStrings.a11y.graph.zoomOutButton.accessibleHelpTextStringProperty
+      }
     }, providedOptions );
 
     const range = exponentProperty.range;

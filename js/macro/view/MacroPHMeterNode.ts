@@ -103,7 +103,7 @@ export default class MacroPHMeterNode extends Node {
               responseUtterance.alert = StringUtils.fillIn( PhScaleStrings.a11y.pHValuePatternStringProperty, {
                 pHValue: toFixed( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES )
               } );
-              probeNode.addAccessibleContextResponse( responseUtterance, { alertBehavior: 'queue' } );
+              probeNode.addAccessibleContextResponse( responseUtterance );
             }
           }
         }
@@ -122,7 +122,7 @@ export default class MacroPHMeterNode extends Node {
       else {
         responseUtterance.alert = PhScaleStrings.a11y.pHValueUnknownStringProperty;
       }
-      probeNode.addAccessibleContextResponse( responseUtterance, { alertBehavior: 'queue' } );
+      probeNode.addAccessibleContextResponse( responseUtterance );
     } );
     this.probeNode = probeNode;
 

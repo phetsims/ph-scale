@@ -36,7 +36,7 @@ export default class JumpToPositionListener extends KeyboardListener<OneKeyStrok
           positionProperty.value = jumpPosition.position;
 
           // Add the accessible object response associated with the jump position.
-          targetNode.addAccessibleObjectResponse( jumpPosition.accessibleObjectResponseStringProperty, { alertBehavior: 'queue' } );
+          targetNode.addAccessibleObjectResponse( jumpPosition.accessibleObjectResponseStringProperty );
 
           // Adjust the index into the jumpPositions array, with wrap around.
           if ( jumpPositionIndexProperty.value < jumpPositions.length - 1 ) {

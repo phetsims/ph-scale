@@ -1,4 +1,4 @@
-// Copyright 2025, University of Colorado Boulder
+// Copyright 2025-2026, University of Colorado Boulder
 
 /**
  * JumpToPositionListener is a keyboard listener specialized for the 'jump to useful position' shortcut.

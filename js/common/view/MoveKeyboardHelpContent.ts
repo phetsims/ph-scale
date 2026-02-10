@@ -1,4 +1,4 @@
-// Copyright 2022-2025, University of Colorado Boulder
+// Copyright 2022-2026, University of Colorado Boulder
 
 /**
  * MoveKeyboardHelpContent is the keyboard-help section that describes how to move things that are draggable.

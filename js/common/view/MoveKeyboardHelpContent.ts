@@ -6,13 +6,12 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import KeyboardHelpIconFactory from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpIconFactory.js';
 import KeyboardHelpSection, { KeyboardHelpSectionOptions } from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
 import KeyboardHelpSectionRow from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSectionRow.js';
 import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
+import HotkeyData from '../../../../scenery/js/input/HotkeyData.js';
 import AccessibleValueHandlerHotkeyDataCollection from '../../../../sun/js/accessibility/AccessibleValueHandlerHotkeyDataCollection.js';
 import { MacroPHProbeNode } from '../../macro/view/MacroPHProbeNode.js';
 import phScale from '../../phScale.js';
@@ -35,58 +34,45 @@ export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
       includeHomeAndEnd: false
     }, providedOptions );
 
-    // Create the icons that will be used in the section rows.
-    const arrowOrWasdKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.arrowOrWasdKeysRowIcon() :
-                                KeyboardHelpIconFactory.upDownOrWSKeysRowIcon();
-    const arrowKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.arrowKeysRowIcon() :
-                          KeyboardHelpIconFactory.upDownArrowKeysRowIcon();
-    const wasdKeysIcon = options.dragDirection === 'both' ? KeyboardHelpIconFactory.wasdRowIcon() :
-                         KeyboardHelpIconFactory.wSKeysRowIcon();
-    const shiftPlusArrowKeysIcon = KeyboardHelpIconFactory.shiftPlusIcon( arrowKeysIcon );
-    const shiftPlusWASDKeysIcon = KeyboardHelpIconFactory.shiftPlusIcon( wasdKeysIcon );
+    const moveHotkeyData = new HotkeyData( {
+      keys: options.dragDirection === 'both' ?
+        [ 'arrowLeft', 'arrowRight', 'arrowUp', 'arrowDown', 'w', 'a', 's', 'd' ] :
+        [ 'arrowUp', 'arrowDown', 'w', 's' ],
+      repoName: phScale.name,
+      keyboardHelpDialogLabelStringProperty: PhScaleStrings.keyboardHelpDialog.moveStringProperty
+    } );
 
-    // Create the inner content strings for the section rows.
-    const moveLabelInnerContentStringProperty = options.dragDirection === 'both' ? PhScaleStrings.a11y.keyboardHelpDialog.movePHProbe.moveStringProperty :
-                                                PhScaleStrings.a11y.keyboardHelpDialog.moveGraphIndicators.moveStringProperty;
-    const moveSlowerLabelInnerContentStringProperty = options.dragDirection === 'both' ? PhScaleStrings.a11y.keyboardHelpDialog.movePHProbe.moveSlowerStringProperty :
-                                                      PhScaleStrings.a11y.keyboardHelpDialog.moveGraphIndicators.moveSlowerStringProperty;
+    const moveSlowerHotkeyData = new HotkeyData( {
+      keys: options.dragDirection === 'both' ?
+        [
+          'shift+arrowLeft', 'shift+arrowRight', 'shift+arrowUp', 'shift+arrowDown',
+          'shift+w', 'shift+a', 'shift+s', 'shift+d'
+        ] :
+        [ 'shift+arrowUp', 'shift+arrowDown', 'shift+w', 'shift+s' ],
+      repoName: phScale.name,
+      keyboardHelpDialogLabelStringProperty: PhScaleStrings.keyboardHelpDialog.moveSlowerStringProperty
+    } );
 
     const rows = [
 
       // arrows or WASD, for normal speed
-      KeyboardHelpSectionRow.labelWithIcon( PhScaleStrings.keyboardHelpDialog.moveStringProperty,
-        arrowOrWasdKeysIcon, {
-          labelInnerContent: moveLabelInnerContentStringProperty
-        } ),
+      KeyboardHelpSectionRow.fromHotkeyData( moveHotkeyData ),
 
       // Shift+arrows or Shift+WASD, for slower speed
-      KeyboardHelpSectionRow.labelWithIconList( PhScaleStrings.keyboardHelpDialog.moveSlowerStringProperty,
-        [ shiftPlusArrowKeysIcon, shiftPlusWASDKeysIcon ], {
-          labelInnerContent: moveSlowerLabelInnerContentStringProperty
-        } ),
+      KeyboardHelpSectionRow.fromHotkeyData( moveSlowerHotkeyData ),
       ...( options.includeHomeAndEnd ? [
-        KeyboardHelpSectionRow.labelWithIcon( SceneryPhetFluent.keyboardHelpDialog.jumpToMinimumStringProperty,
-          KeyboardHelpIconFactory.fromHotkeyData( AccessibleValueHandlerHotkeyDataCollection.HOME_HOTKEY_DATA ), {
-            labelInnerContent: new PatternStringProperty( SceneryPhetFluent.a11y.keyboardHelpDialog.slider.jumpToMinimumDescriptionPatternStringProperty, {
-              minimum: SceneryPhetFluent.keyboardHelpDialog.minimumStringProperty
-            } )
-          } ),
-        KeyboardHelpSectionRow.labelWithIcon( SceneryPhetFluent.keyboardHelpDialog.jumpToMaximumStringProperty,
-          KeyboardHelpIconFactory.fromHotkeyData( AccessibleValueHandlerHotkeyDataCollection.END_HOTKEY_DATA ), {
-            labelInnerContent: new PatternStringProperty( SceneryPhetFluent.a11y.keyboardHelpDialog.slider.jumpToMaximumDescriptionPatternStringProperty, {
-              maximum: SceneryPhetFluent.keyboardHelpDialog.maximumStringProperty
-            } )
-          } ) ] : [] ),
+        KeyboardHelpSectionRow.fromHotkeyData( AccessibleValueHandlerHotkeyDataCollection.HOME_HOTKEY_DATA, {
+          labelStringProperty: SceneryPhetFluent.keyboardHelpDialog.jumpToMinimumStringProperty
+        } ),
+        KeyboardHelpSectionRow.fromHotkeyData( AccessibleValueHandlerHotkeyDataCollection.END_HOTKEY_DATA, {
+          labelStringProperty: SceneryPhetFluent.keyboardHelpDialog.jumpToMaximumStringProperty
+        } ) ] : [] ),
 
       // Hotkey to jump the pH Probe to specific positions
-      ...( options.includeJumpToPosition ? [ KeyboardHelpSectionRow.labelWithIcon( PhScaleStrings.keyboardHelpDialog.jumpPHProbeStringProperty,
-        KeyboardHelpIconFactory.fromHotkeyData( MacroPHProbeNode.JUMP_TO_POSITION_HOTKEY_DATA ), {
-          labelInnerContent: PhScaleStrings.a11y.keyboardHelpDialog.movePHProbe.jumpStringProperty
-        } ) ] : [] )
+      ...( options.includeJumpToPosition ? [ KeyboardHelpSectionRow.fromHotkeyData( MacroPHProbeNode.JUMP_TO_POSITION_HOTKEY_DATA ) ] : [] )
     ];
 
-    super( titleProperty, rows, {
-    } );
+    super( titleProperty, rows, {} );
   }
 }
 

@@ -6,7 +6,8 @@
  * @author Marla Schulz (PhET Interactive Simulations)
  */
 
-import AccessibleListNode from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
+import AccessibleList from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
+import Node from '../../../../../scenery/js/nodes/Node.js';
 import phScale from '../../../phScale.js';
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import { ConcentrationValue } from '../../model/PHModel.js';
@@ -19,7 +20,7 @@ import { toFixed } from '../../../../../dot/js/util/toFixed.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import affirm from '../../../../../perennial-alias/js/browser-and-node/affirm.js';
 
-export default class SoluteAccessibleListNode extends AccessibleListNode {
+export default class SoluteAccessibleListNode extends Node {
 
   public constructor( solutionVolumeProperty: TReadOnlyProperty<number>,
                       phProperty: TReadOnlyProperty<number | null>,
@@ -90,7 +91,11 @@ export default class SoluteAccessibleListNode extends AccessibleListNode {
       ...( comparisonListItem !== null ? [ comparisonListItem ] : [] )
     ];
 
-    super( items );
+    super( {
+      accessibleTemplate: AccessibleList.createTemplate( {
+        listItems: items
+      } )
+    } );
   }
 }
 

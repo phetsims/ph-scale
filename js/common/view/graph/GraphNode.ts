@@ -10,28 +10,28 @@
  */
 
 import BooleanProperty from '../../../../../axon/js/BooleanProperty.js';
+import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
 import EnumerationProperty from '../../../../../axon/js/EnumerationProperty.js';
+import PatternStringProperty from '../../../../../axon/js/PatternStringProperty.js';
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
+import { toFixed } from '../../../../../dot/js/util/toFixed.js';
 import optionize from '../../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
+import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
+import AccessibleList from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
+import { ScientificNotation } from '../../../../../scenery-phet/js/ScientificNotationNode.js';
 import Line from '../../../../../scenery/js/nodes/Line.js';
 import Node, { NodeOptions } from '../../../../../scenery/js/nodes/Node.js';
 import phScale from '../../../phScale.js';
+import PhScaleStrings from '../../../PhScaleStrings.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
+import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphControlPanel from './GraphControlPanel.js';
 import GraphScale from './GraphScale.js';
 import GraphScaleSwitch from './GraphScaleSwitch.js';
 import GraphUnits from './GraphUnits.js';
 import LinearGraphNode from './LinearGraphNode.js';
 import LogarithmicGraphNode, { LogarithmicGraphNodeOptions } from './LogarithmicGraphNode.js';
-import PhScaleStrings from '../../../PhScaleStrings.js';
-import AccessibleListNode from '../../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
-import PatternStringProperty from '../../../../../axon/js/PatternStringProperty.js';
-import DerivedProperty from '../../../../../axon/js/DerivedProperty.js';
-import PHScaleConstants from '../../PHScaleConstants.js';
-import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
-import { ScientificNotation } from '../../../../../scenery-phet/js/ScientificNotationNode.js';
-import { toFixed } from '../../../../../dot/js/util/toFixed.js';
 
 type SelfOptions = {
   logScaleHeight?: number;
@@ -210,48 +210,52 @@ export default class GraphNode extends Node {
     const unitsStringProperty = new DerivedProperty( [ graphUnitsProperty, PhScaleStrings.a11y.graph.units.molesPerLiterStringProperty, PhScaleStrings.a11y.graph.units.molesStringProperty ],
       ( graphUnits, molesPerLiterString, molesString ) => graphUnits === GraphUnits.MOLES_PER_LITER ? molesPerLiterString : molesString );
     const beakerHasLiquidProperty = DerivedProperty.valueNotEqualsConstant( totalVolumeProperty, 0 );
-    const graphDescriptionListNode = new AccessibleListNode( [
-      {
-        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.scaleListItem.patternStringProperty, {
-          type: scaleTypeStringProperty
-        } )
-      },
-      {
-        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.rangeListItem.patternStringProperty, {
-          min: scaleRangeMinStringProperty,
-          max: scaleRangeMaxStringProperty
-        } )
-      },
-      {
-        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.h3OListItemPatternStringProperty, {
-          value: GraphNode.createScientificNotationStringProperty( derivedProperties.concentrationH3OScientificNotationProperty,
-            derivedProperties.quantityH3OScientificNotationProperty, graphUnitsProperty ),
-          units: unitsStringProperty
-        } ),
-        visibleProperty: beakerHasLiquidProperty
-      },
-      {
-        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.oHMinusListItemPatternStringProperty, {
-          value: GraphNode.createScientificNotationStringProperty( derivedProperties.concentrationOHScientificNotationProperty,
-            derivedProperties.quantityOHScientificNotationProperty, graphUnitsProperty ),
-          units: unitsStringProperty
-        } ),
-        visibleProperty: beakerHasLiquidProperty
-      },
-      {
-        stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.waterListItemPatternStringProperty, {
-          value: new DerivedProperty( [ graphUnitsProperty, derivedProperties.concentrationH2OProperty,
-              derivedProperties.quantityH2OProperty ],
-            ( graphUnits, concentrationH2O, quantityH2O ) =>
+    const graphDescriptionListNode = new Node( {
+      accessibleTemplate: AccessibleList.createTemplate( {
+        listItems: [
+          {
+            stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.scaleListItem.patternStringProperty, {
+              type: scaleTypeStringProperty
+            } )
+          },
+          {
+            stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.rangeListItem.patternStringProperty, {
+              min: scaleRangeMinStringProperty,
+              max: scaleRangeMaxStringProperty
+            } )
+          },
+          {
+            stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.h3OListItemPatternStringProperty, {
+              value: GraphNode.createScientificNotationStringProperty( derivedProperties.concentrationH3OScientificNotationProperty,
+                derivedProperties.quantityH3OScientificNotationProperty, graphUnitsProperty ),
+              units: unitsStringProperty
+            } ),
+            visibleProperty: beakerHasLiquidProperty
+          },
+          {
+            stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.oHMinusListItemPatternStringProperty, {
+              value: GraphNode.createScientificNotationStringProperty( derivedProperties.concentrationOHScientificNotationProperty,
+                derivedProperties.quantityOHScientificNotationProperty, graphUnitsProperty ),
+              units: unitsStringProperty
+            } ),
+            visibleProperty: beakerHasLiquidProperty
+          },
+          {
+            stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.waterListItemPatternStringProperty, {
+              value: new DerivedProperty( [ graphUnitsProperty, derivedProperties.concentrationH2OProperty,
+                  derivedProperties.quantityH2OProperty ],
+                ( graphUnits, concentrationH2O, quantityH2O ) =>
 
-              // 'null' is used as a fill-in and indicates that the user will never see this value.
-              concentrationH2O === null || quantityH2O === null ? 'null' :
-              graphUnits === GraphUnits.MOLES_PER_LITER ? toFixed( concentrationH2O, 0 ) : toFixed( quantityH2O, 0 ) ),
-          units: unitsStringProperty
-        } ),
-        visibleProperty: beakerHasLiquidProperty
-      }
-    ] );
+                  // 'null' is used as a fill-in and indicates that the user will never see this value.
+                  concentrationH2O === null || quantityH2O === null ? 'null' :
+                  graphUnits === GraphUnits.MOLES_PER_LITER ? toFixed( concentrationH2O, 0 ) : toFixed( quantityH2O, 0 ) ),
+              units: unitsStringProperty
+            } ),
+            visibleProperty: beakerHasLiquidProperty
+          }
+        ]
+      } )
+    } );
     parentNode.addChild( graphDescriptionListNode );
     pdomOrder.push( graphDescriptionListNode );
     pdomOrder.push( logarithmicGraphNode );

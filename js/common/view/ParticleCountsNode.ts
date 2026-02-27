@@ -12,9 +12,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import Property from '../../../../axon/js/Property.js';
+import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
+import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
+import AccessibleList from '../../../../scenery-phet/js/accessibility/AccessibleList.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import ScientificNotationNode, { ScientificNotationNodeOptions } from '../../../../scenery-phet/js/ScientificNotationNode.js';
 import AlignGroup from '../../../../scenery/js/layout/constraints/AlignGroup.js';
@@ -22,20 +27,15 @@ import AlignBox, { AlignBoxOptions } from '../../../../scenery/js/layout/nodes/A
 import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Rectangle, { RectangleOptions } from '../../../../scenery/js/nodes/Rectangle.js';
+import RichText from '../../../../scenery/js/nodes/RichText.js';
 import phScale from '../../phScale.js';
+import PhScaleStrings from '../../PhScaleStrings.js';
 import SolutionDerivedProperties from '../model/SolutionDerivedProperties.js';
 import PHScaleColors from '../PHScaleColors.js';
+import PHScaleConstants from '../PHScaleConstants.js';
 import H2ONode from './particles/H2ONode.js';
 import H3ONode from './particles/H3ONode.js';
 import OHNode from './particles/OHNode.js';
-import RichText from '../../../../scenery/js/nodes/RichText.js';
-import PHScaleConstants from '../PHScaleConstants.js';
-import AccessibleListNode from '../../../../scenery-phet/js/accessibility/AccessibleListNode.js';
-import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
-import PhScaleStrings from '../../PhScaleStrings.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
-import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -125,23 +125,27 @@ export default class ParticleCountsNode extends Node {
       {}, backgroundOptions, { fill: PHScaleColors.h2OBackgroundColorProperty } ) );
 
     const createListItem = ( patternStringProperty: TReadOnlyProperty<string>, valueProperty: TReadOnlyProperty<number> ) => {
-      return { stringProperty: new PatternStringProperty( patternStringProperty, {
+      return {
+        stringProperty: new PatternStringProperty( patternStringProperty, {
           value: new DerivedProperty( [ valueProperty, PhScaleStrings.a11y.scientificNotationPatternStringProperty ],
             ( count, string ) => {
               const scientificNotation = ScientificNotationNode.toScientificNotation( count, { mantissaDecimalPlaces: 2 } );
               return StringUtils.fillIn( string, { mantissa: scientificNotation.mantissa, exponent: scientificNotation.exponent } );
             } )
-        } ) };
+        } )
+      };
     };
 
-    const particleCountsListNode = new AccessibleListNode( [
-      createListItem( PhScaleStrings.a11y.beakerControls.particleCountValues.h3OPatternStringProperty, derivedProperties.particleCountH3OProperty ),
-      createListItem( PhScaleStrings.a11y.beakerControls.particleCountValues.oHPatternStringProperty, derivedProperties.particleCountOHProperty ),
-      createListItem( PhScaleStrings.a11y.beakerControls.particleCountValues.waterPatternStringProperty, derivedProperties.particleCountH2OProperty )
-    ] );
+    // const particleCountsListNode = new AccessibleListNode(  );
+    options.accessibleTemplate = AccessibleList.createTemplate( {
+      listItems: [
+        createListItem( PhScaleStrings.a11y.beakerControls.particleCountValues.h3OPatternStringProperty, derivedProperties.particleCountH3OProperty ),
+        createListItem( PhScaleStrings.a11y.beakerControls.particleCountValues.oHPatternStringProperty, derivedProperties.particleCountOHProperty ),
+        createListItem( PhScaleStrings.a11y.beakerControls.particleCountValues.waterPatternStringProperty, derivedProperties.particleCountH2OProperty )
+      ]
+    } );
 
     options.children = [
-      particleCountsListNode,
       backgroundH3O, hboxH3O,
       backgroundOH, hboxOH,
       backgroundH2O, hboxH2O

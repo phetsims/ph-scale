@@ -15,7 +15,7 @@ import phScale from '../../phScale.js';
 import Beaker from '../model/Beaker.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import Solute from '../model/Solute.js';
-import SoluteAccessibleListNode from './particles/SoluteAccessibleListNode.js';
+import SoluteDescriptionNode from './particles/SoluteDescriptionNode.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import { linear } from '../../../../dot/js/util/linear.js';
@@ -36,7 +36,7 @@ export default class SolutionNode extends Rectangle {
 
   // This class property is used in the MacroScreenView to define the pdom structure of content that is nested under
   // the beaker heading.
-  public readonly soluteAccessibleListNode: SoluteAccessibleListNode;
+  public readonly soluteDescriptionNode: SoluteDescriptionNode;
 
   public constructor( solutionVolumeProperty: TReadOnlyProperty<number>,
                       phProperty: TReadOnlyProperty<number | null>,
@@ -87,7 +87,7 @@ export default class SolutionNode extends Rectangle {
 
     // Add list items to the pdom to describe the solution in the beaker. Only provide the ion comparison if provided
     // by the screenView, since it is not pedagogically relevant for all screens.
-    this.soluteAccessibleListNode = new SoluteAccessibleListNode(
+    this.soluteDescriptionNode = new SoluteDescriptionNode(
       solutionVolumeProperty,
       phProperty,
       options.soluteProperty,
@@ -95,7 +95,7 @@ export default class SolutionNode extends Rectangle {
       options.concentrationOHProperty,
       options.ratioVisibleProperty
     );
-    this.addChild( this.soluteAccessibleListNode );
+    this.addChild( this.soluteDescriptionNode );
   }
 }
 

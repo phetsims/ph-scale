@@ -20,7 +20,7 @@ import { toFixed } from '../../../../../dot/js/util/toFixed.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import affirm from '../../../../../perennial-alias/js/browser-and-node/affirm.js';
 
-export default class SoluteAccessibleListNode extends Node {
+export default class SoluteDescriptionNode extends Node {
 
   public constructor( solutionVolumeProperty: TReadOnlyProperty<number>,
                       phProperty: TReadOnlyProperty<number | null>,
@@ -99,4 +99,4 @@ export default class SoluteAccessibleListNode extends Node {
   }
 }
 
-phScale.register( 'SoluteAccessibleListNode', SoluteAccessibleListNode );
+phScale.register( 'SoluteDescriptionNode', SoluteDescriptionNode );

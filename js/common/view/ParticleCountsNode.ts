@@ -136,7 +136,7 @@ export default class ParticleCountsNode extends Node {
       };
     };
 
-    options.accessibleTemplate = AccessibleList.createTemplate( {
+    options.accessibleTemplate = AccessibleList.createTemplateProperty( {
       listItems: [
         createListItem( PhScaleStrings.a11y.beakerControls.particleCountValues.h3OPatternStringProperty, derivedProperties.particleCountH3OProperty ),
         createListItem( PhScaleStrings.a11y.beakerControls.particleCountValues.oHPatternStringProperty, derivedProperties.particleCountOHProperty ),

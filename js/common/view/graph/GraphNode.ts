@@ -211,7 +211,7 @@ export default class GraphNode extends Node {
       ( graphUnits, molesPerLiterString, molesString ) => graphUnits === GraphUnits.MOLES_PER_LITER ? molesPerLiterString : molesString );
     const beakerHasLiquidProperty = DerivedProperty.valueNotEqualsConstant( totalVolumeProperty, 0 );
     const graphDescriptionListNode = new Node( {
-      accessibleTemplate: AccessibleList.createTemplate( {
+      accessibleTemplate: AccessibleList.createTemplateProperty( {
         listItems: [
           {
             stringProperty: new PatternStringProperty( PhScaleStrings.a11y.graph.scaleListItem.patternStringProperty, {

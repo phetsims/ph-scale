@@ -92,7 +92,7 @@ export default class SoluteAccessibleListNode extends Node {
     ];
 
     super( {
-      accessibleTemplate: AccessibleList.createTemplate( {
+      accessibleTemplate: AccessibleList.createTemplateProperty( {
         listItems: items
       } )
     } );

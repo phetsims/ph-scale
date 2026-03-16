@@ -198,7 +198,7 @@ export default class PHModel<T extends Solution> implements TModel {
       this.dropper.isDispensingProperty.value = true;
 
       // faster than the standard flow rate, but slow enough for the pH value context response to be
-      // read after the alertStableDelay
+      // read after the alertDelay
       this.dropper.flowRateProperty.value = 0.45;
     }
     else {

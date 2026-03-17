@@ -33,11 +33,11 @@
     "branch": "HEAD"
   },
   "perennial-alias": {
-    "sha": "c518e16b71a11644708c2353cb2d3a432f7cc07e",
+    "sha": "36fe05f3fcda25547cc86b765ec120ddbb7b8534",
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "c18d1c596b62014d094ec771bd2875b0bf103352",
+    "sha": "bb81340d16b35f6ea7603692c4e3e01061b2c5de",
     "branch": "1.6"
   },
   "phet-core": {

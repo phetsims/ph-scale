@@ -21,7 +21,7 @@
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "0bce0d94cf15686e15f2144e2c27f3904412f20d",
+    "sha": "e5471d8eb1691dee7f220c709c7b2b3f828063c3",
     "branch": "HEAD"
   },
   "kite": {
@@ -37,7 +37,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "11da88e06f1f682d73168f790b49c0389e6f5393",
+    "sha": "67484bc25bcf0565c9316a3c04e27c12dbe307ee",
     "branch": "1.6"
   },
   "phet-core": {

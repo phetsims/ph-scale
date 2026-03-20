@@ -28,6 +28,6 @@ const PHScaleQueryParameters = QueryStringMachine.getAll( {
 // Log query parameters
 logGlobal( 'phet.chipper.queryParameters' );
 logGlobal( 'phet.preloads.phetio.queryParameters' );
-logGlobal( 'phet.phScale.PHScaleQueryParameters' );
+phet.log && phet.log( `PHScaleQueryParameters: ${JSON.stringify( PHScaleQueryParameters, null, 2 )}` );
 
 export default PHScaleQueryParameters;

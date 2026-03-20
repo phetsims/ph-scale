@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "chipper": {
-    "sha": "5eeebe31c814caa6528dc0f504bf63e50cb2ac89",
+    "sha": "c2af347c3b26752ac68cf1007e8d141321124a6b",
     "branch": "HEAD"
   },
   "dot": {
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "ph-scale": {
-    "sha": "31dec7288e968a0c6283a122138fb1e67529a22d",
+    "sha": "5f30ffb429f4a44b0ee96c32eb05814ff861baf1",
     "branch": "1.7"
   },
   "phet-core": {

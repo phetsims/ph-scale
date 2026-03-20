@@ -263,4 +263,6 @@ type StringsType = {
 
 const PhScaleStrings = getStringModule( 'PH_SCALE' ) as StringsType;
 
+phScale.register( 'PhScaleStrings', PhScaleStrings );
+
 export default PhScaleStrings;

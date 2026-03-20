@@ -24,7 +24,6 @@ import Dropper from '../../common/model/Dropper.js';
 import Solution from '../../common/model/Solution.js';
 import Water from '../../common/model/Water.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
-import phScale from '../../phScale.js';
 import MacroPHMeter from '../model/MacroPHMeter.js';
 import { MacroPHProbeNode } from './MacroPHProbeNode.js';
 import { linear } from '../../../../dot/js/util/linear.js';
@@ -177,5 +176,3 @@ export default class MacroPHMeterNode extends Node {
     this.probeNode.reset();
   }
 }
-
-phScale.register( 'MacroPHMeterNode', MacroPHMeterNode );

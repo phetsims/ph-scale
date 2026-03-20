@@ -14,7 +14,6 @@ import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import { NodeTranslationOptions } from '../../../../../scenery/js/nodes/Node.js';
 import RichText from '../../../../../scenery/js/nodes/RichText.js';
 import ABSwitch, { ABSwitchOptions } from '../../../../../sun/js/ABSwitch.js';
-import phScale from '../../../phScale.js';
 import PhScaleStrings from '../../../PhScaleStrings.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphUnits from './GraphUnits.js';
@@ -72,5 +71,3 @@ export default class GraphUnitsSwitch extends ABSwitch<GraphUnits> {
     super( graphUnitsProperty, GraphUnits.MOLES_PER_LITER, concentrationText, GraphUnits.MOLES, quantityText, options );
   }
 }
-
-phScale.register( 'GraphUnitsSwitch', GraphUnitsSwitch );

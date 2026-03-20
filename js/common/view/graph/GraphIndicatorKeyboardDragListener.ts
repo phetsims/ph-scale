@@ -11,7 +11,6 @@ import Property from '../../../../../axon/js/Property.js';
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import SoundKeyboardDragListener, { SoundKeyboardDragListenerOptions } from '../../../../../scenery-phet/js/SoundKeyboardDragListener.js';
 import ValueChangeUtterance from '../../../../../utterance-queue/js/ValueChangeUtterance.js';
-import phScale from '../../../phScale.js';
 import { ConcentrationValue, PHValue } from '../../model/PHModel.js';
 import GraphIndicatorDragListener from './GraphIndicatorDragListener.js';
 import GraphIndicatorNode from './GraphIndicatorNode.js';
@@ -112,5 +111,3 @@ export default class GraphIndicatorKeyboardDragListener extends SoundKeyboardDra
     } );
   }
 }
-
-phScale.register( 'GraphIndicatorKeyboardDragListener', GraphIndicatorKeyboardDragListener );

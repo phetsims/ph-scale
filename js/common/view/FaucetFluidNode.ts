@@ -11,7 +11,6 @@ import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Color from '../../../../scenery/js/util/Color.js';
-import phScale from '../../phScale.js';
 import Faucet from '../model/Faucet.js';
 
 export default class FaucetFluidNode extends Rectangle {
@@ -48,5 +47,3 @@ export default class FaucetFluidNode extends Rectangle {
     } );
   }
 }
-
-phScale.register( 'FaucetFluidNode', FaucetFluidNode );

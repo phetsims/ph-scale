@@ -8,7 +8,6 @@
 
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import ScreenIcon from '../../../../joist/js/ScreenIcon.js';
-import phScale from '../../phScale.js';
 import ScaleNode from './ScaleNode.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import ProbeNode from '../../../../scenery-phet/js/ProbeNode.js';
@@ -67,5 +66,3 @@ class WireNode extends Path {
       .cubicCurveTo( c1.x, c1.y, c2.x, c2.y, probeConnectionPoint.x, probeConnectionPoint.y );
   }
 }
-
-phScale.register( 'MacroScreenIcon', MacroScreenIcon );

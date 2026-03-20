@@ -10,7 +10,6 @@
 
 import Enumeration from '../../../../../phet-core/js/Enumeration.js';
 import EnumerationValue from '../../../../../phet-core/js/EnumerationValue.js';
-import phScale from '../../../phScale.js';
 
 export default class GraphUnits extends EnumerationValue {
   public static readonly MOLES_PER_LITER = new GraphUnits();
@@ -18,5 +17,3 @@ export default class GraphUnits extends EnumerationValue {
 
   public static readonly enumeration = new Enumeration( GraphUnits );
 }
-
-phScale.register( 'GraphUnits', GraphUnits );

@@ -105,5 +105,3 @@ export class MacroPHProbeNode extends InteractiveHighlighting( ProbeNode ) {
     this.grabDragInteraction && this.grabDragInteraction.reset();
   }
 }
-
-phScale.register( 'MacroPHProbeNode', MacroPHProbeNode );

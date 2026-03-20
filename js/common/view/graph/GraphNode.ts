@@ -22,7 +22,6 @@ import AccessibleList from '../../../../../scenery-phet/js/accessibility/Accessi
 import { ScientificNotation } from '../../../../../scenery-phet/js/ScientificNotationNode.js';
 import Line from '../../../../../scenery/js/nodes/Line.js';
 import Node, { NodeOptions } from '../../../../../scenery/js/nodes/Node.js';
-import phScale from '../../../phScale.js';
 import PhScaleStrings from '../../../PhScaleStrings.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
@@ -312,5 +311,3 @@ export default class GraphNode extends Node {
     } );
   }
 }
-
-phScale.register( 'GraphNode', GraphNode );

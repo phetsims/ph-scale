@@ -23,7 +23,6 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import phScale from '../../phScale.js';
 import PHModel, { ConcentrationValue, PHValue } from './PHModel.js';
 import ScientificNotationNode, { ScientificNotation } from '../../../../scenery-phet/js/ScientificNotationNode.js';
 
@@ -167,5 +166,3 @@ export default class SolutionDerivedProperties {
     this.quantityOHScientificNotationProperty = createScientificNotationProperty( this.quantityOHProperty );
   }
 }
-
-phScale.register( 'SolutionDerivedProperties', SolutionDerivedProperties );

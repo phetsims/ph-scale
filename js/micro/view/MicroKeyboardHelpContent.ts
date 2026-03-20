@@ -10,7 +10,6 @@ import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboar
 import ComboBoxKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/ComboBoxKeyboardHelpSection.js';
 import FaucetControlsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/FaucetControlsKeyboardHelpSection.js';
 import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
-import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 
 export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
@@ -45,5 +44,3 @@ export default class MicroKeyboardHelpContent extends TwoColumnKeyboardHelpConte
     super( leftSections, rightSections );
   }
 }
-
-phScale.register( 'MicroKeyboardHelpContent', MicroKeyboardHelpContent );

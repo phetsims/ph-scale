@@ -15,7 +15,6 @@ import RangeWithValue from '../../../dot/js/RangeWithValue.js';
 import { toFixed } from '../../../dot/js/util/toFixed.js';
 import Vector2 from '../../../dot/js/Vector2.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
-import phScale from '../phScale.js';
 import PhScaleStrings from '../PhScaleStrings.js';
 
 const PHScaleConstants = {
@@ -102,5 +101,4 @@ const PHScaleConstants = {
   AB_SWITCH_FONT: new PhetFont( { size: 18, weight: 'bold' } )
 };
 
-phScale.register( 'PHScaleConstants', PHScaleConstants );
 export default PHScaleConstants;

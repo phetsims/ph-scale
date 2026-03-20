@@ -12,7 +12,6 @@ import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optioni
 import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import MagnifyingGlassZoomButtonGroup, { MagnifyingGlassZoomButtonGroupOptions } from '../../../../../scenery-phet/js/MagnifyingGlassZoomButtonGroup.js';
 import { NodeTranslationOptions } from '../../../../../scenery/js/nodes/Node.js';
-import phScale from '../../../phScale.js';
 import PhScaleStrings from '../../../PhScaleStrings.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -61,5 +60,3 @@ export default class LinearZoomButtonGroup extends MagnifyingGlassZoomButtonGrou
     super( zoomLevelProperty, options );
   }
 }
-
-phScale.register( 'LinearZoomButtonGroup', LinearZoomButtonGroup );

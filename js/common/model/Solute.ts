@@ -17,7 +17,6 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import IOType from '../../../../tandem/js/types/IOType.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import ReferenceIO, { ReferenceIOState } from '../../../../tandem/js/types/ReferenceIO.js';
-import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import Water from './Water.js';
@@ -224,5 +223,3 @@ export default class Solute extends PhetioObject {
       tandem: SOLUTES_TANDEM.createTandem( 'water' )
     } );
 }
-
-phScale.register( 'Solute', Solute );

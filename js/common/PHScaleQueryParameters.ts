@@ -8,7 +8,6 @@
 
 import logGlobal from '../../../phet-core/js/logGlobal.js';
 import { QueryStringMachine } from '../../../query-string-machine/js/QueryStringMachineModule.js';
-import phScale from '../phScale.js';
 
 const PHScaleQueryParameters = QueryStringMachine.getAll( {
 
@@ -25,8 +24,6 @@ const PHScaleQueryParameters = QueryStringMachine.getAll( {
     type: 'flag'
   }
 } );
-
-phScale.register( 'PHScaleQueryParameters', PHScaleQueryParameters );
 
 // Log query parameters
 logGlobal( 'phet.chipper.queryParameters' );

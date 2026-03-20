@@ -9,7 +9,6 @@
 import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/BasicActionsKeyboardHelpSection.js';
 import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
 import MoveKeyboardHelpContent from '../../common/view/MoveKeyboardHelpContent.js';
-import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import SliderControlsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/SliderControlsKeyboardHelpSection.js';
 
@@ -46,5 +45,3 @@ export default class MySolutionKeyboardHelpContent extends TwoColumnKeyboardHelp
     super( leftSections, rightSections );
   }
 }
-
-phScale.register( 'MySolutionKeyboardHelpContent', MySolutionKeyboardHelpContent );

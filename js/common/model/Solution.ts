@@ -19,7 +19,6 @@ import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioS
 import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import phScale from '../../phScale.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import PHModel, { PHValue } from './PHModel.js';
 import Solute from './Solute.js';
@@ -221,5 +220,3 @@ export default class Solution extends PhetioObject {
     this.soluteVolumeProperty.value = soluteVolume;
   }
 }
-
-phScale.register( 'Solution', Solution );

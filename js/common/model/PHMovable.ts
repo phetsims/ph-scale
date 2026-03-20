@@ -15,7 +15,6 @@ import { combineOptions } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
-import phScale from '../../phScale.js';
 
 type SelfOptions = {
 
@@ -43,5 +42,3 @@ export default class PHMovable {
     this.positionProperty.reset();
   }
 }
-
-phScale.register( 'PHMovable', PHMovable );

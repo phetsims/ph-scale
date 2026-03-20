@@ -14,7 +14,6 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
-import phScale from '../../phScale.js';
 import Solute from './Solute.js';
 
 type SelfOptions = {
@@ -108,5 +107,3 @@ export default class Dropper {
     this.flowRateProperty.reset();
   }
 }
-
-phScale.register( 'Dropper', Dropper );

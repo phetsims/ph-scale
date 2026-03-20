@@ -9,7 +9,6 @@
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import phScale from '../../phScale.js';
 
 export default class PHScaleViewProperties {
 
@@ -36,5 +35,3 @@ export default class PHScaleViewProperties {
     this.particleCountsVisibleProperty.reset();
   }
 }
-
-phScale.register( 'PHScaleViewProperties', PHScaleViewProperties );

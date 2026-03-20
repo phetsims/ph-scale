@@ -7,7 +7,6 @@
  */
 
 import Node from '../../../../../scenery/js/nodes/Node.js';
-import phScale from '../../../phScale.js';
 import HydrogenNode from './HydrogenNode.js';
 import OxygenNode from './OxygenNode.js';
 
@@ -27,5 +26,3 @@ export default class OHNode extends Node {
     } );
   }
 }
-
-phScale.register( 'OHNode', OHNode );

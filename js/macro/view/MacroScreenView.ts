@@ -25,7 +25,6 @@ import SoluteComboBox from '../../common/view/SoluteComboBox.js';
 import SolutionNode from '../../common/view/SolutionNode.js';
 import VolumeIndicatorNode from '../../common/view/VolumeIndicatorNode.js';
 import WaterFaucetNode from '../../common/view/WaterFaucetNode.js';
-import phScale from '../../phScale.js';
 import MacroModel from '../model/MacroModel.js';
 import MacroPHMeterNode from './MacroPHMeterNode.js';
 import NeutralIndicatorNode from './NeutralIndicatorNode.js';
@@ -183,5 +182,3 @@ export default class MacroScreenView extends ScreenView {
     ];
   }
 }
-
-phScale.register( 'MacroScreenView', MacroScreenView );

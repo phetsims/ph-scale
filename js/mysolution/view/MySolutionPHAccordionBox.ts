@@ -10,7 +10,6 @@
 import Property from '../../../../axon/js/Property.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import PHAccordionBox from '../../common/view/PHAccordionBox.js';
-import phScale from '../../phScale.js';
 import { PHSpinnerNode } from './PHSpinnerNode.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtterance.js';
@@ -52,5 +51,3 @@ export default class MySolutionPHAccordionBox extends PHAccordionBox {
     this.accordionBox.addLinkedElement( pHProperty );
   }
 }
-
-phScale.register( 'MySolutionPHAccordionBox', MySolutionPHAccordionBox );

@@ -27,7 +27,6 @@ import PHScaleViewProperties from '../../common/view/PHScaleViewProperties.js';
 import RatioNode from '../../common/view/RatioNode.js';
 import SolutionNode from '../../common/view/SolutionNode.js';
 import VolumeIndicatorNode from '../../common/view/VolumeIndicatorNode.js';
-import phScale from '../../phScale.js';
 import MySolutionModel from '../model/MySolutionModel.js';
 import MySolutionPHAccordionBox from './MySolutionPHAccordionBox.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
@@ -165,5 +164,3 @@ export default class MySolutionScreenView extends ScreenView {
     ];
   }
 }
-
-phScale.register( 'MySolutionScreenView', MySolutionScreenView );

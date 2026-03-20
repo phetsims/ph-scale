@@ -10,7 +10,6 @@ import TModel from '../../../../joist/js/TModel.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import Beaker from '../../common/model/Beaker.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
-import phScale from '../../phScale.js';
 import MySolution from './MySolution.js';
 
 export default class MySolutionModel implements TModel {
@@ -35,5 +34,3 @@ export default class MySolutionModel implements TModel {
     this.solution.reset();
   }
 }
-
-phScale.register( 'MySolutionModel', MySolutionModel );

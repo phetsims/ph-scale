@@ -20,7 +20,6 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
-import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import Beaker from '../model/Beaker.js';
 import PHScaleConstants from '../PHScaleConstants.js';
@@ -88,5 +87,3 @@ export default class VolumeIndicatorNode extends Node {
     } );
   }
 }
-
-phScale.register( 'VolumeIndicatorNode', VolumeIndicatorNode );

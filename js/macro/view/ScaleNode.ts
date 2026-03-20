@@ -16,7 +16,6 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
-import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import Range from '../../../../dot/js/Range.js';
 
@@ -115,5 +114,3 @@ export default class ScaleNode extends Node {
     } );
   }
 }
-
-phScale.register( 'ScaleNode', ScaleNode );

@@ -10,7 +10,6 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import optionize from '../../../../phet-core/js/optionize.js';
-import phScale from '../../phScale.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 
 type SelfOptions = {
@@ -47,5 +46,3 @@ export default class Beaker {
     this.bounds = new Bounds2( this.left, this.position.y - this.size.height, this.right, this.position.y );
   }
 }
-
-phScale.register( 'Beaker', Beaker );

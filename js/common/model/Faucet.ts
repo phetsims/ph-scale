@@ -16,7 +16,6 @@ import optionize from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
-import phScale from '../../phScale.js';
 
 type SelfOptions = {
   spoutWidth?: number; // pixels
@@ -81,5 +80,3 @@ export default class Faucet {
     this.enabledProperty.reset();
   }
 }
-
-phScale.register( 'Faucet', Faucet );

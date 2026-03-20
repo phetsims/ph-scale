@@ -7,7 +7,6 @@
  */
 
 import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
-import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
@@ -41,5 +40,3 @@ export default class MacroScreenSummaryContent extends ScreenSummaryContent {
     } );
   }
 }
-
-phScale.register( 'MacroScreenSummaryContent', MacroScreenSummaryContent );

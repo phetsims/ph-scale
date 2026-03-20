@@ -10,7 +10,6 @@ import Property from '../../../../axon/js/Property.js';
 import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Solute from '../../common/model/Solute.js';
 import Solution, { SolutionOptions } from '../../common/model/Solution.js';
-import phScale from '../../phScale.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -22,5 +21,3 @@ export default class MacroSolution extends Solution {
     super( soluteProperty, providedOptions );
   }
 }
-
-phScale.register( 'MacroSolution', MacroSolution );

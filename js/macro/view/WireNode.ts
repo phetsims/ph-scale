@@ -12,7 +12,6 @@ import Shape from '../../../../kite/js/Shape.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import PHMovable from '../../common/model/PHMovable.js';
-import phScale from '../../phScale.js';
 import { SCALE_SIZE } from './MacroPHMeterNode.js';
 
 export default class WireNode extends Path {
@@ -49,5 +48,3 @@ export default class WireNode extends Path {
     probe.positionProperty.link( updateCurve );
   }
 }
-
-phScale.register( 'WireNode', WireNode );

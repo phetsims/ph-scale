@@ -14,7 +14,6 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import mySolutionHomeScreenIcon_png from '../../images/mySolutionHomeScreenIcon_png.js';
 import mySolutionNavbarIcon_png from '../../images/mySolutionNavbarIcon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
-import phScale from '../phScale.js';
 import PhScaleStrings from '../PhScaleStrings.js';
 import MySolutionModel from './model/MySolutionModel.js';
 import MySolutionKeyboardHelpContent from './view/MySolutionKeyboardHelpContent.js';
@@ -49,5 +48,3 @@ export default class MySolutionScreen extends Screen<MySolutionModel, MySolution
     );
   }
 }
-
-phScale.register( 'MySolutionScreen', MySolutionScreen );

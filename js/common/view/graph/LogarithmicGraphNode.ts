@@ -31,7 +31,6 @@ import RichText from '../../../../../scenery/js/nodes/RichText.js';
 import Font from '../../../../../scenery/js/util/Font.js';
 import LinearGradient from '../../../../../scenery/js/util/LinearGradient.js';
 import TColor from '../../../../../scenery/js/util/TColor.js';
-import phScale from '../../../phScale.js';
 import PhScaleStrings from '../../../PhScaleStrings.js';
 import PHModel, { PHValue } from '../../model/PHModel.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
@@ -372,5 +371,3 @@ function createTickLabel( exponent: number, font: Font ): Node {
     fill: 'black'
   } );
 }
-
-phScale.register( 'LogarithmicGraphNode', LogarithmicGraphNode );

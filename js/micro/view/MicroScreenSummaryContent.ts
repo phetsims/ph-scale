@@ -6,7 +6,6 @@
  *
  */
 
-import phScale from '../../phScale.js';
 import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
@@ -33,5 +32,3 @@ export default class MicroScreenSummaryContent extends ScreenSummaryContent {
     } );
   }
 }
-
-phScale.register( 'MicroScreenSummaryContent', MicroScreenSummaryContent );

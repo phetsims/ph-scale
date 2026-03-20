@@ -13,7 +13,6 @@ import PickRequired from '../../../../../phet-core/js/types/PickRequired.js';
 import { NodeTranslationOptions } from '../../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../../scenery/js/nodes/Text.js';
 import ABSwitch, { ABSwitchOptions } from '../../../../../sun/js/ABSwitch.js';
-import phScale from '../../../phScale.js';
 import PhScaleStrings from '../../../PhScaleStrings.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphScale from './GraphScale.js';
@@ -60,5 +59,3 @@ export default class GraphScaleSwitch extends ABSwitch<GraphScale> {
     super( graphScaleProperty, GraphScale.LOGARITHMIC, logarithmicText, GraphScale.LINEAR, linearText, options );
   }
 }
-
-phScale.register( 'GraphScaleSwitch', GraphScaleSwitch );

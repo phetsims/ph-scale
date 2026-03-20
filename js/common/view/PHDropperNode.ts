@@ -11,7 +11,6 @@
 import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import EyeDropperNode, { EyeDropperNodeOptions } from '../../../../scenery-phet/js/EyeDropperNode.js';
-import phScale from '../../phScale.js';
 import Dropper from '../model/Dropper.js';
 import WithRequired from '../../../../phet-core/js/types/WithRequired.js';
 import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
@@ -66,5 +65,3 @@ export default class PHDropperNode extends EyeDropperNode {
     } );
   }
 }
-
-phScale.register( 'PHDropperNode', PHDropperNode );

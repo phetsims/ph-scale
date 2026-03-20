@@ -8,7 +8,6 @@
 
 import JumpPosition from './JumpPosition.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
-import phScale from '../../phScale.js';
 import MacroModel from './MacroModel.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 
@@ -47,5 +46,3 @@ export default class ProbeJumpPositions extends Array<JumpPosition> {
       } ) );
   }
 }
-
-phScale.register( 'ProbeJumpPositions', ProbeJumpPositions );

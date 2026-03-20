@@ -10,7 +10,6 @@ import Screen, { ScreenOptions } from '../../../joist/js/Screen.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import PHScaleColors from '../common/PHScaleColors.js';
-import phScale from '../phScale.js';
 import PhScaleStrings from '../PhScaleStrings.js';
 import MacroModel from './model/MacroModel.js';
 import MacroKeyboardHelpContent from './view/MacroKeyboardHelpContent.js';
@@ -38,5 +37,3 @@ export default class MacroScreen extends Screen<MacroModel, MacroScreenView> {
     );
   }
 }
-
-phScale.register( 'MacroScreen', MacroScreen );

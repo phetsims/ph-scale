@@ -14,7 +14,6 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import microHomeScreenIcon_png from '../../images/microHomeScreenIcon_png.js';
 import microNavbarIcon_png from '../../images/microNavbarIcon_png.js';
 import PHScaleColors from '../common/PHScaleColors.js';
-import phScale from '../phScale.js';
 import PhScaleStrings from '../PhScaleStrings.js';
 import MicroModel from './model/MicroModel.js';
 import MicroKeyboardHelpContent from './view/MicroKeyboardHelpContent.js';
@@ -49,5 +48,3 @@ export default class MicroScreen extends Screen<MicroModel, MicroScreenView> {
     );
   }
 }
-
-phScale.register( 'MicroScreen', MicroScreen );

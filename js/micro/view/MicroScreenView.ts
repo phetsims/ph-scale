@@ -36,7 +36,6 @@ import SoluteComboBox from '../../common/view/SoluteComboBox.js';
 import SolutionNode from '../../common/view/SolutionNode.js';
 import VolumeIndicatorNode from '../../common/view/VolumeIndicatorNode.js';
 import WaterFaucetNode from '../../common/view/WaterFaucetNode.js';
-import phScale from '../../phScale.js';
 import MicroModel from '../model/MicroModel.js';
 import MicroPHAccordionBox from './MicroPHAccordionBox.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
@@ -227,5 +226,3 @@ export default class MicroScreenView extends ScreenView {
     ];
   }
 }
-
-phScale.register( 'MicroScreenView', MicroScreenView );

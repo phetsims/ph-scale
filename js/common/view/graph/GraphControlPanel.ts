@@ -15,7 +15,6 @@ import Node from '../../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../../scenery/js/nodes/Rectangle.js';
 import ExpandCollapseButton, { ExpandCollapseButtonOptions } from '../../../../../sun/js/ExpandCollapseButton.js';
 import Panel, { PanelOptions } from '../../../../../sun/js/Panel.js';
-import phScale from '../../../phScale.js';
 import PHScaleColors from '../../PHScaleColors.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
 import GraphUnits from './GraphUnits.js';
@@ -78,5 +77,3 @@ export default class GraphControlPanel extends Panel {
     ];
   }
 }
-
-phScale.register( 'GraphControlPanel', GraphControlPanel );

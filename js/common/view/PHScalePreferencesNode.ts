@@ -9,7 +9,6 @@
 
 import Text from '../../../../scenery/js/nodes/Text.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
-import phScale from '../../phScale.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import PHScalePreferences from '../model/PHScalePreferences.js';
 import PreferencesControl from '../../../../joist/js/preferences/PreferencesControl.js';
@@ -42,5 +41,4 @@ class PHScalePreferencesNode extends PreferencesPanelContentNode {
   }
 }
 
-phScale.register( 'PHScalePreferencesNode', PHScalePreferencesNode );
 export default PHScalePreferencesNode;

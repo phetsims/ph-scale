@@ -13,7 +13,6 @@ import FaucetNode, { FaucetNodeOptions } from '../../../../scenery-phet/js/Fauce
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
-import phScale from '../../phScale.js';
 import Faucet from '../model/Faucet.js';
 import Water from '../model/Water.js';
 import PHScaleConstants from '../PHScaleConstants.js';
@@ -89,5 +88,3 @@ export default class WaterFaucetNode extends Node {
     super( options );
   }
 }
-
-phScale.register( 'WaterFaucetNode', WaterFaucetNode );

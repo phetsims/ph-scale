@@ -20,7 +20,6 @@ import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import { PHValue } from '../../common/model/PHModel.js';
 import PHMovable from '../../common/model/PHMovable.js';
-import phScale from '../../phScale.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -63,5 +62,3 @@ export default class MacroPHMeter {
     this.probe.reset();
   }
 }
-
-phScale.register( 'MacroPHMeter', MacroPHMeter );

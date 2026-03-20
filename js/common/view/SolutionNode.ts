@@ -11,7 +11,6 @@ import { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import Rectangle, { RectangleOptions } from '../../../../scenery/js/nodes/Rectangle.js';
 import Color from '../../../../scenery/js/util/Color.js';
-import phScale from '../../phScale.js';
 import Beaker from '../model/Beaker.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import Solute from '../model/Solute.js';
@@ -98,5 +97,3 @@ export default class SolutionNode extends Rectangle {
     this.addChild( this.soluteDescriptionNode );
   }
 }
-
-phScale.register( 'SolutionNode', SolutionNode );

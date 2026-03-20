@@ -6,7 +6,6 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import PHScaleColors from '../PHScaleColors.js';
 
@@ -17,5 +16,4 @@ const Water = Object.freeze( {
   color: PHScaleColors.WATER
 } );
 
-phScale.register( 'Water', Water );
 export default Water;

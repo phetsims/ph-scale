@@ -15,7 +15,6 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import Property from '../../../../axon/js/Property.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import type { OneKeyStroke } from '../../../../scenery/js/input/KeyDescriptor.js';
-import phScale from '../../phScale.js';
 import JumpPosition from '../model/JumpPosition.js';
 
 export default class JumpToPositionListener extends KeyboardListener<OneKeyStroke[]> {
@@ -50,5 +49,3 @@ export default class JumpToPositionListener extends KeyboardListener<OneKeyStrok
     } );
   }
 }
-
-phScale.register( 'JumpToPositionListener', JumpToPositionListener );

@@ -15,7 +15,6 @@ import Tandem from '../../../../tandem/js/Tandem.js';
 import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtterance.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
 import PHAccordionBox from '../../common/view/PHAccordionBox.js';
-import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import MicroModel from '../model/MicroModel.js';
 
@@ -82,5 +81,3 @@ export default class MicroPHAccordionBox extends PHAccordionBox {
       } );
   }
 }
-
-phScale.register( 'MicroPHAccordionBox', MicroPHAccordionBox );

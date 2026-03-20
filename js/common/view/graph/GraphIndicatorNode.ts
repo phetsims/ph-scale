@@ -24,7 +24,6 @@ import Path from '../../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../../scenery/js/nodes/Rectangle.js';
 import RichText from '../../../../../scenery/js/nodes/RichText.js';
 import TColor from '../../../../../scenery/js/util/TColor.js';
-import phScale from '../../../phScale.js';
 import PhScaleStrings from '../../../PhScaleStrings.js';
 import PHScaleColors from '../../PHScaleColors.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
@@ -288,5 +287,3 @@ export default class GraphIndicatorNode extends InteractiveHighlighting( Node ) 
       }, options ) );
   }
 }
-
-phScale.register( 'GraphIndicatorNode', GraphIndicatorNode );

@@ -15,7 +15,6 @@ import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
 import { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import phScale from '../../phScale.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import Beaker from './Beaker.js';
 import Dropper from './Dropper.js';
@@ -344,5 +343,3 @@ export default class PHModel<T extends Solution> implements TModel {
            ( toFixedNumber( pH, PHScaleConstants.PH_METER_DECIMAL_PLACES ) === Water.pH );
   }
 }
-
-phScale.register( 'PHModel', PHModel );

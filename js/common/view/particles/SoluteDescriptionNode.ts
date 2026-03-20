@@ -8,7 +8,6 @@
 
 import AccessibleList from '../../../../../scenery-phet/js/accessibility/AccessibleList.js';
 import Node from '../../../../../scenery/js/nodes/Node.js';
-import phScale from '../../../phScale.js';
 import { TReadOnlyProperty } from '../../../../../axon/js/TReadOnlyProperty.js';
 import { ConcentrationValue } from '../../model/PHModel.js';
 import Solute from '../../model/Solute.js';
@@ -98,5 +97,3 @@ export default class SoluteDescriptionNode extends Node {
     } );
   }
 }
-
-phScale.register( 'SoluteDescriptionNode', SoluteDescriptionNode );

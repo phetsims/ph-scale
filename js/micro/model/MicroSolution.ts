@@ -11,7 +11,6 @@ import { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Solute from '../../common/model/Solute.js';
 import Solution, { SolutionOptions } from '../../common/model/Solution.js';
 import SolutionDerivedProperties from '../../common/model/SolutionDerivedProperties.js';
-import phScale from '../../phScale.js';
 
 type SelfOptions = EmptySelfOptions;
 
@@ -32,5 +31,3 @@ export default class MicroSolution extends Solution {
     } );
   }
 }
-
-phScale.register( 'MicroSolution', MicroSolution );

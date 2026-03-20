@@ -28,7 +28,6 @@ import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
 import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Rectangle, { RectangleOptions } from '../../../../scenery/js/nodes/Rectangle.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
-import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import SolutionDerivedProperties from '../model/SolutionDerivedProperties.js';
 import PHScaleColors from '../PHScaleColors.js';
@@ -176,5 +175,3 @@ export default class ParticleCountsNode extends Node {
     } );
   }
 }
-
-phScale.register( 'ParticleCountsNode', ParticleCountsNode );

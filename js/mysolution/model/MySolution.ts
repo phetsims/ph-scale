@@ -16,7 +16,6 @@ import PhetioObject, { PhetioObjectOptions } from '../../../../tandem/js/PhetioO
 import SolutionDerivedProperties from '../../common/model/SolutionDerivedProperties.js';
 import Water from '../../common/model/Water.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
-import phScale from '../../phScale.js';
 
 type SelfOptions = {
   pH?: number;
@@ -81,5 +80,3 @@ export default class MySolution extends PhetioObject {
     // this.derivedProperties does not need to be reset because all of its Properties are derived.
   }
 }
-
-phScale.register( 'MySolution', MySolution );

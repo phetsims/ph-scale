@@ -29,7 +29,6 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import { PHValue } from '../../common/model/PHModel.js';
 import PHScaleColors from '../../common/PHScaleColors.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
-import phScale from '../../phScale.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 
 // constants
@@ -215,5 +214,3 @@ export default class PHIndicatorNode extends Node {
     }
   }
 }
-
-phScale.register( 'PHIndicatorNode', PHIndicatorNode );

@@ -75,5 +75,3 @@ export default class MoveKeyboardHelpContent extends KeyboardHelpSection {
     super( titleProperty, rows, {} );
   }
 }
-
-phScale.register( 'MoveKeyboardHelpContent', MoveKeyboardHelpContent );

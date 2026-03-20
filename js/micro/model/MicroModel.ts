@@ -9,7 +9,6 @@
 
 import Tandem from '../../../../tandem/js/Tandem.js';
 import PHModel from '../../common/model/PHModel.js';
-import phScale from '../../phScale.js';
 import MicroSolution from './MicroSolution.js';
 
 export default class MicroModel extends PHModel<MicroSolution> {
@@ -25,5 +24,3 @@ export default class MicroModel extends PHModel<MicroSolution> {
     } );
   }
 }
-
-phScale.register( 'MicroModel', MicroModel );

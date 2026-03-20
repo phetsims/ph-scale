@@ -24,7 +24,6 @@ import Path from '../../../../../scenery/js/nodes/Path.js';
 import Text from '../../../../../scenery/js/nodes/Text.js';
 import Font from '../../../../../scenery/js/util/Font.js';
 import TColor from '../../../../../scenery/js/util/TColor.js';
-import phScale from '../../../phScale.js';
 import PhScaleStrings from '../../../PhScaleStrings.js';
 import SolutionDerivedProperties from '../../model/SolutionDerivedProperties.js';
 import PHScaleConstants from '../../PHScaleConstants.js';
@@ -302,5 +301,3 @@ class TickLabelNode extends ScientificNotationNode {
     this.numberProperty.value = value;
   }
 }
-
-phScale.register( 'LinearGraphNode', LinearGraphNode );

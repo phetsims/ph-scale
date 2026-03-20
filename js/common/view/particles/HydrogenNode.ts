@@ -10,7 +10,6 @@ import optionize, { EmptySelfOptions } from '../../../../../phet-core/js/optioni
 import ShadedSphereNode, { ShadedSphereNodeOptions } from '../../../../../scenery-phet/js/ShadedSphereNode.js';
 import { NodeTranslationOptions } from '../../../../../scenery/js/nodes/Node.js';
 import Color from '../../../../../scenery/js/util/Color.js';
-import phScale from '../../../phScale.js';
 import PHScaleColors from '../../PHScaleColors.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -29,5 +28,3 @@ export default class HydrogenNode extends ShadedSphereNode {
     super( 15, options );
   }
 }
-
-phScale.register( 'HydrogenNode', HydrogenNode );

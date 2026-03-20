@@ -30,7 +30,6 @@ import Node, { NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import NullableIO from '../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import phScale from '../../phScale.js';
 import Beaker from '../model/Beaker.js';
 import PHModel, { PHValue } from '../model/PHModel.js';
 import PHScaleColors from '../PHScaleColors.js';
@@ -387,5 +386,3 @@ class ParticlesCanvas extends CanvasNode {
     }
   }
 }
-
-phScale.register( 'RatioNode', RatioNode );

@@ -16,7 +16,6 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import ComboBox, { ComboBoxItem, ComboBoxOptions } from '../../../../sun/js/ComboBox.js';
-import phScale from '../../phScale.js';
 import Solute from '../model/Solute.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
 import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
@@ -88,5 +87,3 @@ export default class SoluteComboBox extends ComboBox<Solute> {
     super( selectedSoluteProperty, items, soluteListParent, options );
   }
 }
-
-phScale.register( 'SoluteComboBox', SoluteComboBox );

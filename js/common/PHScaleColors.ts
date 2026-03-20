@@ -60,5 +60,4 @@ const PHScaleColors = {
   OH_Particles_Stroke: new Color( 'black' )
 };
 
-phScale.register( 'PHScaleColors', PHScaleColors );
 export default PHScaleColors;

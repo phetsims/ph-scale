@@ -10,7 +10,6 @@ import { EmptySelfOptions, optionize4 } from '../../../../phet-core/js/optionize
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import FaucetNode, { FaucetNodeOptions } from '../../../../scenery-phet/js/FaucetNode.js';
-import phScale from '../../phScale.js';
 import Faucet from '../model/Faucet.js';
 import PHScaleConstants from '../PHScaleConstants.js';
 import PhScaleStrings from '../../PhScaleStrings.js';
@@ -62,5 +61,3 @@ export default class DrainFaucetNode extends FaucetNode {
     this.setScaleMagnitude( -SCALE, SCALE ); // reflect horizontally
   }
 }
-
-phScale.register( 'DrainFaucetNode', DrainFaucetNode );

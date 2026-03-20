@@ -11,7 +11,6 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import PHModel from '../../common/model/PHModel.js';
 import PHScaleConstants from '../../common/PHScaleConstants.js';
-import phScale from '../../phScale.js';
 import MacroPHMeter from './MacroPHMeter.js';
 import MacroSolution from './MacroSolution.js';
 import JumpPosition from './JumpPosition.js';
@@ -67,5 +66,3 @@ export default class MacroModel extends PHModel<MacroSolution> {
     this.probeJumpPositionIndexProperty.reset();
   }
 }
-
-phScale.register( 'MacroModel', MacroModel );
